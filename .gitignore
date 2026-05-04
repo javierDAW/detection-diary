@@ -1,0 +1,56 @@
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+
+# Build / dist artifacts
+dist/
+build/
+*.egg-info/
+
+# Local notes — keep private
+NOTES.md
+notes/
+private/
+*.local.*
+
+# Sensitive samples — never commit
+samples/
+malware/
+*.bin
+*.dll
+*.exe
+*.elf
+*.macho
+*.dmg
+*.iso
+*.img
+*.dump
+*.mem
+*.lime
+*.aff4
+*.evtx
+*.pcap
+*.cap
+
+# But still allow rule files with these extensions inside yara/sigma folders
+!days/**/yara/*.yar
+!days/**/sigma/*.yml
+!days/**/sigma/*.yaml
+
+# Tooling output
+*.log
+.cache/
+output/

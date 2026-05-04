@@ -1,0 +1,35 @@
+; Title:        Cisco ASA show version + Mount-List Baseline Drift
+; Id:           a4a52b80-2c75-49a1-94a1-uat43560003
+; MITRE:        T1542.001, T1037, T1574.006
+; Reference:    https://www.cisa.gov/news-events/cybersecurity-advisories/
+; Author:       Jarmi
+; Date:         2026-04-30
+; Tested on:    Splunk — scheduled `show version` and CSP_MOUNT_LIST capture
+;               via Splunk Add-on for Cisco ASA + RANCID/Oxidized-style snapshots
+; FP notes:     Legitimate firmware upgrade window will diff — gate by change ticket.
+;
+; Logic:        Compare each host's currently observed `show version` digest
+;               and CSP_MOUNT_LIST hash against a per-host golden baseline.
+;               Any drift not preceded by a change ticket = candidate for
+;               FIRESTARTER residual presence.
+
+`asa_running_capture`
+| eval current_version_hash = sha256(version_blob)
+| eval current_mountlist_hash = sha256(csp_mount_list_blob)
+| join type=left host
+   [ search index=baselines source="asa_golden_baselines"
+     | fields host, golden_version_hash, golden_mountlist_hash ]
+
+| where current_version_hash != golden_version_hash
+     OR current_mountlist_hash != golden_mountlist_hash
+
+| join type=left host
+   [ search index=changemgmt sourcetype=ticket status=approved
+     | fields host, ticket_id, change_window_start, change_window_end ]
+
+| where isnull(ticket_id)
+     OR _time < change_window_start
+     OR _time > change_window_end
+
+| table _time host current_version_hash golden_version_hash current_mountlist_hash golden_mountlist_hash
+| sort - _time

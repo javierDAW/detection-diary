@@ -1,0 +1,34 @@
+title: VECT 2.0 Safe-Boot Persistence — bcdedit safeboot minimal
+id: 82de7d6c-705d-4fe1-add8-b53d601ef66b
+status: experimental
+description: |
+  Detects invocation of bcdedit to enable safeboot minimal — first half of the
+  VECT 2.0 RaaS transient persistence mechanism (the second half being a
+  service registered under HKLM\...\SafeBoot\Minimal\<svc>; see companion rule
+  vect_safeboot_regset.yml). Together they let the encryptor relaunch into a
+  hostile Safe Mode where most security tooling is unloaded.
+references:
+  - https://research.checkpoint.com/
+  - https://attack.mitre.org/techniques/T1547/001/
+  - https://attack.mitre.org/techniques/T1490/
+author: Jarmi
+date: 2026/05/01
+modified: 2026/05/04
+tags:
+  - attack.persistence
+  - attack.impact
+  - attack.t1547.001
+  - attack.t1490
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith: '\bcdedit.exe'
+    CommandLine|contains|all:
+      - 'safeboot'
+      - 'minimal'
+  condition: selection
+falsepositives:
+  - Legitimate technician forcing minimal Safe Mode for diagnostics (rare in fleet)
+level: high

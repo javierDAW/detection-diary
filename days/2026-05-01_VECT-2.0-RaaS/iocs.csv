@@ -1,0 +1,10 @@
+type,value,context,confidence,source
+filename,svchostupdate.exe,VECT 2.0 Windows payload,High,Check Point Research
+filename,encesxi.elf,VECT 2.0 Linux/ESXi payload,High,Check Point Research
+path,C:\ProgramData\.vect,Killswitch / marker (Windows),High,Check Point Research
+path,/var/run/.vect,Killswitch / marker (Linux),High,Check Point Research
+xor_key,0xBB55FF59DF597B8D,EVTX clearing XOR key,High,Check Point Research
+extension,.vect,Encrypted file extension,High,Check Point Research
+ttp,bcdedit /set {default} safeboot minimal + HKLM\...\SafeBoot\Minimal\<svc>,Transient persistence + residual reg IOC,High,Check Point Research
+ttp,ChaCha20-IETF raw 4-chunk nonces sharing one buffer (>128 KB unrecoverable),Crypto bug — wiper-by-accident,High,Check Point Research
+note,Files > 128 KB cannot be decrypted even by the operator — do not negotiate,IR doctrine,High,Check Point Research

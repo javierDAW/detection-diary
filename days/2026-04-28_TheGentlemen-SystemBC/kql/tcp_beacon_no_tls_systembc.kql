@@ -1,0 +1,42 @@
+// Title:        TCP Beacon Without TLS to Public Destination (SystemBC heuristic)
+// Id:           a13c2d80-1f1b-4d6f-9a23-thegentlemen0002
+// MITRE:        T1090.002, T1573.001, T1071.001
+// Reference:    https://research.checkpoint.com/
+// Author:       Jarmi
+// Date:         2026-04-28
+// Tested on:    Microsoft Sentinel — DeviceNetworkEvents, DeviceProcessEvents
+// FP notes:     Custom legacy LOB apps using raw TCP without TLS will hit this.
+//               Baseline by ProcessName + RemoteUrl/RemoteIP for 30 days first.
+//
+// Logic:        SystemBC speaks a custom RC4-encrypted SOCKS5 over plain TCP.
+//               The protocol does NOT initiate a TLS handshake. We hunt for
+//               processes establishing sustained outbound TCP connections to
+//               public IPs on commodity ports (80, 443, 8080, 4443, 8443) where
+//               the matching DeviceNetworkEvents has no TLS-class context AND
+//               the remote IP is NOT in our TLS-talking baseline.
+
+let TlsTalkers =
+    DeviceNetworkEvents
+    | where Timestamp >= ago(30d)
+    | where ActionType == "ConnectionSuccess"
+    | where RemotePort in (443, 4443, 8443)
+    | where isnotempty(InitiatingProcessFileName)
+    | summarize by InitiatingProcessFileName, RemoteIP;
+DeviceNetworkEvents
+| where Timestamp >= ago(7d)
+| where ActionType == "ConnectionSuccess"
+| where Protocol == "Tcp"
+| where RemotePort in (80, 443, 4443, 8080, 8443)
+| where ipv4_is_private(RemoteIP) == false
+| where isnotempty(InitiatingProcessFileName)
+| where InitiatingProcessFileName !in~ ("msedge.exe","chrome.exe","firefox.exe","opera.exe","brave.exe","iexplore.exe","outlook.exe","teams.exe","slack.exe","onedrive.exe","msteams.exe")
+| join kind=leftanti TlsTalkers on InitiatingProcessFileName, RemoteIP
+| summarize Connections = count(),
+            FirstSeen = min(Timestamp),
+            LastSeen  = max(Timestamp),
+            Ports     = make_set(RemotePort, 5)
+            by DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, RemoteIP
+| where Connections >= 20
+| extend BeaconWindowMinutes = datetime_diff('minute', LastSeen, FirstSeen)
+| where BeaconWindowMinutes >= 60
+| order by Connections desc

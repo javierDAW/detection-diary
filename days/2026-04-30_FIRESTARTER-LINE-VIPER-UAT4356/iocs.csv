@@ -1,0 +1,8 @@
+type,value,context,confidence,source
+cve,CVE-2025-20333,Cisco WebVPN RCE — initial access,High,Cisco PSIRT
+cve,CVE-2025-20362,Cisco auth bypass — initial access,High,Cisco PSIRT
+path,/opt/cisco/config/platform/rmdb/CSP_MOUNT_LIST,FIRESTARTER persistence target file,High,CISA AR26-113A
+endpoint,/+CSCOE+/ POST > 8 KiB with magic prefix,FIRESTARTER passive trigger,High,CISA AR26-113A
+ttp,SIGTERM-time mount-list rewrite for graceful-reboot persistence,Persistence mechanism,High,CISA AR26-113A
+overlap,RayInitiator Stage-3 (ArcaneDoor 2024),Genealogy / cluster overlap,Medium,Cisco / Mandiant 2024
+note,No public SHA256 distribution for FIRESTARTER as of class date,,—,—

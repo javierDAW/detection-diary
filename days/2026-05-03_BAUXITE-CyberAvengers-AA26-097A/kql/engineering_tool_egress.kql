@@ -1,0 +1,39 @@
+// Title:        Engineering Tool Egress + Dropbear File Drop Dual-Channel Hunt
+// Id:           1f2dca40-7c61-46b1-9f4a-bauxite0002
+// MITRE:        T1133, T1505.003, T0866, T0832
+// Reference:    https://www.cisa.gov/news-events/cybersecurity-advisories/
+// Author:       Jarmi
+// Date:         2026-05-03
+// Tested on:    Sentinel — DeviceProcessEvents, DeviceNetworkEvents, DeviceFileEvents
+// FP notes:     Authorized OT engineering with public-IP cloud labs will hit;
+//               whitelist by RemoteIP / SubnetTag.
+//
+// Logic:        Two-channel correlation:
+//                 (a) Rockwell engineering tool egressing OT ports to public IP
+//                 (b) Dropbear binary observed on disk on any OT-tagged endpoint
+//               Either alone is suspicious. Together = high-confidence BAUXITE.
+
+let EngineeringEgress =
+    DeviceNetworkEvents
+    | where Timestamp >= ago(7d)
+    | where ActionType == "ConnectionSuccess"
+    | where InitiatingProcessFileName in~ ("Studio5000.exe","RSLogix5000.exe","RSLinx.exe","RSLinxClassic.exe")
+    | where RemotePort in (44818, 2222, 502, 102)
+    | where ipv4_is_private(RemoteIP) == false
+    | project Timestamp, DeviceName, AccountName, InitiatingProcessFileName, RemoteIP, RemotePort;
+let DropbearOnDisk =
+    DeviceFileEvents
+    | where Timestamp >= ago(7d)
+    | where ActionType in ("FileCreated","FileModified")
+    | where FileName has_any ("dropbear","dropbearmulti","dbclient")
+       or SHA256 == "<add_known_dropbear_hash_if_available>"
+    | project Timestamp, DeviceName, FileName, FolderPath, InitiatingProcessFileName, SHA256;
+EngineeringEgress
+| union DropbearOnDisk
+| summarize ChannelHits = dcount(InitiatingProcessFileName),
+            EngEgressCount = countif(isnotempty(RemoteIP)),
+            DropbearCount  = countif(isnotempty(FileName)),
+            FirstSeen = min(Timestamp), LastSeen = max(Timestamp)
+            by DeviceName
+| where ChannelHits >= 1 and (EngEgressCount > 0 or DropbearCount > 0)
+| order by LastSeen desc

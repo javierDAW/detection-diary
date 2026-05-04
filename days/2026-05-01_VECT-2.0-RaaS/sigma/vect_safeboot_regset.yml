@@ -1,0 +1,31 @@
+title: VECT 2.0 Safe-Boot Persistence — SafeBoot Minimal Registry Service Add
+id: 9b7955fd-c2c5-48f2-9812-4b74f3e236b4
+status: experimental
+description: |
+  Detects creation of a service value under HKLM\SYSTEM\CurrentControlSet\Control\
+  SafeBoot\Minimal\<svc> — the second half of the VECT 2.0 RaaS transient
+  persistence mechanism. The reg key persists as a residual IOC even after the
+  system boots back into Normal Mode, and is therefore high-signal during IR
+  even days/weeks after the encryption event.
+references:
+  - https://research.checkpoint.com/
+  - https://attack.mitre.org/techniques/T1547/001/
+  - https://attack.mitre.org/techniques/T1490/
+author: Jarmi
+date: 2026/05/01
+modified: 2026/05/04
+tags:
+  - attack.persistence
+  - attack.impact
+  - attack.t1547.001
+  - attack.t1490
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection:
+    TargetObject|contains: '\SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\'
+  condition: selection
+falsepositives:
+  - AV/EDR products legitimately registering for Safe Mode (whitelist by ImageLoaded / Image)
+level: high

@@ -1,0 +1,48 @@
+title: Anomalously Large POST to Cisco ASA WebVPN /+CSCOE+/ Endpoint
+id: 8b5b945e-78c2-4455-9210-9e759c706039
+status: experimental
+description: |
+  Detects HTTP POSTs to /+CSCOE+/ on Cisco ASA/FTD whose request body
+  exceeds 8 KiB. The FIRESTARTER/LINE VIPER implant chain (UAT-4356 /
+  Storm-1849 / ArcaneDoor) is triggered passively by an oversized XML
+  body prefixed with magic bytes, with no out-of-band beacon.
+references:
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/
+  - https://attack.mitre.org/techniques/T1190/
+  - https://attack.mitre.org/techniques/T1542/001/
+author: Jarmi
+date: 2026/04/30
+modified: 2026/05/04
+tags:
+  - attack.initial-access
+  - attack.persistence
+  - attack.t1190
+  - attack.t1542.001
+  - cve.2025-20333
+  - cve.2025-20362
+logsource:
+  category: webserver
+  product: cisco_asa
+detection:
+  selection_method:
+    cs-method: 'POST'
+  selection_uri:
+    cs-uri-stem|startswith:
+      - '/+CSCOE+/'
+      - '/+webvpn+/'
+  selection_size:
+    cs-bytes|gte: 8192
+  filter_known_clients:
+    cs-User-Agent|contains:
+      - 'AnyConnect'
+      - 'Cisco Secure Client'
+  condition: selection_method and selection_uri and selection_size and not filter_known_clients
+fields:
+  - c-ip
+  - cs-uri-stem
+  - cs-bytes
+  - cs-User-Agent
+  - sc-status
+falsepositives:
+  - Legitimate large config-push by automation (Ansible, NetBox, etc.) — baseline by source IP first
+level: high

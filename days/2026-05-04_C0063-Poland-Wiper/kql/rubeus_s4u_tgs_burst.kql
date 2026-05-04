@@ -1,0 +1,27 @@
+// Title:        Rubeus s4u/asktgt + 4769 TGS Burst Correlation
+// Id:           c4be0a80-d531-44a2-8f6f-c0063dyno0003
+// MITRE:        T1558.003, T1550.003
+// Reference:    https://www.welivesecurity.com/en/eset-research/dynowiper-update-technical-analysis-attribution/
+// Author:       Jarmi
+// Date:         2026-05-04
+// Tested on:    Sentinel — DeviceProcessEvents + SecurityEvent
+// FP notes:     Legitimate constrained delegation flows (kerberos.exe, custom
+//               apps using s4u2self) will trigger; baseline by source process.
+//
+// Logic:        Rubeus on disk + classic asktgt/s4u command line + Kerberos
+//               TGS request burst > 50 in 5-min window from same account.
+
+DeviceProcessEvents
+| where Timestamp >= ago(30d)
+| where (FileName =~ "rubeus.exe"
+         or ProcessCommandLine has_any (" asktgt ", " s4u ", " s4u2self ", " kerberoast ", " /impersonateuser:"))
+   and ProcessCommandLine has_any ("/ticket:","/user:","/service:","/msdsspn:")
+| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName
+| join kind=leftouter (
+    SecurityEvent
+    | where EventID == 4769 and TicketEncryptionType in ("0x12","0x17") // AES256, RC4
+    | summarize TGSCount=count() by Account, bin(TimeGenerated,5m), Computer
+    | where TGSCount > 50
+    | project TimeGenerated, Account, Computer, TGSCount
+  ) on $left.AccountName == $right.Account
+| order by Timestamp asc

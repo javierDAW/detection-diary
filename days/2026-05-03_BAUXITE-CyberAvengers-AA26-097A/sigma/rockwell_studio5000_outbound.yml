@@ -1,0 +1,47 @@
+title: Rockwell Studio 5000 / RSLogix / RSLinx Outbound to Public Network on EIP/CIP
+id: 083e014e-a912-4189-937d-0fe4c71557af
+status: experimental
+description: |
+  Detects Rockwell engineering tool processes (Studio5000.exe, RSLogix5000.exe,
+  RSLinx.exe) initiating outbound TCP connections to public destinations on
+  EIP/CIP (44818, 2222) or Modbus (502). Pattern observed in CISA AA26-097A
+  for direct-to-PLC project file (.ACD) extract / modify / redeploy by IRGC-CEC
+  (BAUXITE / CyberAv3ngers / G1027).
+references:
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/
+  - https://attack.mitre.org/groups/G1027/
+  - https://attack.mitre.org/techniques/T1133/
+author: Jarmi
+date: 2026/05/03
+modified: 2026/05/04
+tags:
+  - attack.command-and-control
+  - attack.initial-access
+  - attack.t1133
+  - attack.t1190
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection_process_network:
+    Image|endswith:
+      - '\Studio5000.exe'
+      - '\RSLogix5000.exe'
+      - '\RSLinx.exe'
+    DestinationPort:
+      - 44818
+      - 2222
+      - 502
+      - 102
+  filter_private:
+    DestinationIp|cidr:
+      - '10.0.0.0/8'
+      - '172.16.0.0/12'
+      - '192.168.0.0/16'
+      - '169.254.0.0/16'
+      - '127.0.0.0/8'
+  condition: selection_process_network and not filter_private
+falsepositives:
+  - Authorized cloud-hosted PLC test labs reachable over public IP
+  - Multi-site engineering with VPN-NATed public IPs (baseline first)
+level: high

@@ -1,0 +1,10 @@
+type,value,context,confidence,source
+package,@bitwarden/cli@2026.4.0,Trojanized package,High,Bitwarden advisory
+domain,audit.checkmarx[.]cx,C2 look-alike,High,JFrog
+ttp,bw_setup.js → bun → bw1.js (~10 MB minified single-line),Loader chain,High,JFrog
+ttp,Public GitHub repo creation under victim account as exfil,Dead-drop pattern,High,JFrog
+marker,"""Shai-Hulud: The Third Coming"" in README of created repos",Branding marker,High,JFrog
+target,~/.claude / ~/.codex / ~/.cursor / ~/.config/gemini-cli/,AI-CLI configs (new),High,JFrog
+target,~/.aws/credentials / ~/.config/gcloud/* / ~/.azure/*,Cloud creds,High,JFrog
+target,~/.ssh/id_* / .npmrc / .gitconfig,SSH + CI creds,High,JFrog
+note,No SHA256 in detection-diary; pull from JFrog feed,,—,—

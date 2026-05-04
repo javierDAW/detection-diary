@@ -1,0 +1,33 @@
+// Title:        Cisco ASA Reboot Correlated with Large WebVPN POST
+// Id:           5e2d9f10-4a82-4ea1-a821-uat43560002
+// MITRE:        T1542.001, T1190, T1037
+// Reference:    https://www.cisa.gov/news-events/cybersecurity-advisories/
+// Author:       Jarmi
+// Date:         2026-04-30
+// Tested on:    Sentinel — Syslog (Cisco ASA) + IIS-style WebVPN access logs
+// FP notes:     Routine reboots after planned upgrades will fire — exclude
+//               by change-window correlation table.
+//
+// Logic:        FIRESTARTER persists via SIGTERM rewrite of CSP_MOUNT_LIST
+//               during graceful reboots. Reactivation = oversized POST to
+//               /+CSCOE+/. We correlate every ASA reboot with anomalous POST
+//               bodies seen in the 30 minutes prior.
+
+let LargePosts =
+    AsaWebVpnAccessLogs_CL    // adjust to your custom table
+    | where TimeGenerated >= ago(7d)
+    | where Method_s == "POST"
+    | where Uri_s startswith "/+CSCOE+/" or Uri_s startswith "/+webvpn+/"
+    | where BodyBytes_d >= 8192
+    | project PostTime=TimeGenerated, AsaHost=AsaHostname_s, ClientIp=ClientIp_s, Uri_s, BodyBytes_d, Ua=UserAgent_s;
+let Reboots =
+    Syslog
+    | where TimeGenerated >= ago(7d)
+    | where ProcessName == "ASA" or HostName matches regex "asa.*"
+    | where SyslogMessage has_any ("%ASA-5-199001", "Reload", "Restarting", "shutdown") // tune to your IDs
+    | project RebootTime=TimeGenerated, AsaHost=HostName, RebootMsg=SyslogMessage;
+LargePosts
+| join kind=inner Reboots on AsaHost
+| where RebootTime between (PostTime .. PostTime + 30m)
+| project PostTime, AsaHost, ClientIp, Uri_s, BodyBytes_d, Ua, RebootTime, RebootMsg
+| order by PostTime asc

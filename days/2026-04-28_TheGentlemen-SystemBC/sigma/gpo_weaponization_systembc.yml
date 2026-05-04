@@ -1,0 +1,45 @@
+title: GPO Weaponization via Mass gPLink and Startup Script Changes
+id: c362fb5b-0936-4873-8e48-47f2d01355b9
+status: experimental
+description: |
+  Detects bursts of GPO modifications consistent with mass weaponization:
+  multiple gPLink changes and writes to SYSVOL Machine\Scripts\Startup
+  by the same principal in a short window. Pattern observed in The
+  Gentlemen RaaS for distributing SystemBC and the encryptor across the
+  domain in a single operational push.
+references:
+  - https://attack.mitre.org/techniques/T1484/001/
+  - https://research.checkpoint.com/
+author: Jarmi
+date: 2026/04/28
+modified: 2026/05/04
+tags:
+  - attack.defense-evasion
+  - attack.persistence
+  - attack.t1484.001
+logsource:
+  product: windows
+  service: security
+detection:
+  ds_object_modified:
+    EventID: 5136
+    ObjectClass: groupPolicyContainer
+    AttributeLDAPDisplayName|contains:
+      - 'gPLink'
+      - 'gPCMachineExtensionNames'
+      - 'gPCFileSysPath'
+  smb_sysvol_write:
+    EventID: 5145
+    ShareName|contains: '\SYSVOL'
+    RelativeTargetName|contains:
+      - '\Machine\Scripts\Startup\'
+      - '\Machine\Scripts\scripts.ini'
+      - '\User\Scripts\Logon\'
+    AccessMask|contains: '0x100002'
+  filter_replication:
+    SubjectUserName|endswith: '$'
+  condition: (ds_object_modified or smb_sysvol_write) and not filter_replication
+falsepositives:
+  - Legitimate bulk GPO refactor by a domain admin during change windows
+  - Group Policy Migration Tool (GPMT) operations
+level: high
