@@ -1,0 +1,38 @@
+// Title:        Mass Process Termination Burst (VECT 2.0 pre-encryption pattern)
+// Id:           ec3a4f60-92e1-4cae-a5a4-vect20raas0002
+// MITRE:        T1489, T1486, T1485
+// Reference:    https://research.checkpoint.com/
+// Author:       Jarmi
+// Date:         2026-05-01
+// Tested on:    Defender XDR / Sentinel — DeviceProcessEvents
+// FP notes:     Fleet-wide patch reboots can transiently kill office apps;
+//               filter by InitiatingProcessSignature == "Microsoft Update" if seen.
+//
+// Logic:        Encryptor terminates DB engines, browsers, mail clients, office
+//               suites in a tight 60-second window so that opened files are
+//               flushed to disk and lockable. Fires on the burst pattern by
+//               unique-process-name diversity, not just count.
+
+let TargetNames = dynamic([
+    "sqlservr.exe","sqlwriter.exe","sqlservr","oracle.exe","ocssd.exe","tnslsnr.exe",
+    "mysqld.exe","postgres.exe","mongod.exe","redis-server.exe",
+    "winword.exe","excel.exe","powerpnt.exe","outlook.exe","onenote.exe",
+    "firefox.exe","msedge.exe","chrome.exe","brave.exe",
+    "thunderbird.exe","teams.exe","slack.exe","onedrive.exe","dropbox.exe",
+    "vmms.exe","vmwp.exe","vmware-vmx.exe","veeamservice.exe","veeamtransport.exe"
+]);
+DeviceProcessEvents
+| where Timestamp >= ago(7d)
+| where ActionType == "ProcessTerminated"
+| where FileName in~ (TargetNames)
+| summarize KillCount = count(),
+            DistinctTargets = dcount(FileName),
+            Targets = make_set(FileName, 30),
+            FirstKill = min(Timestamp),
+            LastKill  = max(Timestamp),
+            Killers   = make_set(InitiatingProcessFileName, 10)
+            by DeviceName, bin(Timestamp, 1m)
+| where DistinctTargets >= 5 and KillCount >= 10
+| extend WindowSec = datetime_diff('second', LastKill, FirstKill)
+| where WindowSec <= 60
+| order by Timestamp asc

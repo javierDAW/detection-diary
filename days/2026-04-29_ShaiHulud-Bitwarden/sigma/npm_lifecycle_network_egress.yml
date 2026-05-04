@@ -1,0 +1,67 @@
+title: npm or Bun Lifecycle Hook Spawning Network Egress or Shell Profile Modification
+id: fc98c508-f327-4a92-aa7f-3f5bd4418bdd
+status: experimental
+description: |
+  Detects npm/yarn/pnpm/bun child processes (typical lifecycle scripts:
+  preinstall, install, postinstall) that either (a) make outbound network
+  connections through curl/wget/git/node/bun, or (b) write to shell rc files
+  (~/.bashrc, ~/.zshrc, ~/.profile, ~/.config/fish/config.fish). Pattern used
+  by Shai-Hulud "Third Coming" (Bitwarden CLI 2026.4.0 trojan).
+references:
+  - https://attack.mitre.org/techniques/T1195/002/
+  - https://attack.mitre.org/techniques/T1546/004/
+  - https://research.jfrog.com/
+  - https://www.endorlabs.com/
+author: Jarmi
+date: 2026/04/29
+modified: 2026/05/04
+tags:
+  - attack.initial-access
+  - attack.persistence
+  - attack.t1195.002
+  - attack.t1546.004
+logsource:
+  product: linux
+  service: process_creation
+detection:
+  parent_pkg_manager:
+    ParentImage|endswith:
+      - '/npm'
+      - '/yarn'
+      - '/pnpm'
+      - '/bun'
+      - '/npx'
+  egress_child:
+    Image|endswith:
+      - '/curl'
+      - '/wget'
+      - '/git'
+      - '/node'
+      - '/bun'
+      - '/python'
+      - '/python3'
+    CommandLine|contains:
+      - 'http://'
+      - 'https://'
+      - 'ssh://'
+      - '@github.com:'
+  shell_profile_write:
+    Image|endswith:
+      - '/sh'
+      - '/bash'
+      - '/zsh'
+      - '/fish'
+      - '/dash'
+    CommandLine|contains:
+      - '~/.bashrc'
+      - '~/.zshrc'
+      - '~/.profile'
+      - '~/.bash_profile'
+      - '/.config/fish/config.fish'
+      - '$HOME/.bashrc'
+      - '$HOME/.zshrc'
+  condition: parent_pkg_manager and (egress_child or shell_profile_write)
+falsepositives:
+  - Legitimate post-install scripts that fetch native binaries or print MOTD
+  - Developer-tools auto-completion installers (rare, baseline first)
+level: high

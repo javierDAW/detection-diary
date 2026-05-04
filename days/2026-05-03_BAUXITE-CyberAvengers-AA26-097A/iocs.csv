@@ -1,0 +1,12 @@
+type,value,context,confidence,source
+ttp,Studio5000 / RSLogix5000 / RSLinx outbound to public 44818/2222,Direct-to-PLC EIP/CIP,High,CISA AA26-097A
+ttp,.ACD project file extract / modify / redeploy,Ladder logic tampering,High,CISA AA26-097A
+ttp,Dropbear SSH on PLC TCP/22,Persistence on engineering controller,High,CISA AA26-097A
+ttp,HMI/SCADA display falsification,Manipulation of View (T0832),High,CISA AA26-097A
+ttp,Sierra Wireless AirLink cellular gateway pivot,Cellular ASN co-exposure,High,CISA AA26-097A
+infra,5219 EIP hosts publicly exposed (74.6% USA),Attack surface,High,Censys
+target_list,"Mekorot, Sorek, Hadera, Ashdod, Palmachim, Shafdan",Israeli desalination targets,High,Darktrace
+malware,IOCONTROL ELF (D-Link/Hikvision/Red Lion/Orpak/Phoenix Contact/Teltonika),Multi-arch ICS implant,High,Claroty Team82
+c2,MQTT TLS TCP/8883,IOCONTROL C2 transport,High,Claroty Team82
+sha256,1b39f9b2b96a6586c4a11ab2fdbff8fdf16ba5a0ac7603149023d73f3...,ZionSiphon partial hash,Medium,Darktrace
+note,ZionSiphon comparator broken — code likely LLM-assisted,Quality observation,Medium,Darktrace

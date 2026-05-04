@@ -1,0 +1,46 @@
+; Title:        Defense Impair — EDR Service Tampering and bcdedit Recovery Inhibition
+; Id:           c8f1d220-3b94-4b71-9aaa-thegentlemen0003
+; MITRE:        T1562.001, T1562.004, T1490
+; Reference:    https://research.checkpoint.com/
+; Author:       Jarmi
+; Date:         2026-04-28
+; Tested on:    Splunk Enterprise — Sysmon (EventCode 13 + 1) + Windows Security
+; FP notes:     Backup software occasionally toggles VSS storage; baseline by host role.
+;
+; Pattern:      The Gentlemen and post-LockBit affiliates routinely (a) tamper
+;               registry values that disable EDR services (Defender, Sophos,
+;               CrowdStrike, SentinelOne, etc.) and (b) call bcdedit to suppress
+;               recovery before encryption. This SPL fuses both into a single
+;               correlated alert by host within a 30-minute window.
+
+(  index=sysmon EventCode=13
+   ( TargetObject="*\\Services\\WinDefend\\Start"
+     OR TargetObject="*\\Services\\Sense\\Start"
+     OR TargetObject="*\\Services\\WdNisSvc\\Start"
+     OR TargetObject="*\\Services\\SecurityHealthService\\Start"
+     OR TargetObject="*\\Services\\CSAgent\\Start"
+     OR TargetObject="*\\Services\\SentinelAgent\\Start"
+     OR TargetObject="*\\Services\\HMPAlert\\Start"
+     OR TargetObject="*\\Services\\sophos*"
+     OR TargetObject="*\\Policies\\Microsoft\\Windows Defender\\DisableAntiSpyware"
+     OR TargetObject="*\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\Disable*" )
+   Details="DWORD (0x00000004)" OR Details="DWORD (0x00000001)" )
+OR
+(  index=sysmon EventCode=1
+   ( CommandLine="*bcdedit*recoveryenabled No*"
+     OR CommandLine="*bcdedit*bootstatuspolicy ignoreallfailures*"
+     OR CommandLine="*wmic shadowcopy delete*"
+     OR CommandLine="*vssadmin Delete Shadows /All*"
+     OR CommandLine="*wbadmin delete catalog -quiet*" ) )
+
+| eval bucket = case(
+    EventCode=13, "edr_tamper",
+    EventCode=1,  "recovery_inhibit"
+  )
+| stats count, values(TargetObject) as Targets, values(CommandLine) as Cmds,
+        min(_time) as first, max(_time) as last,
+        dc(bucket) as distinct_buckets by host, User
+| where distinct_buckets >= 2
+| eval window_minutes = round((last - first) / 60, 1)
+| where window_minutes <= 30
+| sort - count

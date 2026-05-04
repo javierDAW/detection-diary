@@ -1,0 +1,44 @@
+title: GPO Computer Startup Script Weaponization (Sandworm/Static Tundra-class)
+id: 8704cadf-b5ff-46bf-858a-74223eb794f4
+status: experimental
+description: |
+  Detects modification of GPO Startup script entries on a domain controller
+  followed by binary write to SYSVOL\Policies\<GUID>\Machine\Scripts\Startup.
+  Pattern observed in C0063 (Poland Wiper Attacks, dec-2025), VECT 2.0 RaaS,
+  and The Gentlemen RaaS for mass distribution of payloads.
+references:
+  - https://attack.mitre.org/techniques/T1484/001/
+  - https://cert.pl/en/posts/2026/01/incident-report-energy-sector-2025/
+  - https://www.welivesecurity.com/en/eset-research/dynowiper-update-technical-analysis-attribution/
+author: Jarmi
+date: 2026/05/04
+tags:
+  - attack.defense-evasion
+  - attack.t1484.001
+  - attack.impact
+  - attack.t1485
+logsource:
+  product: windows
+  service: security
+detection:
+  smb_write_sysvol_scripts:
+    EventID: 5145
+    ShareName|contains: '\SYSVOL'
+    RelativeTargetName|contains:
+      - '\Machine\Scripts\Startup\'
+      - '\User\Scripts\Logon\'
+      - '\Machine\Scripts\scripts.ini'
+    AccessMask|contains: '0x100002'   # WriteData
+  filter_legit_admin:
+    SubjectUserName|endswith:
+      - '$'                            # computer accounts (replication)
+  ds_object_modified:
+    EventID: 5136
+    ObjectClass: groupPolicyContainer
+    AttributeLDAPDisplayName|contains:
+      - 'gPCMachineExtensionNames'
+      - 'gPCFileSysPath'
+  condition: (smb_write_sysvol_scripts and not filter_legit_admin) or ds_object_modified
+falsepositives:
+  - Legitimate GPO change by a GPO admin during a maintenance window
+level: high

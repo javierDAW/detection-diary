@@ -1,0 +1,29 @@
+title: VECT 2.0 Killswitch / Marker File Created
+id: ebf1aff0-39b1-4cad-a31d-61bb78d2890f
+status: experimental
+description: |
+  Detects creation of the VECT 2.0 RaaS killswitch / marker file:
+  C:\ProgramData\.vect on Windows endpoints. Same actor uses /var/run/.vect on
+  the Linux/ESXi variant; for that platform see the YARA rule
+  VECT2_ChaCha20_Nonce_Bug_Heuristic.yar in this folder.
+references:
+  - https://research.checkpoint.com/
+  - https://attack.mitre.org/techniques/T1486/
+author: Jarmi
+date: 2026/05/01
+modified: 2026/05/04
+tags:
+  - attack.impact
+  - attack.t1486
+  - attack.t1485
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection:
+    TargetFilename|endswith:
+      - '\ProgramData\.vect'
+  condition: selection
+falsepositives:
+  - None expected — `.vect` is a non-standard filename
+level: high

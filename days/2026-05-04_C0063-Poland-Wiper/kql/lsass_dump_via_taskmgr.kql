@@ -1,0 +1,29 @@
+// Title:        LSASS Dump via Task Manager (DynoWiper IR phase 2.5)
+// Id:           a3f5d870-a72f-46c5-a0e1-c0063dyno0002
+// MITRE:        T1003.001
+// Reference:    https://www.welivesecurity.com/en/eset-research/dynowiper-update-technical-analysis-attribution/
+// Author:       Jarmi
+// Date:         2026-05-04
+// Tested on:    Sentinel / Defender XDR — DeviceProcessEvents, DeviceFileEvents
+// FP notes:     Authorized IT helpdesk dumping for legitimate triage will hit;
+//               correlate with ServiceNow ticket / change window.
+//
+// Logic:        DynoWiper operators dumped LSASS via Task Manager
+//               (right-click → "Create dump file") instead of comsvcs.dll or
+//               mimikatz. Evidence: taskmgr.exe spawning child or writing
+//               lsass.DMP under %LOCALAPPDATA%\Temp\.
+
+DeviceProcessEvents
+| where Timestamp >= ago(7d)
+| where InitiatingProcessFileName =~ "taskmgr.exe"
+| where FileName has_any ("rundll32.exe","comsvcs.dll","procdump.exe","procdump64.exe")
+   or ProcessCommandLine has_any ("MiniDump","createdump","-ma ","lsass.DMP")
+| join kind=leftouter (
+    DeviceFileEvents
+    | where FileName endswith ".dmp" or FileName endswith ".DMP"
+    | where FolderPath has_any ("\\AppData\\Local\\Temp\\","\\Users\\")
+    | where InitiatingProcessFileName =~ "taskmgr.exe"
+    | project Timestamp, DeviceId, DumpFile=FileName, DumpFolder=FolderPath
+  ) on DeviceId
+| project Timestamp, DeviceName, AccountName, ProcessCommandLine, DumpFile, DumpFolder
+| order by Timestamp asc

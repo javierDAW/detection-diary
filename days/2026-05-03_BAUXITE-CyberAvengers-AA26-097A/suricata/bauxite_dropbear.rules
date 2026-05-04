@@ -1,0 +1,39 @@
+# Suricata rules — BAUXITE / CyberAv3ngers OT pattern
+# Source: detection-diary, day 2026-05-03 (CISA AA26-097A)
+#
+# Required Suricata vars in production (suricata.yaml -> vars.address-groups):
+#   HOME_NET:     your enterprise IT range (default Suricata var)
+#   EXTERNAL_NET: "!$HOME_NET" (default)
+#   OT_NET:       your OT / process-network range, e.g. "[10.20.0.0/16,10.21.0.0/16]"
+#                 Define this BEFORE deploying these rules — the test runner in
+#                 lint_all.sh autogenerates a stub set to [any] for the load test.
+#
+# Two anchors:
+#   (1) Dropbear SSH banner originating FROM an OT host (PLC/RTU/HMI) — almost
+#       always indicates an attacker dropping ssh persistence on the device.
+#   (2) External CIP/EIP "List Identity" probes coming INTO an OT range —
+#       reconnaissance immediately before exploitation.
+
+alert ssh $OT_NET any -> any any ( \
+  msg:"BAUXITE Dropbear SSH banner sourced FROM OT host"; \
+  flow:established,from_server; \
+  content:"SSH-2.0-dropbear"; depth:64; nocase; \
+  reference:url,cisa.gov/news-events/cybersecurity-advisories/; \
+  classtype:trojan-activity; \
+  sid:7050001; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $OT_NET 44818 ( \
+  msg:"BAUXITE External EIP CIP List Identity probe to OT range"; \
+  flow:established,to_server; \
+  dsize:20<>256; \
+  content:"|63 00|"; depth:2; \
+  reference:url,attack.mitre.org/techniques/T0846/; \
+  classtype:attempted-recon; \
+  sid:7050002; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $OT_NET 2222 ( \
+  msg:"BAUXITE External EIP CIP I/O Connection traffic to OT range"; \
+  flow:established,to_server; \
+  reference:url,attack.mitre.org/techniques/T0866/; \
+  classtype:attempted-admin; \
+  sid:7050003; rev:1;)

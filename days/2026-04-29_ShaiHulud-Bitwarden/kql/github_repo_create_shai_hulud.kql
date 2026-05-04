@@ -1,0 +1,43 @@
+// Title:        GitHub Anomalous Repo Creation with Shai-Hulud Marker
+// Id:           b5a6e1f0-2d23-4d3a-8b1f-shaihulud0002
+// MITRE:        T1567.001, T1102
+// Reference:    https://research.jfrog.com/
+// Author:       Jarmi
+// Date:         2026-04-29
+// Tested on:    Sentinel — GitHubAuditLogs (custom log table) + DeviceProcessEvents
+// FP notes:     Will fire on any user that legitimately creates many repos in a
+//               short window (active OSS contributors). Baseline by Actor over 30d.
+//
+// Logic:        The Shai-Hulud worm uses the *victim's* GitHub account to create
+//               public repos that hold exfiltrated secrets, with a README marker
+//               string. We hunt for a high create-rate burst on Actor X within a
+//               60-minute window AND at least one matching repo whose first
+//               commit references the marker.
+
+let MarkerKeywords = dynamic([
+    "Shai-Hulud",
+    "Shai Hulud",
+    "Third Coming",
+    "audit.checkmarx.cx"
+]);
+GitHubAuditLogs
+| where TimeGenerated >= ago(30d)
+| where Action == "repo.create" or Action == "repository.create"
+| extend RepoName = tostring(parse_json(AdditionalFields).RepoName)
+| summarize CreateBurst = count(),
+            FirstCreate = min(TimeGenerated),
+            LastCreate  = max(TimeGenerated),
+            RepoNames   = make_set(RepoName, 200)
+            by Actor
+| extend WindowMinutes = datetime_diff('minute', LastCreate, FirstCreate)
+| where CreateBurst >= 5 and WindowMinutes <= 60
+| join kind=inner (
+    GitHubAuditLogs
+    | where Action in ("git.push","commit.create","repo.add_member")
+    | extend CommitMsg = tostring(parse_json(AdditionalFields).CommitMessage)
+    | extend ReadmeBlob = tostring(parse_json(AdditionalFields).ReadmeContent)
+    | where CommitMsg has_any (MarkerKeywords) or ReadmeBlob has_any (MarkerKeywords)
+    | project Actor, MarkerSeenIn = strcat("commit/readme: ", CommitMsg), RepoMatched = tostring(parse_json(AdditionalFields).RepoName)
+  ) on Actor
+| project FirstCreate, LastCreate, Actor, CreateBurst, WindowMinutes, RepoNames, MarkerSeenIn, RepoMatched
+| order by FirstCreate asc

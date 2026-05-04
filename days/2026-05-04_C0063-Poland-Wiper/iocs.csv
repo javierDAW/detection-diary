@@ -1,0 +1,13 @@
+type,value,context,confidence,source
+ipv4,31.172.71.5,rsocx C2/relay (compromised ProGame VL),High,ESET / SANS ISC
+port,8008/TCP,rsocx reverse SOCKS5 destination,High,ESET
+path,C:\inetpub\pub\schtask.exe,DynoWiper deploy location,High,ESET
+path,C:\inetpub\pub\schtask2.exe,DynoWiper deploy location (build 2),High,ESET
+path,C:\inetpub\pub\<redacted>_update.exe,DynoWiper deploy location (variant),High,ESET
+path,C:\Users\<USER>\Downloads\rubeus.exe,Rubeus drop,High,ESET
+path,C:\Users\<USER>\Downloads\r.exe,rsocx drop,High,ESET
+pe_string,vagrant\Documents\Visual Studio 2013\Projects\Source\Release\Source.pdb,DynoWiper PDB heuristic,Very high (heuristic),ESET / SANS
+av_sig,Win32/KillFiles.NMO,DynoWiper detection name (ESET),High,ESET
+domain,progamevl[.]ru,Vladivostok kids coding school OBR (compromised),Medium,ESET
+mitre,Campaign C0063,2025 Poland Wiper Attacks,High,MITRE
+note,No public SHA256 published in detection-diary; do not block by hash without ESET/CERT Polska confirmation,,—,—

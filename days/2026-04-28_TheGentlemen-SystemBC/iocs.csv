@@ -1,0 +1,6 @@
+type,value,context,confidence,source
+ttp,GPO mass gPLink + SYSVOL Startup script writes,The Gentlemen RaaS distribution pattern,High,Check Point Research
+ttp,SystemBC custom RC4 SOCKS5 over plain TCP,C2 fingerprint,High,Check Point Research
+ttp,bcdedit recoveryenabled No,Recovery inhibition pre-encryption,High,Check Point Research
+ttp,X25519 + XChaCha20 file encryption,Modern AEAD ransomware crypto,High,Check Point Research
+note,No public hashes pinned in detection-diary; use vendor-confirmed feed before blocking,,—,—
