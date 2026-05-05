@@ -11,16 +11,17 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 
 | Group | Days |
 |---|---|
-| [active-directory](./active-directory/) | 2 |
+| [active-directory](./active-directory/) | 3 |
 | [cisco-asa](./cisco-asa/) | 1 |
 | [cloud-multi](./cloud-multi/) | 1 |
 | [embedded](./embedded/) | 1 |
-| [esxi](./esxi/) | 1 |
+| [esxi](./esxi/) | 2 |
 | [iot](./iot/) | 1 |
-| [linux](./linux/) | 3 |
+| [linux](./linux/) | 4 |
 | [macos](./macos/) | 1 |
-| [network-edge](./network-edge/) | 3 |
+| [network-edge](./network-edge/) | 4 |
+| [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 2 |
 | [plc](./plc/) | 1 |
 | [supply-chain](./supply-chain/) | 1 |
-| [windows](./windows/) | 4 |
+| [windows](./windows/) | 5 |

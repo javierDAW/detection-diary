@@ -12,19 +12,24 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | Group | Days |
 |---|---|
 | [APT44](./apt44/) | 1 |
+| [Akira](./akira/) | 1 |
 | [ArcaneDoor](./arcanedoor/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
 | [BreachForums](./breachforums/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
 | [G0034](./g0034/) | 1 |
 | [G1027](./g1027/) | 1 |
+| [Gold Sahara](./gold-sahara/) | 1 |
+| [Howling Scorpius](./howling-scorpius/) | 1 |
 | [Hydro Kitten](./hydro-kitten/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
+| [Punk Spider](./punk-spider/) | 1 |
 | [Sandworm](./sandworm/) | 1 |
 | [Seashell Blizzard](./seashell-blizzard/) | 1 |
 | [Shahid Kaveh Group](./shahid-kaveh-group/) | 1 |
 | [Static Tundra](./static-tundra/) | 1 |
 | [Storm-0784](./storm-0784/) | 1 |
+| [Storm-1567](./storm-1567/) | 1 |
 | [Storm-1849](./storm-1849/) | 1 |
 | [TeamPCP](./teampcp/) | 2 |
 | [The Gentlemen](./the-gentlemen/) | 1 |
