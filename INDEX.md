@@ -32,7 +32,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (FSB Center 16 / GRU 74455 — contested)*
 
 ### Akira
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russia-speaking ecosystem)*
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
 
 ### ArcaneDoor
 - 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*
@@ -53,10 +53,10 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
 
 ### Gold Sahara
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russia-speaking ecosystem)*
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
 
 ### Howling Scorpius
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russia-speaking ecosystem)*
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
 
 ### Hydro Kitten
 - 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
@@ -65,7 +65,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-05-02 — [Nexcorium Mirai variant (TBK DVR + Huawei HG532)](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) · *botnet / IoT crime*
 
 ### Punk Spider
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russia-speaking ecosystem)*
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
 
 ### Sandworm
 - 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (FSB Center 16 / GRU 74455 — contested)*
@@ -83,7 +83,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
 
 ### Storm-1567
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russia-speaking ecosystem)*
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
 
 ### Storm-1849
 - 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*
