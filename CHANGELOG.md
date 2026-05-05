@@ -7,6 +7,20 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## Unreleased — drop CI workflows (2026-05-04, evening)
+
+### Removed
+- `.github/workflows/sigma-lint.yml`
+- `.github/workflows/validate.yml`
+
+Rationale: validation now runs locally before each commit via `tools/validate_all.py`,
+`tools/lint_all.sh` and `tools/lint_sigma.sh`. The CI workflows added noise to the
+repo (red ❌ badges on the commit history) without giving us anything we don't
+already have on the laptop. If you want them back, both files are recoverable
+from `git log --diff-filter=D -- .github/workflows/`.
+
+
+
 ## Unreleased — repo overhaul (2026.05.04)
 
 ### Added
