@@ -67,10 +67,6 @@ detection-diary/
 │   ├── README.md
 │   └── <slug>/README.md
 │
-├── .github/workflows/
-│   ├── sigma-lint.yml      ← Sigma-only quick CI
-│   └── validate.yml        ← full multi-format CI
-│
 └── tools/
     ├── validate_all.py     ← offline multi-format validator (Sigma, YARA, Suricata, KQL, SPL, CSV, YAML, MD, Bash)
     ├── sigma_check.py      ← Sigma-only offline validator (PyYAML-only dep)
@@ -194,8 +190,8 @@ yara -r days/2026-05-04_C0063-Poland-Wiper/yara/*.yar /mnt/triage/
 
 ## Validation
 
-Every commit and pull request runs the full validation chain in CI
-([`.github/workflows/validate.yml`](.github/workflows/validate.yml)). Locally:
+Validation runs **locally before each commit** — no CI involved. Three entry points
+depending on what you want to check:
 
 ```bash
 # 1) Quick offline check — no external tools, just PyYAML
@@ -204,7 +200,7 @@ python3 tools/validate_all.py
 # 2) Full chain — runs offline check + every external tool you have installed
 ./tools/lint_all.sh
 
-# 3) Sigma-only quick path (legacy)
+# 3) Sigma-only quick path (fast)
 ./tools/lint_sigma.sh
 ```
 
