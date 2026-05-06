@@ -1,0 +1,66 @@
+title: Suspicious Exchange Online Inbox Rule with Invisible / One-Char Name
+id: 5c9e0e5e-f21f-4678-80bf-e83119fd3f22
+status: experimental
+description: |
+  T1564.008 / T1114.003 — creación o modificación de reglas de bandeja con
+  nombres de un solo carácter, símbolos típicos de "ocultar regla en la UI"
+  (".", " ", ",", "_", "`") o reglas que mueven correos a carpetas raramente
+  abiertas (RSS Subscriptions, Conversation History, Archive) o que añaden
+  reenvío externo (ForwardTo / RedirectTo).
+
+  Patrón clásico del post-AiTM-to-BEC: tras horas de espera para evitar
+  correlación temporal con el sign-in anómalo, el operador instala una
+  regla que esconde respuestas de proveedores y la conversación de wire
+  fraud queda invisible para el usuario.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/05/04/breaking-the-code-multi-stage-code-of-conduct-phishing-campaign-leads-to-aitm-token-compromise/
+  - https://attack.mitre.org/techniques/T1564/008/
+  - https://attack.mitre.org/techniques/T1114/003/
+author: Jarmi
+date: 2026/05/06
+tags:
+  - attack.defense-evasion
+  - attack.t1564.008
+  - attack.collection
+  - attack.t1114.003
+logsource:
+  product: m365
+  service: exchange
+detection:
+  selection_op:
+    Operation:
+      - 'New-InboxRule'
+      - 'Set-InboxRule'
+      - 'UpdateInboxRules'
+  selection_invisible_name:
+    Parameters|contains:
+      - 'Name=.'
+      - 'Name= '
+      - 'Name=,'
+      - 'Name=_'
+      - 'Name=-'
+      - 'Name=`'
+      - 'Name=:'
+  selection_hide_to_folder:
+    Parameters|contains:
+      - 'MoveToFolder=RSS Subscriptions'
+      - 'MoveToFolder=Conversation History'
+      - 'MoveToFolder=Archive'
+      - 'MoveToFolder=Junk Email'
+      - 'MoveToFolder=Deleted Items'
+  selection_external_forward:
+    Parameters|contains:
+      - 'ForwardTo='
+      - 'RedirectTo='
+      - 'ForwardAsAttachmentTo='
+  condition: selection_op and (selection_invisible_name or selection_hide_to_folder or selection_external_forward)
+fields:
+  - UserId
+  - ClientIP
+  - UserAgent
+  - Parameters
+falsepositives:
+  - Reglas legítimas con nombres cortos en cuentas operacionales (raro;
+    correlacionar con baseline 90d por user de FirstSeenRuleName)
+  - Reglas Move-to-Archive aprobadas por el usuario para ordenar Inbox
+level: high

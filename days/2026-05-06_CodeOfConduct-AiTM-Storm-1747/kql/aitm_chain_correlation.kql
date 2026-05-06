@@ -1,0 +1,58 @@
+// Title:        AiTM kill-chain correlation — risky sign-in + new device + inbox rule (24h)
+// Id:           48e201ef-e6ef-4bc1-ba6f-01010f4bcea0
+// MITRE:        T1557, T1098.005, T1564.008, T1114.003
+// Reference:    https://www.microsoft.com/en-us/security/blog/2026/05/04/breaking-the-code-multi-stage-code-of-conduct-phishing-campaign-leads-to-aitm-token-compromise/
+// Author:       Jarmi
+// Date:         2026-05-06
+// Tested on:    Sentinel — SigninLogs, AuditLogs, OfficeActivity / CloudAppEvents
+// FP notes:     BYOD enrollments + reglas legítimas el mismo día (raro per user).
+//               Tunear:
+//                 - excluir Intune / Endpoint Manager en AuditLogs (filtro abajo)
+//                 - excluir nombres de regla que NO matchean patrón Tycoon2FA
+//                 - anclar siempre con risky sign-in O nuevo ASN/país (NO solo
+//                   con device-add o solo con inbox-rule)
+//
+// Logic:        Tres fuentes encadenadas por UPN:
+//                 1. SigninLogs con riskLevel medium/high O CA failure.
+//                 2. AuditLogs Add device en ventana (signin .. signin+60min).
+//                 3. CloudAppEvents InboxRule en ventana (signin .. signin+24h).
+//               El join 1+2 es duro; el 3 es leftouter (puede no haber inbox
+//               rule todavía y el caso seguir siendo válido).
+
+let LookbackHours = 24h;
+let RiskySignIns =
+    SigninLogs
+    | where TimeGenerated > ago(LookbackHours)
+    | where ResultType == 0
+    | where RiskLevelDuringSignIn in ("medium","high")
+        or ConditionalAccessStatus == "failure"
+        or AuthenticationDetails has "phish"
+    | project SignInTime=TimeGenerated, UserPrincipalName, UserId,
+              IPAddress, Location, AppDisplayName, ResourceDisplayName,
+              ClientAppUsed, UserAgent, CorrelationId, SessionId;
+let NewDevices =
+    AuditLogs
+    | where TimeGenerated > ago(LookbackHours)
+    | where OperationName in ("Add device","Add registered owner to device","Register device")
+    | where Result == "success"
+    | where not(tostring(InitiatedBy.app.displayName) has_any ("Microsoft Intune","Microsoft Endpoint Manager","Microsoft Autopilot"))
+    | mv-expand TargetResources
+    | extend DeviceId = tostring(TargetResources.id),
+             DeviceDisplayName = tostring(TargetResources.displayName),
+             InitiatorUPN = tostring(InitiatedBy.user.userPrincipalName),
+             InitiatorIP = tostring(InitiatedBy.user.ipAddress)
+    | project DeviceTime=TimeGenerated, InitiatorUPN, InitiatorIP, DeviceId, DeviceDisplayName, CorrelationId;
+let InboxRules =
+    CloudAppEvents
+    | where TimeGenerated > ago(LookbackHours)
+    | where ActionType in ("New-InboxRule","Set-InboxRule","UpdateInboxRules")
+    | extend RawParams = tostring(parse_json(RawEventData).Parameters)
+    | project RuleTime=TimeGenerated, AccountUPN=AccountUpn, ActionType, RawParams, IPAddress;
+RiskySignIns
+| join kind=inner (NewDevices) on $left.UserPrincipalName == $right.InitiatorUPN
+| where DeviceTime between (SignInTime .. SignInTime + 60min)
+| join kind=leftouter (InboxRules) on $left.UserPrincipalName == $right.AccountUPN
+| where isnull(RuleTime) or RuleTime between (SignInTime .. SignInTime + 24h)
+| project SignInTime, UserPrincipalName, IPAddress, Location, AppDisplayName,
+          DeviceTime, DeviceDisplayName, RuleTime, RawParams, CorrelationId
+| sort by SignInTime desc

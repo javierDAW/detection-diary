@@ -1,0 +1,34 @@
+// Title:        First-seen attacker domain via PDF attachment URL
+// Id:           21c1527e-1a6c-4eac-bf12-a4260ce86156
+// MITRE:        T1566.001, T1204.001, T1583.001
+// Reference:    https://www.microsoft.com/en-us/security/blog/2026/05/04/breaking-the-code-multi-stage-code-of-conduct-phishing-campaign-leads-to-aitm-token-compromise/
+// Author:       Jarmi
+// Date:         2026-05-06
+// Tested on:    Defender XDR — EmailAttachmentInfo, EmailUrlInfo, UrlClickEvents
+// FP notes:     Dominios marketing recién registrados pueden FP. Validar con
+//               whois age (<30 días) + reputation feed (VirusTotal, urlscan,
+//               Cisco Umbrella) antes de bloquear duramente. Mantener la
+//               <add_known_legit_domains> exclusion list por tenant.
+
+let SuspectKeywords = dynamic([
+    "acceptable-use-policy","compliance-protection","employee-conduct",
+    "case-materials","disciplinary","conduct-review","awareness-case",
+    "review-case","hr-policy","code-of-conduct"]);
+let CheapTLDs = dynamic([
+    ".de",".space",".email",".solutions",".live",".today",
+    ".calendar",".click",".click/",".support",".online"]);
+EmailAttachmentInfo
+| where FileType == "pdf"
+| join kind=inner (EmailUrlInfo) on NetworkMessageId
+| extend dom = tolower(tostring(parse_url(Url).Host))
+| where dom has_any (SuspectKeywords)
+   or  (Url has_any (SuspectKeywords) and Url has_any (CheapTLDs))
+| join kind=leftouter (
+    UrlClickEvents
+    | where TimeGenerated > ago(7d)
+    | project ClickTime=TimeGenerated, AccountUpn, Url, ActionType, IPAddress
+  ) on Url
+| project EmailTime=TimeGenerated, RecipientEmailAddress, Subject,
+          AttachmentName=FileName, Url, dom, ClickTime, ClickAccount=AccountUpn,
+          ClickAction=ActionType, ClickIP=IPAddress
+| sort by EmailTime desc

@@ -1,0 +1,38 @@
+// Title:        PEAK H1 — Click to attacker-TLD followed by device-add (2h window)
+// Id:           5bfaab3e-0cd2-4a02-8c72-cdf7c0559f62
+// MITRE:        T1557, T1098.005, T1566.002
+// Reference:    https://www.microsoft.com/en-us/security/blog/2026/05/04/breaking-the-code-multi-stage-code-of-conduct-phishing-campaign-leads-to-aitm-token-compromise/
+// Author:       Jarmi
+// Date:         2026-05-06
+// Tested on:    Defender XDR — UrlClickEvents + AuditLogs (Sentinel)
+// FP notes:     BYOD enrollment legítimo en ventana 2h post-click es raro
+//               pero existe. Validar contra Intune enrollment events de los
+//               mismos 2h (excluir si InitiatedBy.app.displayName matches
+//               Intune/Endpoint Manager). Mantener <add_known_corp_TLDs>.
+//
+// Hypothesis (PEAK H1):
+//   "Cualquier user que haga click sobre URL en TLD barato y registre un
+//    device en las 2h siguientes está comprometido vía AiTM."
+
+let LookbackDays = 7d;
+let SuspectClicks =
+    UrlClickEvents
+    | where TimeGenerated > ago(LookbackDays)
+    | where Url matches regex @"https?://[^/]*\.(de|space|email|solutions|live|today|calendar|click|support|online)/.*"
+    | where ActionType in ("ClickAllowed","UrlClicked")
+    | project ClickTime=TimeGenerated, UPN=AccountUpn, Url, ClickIP=IPAddress;
+let RecentDeviceAdds =
+    AuditLogs
+    | where TimeGenerated > ago(LookbackDays)
+    | where OperationName in ("Add device","Add registered owner to device","Register device")
+    | where Result == "success"
+    | where not(tostring(InitiatedBy.app.displayName) has_any ("Microsoft Intune","Microsoft Endpoint Manager","Microsoft Autopilot"))
+    | mv-expand TargetResources
+    | extend UPN=tostring(InitiatedBy.user.userPrincipalName)
+    | project DeviceTime=TimeGenerated, UPN, DeviceId=tostring(TargetResources.id),
+              DeviceName=tostring(TargetResources.displayName);
+SuspectClicks
+| join kind=inner RecentDeviceAdds on UPN
+| where DeviceTime between (ClickTime .. ClickTime + 2h)
+| project UPN, ClickTime, Url, ClickIP, DeviceTime, DeviceId, DeviceName
+| sort by ClickTime desc

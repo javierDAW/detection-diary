@@ -17,6 +17,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [BAUXITE](./bauxite/) | 1 |
 | [BreachForums](./breachforums/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
+| [Dadsec](./dadsec/) | 1 |
 | [G0034](./g0034/) | 1 |
 | [G1027](./g1027/) | 1 |
 | [Gold Sahara](./gold-sahara/) | 1 |
@@ -30,9 +31,12 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Static Tundra](./static-tundra/) | 1 |
 | [Storm-0784](./storm-0784/) | 1 |
 | [Storm-1567](./storm-1567/) | 1 |
+| [Storm-1575](./storm-1575/) | 1 |
+| [Storm-1747](./storm-1747/) | 1 |
 | [Storm-1849](./storm-1849/) | 1 |
 | [TeamPCP](./teampcp/) | 2 |
 | [The Gentlemen](./the-gentlemen/) | 1 |
+| [Tycoon2FA](./tycoon2fa/) | 1 |
 | [UAT-4356](./uat-4356/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
 | [VECT](./vect/) | 1 |

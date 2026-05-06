@@ -1,0 +1,55 @@
+title: Entra ID Device Registration in 60-min Window After Suspicious Sign-In
+id: 980a29b8-f9da-4726-b8b7-36075d8a46b5
+status: experimental
+description: |
+  T1098.005 — registro de device sospechoso en ventana corta tras un
+  sign-in con riskLevel >= medium o desde IP/ASN no vista para el usuario.
+  Patrón típico post-AiTM Tycoon2FA: el reverse-proxy captura tokens y el
+  operador llama enrollment + DRS dentro de los primeros 10 minutos para
+  forjar un Primary Refresh Token (PRT) y ganar persistencia que sobrevive
+  a la rotación de contraseña.
+
+  Esta regla se activa SOLO sobre AuditLogs (Add device / Register device /
+  Update device). La correlación temporal con SigninLogs se hace en la
+  query KQL adjunta (kql/aitm_chain_correlation.kql). El SIEM debe enrutar
+  ambos data sources al mismo workspace.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/05/04/breaking-the-code-multi-stage-code-of-conduct-phishing-campaign-leads-to-aitm-token-compromise/
+  - https://attack.mitre.org/techniques/T1098/005/
+  - https://learn.microsoft.com/en-us/entra/identity/devices/protecting-tokens-microsoft-entra-id
+author: Jarmi
+date: 2026/05/06
+tags:
+  - attack.persistence
+  - attack.t1098.005
+  - attack.credential-access
+  - attack.t1557
+logsource:
+  product: azure
+  service: auditlogs
+detection:
+  selection_op:
+    OperationName:
+      - 'Add device'
+      - 'Add registered owner to device'
+      - 'Register device'
+      - 'Update device'
+    Result: 'success'
+  filter_legit_intune:
+    InitiatedBy.app.displayName|contains:
+      - 'Microsoft Intune'
+      - 'Microsoft Endpoint Manager'
+      - 'Microsoft Autopilot'
+  condition: selection_op and not filter_legit_intune
+fields:
+  - TargetResources
+  - InitiatedBy.user.userPrincipalName
+  - InitiatedBy.user.ipAddress
+  - InitiatedBy.app.displayName
+  - CorrelationId
+falsepositives:
+  - Registro legítimo de un dispositivo personal (BYOD) — correlacionar con
+    Intune enrollment, ticket de helpdesk y baseline del usuario
+  - Onboarding masivo durante migración de dispositivos (excluir window por
+    cambio aprobado en gestión de cambios)
+level: high

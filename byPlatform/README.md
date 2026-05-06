@@ -13,7 +13,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 |---|---|
 | [active-directory](./active-directory/) | 3 |
 | [cisco-asa](./cisco-asa/) | 1 |
-| [cloud-multi](./cloud-multi/) | 1 |
+| [cloud-multi](./cloud-multi/) | 2 |
 | [embedded](./embedded/) | 1 |
 | [esxi](./esxi/) | 2 |
 | [iot](./iot/) | 1 |
@@ -23,5 +23,5 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 2 |
 | [plc](./plc/) | 1 |
-| [supply-chain](./supply-chain/) | 1 |
+| [supply-chain](./supply-chain/) | 2 |
 | [windows](./windows/) | 5 |
