@@ -1,0 +1,54 @@
+title: Code of Conduct AiTM PDF Lure (Storm-1747 / Tycoon2FA pattern)
+id: 17d6231b-0213-4958-b9e2-f71732243401
+status: experimental
+description: |
+  Detecta correos con asuntos / nombres de adjunto temáticos de "código de
+  conducta" / "disciplinary action" / "case log" + adjunto PDF + URL externa
+  que matchea un dominio attacker conocido o el patrón "TLD barato + palabra
+  tema". Ajustar la denylist de dominios al bloque de IOCs del día.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/05/04/breaking-the-code-multi-stage-code-of-conduct-phishing-campaign-leads-to-aitm-token-compromise/
+  - https://www.microsoft.com/en-us/security/blog/2026/03/04/inside-tycoon2fa-how-a-leading-aitm-phishing-kit-operated-at-scale/
+  - https://attack.mitre.org/techniques/T1566/001/
+  - https://attack.mitre.org/techniques/T1566/002/
+author: Jarmi
+date: 2026/05/06
+tags:
+  - attack.initial-access
+  - attack.t1566.001
+  - attack.t1566.002
+  - attack.credential-access
+  - attack.t1557
+logsource:
+  product: m365
+  service: threat_management
+  category: email
+detection:
+  selection_subject:
+    Subject|contains:
+      - 'code of conduct'
+      - 'disciplinary action'
+      - 'awareness case'
+      - 'employee device handling'
+      - 'conduct review'
+      - 'compliance review case'
+  selection_attachment:
+    AttachmentName|endswith: '.pdf'
+    AttachmentName|contains:
+      - 'case log'
+      - 'disciplinary'
+      - 'awareness case'
+      - 'review case'
+  selection_url:
+    Url|contains:
+      - 'acceptable-use-policy'
+      - 'compliance-protection'
+      - 'employee-conduct'
+      - 'hr-review'
+  condition: (selection_subject or selection_attachment) and selection_url
+falsepositives:
+  - Correos legítimos de RR.HH. que enlacen a un proveedor SaaS de compliance
+    (poco frecuente; suelen usar dominio corporativo o un SaaS whitelisted)
+  - Comunicaciones internas de auditoría que mencionan "compliance review case"
+    en el asunto sin enlazar a dominios externos
+level: high

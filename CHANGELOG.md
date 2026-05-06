@@ -7,6 +7,25 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.06 — Day 9 — Code of Conduct AiTM (Storm-1747 / Tycoon2FA)
+
+### Added
+- `days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/` — Microsoft Threat Intelligence campaign (4-may-2026): 35,000 users / 13,000 orgs / 26 countries / 92% US. PDF lure + Cloudflare CAPTCHA + reverse-proxy AiTM + device-add < 10 min for PRT persistence + inbox rules for BEC.
+- Sigma (3): PDF lure on M365 EmailEvents; Entra ID device registration post sign-in; invisible-name InboxRule (BEC).
+- KQL (3): AiTM kill-chain correlation (signin + device + inbox rule, 24h); first-seen attacker domain via PDF; PEAK H1 click-to-device hunt.
+- SPL (1): InboxRule one-char/symbol-only name on Office 365 Management Activity.
+- YARA (1): `CodeOfConduct_AiTM_PDF_Lure_2026` heuristic (PDF magic + URI Action + theme keywords + cheap-TLD anchors).
+- Suricata (1): TLS SNI + HTTP Host signatures for known landing domains (`acceptable-use-policy-calendly[.]de`, `compliance-protectionoutlook[.]de`) plus heuristic for keyword-in-cheap-TLD.
+- PEAK hunt write-up: H1 (click → device-add 2h window).
+- `iocs.csv` — 2 attacker domains, 2 PDF filenames, lure keywords, Tycoon2FA TLD pattern, behavioral indicators, cluster identifiers.
+
+### Pedagogy
+- T1098.005 (Account Manipulation: Device Registration) — the persistence technique that survives password rotation.
+- Why TOTP/SMS/push MFA do NOT mitigate AiTM, and why FIDO2/passkeys do.
+- IR runbook emphasising `Remove-MgDevice` as the critical eradication step (not just password reset).
+
+---
+
 ## Unreleased — drop CI workflows (2026-05-04, evening)
 
 ### Removed
