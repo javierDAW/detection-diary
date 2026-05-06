@@ -2,10 +2,11 @@ title: Code of Conduct AiTM PDF Lure (Storm-1747 / Tycoon2FA pattern)
 id: 17d6231b-0213-4958-b9e2-f71732243401
 status: experimental
 description: |
-  Detecta correos con asuntos / nombres de adjunto temáticos de "código de
-  conducta" / "disciplinary action" / "case log" + adjunto PDF + URL externa
-  que matchea un dominio attacker conocido o el patrón "TLD barato + palabra
-  tema". Ajustar la denylist de dominios al bloque de IOCs del día.
+  Detects emails with subjects / attachment names themed around "code of
+  conduct", "disciplinary action" or "case log" combined with a PDF
+  attachment and an external URL that matches a known attacker domain or
+  the cheap-TLD + theme-keyword pattern. Tune the domain denylist with the
+  IOCs of the day.
 references:
   - https://www.microsoft.com/en-us/security/blog/2026/05/04/breaking-the-code-multi-stage-code-of-conduct-phishing-campaign-leads-to-aitm-token-compromise/
   - https://www.microsoft.com/en-us/security/blog/2026/03/04/inside-tycoon2fa-how-a-leading-aitm-phishing-kit-operated-at-scale/
@@ -47,8 +48,8 @@ detection:
       - 'hr-review'
   condition: (selection_subject or selection_attachment) and selection_url
 falsepositives:
-  - Correos legítimos de RR.HH. que enlacen a un proveedor SaaS de compliance
-    (poco frecuente; suelen usar dominio corporativo o un SaaS whitelisted)
-  - Comunicaciones internas de auditoría que mencionan "compliance review case"
-    en el asunto sin enlazar a dominios externos
+  - Legitimate HR emails linking to a SaaS compliance vendor (uncommon;
+    such vendors typically use the corporate domain or a whitelisted SaaS).
+  - Internal audit communications mentioning "compliance review case" in
+    the subject without linking to external domains.
 level: high

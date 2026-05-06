@@ -5,19 +5,19 @@
 // Author:       Jarmi
 // Date:         2026-05-06
 // Tested on:    Sentinel — SigninLogs, AuditLogs, OfficeActivity / CloudAppEvents
-// FP notes:     BYOD enrollments + reglas legítimas el mismo día (raro per user).
-//               Tunear:
-//                 - excluir Intune / Endpoint Manager en AuditLogs (filtro abajo)
-//                 - excluir nombres de regla que NO matchean patrón Tycoon2FA
-//                 - anclar siempre con risky sign-in O nuevo ASN/país (NO solo
-//                   con device-add o solo con inbox-rule)
+// FP notes:     BYOD enrollments + legitimate inbox rules on the same day
+//               (rare per user). Tune by:
+//                 - excluding Intune / Endpoint Manager in AuditLogs (filter below)
+//                 - excluding rule names that don't match the Tycoon2FA pattern
+//                 - always anchoring on a risky sign-in OR a new ASN/country (NOT
+//                   only on device-add or only on inbox-rule).
 //
-// Logic:        Tres fuentes encadenadas por UPN:
-//                 1. SigninLogs con riskLevel medium/high O CA failure.
-//                 2. AuditLogs Add device en ventana (signin .. signin+60min).
-//                 3. CloudAppEvents InboxRule en ventana (signin .. signin+24h).
-//               El join 1+2 es duro; el 3 es leftouter (puede no haber inbox
-//               rule todavía y el caso seguir siendo válido).
+// Logic:        Three sources chained by UPN:
+//                 1. SigninLogs with risk medium/high OR CA failure.
+//                 2. AuditLogs Add device within (signin .. signin+60min).
+//                 3. CloudAppEvents InboxRule within (signin .. signin+24h).
+//               Joins 1+2 are inner; 3 is leftouter (an inbox rule may not
+//               exist yet and the case still be valid).
 
 let LookbackHours = 24h;
 let RiskySignIns =

@@ -6,38 +6,38 @@
 
 ## Hypothesis
 
-> Cualquier usuario que haga click sobre URL en TLD barato (`.de`, `.space`, `.email`, `.solutions`, `.live`, `.today`, `.calendar`, `.click`) y registre un device en Entra ID en las 2h siguientes está comprometido vía AiTM (Tycoon2FA-class).
+> Any user who clicks a URL on a cheap TLD (`.de`, `.space`, `.email`, `.solutions`, `.live`, `.today`, `.calendar`, `.click`) and registers a device in Entra ID within the next 2 hours is compromised via AiTM (Tycoon2FA-class).
 
 ## Why this works (rationale)
 
-- Tycoon2FA migró de Cloudflare a TLDs baratos (Mar 2026) con FQDNs de 24-72h.
-- Post-AiTM, el operador busca persistencia inmediata; Microsoft observó `device join` en <10 min en parte de las víctimas.
-- BYOD legítimo *también* registra devices, pero el solapamiento temporal con click a TLD barato es muy raro en baseline.
+- Tycoon2FA migrated away from Cloudflare to cheap TLDs (Mar 2026), with FQDNs lasting 24-72h.
+- After the AiTM step, the operator seeks immediate persistence; Microsoft observed `device join` in <10 min on a portion of the victims.
+- Legitimate BYOD enrollments *also* register devices, but the temporal overlap with a click on a cheap TLD is very rare in baseline traffic.
 
 ## Data sources
 
-- `UrlClickEvents` (Defender XDR — clicks de Safe Links).
-- `AuditLogs` (Entra ID Diagnostics → Sentinel) — operación `Add device`.
+- `UrlClickEvents` (Defender XDR — Safe Links clicks).
+- `AuditLogs` (Entra ID Diagnostics → Sentinel) — `Add device` operation.
 
 ## Query (Defender XDR / Sentinel)
 
-Ver [`../kql/peak_h1_click_to_device.kql`](../kql/peak_h1_click_to_device.kql).
+See [`../kql/peak_h1_click_to_device.kql`](../kql/peak_h1_click_to_device.kql).
 
 ## Expected vs benign
 
-- **Benigno baseline tenant medio:** 0-3 hits/semana (BYOD personal con dominio personal).
-- **Anómalo:** ≥1 hit con click → device-add < 30 min, o ≥3 hits del mismo TLD en 72h, o cualquier hit donde el sign-in que precede al device-add tenga `RiskLevelDuringSignIn ≥ medium`.
+- **Benign baseline (medium tenant):** 0-3 hits/week (personal BYOD with personal-domain redirect).
+- **Anomalous:** ≥1 hit with click → device-add < 30 min, OR ≥3 hits on the same TLD within 72h, OR any hit where the sign-in immediately preceding the device-add has `RiskLevelDuringSignIn ≥ medium`.
 
-## Triage steps si hay hit
+## Triage steps on hit
 
-1. Ver el `Url` clickado y dump del PDF que enlazaba si está en `EmailUrlInfo`.
-2. Validar si el device añadido es legítimo: `Get-MgDevice -DeviceId <id>` con `OperatingSystem`, `EnrollmentType`, `RegistrationDateTime`.
-3. Cruzar con `IdentityLogonEvents` para ver actividad SSO desde el device sospechoso.
-4. Si confirmado malicioso: `Remove-MgDevice` + `Revoke-MgUserSignInSession` + reset password + enrol FIDO2.
-5. Buscar lateralmente con la query 3 (`aitm_chain_correlation.kql`) para encontrar inbox rules creadas por el mismo user en las 24h siguientes.
+1. Inspect the clicked `Url` and dump the PDF that linked to it if present in `EmailUrlInfo`.
+2. Validate whether the added device is legitimate: `Get-MgDevice -DeviceId <id>` and check `OperatingSystem`, `EnrollmentType`, `RegistrationDateTime`.
+3. Cross-check with `IdentityLogonEvents` for SSO activity from the suspicious device.
+4. If confirmed malicious: `Remove-MgDevice` + `Revoke-MgUserSignInSession` + password reset + FIDO2 enrolment.
+5. Pivot laterally with query 3 (`aitm_chain_correlation.kql`) to surface inbox rules created by the same user within the next 24h.
 
 ## Out-of-scope / known limitations
 
-- Tycoon2FA ya empieza a usar TLDs no listados (`.support`, `.online`); revisar trimestralmente la lista en la query.
-- Si el tenant tiene Defender for Endpoint sin Safe Links, `UrlClickEvents` puede estar vacío; usar logs del web proxy / SWG como sustituto.
-- Esta hipótesis NO cubre el caso donde el operador NO registra device y se limita a session-cookie reuse: para eso, ver `aitm_chain_correlation.kql` con anchor en risky sign-in + inbox rule.
+- Tycoon2FA is starting to use TLDs not on the list (`.support`, `.online`); review the list quarterly.
+- If the tenant runs Defender for Endpoint without Safe Links, `UrlClickEvents` may be empty; use SWG / web-proxy logs as a substitute.
+- This hypothesis does NOT cover the case where the operator does NOT register a device and only reuses session cookies; for that, see `aitm_chain_correlation.kql` anchored on risky sign-in + inbox rule.

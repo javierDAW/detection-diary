@@ -5,14 +5,15 @@
 // Author:       Jarmi
 // Date:         2026-05-06
 // Tested on:    Defender XDR — UrlClickEvents + AuditLogs (Sentinel)
-// FP notes:     BYOD enrollment legítimo en ventana 2h post-click es raro
-//               pero existe. Validar contra Intune enrollment events de los
-//               mismos 2h (excluir si InitiatedBy.app.displayName matches
-//               Intune/Endpoint Manager). Mantener <add_known_corp_TLDs>.
+// FP notes:     A legitimate BYOD enrollment within 2h after clicking a
+//               cheap-TLD URL is rare but possible. Validate against Intune
+//               enrollment events in the same 2h (exclude when
+//               InitiatedBy.app.displayName matches Intune/Endpoint Manager).
+//               Maintain an <add_known_corp_TLDs> exclusion list per tenant.
 //
 // Hypothesis (PEAK H1):
-//   "Cualquier user que haga click sobre URL en TLD barato y registre un
-//    device en las 2h siguientes está comprometido vía AiTM."
+//   "Any user who clicks a URL on a cheap TLD and registers a device in
+//    Entra ID within the next 2h is compromised via AiTM."
 
 let LookbackDays = 7d;
 let SuspectClicks =
