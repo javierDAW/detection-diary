@@ -48,7 +48,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
 
 ### Dadsec
-- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — operadores y afiliados varios)*
+- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — multiple operators and affiliates)*
 
 ### G0034
 - 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (FSB Center 16 / GRU 74455 — contested)*
@@ -90,10 +90,10 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
 
 ### Storm-1575
-- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — operadores y afiliados varios)*
+- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — multiple operators and affiliates)*
 
 ### Storm-1747
-- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — operadores y afiliados varios)*
+- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — multiple operators and affiliates)*
 
 ### Storm-1849
 - 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*
@@ -106,7 +106,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-04-28 — [The Gentlemen RaaS + SystemBC](days/2026-04-28_TheGentlemen-SystemBC/) · *e-crime / RaaS*
 
 ### Tycoon2FA
-- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — operadores y afiliados varios)*
+- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — multiple operators and affiliates)*
 
 ### UAT-4356
 - 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*

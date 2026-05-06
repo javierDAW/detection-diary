@@ -1,13 +1,13 @@
 type,value,context,confidence,source
-domain,acceptable-use-policy-calendly.de,AiTM landing — Code of Conduct campaign (Apr 14-16 2026),High,Microsoft Threat Intelligence 4-may-2026
-domain,compliance-protectionoutlook.de,AiTM landing — Code of Conduct campaign (Apr 14-16 2026),High,Microsoft Threat Intelligence 4-may-2026
+domain,acceptable-use-policy-calendly.de,AiTM landing - Code of Conduct campaign (Apr 14-16 2026),High,Microsoft Threat Intelligence 4-may-2026
+domain,compliance-protectionoutlook.de,AiTM landing - Code of Conduct campaign (Apr 14-16 2026),High,Microsoft Threat Intelligence 4-may-2026
 filename,Awareness Case Log File - Tuesday 14th April 2026.pdf,PDF lure (one of two observed),Medium,Microsoft Threat Intelligence
 filename,Disciplinary Action - Employee Device Handling Case.pdf,PDF lure (one of two observed),Medium,Microsoft Threat Intelligence
-keyword,Review Case Materials,Texto del boton click-out en el PDF,Medium,Microsoft Threat Intelligence
-keyword,Code of Conduct,Asunto recurrente / texto cuerpo,Medium,Microsoft Threat Intelligence
-keyword,Disciplinary Action,Asunto recurrente / texto cuerpo,Medium,Microsoft Threat Intelligence
-keyword,Employee Device Handling,Asunto recurrente / texto cuerpo,Medium,Microsoft Threat Intelligence
-note,Tycoon2FA TLD pattern,TLDs preferred 24-72h FQDNs (Mar 2026 onwards),,
+keyword,Review Case Materials,Click-out button text inside the PDF,Medium,Microsoft Threat Intelligence
+keyword,Code of Conduct,Recurring email subject / body text,Medium,Microsoft Threat Intelligence
+keyword,Disciplinary Action,Recurring email subject / body text,Medium,Microsoft Threat Intelligence
+keyword,Employee Device Handling,Recurring email subject / body text,Medium,Microsoft Threat Intelligence
+note,Tycoon2FA TLD pattern,Preferred 24-72h FQDN TLDs (from Mar 2026 onwards),,
 tld,.de,Cheap TLD frequently used by Tycoon2FA from March 2026,Medium,Microsoft Inside Tycoon2FA 4-mar-2026
 tld,.space,Cheap TLD frequently used by Tycoon2FA,Medium,Microsoft Inside Tycoon2FA
 tld,.email,Cheap TLD frequently used by Tycoon2FA,Medium,Microsoft Inside Tycoon2FA
@@ -15,7 +15,7 @@ tld,.solutions,Cheap TLD frequently used by Tycoon2FA,Medium,Microsoft Inside Ty
 tld,.live,Cheap TLD frequently used by Tycoon2FA,Medium,Microsoft Inside Tycoon2FA
 tld,.today,Cheap TLD frequently used by Tycoon2FA,Medium,Microsoft Inside Tycoon2FA
 tld,.calendar,Cheap TLD frequently used by Tycoon2FA,Medium,Microsoft Inside Tycoon2FA
-note,Behavioral - device-add < 60 min post risky signin,Persistencia post-AiTM (T1098.005),,
+note,Behavioral - device-add < 60 min after risky signin,Post-AiTM persistence (T1098.005),,
 note,Behavioral - InboxRule with 1-char or symbol-only name,Hide-artifact for BEC (T1564.008),,
 cluster,Storm-1747,Tycoon2FA developer / PhaaS operator,Medium,Microsoft Threat Intelligence
-cluster,Storm-1575,Dadsec — shared infra with Tycoon2FA,Medium,Trustwave SpiderLabs
+cluster,Storm-1575,Dadsec - shares infrastructure with Tycoon2FA,Medium,Trustwave SpiderLabs

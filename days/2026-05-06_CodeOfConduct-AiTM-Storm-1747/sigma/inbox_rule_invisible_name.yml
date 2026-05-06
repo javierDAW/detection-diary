@@ -2,16 +2,16 @@ title: Suspicious Exchange Online Inbox Rule with Invisible / One-Char Name
 id: 5c9e0e5e-f21f-4678-80bf-e83119fd3f22
 status: experimental
 description: |
-  T1564.008 / T1114.003 — creación o modificación de reglas de bandeja con
-  nombres de un solo carácter, símbolos típicos de "ocultar regla en la UI"
-  (".", " ", ",", "_", "`") o reglas que mueven correos a carpetas raramente
-  abiertas (RSS Subscriptions, Conversation History, Archive) o que añaden
-  reenvío externo (ForwardTo / RedirectTo).
+  T1564.008 / T1114.003 — creation or modification of inbox rules with
+  one-character names, symbol-only names typical of "hide rule from UI"
+  (".", " ", ",", "_", "`"), rules that move mail to rarely-opened
+  folders (RSS Subscriptions, Conversation History, Archive), or rules
+  that add external forwarding (ForwardTo / RedirectTo).
 
-  Patrón clásico del post-AiTM-to-BEC: tras horas de espera para evitar
-  correlación temporal con el sign-in anómalo, el operador instala una
-  regla que esconde respuestas de proveedores y la conversación de wire
-  fraud queda invisible para el usuario.
+  Classic post-AiTM-to-BEC pattern: after waiting hours to dodge
+  temporal correlation with the anomalous sign-in, the operator installs
+  a rule that hides vendor replies and the wire-fraud thread becomes
+  invisible to the user.
 references:
   - https://www.microsoft.com/en-us/security/blog/2026/05/04/breaking-the-code-multi-stage-code-of-conduct-phishing-campaign-leads-to-aitm-token-compromise/
   - https://attack.mitre.org/techniques/T1564/008/
@@ -60,7 +60,7 @@ fields:
   - UserAgent
   - Parameters
 falsepositives:
-  - Reglas legítimas con nombres cortos en cuentas operacionales (raro;
-    correlacionar con baseline 90d por user de FirstSeenRuleName)
-  - Reglas Move-to-Archive aprobadas por el usuario para ordenar Inbox
+  - Legitimate short-name rules on operational mailboxes (rare; correlate
+    with a 90-day per-user baseline of FirstSeenRuleName).
+  - User-approved Move-to-Archive rules for Inbox tidy-up.
 level: high

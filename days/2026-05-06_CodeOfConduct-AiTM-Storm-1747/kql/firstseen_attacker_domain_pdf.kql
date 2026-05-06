@@ -5,10 +5,11 @@
 // Author:       Jarmi
 // Date:         2026-05-06
 // Tested on:    Defender XDR — EmailAttachmentInfo, EmailUrlInfo, UrlClickEvents
-// FP notes:     Dominios marketing recién registrados pueden FP. Validar con
-//               whois age (<30 días) + reputation feed (VirusTotal, urlscan,
-//               Cisco Umbrella) antes de bloquear duramente. Mantener la
-//               <add_known_legit_domains> exclusion list por tenant.
+// FP notes:     Newly registered legitimate marketing domains may produce
+//               false positives. Validate with whois age (<30 days) and a
+//               reputation feed (VirusTotal, urlscan, Cisco Umbrella) before
+//               hard-blocking. Maintain a per-tenant exclusion list for the
+//               <add_known_legit_domains> placeholder.
 
 let SuspectKeywords = dynamic([
     "acceptable-use-policy","compliance-protection","employee-conduct",

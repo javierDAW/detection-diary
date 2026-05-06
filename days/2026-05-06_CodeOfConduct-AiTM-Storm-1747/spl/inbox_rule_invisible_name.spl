@@ -5,15 +5,15 @@
 ; Author:       Jarmi
 ; Date:         2026-05-06
 ; Tested on:    Splunk — Office365 Add-on (sourcetype=o365:management:activity)
-; FP notes:     Una pequeña minoría de usuarios usa nombres de regla de un
-;               carácter legítimamente (ej. "A" para Archive). Correlacionar
-;               con baseline 90 días por user de FirstSeenRuleName y con
-;               sign-in en ASN/país anómalo de la misma sesión.
+; FP notes:     A small minority of users legitimately use one-character
+;               rule names (e.g. "A" for Archive). Correlate with a 90-day
+;               per-user FirstSeenRuleName baseline and with a sign-in from
+;               an anomalous ASN/country in the same session.
 ;
-; Logic:        Sobre eventos UnifiedAuditLog (Office365 Management Activity)
-;               filtrar las operaciones de creación/modificación de inbox
-;               rule. Extraer el parámetro "Name" y reglas con largo <=2 o
-;               trim a un símbolo típico de ocultación.
+; Logic:        Over UnifiedAuditLog events (Office 365 Management Activity)
+;               filter creation/modification operations on inbox rules.
+;               Extract the "Name" parameter and surface rules with length
+;               <=2 or trim equal to a typical hide-symbol.
 
 index=o365 sourcetype="o365:management:activity"
   Operation IN ("New-InboxRule","Set-InboxRule","UpdateInboxRules")
