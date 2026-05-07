@@ -1,0 +1,26 @@
+// Title:        QLNX — Creation of /tmp/.X<DJB2>-lock single-instance marker
+// Id:           89904296-a9ec-40c6-99c1-f2bf7ac8e18b
+// MITRE:        T1480, T1027
+// Reference:    https://www.trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html
+// Author:       Jarmi
+// Date:         2026-05-07
+// Tested on:    Defender XDR — DeviceFileEvents (Linux endpoints)
+// FP notes:     Real X11 lock files follow the form /tmp/.X<display>-lock with
+//               numeric display IDs (e.g. /tmp/.X11-lock, /tmp/.X0-lock).
+//               QLNX disguises its mutex as /tmp/.X752e2ca1-lock (DJB2 of
+//               "quasar_linux"). Match either the exact known value or any
+//               .X{8 hex chars}-lock pattern, which is structurally invalid
+//               for a real X server.
+//
+// Logic:        File create/access events under /tmp matching the pattern.
+
+DeviceFileEvents
+| where Timestamp > ago(14d)
+| where DeviceOSPlatform startswith "Linux"
+| where FolderPath == "/tmp"
+| where FileName == ".X752e2ca1-lock"
+   or FileName matches regex @"^\.X[0-9a-f]{8}-lock$"
+| project Timestamp, DeviceName, DeviceId, ActionType, FolderPath, FileName,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          InitiatingProcessParentFileName, SHA256
+| sort by Timestamp desc

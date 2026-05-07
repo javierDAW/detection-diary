@@ -1,0 +1,31 @@
+type,value,context,confidence,source
+note,QLNX (Quasar Linux RAT) — IOCs as published by Trend Micro 5-may-2026,,,
+note,Hashes are not redistributed here; pull authoritative SHAs from Trend Micro's IOC appendix and from VirusTotal/MalwareBazaar before blocking.,,,
+filepath,/etc/ld.so.preload,System-wide LD_PRELOAD pivot rewritten by QLNX,High,Trend Micro 5-may-2026
+filepath,/var/log/.ICE-unix,Hidden directory used by QLNX to stage compiled .so artifacts,High,Trend Micro 5-may-2026
+filepath,/tmp/.X752e2ca1-lock,QLNX single-instance mutex (DJB2 of "quasar_linux"),High,Trend Micro 5-may-2026
+filepath,/var/log/.ICE-unix/<random>.log,XOR-encrypted credential harvest sink,Medium,Trend Micro 5-may-2026
+keyword,QLNX_MANAGED,Comment marker injected in every QLNX persistence artifact (cron/systemd/init/.bashrc/desktop),High,Trend Micro 5-may-2026
+keyword,quasar_linux,DJB2 input string for the lock-file path,High,Trend Micro 5-may-2026
+keyword,O$$f$QtYJK,Hardcoded master password (PAM backdoor bypass),High,Trend Micro 5-may-2026
+keyword,1.4.1,Implant version string in the initial beacon,Medium,Trend Micro 5-may-2026
+domain,ip-api.com,Geolocation enrichment for first beacon (T1614),Medium,Trend Micro 5-may-2026
+note,DJB2(quasar_linux) = 0x752e2ca1 — used to construct the lock path,,,
+filepath,/etc/machine-id,Source of the SHA256 host fingerprint sent to C2,Medium,Trend Micro 5-may-2026
+filepath,/etc/ld.so.preload,System-wide preload registration (T1574.006),High,Trend Micro 5-may-2026
+filepath,~/.npmrc,Credential-harvest target (npm token),High,Trend Micro 5-may-2026
+filepath,~/.pypirc,Credential-harvest target (PyPI),High,Trend Micro 5-may-2026
+filepath,~/.git-credentials,Credential-harvest target (git PAT),High,Trend Micro 5-may-2026
+filepath,~/.aws/credentials,Credential-harvest target (AWS),High,Trend Micro 5-may-2026
+filepath,~/.kube/config,Credential-harvest target (Kubernetes),High,Trend Micro 5-may-2026
+filepath,~/.docker/config.json,Credential-harvest target (Docker registry),High,Trend Micro 5-may-2026
+filepath,~/.vault-token,Credential-harvest target (HashiCorp Vault),High,Trend Micro 5-may-2026
+filepath,~/.terraform.d/credentials.tfrc.json,Credential-harvest target (Terraform Cloud),Medium,Trend Micro 5-may-2026
+filepath,~/.config/gh/hosts.yml,Credential-harvest target (GitHub CLI),Medium,Trend Micro 5-may-2026
+filepath,~/.netrc,Credential-harvest target (legacy),Medium,Trend Micro 5-may-2026
+filepath,~/.ssh/id_rsa,Credential-harvest target (SSH),High,Trend Micro 5-may-2026
+filepath,~/.ssh/id_ed25519,Credential-harvest target (SSH),High,Trend Micro 5-may-2026
+note,Behavior - >=3 of the credential paths above read by a single non-dev process inside 60s,Operational anomaly anchor,,
+note,Behavior - gcc invoked at runtime with -shared -fPIC writing into /tmp /var/tmp /var/log /dev/shm,Compile-on-host signal,,
+note,Behavior - device joins Entra ID irrelevant for this case (Linux only),,,
+family,QLNX,Quasar Linux — formerly undocumented Linux RAT (rootkit + PAM backdoor + 58-cmd C2),Medium,Trend Micro 5-may-2026

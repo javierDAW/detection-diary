@@ -1,0 +1,47 @@
+title: QLNX — Write to /etc/ld.so.preload (system-wide LD_PRELOAD persistence)
+id: bacf25be-e5b5-4a09-a824-6324d5e1475a
+status: experimental
+description: |
+  Detects any process that writes/modifies /etc/ld.so.preload — the
+  primary persistence vector of the QLNX (Quasar Linux) RAT. The malware
+  drops a dynamically compiled .so under /tmp or /var/log and registers
+  it via /etc/ld.so.preload so it is injected into every dynamically
+  linked process on the host (including ps, ls, netstat — the very tools
+  responders run).
+  In a steady-state Linux server fleet, /etc/ld.so.preload is virtually
+  never touched by anything other than known security agents (e.g. Snyk
+  Snyklive, Datadog APM, certain HPC libs). Tune the allowlist below.
+references:
+  - https://www.trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html
+  - https://socprime.com/active-threats/qlnx-linux-rat-uses-rootkit-and-pam-backdoor/
+  - https://attack.mitre.org/techniques/T1574/006/
+  - https://attack.mitre.org/techniques/T1546/008/
+author: Jarmi
+date: 2026/05/07
+tags:
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.defense-evasion
+  - attack.t1574.006
+logsource:
+  product: linux
+  category: file_event
+detection:
+  selection:
+    TargetFilename: '/etc/ld.so.preload'
+  filter_known_agents:
+    Image|endswith:
+      - '/dpkg'
+      - '/rpm'
+      - '/yum'
+      - '/dnf'
+      - '/apt'
+      - '/apt-get'
+      - '/snyk-snyklive'
+      - '/datadog-agent'
+  condition: selection and not filter_known_agents
+falsepositives:
+  - Legitimate package manager updating glibc-related preload files (rare; allowlisted above).
+  - APM / RASP agents that legitimately install LD_PRELOAD shims (Snyk, Datadog, Dynatrace).
+  - HPC/cluster operators using a custom mathlib via preload — track per-host baseline.
+level: high

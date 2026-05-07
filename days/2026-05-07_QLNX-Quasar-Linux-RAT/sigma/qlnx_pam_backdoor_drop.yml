@@ -1,0 +1,44 @@
+title: QLNX — Drop of PAM backdoor or rootkit shared object under /tmp or /var/log
+id: ff790762-5b67-454f-8141-dc03516a3083
+status: experimental
+description: |
+  QLNX dynamically compiles its rootkit and PAM backdoor on the target
+  host using gcc and writes the resulting .so to non-standard paths
+  such as /var/log/.ICE-unix, /tmp/.X752e2ca1-lock or paths near the
+  PAM directories. This rule fires on creation of any .so file outside
+  the normal lib/distribution paths and inside hidden / temporary
+  directories, an extremely uncommon event on a server.
+references:
+  - https://www.trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html
+  - https://www.securityweek.com/sophisticated-quasar-linux-rat-targets-software-developers/
+  - https://attack.mitre.org/techniques/T1556/003/
+author: Jarmi
+date: 2026/05/07
+tags:
+  - attack.persistence
+  - attack.credential-access
+  - attack.defense-evasion
+  - attack.t1556.003
+logsource:
+  product: linux
+  category: file_event
+detection:
+  selection_so_in_temp:
+    TargetFilename|startswith:
+      - '/tmp/'
+      - '/var/tmp/'
+      - '/dev/shm/'
+      - '/var/log/.ICE-unix/'
+      - '/var/log/.X11-unix/'
+    TargetFilename|endswith: '.so'
+  selection_qlnx_paths:
+    TargetFilename|contains:
+      - '/.X752e2ca1-lock'
+      - '/.ICE-unix/'
+      - 'pam_unix2.so'
+      - 'pam_quasar'
+  condition: selection_so_in_temp or selection_qlnx_paths
+falsepositives:
+  - Distro-specific PAM update scripts that briefly stage a new module under /tmp (rare; tracked per-package).
+  - Custom build pipelines that compile PAM modules in /tmp; rare in production.
+level: high

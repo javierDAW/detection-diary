@@ -1,0 +1,37 @@
+// Title:        QLNX — Outbound geo-lookup to ip-api.com from server (initial beacon enrichment)
+// Id:           9be14919-d065-44d1-bb1a-a1412ec654a5
+// MITRE:        T1071.001, T1614, T1016
+// Reference:    https://www.trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html
+// Author:       Jarmi
+// Date:         2026-05-07
+// Tested on:    Defender XDR — DeviceNetworkEvents (Linux servers with MDE)
+// FP notes:     ip-api.com is also used by some monitoring SaaS and rare
+//               business apps. Filter by process: a server-tier host calling
+//               ip-api.com from /usr/bin/<random> or /tmp/<random> is an
+//               outlier; from a known agent (e.g. /opt/datadog-agent/...) is
+//               likely benign. Tighten with a per-host first-seen baseline.
+//
+// Logic:        Connections to ip-api.com / api.ipify.org / ipinfo.io from
+//               Linux endpoints, surface initiator process. QLNX uses
+//               ip-api.com to populate the geolocation field of its first
+//               beacon. Pair this with the QLNX_MANAGED Sigma rule for
+//               correlation.
+
+let GeoEndpoints = dynamic([
+    "ip-api.com","api.ipify.org","ipinfo.io","ifconfig.me",
+    "checkip.amazonaws.com","myexternalip.com"
+]);
+let ServerLikeProcs = dynamic([
+    "datadog-agent","newrelic-infra","sysdig-agent","wazuh-agent",
+    "telegraf","prometheus-node-exporter","cloud-init","update-notifier"
+]);
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where DeviceOSPlatform startswith "Linux"
+| where RemoteUrl has_any (GeoEndpoints)
+    or RemoteIP in ("208.95.112.1","208.95.112.0/22")
+| where InitiatingProcessFileName !in~ (ServerLikeProcs)
+| project Timestamp, DeviceName, RemoteUrl, RemoteIP, RemotePort,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          InitiatingProcessParentFileName, InitiatingProcessAccountName
+| sort by Timestamp asc

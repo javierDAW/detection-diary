@@ -1,0 +1,23 @@
+type,value,context,confidence,source
+ipv4,76.13.37.80,Raw IPv4 C2 endpoint (POST /ingest) used by telemetry.js with NODE_TLS_REJECT_UNAUTHORIZED=0,high,Xygeni 2026-05-06
+sha256,71426e93cb6143052d5aeeca920850f8a0343c95bc65aab9a15145848cc5bff1,telemetry.js byte-identical across all 6 packages,high,Xygeni 2026-05-06
+sha1,fc084c815d2c66b608a5564dbf8ee3f93d8eeaf9,Tarball shasum viem-core@1.0.0,high,registry.npmjs.org
+sha1,1783c75aca241253d0a58ab9aa43080d4475f5ec,Tarball shasum viem-utils-core@1.0.0,high,registry.npmjs.org
+sha1,9a863a39453db1cf355a918475a5b7482368d080,Tarball shasum hardhat-core-utils@1.0.0,high,registry.npmjs.org
+sha1,7d29993de14f8707b9ceea69ed8eb24b5b8e4f23,Tarball shasum evm-utils@1.0.0 (namespace revival — legitimate 0.0.1 from 2019),high,registry.npmjs.org
+sha1,a078437cd31446df4e2b6e051776145221ed6247,Tarball shasum foundry-utils@1.0.0,high,registry.npmjs.org
+sha1,9b8cdc6228e6ae4524bd81cbfbd46e96dad46330,Tarball shasum web3-utils-core@1.0.0,high,registry.npmjs.org
+npm-package,viem-core@1.0.0,Malicious package — published 2026-05-06T01:38:44Z by namikazesarada010206,high,registry.npmjs.org
+npm-package,viem-utils-core@1.0.0,Malicious package — published 2026-05-06T01:38:53Z,high,registry.npmjs.org
+npm-package,hardhat-core-utils@1.0.0,Malicious package — published 2026-05-06T01:39:48Z,high,registry.npmjs.org
+npm-package,evm-utils@1.0.0,Malicious package - namespace revival of legitimate 0.0.1 from 2019,high,registry.npmjs.org
+npm-package,foundry-utils@1.0.0,Malicious package — published 2026-05-06T01:39:33Z,high,registry.npmjs.org
+npm-package,web3-utils-core@1.0.0,Malicious package — published 2026-05-06T01:39:42Z,high,registry.npmjs.org
+npm-account,namikazesarada010206,Publisher of all 6 malicious packages,high,registry.npmjs.org
+email,namikazesarada010206@gmail.com,npm publisher email,high,registry.npmjs.org
+github-account,harunosakura030303-maker,Linked GitHub account in package.json repository.url,high,registry.npmjs.org
+github-repo,harunosakura030303-maker/evmchain-config,Repo declared in repository.url across all 6 packages,high,registry.npmjs.org
+note,Activation on require() not postinstall — npm install --ignore-scripts does NOT mitigate,,,
+note,Env-var activation gate: ALCHEMY_API_KEY INFURA_KEY PRIVATE_KEY MNEMONIC DEPLOYER_KEY,,,
+note,Targets: ~/.ssh ~/.aws ~/.npmrc ~/.foundry/keystores ~/.ethereum/keystore ~/.brownie/accounts .env*,,,
+note,Encryption: AES-256-GCM with hardcoded passphrase; exfil JSON in body parameter d (base64),,,

@@ -1,0 +1,47 @@
+title: Node Process Outbound to IPv4 Literal C2 (EVM/DeFi npm typosquat)
+id: 21812dd3-3d69-4092-9cd5-1621fb9fd3fa
+status: experimental
+description: |
+  Detects a Node.js process initiating an outbound network connection
+  to a literal IPv4 address (no DNS lookup) on TCP/443. Specifically
+  flags the known C2 76.13.37.80 used by the namikazesarada010206
+  npm typosquat cluster (Xygeni, 2026-05-06).
+  Generic version (any IPv4 from node) is intentionally tagged as
+  medium because it captures a much wider class of stealers and
+  reverse shells abusing Node — tune with allowlists.
+references:
+  - https://xygeni.io/blog/evm-defi-npm-typosquatting-attack-steals-developer-keys/
+author: Jarmi
+date: 2026/05/07
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.exfiltration
+  - attack.t1041
+logsource:
+  category: network_connection
+  product: linux
+detection:
+  selection_proc:
+    Image|endswith:
+      - '/node'
+      - '/nodejs'
+      - '/ts-node'
+  selection_known_c2:
+    DestinationIp:
+      - '76.13.37.80'
+    DestinationPort:
+      - 443
+      - 80
+  filter_rfc1918:
+    DestinationIp|cidr:
+      - '10.0.0.0/8'
+      - '172.16.0.0/12'
+      - '192.168.0.0/16'
+      - '127.0.0.0/8'
+      - '169.254.0.0/16'
+  condition: selection_proc and selection_known_c2 and not filter_rfc1918
+falsepositives:
+  - Internal services co-tenanted on the same hosting prefix as the C2 IP — unlikely on a developer host but verify before blocking org-wide
+  - Penetration test traffic from authorised tooling (correlate with project owner)
+level: high

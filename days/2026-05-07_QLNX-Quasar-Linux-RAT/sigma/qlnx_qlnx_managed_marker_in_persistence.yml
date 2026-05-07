@@ -1,0 +1,49 @@
+title: QLNX — QLNX_MANAGED comment marker in newly created persistence artifact
+id: 102e6284-3ba4-4848-8cb0-8faa908ceb26
+status: experimental
+description: |
+  Every QLNX persistence artifact (systemd unit, crontab, init.d script,
+  XDG autostart .desktop file, .bashrc/.profile injection, /etc/profile.d
+  drop) carries the literal comment string "QLNX_MANAGED" so the implant
+  can later identify and clean its own footprint. Any file_event that
+  creates one of these persistence files containing the marker is a hard
+  IOC.
+references:
+  - https://www.trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html
+  - https://socprime.com/active-threats/qlnx-linux-rat-uses-rootkit-and-pam-backdoor/
+  - https://attack.mitre.org/techniques/T1547/013/
+  - https://attack.mitre.org/techniques/T1053.003/
+author: Jarmi
+date: 2026/05/07
+tags:
+  - attack.persistence
+  - attack.t1053.003
+  - attack.t1547
+  - attack.t1546.004
+logsource:
+  product: linux
+  category: file_event
+detection:
+  selection_persistence_paths:
+    TargetFilename|startswith:
+      - '/etc/systemd/system/'
+      - '/etc/cron.d/'
+      - '/etc/cron.daily/'
+      - '/etc/cron.hourly/'
+      - '/etc/init.d/'
+      - '/etc/profile.d/'
+      - '/etc/xdg/autostart/'
+      - '/var/spool/cron/'
+    TargetFilename|contains:
+      - '.bashrc'
+      - '.bash_profile'
+      - '.profile'
+      - '.zshrc'
+      - '.desktop'
+      - '/autostart/'
+  selection_marker:
+    Contents|contains: 'QLNX_MANAGED'
+  condition: selection_persistence_paths and selection_marker
+falsepositives:
+  - None expected — "QLNX_MANAGED" is a unique attacker-defined marker. If observed without QLNX, treat as a hash collision and verify.
+level: critical

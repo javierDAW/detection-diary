@@ -25,6 +25,8 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Hydro Kitten](./hydro-kitten/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
 | [Punk Spider](./punk-spider/) | 1 |
+| [QLNX](./qlnx/) | 1 |
+| [Quasar Linux](./quasar-linux/) | 1 |
 | [Sandworm](./sandworm/) | 1 |
 | [Seashell Blizzard](./seashell-blizzard/) | 1 |
 | [Shahid Kaveh Group](./shahid-kaveh-group/) | 1 |
@@ -40,3 +42,5 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [UAT-4356](./uat-4356/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
 | [VECT](./vect/) | 1 |
+| [harunosakura030303-maker](./harunosakura030303-maker/) | 1 |
+| [namikazesarada010206](./namikazesarada010206/) | 1 |
