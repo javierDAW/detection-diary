@@ -1,0 +1,26 @@
+// Title:        QLNX — Modification of /etc/ld.so.preload (Defender XDR for Linux)
+// Id:           f8b42cce-9c87-483d-a223-d7130cc4549f
+// MITRE:        T1574.006, T1556.003
+// Reference:    https://www.trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html
+// Author:       Jarmi
+// Date:         2026-05-07
+// Tested on:    Defender XDR — DeviceFileEvents (Linux endpoints with MDE)
+// FP notes:     Some legitimate APM / RASP agents legitimately install
+//               LD_PRELOAD shims (Snyk, Datadog, Dynatrace). Filter by
+//               InitiatingProcessFileName allowlist below. In a typical
+//               server fleet this query should return ZERO hits per week.
+//
+// Logic:        File-write events on /etc/ld.so.preload, surface the
+//               initiating process and its parent. Anchor on TargetUser
+//               root because QLNX needs root for system-wide preload.
+
+DeviceFileEvents
+| where Timestamp > ago(7d)
+| where DeviceOSPlatform startswith "Linux"
+| where FolderPath == "/etc" and FileName == "ld.so.preload"
+| where ActionType in ("FileCreated","FileModified","FileRenamed")
+| where InitiatingProcessFileName !in~ ("dpkg","rpm","apt","apt-get","yum","dnf","datadog-agent","snyk-snyklive","dynatrace-oneagent")
+| project Timestamp, DeviceName, DeviceId, ActionType, FolderPath, FileName,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          InitiatingProcessParentFileName, InitiatingProcessAccountName, SHA256
+| sort by Timestamp desc

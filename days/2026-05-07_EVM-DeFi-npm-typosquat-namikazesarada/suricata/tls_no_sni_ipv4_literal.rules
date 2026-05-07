@@ -1,0 +1,42 @@
+# Suricata 7.x — EVM/DeFi npm typosquat (namikazesarada010206) C2 detection
+# Author: Jarmi
+# Date:   2026-05-07
+# Reference:
+#   https://xygeni.io/blog/evm-defi-npm-typosquatting-attack-steals-developer-keys/
+#   https://registry.npmjs.org/viem-core
+#
+# Notes:
+#   - $DEV_VLAN should be defined by the operator in suricata.yaml under
+#     vars.address-groups (e.g. "[10.42.0.0/16,10.43.0.0/16]").
+#   - Three sids:
+#       5070001  : exact known C2 IP
+#       5070002  : TLS handshake to public IPv4 with empty SNI from dev VLAN
+#       5070003  : HTTP POST to /ingest with body length consistent with
+#                  base64-AES-256-GCM bundle from dev VLAN
+#   - rev 1; tune $HOME_NET / $DEV_VLAN as needed.
+
+alert tls $DEV_VLAN any -> 76.13.37.80 443 ( \
+    msg:"DETDIARY EVMDeFi npm typosquat namikazesarada010206 C2 76.13.37.80"; \
+    flow:established,to_server; \
+    classtype:trojan-activity; \
+    reference:url,xygeni.io/blog/evm-defi-npm-typosquatting-attack-steals-developer-keys/; \
+    sid:5070001; rev:1; )
+
+alert tls $DEV_VLAN any -> $EXTERNAL_NET 443 ( \
+    msg:"DETDIARY TLS handshake from dev VLAN with empty SNI to public IPv4 (likely C2)"; \
+    flow:established,to_server; \
+    tls.sni; isdataat:!1; \
+    threshold:type both, track by_src, count 1, seconds 600; \
+    classtype:misc-activity; \
+    reference:url,xygeni.io/blog/evm-defi-npm-typosquatting-attack-steals-developer-keys/; \
+    sid:5070002; rev:1; )
+
+alert http $DEV_VLAN any -> $EXTERNAL_NET any ( \
+    msg:"DETDIARY HTTP POST to /ingest with binary-body shape from dev VLAN (EVMDeFi telemetry)"; \
+    flow:established,to_server; \
+    http.method; content:"POST"; \
+    http.uri; content:"/ingest"; nocase; \
+    dsize:200<>16384; \
+    classtype:trojan-activity; \
+    reference:url,xygeni.io/blog/evm-defi-npm-typosquatting-attack-steals-developer-keys/; \
+    sid:5070003; rev:1; )

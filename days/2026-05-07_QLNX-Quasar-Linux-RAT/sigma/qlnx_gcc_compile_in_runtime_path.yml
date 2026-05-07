@@ -1,0 +1,48 @@
+title: QLNX — gcc invoked at runtime to produce a shared object under temp/log paths
+id: 102ae603-b85f-42a7-8314-90dee5db4724
+status: experimental
+description: |
+  QLNX embeds the C source of its PAM backdoor and LD_PRELOAD rootkit as
+  string literals inside its main ELF and pipes them through gcc on the
+  victim host to assemble distro-matching .so files (gcc -shared -fPIC
+  -o <path>.so -). Detects gcc invoked with -shared/-fPIC writing into
+  /tmp, /var/log, /var/tmp or /dev/shm. Production servers should not
+  invoke gcc at runtime; this is high-fidelity for QLNX-class implants.
+references:
+  - https://www.trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html
+  - https://thearabianpost.com/qlnx-raises-alarm-over-developer-credential-theft/
+  - https://attack.mitre.org/techniques/T1027/004/
+author: Jarmi
+date: 2026/05/07
+tags:
+  - attack.defense-evasion
+  - attack.t1027.004
+  - attack.persistence
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  selection_gcc:
+    Image|endswith:
+      - '/gcc'
+      - '/cc'
+      - '/g++'
+      - '/clang'
+      - '/clang++'
+  selection_args:
+    CommandLine|contains|all:
+      - '-shared'
+      - '-fPIC'
+  selection_outpath:
+    CommandLine|contains:
+      - '/tmp/'
+      - '/var/tmp/'
+      - '/var/log/'
+      - '/dev/shm/'
+      - '.ICE-unix'
+      - '.X11-unix'
+  condition: selection_gcc and selection_args and selection_outpath
+falsepositives:
+  - Build farms / Jenkins agents — exclude by hostname pattern (build-*, ci-*) or by parent process Jenkins/jenkins-agent/buildkite-agent.
+  - Developer workstations during local development — limit this rule to production server tier.
+level: high

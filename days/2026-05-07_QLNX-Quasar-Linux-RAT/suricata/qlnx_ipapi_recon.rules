@@ -1,0 +1,27 @@
+# Suricata 7.x rules for QLNX (Quasar Linux RAT) — Trend Micro 5-may-2026
+# Author: Jarmi
+# Date:   2026-05-07
+# Reference:
+#   https://www.trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html
+#
+# Variable conventions (define in suricata.yaml -> vars.address-groups):
+#   $SERVER_NET         — production server tier (Linux fleet)
+#   $TRUSTED_GEO_CLIENT — known monitoring agents allowed to call ip-api.com
+#
+# Notes:
+#   - These rules anchor on side-effects, not on signed payloads.
+#   - QLNX uses ip-api.com to enrich the geolocation field of its first
+#     beacon (free tier, plain JSON, no auth). The first hit from a
+#     server-tier host is high-fidelity.
+
+alert http $SERVER_NET any -> any any (msg:"QLNX Geolocation enrichment to ip-api.com from server tier"; flow:established,to_server; http.host; content:"ip-api.com"; nocase; http.user_agent; content:!"Datadog"; nocase; reference:url,trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html; classtype:trojan-activity; metadata:created_at 2026_05_07; sid:5070001; rev:1;)
+
+alert tls $SERVER_NET any -> any 443 (msg:"QLNX Geolocation enrichment to ip-api.com (TLS) from server tier"; flow:established,to_server; tls.sni; content:"ip-api.com"; nocase; reference:url,trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html; classtype:trojan-activity; metadata:created_at 2026_05_07; sid:5070002; rev:1;)
+
+alert dns $SERVER_NET any -> any any (msg:"QLNX DNS lookup for ip-api.com from server tier"; dns.query; content:"ip-api.com"; nocase; classtype:trojan-activity; metadata:created_at 2026_05_07; sid:5070003; rev:1;)
+
+# Custom QLNX TCP/TLS beacon — QLNX uses its own TCP framing; the initial
+# beacon contains the literal "QLNX" marker and version "1.4.1" in the
+# serialized buffer. dsize covers a typical first beacon size.
+
+alert tcp $SERVER_NET any -> any any (msg:"QLNX possible custom TCP beacon (QLNX marker + version)"; flow:established,to_server; dsize:64<>4096; content:"QLNX"; content:"1.4.1"; distance:0; within:64; reference:url,trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html; classtype:trojan-activity; metadata:created_at 2026_05_07; sid:5070004; rev:1;)

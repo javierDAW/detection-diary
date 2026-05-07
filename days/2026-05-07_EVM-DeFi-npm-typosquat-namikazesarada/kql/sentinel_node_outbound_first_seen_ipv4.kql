@@ -1,0 +1,34 @@
+// Title:        Sentinel — node outbound to first-seen IPv4 (incl. known C2 76.13.37.80)
+// Id:           c3ae4207-e5b1-45e9-b151-3beda9bf4591
+// MITRE:        T1071.001, T1573.001, T1041
+// Reference:    https://xygeni.io/blog/evm-defi-npm-typosquatting-attack-steals-developer-keys/
+// Author:       Jarmi
+// Date:         2026-05-07
+// Tested on:    Sentinel — DeviceNetworkEvents (when Defender XDR data is forwarded)
+// FP notes:     <add_known_dev_egress_allowlist> — populate ASN/CIDR allowlist for your
+//               registry, CDN, GitHub, IDE telemetry. Tune dev VLAN selector accordingly.
+//
+// Logic: 1) flag any node outbound to known C2; 2) flag any node outbound to a
+//        public IPv4 not seen in last 30 days from this device.
+
+let KnownC2 = dynamic(["76.13.37.80"]);
+let Window = 24h;
+let Baseline =
+    DeviceNetworkEvents
+    | where Timestamp between (ago(30d) .. ago(Window))
+    | where InitiatingProcessFileName in~ ("node.exe","node","ts-node","ts-node.exe","nodejs")
+    | where ActionType == "ConnectionSuccess"
+    | where ipv4_is_private(RemoteIP) == false
+    | summarize by DeviceId, RemoteIP;
+DeviceNetworkEvents
+| where Timestamp > ago(Window)
+| where InitiatingProcessFileName in~ ("node.exe","node","ts-node","ts-node.exe","nodejs")
+| where ActionType == "ConnectionSuccess"
+| where ipv4_is_private(RemoteIP) == false
+| extend IsKnownC2 = RemoteIP in (KnownC2)
+| join kind=leftanti Baseline on DeviceId, RemoteIP
+| project Timestamp, DeviceName, InitiatingProcessAccountName,
+          InitiatingProcessFileName, InitiatingProcessId,
+          InitiatingProcessCommandLine, RemoteIP, RemotePort,
+          RemoteUrl, IsKnownC2
+| order by IsKnownC2 desc, Timestamp desc
