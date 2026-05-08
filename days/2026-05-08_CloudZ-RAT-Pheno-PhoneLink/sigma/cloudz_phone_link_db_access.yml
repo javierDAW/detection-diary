@@ -1,0 +1,40 @@
+title: Microsoft Phone Link SQLite Database Read by Foreign Process (CloudZ Pheno)
+id: bc8893b4-c455-4b29-8a68-e15c077fa203
+status: experimental
+description: |
+  Detects file events where the Microsoft Phone Link UWP package SQLite cache
+  (PhoneExperiences-*.db) is opened or copied by a process that does not belong
+  to the YourPhone package. This is the core indicator of the Pheno plugin
+  shipped with CloudZ RAT, which harvests mirrored SMS and OTP messages
+  without compromising the paired phone.
+references:
+  - https://blog.talosintelligence.com/cloudz-pheno-infostealer/
+  - https://github.com/Cisco-Talos/IOCs/blob/main/2026/05/cloudz-pheno-infostealer.txt
+author: Jarmi
+date: 2026/05/08
+tags:
+  - attack.credential-access
+  - attack.t1111
+  - attack.t1213
+  - attack.collection
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_phone_db:
+    TargetFilename|contains: '\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\PhoneExperiences'
+    TargetFilename|endswith: '.db'
+  filter_legit_yourphone_image:
+    Image|contains:
+      - '\Microsoft.YourPhone_8wekyb3d8bbwe\'
+      - '\WindowsApps\Microsoft.YourPhone_'
+  filter_legit_yourphone_name:
+    Image|endswith:
+      - '\PhoneExperienceHost.exe'
+      - '\YourPhone.exe'
+  condition: selection_phone_db and not 1 of filter_legit_*
+falsepositives:
+  - Enterprise endpoint backup agents that snapshot AppData (Code42, Druva, Veeam endpoint).
+  - Antivirus on-access scanning that may briefly read the file.
+  - Forensic acquisition tooling.
+level: high

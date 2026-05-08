@@ -1,0 +1,29 @@
+// Title:        CloudZ — Pastebin raw fetch combined with hellohiall.workers.dev or backend IP from same host
+// Id:           8fdfdc24-c28d-4094-8cf8-03ea848b713e
+// MITRE:        T1102.002, T1071.001, T1090.004
+// Reference:    https://blog.talosintelligence.com/cloudz-pheno-infostealer/
+// Author:       Jarmi
+// Date:         2026-05-08
+// Tested on:    Microsoft Defender XDR — DeviceNetworkEvents
+// FP notes:     Developer hosts that fetch Pastebin gists may register matches; tune with a host allow-list
+//               for engineering / SRE machines. Combined with the Workers FQDN or backend IP this is high signal.
+let pastebin =
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteUrl has "pastebin.com/raw" or RemoteUrl has "pastebin.com/EBrpRiFi"
+        or RemoteUrl has "pastebin.com/ikjGHALD" or RemoteUrl has "pastebin.com/3jKbe7rN"
+        or RemoteUrl has "pastebin.com/NUrZTmDn" or RemoteUrl has "pastebin.com/RKJcXMAm"
+        or RemoteUrl has "pastebin.com/yUkbaBH3" or RemoteUrl has "pastebin.com/8pYAgF0Z"
+| project PbTime=Timestamp, DeviceId, DeviceName, PbProc=InitiatingProcessFileName,
+          PbSha=InitiatingProcessSHA256, PbUrl=RemoteUrl;
+let workers =
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteUrl has "hellohiall.workers.dev" or RemoteIP == "185.196.10.136"
+| project WkTime=Timestamp, DeviceId, WkProc=InitiatingProcessFileName,
+          WkUrl=RemoteUrl, WkIp=RemoteIP;
+pastebin
+| join kind=inner (workers) on DeviceId
+| where abs(datetime_diff('hour', PbTime, WkTime)) <= 24
+| project PbTime, WkTime, DeviceName, PbProc, WkProc, PbUrl, WkUrl, WkIp
+| sort by PbTime desc

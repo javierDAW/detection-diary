@@ -1,0 +1,22 @@
+# File:       cloudz_workers_pastebin.rules
+# Author:     Jarmi
+# Date:       2026-05-08
+# Reference:  https://blog.talosintelligence.com/cloudz-pheno-infostealer/
+# Notes:      Suricata 7.x. Rules cover the CloudZ + Pheno C2 footprint:
+#               - TLS SNI / HTTP host containing the three Cloudflare Workers FQDNs.
+#               - DNS query for *.hellohiall.workers.dev.
+#               - Egress to backend IP 185.196.10.136.
+#               - HTTP GET to pastebin.com raw paths used by the campaign.
+#             Place these in your local.rules. Tune $HOME_NET as usual.
+
+# 1) TLS SNI containing the workers.dev cluster
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"CloudZ-Pheno C2 TLS SNI hellohiall.workers.dev"; flow:to_server,established; tls.sni; content:"hellohiall.workers.dev"; nocase; classtype:trojan-activity; sid:5080001; rev:1;)
+
+# 2) DNS query for the hellohiall workers cluster
+alert dns $HOME_NET any -> any any (msg:"CloudZ-Pheno DNS query hellohiall.workers.dev"; dns.query; content:"hellohiall.workers.dev"; nocase; classtype:trojan-activity; sid:5080002; rev:1;)
+
+# 3) Backend IP egress
+alert ip $HOME_NET any -> 185.196.10.136 any (msg:"CloudZ-Pheno C2 backend IP 185.196.10.136"; classtype:trojan-activity; sid:5080003; rev:1;)
+
+# 4) HTTP GET to pastebin.com raw path used as dead-drop config
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"CloudZ-Pheno Pastebin raw config dead-drop"; flow:to_server,established; http.method; content:"GET"; http.host; content:"pastebin.com"; http.uri; content:"/raw/"; pcre:"/\/raw\/(8pYAgF0Z|EBrpRiFi|ikjGHALD|3jKbe7rN|NUrZTmDn|RKJcXMAm|yUkbaBH3)/"; classtype:trojan-activity; sid:5080004; rev:1;)

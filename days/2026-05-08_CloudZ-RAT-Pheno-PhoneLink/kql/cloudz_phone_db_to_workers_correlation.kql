@@ -1,0 +1,34 @@
+// Title:        CloudZ + Pheno — PhoneExperiences DB read followed by hellohiall.workers.dev or backend-IP egress
+// Id:           2dff5ec4-063e-4ac0-a726-860956849d53
+// MITRE:        T1111, T1213, T1071.001, T1090.004
+// Reference:    https://blog.talosintelligence.com/cloudz-pheno-infostealer/
+// Author:       Jarmi
+// Date:         2026-05-08
+// Tested on:    Microsoft Defender XDR — DeviceFileEvents + DeviceNetworkEvents
+// FP notes:     Backup tools may legitimately read AppData; tune by InitiatingProcessFolderPath and signature.
+//               Refresh the FQDN list against the latest Talos IOCs publication if hostnames are rotated.
+let phoneDb =
+DeviceFileEvents
+| where Timestamp > ago(7d)
+| where FileName startswith "PhoneExperiences" and FileName endswith ".db"
+| where FolderPath has @"\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\"
+| where InitiatingProcessFolderPath !has @"\Microsoft.YourPhone_8wekyb3d8bbwe\"
+        and InitiatingProcessFileName !in~ ("YourPhone.exe", "PhoneExperienceHost.exe")
+| project DbTime=Timestamp, DeviceId, DeviceName,
+          DbProcId=InitiatingProcessId, DbProcName=InitiatingProcessFileName,
+          DbProcSha256=InitiatingProcessSHA256, FolderPath, FileName;
+let workersBeacon =
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where (RemoteUrl has "hellohiall.workers.dev")
+        or (RemoteUrl matches regex @"\b(calm-wildflower-1349|orange-cell-1353|round-cherry-4418)\.hellohiall\.workers\.dev\b")
+        or (RemoteIP == "185.196.10.136")
+| project NetTime=Timestamp, DeviceId,
+          NetProcId=InitiatingProcessId, NetProcName=InitiatingProcessFileName,
+          NetProcSha256=InitiatingProcessSHA256, RemoteUrl, RemoteIP;
+phoneDb
+| join kind=inner (workersBeacon) on DeviceId
+| where abs(datetime_diff('minute', DbTime, NetTime)) <= 30
+| project DbTime, NetTime, DeviceName, DbProcName, DbProcSha256,
+          NetProcName, NetProcSha256, RemoteUrl, RemoteIP, FolderPath, FileName
+| sort by DbTime desc

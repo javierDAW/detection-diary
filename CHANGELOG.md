@@ -7,6 +7,26 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.08 — Day 12 — CloudZ RAT + Pheno plugin (Microsoft Phone Link OTP theft)
+
+### Added
+- `days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/` — Cisco Talos write-up (5-may-2026) of a campaign active since January 2026 that pairs a ConfuserEx-packed .NET RAT (`CloudZ`, compiled 2026-01-13) with a previously undocumented plugin (`Pheno`) that abuses the Microsoft `Microsoft.YourPhone_8wekyb3d8bbwe` UWP package on Windows 11. Pheno reads the local `PhoneExperiences-*.db` SQLite cache to harvest mirrored SMS bodies and OTP-bearing notifications without any compromise of the paired phone — a host-side bypass of SMS-based 2FA.
+- Sigma (2): non-YourPhone process reading `PhoneExperiences-*.db`; AppData-resident parent creating a scheduled task (loader persistence chain).
+- KQL (2): Defender XDR — Phone Link DB read joined with `*.hellohiall.workers.dev` or backend-IP egress within 30 minutes; Pastebin raw fetch combined with Workers or backend-IP egress on the same host.
+- SPL (1): same-host correlation across Pastebin, Workers C2 and backend IP `185.196.10.136` over Sysmon EID 3 / EID 22.
+- YARA (1): `CloudZ_Pheno_Heuristic_2026` — PE + ConfuserEx markers + Phone Link package strings + Workers FQDN + dynamic-IL emit primitives + embedded `Microsoft.Data.Sqlite`.
+- Suricata (1): four sids — TLS SNI for `hellohiall.workers.dev`, DNS query for the same, IP egress to `185.196.10.136`, and HTTP GET to the seven Pastebin raw paths used as dead-drop config.
+- PEAK hunt (1): H1 — Phone Link DB read followed by Workers / backend egress within 30 minutes on the same host.
+- `iocs.csv` — five SHA256 hashes (Rust dropper, two .NET loader variants, CloudZ, Pheno), three Cloudflare Workers FQDNs, backend IP, seven Pastebin URLs and the `HELLOHIALL` operator handle.
+
+### Pedagogy
+- *SMS-based 2FA is no longer "what's on your phone".* Windows 11 Phone Link mirrors SMS into a SQLite file in user space — any user-context implant can read it. SIM swap is no longer the only route to OTP capture.
+- *Detection is on the file-event side, not the binary side.* CloudZ uses dynamic IL emit at runtime, so on-disk method signatures are weak. The cheap, durable detection is "who reads the SQLite that is not the YourPhone package" and "who beacons to `*.hellohiall.workers.dev`".
+- *Cloudflare Workers + Pastebin* is a low-cost-infra C2 fabric: defenders rarely block `*.workers.dev` outright, Pastebin is often allow-listed, and rotating hostnames does not require rebuilding the binary.
+- *Recovery is not a password reset.* SMS-mirrored content captured during dwell remains valid for service-side use. Revoke device tokens, rotate every code that may have been mirrored, and migrate to FIDO2 / passkey before re-enabling identity.
+
+---
+
 ## 2026.05.07 — Day 11 — EVM/DeFi npm typosquatting (`namikazesarada010206`)
 
 ### Added
@@ -106,58 +126,4 @@ from `git log --diff-filter=D -- .github/workflows/`.
 
 ### Fixed
 - All 7 original Sigma rule IDs were mnemonic placeholders, not valid UUID v4. Replaced with real UUID v4.
-- Trailing NULL bytes in 5 Sigma rules (artifact of the Windows editor) stripped.
-- Two YARA rules had unreferenced `$strings` (compiler error in real `yara`):
-  - `FIRESTARTER_ELF_LINA_Hook_Heuristic` — added `any of ($magic_tag*) or any of ($crypto*)` to condition.
-  - `Nexcorium_Mirai_Variant_2026` — `$hg532_uri` → `any of ($hg532_*)` in condition.
-- `validate_all.py` now also catches the YARA "unreferenced string" class of error offline, so it cannot regress.
-
-### Deprecated
-- `days/2026-05-01_VECT-2.0-RaaS/sigma/vect_safeboot_persistence.yml` — replaced by the 3 atomic rules above. Kept as a tombstone for git history; `git rm` it when you want a fully clean tree.
-
-
-
-## 2026.05.04 — DynoWiper / C0063
-
-- **Added** day 7: `2026-05-04_C0063-Poland-Wiper`
-  - 1 Sigma rule: GPO Computer Startup Script weaponization (T1484.001)
-  - 2 KQL queries: LSASS dump via Task Manager (T1003.001), Rubeus s4u TGS burst (T1558.003)
-  - 1 SPL query: rsocx SOCKS5 reverse + GPO mass-write (T1090.002 + T1484.001)
-  - 1 YARA rule: DynoWiper heuristic (PDB + skiplist + MT19937 + ExitWindowsEx)
-
-## 2026.05.03 — BAUXITE / CyberAv3ngers
-
-- **Added** day 6: `2026-05-03_BAUXITE-CyberAvengers-AA26-097A`
-  - 1 Sigma rule: Rockwell Studio 5000 outbound to public network on EIP/CIP (T1133, T0866)
-  - 1 Suricata ruleset: Dropbear SSH banner sourced FROM OT host + external CIP `List Identity`
-  - 1 KQL query: engineering tool egress + Dropbear file drop dual-channel
-  - 1 YARA rule: ZionSiphon target-list and broken comparator heuristic
-
-## 2026.05.02 — Nexcorium / TBK DVR
-
-- **Added** day 5: `2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`
-  - 1 Sigma rule: Nexcorium TBK DVR exploit attempt (CVE-2024-3721)
-  - 1 Suricata ruleset: exploit URI + `X-Hacked-By: Nexus Team` branding header
-  - 1 KQL query: WAF / IIS reflective branding header detection
-  - 1 YARA rule: Nexcorium Mirai variant heuristic (XOR 0x13 + FNV-1a + branding)
-
-## 2026.05.01 — VECT 2.0 RaaS
-
-- **Added** day 4: `2026-05-01_VECT-2.0-RaaS`
-  - 1 Sigma rule: VECT safe-boot persistence (bcdedit + SafeBoot\Minimal)
-  - 1 KQL query: mass terminate of office/db/browser processes in 60s window
-  - 1 SPL query: Sysmon marker + bcdedit + SafeBoot reg combination
-  - 1 YARA rule: VECT2 ChaCha20 nonce-bug heuristic (XOR key + libsodium + .vect)
-
-## 2026.04.30 — FIRESTARTER + LINE VIPER (UAT-4356)
-
-- **Added** day 3: `2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`
-  - 1 Sigma rule: anomalous large WebVPN POST to `/+CSCOE+/`
-  - 1 KQL query: Cisco ASA reboot + WebVPN large-body correlation
-  - 1 SPL query: ASA `show version` + mount-list diff baseline drift
-  - 1 YARA rule: FIRESTARTER ELF structural heuristic + `CSP_MOUNT_LIST` reference
-
-## 2026.04.29 — Shai-Hulud Bitwarden (TeamPCP)
-
-- **Added** day 2: `2026-04-29_ShaiHulud-Bitwarden`
-  - 1 Sigma rule: np
+- Trailing NULL bytes in 5 Sigma rules (artifact of the Windows editor) strip
