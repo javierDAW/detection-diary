@@ -1,0 +1,20 @@
+type,value,context,confidence,source
+note,,Indicators published by Cisco Talos on 2026-05-07 for the CloudZ + Pheno infostealer campaign active since January 2026.,,Talos
+sha256,65fcd965040fabeb6f092df0a4b6856125018bb3b6a1876342da458139f77dac,Rust dropper masquerading as a ScreenConnect update,high,Talos
+sha256,ed5de036edbbda52ab0049d2163607038d38a49404a46b6bcfc4bac26b743832,.NET loader variant 1 with anti-analysis chain,high,Talos
+sha256,24398b75be2645e6c695e529e62e60deb418143a4bbea13c561d3c361419eb54,.NET loader variant 2,high,Talos
+sha256,5b7284bcf30569ae400e416a62391720cc9081e6047f15816f9d1a04a06eb321,CloudZ RAT (.NET ConfuserEx-packed),high,Talos
+sha256,33af554562176eff34598a839051b8e91692b0305edfdbb4d8eb9df0103ffd98,Pheno plugin (Phone Link SQLite OTP harvester),high,Talos
+domain,calm-wildflower-1349.hellohiall.workers.dev,Cloudflare Workers C2 endpoint,high,Talos
+domain,orange-cell-1353.hellohiall.workers.dev,Cloudflare Workers staging endpoint hosting pheno.exe,high,Talos
+domain,round-cherry-4418.hellohiall.workers.dev,Cloudflare Workers config or beacon endpoint,high,Talos
+ipv4,185.196.10.136,CloudZ backend C2 server,high,Talos
+url,https://pastebin.com/raw/8pYAgF0Z,Pastebin dead-drop config tagged HELLOHIALL,high,Talos
+url,https://pastebin.com/EBrpRiFi,Pastebin dead-drop config,high,Talos
+url,https://pastebin.com/ikjGHALD,Pastebin dead-drop config,high,Talos
+url,https://pastebin.com/3jKbe7rN,Pastebin dead-drop config,high,Talos
+url,https://pastebin.com/NUrZTmDn,Pastebin dead-drop config,high,Talos
+url,https://pastebin.com/RKJcXMAm,Pastebin dead-drop config,high,Talos
+url,https://pastebin.com/yUkbaBH3,Pastebin dead-drop config,high,Talos
+string,HELLOHIALL,Pastebin handle and operator branding string,medium,Talos
+note,,Path of the Phone Link SQLite cache that Pheno targets is %LOCALAPPDATA%\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\PhoneExperiences-*.db. Read by foreign process is the high-signal IOC.,,Talos

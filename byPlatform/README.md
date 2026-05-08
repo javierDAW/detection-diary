@@ -24,4 +24,4 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [ot-ics](./ot-ics/) | 2 |
 | [plc](./plc/) | 1 |
 | [supply-chain](./supply-chain/) | 4 |
-| [windows](./windows/) | 6 |
+| [windows](./windows/) | 7 |

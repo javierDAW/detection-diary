@@ -16,6 +16,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [ArcaneDoor](./arcanedoor/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
 | [BreachForums](./breachforums/) | 1 |
+| [CloudZ](./cloudz/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
 | [Dadsec](./dadsec/) | 1 |
 | [G0034](./g0034/) | 1 |
@@ -24,6 +25,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Howling Scorpius](./howling-scorpius/) | 1 |
 | [Hydro Kitten](./hydro-kitten/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
+| [Pheno](./pheno/) | 1 |
 | [Punk Spider](./punk-spider/) | 1 |
 | [QLNX](./qlnx/) | 1 |
 | [Quasar Linux](./quasar-linux/) | 1 |
