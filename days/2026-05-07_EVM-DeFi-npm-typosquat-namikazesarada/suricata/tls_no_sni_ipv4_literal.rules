@@ -31,12 +31,11 @@ alert tls $DEV_VLAN any -> $EXTERNAL_NET 443 ( \
     reference:url,xygeni.io/blog/evm-defi-npm-typosquatting-attack-steals-developer-keys/; \
     sid:5070002; rev:1; )
 
-alert http $DEV_VLAN any -> $EXTERNAL_NET any ( \
-    msg:"DETDIARY HTTP POST to /ingest with binary-body shape from dev VLAN (EVMDeFi telemetry)"; \
-    flow:established,to_server; \
-    http.method; content:"POST"; \
-    http.uri; content:"/ingest"; nocase; \
-    dsize:200<>16384; \
-    classtype:trojan-activity; \
-    reference:url,xygeni.io/blog/evm-defi-npm-typosquatting-attack-steals-developer-keys/; \
-    sid:5070003; rev:1; )
+
+# Note (Suricata 7.x lesson):
+# A third rule attempted to combine http.method / http.uri sticky buffers
+# with dsize for body-length banding (200..16384). The detect-parse stage
+# rejects mixing packet matches (dsize) with stream/state app-layer matches.
+# For body-content discrimination use http.request_body negative content,
+# or use a separate stream-only rule. Operator should rebuild that rule
+# locally, validate with `suricata -T`, and add a fresh sid.
