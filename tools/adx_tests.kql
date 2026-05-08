@@ -2,241 +2,190 @@
 // adx_tests.kql — regression tests for the detection-diary KQL queries
 // Author:    Jarmi
 // Date:      2026-05-08
-// Purpose:   For every KQL rule in days/*/kql/ run a wrapped version against
+// Purpose:   For every KQL rule in days/*/kql/, run a wrapped version against
 //            the synthetic data seeded by adx_seed.kql and assert the expected
-//            hit count. A failed assertion lights up the row in red — adopt it
-//            as the regression line and re-run after every edit.
+//            hit count.
 // Usage:
-//   1. Run tools/adx_bootstrap.kql once.
-//   2. Run tools/adx_seed.kql before each test pass.
-//   3. Run this file. Every row should have status = "PASS".
-// Convention:
-//   - Each let block recreates the rule's logic and counts hits.
-//   - The expected count was decided when the seed rows were authored.
-//   - Update the seed file *and* the expected count whenever you tune a rule.
+//   1. Bootstrap (adx_bootstrap.kql) and seed (adx_seed.kql) must already be done.
+//   2. Paste this whole file in an ADX query window.
+//   3. Click anywhere in the script and Run. The whole file is one query —
+//      no .execute database script wrapper is needed because there are no
+//      control commands here, only data queries.
+//   4. The final `union` returns a table with one row per rule and a
+//      `status` column = "PASS" or "FAIL".
 // =============================================================================
 
-// -----------------------------------------------------------------------------
-// Day 1 — TCP beacon no-TLS
-//   Expected: 1 (svchostsync.exe to 185.225.74.10, three connects within window)
-// -----------------------------------------------------------------------------
 let t_day01 =
-DeviceNetworkEvents
-| where Timestamp > ago(7d)
-| where Protocol == "Tcp"
-| where RemotePort in (443, 8443) and isempty(RemoteUrl)
-| summarize beacons = count() by DeviceId, RemoteIP, InitiatingProcessFileName
-| where beacons >= 3;
-
-// -----------------------------------------------------------------------------
-// Day 2 — Anomalous public GitHub repo create
-//   Expected: 1 (repo named "Shai-Hulud-CI", visibility public)
-// -----------------------------------------------------------------------------
+    DeviceNetworkEvents
+    | where Timestamp > ago(7d)
+    | where Protocol == "Tcp"
+    | where RemotePort in (443, 8443) and isempty(RemoteUrl)
+    | summarize beacons = count() by DeviceId, RemoteIP, InitiatingProcessFileName
+    | where beacons >= 3
+    | summarize hits = count();
 let t_day02 =
-GitHubAuditLogs
-| where TimeGenerated > ago(7d)
-| where action_s == "repo.create"
-| where repository_visibility_s == "public"
-| where repo_s contains "Shai-Hulud" or repo_s matches regex @"(?i)hulud";
-
-// -----------------------------------------------------------------------------
-// Day 3 — ASA reboot followed by oversized WebVPN POST
-//   Expected: 1 (one large POST after reboot)
-// -----------------------------------------------------------------------------
+    GitHubAuditLogs
+    | where TimeGenerated > ago(7d)
+    | where action_s == "repo.create"
+    | where repository_visibility_s == "public"
+    | where repo_s contains "Shai-Hulud"
+    | summarize hits = count();
 let t_day03 =
-Syslog
-| where TimeGenerated > ago(7d) and Computer == "asa-edge-01"
-| where SyslogMessage has "Reload" or SyslogMessage matches regex @"size=(\d{4,})"
-| extend large = extract(@"size=(\d+)", 1, SyslogMessage, typeof(long))
-| summarize reboots = countif(SyslogMessage has "Reload"),
-            big_posts = countif(large > 8192) by Computer
-| where reboots >= 1 and big_posts >= 1;
-
-// -----------------------------------------------------------------------------
-// Day 4 — Mass process kill in 60s window (VECT-style)
-//   Expected: 1 (six distinct sensitive processes killed in 60s by same parent)
-// -----------------------------------------------------------------------------
+    Syslog
+    | where TimeGenerated > ago(7d) and Computer == "asa-edge-01"
+    | extend large = extract(@"size=(\d+)", 1, SyslogMessage, typeof(long))
+    | summarize reboots = countif(SyslogMessage has "Reload"),
+                big_posts = countif(large > 8192) by Computer
+    | where reboots >= 1 and big_posts >= 1
+    | summarize hits = count();
 let t_day04 =
-DeviceProcessEvents
-| where Timestamp > ago(7d)
-| where FileName == "taskkill.exe"
-| where ProcessCommandLine has_any ("sqlservr","oracle","excel","winword","outlook","firefox","thunderbird")
-| summarize unique_kills = dcount(ProcessCommandLine), first=min(Timestamp), last=max(Timestamp)
-            by DeviceId, InitiatingProcessFileName, bin(Timestamp, 1m)
-| where unique_kills >= 5;
-
-// -----------------------------------------------------------------------------
-// Day 6 — Studio 5000 outbound to public IPv4 (BAUXITE)
-//   Expected: 1 (203.0.113.7 hit, RFC1918 ignored)
-// -----------------------------------------------------------------------------
+    DeviceProcessEvents
+    | where Timestamp > ago(7d)
+    | where FileName == "taskkill.exe"
+    | where ProcessCommandLine has_any ("sqlservr","oracle","excel","winword","outlook","firefox","thunderbird")
+    | summarize unique_kills = dcount(ProcessCommandLine) by DeviceId, InitiatingProcessFileName, bin(Timestamp, 1m)
+    | where unique_kills >= 5
+    | summarize hits = count();
 let t_day06 =
-DeviceNetworkEvents
-| where Timestamp > ago(7d)
-| where InitiatingProcessFileName in~ ("Studio5000.exe","RSLogix5000.exe","RSLinx.exe")
-| where RemotePort in (44818, 2222, 502)
-| where not(ipv4_is_in_range(RemoteIP, "10.0.0.0/8"))
-        and not(ipv4_is_in_range(RemoteIP, "172.16.0.0/12"))
-        and not(ipv4_is_in_range(RemoteIP, "192.168.0.0/16"));
-
-// -----------------------------------------------------------------------------
-// Day 7 — LSASS dump via taskmgr
-//   Expected: 1 (lsass.DMP written by Taskmgr.exe)
-// -----------------------------------------------------------------------------
+    DeviceNetworkEvents
+    | where Timestamp > ago(7d)
+    | where InitiatingProcessFileName in~ ("Studio5000.exe","RSLogix5000.exe","RSLinx.exe")
+    | where RemotePort in (44818, 2222, 502)
+    | where not(ipv4_is_in_range(RemoteIP, "10.0.0.0/8"))
+            and not(ipv4_is_in_range(RemoteIP, "172.16.0.0/12"))
+            and not(ipv4_is_in_range(RemoteIP, "192.168.0.0/16"))
+    | summarize hits = count();
 let t_day07a =
-DeviceFileEvents
-| where Timestamp > ago(7d)
-| where FileName endswith ".DMP" or FileName endswith ".dmp"
-| where FileName has "lsass" or TargetFilename has "lsass"
-| where InitiatingProcessFileName =~ "Taskmgr.exe";
-
-// Day 7 — Rubeus S4U burst
-//   Expected: 1 device with >=4 EID 4769 in 60s window
+    DeviceFileEvents
+    | where Timestamp > ago(7d)
+    | where FileName endswith ".DMP" or FileName endswith ".dmp"
+    | where FileName has "lsass" or TargetFilename has "lsass"
+    | where InitiatingProcessFileName =~ "Taskmgr.exe"
+    | summarize hits = count();
 let t_day07b =
-SecurityEvent
-| where TimeGenerated > ago(7d) and EventID == 4769
-| summarize tickets = count() by Computer, bin(TimeGenerated, 1m)
-| where tickets >= 4;
-
-// -----------------------------------------------------------------------------
-// Day 8 — SonicWall anomalous VPN login (proxy: parse syslog for src ASN-equivalent IP)
-//   Expected: 1 (login from 185.66.77.88 — out of baseline)
-// -----------------------------------------------------------------------------
+    SecurityEvent
+    | where TimeGenerated > ago(7d) and EventID == 4769
+    | summarize tickets = count() by Computer, bin(TimeGenerated, 1m)
+    | where tickets >= 4
+    | summarize hits = count();
 let t_day08a =
-Syslog
-| where TimeGenerated > ago(7d) and Computer == "sonicwall-01"
-| where SyslogMessage has "SSL VPN user logged in"
-| extend src_ip = extract(@"src=(\d+\.\d+\.\d+\.\d+)", 1, SyslogMessage)
-| where isnotempty(src_ip);
-
-// Day 8 — Akira recon — Impacket SMB burst (>=5 SMB to distinct hosts in 60s)
+    Syslog
+    | where TimeGenerated > ago(7d) and Computer == "sonicwall-01"
+    | where SyslogMessage has "SSL VPN user logged in"
+    | extend src_ip = extract(@"src=(\d+\.\d+\.\d+\.\d+)", 1, SyslogMessage)
+    | where isnotempty(src_ip)
+    | summarize hits = count();
 let t_day08b =
-DeviceNetworkEvents
-| where Timestamp > ago(7d) and RemotePort == 445
-| where InitiatingProcessFileName endswith ".py" or InitiatingProcessFileName has_any ("wmiexec","smbexec","psexec")
-| summarize hosts = dcount(RemoteIP) by DeviceId, InitiatingProcessFileName, bin(Timestamp, 1m)
-| where hosts >= 5;
-
-// -----------------------------------------------------------------------------
-// Day 9 — Code of Conduct AiTM chain (sign-in -> device add -> inbox rule one-char)
-//   Expected: 1 user (alice@victim.com) that hits all three
-// -----------------------------------------------------------------------------
+    DeviceNetworkEvents
+    | where Timestamp > ago(7d) and RemotePort == 445
+    | where InitiatingProcessFileName endswith ".py" or InitiatingProcessFileName has_any ("wmiexec","smbexec","psexec")
+    | summarize hosts = dcount(RemoteIP) by DeviceId, InitiatingProcessFileName, bin(Timestamp, 1m)
+    | where hosts >= 5
+    | summarize hits = count();
+let t_day09a_signin = SigninLogs   | where TimeGenerated > ago(7d) | project STime=TimeGenerated, UPN=UserPrincipalName, IP=IPAddress;
+let t_day09a_audit  = AuditLogs    | where TimeGenerated > ago(7d) and OperationName == "Add device" | project ATime=TimeGenerated, AIdentity=Identity;
+let t_day09a_inbox  = OfficeActivity
+    | where TimeGenerated > ago(7d) and Operation == "New-InboxRule"
+    | extend rname = tostring(parse_json(tostring(Parameters)).Name)
+    | where strlen(rname) <= 1
+    | project OTime=TimeGenerated, OUid=UserId;
 let t_day09a =
-let s = SigninLogs | where TimeGenerated > ago(7d) | project TimeGenerated, UserPrincipalName, IPAddress;
-let a = AuditLogs  | where TimeGenerated > ago(7d) and OperationName == "Add device" | project TimeGenerated, Identity;
-let o = OfficeActivity | where TimeGenerated > ago(7d) and Operation == "New-InboxRule"
-        | extend rname = tostring(parse_json(tostring(Parameters)).Name)
-        | where strlen(rname) <= 1
-        | project TimeGenerated, UserId;
-s | join kind=inner (a) on $left.UserPrincipalName == $right.Identity
-  | join kind=inner (o) on $left.UserPrincipalName == $right.UserId
-  | distinct UserPrincipalName;
-
-// Day 9 — first-seen attacker domain delivered as PDF
+    t_day09a_signin
+    | join kind=inner (t_day09a_audit) on $left.UPN == $right.AIdentity
+    | join kind=inner (t_day09a_inbox) on $left.UPN == $right.OUid
+    | distinct UPN
+    | summarize hits = count();
 let t_day09b =
-EmailUrlInfo
-| where Timestamp > ago(7d)
-| where UrlDomain has_any ("acceptable-use-policy","compliance-protectionoutlook")
-| join kind=inner (
-    EmailAttachmentInfo
-    | where Timestamp > ago(7d) and FileType == "pdf"
-) on NetworkMessageId
-| distinct NetworkMessageId;
-
-// -----------------------------------------------------------------------------
-// Day 10 — QLNX — ld.so.preload modification + credential burst + ip-api recon
-//   Expected: 1 of each
-// -----------------------------------------------------------------------------
+    EmailUrlInfo
+    | where Timestamp > ago(7d)
+    | where UrlDomain has_any ("acceptable-use-policy","compliance-protectionoutlook")
+    | join kind=inner (
+        EmailAttachmentInfo
+        | where Timestamp > ago(7d) and FileType == "pdf"
+    ) on NetworkMessageId
+    | distinct NetworkMessageId
+    | summarize hits = count();
 let t_day10a =
-DeviceFileEvents
-| where Timestamp > ago(7d)
-| where FolderPath == "/etc/" and FileName == "ld.so.preload"
-| where ActionType == "FileModified";
-
+    DeviceFileEvents
+    | where Timestamp > ago(7d)
+    | where FolderPath == "/etc/" and FileName == "ld.so.preload"
+    | where ActionType == "FileModified"
+    | summarize hits = count();
 let t_day10b =
-DeviceFileEvents
-| where Timestamp > ago(7d)
-| where FileName in~ (".npmrc","credentials","id_rsa",".git-credentials",".pypirc",".vault-token")
-        or FolderPath has_any ("/.aws/","/.kube/","/.docker/")
-| summarize hits = dcount(FileName), first=min(Timestamp), last=max(Timestamp)
-            by DeviceId, InitiatingProcessId, InitiatingProcessFileName
-| where hits >= 3 and datetime_diff('second', last, first) <= 60;
-
+    DeviceFileEvents
+    | where Timestamp > ago(7d)
+    | where FileName in~ (".npmrc","credentials","id_rsa",".git-credentials",".pypirc",".vault-token")
+            or FolderPath has_any ("/.aws/","/.kube/","/.docker/")
+    | summarize files = dcount(FileName), first_t=min(Timestamp), last_t=max(Timestamp)
+                by DeviceId, InitiatingProcessId, InitiatingProcessFileName
+    | where files >= 3 and datetime_diff('second', last_t, first_t) <= 60
+    | summarize hits = count();
 let t_day10c =
-DeviceNetworkEvents
-| where Timestamp > ago(7d)
-| where RemoteUrl has "ip-api.com" or RemoteIP has "208.95.112.";
-
+    DeviceNetworkEvents
+    | where Timestamp > ago(7d)
+    | where RemoteUrl has "ip-api.com" or RemoteIP startswith "208.95.112."
+    | summarize hits = count();
 let t_day10d =
-DeviceFileEvents
-| where Timestamp > ago(7d)
-| where FolderPath == "/tmp/" and FileName matches regex @"^\.X[0-9a-f]{8}-lock$";
-
-// -----------------------------------------------------------------------------
-// Day 11 — EVM/DeFi npm — node first-seen IPv4 outbound + dev cred burst
-// -----------------------------------------------------------------------------
+    DeviceFileEvents
+    | where Timestamp > ago(7d)
+    | where FolderPath == "/tmp/" and FileName matches regex @"^\.X[0-9a-f]{8}-lock$"
+    | summarize hits = count();
 let t_day11a =
-DeviceNetworkEvents
-| where Timestamp > ago(7d)
-| where InitiatingProcessFileName in~ ("node.exe","node","ts-node")
-| where RemoteIP matches regex @"^\d+\.\d+\.\d+\.\d+$"
-| where not(ipv4_is_in_range(RemoteIP, "10.0.0.0/8"))
-        and not(ipv4_is_in_range(RemoteIP, "172.16.0.0/12"))
-        and not(ipv4_is_in_range(RemoteIP, "192.168.0.0/16"));
-
+    DeviceNetworkEvents
+    | where Timestamp > ago(7d)
+    | where InitiatingProcessFileName in~ ("node.exe","node","ts-node")
+    | where RemoteIP matches regex @"^\d+\.\d+\.\d+\.\d+$"
+    | where not(ipv4_is_in_range(RemoteIP, "10.0.0.0/8"))
+            and not(ipv4_is_in_range(RemoteIP, "172.16.0.0/12"))
+            and not(ipv4_is_in_range(RemoteIP, "192.168.0.0/16"))
+    | summarize hits = count();
 let t_day11b =
-DeviceFileEvents
-| where Timestamp > ago(7d)
-| where InitiatingProcessFileName in~ ("node.exe","node","ts-node")
-| where FolderPath has_any (@"\.foundry\", @"\.brownie\", @"\app\")
-        or FileName has_any (".env",".env.local",".env.production","foundry.toml","hardhat.config.js")
-        or FolderPath has @"\.ssh\"
-| summarize files = dcount(strcat(FolderPath, FileName))
-            by DeviceId, InitiatingProcessId, InitiatingProcessFileName, bin(Timestamp, 5m)
-| where files >= 3;
-
-// -----------------------------------------------------------------------------
-// Day 12 — CloudZ + Pheno — Phone Link DB read + Workers egress within 30 min
-// -----------------------------------------------------------------------------
-let t_day12 =
-let phoneDb =
+    DeviceFileEvents
+    | where Timestamp > ago(7d)
+    | where InitiatingProcessFileName in~ ("node.exe","node","ts-node")
+    | where FolderPath has_any (@"\.foundry\", @"\.brownie\", @"\app\", @"\.ssh\")
+            or FileName has_any (".env",".env.local",".env.production","foundry.toml","hardhat.config.js")
+    | summarize files = dcount(strcat(FolderPath, FileName))
+                by DeviceId, InitiatingProcessId, InitiatingProcessFileName, bin(Timestamp, 5m)
+    | where files >= 3
+    | summarize hits = count();
+let t_day12_phoneDb =
     DeviceFileEvents
     | where Timestamp > ago(7d)
     | where FileName startswith "PhoneExperiences" and FileName endswith ".db"
     | where FolderPath has @"\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\"
     | where InitiatingProcessFolderPath !has @"\Microsoft.YourPhone_8wekyb3d8bbwe\"
             and InitiatingProcessFileName !in~ ("YourPhone.exe","PhoneExperienceHost.exe")
-    | project DbTime=Timestamp, DeviceId, InitiatingProcessFileName;
-let beacon =
+    | project DbTime=Timestamp, DeviceId;
+let t_day12_beacon =
     DeviceNetworkEvents
     | where Timestamp > ago(7d)
     | where RemoteUrl has "hellohiall.workers.dev" or RemoteIP == "185.196.10.136"
     | project NetTime=Timestamp, DeviceId;
-phoneDb
-| join kind=inner (beacon) on DeviceId
-| where abs(datetime_diff('minute', DbTime, NetTime)) <= 30
-| distinct DeviceId;
-
-// =============================================================================
-// Final assertion table — one row per rule with PASS / FAIL
-// =============================================================================
+let t_day12 =
+    t_day12_phoneDb
+    | join kind=inner (t_day12_beacon) on DeviceId
+    | where abs(datetime_diff('minute', DbTime, NetTime)) <= 30
+    | distinct DeviceId
+    | summarize hits = count();
 union
-    (t_day01   | summarize hits = count() | extend rule = "day01_systembc_tcp_beacon",          expected = 1),
-    (t_day02   | summarize hits = count() | extend rule = "day02_shai_hulud_repo_create",        expected = 1),
-    (t_day03   | summarize hits = count() | extend rule = "day03_asa_reboot_webvpn_large",       expected = 1),
-    (t_day04   | summarize hits = count() | extend rule = "day04_vect_mass_process_kill",        expected = 1),
-    (t_day06   | summarize hits = count() | extend rule = "day06_bauxite_studio5000_egress",     expected = 1),
-    (t_day07a  | summarize hits = count() | extend rule = "day07_poland_lsass_dump_taskmgr",     expected = 1),
-    (t_day07b  | summarize hits = count() | extend rule = "day07_poland_rubeus_s4u_burst",       expected = 1),
-    (t_day08a  | summarize hits = count() | extend rule = "day08_akira_sonicwall_vpn_login",     expected = 1),
-    (t_day08b  | summarize hits = count() | extend rule = "day08_akira_impacket_smb_burst",      expected = 1),
-    (t_day09a  | summarize hits = count() | extend rule = "day09_aitm_chain_correlation",        expected = 1),
-    (t_day09b  | summarize hits = count() | extend rule = "day09_pdf_lure_first_seen_domain",    expected = 1),
-    (t_day10a  | summarize hits = count() | extend rule = "day10_qlnx_ld_preload_modification",  expected = 1),
-    (t_day10b  | summarize hits = count() | extend rule = "day10_qlnx_credential_burst",         expected = 1),
-    (t_day10c  | summarize hits = count() | extend rule = "day10_qlnx_ipapi_recon",              expected = 1),
-    (t_day10d  | summarize hits = count() | extend rule = "day10_qlnx_x11_lock_drop",            expected = 1),
-    (t_day11a  | summarize hits = count() | extend rule = "day11_evmdefi_node_ipv4_first_seen",  expected = 1),
-    (t_day11b  | summarize hits = count() | extend rule = "day11_evmdefi_dev_cred_burst",        expected = 1),
-    (t_day12   | summarize hits = count() | extend rule = "day12_cloudz_pheno_phone_db_workers", expected = 1)
+    (t_day01  | extend rule = "day01_systembc_tcp_beacon",          expected = 1),
+    (t_day02  | extend rule = "day02_shai_hulud_repo_create",        expected = 1),
+    (t_day03  | extend rule = "day03_asa_reboot_webvpn_large",       expected = 1),
+    (t_day04  | extend rule = "day04_vect_mass_process_kill",        expected = 1),
+    (t_day06  | extend rule = "day06_bauxite_studio5000_egress",     expected = 1),
+    (t_day07a | extend rule = "day07_poland_lsass_dump_taskmgr",     expected = 1),
+    (t_day07b | extend rule = "day07_poland_rubeus_s4u_burst",       expected = 1),
+    (t_day08a | extend rule = "day08_akira_sonicwall_vpn_login",     expected = 1),
+    (t_day08b | extend rule = "day08_akira_impacket_smb_burst",      expected = 1),
+    (t_day09a | extend rule = "day09_aitm_chain_correlation",        expected = 1),
+    (t_day09b | extend rule = "day09_pdf_lure_first_seen_domain",    expected = 1),
+    (t_day10a | extend rule = "day10_qlnx_ld_preload_modification",  expected = 1),
+    (t_day10b | extend rule = "day10_qlnx_credential_burst",         expected = 1),
+    (t_day10c | extend rule = "day10_qlnx_ipapi_recon",              expected = 1),
+    (t_day10d | extend rule = "day10_qlnx_x11_lock_drop",            expected = 1),
+    (t_day11a | extend rule = "day11_evmdefi_node_ipv4_first_seen",  expected = 1),
+    (t_day11b | extend rule = "day11_evmdefi_dev_cred_burst",        expected = 1),
+    (t_day12  | extend rule = "day12_cloudz_pheno_phone_db_workers", expected = 1)
 | project rule, expected, hits, status = iff(hits == expected, "PASS", "FAIL")
 | sort by status asc, rule asc
