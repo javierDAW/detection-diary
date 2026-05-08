@@ -63,6 +63,10 @@ sectors:
 | Command and Control | T1071.001, T1102.002, T1090.004, T1573.002 | HTTPS to Cloudflare Workers; bidirectional dead-drop via Pastebin (handle `HELLOHIALL`); custom encrypted socket to backend IP |
 | Exfiltration | T1041 | Over the C2 channel |
 
+![CloudZ + Pheno kill chain](./diagrams/kill_chain.svg)
+
+The diagram above lays out the same nine stages with the artefacts and MITRE mappings from this table on the left lane (victim host) and the C2 fabric on the right lane (Cloudflare Workers, Pastebin dead-drop, backend IP). Detection anchors used by the Sigma / KQL / Suricata rules in this folder are summarised at the bottom.
+
 ## Stage-by-stage detail
 
 ### Initial access — fake ScreenConnect update
@@ -142,5 +146,4 @@ The harvest runs entirely **at user level** — no driver, no SYSTEM token, no k
 - Cisco-Talos/IOCs — *cloudz-pheno-infostealer.txt* — https://github.com/Cisco-Talos/IOCs/blob/main/2026/05/cloudz-pheno-infostealer.txt
 - BleepingComputer — *CloudZ malware abuses Microsoft Phone Link to steal SMS and OTPs* — https://www.bleepingcomputer.com/news/security/cloudz-malware-abuses-microsoft-phone-link-to-steal-sms-and-otps/
 - The Hacker News — *Windows Phone Link Exploited by CloudZ RAT to Steal Credentials and OTPs* — https://thehackernews.com/2026/05/windows-phone-link-exploited-by-cloudz.html
-- Dark Reading — *Attacks Abuse Windows Phone Link to Steal Texts & Bypass 2FA* — https://www.darkreading.com/cyberattacks-data-breaches/attacks-abuse-windows-phone-link-texts-bypass-2fa
-- CSO Online — *Stealthy malware abuses Microsoft Phone Link to siphon SMS OTPs from enterprise PCs* — https://www.csoonline.com/article/4167092/stealthy-malware-abuses-microsoft-phone-link-to-siphon-sms-otps-from-enterprise-pcs.html
+- Dark Reading — *Attacks Abuse Windows Ph
