@@ -1,0 +1,157 @@
+// =============================================================================
+// adx_bootstrap.kql — Azure Data Explorer free-cluster schema bootstrap
+// Author:    Jarmi
+// Date:      2026-05-08
+// Purpose:   Provision the Defender XDR + Sentinel tables that the
+//            detection-diary KQL queries reference, so the operator can
+//            replay every rule in a personal ADX free cluster without an
+//            Azure subscription. Same Kusto engine as Sentinel / Defender XDR.
+// Usage:
+//   1. Create the free cluster at https://dataexplorer.azure.com
+//   2. Open a Kusto query window pointing at your free database (default name 'mykustodb').
+//   3. Paste the entire content of this file and execute.
+//   4. Then run tools/adx_seed.kql to populate synthetic rows.
+//   5. Then run tools/adx_tests.kql to validate every rule in the repo.
+// Notes:
+//   - Schemas are aligned with the columns that the diary's KQL files actually reference.
+//     They are a minimal practical subset of the real Defender XDR / Sentinel schemas;
+//     extend if you add queries that reference more fields.
+//   - All tables are reset on every run via .drop, so re-running is safe.
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Reset (idempotent)
+// -----------------------------------------------------------------------------
+.drop table DeviceFileEvents      ifexists
+.drop table DeviceProcessEvents   ifexists
+.drop table DeviceNetworkEvents   ifexists
+.drop table DeviceLogonEvents     ifexists
+.drop table DeviceImageLoadEvents ifexists
+.drop table DeviceRegistryEvents  ifexists
+.drop table SecurityEvent         ifexists
+.drop table Syslog                ifexists
+.drop table AuditLogs             ifexists
+.drop table SigninLogs            ifexists
+.drop table CloudAppEvents        ifexists
+.drop table OfficeActivity        ifexists
+.drop table EmailUrlInfo          ifexists
+.drop table EmailAttachmentInfo   ifexists
+.drop table GitHubAuditLogs       ifexists
+
+// -----------------------------------------------------------------------------
+// Defender XDR — Device-side hunting tables
+// -----------------------------------------------------------------------------
+.create table DeviceFileEvents (
+    Timestamp:datetime, DeviceId:string, DeviceName:string,
+    ActionType:string, FileName:string, FolderPath:string,
+    SHA256:string, FileSize:long,
+    InitiatingProcessId:int, InitiatingProcessFileName:string,
+    InitiatingProcessSHA256:string, InitiatingProcessFolderPath:string,
+    InitiatingProcessAccountName:string,
+    InitiatingProcessCommandLine:string,
+    InitiatingProcessParentFileName:string,
+    TargetFilename:string)
+
+.create table DeviceProcessEvents (
+    Timestamp:datetime, DeviceId:string, DeviceName:string,
+    FileName:string, FolderPath:string, SHA256:string,
+    ProcessCommandLine:string, ProcessId:int, AccountName:string,
+    InitiatingProcessFileName:string, InitiatingProcessId:int,
+    InitiatingProcessCommandLine:string, InitiatingProcessSHA256:string,
+    InitiatingProcessFolderPath:string,
+    InitiatingProcessAccountName:string,
+    InitiatingProcessParentFileName:string)
+
+.create table DeviceNetworkEvents (
+    Timestamp:datetime, DeviceId:string, DeviceName:string,
+    ActionType:string, RemoteIP:string, RemotePort:int,
+    RemoteUrl:string, LocalIP:string, LocalPort:int,
+    Protocol:string,
+    InitiatingProcessId:int, InitiatingProcessFileName:string,
+    InitiatingProcessSHA256:string, InitiatingProcessFolderPath:string,
+    InitiatingProcessCommandLine:string,
+    InitiatingProcessParentFileName:string)
+
+.create table DeviceLogonEvents (
+    Timestamp:datetime, DeviceId:string, DeviceName:string,
+    ActionType:string, AccountName:string, AccountDomain:string,
+    LogonType:string, RemoteIP:string, RemoteDeviceName:string,
+    InitiatingProcessFileName:string, InitiatingProcessId:int)
+
+.create table DeviceImageLoadEvents (
+    Timestamp:datetime, DeviceId:string, DeviceName:string,
+    FileName:string, FolderPath:string, SHA256:string,
+    InitiatingProcessFileName:string, InitiatingProcessId:int,
+    InitiatingProcessFolderPath:string)
+
+.create table DeviceRegistryEvents (
+    Timestamp:datetime, DeviceId:string, DeviceName:string,
+    ActionType:string, RegistryKey:string, RegistryValueName:string,
+    RegistryValueData:string,
+    InitiatingProcessFileName:string, InitiatingProcessId:int)
+
+// -----------------------------------------------------------------------------
+// Sentinel — Windows / Linux / Azure / Office tables
+// -----------------------------------------------------------------------------
+.create table SecurityEvent (
+    TimeGenerated:datetime, Computer:string, EventID:int,
+    Account:string, AccountDomain:string, TargetUserName:string,
+    SubjectUserName:string, LogonType:int,
+    Process:string, CommandLine:string, ParentProcessName:string,
+    NewProcessName:string, IpAddress:string, EventData:dynamic)
+
+.create table Syslog (
+    TimeGenerated:datetime, Computer:string, HostName:string,
+    Facility:string, SeverityLevel:string,
+    SyslogMessage:string, ProcessName:string, ProcessID:int,
+    HostIP:string)
+
+.create table AuditLogs (
+    TimeGenerated:datetime, OperationName:string, Category:string,
+    Result:string, ResultDescription:string,
+    Identity:string, ActivityDisplayName:string,
+    InitiatedBy:dynamic, TargetResources:dynamic,
+    AdditionalDetails:dynamic, CorrelationId:string)
+
+.create table SigninLogs (
+    TimeGenerated:datetime, UserPrincipalName:string,
+    UserDisplayName:string, AppDisplayName:string,
+    IPAddress:string, Location:string, ResultType:string,
+    ResultDescription:string,
+    AuthenticationRequirement:string,
+    ConditionalAccessStatus:string, MfaDetail:dynamic,
+    DeviceDetail:dynamic, ClientAppUsed:string,
+    UserAgent:string, CorrelationId:string)
+
+.create table CloudAppEvents (
+    Timestamp:datetime, ActionType:string, Application:string,
+    AccountObjectId:string, AccountDisplayName:string,
+    IPAddress:string, RawEventData:dynamic, ObjectName:string,
+    ObjectType:string)
+
+.create table OfficeActivity (
+    TimeGenerated:datetime, Operation:string, RecordType:string,
+    UserId:string, UserKey:string, ClientIP:string,
+    Parameters:dynamic, OfficeWorkload:string,
+    OfficeObjectId:string, ResultStatus:string)
+
+.create table EmailUrlInfo (
+    Timestamp:datetime, NetworkMessageId:string,
+    Url:string, UrlDomain:string, UrlLocation:string)
+
+.create table EmailAttachmentInfo (
+    Timestamp:datetime, NetworkMessageId:string,
+    FileName:string, FileType:string, SHA256:string, FileSize:long)
+
+// -----------------------------------------------------------------------------
+// GitHub audit (custom — Sentinel solution; we model the columns our queries use)
+// -----------------------------------------------------------------------------
+.create table GitHubAuditLogs (
+    TimeGenerated:datetime, action_s:string, actor_s:string,
+    repo_s:string, org_s:string, repository_visibility_s:string,
+    created_at_t:datetime, RawEventData:dynamic)
+
+// -----------------------------------------------------------------------------
+// Done.
+// -----------------------------------------------------------------------------
+print bootstrap_status = "schema OK", tables_created = 15
