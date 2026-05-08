@@ -6,15 +6,16 @@
 #   - Custom variables: none; rules use $HOME_NET and $EXTERNAL_NET defaults.
 #   - All known attacker domains are IOCs published by Microsoft Threat Intelligence (4-may-2026).
 #   - Tune the cheap-TLD list if there is legitimate corporate traffic on .de or .space.
+#   - Suricata 7.x: http.host is normalized to lowercase, so nocase is not accepted; rules below
+#     use lowercase content patterns and omit nocase on http.host buffers. tls.sni still allows nocase.
 
 alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"AiTM CodeOfConduct landing - SNI acceptable-use-policy-calendly.de"; tls.sni; content:"acceptable-use-policy-calendly.de"; nocase; classtype:trojan-activity; reference:url,microsoft.com/en-us/security/blog/2026/05/04/breaking-the-code-multi-stage-code-of-conduct-phishing-campaign-leads-to-aitm-token-compromise/; sid:5060001; rev:1;)
 
 alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"AiTM CodeOfConduct landing - SNI compliance-protectionoutlook.de"; tls.sni; content:"compliance-protectionoutlook.de"; nocase; classtype:trojan-activity; reference:url,microsoft.com/en-us/security/blog/2026/05/04/breaking-the-code-multi-stage-code-of-conduct-phishing-campaign-leads-to-aitm-token-compromise/; sid:5060002; rev:1;)
 
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"AiTM CodeOfConduct landing - HTTP Host acceptable-use-policy-calendly.de"; flow:to_server,established; http.host; content:"acceptable-use-policy-calendly.de"; nocase; classtype:trojan-activity; sid:5060003; rev:1;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"AiTM CodeOfConduct landing - HTTP Host acceptable-use-policy-calendly.de"; flow:to_server,established; http.host; content:"acceptable-use-policy-calendly.de"; classtype:trojan-activity; sid:5060003; rev:1;)
 
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"AiTM CodeOfConduct landing - HTTP Host compliance-protectionoutlook.de"; flow:to_server,established; http.host; content:"compliance-protectionoutlook.de"; nocase; classtype:trojan-activity; sid:5060004; rev:1;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"AiTM CodeOfConduct landing - HTTP Host compliance-protectionoutlook.de"; flow:to_server,established; http.host; content:"compliance-protectionoutlook.de"; classtype:trojan-activity; sid:5060004; rev:1;)
 
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"AiTM CodeOfConduct heuristic - Host with code-of-conduct keyword on cheap TLD"; flow:to_server,established; http.host; content:"acceptable-use-policy"; nocase; http.host; content:".de"; nocase; distance:0; within:80; classtype:trojan-activity; sid:5060005; rev:1;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"AiTM CodeOfConduct heuristic - Host with code-of-conduct keyword and .de TLD"; flow:to_server,established; http.host; content:"acceptable-use-policy"; http.host; content:".de"; distance:0; within:80; classtype:trojan-activity; sid:5060005; rev:1;)
 
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"AiTM CodeOfConduct heuristic - Host with compliance-protection keyword on cheap TLD"; flow:to_server,established; http.host; content:"compliance-protection"; nocase; http.host; pcre:"/\.(de|space|email|solutions|live|today|calendar|click)$/i"; classtype:trojan-activity; sid:5060006; rev:1;)

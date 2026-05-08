@@ -14,7 +14,7 @@
 #     beacon (free tier, plain JSON, no auth). The first hit from a
 #     server-tier host is high-fidelity.
 
-alert http $SERVER_NET any -> any any (msg:"QLNX Geolocation enrichment to ip-api.com from server tier"; flow:established,to_server; http.host; content:"ip-api.com"; nocase; http.user_agent; content:!"Datadog"; nocase; reference:url,trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html; classtype:trojan-activity; metadata:created_at 2026_05_07; sid:5070001; rev:1;)
+alert http $SERVER_NET any -> any any (msg:"QLNX Geolocation enrichment to ip-api.com from server tier"; flow:established,to_server; http.host; content:"ip-api.com"; http.user_agent; content:!"Datadog"; reference:url,trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html; classtype:trojan-activity; metadata:created_at 2026_05_07; sid:5070001; rev:1;)
 
 alert tls $SERVER_NET any -> any 443 (msg:"QLNX Geolocation enrichment to ip-api.com (TLS) from server tier"; flow:established,to_server; tls.sni; content:"ip-api.com"; nocase; reference:url,trendmicro.com/en_us/research/26/e/quasar-linux-qlnx-a-silent-foothold-in-the-software-supply-chain.html; classtype:trojan-activity; metadata:created_at 2026_05_07; sid:5070002; rev:1;)
 
