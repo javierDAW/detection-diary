@@ -73,9 +73,15 @@ def emit_rule_file(p: Path) -> str:
 
 def main() -> None:
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    # Wipe stale files so removed rules don't linger.
+    # Wipe stale files so removed rules don't linger; tolerate Windows-mount lock.
     for old in OUT_DIR.glob("*.kql"):
-        old.unlink()
+        try:
+            old.unlink()
+        except (PermissionError, OSError):
+            try:
+                open(old, "w").close()  # at least blank it so writes go through
+            except Exception:
+                pass
     manifest_lines = [
         "# tools/adx_rules — one ADX-runnable file per detection rule",
         "",
