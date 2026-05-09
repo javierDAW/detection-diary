@@ -12,6 +12,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | Group | Days |
 |---|---|
 | [active-directory](./active-directory/) | 3 |
+| [android](./android/) | 1 |
 | [cisco-asa](./cisco-asa/) | 1 |
 | [cloud-multi](./cloud-multi/) | 3 |
 | [embedded](./embedded/) | 1 |

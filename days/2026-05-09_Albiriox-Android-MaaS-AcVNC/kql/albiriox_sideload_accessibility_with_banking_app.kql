@@ -1,0 +1,46 @@
+// Title:        Albiriox precursor — sideload + accessibility within 24h on banking-app device
+// Id:           a1359938-b3da-4614-8d4e-7433fd123218
+// MITRE:        T1660, T1541, T1626.001, T1411
+// Reference:    https://www.cleafy.com/cleafy-labs/albiriox-rat-mobile-malware-targeting-global-finance-and-crypto-wallets
+// Author:       Jarmi
+// Date:         2026-05-09
+// Tested on:    Defender XDR — DeviceEvents and DeviceTvmSoftwareInventory (Android MDE)
+// FP notes:     Enterprise sideload by Intune/Workspace ONE; whitelist by InstallerPackageName
+//               equal to the MDM package. The banking_pkgs list is illustrative — extend per region.
+let banking_pkgs = dynamic([
+  "com.bbva.bbvacontigo","com.santander.app","com.bnpparibas.mescomptes",
+  "com.binance.dev","com.coinbase.android","io.metamask","com.bitget.exchange",
+  "io.kraken.android","com.revolut.revolut","com.wise.app","com.n26.android",
+  "com.lacaixa.imaginbank","com.intesasanpaolo.mobile.retail","com.ing.mobile",
+  "com.unicredit","com.poste.bancoposta","com.itau","br.com.bb.android",
+  "com.bcp.innovacxion.yapeapp","com.banamex.transfer","com.santander.uki.santanderpl",
+  "io.trustwallet.app","com.coinbase.wallet","app.phantom"
+]);
+let sideload_install =
+    DeviceEvents
+    | where Timestamp > ago(7d)
+    | where ActionType in ("AppInstalled","AppInstalledFromUnknownSource")
+    | where AdditionalFields has "InstallerPackageName"
+    | extend Installer = tostring(parse_json(AdditionalFields).InstallerPackageName)
+    | extend InstalledPackage = tostring(parse_json(AdditionalFields).PackageName)
+    | where Installer !in ("com.android.vending","com.google.android.packageinstaller",
+                           "com.sec.android.app.samsungapps","com.amazon.venezia",
+                           "com.huawei.appmarket")
+    | project DeviceId, InstallTime=Timestamp, InstalledPackage, Installer;
+let accessibility_bind =
+    DeviceEvents
+    | where Timestamp > ago(7d)
+    | where ActionType == "AccessibilityServiceEnabled"
+    | extend AccessPkg = tostring(parse_json(AdditionalFields).PackageName)
+    | project DeviceId, AccessTime=Timestamp, AccessPkg;
+let has_banking =
+    DeviceTvmSoftwareInventory
+    | where SoftwareName has_any (banking_pkgs)
+    | distinct DeviceId;
+sideload_install
+| join kind=inner accessibility_bind on DeviceId
+| where AccessPkg == InstalledPackage
+| where AccessTime between ((InstallTime) .. (InstallTime + 24h))
+| join kind=inner has_banking on DeviceId
+| project DeviceId, InstalledPackage, Installer, InstallTime, AccessTime
+| order by InstallTime desc

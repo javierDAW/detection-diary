@@ -15,6 +15,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 
 | Date | Slug | Headline | Clusters | Sectors |
 |---|---|---|---|---|
+| 2026-05-09 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) | Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026) | Albiriox | finance, cryptocurrency, any |
 | 2026-05-08 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Talos, May 2026) | CloudZ · Pheno | any |
 | 2026-05-07 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) | EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026) | namikazesarada010206 · harunosakura030303-maker | software-development, cryptocurrency, defi, finance |
 | 2026-05-07 | [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester | QLNX · Quasar Linux | technology, software-development, cloud-multi |
@@ -37,6 +38,9 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 
 ### Akira
 - 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
+
+### Albiriox
+- 2026-05-09 — [Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026)](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) · *Russian-speaking e-crime (MaaS)*
 
 ### ArcaneDoor
 - 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*
@@ -222,6 +226,10 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1210 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
 | T1213 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1219 | [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
+| T1411 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
+| T1417 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
+| T1430 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
+| T1437.001 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 | T1480 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
 | T1482 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/) |
 | T1484.001 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
@@ -235,12 +243,16 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1498.001 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
 | T1498.002 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
 | T1505.003 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| T1513 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
+| T1517 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 | T1518 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
 | T1518.001 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
+| T1521.002 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 | T1528 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/) |
 | T1529 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
 | T1531 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/) |
 | T1539 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
+| T1541 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 | T1542.001 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
 | T1543.002 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
 | T1543.003 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) |
@@ -286,7 +298,14 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1614.001 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) |
 | T1620 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
 | T1622 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
+| T1623.001 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
+| T1624.001 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
+| T1626.001 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
+| T1633 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
+| T1641 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
+| T1655.001 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 | T1657 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
+| T1660 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 
 ---
 
@@ -296,6 +315,9 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
 - 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/)
 - 2026-04-28 — [The Gentlemen RaaS + SystemBC](days/2026-04-28_TheGentlemen-SystemBC/)
+
+### android
+- 2026-05-09 — [Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026)](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/)
 
 ### cisco-asa
 - 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/)

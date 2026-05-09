@@ -1,0 +1,38 @@
+title: Android Default SMS Handler Changed to Non-Allowlist Package
+id: 18c619ab-eb8d-42c2-aa73-50dffd9bcdfd
+status: experimental
+description: |
+  Detects a change of the default SMS handler to a package that is not on the allowlist
+  of legitimate SMS apps. Albiriox and other banking RATs (Anatsa, Brokewell, BingoMod)
+  promote themselves to default SMS handler via the AccessibilityService self-grant chain
+  in order to silently intercept SMS-OTP and prevent the user from seeing OTP messages.
+references:
+  - https://www.cleafy.com/cleafy-labs/albiriox-rat-mobile-malware-targeting-global-finance-and-crypto-wallets
+  - https://www.securityweek.com/new-albiriox-android-malware-developed-by-russian-cybercriminals/
+author: Jarmi
+date: 2026/05/09
+logsource:
+  product: mtd
+  category: mobile_event
+detection:
+  selection_event:
+    EventType: 'DefaultSmsHandlerChanged'
+  filter_legit:
+    NewSmsHandlerPackage:
+      - 'com.google.android.apps.messaging'
+      - 'com.samsung.android.messaging'
+      - 'com.android.mms'
+      - 'com.textra'
+      - 'org.thoughtcrime.securesms'
+  condition: selection_event and not filter_legit
+falsepositives:
+  - User intentionally switching to a third-party SMS app (Pulse SMS, Chomp); confirm with the user before escalating.
+  - Carrier-branded SMS apps in some regions; extend the allowlist as needed.
+level: high
+tags:
+  - attack.collection
+  - attack.t1517
+  - attack.credential-access
+  - attack.t1411
+  - attack.privilege-escalation
+  - attack.t1626.001

@@ -1,0 +1,24 @@
+type,value,context,confidence,source
+note,,Albiriox public IOCs available so far are mainly capability and string anchors; SHA256 hashes and live C2 IPs sit behind the Cleafy paywall feed.,medium,Cleafy Labs
+string,AcVNC,Albiriox internal mode marker for the accessibility-driven VNC stream that bypasses FLAG_SECURE,medium,Cleafy Labs
+string,AppInfos,Internal Albiriox class holding the hardcoded list of 400+ banking and crypto wallet target package names,medium,Cleafy Labs
+string,blackscreen:on,Operator command issued from the panel to draw a black overlay while On-Device Fraud is performed,medium,The Hacker News + Cleafy
+string,blackscreen:off,Operator command issued from the panel to remove the black overlay,medium,The Hacker News + Cleafy
+string,Reach Mode,Common label used by Albiriox campaigns to label the Accessibility service the user is asked to enable,low,Cleafy Labs
+string,Golden Crypt,Crypter-as-a-Service used by the Albiriox builder to ship FUD APKs,medium,Cleafy Labs
+string,JSONPacker,String obfuscator used in the dropper APK to hide flow primitives,medium,Cleafy Labs
+note,,Targeted package strings to anchor YARA on Albiriox unpacked DEX:,medium,Cleafy Labs
+string,com.bbva.bbvacontigo,Spanish bank target,high,Cleafy Labs
+string,com.santander.app,Spanish bank target,high,Cleafy Labs
+string,com.binance.dev,Crypto exchange target,high,Cleafy Labs
+string,com.coinbase.android,Crypto exchange target,high,Cleafy Labs
+string,io.metamask,Ethereum wallet target,high,Cleafy Labs
+string,com.bitget.exchange,Crypto exchange target,high,Cleafy Labs
+string,io.trustwallet.app,Multi-chain wallet target,high,Cleafy Labs
+string,app.phantom,Solana wallet target,medium,Cleafy Labs
+note,,Capability footprint anchors to combine in YARA / inventory hunts:,medium,Cleafy Labs
+string,android/accessibilityservice/AccessibilityService,Bound service used by Albiriox for self-grant chain and AcVNC,high,Cleafy Labs
+string,dispatchGesture,Programmatic gesture dispatch used to auto-grant other permissions,high,Cleafy Labs
+string,AccessibilityNodeInfo,Class whose tree is serialised by Albiriox to bypass FLAG_SECURE,high,Cleafy Labs
+string,getBoundsInScreen,API call used in node-tree serialisation,high,Cleafy Labs
+string,TYPE_APPLICATION_OVERLAY,Window flag used by the black-overlay overlay attack and credential overlay,high,Cleafy Labs
