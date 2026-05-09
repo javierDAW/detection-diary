@@ -13,6 +13,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 |---|---|
 | [APT44](./apt44/) | 1 |
 | [Akira](./akira/) | 1 |
+| [Albiriox](./albiriox/) | 1 |
 | [ArcaneDoor](./arcanedoor/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
 | [BreachForums](./breachforums/) | 1 |

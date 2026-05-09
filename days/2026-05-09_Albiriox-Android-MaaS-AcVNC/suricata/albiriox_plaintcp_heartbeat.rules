@@ -1,0 +1,46 @@
+# Author: Jarmi
+# Date: 2026-05-09
+# Purpose: Suricata 7.x rules for Albiriox Android RAT plain-TCP heartbeat shape
+#          on a corporate mobile VLAN. Albiriox sends a small JSON heartbeat
+#          every ~30s over plain TCP that includes HWID, battery and an
+#          AcVNC active flag. This rule looks for the shape, not specific
+#          static C2 IPs (which rotate weekly per builder).
+#
+# Required user-defined variable groups in vars.address-groups of suricata.yaml:
+#   MOBILE_VLAN  -> CIDR(s) used for corporate mobile / BYOD devices
+#   EXTERNAL_NET -> standard
+#
+# Tuning notes:
+#   - Body shape uses presence of "HWID" and "battery" JSON keys.
+#   - We do not use sticky http buffers because the heartbeat is plain TCP, not HTTP.
+#   - Increase threshold or add ip-rep filter if the mobile VLAN is large.
+#
+
+alert tcp $MOBILE_VLAN any -> $EXTERNAL_NET any (msg:"ET-PROF-CIBER ALBIRIOX Heartbeat JSON Plain-TCP Shape From Mobile VLAN"; \
+    flow:established,to_server; \
+    dsize:80<>320; \
+    content:"|7B|"; depth:1; \
+    content:"HWID"; distance:0; \
+    content:"battery"; distance:0; \
+    content:"AcVNC"; distance:0; \
+    threshold:type both, track by_src, count 3, seconds 300; \
+    classtype:trojan-activity; \
+    reference:url,www.cleafy.com/cleafy-labs/albiriox-rat-mobile-malware-targeting-global-finance-and-crypto-wallets; \
+    sid:5090001; rev:1;)
+
+alert tcp $MOBILE_VLAN any -> $EXTERNAL_NET any (msg:"ET-PROF-CIBER ALBIRIOX Operator Command String In TCP Stream"; \
+    flow:established,to_client; \
+    content:"blackscreen:"; \
+    pcre:"/blackscreen:(on|off)/"; \
+    classtype:trojan-activity; \
+    reference:url,www.cleafy.com/cleafy-labs/albiriox-rat-mobile-malware-targeting-global-finance-and-crypto-wallets; \
+    sid:5090002; rev:1;)
+
+alert tls $MOBILE_VLAN any -> $EXTERNAL_NET any (msg:"ET-PROF-CIBER ALBIRIOX Suspect WebSocket-Like Long Frame To IPv4-Only Endpoint From Mobile VLAN"; \
+    flow:established,to_server; \
+    tls.sni; \
+    content:!"."; \
+    threshold:type limit, track by_src, count 1, seconds 3600; \
+    classtype:trojan-activity; \
+    reference:url,www.cleafy.com/cleafy-labs/albiriox-rat-mobile-malware-targeting-global-finance-and-crypto-wallets; \
+    sid:5090003; rev:1;)

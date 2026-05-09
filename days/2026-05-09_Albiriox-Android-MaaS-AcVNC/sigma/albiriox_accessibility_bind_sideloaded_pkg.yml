@@ -1,0 +1,54 @@
+title: Android Accessibility Service Bound to Non-Store Sideloaded Package
+id: 618d3c62-40bc-42e1-bd0e-ef280f4cc4bf
+status: experimental
+description: |
+  Detects an AccessibilityService binding to a package that was installed from a non-store,
+  non-system source. This is a high-signal precursor to RAT-class banking malware on Android
+  (Albiriox, Anatsa, BingoMod, Brokewell), all of which abuse AccessibilityService for
+  VNC-style remote control and overlay attacks. Albiriox specifically uses the accessibility
+  node tree to bypass FLAG_SECURE on banking and crypto wallet apps.
+references:
+  - https://www.cleafy.com/cleafy-labs/albiriox-rat-mobile-malware-targeting-global-finance-and-crypto-wallets
+  - https://thehackernews.com/2025/12/new-albiriox-maas-malware-targets-400.html
+  - https://developer.android.com/security/fraud-prevention/activities
+author: Jarmi
+date: 2026/05/09
+logsource:
+  product: mtd
+  category: mobile_event
+detection:
+  selection_event:
+    EventType: 'AccessibilityServiceEnabled'
+  selection_sideloaded:
+    InstallerPackage|contains:
+      - 'unknown'
+      - 'sideload'
+      - 'filemanager'
+      - 'browser'
+  selection_blank_installer:
+    InstallerPackage: null
+  filter_system:
+    PackageName|startswith:
+      - 'com.android.'
+      - 'com.google.'
+      - 'com.samsung.'
+      - 'com.miui.'
+      - 'com.huawei.'
+  filter_store:
+    InstallerPackage:
+      - 'com.android.vending'
+      - 'com.amazon.venezia'
+      - 'com.sec.android.app.samsungapps'
+      - 'com.huawei.appmarket'
+  condition: selection_event and (selection_sideloaded or selection_blank_installer) and not (filter_system or filter_store)
+falsepositives:
+  - Enterprise line-of-business apps sideloaded by Intune or Workspace ONE; whitelist by InstallerPackage equal to the MDM package name.
+  - Developer self-built APKs deployed via adb install; rare on managed corporate fleet.
+level: high
+tags:
+  - attack.persistence
+  - attack.t1541
+  - attack.defense-evasion
+  - attack.t1655.001
+  - attack.privilege-escalation
+  - attack.t1626.001

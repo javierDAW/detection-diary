@@ -1,0 +1,40 @@
+// Title:        Albiriox precursor — Notification Listener + READ_SMS coexistence on non-stock package
+// Id:           b988059e-b17f-4d84-8415-6ca0fc574b24
+// MITRE:        T1517, T1411
+// Reference:    https://www.cleafy.com/cleafy-labs/albiriox-rat-mobile-malware-targeting-global-finance-and-crypto-wallets
+// Author:       Jarmi
+// Date:         2026-05-09
+// Tested on:    Defender XDR — DeviceEvents (Android MDE)
+// FP notes:     Legitimate SMS apps and corporate SMS handlers may have both. Filter by the
+//               allowlist below; extend per region and per managed handler.
+let stock_sms = dynamic([
+  "com.google.android.apps.messaging",
+  "com.samsung.android.messaging",
+  "com.android.mms",
+  "com.textra",
+  "org.thoughtcrime.securesms"
+]);
+let stock_system_prefix = dynamic([
+  "com.android.","com.google.","com.samsung.","com.miui.","com.huawei."
+]);
+let notif_listener =
+    DeviceEvents
+    | where Timestamp > ago(14d)
+    | where ActionType == "NotificationListenerGranted"
+    | extend NLPkg = tostring(parse_json(AdditionalFields).PackageName)
+    | project DeviceId, NLTime=Timestamp, NLPkg;
+let read_sms =
+    DeviceEvents
+    | where Timestamp > ago(14d)
+    | where ActionType == "DangerousPermissionGranted"
+    | where AdditionalFields has "READ_SMS"
+    | extend Pkg = tostring(parse_json(AdditionalFields).PackageName)
+    | project DeviceId, SMSTime=Timestamp, Pkg;
+notif_listener
+| join kind=inner read_sms on DeviceId
+| where NLPkg == Pkg
+| where Pkg !in (stock_sms)
+| where not (Pkg startswith_any (stock_system_prefix))
+| project DeviceId, Pkg, NLTime, SMSTime
+| summarize FirstNL=min(NLTime), FirstSMS=min(SMSTime), Hits=count() by DeviceId, Pkg
+| order by FirstNL desc
