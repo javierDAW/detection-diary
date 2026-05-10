@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1180" role="img" aria-labelledby="t d">
-  <title id="t">Mexico Water AI-Assisted OT kill chain — Dragos & Gambit Security, May 2026</title>
+  <title id="t">Mexico Water AI-Assisted OT kill chain — Dragos &amp; Gambit Security, May 2026</title>
   <desc id="d">An unattributed operator delegated 75% of remote command execution to Anthropic Claude and OpenAI GPT, compromised the Mexican water utility SADM and used Claude to autonomously identify and password-spray a vNode SCADA gateway. Two lanes show the victim IT/OT estate on the left and the LLM platforms plus attacker C2 on the right.</desc>
   <defs>
     <style>
