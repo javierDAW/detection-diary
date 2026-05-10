@@ -44,6 +44,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Tycoon2FA](./tycoon2fa/) | 1 |
 | [UAT-4356](./uat-4356/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
+| [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |
 | [harunosakura030303-maker](./harunosakura030303-maker/) | 1 |
 | [namikazesarada010206](./namikazesarada010206/) | 1 |

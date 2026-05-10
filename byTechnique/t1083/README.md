@@ -4,11 +4,12 @@
 
 # Techniques: T1083
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-10 | AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security) | Unattributed-LLM-assisted-operator | [`2026-05-10_Mexico-Water-AI-Assisted-OT/`](../../days/2026-05-10_Mexico-Water-AI-Assisted-OT/) |
 | 2026-05-07 | EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026) | namikazesarada010206 · harunosakura030303-maker | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
 | 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
 | 2026-04-29 | Shai-Hulud: The Third Coming (Bitwarden CLI 2026.4.0) | TeamPCP | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |

@@ -1,0 +1,68 @@
+title: Python Process With Long Command Line Reaching Internal Reconnaissance Surface
+id: 6cbdae33-1578-4fa0-92e0-1ab8b0691f5c
+status: experimental
+description: |
+  Detects a Python interpreter launched with an unusually long command line that is consistent
+  with an AI-authored multi-module offensive framework such as the BACKUPOSINT v9.0 APEX
+  PREDATOR (~17,000 LOC, 49 modules) reported by Dragos and Gambit Security in the May 2026
+  AI-assisted intrusion against the Mexican water utility SADM. Long command lines are
+  characteristic of frameworks invoked with verbose argparse switches, embedded credential
+  fragments, target lists and JSON config blobs. This rule is the process-creation half of the
+  detection pair; the network half is internal_post_burst_to_ot_web_auth.yml.
+references:
+  - https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+  - https://industrialcyber.co/reports/dragos-details-ai-assisted-intrusion-targeting-mexican-water-utility-as-claude-openai-models-used-to-pursue-ot-access/
+author: Jarmi
+date: 2026/05/10
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_python:
+    Image|endswith:
+      - '\python.exe'
+      - '\pythonw.exe'
+      - '\python3.exe'
+      - '\python3.10.exe'
+      - '\python3.11.exe'
+      - '\python3.12.exe'
+      - '\py.exe'
+  selection_long_cmdline:
+    CommandLine|contains:
+      - '--targets'
+      - '--target-file'
+      - '--password-list'
+      - '--userlist'
+      - '--cred-list'
+      - '--spray'
+      - '--module'
+      - '--modules'
+      - '--workers'
+      - 'BACKUPOSINT'
+      - 'APEX PREDATOR'
+      - 'password_spray'
+      - 'vnode_login'
+      - 'cloud_metadata_imdsv2'
+      - 'active_directory_recon'
+  filter_legit_paths:
+    Image|startswith:
+      - 'C:\Program Files\Python'
+      - 'C:\Program Files (x86)\Python'
+    ParentImage|endswith:
+      - '\code.exe'
+      - '\pycharm64.exe'
+      - '\jupyter-lab.exe'
+      - '\jupyter-notebook.exe'
+  condition: selection_python and selection_long_cmdline and not filter_legit_paths
+falsepositives:
+  - Legitimate offensive-security operators running sanctioned engagements — whitelist by ticket-bound host or service account.
+  - Internal penetration testing tooling deliberately named with offensive verbs — document in tooling allow-list.
+level: high
+tags:
+  - attack.execution
+  - attack.t1059.006
+  - attack.discovery
+  - attack.t1018
+  - attack.t1046
+  - attack.credential-access
+  - attack.t1110.003

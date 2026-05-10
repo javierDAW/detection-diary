@@ -1,0 +1,45 @@
+# Suricata 7.x rules — east-west burst of POST to OT/SCADA management web ports
+# Companion of the Sigma rule internal_post_burst_to_ot_web_auth.yml in this folder.
+# Operator must define $CORP_NET (corporate VLANs) and $OT_NET (OT/IIoT mgmt VLANs)
+# in /etc/suricata/suricata.yaml under vars.address-groups.
+#
+# Reference: https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+# Author:    Jarmi
+# Date:      2026-05-10
+
+alert http $CORP_NET any -> $OT_NET [8043,8088,8090,8443,9090,9443] ( \
+    msg:"OT-MGMT Internal Burst of POST to OT/SCADA Web Auth (vNode/Ignition/Wonderware-class)"; \
+    flow:established,to_server; \
+    http.method; content:"POST"; \
+    http.uri; content:"login"; nocase; \
+    threshold: type both, track by_src, count 15, seconds 300; \
+    classtype:attempted-recon; \
+    metadata: mitre_attack T1110.003, source detection-diary, day 2026-05-10; \
+    sid:5070001; rev:1;)
+
+alert http $CORP_NET any -> $OT_NET [8043,8088,8090,8443,9090,9443] ( \
+    msg:"OT-MGMT Internal Burst of POST to OT/SCADA Web Auth (api endpoints)"; \
+    flow:established,to_server; \
+    http.method; content:"POST"; \
+    http.uri; content:"/api/"; \
+    http.uri; content:"auth"; nocase; \
+    threshold: type both, track by_src, count 15, seconds 300; \
+    classtype:attempted-recon; \
+    metadata: mitre_attack T1110.003, source detection-diary, day 2026-05-10; \
+    sid:5070002; rev:1;)
+
+alert tls $CORP_NET ![80,443] -> any [443] ( \
+    msg:"AI-CHAT Server-tier egress to LLM API endpoint (Anthropic/OpenAI)"; \
+    tls.sni; content:"api.anthropic.com"; nocase; \
+    threshold: type limit, track by_src, count 1, seconds 3600; \
+    classtype:policy-violation; \
+    metadata: mitre_attack T1071.001, source detection-diary, day 2026-05-10; \
+    sid:5070003; rev:1;)
+
+alert tls $CORP_NET ![80,443] -> any [443] ( \
+    msg:"AI-CHAT Server-tier egress to LLM API endpoint (OpenAI)"; \
+    tls.sni; content:"api.openai.com"; nocase; \
+    threshold: type limit, track by_src, count 1, seconds 3600; \
+    classtype:policy-violation; \
+    metadata: mitre_attack T1071.001, source detection-diary, day 2026-05-10; \
+    sid:5070004; rev:1;)
