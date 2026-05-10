@@ -1,0 +1,20 @@
+type,value,context,confidence,source
+note,unattributed,No overlap with previously tracked threat groups or activity threads,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+note,Servicios de Agua y Drenaje de Monterrey (SADM),Victim water utility,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+note,SAT INE Civil Registry Jalisco Tamaulipas State of Mexico Monterrey Michoacan,Broader campaign scope across Mexican government,high,https://industrialcyber.co/reports/dragos-details-ai-assisted-intrusion-targeting-mexican-water-utility-as-claude-openai-models-used-to-pursue-ot-access/
+string,BACKUPOSINT,Self-assigned name of the AI-built post-compromise Python framework,medium,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+string,APEX PREDATOR,Suffix of the framework name,medium,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+note,17000 LOC 49 modules Python framework,Size signature of the AI-built tooling,medium,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+note,Custom HTTP C2 promoted to production-grade in 2 days,Iteration speed indicator no concrete IOC,medium,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+note,vNode SPA single-password authentication,OT-adjacent target identified by Claude at SADM,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+note,Two automated password-spray rounds with default plus victim-derived plus reused credentials,Spray pattern against the vNode SPA,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+note,Approximately 75 percent of remote command execution AI-directed,Operator-to-LLM ratio,high,https://industrialcyber.co/reports/dragos-details-ai-assisted-intrusion-targeting-mexican-water-utility-as-claude-openai-models-used-to-pursue-ot-access/
+note,Prompts framed as authorised penetration testing,LLM safety-rail bypass tactic,high,https://industrialcyber.co/reports/dragos-details-ai-assisted-intrusion-targeting-mexican-water-utility-as-claude-openai-models-used-to-pursue-ot-access/
+note,More than 350 AI-generated artifacts recovered,Volume of post-compromise tooling artifacts,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+domain,api.anthropic.com,LLM platform endpoint used by the operator,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+domain,claude.ai,LLM platform web UI used by the operator,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+domain,api.openai.com,LLM platform endpoint used by the operator,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+domain,chat.openai.com,LLM platform web UI used by the operator,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+note,Approximate dwell from December 2025 to February 2026,Campaign window,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+note,Multiple proxied tunnels for persistence,Tunnel families not publicly identified,medium,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+note,OT environment NOT breached,Outcome of the spray attempt,high,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility

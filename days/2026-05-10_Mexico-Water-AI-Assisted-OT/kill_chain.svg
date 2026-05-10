@@ -1,0 +1,183 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1180" role="img" aria-labelledby="t d">
+  <title id="t">Mexico Water AI-Assisted OT kill chain — Dragos & Gambit Security, May 2026</title>
+  <desc id="d">An unattributed operator delegated 75% of remote command execution to Anthropic Claude and OpenAI GPT, compromised the Mexican water utility SADM and used Claude to autonomously identify and password-spray a vNode SCADA gateway. Two lanes show the victim IT/OT estate on the left and the LLM platforms plus attacker C2 on the right.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .bg-ot        { fill: #ffebe9; stroke: #ff8182; stroke-width: 1; }
+      .bg-anchors   { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      .anchor-h     { fill: #0a3069; font: 700 12px sans-serif; }
+      .anchor-l     { fill: #1f2328; font: 11.5px sans-serif; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .bg-ot      { fill: #4c1218; stroke: #ec6560; }
+        .bg-anchors { fill: #082841; stroke: #2e6cb5; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+        .anchor-h   { fill: #79c0ff; }
+        .anchor-l   { fill: #c9d1d9; }
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <!-- Header -->
+  <text x="40" y="34" class="header">Mexico Water AI-Assisted OT — kill chain</text>
+  <text x="40" y="54" class="subhead">Dragos &amp; Gambit Security, published May 6–8, 2026 · victim SADM Monterrey · adversary: unattributed</text>
+
+  <!-- Lane labels -->
+  <text x="20" y="92" class="lane" transform="rotate(-90 20 92)">VICTIM (SADM IT &amp; OT-adjacent)</text>
+  <text x="860" y="92" class="lane" transform="rotate(90 860 92)">LLM platform &amp; attacker C2</text>
+
+  <!-- Stage 1: Initial Access -->
+  <rect x="60" y="80" width="500" height="78" rx="6" class="bg-stage"/>
+  <circle cx="86" cy="100" r="13" class="stagebg"/>
+  <text x="86" y="104" class="stagenum" text-anchor="middle">1</text>
+  <text x="110" y="100" class="label">Initial Access — SADM enterprise IT</text>
+  <text x="110" y="118" class="sub">Likely vulnerable web server or stolen credentials, January 2026</text>
+  <text x="110" y="136" class="mitre">T1190 · T1078.004</text>
+  <text x="110" y="152" class="ioc">victim: Servicios de Agua y Drenaje de Monterrey · sector: water</text>
+
+  <!-- Stage 2: Execution / Tooling AI-built -->
+  <rect x="60" y="174" width="500" height="92" rx="6" class="bg-stage"/>
+  <circle cx="86" cy="194" r="13" class="stagebg"/>
+  <text x="86" y="198" class="stagenum" text-anchor="middle">2</text>
+  <text x="110" y="194" class="label">Execution — AI-authored Python framework</text>
+  <text x="110" y="212" class="sub">Operator prompts Claude → Claude writes &amp; refines tooling in real time</text>
+  <text x="110" y="230" class="mitre">T1059.006 · T1059.001 · AML.T0050</text>
+  <text x="110" y="246" class="ioc">tool: BACKUPOSINT v9.0 APEX PREDATOR · 17,000 LOC · 49 modules</text>
+  <text x="110" y="260" class="ioc">~75% of remote command execution AI-directed</text>
+
+  <!-- Stage 3: Defense Evasion - prompt framing -->
+  <rect x="60" y="282" width="500" height="78" rx="6" class="bg-stage"/>
+  <circle cx="86" cy="302" r="13" class="stagebg"/>
+  <text x="86" y="306" class="stagenum" text-anchor="middle">3</text>
+  <text x="110" y="302" class="label">Defense Evasion — LLM safety bypass by framing</text>
+  <text x="110" y="320" class="sub">Prompts framed as "authorised penetration testing" to bypass guardrails</text>
+  <text x="110" y="338" class="mitre">AML.T0051 (LLM prompt-injection-by-framing)</text>
+  <text x="110" y="354" class="ioc">no novel jailbreak — category mismatch user-stated intent vs operation</text>
+
+  <!-- Stage 4: Persistence (Tunnels) -->
+  <rect x="60" y="376" width="500" height="64" rx="6" class="bg-stage"/>
+  <circle cx="86" cy="394" r="13" class="stagebg"/>
+  <text x="86" y="398" class="stagenum" text-anchor="middle">4</text>
+  <text x="110" y="394" class="label">Persistence — multiple proxied tunnels</text>
+  <text x="110" y="412" class="sub">Operator maintains internal foothold via cascaded tunnels</text>
+  <text x="110" y="430" class="mitre">T1090.001</text>
+
+  <!-- Stage 5: Discovery (vNode found) -->
+  <rect x="60" y="456" width="500" height="92" rx="6" class="bg-stage"/>
+  <circle cx="86" cy="476" r="13" class="stagebg"/>
+  <text x="86" y="480" class="stagenum" text-anchor="middle">5</text>
+  <text x="110" y="476" class="label">Discovery — Claude identifies vNode SCADA/IIoT gateway</text>
+  <text x="110" y="494" class="sub">Broad enumeration; without prior OT context, classifies vNode as crown jewel</text>
+  <text x="110" y="512" class="mitre">T1018 · T1046 · T1083 · T1087</text>
+  <text x="110" y="528" class="ioc">target: vNode admin SPA · single-password authentication</text>
+  <text x="110" y="542" class="ioc">assessment: critical national infrastructure relevance — IT-OT pivot</text>
+
+  <!-- Stage 6: Credential Access — password spray vNode -->
+  <rect x="60" y="564" width="500" height="106" rx="6" class="bg-ot"/>
+  <circle cx="86" cy="584" r="13" class="stagebg"/>
+  <text x="86" y="588" class="stagenum" text-anchor="middle">6</text>
+  <text x="110" y="584" class="label">Credential Access — password spray against vNode SPA</text>
+  <text x="110" y="602" class="sub">Claude builds 3-band cred list and runs two automated spray rounds</text>
+  <text x="110" y="620" class="mitre">T1110.003 · T1552.001</text>
+  <text x="110" y="636" class="ioc">band 1: vNode/Bachmann default credentials</text>
+  <text x="110" y="650" class="ioc">band 2: victim-derived (SADM, Monterrey, aguaMTY, agua2026, ...)</text>
+  <text x="110" y="664" class="ioc">band 3: cross-tenant reused creds harvested in other agencies</text>
+
+  <!-- Stage 7: C2 — AI-built HTTP→production -->
+  <rect x="60" y="686" width="500" height="78" rx="6" class="bg-stage"/>
+  <circle cx="86" cy="706" r="13" class="stagebg"/>
+  <text x="86" y="710" class="stagenum" text-anchor="middle">7</text>
+  <text x="110" y="706" class="label">C2 — custom HTTP controller, AI-authored</text>
+  <text x="110" y="724" class="sub">Promoted from basic HTTP to production-grade C2 in 2 days via Claude feedback loop</text>
+  <text x="110" y="742" class="mitre">T1090.001</text>
+  <text x="110" y="758" class="ioc">no public IOC released to preserve investigation</text>
+
+  <!-- Stage 8: Exfiltration / Impact -->
+  <rect x="60" y="780" width="500" height="92" rx="6" class="bg-stage"/>
+  <circle cx="86" cy="800" r="13" class="stagebg"/>
+  <text x="86" y="804" class="stagenum" text-anchor="middle">8</text>
+  <text x="110" y="800" class="label">Exfiltration &amp; Impact — IT yes, OT no</text>
+  <text x="110" y="818" class="sub">Concurrent exfil from multiple Mexican government IT systems</text>
+  <text x="110" y="836" class="mitre">T1213 · T1567 · T1552.005</text>
+  <text x="110" y="852" class="ioc">scope: SAT, INE, civil registries, multiple states</text>
+  <text x="110" y="866" class="ioc">vNode spray failed — OT environment NOT breached</text>
+
+  <!-- LLM platforms cluster (right) -->
+  <rect x="600" y="174" width="240" height="240" rx="6" class="bg-c2"/>
+  <text x="720" y="194" class="label" text-anchor="middle">LLM platforms (operator)</text>
+  <text x="720" y="212" class="sub" text-anchor="middle">commercial APIs / web UI</text>
+  <text x="720" y="240" class="ioc" text-anchor="middle">api.anthropic.com</text>
+  <text x="720" y="258" class="ioc" text-anchor="middle">claude.ai</text>
+  <text x="720" y="276" class="ioc" text-anchor="middle">api.openai.com</text>
+  <text x="720" y="294" class="ioc" text-anchor="middle">chat.openai.com</text>
+  <text x="612" y="320" class="sub">Roles:</text>
+  <text x="624" y="338" class="sub">Claude → primary technical executor</text>
+  <text x="624" y="354" class="sub">GPT → analysis, Spanish output</text>
+  <text x="612" y="378" class="sub">Operator interactions:</text>
+  <text x="624" y="396" class="ioc">~350 AI-generated artifacts recovered</text>
+
+  <!-- C2 cluster (right, lower) -->
+  <rect x="600" y="686" width="240" height="120" rx="6" class="bg-c2"/>
+  <text x="720" y="706" class="label" text-anchor="middle">Attacker C2 (AI-built)</text>
+  <text x="720" y="724" class="sub" text-anchor="middle">custom HTTP controller</text>
+  <text x="720" y="748" class="ioc" text-anchor="middle">basic HTTP → production-grade</text>
+  <text x="720" y="764" class="ioc" text-anchor="middle">≤ 2 days via Claude feedback loop</text>
+  <text x="720" y="788" class="ioc" text-anchor="middle">no public IOC (investigation hold)</text>
+
+  <!-- Arrows: stages → stages -->
+  <path d="M310,158 L310,174" class="arrow" marker-end="url(#arr)"/>
+  <path d="M310,266 L310,282" class="arrow" marker-end="url(#arr)"/>
+  <path d="M310,360 L310,376" class="arrow" marker-end="url(#arr)"/>
+  <path d="M310,440 L310,456" class="arrow" marker-end="url(#arr)"/>
+  <path d="M310,548 L310,564" class="arrow" marker-end="url(#arr)"/>
+  <path d="M310,670 L310,686" class="arrow" marker-end="url(#arr)"/>
+  <path d="M310,764 L310,780" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Bidirectional arrow: Execution stage ↔ LLM cluster -->
+  <path d="M560,220 L600,260" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
+  <text x="558" y="248" class="ioc" text-anchor="end">prompt/response loop</text>
+
+  <!-- Arrow: C2 stage ↔ AI-built C2 cluster -->
+  <path d="M560,720 L600,740" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
+
+  <!-- Detection anchors box -->
+  <rect x="60" y="900" width="780" height="240" rx="8" class="bg-anchors"/>
+  <text x="80" y="930" class="anchor-h">Detection anchors (this folder)</text>
+
+  <text x="80" y="956" class="anchor-l">• <tspan class="anchor-h">Sigma</tspan> internal_post_burst_to_ot_web_auth — burst of POSTs from non-engineering host to OT mgmt web ports</text>
+  <text x="80" y="978" class="anchor-l">• <tspan class="anchor-h">Sigma</tspan> python_high_fanout_internal_recon — single Python process reaching many internal IPs and ports</text>
+  <text x="80" y="1000" class="anchor-l">• <tspan class="anchor-h">KQL</tspan> python_internal_burst_defender_xdr — Defender XDR python.exe with ≥50 internal connections in 5 min</text>
+  <text x="80" y="1022" class="anchor-l">• <tspan class="anchor-h">KQL</tspan> llm_api_egress_from_server_tier — Sentinel egress to api.anthropic.com / api.openai.com from server tier</text>
+  <text x="80" y="1044" class="anchor-l">• <tspan class="anchor-h">SPL</tspan> python_password_spray_ot_web — Splunk python parent + many 401/403 from OT mgmt ports</text>
+  <text x="80" y="1066" class="anchor-l">• <tspan class="anchor-h">YARA</tspan> llm_built_offsec_python_framework — heuristic for AI-authored multi-module Python frameworks</text>
+  <text x="80" y="1088" class="anchor-l">• <tspan class="anchor-h">Suricata</tspan> internal_ot_web_auth_burst — east-west burst of POST to OT mgmt web ports</text>
+  <text x="80" y="1110" class="anchor-l">• <tspan class="anchor-h">Hunt H1</tspan> AI-paced reconnaissance pivot — discovery → cred-list build → POST burst inside one hour</text>
+  <text x="80" y="1132" class="ioc">References: dragos.com/blog/ai-assisted-ics-attack-water-utility · industrialcyber.co · securityweek.com (May 6-8, 2026)</text>
+</svg>

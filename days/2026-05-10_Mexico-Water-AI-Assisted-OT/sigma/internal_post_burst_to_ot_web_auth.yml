@@ -1,0 +1,52 @@
+title: Internal Burst of HTTP POST to OT/SCADA Management Web Auth Endpoints
+id: bf69a1b7-9e4f-4adf-909d-1b3449927be7
+status: experimental
+description: |
+  Detects a burst of HTTP POST requests from an internal host to typical OT/SCADA management
+  web authentication endpoints exposed by IIoT gateways such as vNode, Inductive Automation
+  Ignition, AVEVA Wonderware, OSIsoft PI Vision and Bachmann appliances. Built off the Dragos
+  and Gambit Security analysis of the AI-assisted intrusion at the Monterrey water utility
+  (SADM) where Claude generated a credential list and ran two automated password-spray rounds
+  against the vNode SPA. The rule looks at the network connection layer and is portable across
+  Sysmon EID 3, EDR equivalent and Zeek conn.log when normalised by the SIEM.
+references:
+  - https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+  - https://industrialcyber.co/reports/dragos-details-ai-assisted-intrusion-targeting-mexican-water-utility-as-claude-openai-models-used-to-pursue-ot-access/
+author: Jarmi
+date: 2026/05/10
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection_ot_ports:
+    DestinationPort:
+      - 8043
+      - 8088
+      - 8090
+      - 8443
+      - 9090
+      - 9443
+  selection_image:
+    Image|endswith:
+      - '\python.exe'
+      - '\pythonw.exe'
+      - '\python3.exe'
+      - '\py.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\curl.exe'
+      - '\wget.exe'
+  filter_loopback:
+    DestinationIp:
+      - '127.0.0.1'
+      - '::1'
+  condition: selection_ot_ports and selection_image and not filter_loopback
+falsepositives:
+  - Authorised vulnerability scanners or red-team engagements with explicit scope coverage of OT mgmt ports — whitelist by source host.
+  - Engineering workstations performing legitimate maintenance — whitelist by engineering subnet.
+level: high
+tags:
+  - attack.credential-access
+  - attack.t1110.003
+  - attack.lateral-movement
+  - attack.t1021

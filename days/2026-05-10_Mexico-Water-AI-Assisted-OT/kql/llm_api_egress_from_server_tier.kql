@@ -1,0 +1,35 @@
+// Title:        LLM API egress from server-tier or service-account context
+// Id:           58b4c441-098b-428c-a1a0-e0ae481db0e7
+// MITRE:        T1071.001, T1567, AML.T0050
+// Reference:    https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+// Author:       Jarmi
+// Date:         2026-05-10
+// Tested on:    Defender XDR — DeviceNetworkEvents joined with DeviceInfo
+// FP notes:     Whitelist sanctioned AI-assistant endpoints by approved host or
+//               service principal. Browser-driven user access on workstations is
+//               filtered by the join with DeviceInfo.DeviceCategory == "Workstation".
+
+let LLMHosts = dynamic([
+  "api.anthropic.com", "claude.ai",
+  "api.openai.com", "chat.openai.com",
+  "api.cohere.ai", "api.mistral.ai", "generativelanguage.googleapis.com"
+]);
+let ServerHosts = DeviceInfo
+| where Timestamp > ago(7d)
+| summarize arg_max(Timestamp, *) by DeviceId
+| where DeviceCategory in ("Server","ServerCore","DomainController") or DeviceType =~ "Server"
+| project DeviceId, DeviceName, DeviceCategory;
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteUrl has_any (LLMHosts) or RemoteUrl matches regex @"(?i)(api\.anthropic\.com|claude\.ai|api\.openai\.com|chat\.openai\.com)"
+| join kind=inner ServerHosts on DeviceId
+| summarize
+    Hits = count(),
+    DistinctUrls = dcount(RemoteUrl),
+    SampleUrl = any(RemoteUrl),
+    SampleProcess = any(InitiatingProcessFileName),
+    SampleAccount = any(InitiatingProcessAccountName),
+    SampleCmd = any(InitiatingProcessCommandLine)
+  by DeviceId, DeviceName, DeviceCategory, bin(Timestamp, 1h)
+| where Hits >= 5 or DistinctUrls >= 2
+| order by Hits desc

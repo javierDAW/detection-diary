@@ -1,0 +1,33 @@
+// Title:        Python launcher with high internal fan-out (Defender XDR)
+// Id:           8175b813-f85c-4bf9-9686-fea1fc388b99
+// MITRE:        T1018, T1046, T1083, T1110.003
+// Reference:    https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+// Author:       Jarmi
+// Date:         2026-05-10
+// Tested on:    Defender XDR — DeviceNetworkEvents
+// FP notes:     Whitelist authorised vulnerability scanners and red-team hosts via DeviceTags.
+// Logic:        Python interpreter initiating >=50 internal connections to >=4 distinct ports
+//               within a 5-minute window — consistent with BACKUPOSINT-class AI-built recon.
+
+let Window = 5m;
+let TargetThreshold = 50;
+let PortDiversityThreshold = 4;
+let OtAndItPorts = dynamic([22, 80, 443, 445, 3389, 5985, 5986, 1433, 3306, 5432,
+                            8043, 8088, 8090, 8443, 9090, 9443,
+                            102, 502, 4840, 44818, 47808]);
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where InitiatingProcessFileName in~ ('python.exe','python3','pythonw.exe',
+                                        'py.exe','python3.10.exe','python3.11.exe',
+                                        'python3.12.exe')
+| where ipv4_is_private(RemoteIP)
+| where RemotePort in (OtAndItPorts) or RemotePort between (8000 .. 9999)
+| summarize
+    Targets = dcount(RemoteIP),
+    Ports   = dcount(RemotePort),
+    SamplePairs = make_set(strcat(RemoteIP, ":", tostring(RemotePort)), 12),
+    Cmd     = any(InitiatingProcessCommandLine),
+    ParentName = any(InitiatingProcessParentFileName)
+  by DeviceId, DeviceName, InitiatingProcessId, bin(Timestamp, Window)
+| where Targets >= TargetThreshold and Ports >= PortDiversityThreshold
+| order by Timestamp desc, Targets desc
