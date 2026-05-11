@@ -1,0 +1,19 @@
+// Title:        UAT-8302 DLL Side-Loading — mspdb60.dll or wininet.dll from non-System32 locations
+// Id:           56c18dbb-36f5-4a2e-9d02-661040e4d231
+// MITRE:        T1574.002
+// Reference:    https://blog.talosintelligence.com/uat-8302/
+// Author:       Jarmi
+// Date:         2026-05-11
+// Tested on:    Defender XDR — DeviceImageLoadEvents
+// FP notes:     Portable apps that ship their own wininet.dll under Public or Temp; baseline before alerting.
+
+DeviceImageLoadEvents
+| where Timestamp > ago(7d)
+| where FileName in~ ("mspdb60.dll","wininet.dll")
+| where FolderPath !startswith "C:\\Windows\\System32"
+| where FolderPath !startswith "C:\\Windows\\SysWOW64"
+| where FolderPath !startswith "C:\\Windows\\WinSxS"
+| project Timestamp, DeviceName, AccountName,
+          FileName, FolderPath, SHA256,
+          InitiatingProcessFileName, InitiatingProcessFolderPath,
+          InitiatingProcessCommandLine

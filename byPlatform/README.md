@@ -14,7 +14,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [active-directory](./active-directory/) | 3 |
 | [android](./android/) | 1 |
 | [cisco-asa](./cisco-asa/) | 1 |
-| [cloud-multi](./cloud-multi/) | 4 |
+| [cloud-multi](./cloud-multi/) | 5 |
 | [embedded](./embedded/) | 1 |
 | [esxi](./esxi/) | 2 |
 | [iot](./iot/) | 1 |
@@ -25,4 +25,4 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [ot-ics](./ot-ics/) | 3 |
 | [plc](./plc/) | 1 |
 | [supply-chain](./supply-chain/) | 4 |
-| [windows](./windows/) | 8 |
+| [windows](./windows/) | 9 |

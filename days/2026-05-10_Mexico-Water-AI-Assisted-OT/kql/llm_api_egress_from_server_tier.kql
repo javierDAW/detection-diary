@@ -4,7 +4,7 @@
 // Reference:    https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
 // Author:       Jarmi
 // Date:         2026-05-10
-// Tested on:    Defender XDR — DeviceNetworkEvents joined with DeviceInfo
+// Tested on:    Sentinel / Defender XDR — DeviceNetworkEvents joined with DeviceInfo
 // FP notes:     Whitelist sanctioned AI-assistant endpoints by approved host or
 //               service principal. Browser-driven user access on workstations is
 //               filtered by the join with DeviceInfo.DeviceCategory == "Workstation".

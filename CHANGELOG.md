@@ -7,6 +7,33 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.11 — Day 15 — UAT-8302 China-nexus government espionage with shared APT arsenal
+
+### Added
+- `days/2026-05-11_UAT-8302-China-Government-Espionage/` — Cisco Talos disclosure (published 5-May-2026, modified 7-May-2026) of UAT-8302, a China-nexus advanced persistent threat group targeting government entities in South America since late 2024 and in southeastern Europe in 2025. The hallmark of the cluster is the **promiscuous rotation of shared implants** previously linked to other China-nexus clusters: NetDraft (a .NET port of FinalDraft / SquidDoor used by Jewelbug / REF7707 / CL-STA-0049 / LongNosedGoblin), CloudSorcerer v3 (Kaspersky 2024), VSHELL fronted by SNOWLIGHT and the newly observed Rust-based **SNOWRUST** stagers (UNC5174 / UAT-6382 lineage, single-byte XOR key `0x99`), the SNAPPYBEE / DeedRAT + ZingDoor combo (Earth Estries), and the Draculoader shellcode loader. Hardened tradecraft markers include the camouflage path `C:\ProgramData\Microsoft\Microsoft\` with double `Microsoft` segment, scheduled-task persistence under `Microsoft\Windows\Maps\{GUID}` with literal task names `ReconLiteDebug` and `RunWhatPC`, and Microsoft Graph + OneDrive as a covert C2 channel that blends into normal M365 egress. UAT-8302 also deployed the open-source Hades HIDS / HIPS kernel driver as a primitive for selective EDR-event suppression.
+- Sigma (3): DLL side-loading anchors for `mspdb60.dll` or `wininet.dll` loaded from `Temp`, `ProgramData\Microsoft\Microsoft\` or `Users\Public\`; schtasks /create with the UAT-8302 literal task names and fake `Microsoft\Windows\Maps\{GUID}` path; open-source recon and credential-extraction tooling (`gogo`, `httpx`, `naabu`, `dddd`, ADExplorer `-snapshot`, `adconnectdump.py`, `MobaXtermDecryptor`, `SharpGetUserLoginIPRP`).
+- KQL (3): Defender XDR — non-browser, non-Office process beaconing `graph.microsoft.com` or `login.microsoftonline.com` from `ProgramData\Microsoft\Microsoft\` (NetDraft); `mspdb60.dll` or `wininet.dll` image_load events outside System32 / SysWOW64 / WinSxS; GitHub or GameSpot dead-drop fetch followed within 5 minutes by a derived public-IP connection (CloudSorcerer v3 dead-drop resolver).
+- SPL (1): Splunk — Stowaway, anyproxy, SoftEther outbound from internal hosts joined with bulletproof subnet egress (`85.209.156.0/24`, `45.135.135.100`, `45.140.168.62`, `88.151.195.133`, `156.238.224.82`, `185.238.189.41`, `103.27.108.55`, `38.54.32.244`).
+- YARA (1, multi-rule): `UAT_8302_NetDraft_FringePorch_2026` (Fody/Costura embedded helper + Graph beacon strings + Plugin.Run); `UAT_8302_CloudSorcerer_v3_2026` (process-name branching `dpapimig.exe` / `spoolsv.exe` + named-pipe IPC + GitHub or GameSpot dead-drop); `UAT_8302_VSHELL_SNOWLIGHT_SNOWRUST_Stager_2026` (Rust runtime markers, LexiCrypt strings, `0x99` XOR byte-loop pattern).
+- Suricata (1, 5 sids): TLS SNI anchors for `drivelivelime.com`, `msiidentity.com`, `update-kaspersky.workers.dev`; HTTP host + URI for `trafficmanagerupdate.com/index.php`; bulletproof subnet egress (sids 8110001-8110005).
+- PEAK hunts (3): H1 — side-load triad living in `ProgramData\Microsoft\Microsoft\`; H2 — AD Connect dump tooling fingerprint outside the formal sync appliance; H3 — GitHub or GameSpot dead-drop resolver C2 channel.
+- `iocs.csv` — 18 SHA-256 hashes (NetDraft, FringePorch, VSHELL, ZingDoor, Draculoader, OSS recon stack, SharpGetUserLoginIPRP), 5 C2 domains, 8 bulletproof IPs, NetDraft drop paths, the literal scheduled-task name strings, and two operator notes about the `0x99` XOR cross-cluster anchor and the Graph OAuth token revocation playbook.
+- `kill_chain.svg` — adaptive light/dark palette diagram with two lanes (victim government enterprise vs attacker C2 / proxy fabric), nine numbered stages from initial access through long-term espionage, a dedicated C2 cluster on the right with all listed domains and IPs, and a detection-anchors box that maps to the rules in `sigma/`, `kql/`, `yara/`, `suricata/` and `spl/`.
+
+### Pedagogy
+- *Promiscuous toolchain sharing across China-nexus clusters means attribution lives at the operational level, not the toolchain level.* A cluster name like UAT-8302 carries weight even without a 1:1 alias to a public actor brand.
+- *The double-`Microsoft\Microsoft\` camouflage path under `ProgramData` is a near-zero-FP anchor.* Combined with Graph API egress, it makes for a clean high-confidence detection.
+- *Microsoft Graph + OneDrive as C2 is impossible to block at the network layer for any M365-enabled organization.* Defense has to move inward to "who inside the host is reading or writing Graph tokens".
+- *Dead-drop resolution (GitHub raw, GameSpot profile) is a structural pattern, not a binary signature.* A public-blob fetch followed within minutes by a derived public-IP connection is rarely benign and worth a high-signal detection.
+- *Open-source Simplified-Chinese tooling (`gogo`, `Stowaway`, `SharpGetUserLoginIPRP`, Hades HIDS framework) is a soft attribution signal that often correlates with China-nexus operations.*
+
+### Secondary findings
+- MuddyWater (Iran) "Dindoor" backdoor, based on the Deno JavaScript runtime, targeting a US bank, a Canadian non-profit and a software company. Activity ramped after Operation Epic Fury (ceasefire 5-May-2026). The Deno runtime is a tradecraft novelty for Iran-nexus operators.
+- CISA KEV active reminders: CVE-2026-31431 ("Copy Fail") Linux kernel local privilege escalation with federal deadline 15-May-2026; CVE-2026-6973 Ivanti EPMM actively exploited; CVE-2026-0300 PAN-OS Captive Portal RCE first fix expected 13-May-2026.
+- npm worm "CanisterSprawl" (TeamPCP) — self-propagating variant in the Shai-Hulud lineage targeting popular SDK packages. TeamPCP is the same e-crime cluster tracked across Bitwarden Shai-Hulud, Mini Shai-Hulud, VECT 2.0 alliance and SAP @cap-js.
+
+---
+
 ## 2026.05.10 — Day 14 — AI-Assisted Compromise of a Mexican Water Utility (SADM Monterrey)
 
 ### Added
@@ -41,45 +68,4 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 - Sigma (2): AccessibilityService binding to a non-store, non-system sideloaded package; default SMS handler change to a non-allowlist package.
 - KQL (2): Defender XDR Mobile — sideload + accessibility within 24h on a banking-app device; Notification Listener + READ_SMS coexistence on a non-stock package.
 - YARA (1): `Albiriox_Android_Banking_RAT_2026` — DEX magic at offset 0 + AccessibilityService + dispatchGesture + AccessibilityNodeInfo + getBoundsInScreen + TYPE_APPLICATION_OVERLAY + AcVNC marker (or blackscreen command) + AppInfos class + 2-of-N target package strings, capped at 50 MB.
-- SPL (1): MTD CIM-normalised correlation (Lookout / Zimperium / Workspace ONE Intelligence) across install + accessibility + admin grant + SMS handler change in a 24h window per package per device.
-- Suricata (1): three sids — plain-TCP heartbeat shape (HWID + battery + AcVNC body anchors) from corporate mobile VLAN, in-stream `blackscreen:` operator command, and a heuristic empty-SNI TLS rule for AcVNC stream egress.
-- PEAK hunts (2): H1 — sideload + AccessibilityService grant within 24h on a banking-app device; H2 — Notification Listener + `READ_SMS` coexistence on a non-stock package.
-- `iocs.csv` — capability and string anchors (AcVNC marker, AppInfos class, blackscreen commands, Golden Crypt crypter name, JSONPacker dropper string, target packages including BBVA, Santander, Binance, Coinbase, MetaMask, Bitget, Trust Wallet, Phantom). SHA256 hashes and live C2 IPs sit behind the Cleafy paywall feed and are noted but not duplicated here.
-- `kill_chain.svg` — single-page accessible diagram with adaptive light/dark palette, two lanes (victim host vs attacker C2), nine numbered stages and a detection-anchors box that maps directly to the rules in `sigma/`, `kql/`, `yara/` and `suricata/`.
-
-### Pedagogy
-- *`FLAG_SECURE` is not a panacea on Android.* It protects the framebuffer and `MediaProjection`, not the AccessibilityNodeInfo tree. Banking and wallet apps that rely on it must combine it with `setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO)` on sensitive views and with `Activity.setRecentsScreenshotEnabled(false)`.
-- *Accessibility is the universal escalation primitive on Android.* Anatsa, BingoMod, Brokewell and Albiriox all converge on the same single user-facing toggle. Any policy that does not constrain Accessibility-service grants on managed devices is incomplete.
-- *SMS-OTP, push-2FA without number matching, and TOTP that is visible in the foreground are all reachable from an Albiriox-owned device.* The only durable second factor on Android is FIDO2 / passkey bound to the secure element.
-- *Detection is on the side-effects, not the binary.* Sideload + Accessibility bind + Notification Listener + Default SMS handler change on the same device within 24h is a high-signal precursor that survives Golden Crypt and DEX string encryption.
-- *Crypto custody requires action before host remediation.* Once seed phrases may have been exfiltrated, on-chain funds must be moved to a clean wallet before the device is wiped.
-
-### Structural milestone
-- First entry under the **Day 13 README standard** (15 sections, fixed order, exact heading names) and the new mandatory `kill_chain.svg` next to the README. Both gates pass: language gate (no Spanish prose) and structural gate (all 15 headings present, SVG present and referenced from the README).
-
----
-
-## 2026.05.08 — Day 12 — CloudZ RAT + Pheno plugin (Microsoft Phone Link OTP theft)
-
-### Added
-- `days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/` — Cisco Talos write-up (5-may-2026) of a campaign active since January 2026 that pairs a ConfuserEx-packed .NET RAT (`CloudZ`, compiled 2026-01-13) with a previously undocumented plugin (`Pheno`) that abuses the Microsoft `Microsoft.YourPhone_8wekyb3d8bbwe` UWP package on Windows 11. Pheno reads the local `PhoneExperiences-*.db` SQLite cache to harvest mirrored SMS bodies and OTP-bearing notifications without any compromise of the paired phone — a host-side bypass of SMS-based 2FA.
-- Sigma (2): non-YourPhone process reading `PhoneExperiences-*.db`; AppData-resident parent creating a scheduled task (loader persistence chain).
-- KQL (2): Defender XDR — Phone Link DB read joined with `*.hellohiall.workers.dev` or backend-IP egress within 30 minutes; Pastebin raw fetch combined with Workers or backend-IP egress on the same host.
-- SPL (1): same-host correlation across Pastebin, Workers C2 and backend IP `185.196.10.136` over Sysmon EID 3 / EID 22.
-- YARA (1): `CloudZ_Pheno_Heuristic_2026` — PE + ConfuserEx markers + Phone Link package strings + Workers FQDN + dynamic-IL emit primitives + embedded `Microsoft.Data.Sqlite`.
-- Suricata (1): four sids — TLS SNI for `hellohiall.workers.dev`, DNS query for the same, IP egress to `185.196.10.136`, and HTTP GET to the seven Pastebin raw paths used as dead-drop config.
-- PEAK hunt (1): H1 — Phone Link DB read followed by Workers / backend egress within 30 minutes on the same host.
-- `iocs.csv` — five SHA256 hashes (Rust dropper, two .NET loader variants, CloudZ, Pheno), three Cloudflare Workers FQDNs, backend IP, seven Pastebin URLs and the `HELLOHIALL` operator handle.
-
-### Pedagogy
-- *SMS-based 2FA is no longer "what's on your phone".* Windows 11 Phone Link mirrors SMS into a SQLite file in user space — any user-context implant can read it. SIM swap is no longer the only route to OTP capture.
-- *Detection is on the file-event side, not the binary side.* CloudZ uses dynamic IL emit at runtime, so on-disk method signatures are weak. The cheap, durable detection is "who reads the SQLite that is not the YourPhone package" and "who beacons to `*.hellohiall.workers.dev`".
-- *Cloudflare Workers + Pastebin* is a low-cost-infra C2 fabric: defenders rarely block `*.workers.dev` outright, Pastebin is often allow-listed, and rotating hostnames does not require rebuilding the binary.
-- *Recovery is not a password reset.* SMS-mirrored content captured during dwell remains valid for service-side use. Revoke device tokens, rotate every code that may have been mirrored, and migrate to FIDO2 / passkey before re-enabling identity.
-
----
-
-## 2026.05.07 — Day 11 — EVM/DeFi npm typosquatting (`namikazesarada010206`)
-
-### Added
-- `days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/` — Xygeni write-up (6-may-2026) of a six-package brand-adjacency squat campaign (`viem-core`, `viem-utils-core`, `hardhat-core-utils`, `evm-utils`, `foundry-utils`, `web3-utils-core`) targeting Ethereum / Solidity / Hardhat / Foundry / Brownie d
+- SPL (1): MTD CIM-normalised correlation (Lookout / Zimperium / Workspace ONE Intelligence) across install

@@ -1,213 +1,435 @@
 // =============================================================================
 // adx_seed.kql — synthetic data seeding for the detection-diary KQL tests
 // Author:    Jarmi
-// Date:      2026-05-08
+// Date:      2026-05-10
 // Purpose:   Populate the schema created by adx_bootstrap.kql with handcrafted
 //            positive and negative rows for every KQL rule in days/*/kql/.
-//            Each block is annotated with the rule it exercises and the
-//            expected hit count, so adx_tests.kql can assert determinism.
-// Convention:
-//            DeviceId  = d-<dayN>-<seq>     so rows are easy to filter per rule
-//            Hostnames = WIN-<dayN>-<seq>   for Windows / WIN11
-//                        LIN-<dayN>-<seq>   for Linux
-//            All timestamps are within the last 6 days so default `ago(7d)`
-//            filters in the rules pick them up.
+//
+// Time anchor:
+//   Every event timestamp is an ABSOLUTE literal datetime() pinned to the
+//   date in the file header (today). Run the seed today and the most
+//   recent day's rule fires. Older rules with `ago(24h)` may stop matching
+//   after 24h — when a new daily class is published, regenerate this seed
+//   (or just bump the date once at the top of every datetime literal) so
+//   the new rule sees fresh rows.
+//
+// KQL constraints learned the hard way (do not regress):
+//   * .set-or-append source schema MUST match target schema (column names
+//     and types). KQL integer literals are LONG by default, so the
+//     bootstrap declares all integer columns as long.
+//   * datatable(...)[ ... ] only accepts CONSTANT LITERAL EXPRESSIONS.
+//     Allowed:    datetime(2026-05-10T08:00:00Z), 443, "string",
+//                 dynamic({...}), dynamic([...]).
+//     NOT allowed: now(), ago(), strcat(), bag_pack(), arithmetic.
+//     For per-row computed fields, use `extend` AFTER the datatable.
+//   * Line comments (//) are NOT allowed inside the [ ... ] row block.
+//     Annotation lives BEFORE the bracket.
+//   * Range/extend burst seeders are fine because `extend` is an operator
+//     context where now()/strcat()/bag_pack() are allowed.
 // =============================================================================
 
-// -----------------------------------------------------------------------------
-// Day 1 (Apr-28) — The Gentlemen + SystemBC — TCP beacon no-TLS
-//   Positive: process `svchostsync.exe` connects to attacker IP every 60s.
-//   Negative: chrome.exe TLS to a public CDN (should be ignored by the rule).
-// -----------------------------------------------------------------------------
-.ingest inline into table DeviceNetworkEvents <|
-2026-05-07T08:00:00Z,d-01-1,WIN-01-1,ConnectionSuccess,185.225.74.10,443,,10.0.1.5,55555,Tcp,9001,svchostsync.exe,sha-systembc,C:\ProgramData\sync\,,svchost.exe
-2026-05-07T08:01:00Z,d-01-1,WIN-01-1,ConnectionSuccess,185.225.74.10,443,,10.0.1.5,55556,Tcp,9001,svchostsync.exe,sha-systembc,C:\ProgramData\sync\,,svchost.exe
-2026-05-07T08:02:00Z,d-01-1,WIN-01-1,ConnectionSuccess,185.225.74.10,443,,10.0.1.5,55557,Tcp,9001,svchostsync.exe,sha-systembc,C:\ProgramData\sync\,,svchost.exe
-2026-05-07T08:03:00Z,d-01-2,WIN-01-2,ConnectionSuccess,151.101.1.69,443,https://cdn.jsdelivr.net/npm/foo,10.0.1.6,40000,Tcp,7001,chrome.exe,sha-chrome,C:\Program Files\Google\Chrome\Application\,,chrome.exe
-
-// -----------------------------------------------------------------------------
-// Day 2 (Apr-29) — Bitwarden Shai-Hulud — anomalous public GitHub repo create
-//   Positive: actor opens a public repo named "Shai-Hulud-CI" via REST.
-//   Negative: same actor pushes commits to an existing private repo.
-// -----------------------------------------------------------------------------
-.ingest inline into table GitHubAuditLogs <|
-2026-05-07T09:00:00Z,repo.create,bob@victim.com,bob/Shai-Hulud-CI,bob,public,2026-05-07T09:00:00Z,{"actor":"bob"}
-2026-05-07T09:00:30Z,git.push,bob@victim.com,bob/internal-tools,bob,private,2026-05-07T09:00:30Z,{"actor":"bob"}
-
-// -----------------------------------------------------------------------------
-// Day 3 (Apr-30) — FIRESTARTER LINE VIPER — ASA reboot + WebVPN large body
-//   Positive: ASA syslog with reboot followed by an oversized WebVPN POST.
-//   Negative: a typical small WebVPN POST.
-// -----------------------------------------------------------------------------
-.ingest inline into table Syslog <|
-2026-05-07T10:00:00Z,asa-edge-01,asa-edge-01,local6,info,"%ASA-5-199002: Reload ordered by enable_15. Reload Reason: graceful-shutdown",cisco-asa,1,10.0.0.1
-2026-05-07T10:30:00Z,asa-edge-01,asa-edge-01,local6,notice,"%ASA-7-710005: WebVPN session POST /+CSCOE+/portal.html size=14336",cisco-asa,1,10.0.0.1
-2026-05-07T10:40:00Z,asa-edge-01,asa-edge-01,local6,notice,"%ASA-7-710005: WebVPN session POST /+CSCOE+/portal.html size=512",cisco-asa,1,10.0.0.1
-
-// -----------------------------------------------------------------------------
-// Day 4 (May-01) — VECT 2.0 — mass process kill (T1485 effect)
-//   Positive: in a 60-second window 6 distinct sensitive processes killed.
-//   Negative: a single legit kill of notepad.
-// -----------------------------------------------------------------------------
-.ingest inline into table DeviceProcessEvents <|
-2026-05-07T11:00:00Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM sqlservr.exe /F",2001,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
-2026-05-07T11:00:05Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM oracle.exe /F",2002,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
-2026-05-07T11:00:08Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM excel.exe /F",2003,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
-2026-05-07T11:00:14Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM winword.exe /F",2004,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
-2026-05-07T11:00:22Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM outlook.exe /F",2005,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
-2026-05-07T11:00:35Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM firefox.exe /F",2006,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
-2026-05-07T11:30:00Z,d-04-2,WIN-04-2,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM notepad.exe /F",2099,user,explorer.exe,3099,"explorer.exe",sha-explorer,C:\Windows\,user,winlogon.exe
-
-// -----------------------------------------------------------------------------
-// Day 6 (May-03) — BAUXITE — Studio 5000 outbound to OT EIP/CIP
-//   Positive: Studio5000.exe to a public IPv4 over TCP/44818.
-//   Negative: same image to RFC1918 OT range.
-// -----------------------------------------------------------------------------
-.ingest inline into table DeviceNetworkEvents <|
-2026-05-07T12:00:00Z,d-06-1,WIN-06-1,ConnectionSuccess,203.0.113.7,44818,,10.20.0.5,55001,Tcp,5001,Studio5000.exe,sha-st5000,C:\Program Files (x86)\Rockwell Automation\,,explorer.exe
-2026-05-07T12:01:00Z,d-06-2,WIN-06-2,ConnectionSuccess,10.50.0.10,44818,,10.20.0.6,55002,Tcp,5002,Studio5000.exe,sha-st5000,C:\Program Files (x86)\Rockwell Automation\,,explorer.exe
-
-// -----------------------------------------------------------------------------
-// Day 7 (May-04) — Poland Wiper — LSASS dump via taskmgr + Rubeus S4U
-//   Positive: taskmgr.exe writes a .dmp that contains "lsass" in the filename.
-//   Negative: dwm.exe writes a benign log.
-// -----------------------------------------------------------------------------
-.ingest inline into table DeviceFileEvents <|
-2026-05-07T13:00:00Z,d-07-1,WIN-07-1,FileCreated,lsass.DMP,C:\Users\admin\AppData\Local\Temp\,sha-lsassdmp,52428800,7001,Taskmgr.exe,sha-tm,C:\Windows\System32\,admin,"Taskmgr.exe",explorer.exe,C:\Users\admin\AppData\Local\Temp\lsass.DMP
-2026-05-07T13:30:00Z,d-07-2,WIN-07-2,FileCreated,output.log,C:\Windows\Temp\,sha-log,1024,7099,dwm.exe,sha-dwm,C:\Windows\System32\,SYSTEM,"dwm.exe",services.exe,C:\Windows\Temp\output.log
-
-// Rubeus S4U TGS burst → bursts of EID 4769 in SecurityEvent
-.ingest inline into table SecurityEvent <|
-2026-05-07T13:35:00Z,WIN-07-3,4769,svc-erp@victim.local,VICTIM,svc-erp,attacker,3,Rubeus.exe,"rubeus s4u /user:svc /service:cifs",rubeus.exe,Rubeus.exe,10.0.0.99,{"reason":"S4U2Self"}
-2026-05-07T13:35:05Z,WIN-07-3,4769,svc-db@victim.local,VICTIM,svc-db,attacker,3,Rubeus.exe,"rubeus s4u",rubeus.exe,Rubeus.exe,10.0.0.99,{"reason":"S4U2Self"}
-2026-05-07T13:35:10Z,WIN-07-3,4769,svc-web@victim.local,VICTIM,svc-web,attacker,3,Rubeus.exe,"rubeus s4u",rubeus.exe,Rubeus.exe,10.0.0.99,{"reason":"S4U2Self"}
-2026-05-07T13:35:15Z,WIN-07-3,4769,svc-mail@victim.local,VICTIM,svc-mail,attacker,3,Rubeus.exe,"rubeus s4u",rubeus.exe,Rubeus.exe,10.0.0.99,{"reason":"S4U2Self"}
-2026-05-07T13:35:20Z,WIN-07-3,4769,svc-print@victim.local,VICTIM,svc-print,attacker,3,Rubeus.exe,"rubeus s4u",rubeus.exe,Rubeus.exe,10.0.0.99,{"reason":"S4U2Self"}
-
-// -----------------------------------------------------------------------------
-// Day 8 (May-05) — Akira × SonicWall — anomalous VPN login + Impacket SMB
-//   Positive: SonicWall syslog "user logged in" from new ASN; followed by 5 SMB connects.
-// -----------------------------------------------------------------------------
-.ingest inline into table Syslog <|
-2026-05-07T14:00:00Z,sonicwall-01,sonicwall-01,local0,info,"id=firewall sn=XX m=237 user=jdoe domain=corp src=185.66.77.88:55555 dst=10.0.0.5:443 msg=SSL VPN user logged in",sonicwall,1,10.0.0.1
-
-.ingest inline into table DeviceLogonEvents <|
-2026-05-07T14:00:30Z,d-08-1,WIN-08-1,LogonSuccess,jdoe,corp,3,10.0.0.5,SRV-DC-01,vpnclient.exe,8001
-
-.ingest inline into table DeviceNetworkEvents <|
-2026-05-07T14:01:00Z,d-08-1,WIN-08-1,ConnectionSuccess,10.0.0.10,445,,10.0.0.5,55101,Tcp,9101,wmiexec.py,sha-wmiexec,C:\Tools\,,python3.exe
-2026-05-07T14:01:01Z,d-08-1,WIN-08-1,ConnectionSuccess,10.0.0.11,445,,10.0.0.5,55102,Tcp,9101,wmiexec.py,sha-wmiexec,C:\Tools\,,python3.exe
-2026-05-07T14:01:02Z,d-08-1,WIN-08-1,ConnectionSuccess,10.0.0.12,445,,10.0.0.5,55103,Tcp,9101,wmiexec.py,sha-wmiexec,C:\Tools\,,python3.exe
-2026-05-07T14:01:03Z,d-08-1,WIN-08-1,ConnectionSuccess,10.0.0.13,445,,10.0.0.5,55104,Tcp,9101,wmiexec.py,sha-wmiexec,C:\Tools\,,python3.exe
-2026-05-07T14:01:04Z,d-08-1,WIN-08-1,ConnectionSuccess,10.0.0.14,445,,10.0.0.5,55105,Tcp,9101,wmiexec.py,sha-wmiexec,C:\Tools\,,python3.exe
-
-// -----------------------------------------------------------------------------
-// Day 9 (May-06) — Code of Conduct AiTM — chain correlation
-//   Positive: SigninLogs success after MFA, then AuditLogs Add device, then
-//             OfficeActivity InboxRule with one-char name in 24h.
-// -----------------------------------------------------------------------------
-.ingest inline into table SigninLogs <|
-2026-05-07T15:00:00Z,alice@victim.com,Alice,Outlook,185.99.88.77,RU,0,Success,multiFactorAuthentication,satisfied,Success,{"authMethod":"sms"},{"deviceId":"new-evil"},Browser,Mozilla/5.0,corr-001
-.ingest inline into table AuditLogs <|
-2026-05-07T15:05:00Z,Add device,DeviceManagement,Success,Device added by user,alice@victim.com,Add device,{"user":"alice"},[{"id":"dev-evil","name":"Attacker-PC"}],{},corr-001
-.ingest inline into table OfficeActivity <|
-2026-05-07T15:30:00Z,New-InboxRule,ExchangeAdmin,alice@victim.com,alice@victim.com,185.99.88.77,{"Name":"."},Exchange,/o=ExchangeLabs,Succeeded
-.ingest inline into table CloudAppEvents <|
-2026-05-07T15:32:00Z,InboxRuleCreated,Exchange,obj-alice,Alice,185.99.88.77,{"name":"."},rule-1,InboxRule
-
-// First-seen attacker domain via PDF
-.ingest inline into table EmailUrlInfo <|
-2026-05-07T15:00:00Z,nm-001,https://acceptable-use-policy-calendly.de/case,acceptable-use-policy-calendly.de,body
-.ingest inline into table EmailAttachmentInfo <|
-2026-05-07T15:00:00Z,nm-001,Awareness Case Log File - Tuesday 14th April 2026.pdf,pdf,sha-pdflure,1048576
-
-// -----------------------------------------------------------------------------
-// Day 10 (May-07) — QLNX — Linux dev-box behaviours
-//   Positive: write to /etc/ld.so.preload + drop in /tmp/.ICE-unix + gcc compile + credential burst.
-// -----------------------------------------------------------------------------
-.ingest inline into table DeviceFileEvents <|
-2026-05-07T16:00:00Z,d-10-1,LIN-10-1,FileModified,ld.so.preload,/etc/,sha-preload,128,10001,bash,sha-bash,/usr/bin/,root,"bash -c echo > /etc/ld.so.preload",bash,/etc/ld.so.preload
-2026-05-07T16:00:30Z,d-10-1,LIN-10-1,FileCreated,libqlnx.so,/tmp/.ICE-unix/,sha-libqlnx,80000,10002,gcc,sha-gcc,/usr/bin/,root,"gcc -shared -fPIC -o /tmp/.ICE-unix/libqlnx.so",bash,/tmp/.ICE-unix/libqlnx.so
-2026-05-07T16:01:00Z,d-10-1,LIN-10-1,FileLockCreated,.X752e2ca1-lock,/tmp/,sha-lock,0,10003,qlnx,sha-qlnx,/tmp/,root,"qlnx",qlnx,/tmp/.X752e2ca1-lock
-// credential burst — 4 sensitive files in <60s read by same PID
-2026-05-07T16:02:00Z,d-10-1,LIN-10-1,FileOpened,credentials,/root/.aws/,sha-aws,1024,10004,qlnx,sha-qlnx,/tmp/,root,"qlnx",qlnx,/root/.aws/credentials
-2026-05-07T16:02:05Z,d-10-1,LIN-10-1,FileOpened,.npmrc,/root/,sha-npmrc,512,10004,qlnx,sha-qlnx,/tmp/,root,"qlnx",qlnx,/root/.npmrc
-2026-05-07T16:02:10Z,d-10-1,LIN-10-1,FileOpened,id_rsa,/root/.ssh/,sha-idrsa,2048,10004,qlnx,sha-qlnx,/tmp/,root,"qlnx",qlnx,/root/.ssh/id_rsa
-2026-05-07T16:02:15Z,d-10-1,LIN-10-1,FileOpened,.git-credentials,/root/,sha-gitcred,256,10004,qlnx,sha-qlnx,/tmp/,root,"qlnx",qlnx,/root/.git-credentials
-
-.ingest inline into table DeviceNetworkEvents <|
-2026-05-07T16:03:00Z,d-10-1,LIN-10-1,ConnectionSuccess,208.95.112.1,80,http://ip-api.com/json,10.0.50.5,55001,Tcp,10004,qlnx,sha-qlnx,/tmp/,"qlnx",init
-
-// -----------------------------------------------------------------------------
-// Day 11 (May-07 extra) — EVM/DeFi npm typosquat — node-driven egress
-//   Positive: node.exe outbound to literal IPv4 76.13.37.80 (first-seen).
-//   Plus: credential burst from node child reading .env / .foundry / hardhat config.
-// -----------------------------------------------------------------------------
-.ingest inline into table DeviceNetworkEvents <|
-2026-05-07T17:00:00Z,d-11-1,WIN-11-1,ConnectionSuccess,76.13.37.80,443,,10.0.60.5,60001,Tcp,11001,node.exe,sha-node,C:\Program Files\nodejs\,"node telemetry.js",cmd.exe
-
-.ingest inline into table DeviceFileEvents <|
-2026-05-07T17:00:30Z,d-11-1,WIN-11-1,FileOpened,.env.production,C:\Users\dev\app\,sha-env,512,11001,node.exe,sha-node,C:\Program Files\nodejs\,dev,"node telemetry.js",node.exe,C:\Users\dev\app\.env.production
-2026-05-07T17:00:35Z,d-11-1,WIN-11-1,FileOpened,foundry.toml,C:\Users\dev\app\,sha-foundry,256,11001,node.exe,sha-node,C:\Program Files\nodejs\,dev,"node telemetry.js",node.exe,C:\Users\dev\app\foundry.toml
-2026-05-07T17:00:40Z,d-11-1,WIN-11-1,FileOpened,id_rsa,C:\Users\dev\.ssh\,sha-idrsawin,2048,11001,node.exe,sha-node,C:\Program Files\nodejs\,dev,"node telemetry.js",node.exe,C:\Users\dev\.ssh\id_rsa
-
-// process to anchor "dev host with hardhat / foundry / brownie tooling"
-.ingest inline into table DeviceProcessEvents <|
-2026-05-07T16:50:00Z,d-11-1,WIN-11-1,hardhat.cmd,C:\Users\dev\app\node_modules\.bin\,sha-hh,"hardhat compile",11099,dev,cmd.exe,11098,"cmd.exe /c hardhat compile",sha-cmd,C:\Windows\System32\,dev,explorer.exe
-
-// -----------------------------------------------------------------------------
-// Day 12 (May-08) — CloudZ + Pheno — Phone Link DB read + Workers egress
-//   Positive: evil.exe in %APPDATA% reads PhoneExperiences-001.db, then beacons
-//             to round-cherry-4418.hellohiall.workers.dev within 30 min.
-//   Negative: YourPhone.exe legitimately reads the same DB.
-// -----------------------------------------------------------------------------
-.ingest inline into table DeviceFileEvents <|
-2026-05-07T18:00:00Z,d-12-1,WIN-12-1,FileOpened,PhoneExperiences-001.db,C:\Users\u\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\,sha-phexp,4096,12001,evil.exe,sha-evil,C:\Users\u\AppData\Roaming\xyzsync\,u,"evil.exe",cmd.exe,C:\Users\u\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\PhoneExperiences-001.db
-2026-05-07T18:00:01Z,d-12-2,WIN-12-2,FileOpened,PhoneExperiences-001.db,C:\Users\u\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\,sha-phexp,4096,12002,YourPhone.exe,sha-yp,C:\Program Files\WindowsApps\Microsoft.YourPhone_8wekyb3d8bbwe\,u,"YourPhone.exe",svchost.exe,C:\Users\u\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\PhoneExperiences-001.db
-
-.ingest inline into table DeviceNetworkEvents <|
-2026-05-07T18:05:00Z,d-12-1,WIN-12-1,ConnectionSuccess,1.2.3.4,443,https://round-cherry-4418.hellohiall.workers.dev/?t=99,10.0.70.5,60101,Tcp,12001,evil.exe,sha-evil,C:\Users\u\AppData\Roaming\xyzsync\,"evil.exe",cmd.exe
-2026-05-07T18:10:00Z,d-12-1,WIN-12-1,ConnectionSuccess,5.6.7.8,443,https://pastebin.com/raw/8pYAgF0Z,10.0.70.5,60102,Tcp,12001,evil.exe,sha-evil,C:\Users\u\AppData\Roaming\xyzsync\,"evil.exe",cmd.exe
-2026-05-07T18:15:00Z,d-12-1,WIN-12-1,ConnectionSuccess,185.196.10.136,443,,10.0.70.5,60103,Tcp,12001,evil.exe,sha-evil,C:\Users\u\AppData\Roaming\xyzsync\,"evil.exe",cmd.exe
-
-// -----------------------------------------------------------------------------
-// Done.
-// -----------------------------------------------------------------------------
-
-// -----------------------------------------------------------------------------
-// Day 14 — Mexico Water AI-Assisted OT
-//   Positive A (LLM API egress from server-tier):
-//     d-14-1 SRV-FILE-01 is a Server in DeviceInfo and has 6 connections to
-//     api.anthropic.com and 1 to chat.openai.com — should match
-//     llm_api_egress_from_server_tier.kql.
-//   Positive B (Python burst high fan-out):
-//     d-14-2 WIN-14-2 has python.exe touching 5 distinct internal IPs and 4
-//     distinct ports inside a 5-min window — should match the lowered-threshold
-//     test wrapper of python_internal_burst_defender_xdr.kql.
-//   Negative:
-//     d-14-3 LAP-USER-03 is a Workstation in DeviceInfo, also hits
-//     api.anthropic.com but should be filtered out by the join.
-// -----------------------------------------------------------------------------
-.ingest inline into table DeviceInfo <|
-2026-05-07T19:00:00Z,d-14-1,SRV-FILE-01,Server,Server,Server,Windows,10.0.20348,20348.2700,203.0.113.1,10.8500.19041.50,false,false,[],file-server,Default,1
-2026-05-07T19:00:00Z,d-14-2,WIN-14-2,Workstation,Workstation,Workstation,Windows,11.22631,22631.4317,203.0.113.2,10.8500.19041.50,true,false,[],engineering,Default,2
-2026-05-07T19:00:00Z,d-14-3,LAP-USER-03,Workstation,Workstation,Workstation,Windows,11.22631,22631.4317,203.0.113.3,10.8500.19041.50,true,false,[],default,Default,3
-2026-05-07T19:00:00Z,d-14-4,SRV-DC-01,DomainController,Server,Server,Windows,10.20348,20348.2700,203.0.113.4,10.8500.19041.50,false,false,[],dc,Default,4
-
-.ingest inline into table DeviceNetworkEvents <|
-2026-05-07T19:01:00Z,d-14-1,SRV-FILE-01,ConnectionSuccess,160.79.104.10,443,https://api.anthropic.com/v1/messages,10.0.30.5,50001,Tcp,14001,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon",cmd.exe
-2026-05-07T19:02:00Z,d-14-1,SRV-FILE-01,ConnectionSuccess,160.79.104.10,443,https://api.anthropic.com/v1/messages,10.0.30.5,50002,Tcp,14001,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon",cmd.exe
-2026-05-07T19:03:00Z,d-14-1,SRV-FILE-01,ConnectionSuccess,160.79.104.10,443,https://api.anthropic.com/v1/messages,10.0.30.5,50003,Tcp,14001,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon",cmd.exe
-2026-05-07T19:04:00Z,d-14-1,SRV-FILE-01,ConnectionSuccess,160.79.104.10,443,https://api.anthropic.com/v1/messages,10.0.30.5,50004,Tcp,14001,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon",cmd.exe
-2026-05-07T19:05:00Z,d-14-1,SRV-FILE-01,ConnectionSuccess,160.79.104.10,443,https://api.anthropic.com/v1/messages,10.0.30.5,50005,Tcp,14001,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon",cmd.exe
-2026-05-07T19:06:00Z,d-14-1,SRV-FILE-01,ConnectionSuccess,104.18.32.7,443,https://chat.openai.com/backend-api,10.0.30.5,50006,Tcp,14001,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon",cmd.exe
-2026-05-07T19:10:00Z,d-14-3,LAP-USER-03,ConnectionSuccess,160.79.104.10,443,https://api.anthropic.com/v1/messages,10.0.40.7,50101,Tcp,14101,chrome.exe,sha-chrome,C:\Program Files\Google\Chrome\Application\,"chrome.exe",explorer.exe
-
-.ingest inline into table DeviceNetworkEvents <|
-2026-05-07T19:30:00Z,d-14-2,WIN-14-2,ConnectionSuccess,10.0.0.10,22,,10.0.30.6,55001,Tcp,14201,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon --targets 10.0.0.0/24",cmd.exe
-2026-05-07T19:30:01Z,d-14-2,WIN-14-2,ConnectionSuccess,10.0.0.11,22,,10.0.30.6,55002,Tcp,14201,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon --targets 10.0.0.0/24",cmd.exe
-2026-05-07T19:30:02Z,d-14-2,WIN-14-2,ConnectionSuccess,10.0.0.12,80,,10.0.30.6,55003,Tcp,14201,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon --targets 10.0.0.0/24",cmd.exe
-2026-05-07T19:30:03Z,d-14-2,WIN-14-2,ConnectionSuccess,10.0.0.13,443,,10.0.30.6,55004,Tcp,14201,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon --targets 10.0.0.0/24",cmd.exe
-2026-05-07T19:30:04Z,d-14-2,WIN-14-2,ConnectionSuccess,10.0.0.14,445,,10.0.30.6,55005,Tcp,14201,python.exe,sha-py,C:\Python311\,"python.exe -m backuposint --module recon --targets 10.0.0.0/24",cmd.exe
-
-print seed_status = "OK"
+.execute database script with (ContinueOnErrors = false, ThrowOnErrors = true) <|
+    //
+    // =========================================================================
+    // Day 1 (Apr-28) — TheGentlemen + SystemBC — TCP beacon without TLS
+    // Generator: 25 connections from svchostsync.exe to 185.225.74.10:8080
+    //            spaced 5 minutes apart over ~2 hours starting -7h ago.
+    // Negative datatable rows:
+    //   Row 1 — chrome.exe to CDN at 03:00 (excluded by !in~ allowlist).
+    //   Row 2 — chrome.exe to same CDN 25 days ago (TLS baseline seed).
+    // =========================================================================
+    .set-or-append DeviceNetworkEvents <|
+        range i from 1 to 25 step 1
+        | extend
+            Timestamp = now() - 7h + (i - 1) * 5m,
+            DeviceId = "d-01-1",
+            DeviceName = "WIN-01-1",
+            DeviceOSPlatform = "Windows",
+            ActionType = "ConnectionSuccess",
+            RemoteIP = "185.225.74.10",
+            RemotePort = 8080,
+            RemoteUrl = "",
+            LocalIP = "10.0.1.5",
+            LocalPort = 55555 + i,
+            Protocol = "Tcp",
+            AccountName = "",
+            AccountDomain = "",
+            InitiatingProcessId = 9001,
+            InitiatingProcessFileName = "svchostsync.exe",
+            InitiatingProcessSHA256 = "sha-systembc",
+            InitiatingProcessFolderPath = @"C:\ProgramData\sync\",
+            InitiatingProcessCommandLine = "svchostsync.exe -daemon",
+            InitiatingProcessAccountName = "SYSTEM",
+            InitiatingProcessAccountDomain = "NT AUTHORITY",
+            InitiatingProcessParentFileName = "svchost.exe",
+            InitiatingProcessParentId = 1000
+        | project-away i
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, RemoteIP, RemotePort, RemoteUrl, LocalIP, LocalPort, Protocol, AccountName, AccountDomain, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    .set-or-append DeviceNetworkEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  RemoteIP:string, RemotePort:long,
+                  InitiatingProcessFileName:string)
+        [
+          datetime(2026-05-10T03:00:00Z), "d-01-2", "WIN-01-2",
+            "151.101.1.69", 443, "chrome.exe",
+          datetime(2026-04-15T10:00:00Z), "d-01-3", "WIN-01-3",
+            "151.101.1.69", 443, "chrome.exe"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            ActionType = "ConnectionSuccess",
+            RemoteUrl = "",
+            LocalIP = "10.0.1.6",
+            LocalPort = 40000,
+            Protocol = "Tcp",
+            AccountName = "user", AccountDomain = "VICTIM",
+            InitiatingProcessId = 7001,
+            InitiatingProcessSHA256 = "sha-chrome",
+            InitiatingProcessFolderPath = @"C:\Program Files\Google\Chrome\Application\",
+            InitiatingProcessCommandLine = "chrome.exe",
+            InitiatingProcessAccountName = "user",
+            InitiatingProcessAccountDomain = "VICTIM",
+            InitiatingProcessParentFileName = "explorer.exe",
+            InitiatingProcessParentId = 4000
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, RemoteIP, RemotePort, RemoteUrl, LocalIP, LocalPort, Protocol, AccountName, AccountDomain, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    //
+    // =========================================================================
+    // Day 2 (Apr-29) — Bitwarden Shai-Hulud — anomalous public GitHub repo
+    // Generator: 6 repo.create events for bob within 25 minutes (range/extend
+    //            anchored to now()-3h - 40m, so still recent).
+    // Datatable: positive marker push + negative private push.
+    // =========================================================================
+    .set-or-append GitHubAuditLogs <|
+        range i from 1 to 6 step 1
+        | extend
+            TimeGenerated = now() - 3h - 40m + (i - 1) * 5m,
+            Action = "repo.create",
+            Actor = "bob@victim.com",
+            Repo = strcat("bob/Shai-Hulud-CI-", i),
+            Org = "bob",
+            RepositoryVisibility = "public",
+            CreatedAt = now() - 3h - 40m + (i - 1) * 5m,
+            AdditionalFields = bag_pack(
+                "RepoName", strcat("bob/Shai-Hulud-CI-", i),
+                "actor", "bob@victim.com")
+        | project-away i
+        | project TimeGenerated, Action, Actor, Repo, Org, RepositoryVisibility, CreatedAt, AdditionalFields
+    .set-or-append GitHubAuditLogs <|
+        datatable(TimeGenerated:datetime, Action:string, Actor:string,
+                  Repo:string, Org:string, RepositoryVisibility:string,
+                  AdditionalFields:dynamic)
+        [
+          datetime(2026-05-10T03:30:00Z), "git.push", "bob@victim.com",
+            "bob/Shai-Hulud-CI-1", "bob", "public",
+            dynamic({"RepoName":"bob/Shai-Hulud-CI-1",
+                     "CommitMessage":"Shai-Hulud Third Coming",
+                     "ReadmeContent":"Shai-Hulud audit.checkmarx.cx"}),
+          datetime(2026-05-10T03:35:00Z), "git.push", "bob@victim.com",
+            "bob/internal-tools", "bob", "private",
+            dynamic({"RepoName":"bob/internal-tools",
+                     "CommitMessage":"Refactor"})
+        ]
+        | extend CreatedAt = TimeGenerated
+        | project TimeGenerated, Action, Actor, Repo, Org, RepositoryVisibility, CreatedAt, AdditionalFields
+    //
+    // =========================================================================
+    // Day 2 (May-02) — Nexcorium TBK-DVR — X-Hacked-By header
+    // =========================================================================
+    .set-or-append AzureDiagnostics <|
+        datatable(TimeGenerated:datetime, ResourceProvider:string,
+                  Category:string, properties_s:string,
+                  clientIp_s:string, host_s:string, requestUri_s:string)
+        [
+          datetime(2026-05-10T04:00:00Z), "MICROSOFT.NETWORK",
+            "ApplicationGatewayAccessLog",
+            '{"Headers":"X-Hacked-By: Nexus Team - Exploited By Erratic; Host: victim.example"}',
+            "203.0.113.99", "victim.example", "/wp-login.php"
+        ]
+        | extend ResourceType = "applicationGateways",
+                 OperationName = "ApplicationGatewayAccess",
+                 ResourceId = "/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/edge/providers/Microsoft.Network/applicationGateways/agw-prod"
+        | project TimeGenerated, ResourceProvider, ResourceType, Category, OperationName, ResourceId, properties_s, clientIp_s, host_s, requestUri_s
+    .set-or-append W3CIISLog <|
+        datatable(TimeGenerated:datetime, sComputerName:string,
+                  csUserAgent:string, cIP:string, csUriStem:string)
+        [
+          datetime(2026-05-10T04:01:00Z), "iis-edge-01",
+            "Mozilla/5.0 X-Hacked-By: Nexus Team - Exploited By Erratic",
+            "198.51.100.55", "/admin/login.aspx"
+        ]
+        | extend sSiteName = "Default", sIP = "10.0.0.50",
+                 csMethod = "GET", csUriQuery = "",
+                 sPort = 443, csUserName = "-",
+                 scStatus = 200, scSubStatus = 0, scWin32Status = 0,
+                 timeTaken = 12
+        | project TimeGenerated, sSiteName, sComputerName, sIP, csMethod, csUriStem, csUriQuery, sPort, csUserName, cIP, csUserAgent, scStatus, scSubStatus, scWin32Status, timeTaken
+    //
+    // =========================================================================
+    // Day 3 (Apr-30) — FIRESTARTER LINE VIPER — ASA reboot + WebVPN POST
+    // Seed:
+    //   Row 1 — oversized POST at 05:00, 14336 bytes (positive).
+    //   Row 2 — undersized POST at 05:30, 512 bytes (negative).
+    //   Plus  — reboot syslog at 05:15 (15min after POST 1, within 30m window).
+    // =========================================================================
+    .set-or-append AsaWebVpnAccessLogs_CL <|
+        datatable(TimeGenerated:datetime, Method_s:string, Uri_s:string,
+                  BodyBytes_d:long, AsaHostname_s:string, ClientIp_s:string,
+                  UserAgent_s:string)
+        [
+          datetime(2026-05-10T05:00:00Z), "POST", "/+CSCOE+/portal.html",
+            14336, "asa-edge-01", "203.0.113.66", "Mozilla/5.0",
+          datetime(2026-05-10T05:30:00Z), "POST", "/+CSCOE+/portal.html",
+            512, "asa-edge-01", "198.51.100.10", "Mozilla/5.0"
+        ]
+        | extend StatusCode_d = 200
+        | project TimeGenerated, Method_s, Uri_s, BodyBytes_d, AsaHostname_s, ClientIp_s, UserAgent_s, StatusCode_d
+    .set-or-append Syslog <|
+        datatable(TimeGenerated:datetime, HostName:string, SyslogMessage:string,
+                  ProcessName:string)
+        [
+          datetime(2026-05-10T05:15:00Z), "asa-edge-01",
+            "%ASA-5-199002: Reload ordered by enable_15. Reload Reason: graceful-shutdown",
+            "ASA"
+        ]
+        | extend Computer = HostName, Facility = "local6",
+                 SeverityLevel = "info", ProcessID = 1, HostIP = "10.0.0.1",
+                 SourceSystem = "Linux"
+        | project TimeGenerated, Computer, HostName, Facility, SeverityLevel, SyslogMessage, ProcessName, ProcessID, HostIP, SourceSystem
+    //
+    // =========================================================================
+    // Day 4 (May-01) — VECT 2.0 — mass process kill burst
+    // =========================================================================
+    .set-or-append DeviceProcessEvents <|
+        let killed = dynamic(["sqlservr.exe","oracle.exe","mysqld.exe",
+                              "outlook.exe","excel.exe","winword.exe",
+                              "sqlservr.exe","oracle.exe","mysqld.exe",
+                              "outlook.exe","excel.exe","winword.exe"]);
+        range i from 1 to 12 step 1
+        | extend
+            Timestamp = now() - 2h - 30m + (i - 1) * 3s,
+            DeviceId = "d-04-1",
+            DeviceName = "WIN-04-1",
+            DeviceOSPlatform = "Windows",
+            ActionType = "ProcessTerminated",
+            FileName = tostring(killed[i - 1]),
+            FolderPath = @"C:\Program Files\",
+            SHA256 = "sha-target",
+            ProcessId = 2000 + i,
+            ProcessCommandLine = "",
+            AccountName = "SYSTEM",
+            AccountDomain = "NT AUTHORITY",
+            InitiatingProcessId = 4001,
+            InitiatingProcessFileName = "svchostupdate.exe",
+            InitiatingProcessSHA256 = "sha-vect",
+            InitiatingProcessFolderPath = @"C:\Windows\Temp\",
+            InitiatingProcessCommandLine = "svchostupdate.exe -kill",
+            InitiatingProcessAccountName = "SYSTEM",
+            InitiatingProcessAccountDomain = "NT AUTHORITY",
+            InitiatingProcessParentFileName = "services.exe",
+            InitiatingProcessParentId = 700
+        | project-away i
+        | extend SHA1 = "", MD5 = "", ProcessCreationTime = datetime(null), ProcessTokenElevation = "", ProcessIntegrityLevel = "", AccountSid = ""
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, FileName, FolderPath, SHA256, SHA1, MD5, ProcessId, ProcessCommandLine, ProcessCreationTime, ProcessTokenElevation, ProcessIntegrityLevel, AccountName, AccountDomain, AccountSid, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    .set-or-append DeviceProcessEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  ActionType:string, FileName:string,
+                  InitiatingProcessFileName:string)
+        [
+          datetime(2026-05-10T06:30:00Z), "d-04-2", "WIN-04-2",
+            "ProcessTerminated", "notepad.exe", "explorer.exe"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            FolderPath = @"C:\Windows\System32\", SHA256 = "sha-notepad",
+            ProcessId = 2099, ProcessCommandLine = "",
+            AccountName = "user", AccountDomain = "VICTIM",
+            InitiatingProcessId = 3099,
+            InitiatingProcessSHA256 = "sha-explorer",
+            InitiatingProcessFolderPath = @"C:\Windows\",
+            InitiatingProcessCommandLine = "explorer.exe",
+            InitiatingProcessAccountName = "user",
+            InitiatingProcessAccountDomain = "VICTIM",
+            InitiatingProcessParentFileName = "winlogon.exe",
+            InitiatingProcessParentId = 600
+        | extend SHA1 = "", MD5 = "", ProcessCreationTime = datetime(null), ProcessTokenElevation = "", ProcessIntegrityLevel = "", AccountSid = ""
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, FileName, FolderPath, SHA256, SHA1, MD5, ProcessId, ProcessCommandLine, ProcessCreationTime, ProcessTokenElevation, ProcessIntegrityLevel, AccountName, AccountDomain, AccountSid, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    //
+    // =========================================================================
+    // Day 6 (May-03) — BAUXITE — Studio 5000 to public OT EIP/CIP
+    // =========================================================================
+    .set-or-append DeviceNetworkEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  RemoteIP:string, RemotePort:long,
+                  InitiatingProcessFileName:string, AccountName:string)
+        [
+          datetime(2026-05-10T07:00:00Z), "d-06-1", "WIN-06-1",
+            "203.0.113.7", 44818, "Studio5000.exe", "engineer",
+          datetime(2026-05-10T07:01:00Z), "d-06-2", "WIN-06-2",
+            "10.50.0.10", 44818, "Studio5000.exe", "engineer"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            ActionType = "ConnectionSuccess",
+            RemoteUrl = "", LocalIP = "10.20.0.5", LocalPort = 55001,
+            Protocol = "Tcp", AccountDomain = "PLANT",
+            InitiatingProcessId = 5001, InitiatingProcessSHA256 = "sha-st5000",
+            InitiatingProcessFolderPath = @"C:\Program Files (x86)\Rockwell Automation\",
+            InitiatingProcessCommandLine = "Studio5000.exe",
+            InitiatingProcessAccountName = "engineer",
+            InitiatingProcessAccountDomain = "PLANT",
+            InitiatingProcessParentFileName = "explorer.exe",
+            InitiatingProcessParentId = 4000
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, RemoteIP, RemotePort, RemoteUrl, LocalIP, LocalPort, Protocol, AccountName, AccountDomain, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    //
+    // =========================================================================
+    // Day 7 (May-04) — Poland Wiper — LSASS dump via Task Manager
+    // =========================================================================
+    .set-or-append DeviceProcessEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  FileName:string, ProcessCommandLine:string,
+                  InitiatingProcessFileName:string, AccountName:string)
+        [
+          datetime(2026-05-10T08:00:00Z), "d-07-1", "WIN-07-1",
+            "rundll32.exe",
+            @"rundll32.exe C:\Windows\System32\comsvcs.dll, MiniDump 600 C:\Users\admin\AppData\Local\Temp\lsass.DMP full",
+            "Taskmgr.exe", "admin"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            ActionType = "ProcessCreated",
+            FolderPath = @"C:\Windows\System32\", SHA256 = "sha-rundll",
+            ProcessId = 7001, AccountDomain = "VICTIM",
+            InitiatingProcessId = 5500,
+            InitiatingProcessSHA256 = "sha-tm",
+            InitiatingProcessFolderPath = @"C:\Windows\System32\",
+            InitiatingProcessCommandLine = "Taskmgr.exe /4",
+            InitiatingProcessAccountName = "admin",
+            InitiatingProcessAccountDomain = "VICTIM",
+            InitiatingProcessParentFileName = "explorer.exe",
+            InitiatingProcessParentId = 4000
+        | extend SHA1 = "", MD5 = "", ProcessCreationTime = datetime(null), ProcessTokenElevation = "", ProcessIntegrityLevel = "", AccountSid = ""
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, FileName, FolderPath, SHA256, SHA1, MD5, ProcessId, ProcessCommandLine, ProcessCreationTime, ProcessTokenElevation, ProcessIntegrityLevel, AccountName, AccountDomain, AccountSid, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    .set-or-append DeviceFileEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  FileName:string, FolderPath:string,
+                  InitiatingProcessFileName:string)
+        [
+          datetime(2026-05-10T08:00:30Z), "d-07-1", "WIN-07-1",
+            "lsass.DMP", @"C:\Users\admin\AppData\Local\Temp\", "Taskmgr.exe",
+          datetime(2026-05-10T08:30:00Z), "d-07-2", "WIN-07-2",
+            "output.log", @"C:\Windows\Temp\", "dwm.exe"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            ActionType = "FileCreated",
+            SHA256 = "sha-lsassdmp", SHA1 = "", MD5 = "", FileSize = 52428800,
+            InitiatingProcessId = 5500,
+            InitiatingProcessSHA256 = "sha-tm",
+            InitiatingProcessFolderPath = @"C:\Windows\System32\",
+            InitiatingProcessAccountName = "admin",
+            InitiatingProcessAccountDomain = "VICTIM",
+            InitiatingProcessCommandLine = "Taskmgr.exe /4",
+            InitiatingProcessParentFileName = "explorer.exe",
+            InitiatingProcessParentId = 4000,
+            RequestProtocol = "",
+            TargetFilename = strcat(FolderPath, FileName)
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, FileName, FolderPath, SHA256, SHA1, MD5, FileSize, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessCommandLine, InitiatingProcessParentFileName, InitiatingProcessParentId, RequestProtocol, TargetFilename
+    //
+    // =========================================================================
+    // Day 7 (May-04) — Poland Wiper — Rubeus S4U TGS burst
+    // =========================================================================
+    .set-or-append DeviceProcessEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  FileName:string, ProcessCommandLine:string, AccountName:string)
+        [
+          datetime(2026-05-10T09:00:00Z), "d-07-3", "WIN-07-3",
+            "rubeus.exe",
+            "rubeus.exe s4u /user:svc-erp /service:cifs /msdsspn:cifs/srv01 /ticket:doIFLDC...",
+            "attacker"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            ActionType = "ProcessCreated",
+            FolderPath = @"C:\Tools\", SHA256 = "sha-rubeus",
+            ProcessId = 8001, AccountDomain = "VICTIM",
+            InitiatingProcessId = 8000,
+            InitiatingProcessFileName = "powershell.exe",
+            InitiatingProcessSHA256 = "sha-ps",
+            InitiatingProcessFolderPath = @"C:\Windows\System32\WindowsPowerShell\v1.0\",
+            InitiatingProcessCommandLine = "powershell.exe -nop -w hidden",
+            InitiatingProcessAccountName = "attacker",
+            InitiatingProcessAccountDomain = "VICTIM",
+            InitiatingProcessParentFileName = "cmd.exe",
+            InitiatingProcessParentId = 7900
+        | extend SHA1 = "", MD5 = "", ProcessCreationTime = datetime(null), ProcessTokenElevation = "", ProcessIntegrityLevel = "", AccountSid = ""
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, FileName, FolderPath, SHA256, SHA1, MD5, ProcessId, ProcessCommandLine, ProcessCreationTime, ProcessTokenElevation, ProcessIntegrityLevel, AccountName, AccountDomain, AccountSid, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    .set-or-append SecurityEvent <|
+        let services = dynamic(["svc-erp","svc-db","svc-web","svc-mail",
+                                "svc-print","svc-gpo","svc-share","svc-app",
+                                "svc-bi","svc-ws","svc-ext","svc-int"]);
+        range i from 1 to 60 step 1
+        | extend
+            TimeGenerated = now() - 1h - 49m + i * 4s,
+            Computer = "WIN-07-3",
+            EventID = 4769,
+            EventSourceName = "Microsoft-Windows-Security-Auditing",
+            Channel = "Security",
+            Account = "attacker",
+            AccountDomain = "VICTIM",
+            TargetUserName = strcat(tostring(services[i % 12]), "@victim.local"),
+            TargetDomainName = "VICTIM",
+            SubjectUserName = "attacker",
+            SubjectDomainName = "VICTIM",
+            LogonType = 3,
+            LogonProcessName = "Kerberos",
+            AuthenticationPackageName = "Kerberos",
+            Process = "rubeus.exe",
+            CommandLine = "rubeus.exe s4u",
+            ParentProcessName = "powershell.exe",
+            NewProcessName = "rubeus.exe",
+            IpAddress = "10.0.0.99",
+            IpPort = 49152 + i,
+            TicketEncryptionType = "0x17",
+            TicketOptions = "0x40810000",
+            ServiceName = tostring(services[i % 12]),
+            EventData = bag_pack("reason","S4U2Self","seq",i)
+        | project-away i
+        | project TimeGenerated, Computer, EventID, EventSourceName, Channel, Account, AccountDomain, TargetUserName, TargetDomainName, SubjectUserName, SubjectDomainName, LogonType, LogonProcessName, AuthenticationPackageName, Process, CommandLine, ParentProcessName, NewProcessName, IpAddress, IpPort, TicketEncryptionType, TicketOptions, ServiceName, EventData
+    //
+    // =========================================================================
+    // Day 8 (May-05) — Akira × SonicWall — VPN logon + Impacket SMB recon
+    // =========================================================================
+    .set-or-append CommonSecurityLog <|
+        datatable(TimeGenerated:datetime, DeviceVendor:string,
+                  DeviceProduct:string, DeviceVersion:string,
+                  DeviceEventClassID:string, SourceUserName:string,
+                  SourceIP:string)
+        [
+          datetime(2026-05-10T10:00:00Z), "SonicWall", "NSv-470", "7.0.1",
+            "AUTH-1011", "jdoe", "185.66.77.88"
+        ]
+        | extend Activity = "SSL VPN user logged in",
+                 Severity = "Informational",
+                 SourcePort = 55555, DestinationIP = "10.0.0.5",
+                 DestinationPort = 443, Protocol = "TCP",
+                 ApplicationProtocol = "HTTPS",
+                 RequestURL = "", Message = "SSL VPN user logged in"
+        | project TimeGenerated, DeviceVendor, DeviceProduct, DeviceVersion, DeviceEventClassID, Activity, Severity, SourceUserName, SourceIP, SourcePort, DestinationIP, DestinationPort, Protocol, ApplicationProtocol, RequestURL, Message
+    .set-or-append DeviceLogonEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  AccountName:string, LogonType:string, RemoteIP:string)
+        [
+          datetime(2026-05-10T10:00:00Z), "d-08-1", "WIN-08-1",
+            "jdoe", "Network", "185.66.77.88"
+        ]
+        | extend ActionType = "LogonSuccess",
+                 AccountDomain = "corp", AccountSid = "S-1-5-21-1001",
+                 Protocol = "Tcp", FailureReason = "",
+                 RemoteIPType = "Public", RemoteDeviceName = "vpn-client",
+                 InitiatingProcessFileName = "vpnclient.exe",
+                 InitiatingProcessId = 8001,
+                 InitiatingProcessCommandLine = "vpnclient.exe"
+        | project Timestamp, DeviceId, DeviceName, ActionType, AccountName, AccountDomain, AccountSid, LogonType, Protocol, FailureReason, RemoteIP, RemoteIPType, RemoteDeviceName, InitiatingProcessFileName, InitiatingProcessId, InitiatingProcessCommandLine
+    //
+    // =========================================================================
+    // Day 8 — Akira SM

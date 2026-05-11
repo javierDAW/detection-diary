@@ -1,0 +1,26 @@
+# UAT-8302 — C2 domain and bulletproof subnet anchors (Cisco Talos, May 2026)
+# Author: Jarmi
+# Date:   2026-05-11
+# Ref:    https://blog.talosintelligence.com/uat-8302/
+# Notes:  Sids 8110001-8110005. $HOME_NET assumed to cover monitored enterprise space.
+
+alert tls $HOME_NET any -> any 443 (msg:"UAT-8302 NetDraft or VSHELL C2 SNI drivelivelime.com"; \
+    flow:established,to_server; tls.sni; content:"drivelivelime.com"; nocase; \
+    classtype:trojan-activity; sid:8110001; rev:1;)
+
+alert tls $HOME_NET any -> any 443 (msg:"UAT-8302 C2 SNI msiidentity.com"; \
+    flow:established,to_server; tls.sni; content:"msiidentity.com"; nocase; \
+    classtype:trojan-activity; sid:8110002; rev:1;)
+
+alert http $HOME_NET any -> any any (msg:"UAT-8302 C2 Host trafficmanagerupdate.com index.php"; \
+    flow:established,to_server; http.host; content:"trafficmanagerupdate.com"; nocase; \
+    http.uri; content:"/index.php"; \
+    classtype:trojan-activity; sid:8110003; rev:1;)
+
+alert tls $HOME_NET any -> any 443 (msg:"UAT-8302 Cloudflare Workers C2 update-kaspersky.workers.dev"; \
+    flow:established,to_server; tls.sni; content:"update-kaspersky.workers.dev"; nocase; \
+    classtype:trojan-activity; sid:8110004; rev:1;)
+
+alert ip $HOME_NET any -> [85.209.156.0/24,45.135.135.100/32,45.140.168.62/32,88.151.195.133/32,156.238.224.82/32,185.238.189.41/32,103.27.108.55/32,38.54.32.244/32] any \
+    (msg:"UAT-8302 bulletproof subnet egress"; \
+    classtype:trojan-activity; sid:8110005; rev:1;)

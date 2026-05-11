@@ -1,175 +1,210 @@
 // =============================================================================
 // adx_bootstrap.kql — Azure Data Explorer free-cluster schema bootstrap
 // Author:    Jarmi
-// Date:      2026-05-08
-// Purpose:   Provision the Defender XDR + Sentinel tables that the
-//            detection-diary KQL queries reference, so the operator can
-//            replay every rule in a personal ADX free cluster without an
-//            Azure subscription. Same Kusto engine as Sentinel / Defender XDR.
+// Date:      2026-05-10
+// Purpose:   Provision the Defender XDR + Sentinel + custom tables that every
+//            KQL rule in detection-diary/days/*/kql/ references, so the
+//            operator can replay every rule in a personal ADX free cluster
+//            without an Azure subscription. Same Kusto engine as Sentinel /
+//            Defender XDR.
+//
+// Design:    The schemas below are a *practical superset* of every column
+//            referenced by any rule in the repo as of the date above. They
+//            are aligned to the column names the rules actually use (which
+//            mirror Microsoft Defender XDR Advanced Hunting / Sentinel
+//            naming). When a rule and the original Microsoft schema disagree
+//            on naming, this bootstrap prefers the rule's name so the rule
+//            runs unchanged against this cluster.
+//
 // Usage:
 //   1. Create the free cluster at https://dataexplorer.azure.com
-//   2. Open a Kusto query window pointing at your free database (default name 'mykustodb').
-//   3. Paste the entire content of this file and execute.
-//   4. Then run tools/adx_seed.kql to populate synthetic rows.
-//   5. Then run tools/adx_tests.kql to validate every rule in the repo.
-// Schema notes:
-//   - DeviceInfo mirrors the Microsoft Defender for Endpoint Advanced Hunting
-//     table. It is the same shape that ships into Sentinel when the M365D
-//     connector streams device tables. Rules that join DeviceInfo therefore run
-//     unmodified against ADX, Sentinel and Defender XDR; the only difference is
-//     where the synthetic rows come from. Day 14 (Mexico Water AI-OT) needs
-//     DeviceInfo to classify hosts as Server vs Workstation when filtering LLM
-//     API egress.
-//   - All other schemas are aligned with the columns that the diary's KQL
-//     files actually reference. They are a minimal practical subset of the
-//     real Defender XDR / Sentinel schemas; extend if you add queries that
-//     reference more fields.
-//   - All tables are reset on every run via .drop, so re-running is safe.
+//   2. Open a Kusto query window pointing at your free database
+//      (default name 'mykustodb').
+//   3. Paste the entire content of this file.
+//   4. Place the cursor anywhere inside the ".execute database script <| ..."
+//      block and press Shift+Enter (or click Run). The whole script runs
+//      as ONE management operation.
+//   5. Then place the cursor on the verification query at the bottom and
+//      press Shift+Enter to confirm the tables exist.
+//   6. Continue with tools/adx_seed.kql to populate synthetic rows, then
+//      tools/adx_tests.kql to validate every rule.
+//
+// Why ".execute database script"?
+//   The ADX Web UI runs ONE batch per Shift+Enter. Multiple bare control
+//   commands separated by single newlines are parsed as one statement and
+//   fail with "A recognition error occurred". The .execute database script
+//   wrapper is the official way to run an atomic multi-command script.
 // =============================================================================
 
-// -----------------------------------------------------------------------------
-// Reset (idempotent)
-// -----------------------------------------------------------------------------
-.drop table DeviceFileEvents      ifexists
-.drop table DeviceProcessEvents   ifexists
-.drop table DeviceNetworkEvents   ifexists
-.drop table DeviceLogonEvents     ifexists
-.drop table DeviceImageLoadEvents ifexists
-.drop table DeviceRegistryEvents  ifexists
-.drop table SecurityEvent         ifexists
-.drop table Syslog                ifexists
-.drop table AuditLogs             ifexists
-.drop table SigninLogs            ifexists
-.drop table CloudAppEvents        ifexists
-.drop table OfficeActivity        ifexists
-.drop table EmailUrlInfo          ifexists
-.drop table EmailAttachmentInfo   ifexists
-.drop table GitHubAuditLogs       ifexists
-.drop table DeviceInfo            ifexists
-
-// -----------------------------------------------------------------------------
-// Defender XDR — Device-side hunting tables
-// -----------------------------------------------------------------------------
-.create table DeviceFileEvents (
-    Timestamp:datetime, DeviceId:string, DeviceName:string,
-    ActionType:string, FileName:string, FolderPath:string,
-    SHA256:string, FileSize:long,
-    InitiatingProcessId:int, InitiatingProcessFileName:string,
-    InitiatingProcessSHA256:string, InitiatingProcessFolderPath:string,
-    InitiatingProcessAccountName:string,
-    InitiatingProcessCommandLine:string,
-    InitiatingProcessParentFileName:string,
-    TargetFilename:string)
-
-.create table DeviceProcessEvents (
-    Timestamp:datetime, DeviceId:string, DeviceName:string,
-    FileName:string, FolderPath:string, SHA256:string,
-    ProcessCommandLine:string, ProcessId:int, AccountName:string,
-    InitiatingProcessFileName:string, InitiatingProcessId:int,
-    InitiatingProcessCommandLine:string, InitiatingProcessSHA256:string,
-    InitiatingProcessFolderPath:string,
-    InitiatingProcessAccountName:string,
-    InitiatingProcessParentFileName:string)
-
-.create table DeviceNetworkEvents (
-    Timestamp:datetime, DeviceId:string, DeviceName:string,
-    ActionType:string, RemoteIP:string, RemotePort:int,
-    RemoteUrl:string, LocalIP:string, LocalPort:int,
-    Protocol:string,
-    InitiatingProcessId:int, InitiatingProcessFileName:string,
-    InitiatingProcessSHA256:string, InitiatingProcessFolderPath:string,
-    InitiatingProcessCommandLine:string,
-    InitiatingProcessParentFileName:string)
-
-.create table DeviceLogonEvents (
-    Timestamp:datetime, DeviceId:string, DeviceName:string,
-    ActionType:string, AccountName:string, AccountDomain:string,
-    LogonType:string, RemoteIP:string, RemoteDeviceName:string,
-    InitiatingProcessFileName:string, InitiatingProcessId:int)
-
-.create table DeviceImageLoadEvents (
-    Timestamp:datetime, DeviceId:string, DeviceName:string,
-    FileName:string, FolderPath:string, SHA256:string,
-    InitiatingProcessFileName:string, InitiatingProcessId:int,
-    InitiatingProcessFolderPath:string)
-
-.create table DeviceRegistryEvents (
-    Timestamp:datetime, DeviceId:string, DeviceName:string,
-    ActionType:string, RegistryKey:string, RegistryValueName:string,
-    RegistryValueData:string,
-    InitiatingProcessFileName:string, InitiatingProcessId:int)
-
-.create table DeviceInfo (
-    Timestamp:datetime, DeviceId:string, DeviceName:string,
-    DeviceCategory:string, DeviceType:string, DeviceSubtype:string,
-    OSPlatform:string, OSVersion:string, OSBuild:string,
-    PublicIP:string, ClientVersion:string,
-    IsAzureADJoined:bool, IsInternetFacing:bool,
-    LoggedOnUsers:dynamic, RegistryDeviceTag:string,
-    MachineGroup:string, ReportId:long)
-
-// -----------------------------------------------------------------------------
-// Sentinel — Windows / Linux / Azure / Office tables
-// -----------------------------------------------------------------------------
-.create table SecurityEvent (
-    TimeGenerated:datetime, Computer:string, EventID:int,
-    Account:string, AccountDomain:string, TargetUserName:string,
-    SubjectUserName:string, LogonType:int,
-    Process:string, CommandLine:string, ParentProcessName:string,
-    NewProcessName:string, IpAddress:string, EventData:dynamic)
-
-.create table Syslog (
-    TimeGenerated:datetime, Computer:string, HostName:string,
-    Facility:string, SeverityLevel:string,
-    SyslogMessage:string, ProcessName:string, ProcessID:int,
-    HostIP:string)
-
-.create table AuditLogs (
-    TimeGenerated:datetime, OperationName:string, Category:string,
-    Result:string, ResultDescription:string,
-    Identity:string, ActivityDisplayName:string,
-    InitiatedBy:dynamic, TargetResources:dynamic,
-    AdditionalDetails:dynamic, CorrelationId:string)
-
-.create table SigninLogs (
-    TimeGenerated:datetime, UserPrincipalName:string,
-    UserDisplayName:string, AppDisplayName:string,
-    IPAddress:string, Location:string, ResultType:string,
-    ResultDescription:string,
-    AuthenticationRequirement:string,
-    ConditionalAccessStatus:string, MfaDetail:dynamic,
-    DeviceDetail:dynamic, ClientAppUsed:string,
-    UserAgent:string, CorrelationId:string)
-
-.create table CloudAppEvents (
-    Timestamp:datetime, ActionType:string, Application:string,
-    AccountObjectId:string, AccountDisplayName:string,
-    IPAddress:string, RawEventData:dynamic, ObjectName:string,
-    ObjectType:string)
-
-.create table OfficeActivity (
-    TimeGenerated:datetime, Operation:string, RecordType:string,
-    UserId:string, UserKey:string, ClientIP:string,
-    Parameters:dynamic, OfficeWorkload:string,
-    OfficeObjectId:string, ResultStatus:string)
-
-.create table EmailUrlInfo (
-    Timestamp:datetime, NetworkMessageId:string,
-    Url:string, UrlDomain:string, UrlLocation:string)
-
-.create table EmailAttachmentInfo (
-    Timestamp:datetime, NetworkMessageId:string,
-    FileName:string, FileType:string, SHA256:string, FileSize:long)
-
-// -----------------------------------------------------------------------------
-// GitHub audit (custom — Sentinel solution; we model the columns our queries use)
-// -----------------------------------------------------------------------------
-.create table GitHubAuditLogs (
-    TimeGenerated:datetime, action_s:string, actor_s:string,
-    repo_s:string, org_s:string, repository_visibility_s:string,
-    created_at_t:datetime, RawEventData:dynamic)
-
-// -----------------------------------------------------------------------------
-// Done.
-// -----------------------------------------------------------------------------
-print bootstrap_status = "schema OK", tables_created = 16
+.execute database script with (ContinueOnErrors = false, ThrowOnErrors = true) <|
+    //
+    // ---- Reset (idempotent) -------------------------------------------------
+    //
+    .drop table DeviceFileEvents             ifexists
+    .drop table DeviceProcessEvents          ifexists
+    .drop table DeviceNetworkEvents          ifexists
+    .drop table DeviceLogonEvents            ifexists
+    .drop table DeviceImageLoadEvents        ifexists
+    .drop table DeviceRegistryEvents         ifexists
+    .drop table DeviceInfo                   ifexists
+    .drop table DeviceEvents                 ifexists
+    .drop table DeviceTvmSoftwareInventory   ifexists
+    .drop table SecurityEvent                ifexists
+    .drop table Syslog                       ifexists
+    .drop table AuditLogs                    ifexists
+    .drop table SigninLogs                   ifexists
+    .drop table CloudAppEvents               ifexists
+    .drop table OfficeActivity               ifexists
+    .drop table EmailUrlInfo                 ifexists
+    .drop table EmailAttachmentInfo          ifexists
+    .drop table UrlClickEvents               ifexists
+    .drop table GitHubAuditLogs              ifexists
+    .drop table AzureDiagnostics             ifexists
+    .drop table W3CIISLog                    ifexists
+    .drop table CommonSecurityLog            ifexists
+    .drop table AsaWebVpnAccessLogs_CL       ifexists
+    //
+    // =========================================================================
+    // Defender XDR — Device-side hunting tables
+    // =========================================================================
+    //
+    // DeviceFileEvents — used by Day 4 (LSASS dump), Day 6 (BAUXITE),
+    // Day 7 (Poland Wiper), Day 10 (QLNX, four rules), Day 11 (EVM-DeFi cred
+    // burst), Day 12 (CloudZ phone DB).
+    //
+    .create table DeviceFileEvents (
+        Timestamp:datetime,
+        DeviceId:string,
+        DeviceName:string,
+        DeviceOSPlatform:string,
+        ActionType:string,
+        FileName:string,
+        FolderPath:string,
+        SHA256:string,
+        SHA1:string,
+        MD5:string,
+        FileSize:long,
+        InitiatingProcessId:long,
+        InitiatingProcessFileName:string,
+        InitiatingProcessSHA256:string,
+        InitiatingProcessFolderPath:string,
+        InitiatingProcessAccountName:string,
+        InitiatingProcessAccountDomain:string,
+        InitiatingProcessCommandLine:string,
+        InitiatingProcessParentFileName:string,
+        InitiatingProcessParentId:long,
+        RequestProtocol:string,
+        TargetFilename:string)
+    //
+    // DeviceProcessEvents — used by Day 1 (TheGentlemen baseline), Day 4 (VECT),
+    // Day 7 (Poland Wiper), Day 8 (Akira recon), Day 11 (EVM-DeFi dev tooling).
+    //
+    .create table DeviceProcessEvents (
+        Timestamp:datetime,
+        DeviceId:string,
+        DeviceName:string,
+        DeviceOSPlatform:string,
+        ActionType:string,
+        FileName:string,
+        FolderPath:string,
+        SHA256:string,
+        SHA1:string,
+        MD5:string,
+        ProcessId:long,
+        ProcessCommandLine:string,
+        ProcessCreationTime:datetime,
+        ProcessTokenElevation:string,
+        ProcessIntegrityLevel:string,
+        AccountName:string,
+        AccountDomain:string,
+        AccountSid:string,
+        InitiatingProcessId:long,
+        InitiatingProcessFileName:string,
+        InitiatingProcessSHA256:string,
+        InitiatingProcessFolderPath:string,
+        InitiatingProcessCommandLine:string,
+        InitiatingProcessAccountName:string,
+        InitiatingProcessAccountDomain:string,
+        InitiatingProcessParentFileName:string,
+        InitiatingProcessParentId:long)
+    //
+    // DeviceNetworkEvents — used by Days 1, 6, 8, 10, 11, 12, 14.
+    //
+    .create table DeviceNetworkEvents (
+        Timestamp:datetime,
+        DeviceId:string,
+        DeviceName:string,
+        DeviceOSPlatform:string,
+        ActionType:string,
+        RemoteIP:string,
+        RemotePort:long,
+        RemoteUrl:string,
+        LocalIP:string,
+        LocalPort:long,
+        Protocol:string,
+        AccountName:string,
+        AccountDomain:string,
+        InitiatingProcessId:long,
+        InitiatingProcessFileName:string,
+        InitiatingProcessSHA256:string,
+        InitiatingProcessFolderPath:string,
+        InitiatingProcessCommandLine:string,
+        InitiatingProcessAccountName:string,
+        InitiatingProcessAccountDomain:string,
+        InitiatingProcessParentFileName:string,
+        InitiatingProcessParentId:long)
+    //
+    // DeviceLogonEvents — used by Day 8 (Akira VPN logon).
+    //
+    .create table DeviceLogonEvents (
+        Timestamp:datetime,
+        DeviceId:string,
+        DeviceName:string,
+        ActionType:string,
+        AccountName:string,
+        AccountDomain:string,
+        AccountSid:string,
+        LogonType:string,
+        Protocol:string,
+        FailureReason:string,
+        RemoteIP:string,
+        RemoteIPType:string,
+        RemoteDeviceName:string,
+        InitiatingProcessFileName:string,
+        InitiatingProcessId:long,
+        InitiatingProcessCommandLine:string)
+    //
+    // DeviceImageLoadEvents — kept for future rules.
+    //
+    .create table DeviceImageLoadEvents (
+        Timestamp:datetime,
+        DeviceId:string,
+        DeviceName:string,
+        ActionType:string,
+        FileName:string,
+        FolderPath:string,
+        SHA256:string,
+        InitiatingProcessFileName:string,
+        InitiatingProcessId:long,
+        InitiatingProcessFolderPath:string)
+    //
+    // DeviceRegistryEvents — kept for future rules.
+    //
+    .create table DeviceRegistryEvents (
+        Timestamp:datetime,
+        DeviceId:string,
+        DeviceName:string,
+        ActionType:string,
+        RegistryKey:string,
+        RegistryValueName:string,
+        RegistryValueData:string,
+        InitiatingProcessFileName:string,
+        InitiatingProcessId:long,
+        InitiatingProcessAccountName:string)
+    //
+    // DeviceInfo — used by Day 14 (Mexico Water LLM API egress) to classify
+    // hosts as Server vs Workstation.
+    //
+    .create table DeviceInfo (
+        Timestamp:datetime,
+        DeviceId:string,
