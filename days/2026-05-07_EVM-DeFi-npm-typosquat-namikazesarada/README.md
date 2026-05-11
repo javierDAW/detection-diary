@@ -94,7 +94,6 @@ Attribution: **low confidence**. No public link to known clusters (TeamPCP / DPR
 | [yara/evmdefi_npm_typosquat_telemetry.yar](./yara/evmdefi_npm_typosquat_telemetry.yar) | YARA | `telemetry.js` anchors (env-var gate strings + AES-256-GCM + IPv4 + TLS reject) |
 | [kql/defender_credential_burst_dev_host.kql](./kql/defender_credential_burst_dev_host.kql) | KQL — Defender XDR | Sensitive file-read burst from `node` on host with dev tooling |
 | [kql/sentinel_node_outbound_first_seen_ipv4.kql](./kql/sentinel_node_outbound_first_seen_ipv4.kql) | KQL — Sentinel | First-seen IPv4 outbound from `node` (ASN baseline) |
-| [spl/npm_install_then_credential_read_burst.spl](./spl/npm_install_then_credential_read_burst.spl) | SPL — Splunk | Correlation: `npm install` of IOC packages + credential read burst on same host |
 | [suricata/tls_no_sni_ipv4_literal.rules](./suricata/tls_no_sni_ipv4_literal.rules) | Suricata 7.x | TLS handshake without SNI to literal IPv4 from dev/CI VLAN |
 | [hunts/peak_h1_h2.md](./hunts/peak_h1_h2.md) | Hunt | PEAK H1 (Builder bait) and H2 (IP-only egress from dev tooling) |
 

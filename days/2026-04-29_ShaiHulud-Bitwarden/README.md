@@ -69,7 +69,6 @@ sectors:
 |---|---|
 | [`sigma/npm_lifecycle_network_egress.yml`](sigma/npm_lifecycle_network_egress.yml) | npm/Bun lifecycle network egress + shell profile mod |
 | [`kql/github_repo_create_shai_hulud.kql`](kql/github_repo_create_shai_hulud.kql) | Sentinel — anomalous repo creation with marker readme |
-| [`spl/osquery_node_bun_egress.spl`](spl/osquery_node_bun_egress.spl) | Splunk — osquery process tree node/bun → curl/git/wget |
 | [`yara/ShaiHulud_BunLoader_Heuristic.yar`](yara/ShaiHulud_BunLoader_Heuristic.yar) | Bun-loader + Shai-Hulud marker heuristic |
 | [`iocs.csv`](iocs.csv) | IOC table |
 

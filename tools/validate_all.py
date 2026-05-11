@@ -8,7 +8,6 @@ Validates every file type that lives in the repo:
     YARA        (days/**/yara/*.yar)          — block + section parser
     Suricata    (days/**/suricata/*.rules)    — line-level regex parser
     KQL         (days/**/kql/*.kql)           — heuristic balance + keywords
-    SPL         (days/**/spl/*.spl)           — heuristic balance + commands
     CSV         (days/**/iocs.csv)            — header schema enforcement
     YAML        (.github/workflows/*.yml etc) — PyYAML strict load
     Markdown    (**/*.md)                     — link sanity (relative path exists)
@@ -316,53 +315,6 @@ def validate_kql(path: Path):
     return errors, warnings
 
 # ---------------------------------------------------------------------------
-# SPL heuristic validator
-# ---------------------------------------------------------------------------
-SPL_COMMANDS = {
-    "search","stats","eval","where","table","timechart","chart","top","rare","head","tail",
-    "sort","fields","rename","mvexpand","spath","rex","extract","join","append","appendcols",
-    "lookup","tstats","metasearch","datamodel","summarize","streamstats","makeresults","fillnull",
-    "untable","xyseries","transaction","cluster","kmeans","dedup","sendalert","outputlookup"
-}
-
-def validate_spl(path: Path):
-    errors, warnings = [], []
-    text = path.read_text(encoding="utf-8", errors="replace")
-    if "\x00" in text:
-        errors.append("file contains NULL byte(s)")
-    # Strip ;-style line comments
-    code = re.sub(r";[^\n]*", "", text)
-    if not code.strip():
-        errors.append("file appears to be empty (or only comments)")
-        return errors, warnings
-    # Header presence
-    head = "\n".join(text.splitlines()[:15])
-    if not re.search(r";\s*Title\s*:", head, re.IGNORECASE):
-        warnings.append("missing '; Title:' header comment")
-    # Bracket balance
-    for o, c in [("(",")"), ("[","]")]:
-        if not _balanced(code, o, c):
-            errors.append(f"unbalanced '{o}{c}' brackets")
-    # Should reference at least one index= or sourcetype= or `macro`
-    if not re.search(r"\b(index|source|sourcetype|search\s)\s*=", code, re.IGNORECASE) \
-       and not re.search(r"`[A-Za-z0-9_]+`", code):
-        warnings.append("no 'index=', 'sourcetype=' or `macro` reference found")
-    # Should have at least one piped command
-    pipes = re.split(r"\|", code)
-    found_cmd = False
-    for chunk in pipes[1:]:
-        first = re.match(r"\s*([a-zA-Z_]+)", chunk)
-        if first and first.group(1).lower() in SPL_COMMANDS:
-            found_cmd = True; break
-    if not found_cmd and "|" in code:
-        warnings.append("no recognized SPL command after '|' — query may be unusual")
-    # Trailing pipe
-    last_nonblank = next((l for l in reversed(code.strip().splitlines()) if l.strip()), "")
-    if last_nonblank.rstrip().endswith("|"):
-        errors.append("query ends with a trailing pipe '|' — likely truncated")
-    return errors, warnings
-
-# ---------------------------------------------------------------------------
 # CSV (iocs.csv) validator
 # ---------------------------------------------------------------------------
 IOCS_HEADER = ["type","value","context","confidence","source"]
@@ -440,7 +392,6 @@ def classify(path: Path):
     if "/yara/" in p and path.suffix in (".yar",".yara"):  return "yara"
     if "/suricata/" in p and path.suffix == ".rules":      return "suricata"
     if "/kql/" in p and path.suffix == ".kql":             return "kql"
-    if "/spl/" in p and path.suffix == ".spl":             return "spl"
     if path.name.lower() == "iocs.csv":                    return "csv"
     if path.suffix in (".yml",".yaml"):                    return "yaml"
     if path.suffix == ".sh":                               return "bash"
@@ -452,7 +403,6 @@ VALIDATORS = {
     "yara": validate_yara,
     "suricata": validate_suricata,
     "kql": validate_kql,
-    "spl": validate_spl,
     "csv": validate_csv,
     "yaml": validate_yaml,
     "bash": validate_bash,
@@ -467,7 +417,7 @@ def collect_files(args):
         return
     for pattern in (
         "days/**/*.yml","days/**/*.yaml","days/**/*.yar","days/**/*.yara",
-        "days/**/*.rules","days/**/*.kql","days/**/*.spl","days/**/iocs.csv",
+        "days/**/*.rules","days/**/*.kql","days/**/iocs.csv",
         ".github/workflows/*.yml",".github/workflows/*.yaml",
         "tools/*.sh",
         "**/*.md",
@@ -515,3 +465,4 @@ def main(argv):
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv))
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                
