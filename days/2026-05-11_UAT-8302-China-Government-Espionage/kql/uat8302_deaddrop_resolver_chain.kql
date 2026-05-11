@@ -1,0 +1,26 @@
+// Title:        UAT-8302 CloudSorcerer v3 — GitHub or GameSpot dead-drop resolver followed by derived destination
+// Id:           c1bbb879-5b5c-4031-94e9-0e47a7103fd8
+// MITRE:        T1102.002, T1568.002, T1071.001
+// Reference:    https://blog.talosintelligence.com/uat-8302/
+// Author:       Jarmi
+// Date:         2026-05-11
+// Tested on:    Defender XDR — DeviceNetworkEvents
+// FP notes:     Developers pulling from raw.githubusercontent.com followed by package registries; tune by excluding well-known package mirrors.
+
+let deaddrop =
+  DeviceNetworkEvents
+  | where Timestamp > ago(24h)
+  | where RemoteUrl has_any ("raw.githubusercontent.com","github.com","gamespot.com")
+  | project DDTime=Timestamp, DeviceId, DeviceName, InitiatingProcessId, InitiatingProcessFileName, DD_Url=RemoteUrl;
+let followup =
+  DeviceNetworkEvents
+  | where Timestamp > ago(24h)
+  | where RemoteIPType == "Public"
+  | where RemoteUrl !has "github" and RemoteUrl !has "gamespot"
+  | project FUTime=Timestamp, DeviceId, InitiatingProcessId, FU_RemoteUrl=RemoteUrl, FU_RemoteIP=RemoteIP, FU_RemotePort=RemotePort;
+deaddrop
+| join kind=inner followup on DeviceId, InitiatingProcessId
+| where FUTime between (DDTime .. (DDTime + 5m))
+| summarize first_seen=min(FUTime), derived=make_set(FU_RemoteIP, 50)
+            by DeviceName, InitiatingProcessFileName, DD_Url
+| where array_length(derived) >= 1

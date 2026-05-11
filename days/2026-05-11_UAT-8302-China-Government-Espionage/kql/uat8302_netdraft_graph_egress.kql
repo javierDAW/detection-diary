@@ -1,0 +1,29 @@
+// Title:        UAT-8302 NetDraft — Graph or OneDrive egress from non-browser, non-Office process
+// Id:           536960d7-3e38-4205-b7f7-58253509dfb1
+// MITRE:        T1071.001, T1102.002, T1567.002
+// Reference:    https://blog.talosintelligence.com/uat-8302/
+// Author:       Jarmi
+// Date:         2026-05-11
+// Tested on:    Sentinel / Defender XDR — DeviceNetworkEvents + DeviceProcessEvents
+// FP notes:     Office365 desktop apps, Edge/Chrome/Firefox, OneDrive sync, M365 PowerShell modules with legitimate Connect-MgGraph context.
+
+let known_browsers = dynamic([
+  "msedge.exe","chrome.exe","firefox.exe","iexplore.exe",
+  "onedrive.exe","outlook.exe","winword.exe","excel.exe","powerpnt.exe",
+  "teams.exe","ms-teams.exe","onenote.exe"
+]);
+DeviceNetworkEvents
+| where Timestamp > ago(24h)
+| where RemoteUrl has_any ("graph.microsoft.com","login.microsoftonline.com")
+   or RemoteUrl has "1drv.ms"
+| extend Img = tolower(tostring(InitiatingProcessFileName))
+| where Img !in (known_browsers)
+| where not(Img endswith "powershell.exe" and InitiatingProcessCommandLine has_any ("Connect-MgGraph","Microsoft.Graph"))
+| where Img endswith "yandex.exe"
+   or Img endswith "vmtools.exe"
+   or Img endswith "communicator.exe"
+   or Img has "appunion"
+   or InitiatingProcessFolderPath has "\\ProgramData\\Microsoft\\Microsoft\\"
+| project Timestamp, DeviceName, AccountName, Img,
+          InitiatingProcessFolderPath, InitiatingProcessCommandLine,
+          RemoteUrl, RemoteIP, RemotePort

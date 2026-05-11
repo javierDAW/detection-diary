@@ -17,19 +17,25 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [ArcaneDoor](./arcanedoor/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
 | [BreachForums](./breachforums/) | 1 |
+| [CL-STA-0049](./cl-sta-0049/) | 1 |
 | [CloudZ](./cloudz/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
 | [Dadsec](./dadsec/) | 1 |
+| [Earth Estries](./earth-estries/) | 1 |
+| [Erudite Mogwai](./erudite-mogwai/) | 1 |
 | [G0034](./g0034/) | 1 |
 | [G1027](./g1027/) | 1 |
 | [Gold Sahara](./gold-sahara/) | 1 |
 | [Howling Scorpius](./howling-scorpius/) | 1 |
 | [Hydro Kitten](./hydro-kitten/) | 1 |
+| [Jewelbug](./jewelbug/) | 1 |
+| [LongNosedGoblin](./longnosedgoblin/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
 | [Pheno](./pheno/) | 1 |
 | [Punk Spider](./punk-spider/) | 1 |
 | [QLNX](./qlnx/) | 1 |
 | [Quasar Linux](./quasar-linux/) | 1 |
+| [REF7707](./ref7707/) | 1 |
 | [Sandworm](./sandworm/) | 1 |
 | [Seashell Blizzard](./seashell-blizzard/) | 1 |
 | [Shahid Kaveh Group](./shahid-kaveh-group/) | 1 |
@@ -43,6 +49,9 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [The Gentlemen](./the-gentlemen/) | 1 |
 | [Tycoon2FA](./tycoon2fa/) | 1 |
 | [UAT-4356](./uat-4356/) | 1 |
+| [UAT-6382](./uat-6382/) | 1 |
+| [UAT-8302](./uat-8302/) | 1 |
+| [UNC5174](./unc5174/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |

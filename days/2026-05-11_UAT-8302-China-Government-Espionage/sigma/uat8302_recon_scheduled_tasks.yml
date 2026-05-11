@@ -1,0 +1,36 @@
+title: UAT-8302 Recon Scheduled Task Names and Fake Maps Path
+id: 5bc280a6-2f0f-4df0-8705-ac1cc0729328
+status: experimental
+description: |
+  UAT-8302 persists their reconnaissance helper script (whatpc.ps1) and
+  NetDraft loader by creating scheduled tasks with characteristic names
+  such as ReconLiteDebug, RunWhatPC, or tasks under the path
+  Microsoft\Windows\Maps\{GUID} pointing to executables stored under
+  C:\ProgramData\Microsoft\Microsoft\ (a fake-legitimate location with
+  double "Microsoft" segment).
+references:
+  - https://blog.talosintelligence.com/uat-8302/
+author: Jarmi
+date: 2026/05/11
+tags:
+  - attack.persistence
+  - attack.execution
+  - attack.t1053.005
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_schtasks:
+    Image|endswith: '\schtasks.exe'
+    CommandLine|contains: '/create'
+  selection_anchor:
+    CommandLine|contains:
+      - 'ReconLiteDebug'
+      - 'RunWhatPC'
+      - 'whatpc.ps1'
+      - 'Microsoft\Windows\Maps\{'
+      - 'ProgramData\Microsoft\Microsoft\'
+  condition: selection_schtasks and selection_anchor
+falsepositives:
+  - None expected; the literal strings are distinctive UAT-8302 artifacts as documented by Cisco Talos
+level: critical

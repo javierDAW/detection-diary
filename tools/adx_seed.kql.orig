@@ -1,0 +1,176 @@
+// =============================================================================
+// adx_seed.kql — synthetic data seeding for the detection-diary KQL tests
+// Author:    Jarmi
+// Date:      2026-05-08
+// Purpose:   Populate the schema created by adx_bootstrap.kql with handcrafted
+//            positive and negative rows for every KQL rule in days/*/kql/.
+//            Each block is annotated with the rule it exercises and the
+//            expected hit count, so adx_tests.kql can assert determinism.
+// Convention:
+//            DeviceId  = d-<dayN>-<seq>     so rows are easy to filter per rule
+//            Hostnames = WIN-<dayN>-<seq>   for Windows / WIN11
+//                        LIN-<dayN>-<seq>   for Linux
+//            All timestamps are within the last 6 days so default `ago(7d)`
+//            filters in the rules pick them up.
+// =============================================================================
+
+// -----------------------------------------------------------------------------
+// Day 1 (Apr-28) — The Gentlemen + SystemBC — TCP beacon no-TLS
+//   Positive: process `svchostsync.exe` connects to attacker IP every 60s.
+//   Negative: chrome.exe TLS to a public CDN (should be ignored by the rule).
+// -----------------------------------------------------------------------------
+.ingest inline into table DeviceNetworkEvents <|
+2026-05-07T08:00:00Z,d-01-1,WIN-01-1,ConnectionSuccess,185.225.74.10,443,,10.0.1.5,55555,Tcp,9001,svchostsync.exe,sha-systembc,C:\ProgramData\sync\,,svchost.exe
+2026-05-07T08:01:00Z,d-01-1,WIN-01-1,ConnectionSuccess,185.225.74.10,443,,10.0.1.5,55556,Tcp,9001,svchostsync.exe,sha-systembc,C:\ProgramData\sync\,,svchost.exe
+2026-05-07T08:02:00Z,d-01-1,WIN-01-1,ConnectionSuccess,185.225.74.10,443,,10.0.1.5,55557,Tcp,9001,svchostsync.exe,sha-systembc,C:\ProgramData\sync\,,svchost.exe
+2026-05-07T08:03:00Z,d-01-2,WIN-01-2,ConnectionSuccess,151.101.1.69,443,https://cdn.jsdelivr.net/npm/foo,10.0.1.6,40000,Tcp,7001,chrome.exe,sha-chrome,C:\Program Files\Google\Chrome\Application\,,chrome.exe
+
+// -----------------------------------------------------------------------------
+// Day 2 (Apr-29) — Bitwarden Shai-Hulud — anomalous public GitHub repo create
+//   Positive: actor opens a public repo named "Shai-Hulud-CI" via REST.
+//   Negative: same actor pushes commits to an existing private repo.
+// -----------------------------------------------------------------------------
+.ingest inline into table GitHubAuditLogs <|
+2026-05-07T09:00:00Z,repo.create,bob@victim.com,bob/Shai-Hulud-CI,bob,public,2026-05-07T09:00:00Z,{"actor":"bob"}
+2026-05-07T09:00:30Z,git.push,bob@victim.com,bob/internal-tools,bob,private,2026-05-07T09:00:30Z,{"actor":"bob"}
+
+// -----------------------------------------------------------------------------
+// Day 3 (Apr-30) — FIRESTARTER LINE VIPER — ASA reboot + WebVPN large body
+//   Positive: ASA syslog with reboot followed by an oversized WebVPN POST.
+//   Negative: a typical small WebVPN POST.
+// -----------------------------------------------------------------------------
+.ingest inline into table Syslog <|
+2026-05-07T10:00:00Z,asa-edge-01,asa-edge-01,local6,info,"%ASA-5-199002: Reload ordered by enable_15. Reload Reason: graceful-shutdown",cisco-asa,1,10.0.0.1
+2026-05-07T10:30:00Z,asa-edge-01,asa-edge-01,local6,notice,"%ASA-7-710005: WebVPN session POST /+CSCOE+/portal.html size=14336",cisco-asa,1,10.0.0.1
+2026-05-07T10:40:00Z,asa-edge-01,asa-edge-01,local6,notice,"%ASA-7-710005: WebVPN session POST /+CSCOE+/portal.html size=512",cisco-asa,1,10.0.0.1
+
+// -----------------------------------------------------------------------------
+// Day 4 (May-01) — VECT 2.0 — mass process kill (T1485 effect)
+//   Positive: in a 60-second window 6 distinct sensitive processes killed.
+//   Negative: a single legit kill of notepad.
+// -----------------------------------------------------------------------------
+.ingest inline into table DeviceProcessEvents <|
+2026-05-07T11:00:00Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM sqlservr.exe /F",2001,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
+2026-05-07T11:00:05Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM oracle.exe /F",2002,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
+2026-05-07T11:00:08Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM excel.exe /F",2003,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
+2026-05-07T11:00:14Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM winword.exe /F",2004,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
+2026-05-07T11:00:22Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM outlook.exe /F",2005,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
+2026-05-07T11:00:35Z,d-04-1,WIN-04-1,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM firefox.exe /F",2006,SYSTEM,svchostupdate.exe,4001,"svchostupdate.exe -kill",sha-vect,C:\Windows\Temp\,SYSTEM,services.exe
+2026-05-07T11:30:00Z,d-04-2,WIN-04-2,taskkill.exe,C:\Windows\System32\,sha-tk,"taskkill /IM notepad.exe /F",2099,user,explorer.exe,3099,"explorer.exe",sha-explorer,C:\Windows\,user,winlogon.exe
+
+// -----------------------------------------------------------------------------
+// Day 6 (May-03) — BAUXITE — Studio 5000 outbound to OT EIP/CIP
+//   Positive: Studio5000.exe to a public IPv4 over TCP/44818.
+//   Negative: same image to RFC1918 OT range.
+// -----------------------------------------------------------------------------
+.ingest inline into table DeviceNetworkEvents <|
+2026-05-07T12:00:00Z,d-06-1,WIN-06-1,ConnectionSuccess,203.0.113.7,44818,,10.20.0.5,55001,Tcp,5001,Studio5000.exe,sha-st5000,C:\Program Files (x86)\Rockwell Automation\,,explorer.exe
+2026-05-07T12:01:00Z,d-06-2,WIN-06-2,ConnectionSuccess,10.50.0.10,44818,,10.20.0.6,55002,Tcp,5002,Studio5000.exe,sha-st5000,C:\Program Files (x86)\Rockwell Automation\,,explorer.exe
+
+// -----------------------------------------------------------------------------
+// Day 7 (May-04) — Poland Wiper — LSASS dump via taskmgr + Rubeus S4U
+//   Positive: taskmgr.exe writes a .dmp that contains "lsass" in the filename.
+//   Negative: dwm.exe writes a benign log.
+// -----------------------------------------------------------------------------
+.ingest inline into table DeviceFileEvents <|
+2026-05-07T13:00:00Z,d-07-1,WIN-07-1,FileCreated,lsass.DMP,C:\Users\admin\AppData\Local\Temp\,sha-lsassdmp,52428800,7001,Taskmgr.exe,sha-tm,C:\Windows\System32\,admin,"Taskmgr.exe",explorer.exe,C:\Users\admin\AppData\Local\Temp\lsass.DMP
+2026-05-07T13:30:00Z,d-07-2,WIN-07-2,FileCreated,output.log,C:\Windows\Temp\,sha-log,1024,7099,dwm.exe,sha-dwm,C:\Windows\System32\,SYSTEM,"dwm.exe",services.exe,C:\Windows\Temp\output.log
+
+// Rubeus S4U TGS burst → bursts of EID 4769 in SecurityEvent
+.ingest inline into table SecurityEvent <|
+2026-05-07T13:35:00Z,WIN-07-3,4769,svc-erp@victim.local,VICTIM,svc-erp,attacker,3,Rubeus.exe,"rubeus s4u /user:svc /service:cifs",rubeus.exe,Rubeus.exe,10.0.0.99,{"reason":"S4U2Self"}
+2026-05-07T13:35:05Z,WIN-07-3,4769,svc-db@victim.local,VICTIM,svc-db,attacker,3,Rubeus.exe,"rubeus s4u",rubeus.exe,Rubeus.exe,10.0.0.99,{"reason":"S4U2Self"}
+2026-05-07T13:35:10Z,WIN-07-3,4769,svc-web@victim.local,VICTIM,svc-web,attacker,3,Rubeus.exe,"rubeus s4u",rubeus.exe,Rubeus.exe,10.0.0.99,{"reason":"S4U2Self"}
+2026-05-07T13:35:15Z,WIN-07-3,4769,svc-mail@victim.local,VICTIM,svc-mail,attacker,3,Rubeus.exe,"rubeus s4u",rubeus.exe,Rubeus.exe,10.0.0.99,{"reason":"S4U2Self"}
+2026-05-07T13:35:20Z,WIN-07-3,4769,svc-print@victim.local,VICTIM,svc-print,attacker,3,Rubeus.exe,"rubeus s4u",rubeus.exe,Rubeus.exe,10.0.0.99,{"reason":"S4U2Self"}
+
+// -----------------------------------------------------------------------------
+// Day 8 (May-05) — Akira × SonicWall — anomalous VPN login + Impacket SMB
+//   Positive: SonicWall syslog "user logged in" from new ASN; followed by 5 SMB connects.
+// -----------------------------------------------------------------------------
+.ingest inline into table Syslog <|
+2026-05-07T14:00:00Z,sonicwall-01,sonicwall-01,local0,info,"id=firewall sn=XX m=237 user=jdoe domain=corp src=185.66.77.88:55555 dst=10.0.0.5:443 msg=SSL VPN user logged in",sonicwall,1,10.0.0.1
+
+.ingest inline into table DeviceLogonEvents <|
+2026-05-07T14:00:30Z,d-08-1,WIN-08-1,LogonSuccess,jdoe,corp,3,10.0.0.5,SRV-DC-01,vpnclient.exe,8001
+
+.ingest inline into table DeviceNetworkEvents <|
+2026-05-07T14:01:00Z,d-08-1,WIN-08-1,ConnectionSuccess,10.0.0.10,445,,10.0.0.5,55101,Tcp,9101,wmiexec.py,sha-wmiexec,C:\Tools\,,python3.exe
+2026-05-07T14:01:01Z,d-08-1,WIN-08-1,ConnectionSuccess,10.0.0.11,445,,10.0.0.5,55102,Tcp,9101,wmiexec.py,sha-wmiexec,C:\Tools\,,python3.exe
+2026-05-07T14:01:02Z,d-08-1,WIN-08-1,ConnectionSuccess,10.0.0.12,445,,10.0.0.5,55103,Tcp,9101,wmiexec.py,sha-wmiexec,C:\Tools\,,python3.exe
+2026-05-07T14:01:03Z,d-08-1,WIN-08-1,ConnectionSuccess,10.0.0.13,445,,10.0.0.5,55104,Tcp,9101,wmiexec.py,sha-wmiexec,C:\Tools\,,python3.exe
+2026-05-07T14:01:04Z,d-08-1,WIN-08-1,ConnectionSuccess,10.0.0.14,445,,10.0.0.5,55105,Tcp,9101,wmiexec.py,sha-wmiexec,C:\Tools\,,python3.exe
+
+// -----------------------------------------------------------------------------
+// Day 9 (May-06) — Code of Conduct AiTM — chain correlation
+//   Positive: SigninLogs success after MFA, then AuditLogs Add device, then
+//             OfficeActivity InboxRule with one-char name in 24h.
+// -----------------------------------------------------------------------------
+.ingest inline into table SigninLogs <|
+2026-05-07T15:00:00Z,alice@victim.com,Alice,Outlook,185.99.88.77,RU,0,Success,multiFactorAuthentication,satisfied,Success,{"authMethod":"sms"},{"deviceId":"new-evil"},Browser,Mozilla/5.0,corr-001
+.ingest inline into table AuditLogs <|
+2026-05-07T15:05:00Z,Add device,DeviceManagement,Success,Device added by user,alice@victim.com,Add device,{"user":"alice"},[{"id":"dev-evil","name":"Attacker-PC"}],{},corr-001
+.ingest inline into table OfficeActivity <|
+2026-05-07T15:30:00Z,New-InboxRule,ExchangeAdmin,alice@victim.com,alice@victim.com,185.99.88.77,{"Name":"."},Exchange,/o=ExchangeLabs,Succeeded
+.ingest inline into table CloudAppEvents <|
+2026-05-07T15:32:00Z,InboxRuleCreated,Exchange,obj-alice,Alice,185.99.88.77,{"name":"."},rule-1,InboxRule
+
+// First-seen attacker domain via PDF
+.ingest inline into table EmailUrlInfo <|
+2026-05-07T15:00:00Z,nm-001,https://acceptable-use-policy-calendly.de/case,acceptable-use-policy-calendly.de,body
+.ingest inline into table EmailAttachmentInfo <|
+2026-05-07T15:00:00Z,nm-001,Awareness Case Log File - Tuesday 14th April 2026.pdf,pdf,sha-pdflure,1048576
+
+// -----------------------------------------------------------------------------
+// Day 10 (May-07) — QLNX — Linux dev-box behaviours
+//   Positive: write to /etc/ld.so.preload + drop in /tmp/.ICE-unix + gcc compile + credential burst.
+// -----------------------------------------------------------------------------
+.ingest inline into table DeviceFileEvents <|
+2026-05-07T16:00:00Z,d-10-1,LIN-10-1,FileModified,ld.so.preload,/etc/,sha-preload,128,10001,bash,sha-bash,/usr/bin/,root,"bash -c echo > /etc/ld.so.preload",bash,/etc/ld.so.preload
+2026-05-07T16:00:30Z,d-10-1,LIN-10-1,FileCreated,libqlnx.so,/tmp/.ICE-unix/,sha-libqlnx,80000,10002,gcc,sha-gcc,/usr/bin/,root,"gcc -shared -fPIC -o /tmp/.ICE-unix/libqlnx.so",bash,/tmp/.ICE-unix/libqlnx.so
+2026-05-07T16:01:00Z,d-10-1,LIN-10-1,FileLockCreated,.X752e2ca1-lock,/tmp/,sha-lock,0,10003,qlnx,sha-qlnx,/tmp/,root,"qlnx",qlnx,/tmp/.X752e2ca1-lock
+// credential burst — 4 sensitive files in <60s read by same PID
+2026-05-07T16:02:00Z,d-10-1,LIN-10-1,FileOpened,credentials,/root/.aws/,sha-aws,1024,10004,qlnx,sha-qlnx,/tmp/,root,"qlnx",qlnx,/root/.aws/credentials
+2026-05-07T16:02:05Z,d-10-1,LIN-10-1,FileOpened,.npmrc,/root/,sha-npmrc,512,10004,qlnx,sha-qlnx,/tmp/,root,"qlnx",qlnx,/root/.npmrc
+2026-05-07T16:02:10Z,d-10-1,LIN-10-1,FileOpened,id_rsa,/root/.ssh/,sha-idrsa,2048,10004,qlnx,sha-qlnx,/tmp/,root,"qlnx",qlnx,/root/.ssh/id_rsa
+2026-05-07T16:02:15Z,d-10-1,LIN-10-1,FileOpened,.git-credentials,/root/,sha-gitcred,256,10004,qlnx,sha-qlnx,/tmp/,root,"qlnx",qlnx,/root/.git-credentials
+
+.ingest inline into table DeviceNetworkEvents <|
+2026-05-07T16:03:00Z,d-10-1,LIN-10-1,ConnectionSuccess,208.95.112.1,80,http://ip-api.com/json,10.0.50.5,55001,Tcp,10004,qlnx,sha-qlnx,/tmp/,"qlnx",init
+
+// -----------------------------------------------------------------------------
+// Day 11 (May-07 extra) — EVM/DeFi npm typosquat — node-driven egress
+//   Positive: node.exe outbound to literal IPv4 76.13.37.80 (first-seen).
+//   Plus: credential burst from node child reading .env / .foundry / hardhat config.
+// -----------------------------------------------------------------------------
+.ingest inline into table DeviceNetworkEvents <|
+2026-05-07T17:00:00Z,d-11-1,WIN-11-1,ConnectionSuccess,76.13.37.80,443,,10.0.60.5,60001,Tcp,11001,node.exe,sha-node,C:\Program Files\nodejs\,"node telemetry.js",cmd.exe
+
+.ingest inline into table DeviceFileEvents <|
+2026-05-07T17:00:30Z,d-11-1,WIN-11-1,FileOpened,.env.production,C:\Users\dev\app\,sha-env,512,11001,node.exe,sha-node,C:\Program Files\nodejs\,dev,"node telemetry.js",node.exe,C:\Users\dev\app\.env.production
+2026-05-07T17:00:35Z,d-11-1,WIN-11-1,FileOpened,foundry.toml,C:\Users\dev\app\,sha-foundry,256,11001,node.exe,sha-node,C:\Program Files\nodejs\,dev,"node telemetry.js",node.exe,C:\Users\dev\app\foundry.toml
+2026-05-07T17:00:40Z,d-11-1,WIN-11-1,FileOpened,id_rsa,C:\Users\dev\.ssh\,sha-idrsawin,2048,11001,node.exe,sha-node,C:\Program Files\nodejs\,dev,"node telemetry.js",node.exe,C:\Users\dev\.ssh\id_rsa
+
+// process to anchor "dev host with hardhat / foundry / brownie tooling"
+.ingest inline into table DeviceProcessEvents <|
+2026-05-07T16:50:00Z,d-11-1,WIN-11-1,hardhat.cmd,C:\Users\dev\app\node_modules\.bin\,sha-hh,"hardhat compile",11099,dev,cmd.exe,11098,"cmd.exe /c hardhat compile",sha-cmd,C:\Windows\System32\,dev,explorer.exe
+
+// -----------------------------------------------------------------------------
+// Day 12 (May-08) — CloudZ + Pheno — Phone Link DB read + Workers egress
+//   Positive: evil.exe in %APPDATA% reads PhoneExperiences-001.db, then beacons
+//             to round-cherry-4418.hellohiall.workers.dev within 30 min.
+//   Negative: YourPhone.exe legitimately reads the same DB.
+// -----------------------------------------------------------------------------
+.ingest inline into table DeviceFileEvents <|
+2026-05-07T18:00:00Z,d-12-1,WIN-12-1,FileOpened,PhoneExperiences-001.db,C:\Users\u\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\,sha-phexp,4096,12001,evil.exe,sha-evil,C:\Users\u\AppData\Roaming\xyzsync\,u,"evil.exe",cmd.exe,C:\Users\u\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\PhoneExperiences-001.db
+2026-05-07T18:00:01Z,d-12-2,WIN-12-2,FileOpened,PhoneExperiences-001.db,C:\Users\u\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\,sha-phexp,4096,12002,YourPhone.exe,sha-yp,C:\Program Files\WindowsApps\Microsoft.YourPhone_8wekyb3d8bbwe\,u,"YourPhone.exe",svchost.exe,C:\Users\u\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\PhoneExperiences-001.db
+
+.ingest inline into table DeviceNetworkEvents <|
+2026-05-07T18:05:00Z,d-12-1,WIN-12-1,ConnectionSuccess,1.2.3.4,443,https://round-cherry-4418.hellohiall.workers.dev/?t=99,10.0.70.5,60101,Tcp,12001,evil.exe,sha-evil,C:\Users\u\AppData\Roaming\xyzsync\,"evil.exe",cmd.exe
+2026-05-07T18:10:00Z,d-12-1,WIN-12-1,ConnectionSuccess,5.6.7.8,443,https://pastebin.com/raw/8pYAgF0Z,10.0.70.5,60102,Tcp,12001,evil.exe,sha-evil,C:\Users\u\AppData\Roaming\xyzsync\,"evil.exe",cmd.exe
+2026-05-07T18:15:00Z,d-12-1,WIN-12-1,ConnectionSuccess,185.196.10.136,443,,10.0.70.5,60103,Tcp,12001,evil.exe,sha-evil,C:\Users\u\AppData\Roaming\xyzsync\,"evil.exe",cmd.exe
+
+// -----------------------------------------------------------------------------
+// Done.
+// -----------------------------------------------------------------------------
+print seed_status = "OK"

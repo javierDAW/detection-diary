@@ -4,11 +4,12 @@
 
 # Techniques: T1071.001
 
-8 day(s) covering this technique.
+9 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-11 | UAT-8302 — China-nexus government espionage with shared APT arsenal | UAT-8302 · Jewelbug · REF7707 · CL-STA-0049 · LongNosedGoblin · UNC5174 · UAT-6382 · Earth Estries · Erudite Mogwai | [`2026-05-11_UAT-8302-China-Government-Espionage/`](../../days/2026-05-11_UAT-8302-China-Government-Espionage/) |
 | 2026-05-08 | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Talos, May 2026) | CloudZ · Pheno | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink/`](../../days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | 2026-05-07 | EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026) | namikazesarada010206 · harunosakura030303-maker | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
 | 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026-05-07_QLNX-Quasar-Linux-RAT/) |

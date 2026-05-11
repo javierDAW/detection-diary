@@ -1,0 +1,42 @@
+title: UAT-8302 Side-Loading Anchors (mspdb60.dll or wininet.dll from anomalous paths)
+id: 5f405e85-f6f1-4963-a2ec-3eccccf737fc
+status: experimental
+description: |
+  UAT-8302 (China-nexus APT) uses DLL side-loading with benign signed
+  executables (Yandex.exe, VMtools.exe, Communicator.exe) loading
+  malicious DLLs named mspdb60.dll or wininet.dll from unexpected
+  locations (Temp, ProgramData\Microsoft\Microsoft, Users\Public). The
+  loader decrypts an accompanying .ini or .bin payload and injects
+  shellcode into explorer.exe, dpapimig.exe or spoolsv.exe.
+references:
+  - https://blog.talosintelligence.com/uat-8302/
+author: Jarmi
+date: 2026/05/11
+tags:
+  - attack.defense-evasion
+  - attack.execution
+  - attack.t1574.002
+  - attack.t1055.012
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection_dll:
+    ImageLoaded|endswith:
+      - '\mspdb60.dll'
+      - '\wininet.dll'
+  selection_path:
+    ImageLoaded|contains:
+      - '\AppData\Local\Temp\'
+      - '\ProgramData\Microsoft\Microsoft\'
+      - '\Users\Public\'
+      - '\Windows\Temp\'
+  filter_legit_wininet:
+    ImageLoaded|startswith:
+      - 'C:\Windows\System32\'
+      - 'C:\Windows\SysWOW64\'
+      - 'C:\Windows\WinSxS\'
+  condition: selection_dll and selection_path and not filter_legit_wininet
+falsepositives:
+  - Portable applications that bundle their own wininet.dll under Public or Temp; baseline first in managed government endpoints
+level: high

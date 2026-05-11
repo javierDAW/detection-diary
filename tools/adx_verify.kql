@@ -1,0 +1,55 @@
+// =============================================================================
+// adx_verify.kql — verification queries for adx_seed.kql
+// Author:    Jarmi
+// Date:      2026-05-10
+// Purpose:   Confirm the seed populated the bootstrap tables correctly.
+//            Run each query INDIVIDUALLY (place cursor on the line and press
+//            Shift+Enter) — DO NOT select all and run together, ADX would
+//            try to merge them as one batch.
+// =============================================================================
+
+DeviceFileEvents | summarize Rows=count() by DeviceId | order by DeviceId asc
+DeviceProcessEvents | summarize Rows=count() by DeviceId | order by DeviceId asc
+DeviceNetworkEvents | summarize Rows=count() by DeviceId | order by DeviceId asc
+DeviceLogonEvents | summarize Rows=count() by DeviceId | order by DeviceId asc
+DeviceEvents | summarize Rows=count() by DeviceId | order by DeviceId asc
+DeviceTvmSoftwareInventory | count
+DeviceInfo | count
+DeviceInfo | where DeviceId startswith "d-14" | project DeviceId, DeviceName, DeviceCategory, DeviceType
+SecurityEvent | count
+Syslog | count
+AuditLogs | count
+SigninLogs | count
+CloudAppEvents | count
+EmailUrlInfo | count
+EmailAttachmentInfo | count
+UrlClickEvents | count
+GitHubAuditLogs | summarize Rows=count() by Action | order by Action asc
+AzureDiagnostics | count
+W3CIISLog | count
+CommonSecurityLog | count
+AsaWebVpnAccessLogs_CL | count
+
+// Quick smoke test of today's Day 14 rule (LLM API egress from server tier).
+// Place cursor anywhere inside this whole block and Shift+Enter.
+// Expected: 1 row for SRV-FILE-01 with Hits=7, DistinctUrls=2.
+let LLMHosts = dynamic(["api.anthropic.com","claude.ai","api.openai.com","chat.openai.com","api.cohere.ai","api.mistral.ai","generativelanguage.googleapis.com"]);
+let ServerHosts = DeviceInfo
+| where Timestamp > ago(7d)
+| summarize arg_max(Timestamp, *) by DeviceId
+| where DeviceCategory in ("Server","ServerCore","DomainController") or DeviceType =~ "Server"
+| project DeviceId, DeviceName, DeviceCategory;
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteUrl has_any (LLMHosts) or RemoteUrl matches regex @"(?i)(api\.anthropic\.com|claude\.ai|api\.openai\.com|chat\.openai\.com)"
+| join kind=inner ServerHosts on DeviceId
+| summarize
+    Hits = count(),
+    DistinctUrls = dcount(RemoteUrl),
+    SampleUrl = any(RemoteUrl),
+    SampleProcess = any(InitiatingProcessFileName),
+    SampleAccount = any(InitiatingProcessAccountName),
+    SampleCmd = any(InitiatingProcessCommandLine)
+  by DeviceId, DeviceName, DeviceCategory, bin(Timestamp, 1h)
+| where Hits >= 5 or DistinctUrls >= 2
+| order by Hits desc

@@ -4,11 +4,12 @@
 
 # Techniques: T1059.003
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-11 | UAT-8302 — China-nexus government espionage with shared APT arsenal | UAT-8302 · Jewelbug · REF7707 · CL-STA-0049 · LongNosedGoblin · UNC5174 · UAT-6382 · Earth Estries · Erudite Mogwai | [`2026-05-11_UAT-8302-China-Government-Espionage/`](../../days/2026-05-11_UAT-8302-China-Government-Espionage/) |
 | 2026-05-05 | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | [`2026-05-05_Akira-SonicWall-CVE-2024-40766/`](../../days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
 | 2026-05-04 | C0063 Poland Wiper Attacks (DynoWiper + LazyWiper) | Static Tundra · Sandworm · APT44 · G0034 · Seashell Blizzard | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026-05-04_C0063-Poland-Wiper/) |
 | 2026-05-01 | VECT 2.0 RaaS — wiper-by-accident | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
