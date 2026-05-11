@@ -1,0 +1,3 @@
+; DEPRECATED — Splunk SPL retired from this repo on 2026-05-11.
+; See CHANGELOG.md / detection-diary/README.md / day README for rationale.
+; Convert the Sigma sibling with: sigma convert -t splunk -p sysmon days/2026-04-28_TheGentlemen-SystemBC/sigma/*.yml

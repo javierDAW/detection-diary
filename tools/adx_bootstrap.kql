@@ -208,3 +208,292 @@
     .create table DeviceInfo (
         Timestamp:datetime,
         DeviceId:string,
+        DeviceName:string,
+        DeviceCategory:string,
+        DeviceType:string,
+        DeviceSubtype:string,
+        OSPlatform:string,
+        OSVersion:string,
+        OSBuild:string,
+        PublicIP:string,
+        ClientVersion:string,
+        IsAzureADJoined:bool,
+        IsInternetFacing:bool,
+        LoggedOnUsers:dynamic,
+        RegistryDeviceTag:string,
+        MachineGroup:string,
+        ReportId:long)
+    //
+    // DeviceEvents — generic Defender event sink used by Android MDE.
+    // Required by Day 9 (Albiriox) for NotificationListenerGranted,
+    // DangerousPermissionGranted, AppInstalled, AccessibilityServiceEnabled.
+    //
+    .create table DeviceEvents (
+        Timestamp:datetime,
+        DeviceId:string,
+        DeviceName:string,
+        DeviceOSPlatform:string,
+        ActionType:string,
+        FileName:string,
+        FolderPath:string,
+        SHA256:string,
+        AccountName:string,
+        InitiatingProcessFileName:string,
+        InitiatingProcessId:long,
+        InitiatingProcessCommandLine:string,
+        InitiatingProcessAccountName:string,
+        AdditionalFields:dynamic)
+    //
+    // DeviceTvmSoftwareInventory — required by Day 9 (Albiriox sideload rule)
+    // to gate matches to devices that have a banking / wallet app installed.
+    //
+    .create table DeviceTvmSoftwareInventory (
+        DeviceId:string,
+        DeviceName:string,
+        OSPlatform:string,
+        SoftwareVendor:string,
+        SoftwareName:string,
+        SoftwareVersion:string,
+        EndOfSupportStatus:string)
+    //
+    // =========================================================================
+    // Sentinel — Windows / Linux / Azure / Office / Email tables
+    // =========================================================================
+    //
+    // SecurityEvent — used by Day 7 (Rubeus S4U TGS burst). Includes
+    // TicketEncryptionType so the burst rule can filter on AES256/RC4.
+    //
+    .create table SecurityEvent (
+        TimeGenerated:datetime,
+        Computer:string,
+        EventID:long,
+        EventSourceName:string,
+        Channel:string,
+        Account:string,
+        AccountDomain:string,
+        TargetUserName:string,
+        TargetDomainName:string,
+        SubjectUserName:string,
+        SubjectDomainName:string,
+        LogonType:long,
+        LogonProcessName:string,
+        AuthenticationPackageName:string,
+        Process:string,
+        CommandLine:string,
+        ParentProcessName:string,
+        NewProcessName:string,
+        IpAddress:string,
+        IpPort:long,
+        TicketEncryptionType:string,
+        TicketOptions:string,
+        ServiceName:string,
+        EventData:dynamic)
+    //
+    // Syslog — used by Day 3 (FIRESTARTER ASA reboot signal).
+    //
+    .create table Syslog (
+        TimeGenerated:datetime,
+        Computer:string,
+        HostName:string,
+        Facility:string,
+        SeverityLevel:string,
+        SyslogMessage:string,
+        ProcessName:string,
+        ProcessID:long,
+        HostIP:string,
+        SourceSystem:string)
+    //
+    // AuditLogs — Entra ID directory audit. Used by Day 6 (PEAK H1) and
+    // Day 9 (AiTM chain — Add device).
+    //
+    .create table AuditLogs (
+        TimeGenerated:datetime,
+        OperationName:string,
+        Category:string,
+        Result:string,
+        ResultReason:string,
+        ResultDescription:string,
+        ResultSignature:string,
+        Identity:string,
+        ActivityDisplayName:string,
+        InitiatedBy:dynamic,
+        TargetResources:dynamic,
+        AdditionalDetails:dynamic,
+        CorrelationId:string)
+    //
+    // SigninLogs — used by Day 9 (AiTM chain — risky sign-in).
+    //
+    .create table SigninLogs (
+        TimeGenerated:datetime,
+        UserPrincipalName:string,
+        UserId:string,
+        UserDisplayName:string,
+        AppDisplayName:string,
+        ResourceDisplayName:string,
+        IPAddress:string,
+        Location:string,
+        ResultType:string,
+        ResultDescription:string,
+        AuthenticationRequirement:string,
+        ConditionalAccessStatus:string,
+        RiskLevelDuringSignIn:string,
+        RiskLevelAggregated:string,
+        RiskState:string,
+        AuthenticationDetails:dynamic,
+        MfaDetail:dynamic,
+        DeviceDetail:dynamic,
+        ClientAppUsed:string,
+        UserAgent:string,
+        CorrelationId:string,
+        SessionId:string)
+    //
+    // CloudAppEvents — used by Day 9 (AiTM chain — InboxRule operations).
+    // Note: rules in this repo use TimeGenerated (the Sentinel-streamed name).
+    //
+    .create table CloudAppEvents (
+        TimeGenerated:datetime,
+        ActionType:string,
+        Application:string,
+        AccountObjectId:string,
+        AccountDisplayName:string,
+        AccountUpn:string,
+        IPAddress:string,
+        IsAnonymousProxy:bool,
+        RawEventData:dynamic,
+        ObjectName:string,
+        ObjectType:string)
+    //
+    // OfficeActivity — kept for future rules (mailbox auditing).
+    //
+    .create table OfficeActivity (
+        TimeGenerated:datetime,
+        Operation:string,
+        RecordType:string,
+        UserId:string,
+        UserKey:string,
+        ClientIP:string,
+        Parameters:dynamic,
+        OfficeWorkload:string,
+        OfficeObjectId:string,
+        ResultStatus:string)
+    //
+    // EmailUrlInfo — used by Day 9 (firstseen attacker domain via PDF).
+    //
+    .create table EmailUrlInfo (
+        TimeGenerated:datetime,
+        NetworkMessageId:string,
+        Url:string,
+        UrlDomain:string,
+        UrlLocation:string)
+    //
+    // EmailAttachmentInfo — used by Day 9 (firstseen attacker domain via PDF).
+    // RecipientEmailAddress and Subject are projected by the rule.
+    //
+    .create table EmailAttachmentInfo (
+        TimeGenerated:datetime,
+        NetworkMessageId:string,
+        SenderFromAddress:string,
+        RecipientEmailAddress:string,
+        Subject:string,
+        FileName:string,
+        FileType:string,
+        SHA256:string,
+        FileSize:long)
+    //
+    // UrlClickEvents — used by Day 6 (PEAK H1 — click-to-device chain) and
+    // Day 9 (firstseen domain) leftouter join.
+    //
+    .create table UrlClickEvents (
+        TimeGenerated:datetime,
+        NetworkMessageId:string,
+        AccountUpn:string,
+        Url:string,
+        ActionType:string,
+        IPAddress:string,
+        UrlChain:dynamic)
+    //
+    // GitHubAuditLogs — custom Sentinel solution. Rule uses Action / Actor /
+    // AdditionalFields naming, so we expose that directly.
+    //
+    .create table GitHubAuditLogs (
+        TimeGenerated:datetime,
+        Action:string,
+        Actor:string,
+        Repo:string,
+        Org:string,
+        RepositoryVisibility:string,
+        CreatedAt:datetime,
+        AdditionalFields:dynamic)
+    //
+    // AzureDiagnostics — used by Day 2 (Nexcorium WAF X-Hacked-By header).
+    //
+    .create table AzureDiagnostics (
+        TimeGenerated:datetime,
+        ResourceProvider:string,
+        ResourceType:string,
+        Category:string,
+        OperationName:string,
+        ResourceId:string,
+        properties_s:string,
+        clientIp_s:string,
+        host_s:string,
+        requestUri_s:string)
+    //
+    // W3CIISLog — used by Day 2 (Nexcorium IIS branding header in UA).
+    //
+    .create table W3CIISLog (
+        TimeGenerated:datetime,
+        sSiteName:string,
+        sComputerName:string,
+        sIP:string,
+        csMethod:string,
+        csUriStem:string,
+        csUriQuery:string,
+        sPort:long,
+        csUserName:string,
+        cIP:string,
+        csUserAgent:string,
+        scStatus:long,
+        scSubStatus:long,
+        scWin32Status:long,
+        timeTaken:long)
+    //
+    // CommonSecurityLog — used by Day 8 (SonicWall SSL VPN login via CEF).
+    //
+    .create table CommonSecurityLog (
+        TimeGenerated:datetime,
+        DeviceVendor:string,
+        DeviceProduct:string,
+        DeviceVersion:string,
+        DeviceEventClassID:string,
+        Activity:string,
+        Severity:string,
+        SourceUserName:string,
+        SourceIP:string,
+        SourcePort:long,
+        DestinationIP:string,
+        DestinationPort:long,
+        Protocol:string,
+        ApplicationProtocol:string,
+        RequestURL:string,
+        Message:string)
+    //
+    // AsaWebVpnAccessLogs_CL — custom log table referenced by Day 3 rule.
+    //
+    .create table AsaWebVpnAccessLogs_CL (
+        TimeGenerated:datetime,
+        Method_s:string,
+        Uri_s:string,
+        BodyBytes_d:long,
+        AsaHostname_s:string,
+        ClientIp_s:string,
+        UserAgent_s:string,
+        StatusCode_d:long)
+
+// =============================================================================
+// Verification query — run this AFTER the script block above completes.
+// Place the cursor on the `.show tables` line and press Shift+Enter.
+// You should see 23 tables.
+// =============================================================================
+
+.show tables | project TableName | order by TableName asc

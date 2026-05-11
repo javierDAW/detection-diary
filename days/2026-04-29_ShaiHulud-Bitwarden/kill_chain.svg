@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1180" role="img" aria-labelledby="t d">
+  <title id="t">Shai-Hulud: The Third Coming kill chain — JFrog / Socket / Endor / Bitwarden advisory, 22 April 2026</title>
+  <desc id="d">A trojanised @bitwarden/cli@2026.4.0 was published to the npm registry for about 93 minutes. Its preinstall stub fetched the Bun runtime and executed a 10 MB obfuscated worm that harvested cloud, CI and AI-CLI credentials, exfiltrated through public GitHub repos created under the victim's own account, and self-propagated by republishing maintainer-owned packages when an NPM_TOKEN with publish scope was found.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      .anchor       { fill: #1f2328; font: 600 12px sans-serif; }
+      .anchor-sub   { fill: #424a53; font: 11.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .anchor-bg    { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+        .anchor     { fill: #c9d1d9; }
+        .anchor-sub { fill: #8b949e; }
+        .anchor-bg  { fill: #0c2d6b; stroke: #1f6feb; }
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="40" class="header">Shai-Hulud: The Third Coming — kill chain</text>
+  <text x="40" y="60" class="subhead">JFrog / Socket / Endor / Bitwarden advisory . 22 Apr 2026 . @bitwarden/cli@2026.4.0 . ~93 min in registry</text>
+
+  <text x="20" y="120" class="lane" transform="rotate(-90, 20, 120)">VICTIM HOST (dev / CI runner)</text>
+  <text x="855" y="120" class="lane" transform="rotate(90, 855, 120)">ATTACKER C2 (TeamPCP)</text>
+
+  <!-- Stage 1: Initial Access -->
+  <circle cx="80" cy="115" r="14" class="stagebg"/>
+  <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
+  <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="111" class="label">npm install @bitwarden/cli@2026.4.0</text>
+  <text x="124" y="128" class="sub">preinstall: node bw_setup.js (compromised maintainer credential)</text>
+  <text x="600" y="111" text-anchor="end" class="mitre">T1195.002</text>
+  <text x="600" y="128" text-anchor="end" class="ioc">bw_setup.js</text>
+  <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 2: Bun runtime fetch -->
+  <circle cx="80" cy="195" r="14" class="stagebg"/>
+  <text x="80" y="199" text-anchor="middle" class="stagenum">2</text>
+  <rect x="110" y="172" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="191" class="label">Fetch Bun runtime (only if not present)</text>
+  <text x="124" y="208" class="sub">GitHub release tarball -&gt; ~/.bun/bin/bun</text>
+  <text x="600" y="191" text-anchor="end" class="mitre">T1105 . T1027</text>
+  <text x="600" y="208" text-anchor="end" class="ioc">github.com/oven-sh/bun</text>
+  <line x1="360" y1="220" x2="360" y2="252" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 3: bw1.js exec -->
+  <circle cx="80" cy="275" r="14" class="stagebg"/>
+  <text x="80" y="279" text-anchor="middle" class="stagenum">3</text>
+  <rect x="110" y="252" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="271" class="label">Execute bw1.js (~10 MB, single-line obfuscated)</text>
+  <text x="124" y="288" class="sub">bun ./bw1.js — TypeScript-class compiled worm</text>
+  <text x="600" y="271" text-anchor="end" class="mitre">T1059.007 . T1027</text>
+  <text x="600" y="288" text-anchor="end" class="ioc">bw1.js</text>
+  <line x1="360" y1="300" x2="360" y2="332" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 4: Persistence shell-profile -->
+  <circle cx="80" cy="355" r="14" class="stagebg"/>
+  <text x="80" y="359" text-anchor="middle" class="stagenum">4</text>
+  <rect x="110" y="332" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="351" class="label">Shell profile append (optional)</text>
+  <text x="124" y="368" class="sub">~/.bashrc / ~/.zshrc — env exfil hook</text>
+  <text x="600" y="351" text-anchor="end" class="mitre">T1546.004</text>
+  <text x="600" y="368" text-anchor="end" class="ioc">shellrc append</text>
+  <line x1="360" y1="380" x2="360" y2="412" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 5: Credential harvest -->
+  <circle cx="80" cy="435" r="14" class="stagebg"/>
+  <text x="80" y="439" text-anchor="middle" class="stagenum">5</text>
+  <rect x="110" y="412" width="500" height="68" rx="6" class="bg-stage"/>
+  <text x="124" y="431" class="label">Credential harvest — cloud + CI + AI-CLI</text>
+  <text x="124" y="448" class="sub">.npmrc / .git-credentials / .aws / .gcloud / .azure</text>
+  <text x="124" y="464" class="ioc">~/.config/{claude,codex,cursor,gemini}/ — novel surface</text>
+  <text x="600" y="431" text-anchor="end" class="mitre">T1552.001 . T1552.005</text>
+  <text x="600" y="464" text-anchor="end" class="ioc">SSH keys, GH/npm tokens</text>
+  <line x1="360" y1="480" x2="360" y2="512" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 6: GitHub Actions secrets -->
+  <circle cx="80" cy="535" r="14" class="stagebg"/>
+  <text x="80" y="539" text-anchor="middle" class="stagenum">6</text>
+  <rect x="110" y="512" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="531" class="label">GitHub Actions secrets enumeration</text>
+  <text x="124" y="548" class="sub">env: ${{ secrets.* }} when run under Actions runner</text>
+  <text x="600" y="531" text-anchor="end" class="mitre">T1528</text>
+  <text x="600" y="548" text-anchor="end" class="ioc">GITHUB_TOKEN</text>
+  <line x1="360" y1="560" x2="360" y2="592" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 7: AES-256-GCM bundle -->
+  <circle cx="80" cy="615" r="14" class="stagebg"/>
+  <text x="80" y="619" text-anchor="middle" class="stagenum">7</text>
+  <rect x="110" y="592" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="611" class="label">Bundle + AES-256-GCM encrypt</text>
+  <text x="124" y="628" class="sub">In-memory JSON -&gt; encrypted blob (hardcoded key)</text>
+  <text x="600" y="611" text-anchor="end" class="mitre">T1005 . T1027</text>
+  <text x="600" y="628" text-anchor="end" class="ioc">AES-GCM bundle</text>
+  <line x1="360" y1="640" x2="360" y2="672" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 8: Public GitHub repo exfil -->
+  <circle cx="80" cy="695" r="14" class="stagebg"/>
+  <text x="80" y="699" text-anchor="middle" class="stagenum">8</text>
+  <rect x="110" y="672" width="500" height="68" rx="6" class="bg-stage"/>
+  <text x="124" y="691" class="label">Exfil via public GitHub repo (victim-owned)</text>
+  <text x="124" y="708" class="sub">POST /user/repos -&gt; commit cipher-blob to README</text>
+  <text x="124" y="724" class="ioc">marker: "Shai-Hulud: The Third Coming"</text>
+  <text x="600" y="691" text-anchor="end" class="mitre">T1567.001 . T1102</text>
+  <text x="600" y="724" text-anchor="end" class="ioc">audit.checkmarx[.]cx (fallback)</text>
+  <line x1="600" y1="710" x2="700" y2="710" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
+  <line x1="360" y1="740" x2="360" y2="772" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 9: Self-propagation -->
+  <circle cx="80" cy="795" r="14" class="stagebg"/>
+  <text x="80" y="799" text-anchor="middle" class="stagenum">9</text>
+  <rect x="110" y="772" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="791" class="label">Self-propagation (worm)</text>
+  <text x="124" y="808" class="sub">If NPM_TOKEN(publish): list maintainer pkgs -&gt; bump+republish</text>
+  <text x="124" y="823" class="ioc">npm whoami / npm access / npm publish</text>
+  <text x="600" y="791" text-anchor="end" class="mitre">T1195.002 . T1531</text>
+  <text x="600" y="823" text-anchor="end" class="ioc">NPM_TOKEN scope check</text>
+
+  <!-- Attacker C2 cluster -->
+  <rect x="640" y="92" width="220" height="650" rx="6" class="bg-c2"/>
+  <text x="660" y="115" class="label">TeamPCP C2 fabric</text>
+
+  <text x="660" y="148" class="sub">Primary dead-drop</text>
+  <text x="660" y="166" class="ioc">GitHub API /user/repos</text>
+  <text x="660" y="182" class="ioc">public, victim-owned</text>
+  <text x="660" y="198" class="ioc">README contains blob</text>
+
+  <text x="660" y="232" class="sub">Fallback look-alike C2</text>
+  <text x="660" y="250" class="ioc">audit.checkmarx[.]cx</text>
+  <text x="660" y="266" class="ioc">/v1/telemetry</text>
+
+  <text x="660" y="300" class="sub">Bundle envelope</text>
+  <text x="660" y="318" class="ioc">AES-256-GCM</text>
+  <text x="660" y="334" class="ioc">key embedded in bw1.js</text>
+
+  <text x="660" y="368" class="sub">Credentials targeted</text>
+  <text x="660" y="386" class="ioc">~/.npmrc</text>
+  <text x="660" y="402" class="ioc">~/.git-credentials</text>
+  <text x="660" y="418" class="ioc">~/.ssh/id_*</text>
+  <text x="660" y="434" class="ioc">~/.aws/credentials</text>
+  <text x="660" y="450" class="ioc">~/.config/gcloud/</text>
+  <text x="660" y="466" class="ioc">~/.azure/</text>
+  <text x="660" y="482" class="ioc">~/.docker/config.json</text>
+  <text x="660" y="498" class="ioc">~/.kube/config</text>
+
+  <text x="660" y="532" class="sub">AI-CLI configs (novel)</text>
+  <text x="660" y="550" class="ioc">~/.config/claude/</text>
+  <text x="660" y="566" class="ioc">~/.config/codex/</text>
+  <text x="660" y="582" class="ioc">~/.cursor/</text>
+  <text x="660" y="598" class="ioc">~/.config/gemini/</text>
+
+  <text x="660" y="632" class="sub">Loader anchors</text>
+  <text x="660" y="650" class="ioc">bw_setup.js (~3 KB)</text>
+  <text x="660" y="666" class="ioc">bw1.js (~10 MB)</text>
+  <text x="660" y="682" class="ioc">Bun runtime fetch</text>
+  <text x="660" y="698" class="ioc">child_process.spawn</text>
+  <text x="660" y="714" class="ioc">marker: Shai-Hulud</text>
+
+  <!-- Detection anchors box -->
+  <rect x="40" y="860" width="800" height="280" rx="6" class="anchor-bg"/>
+  <text x="60" y="888" class="anchor">Detection anchors (rules in this folder)</text>
+  <text x="60" y="914" class="anchor-sub">sigma/npm_lifecycle_network_egress.yml — node/bun child of npm with outbound to non-registry hosts</text>
+  <text x="60" y="936" class="anchor-sub">kql/github_repo_create_shai_hulud.kql — first-seen public repo create + README marker on dev/CI tenant</text>
+  <text x="60" y="958" class="anchor-sub">yara/ShaiHulud_BunLoader_Heuristic.yar — bw_setup.js + bw1.js + Bun fetch URL + Shai-Hulud marker</text>
+  <text x="60" y="996" class="anchor">Pedagogical anchors</text>
+  <text x="60" y="1018" class="anchor-sub">npm preinstall + Bun fetch is a high-signal anomaly on CI runners — alert on it.</text>
+  <text x="60" y="1038" class="anchor-sub">AI-CLI config directories now belong in the credential-harvest threat model.</text>
+  <text x="60" y="1058" class="anchor-sub">A public victim-owned GitHub repo with a Shai-Hulud marker is exfil, not a hobby project.</text>
+  <text x="60" y="1078" class="anchor-sub">If NPM_TOKEN with publish scope was on the host, rotate first, audit maintainer's published versions second.</text>
+  <text x="60" y="1098" class="anchor-sub">Containment requires GitHub PAT revoke + npm token revoke + cloud key rotation — host re-image alone is incomplete.</text>
+</svg>

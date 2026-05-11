@@ -11,40 +11,41 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 
 | Group | Days |
 |---|---|
-| [APT44](./apt44/) | 1 |
 | [Akira](./akira/) | 1 |
 | [Albiriox](./albiriox/) | 1 |
 | [ArcaneDoor](./arcanedoor/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
 | [BreachForums](./breachforums/) | 1 |
+| [C0063](./c0063/) | 1 |
 | [CL-STA-0049](./cl-sta-0049/) | 1 |
 | [CloudZ](./cloudz/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
 | [Dadsec](./dadsec/) | 1 |
 | [Earth Estries](./earth-estries/) | 1 |
 | [Erudite Mogwai](./erudite-mogwai/) | 1 |
-| [G0034](./g0034/) | 1 |
 | [G1027](./g1027/) | 1 |
 | [Gold Sahara](./gold-sahara/) | 1 |
 | [Howling Scorpius](./howling-scorpius/) | 1 |
 | [Hydro Kitten](./hydro-kitten/) | 1 |
 | [Jewelbug](./jewelbug/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
+| [Nexcorium](./nexcorium/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
 | [Pheno](./pheno/) | 1 |
 | [Punk Spider](./punk-spider/) | 1 |
 | [QLNX](./qlnx/) | 1 |
 | [Quasar Linux](./quasar-linux/) | 1 |
 | [REF7707](./ref7707/) | 1 |
-| [Sandworm](./sandworm/) | 1 |
-| [Seashell Blizzard](./seashell-blizzard/) | 1 |
+| [Sandworm overlap](./sandworm-overlap/) | 1 |
 | [Shahid Kaveh Group](./shahid-kaveh-group/) | 1 |
+| [Shai-Hulud](./shai-hulud/) | 1 |
 | [Static Tundra](./static-tundra/) | 1 |
 | [Storm-0784](./storm-0784/) | 1 |
 | [Storm-1567](./storm-1567/) | 1 |
 | [Storm-1575](./storm-1575/) | 1 |
 | [Storm-1747](./storm-1747/) | 1 |
 | [Storm-1849](./storm-1849/) | 1 |
+| [TEMP.Veles](./temp-veles/) | 1 |
 | [TeamPCP](./teampcp/) | 2 |
 | [The Gentlemen](./the-gentlemen/) | 1 |
 | [Tycoon2FA](./tycoon2fa/) | 1 |
@@ -55,5 +56,4 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [UNC5691](./unc5691/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |
-| [harunosakura030303-maker](./harunosakura030303-maker/) | 1 |
 | [namikazesarada010206](./namikazesarada010206/) | 1 |

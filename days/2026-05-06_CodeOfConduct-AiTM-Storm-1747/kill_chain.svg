@@ -1,0 +1,205 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1180" role="img" aria-labelledby="t d">
+  <title id="t">Code of Conduct AiTM kill chain — Microsoft Threat Intelligence, 4 May 2026</title>
+  <desc id="d">A PDF lure with HR-disciplinary framing leads through a Cloudflare Turnstile gate to a Tycoon2FA reverse-proxy AiTM landing, which captures ESTSAUTH plus access and refresh tokens. Within ten minutes the operator registers a fraudulent device in Entra ID and derives a Primary Refresh Token that survives password rotation. Inbox rules with 1-character names hide the BEC stage.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      .anchor       { fill: #1f2328; font: 600 12px sans-serif; }
+      .anchor-sub   { fill: #424a53; font: 11.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .anchor-bg    { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+        .anchor     { fill: #c9d1d9; }
+        .anchor-sub { fill: #8b949e; }
+        .anchor-bg  { fill: #0c2d6b; stroke: #1f6feb; }
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="40" class="header">Code of Conduct AiTM — kill chain</text>
+  <text x="40" y="60" class="subhead">Microsoft Threat Intelligence . 4 May 2026 . Storm-1747 / Tycoon2FA . 35k users / 13k orgs / 26 countries</text>
+
+  <text x="20" y="120" class="lane" transform="rotate(-90, 20, 120)">VICTIM (M365 user)</text>
+  <text x="855" y="120" class="lane" transform="rotate(90, 855, 120)">OPERATOR (Storm-1747 / Tycoon2FA)</text>
+
+  <!-- Stage 1 -->
+  <circle cx="80" cy="115" r="14" class="stagebg"/>
+  <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
+  <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="111" class="label">PDF lure email — HR disciplinary framing</text>
+  <text x="124" y="128" class="sub">"Code of Conduct" / "Disciplinary Action" / "Employee Device Handling"</text>
+  <text x="600" y="111" text-anchor="end" class="mitre">T1566.001 . T1566.002</text>
+  <text x="600" y="128" text-anchor="end" class="ioc">PDF &lt; 200 KB</text>
+  <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 2 -->
+  <circle cx="80" cy="195" r="14" class="stagebg"/>
+  <text x="80" y="199" text-anchor="middle" class="stagenum">2</text>
+  <rect x="110" y="172" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="191" class="label">Click /A /URI inside PDF</text>
+  <text x="124" y="208" class="sub">"Review Case Materials" button -&gt; cheap-TLD landing</text>
+  <text x="600" y="191" text-anchor="end" class="mitre">T1204.001 . T1204.002</text>
+  <text x="600" y="208" text-anchor="end" class="ioc">.de / .space / .live</text>
+  <line x1="360" y1="220" x2="360" y2="252" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 3 -->
+  <circle cx="80" cy="275" r="14" class="stagebg"/>
+  <text x="80" y="279" text-anchor="middle" class="stagenum">3</text>
+  <rect x="110" y="252" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="271" class="label">Cloudflare Turnstile gate</text>
+  <text x="124" y="288" class="sub">Sandbox filter — only humans pass to the AiTM kit</text>
+  <text x="600" y="271" text-anchor="end" class="mitre">T1608.005</text>
+  <text x="600" y="288" text-anchor="end" class="ioc">cf-turnstile widget</text>
+  <line x1="360" y1="300" x2="360" y2="332" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 4 -->
+  <circle cx="80" cy="355" r="14" class="stagebg"/>
+  <text x="80" y="359" text-anchor="middle" class="stagenum">4</text>
+  <rect x="110" y="332" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="351" class="label">AiTM reverse-proxy auth replay</text>
+  <text x="124" y="368" class="sub">Operator relays login.microsoftonline.com from their host</text>
+  <text x="124" y="384" class="ioc">victim sees real Microsoft branding + completes MFA</text>
+  <text x="600" y="351" text-anchor="end" class="mitre">T1557</text>
+  <text x="600" y="384" text-anchor="end" class="ioc">acceptable-use-policy-calendly[.]de</text>
+  <line x1="600" y1="365" x2="700" y2="365" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
+  <line x1="360" y1="390" x2="360" y2="422" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 5 -->
+  <circle cx="80" cy="445" r="14" class="stagebg"/>
+  <text x="80" y="449" text-anchor="middle" class="stagenum">5</text>
+  <rect x="110" y="422" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="441" class="label">Token capture — ESTSAUTH + access + refresh</text>
+  <text x="124" y="458" class="sub">Reverse proxy harvests the three primitives in flight</text>
+  <text x="124" y="474" class="ioc">Set-Cookie: ESTSAUTH=... on attacker domain</text>
+  <text x="600" y="441" text-anchor="end" class="mitre">T1539 . T1606.001</text>
+  <text x="600" y="474" text-anchor="end" class="ioc">access_token + refresh_token</text>
+  <line x1="360" y1="480" x2="360" y2="512" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 6 -->
+  <circle cx="80" cy="535" r="14" class="stagebg"/>
+  <text x="80" y="539" text-anchor="middle" class="stagenum">6</text>
+  <rect x="110" y="512" width="500" height="68" rx="6" class="bg-stage"/>
+  <text x="124" y="531" class="label">Entra ID device-add + PRT derive (&lt; 10 min)</text>
+  <text x="124" y="548" class="sub">enterpriseregistration.windows.net -&gt; new device + PRT</text>
+  <text x="124" y="564" class="ioc">PRT SURVIVES password rotation</text>
+  <text x="124" y="580" class="ioc">requires Remove-MgDevice + Revoke-MgUserSignInSession</text>
+  <text x="600" y="531" text-anchor="end" class="mitre">T1098.005 . T1078.004</text>
+  <text x="600" y="580" text-anchor="end" class="ioc">durable foothold</text>
+  <line x1="360" y1="580" x2="360" y2="612" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 7 -->
+  <circle cx="80" cy="635" r="14" class="stagebg"/>
+  <text x="80" y="639" text-anchor="middle" class="stagenum">7</text>
+  <rect x="110" y="612" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="631" class="label">InboxRule invisible-name BEC stage</text>
+  <text x="124" y="648" class="sub">DisplayName = "." / " " / "-" / "_" -&gt; Move to RSS Subscriptions</text>
+  <text x="124" y="664" class="ioc">ForwardTo external + keyword filter (invoice/wire/swift)</text>
+  <text x="600" y="631" text-anchor="end" class="mitre">T1564.008</text>
+  <text x="600" y="664" text-anchor="end" class="ioc">hidden rule</text>
+  <line x1="360" y1="670" x2="360" y2="702" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 8 -->
+  <circle cx="80" cy="725" r="14" class="stagebg"/>
+  <text x="80" y="729" text-anchor="middle" class="stagenum">8</text>
+  <rect x="110" y="702" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="721" class="label">Mailbox read + external forward</text>
+  <text x="124" y="738" class="sub">MailItemsAccessed bulk + ForwardTo external recipient</text>
+  <text x="124" y="754" class="ioc">PRT mints fresh OAuth tokens on demand</text>
+  <text x="600" y="721" text-anchor="end" class="mitre">T1114.002 . T1114.003</text>
+  <text x="600" y="754" text-anchor="end" class="ioc">silent collection</text>
+  <line x1="360" y1="760" x2="360" y2="792" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 9 -->
+  <circle cx="80" cy="815" r="14" class="stagebg"/>
+  <text x="80" y="819" text-anchor="middle" class="stagenum">9</text>
+  <rect x="110" y="792" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="811" class="label">BEC payment fraud + federated SaaS takeover</text>
+  <text x="124" y="828" class="sub">Wire-fraud lure to finance counterparty + cross-SaaS pivot</text>
+  <text x="600" y="811" text-anchor="end" class="mitre">T1657</text>
+  <text x="600" y="828" text-anchor="end" class="ioc">downstream impact</text>
+
+  <!-- Operator cluster -->
+  <rect x="640" y="92" width="220" height="660" rx="6" class="bg-c2"/>
+  <text x="660" y="115" class="label">Tycoon2FA / Storm-1747</text>
+
+  <text x="660" y="148" class="sub">PhaaS pricing</text>
+  <text x="660" y="166" class="ioc">$120 / 10 days</text>
+  <text x="660" y="182" class="ioc">$350 / month</text>
+  <text x="660" y="198" class="ioc">Telegram + Signal</text>
+
+  <text x="660" y="232" class="sub">Landing domains</text>
+  <text x="660" y="250" class="ioc">acceptable-use-</text>
+  <text x="660" y="266" class="ioc">policy-calendly.de</text>
+  <text x="660" y="282" class="ioc">compliance-</text>
+  <text x="660" y="298" class="ioc">protectionoutlook.de</text>
+
+  <text x="660" y="332" class="sub">TLD preferences</text>
+  <text x="660" y="350" class="ioc">.de  .space  .email</text>
+  <text x="660" y="366" class="ioc">.solutions  .live</text>
+  <text x="660" y="382" class="ioc">.today  .calendar</text>
+
+  <text x="660" y="416" class="sub">FQDN lifetime</text>
+  <text x="660" y="434" class="ioc">24-72 hours</text>
+
+  <text x="660" y="468" class="sub">Cluster overlap</text>
+  <text x="660" y="486" class="ioc">Storm-1747 (kit dev)</text>
+  <text x="660" y="502" class="ioc">Storm-1575 (Dadsec)</text>
+
+  <text x="660" y="536" class="sub">Volume (Apr 14-16)</text>
+  <text x="660" y="554" class="ioc">35,000+ users</text>
+  <text x="660" y="570" class="ioc">13,000+ orgs</text>
+  <text x="660" y="586" class="ioc">26 countries</text>
+  <text x="660" y="602" class="ioc">92% US</text>
+
+  <text x="660" y="636" class="sub">Verticals</text>
+  <text x="660" y="654" class="ioc">healthcare 19%</text>
+  <text x="660" y="670" class="ioc">financial 18%</text>
+  <text x="660" y="686" class="ioc">prof. svcs 11%</text>
+  <text x="660" y="702" class="ioc">technology 11%</text>
+
+  <text x="660" y="736" class="sub">Defense bypass</text>
+  <text x="660" y="752" class="ioc">TOTP / SMS / push</text>
+  <text x="660" y="766" class="ioc">FIDO2 STOPS this</text>
+
+  <!-- Detection anchors box -->
+  <rect x="40" y="870" width="800" height="290" rx="6" class="anchor-bg"/>
+  <text x="60" y="898" class="anchor">Detection anchors (rules in this folder)</text>
+  <text x="60" y="924" class="anchor-sub">sigma/code_of_conduct_aitm_pdf_lure.yml — M365 EmailEvents PDF lure with HR-disciplinary subject + cheap-TLD link</text>
+  <text x="60" y="946" class="anchor-sub">sigma/entra_id_device_register_post_signin.yml — Add device in Entra ID Audit within 60 min after risky sign-in</text>
+  <text x="60" y="968" class="anchor-sub">sigma/inbox_rule_invisible_name.yml — New-InboxRule audit with DisplayName length 1 or symbol-only</text>
+  <text x="60" y="990" class="anchor-sub">kql/aitm_chain_correlation.kql — SignInLogs + AuditLogs + EmailEvents joined for the same UPN within 24h</text>
+  <text x="60" y="1012" class="anchor-sub">kql/firstseen_attacker_domain_pdf.kql — first-seen attacker domain in EmailEvents + cheap-TLD pattern</text>
+  <text x="60" y="1034" class="anchor-sub">kql/peak_h1_click_to_device.kql — click PDF link -&gt; AiTM signin -&gt; device-add within 2h</text>
+  <text x="60" y="1056" class="anchor-sub">yara/CodeOfConduct_AiTM_PDF_Lure_2026.yar — PDF magic + /A /URI + HR-keyword body + cheap-TLD URL</text>
+  <text x="60" y="1078" class="anchor-sub">suricata/code_of_conduct_aitm_landing.rules — TLS SNI / HTTP Host hits to known landing domains</text>
+  <text x="60" y="1110" class="anchor">Pedagogical anchors</text>
+  <text x="60" y="1132" class="anchor-sub">TOTP / SMS / push without number matching do NOT stop AiTM. FIDO2 / passkey does.</text>
+  <text x="60" y="1152" class="anchor-sub">PRT survives password rotation. Containment requires Remove-MgDevice + Revoke-MgUserSignInSession.</text>
+</svg>

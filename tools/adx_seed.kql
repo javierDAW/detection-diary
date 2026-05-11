@@ -432,4 +432,474 @@
         | project Timestamp, DeviceId, DeviceName, ActionType, AccountName, AccountDomain, AccountSid, LogonType, Protocol, FailureReason, RemoteIP, RemoteIPType, RemoteDeviceName, InitiatingProcessFileName, InitiatingProcessId, InitiatingProcessCommandLine
     //
     // =========================================================================
-    // Day 8 — Akira SM
+    // Day 8 — Akira SMB burst (12 distinct private IPs on port 445 in 5min)
+    // =========================================================================
+    .set-or-append DeviceNetworkEvents <|
+        range i from 1 to 12 step 1
+        | extend
+            Timestamp = datetime(2026-05-10T10:01:00Z) + i * 5s,
+            DeviceId = "d-08-1",
+            DeviceName = "WIN-08-1",
+            DeviceOSPlatform = "Windows",
+            ActionType = "ConnectionSuccess",
+            RemoteIP = strcat("10.0.0.", tostring(10 + i)),
+            RemotePort = long(445),
+            RemoteUrl = "",
+            LocalIP = "10.0.0.5",
+            LocalPort = 55100 + i,
+            Protocol = "Tcp",
+            AccountName = "",
+            AccountDomain = "",
+            InitiatingProcessId = 9101,
+            InitiatingProcessFileName = "wmiexec.py",
+            InitiatingProcessSHA256 = "sha-wmiexec",
+            InitiatingProcessFolderPath = @"C:\Tools\",
+            InitiatingProcessCommandLine = "python3 wmiexec.py corp/jdoe@10.0.0.10 hostname",
+            InitiatingProcessAccountName = "jdoe",
+            InitiatingProcessAccountDomain = "corp",
+            InitiatingProcessParentFileName = "python3.exe",
+            InitiatingProcessParentId = 9100
+        | project-away i
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, RemoteIP, RemotePort, RemoteUrl, LocalIP, LocalPort, Protocol, AccountName, AccountDomain, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    //
+    // Day 8 — Akira recon proc (nltest)
+    .set-or-append DeviceProcessEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  FileName:string, ProcessCommandLine:string, AccountName:string)
+        [
+          datetime(2026-05-10T10:02:30Z), "d-08-1", "WIN-08-1",
+            "nltest.exe", "nltest /domain_trusts /all_trusts", "jdoe"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            ActionType = "ProcessCreated",
+            FolderPath = @"C:\Windows\System32\", SHA256 = "sha-nltest",
+            SHA1 = "", MD5 = "",
+            ProcessId = long(9201), ProcessCreationTime = datetime(null),
+            ProcessTokenElevation = "", ProcessIntegrityLevel = "",
+            AccountDomain = "corp", AccountSid = "",
+            InitiatingProcessId = long(9101),
+            InitiatingProcessFileName = "wmiexec.py",
+            InitiatingProcessSHA256 = "sha-wmiexec",
+            InitiatingProcessFolderPath = @"C:\Tools\",
+            InitiatingProcessCommandLine = "python3 wmiexec.py",
+            InitiatingProcessAccountName = "jdoe",
+            InitiatingProcessAccountDomain = "corp",
+            InitiatingProcessParentFileName = "python3.exe",
+            InitiatingProcessParentId = long(9100)
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, FileName, FolderPath, SHA256, SHA1, MD5, ProcessId, ProcessCommandLine, ProcessCreationTime, ProcessTokenElevation, ProcessIntegrityLevel, AccountName, AccountDomain, AccountSid, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    //
+    // =========================================================================
+    // Day 6 (May-06) PEAK H1 — UrlClick → device-add (within 2h)
+    // =========================================================================
+    .set-or-append UrlClickEvents <|
+        datatable(TimeGenerated:datetime, NetworkMessageId:string,
+                  AccountUpn:string, Url:string, ActionType:string,
+                  IPAddress:string)
+        [
+          datetime(2026-05-10T11:00:00Z), "nm-001", "alice@victim.com",
+            "https://acceptable-use-policy-calendly.de/case",
+            "ClickAllowed", "10.0.0.20"
+        ]
+        | extend UrlChain = dynamic([])
+        | project TimeGenerated, NetworkMessageId, AccountUpn, Url, ActionType, IPAddress, UrlChain
+    //
+    // =========================================================================
+    // Day 9 — CodeOfConduct AiTM — three-source chain
+    // =========================================================================
+    .set-or-append SigninLogs <|
+        datatable(TimeGenerated:datetime, UserPrincipalName:string,
+                  IPAddress:string, ResultType:string,
+                  RiskLevelDuringSignIn:string)
+        [
+          datetime(2026-05-10T12:00:00Z), "alice@victim.com",
+            "185.99.88.77", "0", "medium"
+        ]
+        | extend UserId = "alice-id-001",
+                 UserDisplayName = "Alice", AppDisplayName = "Outlook",
+                 ResourceDisplayName = "Office 365 Exchange Online",
+                 Location = "RU", ResultDescription = "Success",
+                 AuthenticationRequirement = "multiFactorAuthentication",
+                 ConditionalAccessStatus = "success",
+                 RiskLevelAggregated = "medium", RiskState = "atRisk",
+                 AuthenticationDetails = dynamic([{"authenticationMethod":"sms"}]),
+                 MfaDetail = dynamic({"authMethod":"sms"}),
+                 DeviceDetail = dynamic({"deviceId":"new-evil"}),
+                 ClientAppUsed = "Browser",
+                 UserAgent = "Mozilla/5.0",
+                 CorrelationId = "corr-001",
+                 SessionId = "sess-001"
+        | project TimeGenerated, UserPrincipalName, UserId, UserDisplayName, AppDisplayName, ResourceDisplayName, IPAddress, Location, ResultType, ResultDescription, AuthenticationRequirement, ConditionalAccessStatus, RiskLevelDuringSignIn, RiskLevelAggregated, RiskState, AuthenticationDetails, MfaDetail, DeviceDetail, ClientAppUsed, UserAgent, CorrelationId, SessionId
+    .set-or-append AuditLogs <|
+        datatable(TimeGenerated:datetime, OperationName:string, Result:string,
+                  InitiatedBy:dynamic, TargetResources:dynamic)
+        [
+          datetime(2026-05-10T12:05:00Z), "Add device", "success",
+            dynamic({"user":{"userPrincipalName":"alice@victim.com",
+                             "ipAddress":"185.99.88.77"}}),
+            dynamic([{"id":"dev-evil","displayName":"Attacker-PC"}])
+        ]
+        | extend Category = "DeviceManagement",
+                 ResultReason = "", ResultDescription = "Device added",
+                 ResultSignature = "Success", Identity = "alice@victim.com",
+                 ActivityDisplayName = "Add device",
+                 AdditionalDetails = dynamic([]), CorrelationId = "corr-001"
+        | project TimeGenerated, OperationName, Category, Result, ResultReason, ResultDescription, ResultSignature, Identity, ActivityDisplayName, InitiatedBy, TargetResources, AdditionalDetails, CorrelationId
+    .set-or-append CloudAppEvents <|
+        datatable(TimeGenerated:datetime, ActionType:string,
+                  AccountUpn:string, IPAddress:string, RawEventData:dynamic)
+        [
+          datetime(2026-05-10T12:30:00Z), "New-InboxRule",
+            "alice@victim.com", "185.99.88.77",
+            dynamic({"Parameters":{"Name":"."}})
+        ]
+        | extend Application = "Office 365",
+                 AccountObjectId = "obj-alice",
+                 AccountDisplayName = "Alice",
+                 IsAnonymousProxy = false,
+                 ObjectName = "rule-1", ObjectType = "InboxRule"
+        | project TimeGenerated, ActionType, Application, AccountObjectId, AccountDisplayName, AccountUpn, IPAddress, IsAnonymousProxy, RawEventData, ObjectName, ObjectType
+    //
+    // Day 9 — firstseen attacker domain via PDF
+    .set-or-append EmailUrlInfo <|
+        datatable(TimeGenerated:datetime, NetworkMessageId:string, Url:string,
+                  UrlDomain:string, UrlLocation:string)
+        [
+          datetime(2026-05-10T13:00:00Z), "nm-001",
+            "https://acceptable-use-policy-calendly.de/case",
+            "acceptable-use-policy-calendly.de", "body"
+        ]
+        | project TimeGenerated, NetworkMessageId, Url, UrlDomain, UrlLocation
+    .set-or-append EmailAttachmentInfo <|
+        datatable(TimeGenerated:datetime, NetworkMessageId:string,
+                  RecipientEmailAddress:string, Subject:string,
+                  FileName:string, FileType:string)
+        [
+          datetime(2026-05-10T13:00:00Z), "nm-001",
+            "alice@victim.com",
+            "Awareness Case Log File - Tuesday 14th April 2026",
+            "Awareness Case Log File - Tuesday 14th April 2026.pdf", "pdf"
+        ]
+        | extend SenderFromAddress = "compliance@acceptable-use-policy-calendly.de",
+                 SHA256 = "sha-pdflure", FileSize = long(1048576)
+        | project TimeGenerated, NetworkMessageId, SenderFromAddress, RecipientEmailAddress, Subject, FileName, FileType, SHA256, FileSize
+    //
+    // =========================================================================
+    // Day 9 — Albiriox Android (notif/SMS + sideload+accessibility)
+    // =========================================================================
+    .set-or-append DeviceEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  ActionType:string, AdditionalFields:dynamic)
+        [
+          datetime(2026-05-10T14:00:00Z), "d-09a-1", "ANDROID-09a-1",
+            "NotificationListenerGranted",
+            dynamic({"PackageName":"com.evil.albiriox"}),
+          datetime(2026-05-10T14:01:00Z), "d-09a-1", "ANDROID-09a-1",
+            "DangerousPermissionGranted",
+            dynamic({"PackageName":"com.evil.albiriox","Permission":"READ_SMS"}),
+          datetime(2026-05-10T14:00:00Z), "d-09b-1", "ANDROID-09b-1",
+            "AppInstalledFromUnknownSource",
+            dynamic({"PackageName":"com.evil.albiriox",
+                     "InstallerPackageName":"com.android.shellinstall"}),
+          datetime(2026-05-10T14:15:00Z), "d-09b-1", "ANDROID-09b-1",
+            "AccessibilityServiceEnabled",
+            dynamic({"PackageName":"com.evil.albiriox"}),
+          datetime(2026-05-10T14:05:00Z), "d-09a-2", "ANDROID-09a-2",
+            "NotificationListenerGranted",
+            dynamic({"PackageName":"com.google.android.apps.messaging"})
+        ]
+        | extend
+            DeviceOSPlatform = "Android",
+            FileName = "", FolderPath = "", SHA256 = "",
+            AccountName = "shell",
+            InitiatingProcessFileName = "system_server",
+            InitiatingProcessId = long(1000),
+            InitiatingProcessCommandLine = "system_server",
+            InitiatingProcessAccountName = "system"
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, FileName, FolderPath, SHA256, AccountName, InitiatingProcessFileName, InitiatingProcessId, InitiatingProcessCommandLine, InitiatingProcessAccountName, AdditionalFields
+    .set-or-append DeviceTvmSoftwareInventory <|
+        datatable(DeviceId:string, DeviceName:string, OSPlatform:string,
+                  SoftwareVendor:string, SoftwareName:string,
+                  SoftwareVersion:string)
+        [
+          "d-09b-1", "ANDROID-09b-1", "Android",
+            "BBVA", "com.bbva.bbvacontigo", "12.4.1",
+          "d-09b-9", "ANDROID-09b-9", "Android",
+            "Spotify", "com.spotify.music", "9.0"
+        ]
+        | extend EndOfSupportStatus = "Supported"
+        | project DeviceId, DeviceName, OSPlatform, SoftwareVendor, SoftwareName, SoftwareVersion, EndOfSupportStatus
+    //
+    // =========================================================================
+    // Day 10 — QLNX Linux (4 rules)
+    // =========================================================================
+    .set-or-append DeviceFileEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  ActionType:string, FileName:string, FolderPath:string,
+                  InitiatingProcessFileName:string, InitiatingProcessId:long,
+                  InitiatingProcessCommandLine:string)
+        [
+          datetime(2026-05-10T15:00:00Z), "d-10-1", "LIN-10-1",
+            "FileModified", "ld.so.preload", "/etc", "bash", 10001,
+            "bash -c 'echo /tmp/.ICE-unix/libqlnx.so > /etc/ld.so.preload'",
+          datetime(2026-05-10T15:01:00Z), "d-10-1", "LIN-10-1",
+            "FileCreated", ".X752e2ca1-lock", "/tmp", "qlnx", 10003,
+            "/tmp/qlnx",
+          datetime(2026-05-10T15:02:00Z), "d-10-1", "LIN-10-1",
+            "FileAccessed", "credentials", "/root/.aws", "qlnx", 10004,
+            "/tmp/qlnx",
+          datetime(2026-05-10T15:02:05Z), "d-10-1", "LIN-10-1",
+            "FileAccessed", ".npmrc", "/root", "qlnx", 10004,
+            "/tmp/qlnx",
+          datetime(2026-05-10T15:02:10Z), "d-10-1", "LIN-10-1",
+            "FileAccessed", "id_rsa", "/root/.ssh", "qlnx", 10004,
+            "/tmp/qlnx",
+          datetime(2026-05-10T15:02:15Z), "d-10-1", "LIN-10-1",
+            "FileAccessed", ".git-credentials", "/root", "qlnx", 10004,
+            "/tmp/qlnx"
+        ]
+        | extend
+            DeviceOSPlatform = "Linux",
+            SHA256 = "sha-qlnx", SHA1 = "", MD5 = "", FileSize = long(1024),
+            InitiatingProcessSHA256 = "sha-qlnx",
+            InitiatingProcessFolderPath = "/tmp",
+            InitiatingProcessAccountName = "root",
+            InitiatingProcessAccountDomain = "",
+            InitiatingProcessParentFileName = "qlnx",
+            InitiatingProcessParentId = long(10000),
+            RequestProtocol = "",
+            TargetFilename = strcat(FolderPath, "/", FileName)
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, FileName, FolderPath, SHA256, SHA1, MD5, FileSize, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessCommandLine, InitiatingProcessParentFileName, InitiatingProcessParentId, RequestProtocol, TargetFilename
+    .set-or-append DeviceNetworkEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  RemoteIP:string, RemotePort:long, RemoteUrl:string,
+                  InitiatingProcessFileName:string)
+        [
+          datetime(2026-05-10T15:03:00Z), "d-10-1", "LIN-10-1",
+            "208.95.112.1", 80, "http://ip-api.com/json", "qlnx"
+        ]
+        | extend
+            DeviceOSPlatform = "Linux",
+            ActionType = "ConnectionSuccess",
+            LocalIP = "10.0.50.5", LocalPort = long(55001), Protocol = "Tcp",
+            AccountName = "root", AccountDomain = "",
+            InitiatingProcessId = long(10004),
+            InitiatingProcessSHA256 = "sha-qlnx",
+            InitiatingProcessFolderPath = "/tmp",
+            InitiatingProcessCommandLine = "/tmp/qlnx",
+            InitiatingProcessAccountName = "root",
+            InitiatingProcessAccountDomain = "",
+            InitiatingProcessParentFileName = "init",
+            InitiatingProcessParentId = long(1)
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, RemoteIP, RemotePort, RemoteUrl, LocalIP, LocalPort, Protocol, AccountName, AccountDomain, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    //
+    // =========================================================================
+    // Day 11 — EVM/DeFi npm typosquat (2 rules)
+    // =========================================================================
+    .set-or-append DeviceFileEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  ActionType:string, FileName:string, FolderPath:string,
+                  InitiatingProcessFileName:string)
+        [
+          datetime(2026-05-10T16:00:00Z), "d-11-1", "WIN-11-1",
+            "FileAccessed", "foundry.toml", @"C:\Users\dev\app",
+            "node.exe",
+          datetime(2026-05-10T16:01:00Z), "d-11-1", "WIN-11-1",
+            "FileAccessed", ".env.production", @"C:\Users\dev\app",
+            "node.exe",
+          datetime(2026-05-10T16:01:05Z), "d-11-1", "WIN-11-1",
+            "FileAccessed", "id_rsa", @"C:\Users\dev\.ssh",
+            "node.exe",
+          datetime(2026-05-10T16:01:10Z), "d-11-1", "WIN-11-1",
+            "FileAccessed", ".env.local", @"C:\Users\dev\app2",
+            "node.exe"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            SHA256 = "sha-secret", SHA1 = "", MD5 = "", FileSize = long(512),
+            InitiatingProcessId = long(11001),
+            InitiatingProcessSHA256 = "sha-node",
+            InitiatingProcessFolderPath = @"C:\Program Files\nodejs",
+            InitiatingProcessAccountName = "dev",
+            InitiatingProcessAccountDomain = "DEV",
+            InitiatingProcessCommandLine = "node telemetry.js",
+            InitiatingProcessParentFileName = "cmd.exe",
+            InitiatingProcessParentId = long(11000),
+            RequestProtocol = "",
+            TargetFilename = strcat(FolderPath, "\\", FileName)
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, FileName, FolderPath, SHA256, SHA1, MD5, FileSize, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessCommandLine, InitiatingProcessParentFileName, InitiatingProcessParentId, RequestProtocol, TargetFilename
+    .set-or-append DeviceNetworkEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  RemoteIP:string, RemotePort:long,
+                  InitiatingProcessFileName:string,
+                  InitiatingProcessAccountName:string)
+        [
+          datetime(2026-05-10T16:02:00Z), "d-11-1", "WIN-11-1",
+            "76.13.37.80", 443, "node.exe", "dev"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            ActionType = "ConnectionSuccess",
+            RemoteUrl = "", LocalIP = "10.0.60.5", LocalPort = long(60001),
+            Protocol = "Tcp", AccountName = "dev", AccountDomain = "DEV",
+            InitiatingProcessId = long(11001), InitiatingProcessSHA256 = "sha-node",
+            InitiatingProcessFolderPath = @"C:\Program Files\nodejs",
+            InitiatingProcessCommandLine = "node telemetry.js",
+            InitiatingProcessAccountDomain = "DEV",
+            InitiatingProcessParentFileName = "cmd.exe",
+            InitiatingProcessParentId = long(11000)
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, RemoteIP, RemotePort, RemoteUrl, LocalIP, LocalPort, Protocol, AccountName, AccountDomain, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    //
+    // =========================================================================
+    // Day 12 — CloudZ + Pheno (phone DB read + Workers + Pastebin)
+    // =========================================================================
+    .set-or-append DeviceFileEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  ActionType:string, FileName:string, FolderPath:string,
+                  InitiatingProcessFileName:string,
+                  InitiatingProcessFolderPath:string)
+        [
+          datetime(2026-05-10T17:00:00Z), "d-12-1", "WIN-12-1",
+            "FileAccessed", "PhoneExperiences-001.db",
+            @"C:\Users\u\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\",
+            "evil.exe", @"C:\Users\u\AppData\Roaming\xyzsync\",
+          datetime(2026-05-10T17:01:00Z), "d-12-2", "WIN-12-2",
+            "FileAccessed", "PhoneExperiences-001.db",
+            @"C:\Users\u\AppData\Local\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\LocalState\",
+            "YourPhone.exe",
+            @"C:\Program Files\WindowsApps\Microsoft.YourPhone_8wekyb3d8bbwe\"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            SHA256 = "sha-phexp", SHA1 = "", MD5 = "", FileSize = long(4096),
+            InitiatingProcessId = long(12001),
+            InitiatingProcessSHA256 = "sha-evil",
+            InitiatingProcessAccountName = "u",
+            InitiatingProcessAccountDomain = "VICTIM",
+            InitiatingProcessCommandLine = "evil.exe",
+            InitiatingProcessParentFileName = "cmd.exe",
+            InitiatingProcessParentId = long(12000),
+            RequestProtocol = "",
+            TargetFilename = strcat(FolderPath, FileName)
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, FileName, FolderPath, SHA256, SHA1, MD5, FileSize, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessCommandLine, InitiatingProcessParentFileName, InitiatingProcessParentId, RequestProtocol, TargetFilename
+    .set-or-append DeviceNetworkEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  RemoteIP:string, RemotePort:long, RemoteUrl:string,
+                  InitiatingProcessFileName:string)
+        [
+          datetime(2026-05-10T17:05:00Z), "d-12-1", "WIN-12-1",
+            "1.2.3.4", 443,
+            "https://round-cherry-4418.hellohiall.workers.dev/?t=99",
+            "evil.exe",
+          datetime(2026-05-10T17:10:00Z), "d-12-1", "WIN-12-1",
+            "5.6.7.8", 443, "https://pastebin.com/raw/8pYAgF0Z",
+            "evil.exe",
+          datetime(2026-05-10T17:15:00Z), "d-12-1", "WIN-12-1",
+            "185.196.10.136", 443, "", "evil.exe"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            ActionType = "ConnectionSuccess",
+            LocalIP = "10.0.70.5", LocalPort = long(60101), Protocol = "Tcp",
+            AccountName = "u", AccountDomain = "VICTIM",
+            InitiatingProcessId = long(12001), InitiatingProcessSHA256 = "sha-evil",
+            InitiatingProcessFolderPath = @"C:\Users\u\AppData\Roaming\xyzsync\",
+            InitiatingProcessCommandLine = "evil.exe",
+            InitiatingProcessAccountName = "u",
+            InitiatingProcessAccountDomain = "VICTIM",
+            InitiatingProcessParentFileName = "cmd.exe",
+            InitiatingProcessParentId = long(12000)
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, RemoteIP, RemotePort, RemoteUrl, LocalIP, LocalPort, Protocol, AccountName, AccountDomain, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    //
+    // =========================================================================
+    // Day 14 (May-10) — Mexico Water AI-Assisted OT — TODAY's rules
+    // Rule A: llm_api_egress_from_server_tier (DeviceInfo Server tier + LLM hosts).
+    // Rule B: python_internal_burst_defender_xdr (python.exe Targets>=50 Ports>=4 in 5min).
+    // =========================================================================
+    .set-or-append DeviceInfo <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  DeviceCategory:string, DeviceType:string)
+        [
+          datetime(2026-05-10T18:00:00Z), "d-14-1", "SRV-FILE-01",
+            "Server", "Server",
+          datetime(2026-05-10T18:00:00Z), "d-14-2", "WIN-14-2",
+            "Workstation", "Workstation",
+          datetime(2026-05-10T18:00:00Z), "d-14-3", "LAP-USER-03",
+            "Workstation", "Workstation",
+          datetime(2026-05-10T18:00:00Z), "d-14-4", "SRV-DC-01",
+            "DomainController", "Server"
+        ]
+        | extend DeviceSubtype = "Server", OSPlatform = "Windows",
+                 OSVersion = "10.0.20348", OSBuild = "20348.2700",
+                 PublicIP = "203.0.113.1", ClientVersion = "10.8500.19041.50",
+                 IsAzureADJoined = false, IsInternetFacing = false,
+                 LoggedOnUsers = dynamic([]),
+                 RegistryDeviceTag = "default", MachineGroup = "Default",
+                 ReportId = long(1)
+        | project Timestamp, DeviceId, DeviceName, DeviceCategory, DeviceType, DeviceSubtype, OSPlatform, OSVersion, OSBuild, PublicIP, ClientVersion, IsAzureADJoined, IsInternetFacing, LoggedOnUsers, RegistryDeviceTag, MachineGroup, ReportId
+    .set-or-append DeviceNetworkEvents <|
+        datatable(Timestamp:datetime, DeviceId:string, DeviceName:string,
+                  RemoteUrl:string)
+        [
+          datetime(2026-05-10T18:01:00Z), "d-14-1", "SRV-FILE-01",
+            "https://api.anthropic.com/v1/messages",
+          datetime(2026-05-10T18:02:00Z), "d-14-1", "SRV-FILE-01",
+            "https://api.anthropic.com/v1/messages",
+          datetime(2026-05-10T18:03:00Z), "d-14-1", "SRV-FILE-01",
+            "https://api.anthropic.com/v1/messages",
+          datetime(2026-05-10T18:04:00Z), "d-14-1", "SRV-FILE-01",
+            "https://api.anthropic.com/v1/messages",
+          datetime(2026-05-10T18:05:00Z), "d-14-1", "SRV-FILE-01",
+            "https://api.anthropic.com/v1/messages",
+          datetime(2026-05-10T18:06:00Z), "d-14-1", "SRV-FILE-01",
+            "https://chat.openai.com/backend-api",
+          datetime(2026-05-10T18:10:00Z), "d-14-3", "LAP-USER-03",
+            "https://api.anthropic.com/v1/messages"
+        ]
+        | extend
+            DeviceOSPlatform = "Windows",
+            ActionType = "ConnectionSuccess",
+            RemoteIP = "160.79.104.10", RemotePort = long(443),
+            LocalIP = "10.0.30.5", LocalPort = long(50001), Protocol = "Tcp",
+            AccountName = "svc-backuposint", AccountDomain = "VICTIM",
+            InitiatingProcessId = long(14001),
+            InitiatingProcessFileName = "python.exe",
+            InitiatingProcessSHA256 = "sha-py",
+            InitiatingProcessFolderPath = @"C:\Python311\",
+            InitiatingProcessCommandLine = "python.exe -m backuposint --module recon",
+            InitiatingProcessAccountName = "svc-backuposint",
+            InitiatingProcessAccountDomain = "VICTIM",
+            InitiatingProcessParentFileName = "cmd.exe",
+            InitiatingProcessParentId = long(14000)
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, RemoteIP, RemotePort, RemoteUrl, LocalIP, LocalPort, Protocol, AccountName, AccountDomain, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+    .set-or-append DeviceNetworkEvents <|
+        let ports = dynamic([22, 80, 443, 445, 3389]);
+        range i from 1 to 55 step 1
+        | extend
+            Timestamp = datetime(2026-05-10T18:30:00Z) + i * 4s,
+            DeviceId = "d-14-2",
+            DeviceName = "WIN-14-2",
+            DeviceOSPlatform = "Windows",
+            ActionType = "ConnectionSuccess",
+            RemoteIP = strcat("10.0.0.", tostring(i)),
+            RemotePort = tolong(ports[i % 5]),
+            RemoteUrl = "",
+            LocalIP = "10.0.30.6",
+            LocalPort = 55000 + i,
+            Protocol = "Tcp",
+            AccountName = "svc-backuposint",
+            AccountDomain = "VICTIM",
+            InitiatingProcessId = long(14201),
+            InitiatingProcessFileName = "python.exe",
+            InitiatingProcessSHA256 = "sha-py",
+            InitiatingProcessFolderPath = @"C:\Python311\",
+            InitiatingProcessCommandLine = "python.exe -m backuposint --module recon --targets 10.0.0.0/24",
+            InitiatingProcessAccountName = "svc-backuposint",
+            InitiatingProcessAccountDomain = "VICTIM",
+            InitiatingProcessParentFileName = "cmd.exe",
+            InitiatingProcessParentId = long(14200)
+        | project-away i
+        | project Timestamp, DeviceId, DeviceName, DeviceOSPlatform, ActionType, RemoteIP, RemotePort, RemoteUrl, LocalIP, LocalPort, Protocol, AccountName, AccountDomain, InitiatingProcessId, InitiatingProcessFileName, InitiatingProcessSHA256, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessAccountDomain, InitiatingProcessParentFileName, InitiatingProcessParentId
+
+// End of seed script. Verification queries live in adx_verify.kql so they
+// don't get consumed into the .set-or-append source query as continuation.

@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+  <title id="t">BAUXITE / CyberAv3ngers kill chain — CISA AA26-097A, April 2026</title>
+  <desc id="d">IRGC-CEC operators reach internet-exposed Rockwell PLCs through cellular gateways or directly on EIP/44818 plus CIP/2222, drive Studio 5000 against the controller, extract and modify the .ACD ladder logic, drop a static Dropbear SSH on the PLC for durable persistence, falsify the HMI display, and propagate laterally over the OT segment. A Windows-side cousin called ZionSiphon targets Israeli desalination operators.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      .anchor       { fill: #1f2328; font: 600 12px sans-serif; }
+      .anchor-sub   { fill: #424a53; font: 11.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .anchor-bg    { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+        .anchor     { fill: #c9d1d9; }
+        .anchor-sub { fill: #8b949e; }
+        .anchor-bg  { fill: #0c2d6b; stroke: #1f6feb; }
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="40" class="header">BAUXITE / CyberAv3ngers — kill chain</text>
+  <text x="40" y="60" class="subhead">CISA AA26-097A . FBI / NSA / EPA / DOE / CNMF . 7 Apr 2026 . MITRE G1027</text>
+
+  <text x="20" y="120" class="lane" transform="rotate(-90, 20, 120)">VICTIM (utility / water / energy / desalination)</text>
+  <text x="855" y="120" class="lane" transform="rotate(90, 855, 120)">OPERATOR (IRGC-CEC Shahid Kaveh)</text>
+
+  <!-- Stage 1: Recon -->
+  <circle cx="80" cy="115" r="14" class="stagebg"/>
+  <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
+  <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="111" class="label">Censys / Shodan scan of OT ports</text>
+  <text x="124" y="128" class="sub">EIP/44818, CIP/2222, Modbus/502, S7/102, DNP3/20000</text>
+  <text x="600" y="111" text-anchor="end" class="mitre">T1595</text>
+  <text x="600" y="128" text-anchor="end" class="ioc">5,219 EIP exposed (Censys)</text>
+  <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 2: Initial access -->
+  <circle cx="80" cy="195" r="14" class="stagebg"/>
+  <text x="80" y="199" text-anchor="middle" class="stagenum">2</text>
+  <rect x="110" y="172" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="191" class="label">Direct-to-PLC / cellular gateway abuse</text>
+  <text x="124" y="208" class="sub">Studio 5000 -&gt; PLC :44818 + :2222; AirLink default creds</text>
+  <text x="124" y="224" class="ioc">no auth needed in REMOTE key-switch</text>
+  <text x="600" y="191" text-anchor="end" class="mitre">T1190 . T1078.001 . T1133</text>
+  <text x="600" y="224" text-anchor="end" class="ioc">Sierra Wireless AirLink</text>
+  <line x1="360" y1="230" x2="360" y2="262" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 3: Discovery EIP -->
+  <circle cx="80" cy="285" r="14" class="stagebg"/>
+  <text x="80" y="289" text-anchor="middle" class="stagenum">3</text>
+  <rect x="110" y="262" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="281" class="label">EIP List Identity (CIP 0x01) from cell-LAN</text>
+  <text x="124" y="298" class="sub">Enumerate all Rockwell / Allen-Bradley reachable on the LAN</text>
+  <text x="600" y="281" text-anchor="end" class="mitre">T1018 . T1046</text>
+  <text x="600" y="298" text-anchor="end" class="ioc">CIP service 0x01</text>
+  <line x1="360" y1="310" x2="360" y2="342" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 4: ACD download -->
+  <circle cx="80" cy="365" r="14" class="stagebg"/>
+  <text x="80" y="369" text-anchor="middle" class="stagenum">4</text>
+  <rect x="110" y="342" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="361" class="label">Upload .ACD project from controller</text>
+  <text x="124" y="378" class="sub">Studio 5000 retrieves the ladder-logic project</text>
+  <text x="600" y="361" text-anchor="end" class="mitre">T1059.004</text>
+  <text x="600" y="378" text-anchor="end" class="ioc">.ACD file</text>
+  <line x1="360" y1="390" x2="360" y2="422" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 5: Logic tamper -->
+  <circle cx="80" cy="445" r="14" class="stagebg"/>
+  <text x="80" y="449" text-anchor="middle" class="stagenum">5</text>
+  <rect x="110" y="422" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="441" class="label">Modify logic + push back to PLC</text>
+  <text x="124" y="458" class="sub">Sensor scaling, alarm thresholds, output coil mapping</text>
+  <text x="600" y="441" text-anchor="end" class="mitre">T0831 . T1565.001</text>
+  <text x="600" y="458" text-anchor="end" class="ioc">tampered ladder</text>
+  <line x1="360" y1="470" x2="360" y2="502" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 6: HMI lies -->
+  <circle cx="80" cy="525" r="14" class="stagebg"/>
+  <text x="80" y="529" text-anchor="middle" class="stagenum">6</text>
+  <rect x="110" y="502" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="521" class="label">HMI / SCADA falsification</text>
+  <text x="124" y="538" class="sub">Display reads green; the process is in distress</text>
+  <text x="600" y="521" text-anchor="end" class="mitre">T0832</text>
+  <text x="600" y="538" text-anchor="end" class="ioc">Manipulation of View</text>
+  <line x1="360" y1="550" x2="360" y2="582" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 7: Dropbear on PLC -->
+  <circle cx="80" cy="605" r="14" class="stagebg"/>
+  <text x="80" y="609" text-anchor="middle" class="stagenum">7</text>
+  <rect x="110" y="582" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="601" class="label">Drop Dropbear SSH on the controller</text>
+  <text x="124" y="618" class="sub">Static binary, listens on TCP/22, crontab @reboot</text>
+  <text x="124" y="634" class="ioc">/var/persistent/dropbear -p 22</text>
+  <text x="600" y="601" text-anchor="end" class="mitre">T1505.003 . T1037.004</text>
+  <text x="600" y="634" text-anchor="end" class="ioc">SSH-2.0-dropbear_*</text>
+  <line x1="360" y1="640" x2="360" y2="672" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 8: IOCONTROL on gateway -->
+  <circle cx="80" cy="695" r="14" class="stagebg"/>
+  <text x="80" y="699" text-anchor="middle" class="stagenum">8</text>
+  <rect x="110" y="672" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="691" class="label">IOCONTROL ELF on cellular gateway</text>
+  <text x="124" y="708" class="sub">D-Link / Hikvision / Red Lion / Orpak / Phoenix Contact / Teltonika</text>
+  <text x="124" y="724" class="ioc">MQTT TLS on TCP/8883</text>
+  <text x="600" y="691" text-anchor="end" class="mitre">T1071.001 . T1573.002</text>
+  <text x="600" y="724" text-anchor="end" class="ioc">topic = gateway/&lt;id&gt;</text>
+  <line x1="600" y1="700" x2="700" y2="700" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
+  <line x1="360" y1="730" x2="360" y2="762" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 9: ZionSiphon variant -->
+  <circle cx="80" cy="785" r="14" class="stagebg"/>
+  <text x="80" y="789" text-anchor="middle" class="stagenum">9</text>
+  <rect x="110" y="762" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="781" class="label">ZionSiphon — Israeli desalination variant</text>
+  <text x="124" y="798" class="sub">PE Win64; Mekorot / Sorek / Hadera / Ashdod / Palmachim</text>
+  <text x="124" y="814" class="ioc">XOR comparator "Nqvbdk" (broken — LLM-assisted)</text>
+  <text x="600" y="781" text-anchor="end" class="mitre">T1485 . T1495</text>
+  <text x="600" y="814" text-anchor="end" class="ioc">partial 1b39f9b2b9...</text>
+  <line x1="360" y1="820" x2="360" y2="852" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 10: Impact -->
+  <circle cx="80" cy="875" r="14" class="stagebg"/>
+  <text x="80" y="879" text-anchor="middle" class="stagenum">10</text>
+  <rect x="110" y="852" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="871" class="label">Impact — loss of control + branded defacement</text>
+  <text x="124" y="888" class="sub">Logic erase, firmware corruption, HMI defacement</text>
+  <text x="124" y="904" class="ioc">"You have been hacked - Down with Israel"</text>
+  <text x="600" y="871" text-anchor="end" class="mitre">T0831 . T1561 . T1495</text>
+  <text x="600" y="904" text-anchor="end" class="ioc">Aliquippa 2023 echo</text>
+
+  <!-- Operator cluster -->
+  <rect x="640" y="92" width="220" height="730" rx="6" class="bg-c2"/>
+  <text x="660" y="115" class="label">IRGC-CEC operator</text>
+
+  <text x="660" y="148" class="sub">Self-brand</text>
+  <text x="660" y="166" class="ioc">CyberAv3ngers</text>
+
+  <text x="660" y="200" class="sub">Alias merges</text>
+  <text x="660" y="218" class="ioc">BAUXITE (Dragos)</text>
+  <text x="660" y="234" class="ioc">Storm-0784 (MS)</text>
+  <text x="660" y="250" class="ioc">UNC5691 (Mandiant)</text>
+  <text x="660" y="266" class="ioc">Hydro Kitten (CS)</text>
+  <text x="660" y="282" class="ioc">Shahid Kaveh (FBI)</text>
+  <text x="660" y="298" class="ioc">MITRE G1027</text>
+
+  <text x="660" y="332" class="sub">Tradecraft</text>
+  <text x="660" y="350" class="ioc">Studio 5000 client</text>
+  <text x="660" y="366" class="ioc">RSLinx Classic</text>
+  <text x="660" y="382" class="ioc">Dropbear static</text>
+  <text x="660" y="398" class="ioc">IOCONTROL multi-arch</text>
+  <text x="660" y="414" class="ioc">ZionSiphon PE Win64</text>
+
+  <text x="660" y="448" class="sub">Sectors targeted</text>
+  <text x="660" y="466" class="ioc">Water/wastewater</text>
+  <text x="660" y="482" class="ioc">Energy</text>
+  <text x="660" y="498" class="ioc">Government services</text>
+  <text x="660" y="514" class="ioc">Desalination (IL)</text>
+
+  <text x="660" y="548" class="sub">Pivot vectors</text>
+  <text x="660" y="566" class="ioc">Direct EIP/44818</text>
+  <text x="660" y="582" class="ioc">Cellular gateway LAN</text>
+  <text x="660" y="598" class="ioc">VPN cred capture</text>
+
+  <text x="660" y="632" class="sub">C2 channels</text>
+  <text x="660" y="650" class="ioc">MQTT TLS :8883</text>
+  <text x="660" y="666" class="ioc">SSH :22 Dropbear</text>
+  <text x="660" y="682" class="ioc">EIP direct session</text>
+
+  <text x="660" y="716" class="sub">Pre-existing case</text>
+  <text x="660" y="734" class="ioc">Aliquippa PA, 2023</text>
+  <text x="660" y="750" class="ioc">Unitronics PLC</text>
+  <text x="660" y="766" class="ioc">default pw "1111"</text>
+
+  <text x="660" y="800" class="sub">Note</text>
+  <text x="660" y="816" class="ioc">VOLTZITE shares</text>
+
+  <!-- Detection anchors box -->
+  <rect x="40" y="940" width="800" height="320" rx="6" class="anchor-bg"/>
+  <text x="60" y="968" class="anchor">Detection anchors (rules in this folder)</text>
+  <text x="60" y="994" class="anchor-sub">sigma/rockwell_studio5000_outbound.yml — Studio 5000 / RSLogix / RSLinx -&gt; public IP on EIP/CIP/Modbus/S7</text>
+  <text x="60" y="1016" class="anchor-sub">kql/engineering_tool_egress.kql — engineering-tool egress + Dropbear / IOCONTROL drop correlation</text>
+  <text x="60" y="1038" class="anchor-sub">yara/ZionSiphon_Targeting_Strings_Heuristic.yar — PE Win64 + Israeli target list + broken Nqvbdk comparator</text>
+  <text x="60" y="1060" class="anchor-sub">suricata/bauxite_dropbear.rules — sids 7050001-7050002 — Dropbear banner from OT host + external CIP List Identity</text>
+  <text x="60" y="1096" class="anchor">Pedagogical anchors</text>
+  <text x="60" y="1118" class="anchor-sub">You do not need an OT 0day in 2026. PLC on the internet + vendor SDK = breach.</text>
+  <text x="60" y="1138" class="anchor-sub">The HMI lies during IR. Query the controller directly with a read-only OPC / EIP client.</text>
+  <text x="60" y="1158" class="anchor-sub">Coordinate with safety / operations before touching a PLC. OT IR has physical consequences.</text>
+  <text x="60" y="1178" class="anchor-sub">Cellular gateways (AirLink, Teltonika, MultiTech) are an IT/OT seam — treat them as Tier-0.</text>
+  <text x="60" y="1198" class="anchor-sub">A broken comparator in a wiper hints at LLM-assisted code authoring — keep that signal in your model.</text>
+  <text x="60" y="1218" class="anchor-sub">Detection target is exposure, not exploitation. Inventory + Censys / Shodan sweep your own perimeter.</text>
+  <text x="60" y="1238" class="anchor-sub">7 days clean OT-sensor + HMI/PLC ground-truth parity before declaring recovery.</text>
+</svg>
