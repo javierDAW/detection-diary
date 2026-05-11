@@ -83,7 +83,6 @@ Between **April 14 and 16, 2026**, a "code of conduct"-themed phishing campaign 
 | [`kql/aitm_chain_correlation.kql`](./kql/aitm_chain_correlation.kql) | signin + device-add + inbox rule correlation (24h) |
 | [`kql/firstseen_attacker_domain_pdf.kql`](./kql/firstseen_attacker_domain_pdf.kql) | First-seen attacker domain via PDF attachment |
 | [`kql/peak_h1_click_to_device.kql`](./kql/peak_h1_click_to_device.kql) | PEAK H1 hunt — click → device join 2h |
-| [`spl/inbox_rule_invisible_name.spl`](./spl/inbox_rule_invisible_name.spl) | SPL — InboxRule one-char name |
 | [`yara/CodeOfConduct_AiTM_PDF_Lure_2026.yar`](./yara/CodeOfConduct_AiTM_PDF_Lure_2026.yar) | Heuristic over the PDF lure |
 | [`suricata/code_of_conduct_aitm_landing.rules`](./suricata/code_of_conduct_aitm_landing.rules) | Suricata 7.x — TLS SNI / HTTP host to attacker domains |
 | [`hunts/peak_h1_aitm_to_device.md`](./hunts/peak_h1_aitm_to_device.md) | PEAK H1 hunt write-up |

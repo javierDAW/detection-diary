@@ -92,7 +92,6 @@ The victim **cannot recover** files > 128 KB even if paying. IR playbook must ex
 | [`sigma/vect_killswitch_marker.yml`](sigma/vect_killswitch_marker.yml) | Sigma — `C:\ProgramData\.vect` marker (file_event) |
 | [`sigma/vect_safeboot_persistence.yml`](sigma/vect_safeboot_persistence.yml) | **DEPRECATED** tombstone — replaced by the 3 atomic rules above. `git rm` before pushing if you want a clean repo. |
 | [`kql/vect_mass_process_kill.kql`](kql/vect_mass_process_kill.kql) | Defender XDR / Sentinel — mass termination of DB / office / browser processes in 60-s window |
-| [`spl/vect_marker_bcdedit_safeboot.spl`](spl/vect_marker_bcdedit_safeboot.spl) | Splunk — combined marker + bcdedit + SafeBoot reg correlation |
 | [`yara/VECT2_ChaCha20_Nonce_Bug_Heuristic.yar`](yara/VECT2_ChaCha20_Nonce_Bug_Heuristic.yar) | YARA — multi-platform PE+ELF heuristic (XOR key + libsodium + .vect) |
 | [`iocs.csv`](iocs.csv) | IOC table |
 

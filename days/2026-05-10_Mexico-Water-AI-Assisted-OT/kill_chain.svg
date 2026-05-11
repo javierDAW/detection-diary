@@ -175,7 +175,6 @@
   <text x="80" y="978" class="anchor-l">• <tspan class="anchor-h">Sigma</tspan> python_high_fanout_internal_recon — single Python process reaching many internal IPs and ports</text>
   <text x="80" y="1000" class="anchor-l">• <tspan class="anchor-h">KQL</tspan> python_internal_burst_defender_xdr — Defender XDR python.exe with ≥50 internal connections in 5 min</text>
   <text x="80" y="1022" class="anchor-l">• <tspan class="anchor-h">KQL</tspan> llm_api_egress_from_server_tier — Sentinel egress to api.anthropic.com / api.openai.com from server tier</text>
-  <text x="80" y="1044" class="anchor-l">• <tspan class="anchor-h">SPL</tspan> python_password_spray_ot_web — Splunk python parent + many 401/403 from OT mgmt ports</text>
   <text x="80" y="1066" class="anchor-l">• <tspan class="anchor-h">YARA</tspan> llm_built_offsec_python_framework — heuristic for AI-authored multi-module Python frameworks</text>
   <text x="80" y="1088" class="anchor-l">• <tspan class="anchor-h">Suricata</tspan> internal_ot_web_auth_burst — east-west burst of POST to OT mgmt web ports</text>
   <text x="80" y="1110" class="anchor-l">• <tspan class="anchor-h">Hunt H1</tspan> AI-paced reconnaissance pivot — discovery → cred-list build → POST burst inside one hour</text>

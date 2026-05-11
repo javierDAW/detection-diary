@@ -127,7 +127,6 @@ The harvest runs entirely **at user level** — no driver, no SYSTEM token, no k
 | `sigma/cloudz_dropper_schtasks_appdata.yml` | Sigma (process_creation) | Dropper-in-AppData → schtasks chain |
 | `kql/cloudz_phone_db_to_workers_correlation.kql` | KQL (Defender XDR) | Correlate DB access and `*.hellohiall.workers.dev` egress within 30 min |
 | `kql/cloudz_pastebin_handle_hellohiall.kql` | KQL (Defender XDR) | Pastebin raw fetches with workers.dev or backend-IP egress same host |
-| `spl/cloudz_workers_pastebin_dotnet_correlation.spl` | SPL (Splunk Sysmon) | Same-process correlation Pastebin + Workers + 185.196.10.136 |
 | `yara/cloudz_pheno_heuristic.yar` | YARA | CloudZ/Pheno heuristic (PE + ConfuserEx + Phone Link + Workers + IL emit) |
 | `suricata/cloudz_workers_pastebin.rules` | Suricata 7.x | TLS SNI / HTTP host / DNS / IP rules for the C2 footprint |
 | `hunts/peak_h1_phone_db_then_workers.md` | PEAK hunt | Hypothesis H1 with full kill-chain narrative |

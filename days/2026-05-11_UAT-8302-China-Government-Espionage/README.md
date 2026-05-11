@@ -401,7 +401,6 @@ message dispatcher table.
 | KQL | `kql/uat8302_dll_sideload_imageload.kql` | `mspdb60.dll` / `wininet.dll` from non-System32 |
 | KQL | `kql/uat8302_deaddrop_resolver_chain.kql` | GitHub / GameSpot fetch followed within 5 min by a derived public-IP connection |
 | YARA | `yara/uat8302_multi_family.yar` | NetDraft + FringePorch + Fody/Costura; CloudSorcerer v3 process-name branching + dead-drop; SNOWLIGHT / SNOWRUST / VSHELL XOR 0x99 stager |
-| SPL | `spl/uat8302_proxy_bulletproof_subnet.spl` | Stowaway / anyproxy / SoftEther outbound + bulletproof subnet correlation |
 | Suricata | `suricata/uat8302_c2_domains_subnet.rules` | TLS SNI / HTTP host anchors + bulletproof subnet egress (sids 8110001-8110005) |
 
 ### Threat hunting hypotheses
@@ -590,7 +589,6 @@ Full IOC set in [iocs.csv](./iocs.csv).
 | [kql/uat8302_dll_sideload_imageload.kql](./kql/uat8302_dll_sideload_imageload.kql) | mspdb60.dll / wininet.dll from non-System32 |
 | [kql/uat8302_deaddrop_resolver_chain.kql](./kql/uat8302_deaddrop_resolver_chain.kql) | Dead-drop fetch → derived public IP |
 | [yara/uat8302_multi_family.yar](./yara/uat8302_multi_family.yar) | NetDraft, CloudSorcerer v3, SNOWLIGHT / SNOWRUST / VSHELL heuristics |
-| [spl/uat8302_proxy_bulletproof_subnet.spl](./spl/uat8302_proxy_bulletproof_subnet.spl) | Stowaway / anyproxy / SoftEther + bulletproof IPs |
 | [suricata/uat8302_c2_domains_subnet.rules](./suricata/uat8302_c2_domains_subnet.rules) | TLS SNI / HTTP host + subnet egress (sids 8110001-8110005) |
 | [hunts/peak_h1_h2_h3.md](./hunts/peak_h1_h2_h3.md) | PEAK hunts H1 side-load triad, H2 AD Connect dump, H3 dead-drop resolver |
 

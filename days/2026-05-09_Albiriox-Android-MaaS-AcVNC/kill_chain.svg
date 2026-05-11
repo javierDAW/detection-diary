@@ -182,7 +182,6 @@
   <text x="60" y="968" class="anchor-sub">kql/albiriox_sideload_accessibility_with_banking_app.kql — sideload + accessibility within 24h on banking-app device</text>
   <text x="60" y="990" class="anchor-sub">kql/albiriox_notif_listener_with_read_sms.kql — Notification Listener + READ_SMS coexistence on non-stock package</text>
   <text x="60" y="1012" class="anchor-sub">yara/albiriox_android_banking_rat.yar — DEX magic + AcVNC marker + AppInfos + dispatchGesture chain + 2 of N targets</text>
-  <text x="60" y="1034" class="anchor-sub">spl/albiriox_mtd_correlation.spl — MTD CIM-normalised correlation across install + accessibility + admin grant</text>
   <text x="60" y="1056" class="anchor-sub">suricata/albiriox_plaintcp_heartbeat.rules — plain-TCP heartbeat shape from a mobile-VLAN client</text>
   <text x="60" y="1086" class="anchor">Pedagogical anchor</text>
   <text x="60" y="1108" class="anchor-sub">FLAG_SECURE protects framebuffer + MediaProjection. It does not protect AccessibilityNodeInfo.</text>

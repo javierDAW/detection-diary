@@ -129,7 +129,6 @@ No blackout (CERT Polska + ESET PROTECT mitigation), but **control and visibilit
 | [`sigma/gpo_startup_script_weaponization.yml`](sigma/gpo_startup_script_weaponization.yml) | Sigma — GPO Computer Startup script weaponization (T1484.001) |
 | [`kql/lsass_dump_via_taskmgr.kql`](kql/lsass_dump_via_taskmgr.kql) | Sentinel/Defender XDR — LSASS dump via Task Manager |
 | [`kql/rubeus_s4u_tgs_burst.kql`](kql/rubeus_s4u_tgs_burst.kql) | Sentinel — Rubeus s4u/asktgt + 4769 burst correlation |
-| [`spl/rsocx_socks5_egress_and_gpo_writes.spl`](spl/rsocx_socks5_egress_and_gpo_writes.spl) | Splunk — rsocx outbound + GPO mass-write |
 | [`yara/DynoWiper_Sandworm_C0063_Heuristic.yar`](yara/DynoWiper_Sandworm_C0063_Heuristic.yar) | YARA — DynoWiper PDB + skiplist + MT19937 + ExitWindowsEx |
 | [`hunts/peak_h1_h2_h3.md`](hunts/peak_h1_h2_h3.md) | PEAK hunting hypotheses |
 | [`iocs.csv`](iocs.csv) | IOC table |

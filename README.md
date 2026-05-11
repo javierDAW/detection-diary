@@ -1,10 +1,9 @@
 # detection-diary
 
-> Daily detection content — Sigma, KQL, SPL and YARA — derived from real-world threat intel write-ups. One case per day, MITRE ATT&CK mapped, sources cited.
+> Daily detection content — Sigma, KQL and YARA — derived from real-world threat intel write-ups. One case per day, MITRE ATT&CK mapped, sources cited.
 
 [![Sigma](https://img.shields.io/badge/Sigma-rules-blue)](https://github.com/SigmaHQ/sigma)
 [![KQL](https://img.shields.io/badge/KQL-Sentinel%20%7C%20Defender%20XDR-0078D4)](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/)
-[![SPL](https://img.shields.io/badge/SPL-Splunk-black)](https://docs.splunk.com/Documentation/SCS/current/Search/Aboutsearchlanguage)
 [![YARA](https://img.shields.io/badge/YARA-rules-yellow)](https://yara.readthedocs.io/)
 [![MITRE ATT&CK](https://img.shields.io/badge/MITRE-ATT%26CK%20mapped-red)](https://attack.mitre.org/)
 [![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
@@ -17,7 +16,6 @@ This repository is my personal **detection journal**: every day I take one high-
 
 - **Sigma** rules (vendor-agnostic, convertible via `pySigma`/`uncoder`/`sigmac`)
 - **KQL** queries (Microsoft Sentinel and Defender XDR)
-- **SPL** queries (Splunk Enterprise / ES)
 - **YARA** rules (file/process memory)
 - **Suricata / Snort** signatures — when relevant
 - **PEAK / TaHiTI hunting hypotheses** with baselines
@@ -49,7 +47,6 @@ detection-diary/
 │       ├── README.md       ← YAML frontmatter at the top is the canonical metadata
 │       ├── sigma/*.yml
 │       ├── kql/*.kql
-│       ├── spl/*.spl
 │       ├── yara/*.yar
 │       ├── suricata/*.rules
 │       ├── hunts/*.md
@@ -68,7 +65,7 @@ detection-diary/
 │   └── <slug>/README.md
 │
 └── tools/
-    ├── validate_all.py     ← offline multi-format validator (Sigma, YARA, Suricata, KQL, SPL, CSV, YAML, MD, Bash)
+    ├── validate_all.py     ← offline multi-format validator (Sigma, YARA, Suricata, KQL, CSV, YAML, MD, Bash)
     ├── sigma_check.py      ← Sigma-only offline validator (PyYAML-only dep)
     ├── lint_sigma.sh       ← Sigma wrapper: sigma-cli if installed, else falls back to sigma_check.py
     ├── lint_all.sh         ← full chain wrapper
@@ -138,7 +135,7 @@ falsepositives:
 level:        # informational | low | medium | high | critical
 ```
 
-Every KQL/SPL file starts with a header comment block:
+Every KQL file starts with a header comment block:
 
 ```kql
 // Title:        Lateral Movement via Rubeus S4U2self with TGS Burst
@@ -165,18 +162,10 @@ Every YARA rule keeps the `meta:` block populated with `author`, `description`, 
 // or Defender XDR → Hunting → Custom detection rule
 ```
 
-### Splunk Enterprise / ES
-
-```bash
-# Save the .spl as a Saved Search, scheduled run.
-# For Splunk ES, wire into a Correlation Search and assign Risk-Based Alerting.
-```
-
 ### Sigma → vendor target
 
 ```bash
-pip install pysigma pysigma-backend-splunk pysigma-backend-microsoft365defender
-sigma convert -t splunk days/2026-05-04_C0063-Poland-Wiper/sigma/*.yml
+pip install pysigma pysigma-backend-microsoft365defender
 sigma convert -t microsoft365defender days/2026-05-04_C0063-Poland-Wiper/sigma/*.yml
 ```
 
@@ -208,11 +197,10 @@ What gets validated:
 
 | Format | Offline (`validate_all.py`) | External tool (`lint_all.sh`) |
 |---|---|---|
-| Sigma `.yml` | UUID, status, level, modifiers, condition refs | `sigma check` + `sigma convert -t splunk -p sysmon` |
+| Sigma `.yml` | UUID, status, level, modifiers, condition refs | `sigma check` |
 | YARA `.yar` | rule blocks, brace balance, `condition:` section, dup names | `yara -w rule.yar /dev/null` |
 | Suricata `.rules` | action, sid uniqueness, `(...;)` body, msg/rev | `suricata -T -S rule.rules` |
 | KQL `.kql` | bracket balance, header comments, keyword presence, trailing-pipe | — |
-| SPL `.spl` | bracket balance, command after pipe, header comment | — |
 | CSV `iocs.csv` | header schema, row width | — |
 | YAML | strict load (workflows + Sigma + every `.yml`) | — |
 | Markdown | broken relative links | `markdownlint` |
@@ -222,8 +210,8 @@ What gets validated:
 Recommended install for the full local chain:
 
 ```bash
-pip install --user pysigma sigma-cli pysigma-backend-splunk \
-            pysigma-pipeline-sysmon yamllint
+pip install --user pysigma sigma-cli \
+            pysigma-backend-microsoft365defender pysigma-pipeline-sysmon yamllint
 sudo apt-get install -y yara suricata shellcheck
 bash <(curl -sSfL https://raw.githubusercontent.com/rhysd/actionlint/main/scripts/download-actionlint.bash)
 sudo install -m 0755 actionlint /usr/local/bin/actionlint
@@ -259,4 +247,4 @@ See [`INDEX.md`](INDEX.md) for the chronological + thematic index of all cases.
 
 ## Contributing
 
-This is primarily a personal notebook, but PRs that
+This is primarily a personal notebook, but PRs that                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

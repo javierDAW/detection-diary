@@ -77,7 +77,6 @@ sectors:
 |---|---|
 | [`sigma/cisco_asa_webvpn_large_post.yml`](sigma/cisco_asa_webvpn_large_post.yml) | Anomalous large POST to `/+CSCOE+/` |
 | [`kql/cisco_asa_reboot_webvpn_correlation.kql`](kql/cisco_asa_reboot_webvpn_correlation.kql) | Sentinel — ASA reboot + WebVPN large-body in 30-min window |
-| [`spl/asa_show_version_drift.spl`](spl/asa_show_version_drift.spl) | Splunk — `show version` + mount-list baseline drift |
 | [`yara/FIRESTARTER_ELF_Heuristic.yar`](yara/FIRESTARTER_ELF_Heuristic.yar) | FIRESTARTER ELF + CSP_MOUNT_LIST string heuristic |
 | [`iocs.csv`](iocs.csv) | IOC table |
 

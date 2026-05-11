@@ -70,7 +70,6 @@ Mixed enterprise (Check Point public write-up). Western Europe + North America v
 |---|---|
 | [`sigma/gpo_weaponization_systembc.yml`](sigma/gpo_weaponization_systembc.yml) | GPO mass changes (gPLink + startup script writes) |
 | [`kql/tcp_beacon_no_tls_systembc.kql`](kql/tcp_beacon_no_tls_systembc.kql) | Sentinel — heuristic for plain-TCP beacon without TLS |
-| [`spl/defense_impair_edr_bcdedit.spl`](spl/defense_impair_edr_bcdedit.spl) | Splunk — registry tamper of EDR services + bcdedit |
 | [`yara/SystemBC_RC4_Heuristic.yar`](yara/SystemBC_RC4_Heuristic.yar) | SystemBC RC4-protocol heuristic for memory / disk |
 | [`iocs.csv`](iocs.csv) | IOC table |
 

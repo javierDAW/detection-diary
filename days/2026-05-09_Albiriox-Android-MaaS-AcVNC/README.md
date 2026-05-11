@@ -198,7 +198,6 @@ Operational pointers for the analyst:
 | KQL (Defender XDR Mobile) | [`kql/albiriox_sideload_accessibility_with_banking_app.kql`](./kql/albiriox_sideload_accessibility_with_banking_app.kql) | Sideload + accessibility within 24h on a device with a banking/wallet package |
 | KQL (Defender XDR Mobile) | [`kql/albiriox_notif_listener_with_read_sms.kql`](./kql/albiriox_notif_listener_with_read_sms.kql) | Non-stock package holds both Notification Listener and READ_SMS |
 | YARA | [`yara/albiriox_android_banking_rat.yar`](./yara/albiriox_android_banking_rat.yar) | DEX magic + AcVNC marker + AppInfos + AccessibilityService gesture chain + 2 of N target package strings |
-| SPL | [`spl/albiriox_mtd_correlation.spl`](./spl/albiriox_mtd_correlation.spl) | Lookout/Zimperium MTD CIM-normalised correlation |
 | Suricata | [`suricata/albiriox_plaintcp_heartbeat.rules`](./suricata/albiriox_plaintcp_heartbeat.rules) | Plain-TCP heartbeat shape from a mobile-VLAN client |
 
 ### Threat hunting hypotheses
@@ -321,7 +320,6 @@ Full list with all context fields lives in [`iocs.csv`](./iocs.csv).
 | [`kql/albiriox_sideload_accessibility_with_banking_app.kql`](./kql/albiriox_sideload_accessibility_with_banking_app.kql) | KQL — sideload + accessibility within 24h on banking-app device |
 | [`kql/albiriox_notif_listener_with_read_sms.kql`](./kql/albiriox_notif_listener_with_read_sms.kql) | KQL — Notification Listener + READ_SMS coexistence anomaly |
 | [`yara/albiriox_android_banking_rat.yar`](./yara/albiriox_android_banking_rat.yar) | YARA — Albiriox APK heuristic |
-| [`spl/albiriox_mtd_correlation.spl`](./spl/albiriox_mtd_correlation.spl) | SPL — MTD CIM-normalised correlation |
 | [`suricata/albiriox_plaintcp_heartbeat.rules`](./suricata/albiriox_plaintcp_heartbeat.rules) | Suricata — plain-TCP heartbeat shape from mobile VLAN |
 | [`hunts/peak_h1_sideload_accessibility_banking.md`](./hunts/peak_h1_sideload_accessibility_banking.md) | PEAK H1 — sideload + accessibility + banking app |
 | [`hunts/peak_h2_notif_listener_read_sms.md`](./hunts/peak_h2_notif_listener_read_sms.md) | PEAK H2 — notification listener + READ_SMS coexistence |

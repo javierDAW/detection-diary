@@ -90,9 +90,6 @@ sectors:
 | [`kql/qlnx_credential_files_burst.kql`](./kql/qlnx_credential_files_burst.kql) | Single process reads >=3 dev-credential files in 60s |
 | [`kql/qlnx_ipapi_geo_beacon.kql`](./kql/qlnx_ipapi_geo_beacon.kql) | Outbound to `ip-api.com` from server tier |
 | [`kql/qlnx_x11_lock_path_drop.kql`](./kql/qlnx_x11_lock_path_drop.kql) | Creation of `/tmp/.X<DJB2>-lock` |
-| [`spl/qlnx_ld_preload_auditd.spl`](./spl/qlnx_ld_preload_auditd.spl) | auditd watch on `/etc/ld.so.preload` |
-| [`spl/qlnx_managed_marker_string.spl`](./spl/qlnx_managed_marker_string.spl) | osquery — `QLNX_MANAGED` literal in persistence files |
-| [`spl/qlnx_dev_credential_burst.spl`](./spl/qlnx_dev_credential_burst.spl) | Burst of credential reads by a single process |
 | [`yara/QLNX_Quasar_Linux_RAT_2026.yar`](./yara/QLNX_Quasar_Linux_RAT_2026.yar) | Heuristic YARA over markers + paths + version |
 | [`suricata/qlnx_ipapi_recon.rules`](./suricata/qlnx_ipapi_recon.rules) | Suricata 7.x — `ip-api.com` from server + custom-TCP beacon shape |
 | [`hunts/peak_h1_qlnx_credential_burst.md`](./hunts/peak_h1_qlnx_credential_burst.md) | PEAK H1 — credential burst + geo recon |

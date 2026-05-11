@@ -306,7 +306,6 @@ generativelanguage.googleapis.com
 | Sigma | [`sigma/python_high_fanout_internal_recon.yml`](./sigma/python_high_fanout_internal_recon.yml) | Single Python process reaching many internal IPs and many service ports in a short window |
 | KQL | [`kql/python_internal_burst_defender_xdr.kql`](./kql/python_internal_burst_defender_xdr.kql) | Defender XDR — `python.exe` with ≥ 50 internal connections / ≥ 4 distinct ports in 5 min |
 | KQL | [`kql/llm_api_egress_from_server_tier.kql`](./kql/llm_api_egress_from_server_tier.kql) | Sentinel — outbound TLS to LLM API domains from server-tier or service-account context |
-| SPL | [`spl/spl_python_password_spray_ot_web.spl`](./spl/spl_python_password_spray_ot_web.spl) | Splunk — Python parent + many 401/403 web-auth responses from OT ports |
 | YARA | [`yara/llm_built_offsec_python_framework.yar`](./yara/llm_built_offsec_python_framework.yar) | Heuristic for AI-built Python multi-module offensive frameworks |
 | Suricata | [`suricata/internal_ot_web_auth_burst.rules`](./suricata/internal_ot_web_auth_burst.rules) | East-west burst of POST to OT mgmt ports + LLM API SNI from server tier |
 
@@ -346,7 +345,7 @@ generativelanguage.googleapis.com
 | vNode / HMI auth log | `/var/log/vnode/auth.log`, `/var/log/ignition/auth.log` (vendor-specific) | rsync, log fwd | Spray attempts |
 | AD logs | DC `Security` 4625 / 4624 / 4768 / 4769 | `wevtutil`, `Get-WinEvent` | Cross-host spray |
 | NetFlow IT-OT seam | switch / firewall flow records | nfdump, Zeek | First-touch and burst |
-| Edge proxy / SWG TLS logs | proxy egress | Splunk / Sentinel | LLM API egress from server-tier |
+| Edge proxy / SWG TLS logs | proxy egress | Sentinel | LLM API egress from server-tier |
 
 
 ### IR queries and commands
@@ -503,7 +502,6 @@ index=netflow OR index=zeek dest_port IN (8043,8443,8088,8090,9090,9443,102,502,
 | [`sigma/python_high_fanout_internal_recon.yml`](./sigma/python_high_fanout_internal_recon.yml) | Sigma — Python process with high internal fan-out |
 | [`kql/python_internal_burst_defender_xdr.kql`](./kql/python_internal_burst_defender_xdr.kql) | Defender XDR — Python burst to many internal endpoints |
 | [`kql/llm_api_egress_from_server_tier.kql`](./kql/llm_api_egress_from_server_tier.kql) | Sentinel — LLM API egress from server-tier or service accounts |
-| [`spl/spl_python_password_spray_ot_web.spl`](./spl/spl_python_password_spray_ot_web.spl) | Splunk — Python parent + many 401/403 to OT ports |
 | [`yara/llm_built_offsec_python_framework.yar`](./yara/llm_built_offsec_python_framework.yar) | YARA — heuristic for AI-built Python multi-module offensive frameworks |
 | [`suricata/internal_ot_web_auth_burst.rules`](./suricata/internal_ot_web_auth_burst.rules) | Suricata — east-west OT mgmt web port burst + LLM API egress |
 | [`hunts/peak_h1_ai_paced_recon.md`](./hunts/peak_h1_ai_paced_recon.md) | PEAK H1 — AI-paced reconnaissance pivot |
