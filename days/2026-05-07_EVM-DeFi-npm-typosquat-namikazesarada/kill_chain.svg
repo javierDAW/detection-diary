@@ -77,21 +77,22 @@
   <text x="124" y="281" class="label">Activation gate — developer-shape check</text>
   <text x="124" y="298" class="sub">env: ALCHEMY_API_KEY / INFURA_KEY / PRIVATE_KEY / MNEMONIC</text>
   <text x="124" y="314" class="sub">files: hardhat.config.* / foundry.toml / brownie-config.yaml</text>
-  <text x="124" y="330" class="ioc">non-dev hosts: no-op (filter operator workload)</text>
+  <text x="124" y="326" class="ioc">non-dev hosts: no-op (filter operator workload)</text>
   <text x="600" y="281" text-anchor="end" class="mitre">T1480</text>
-  <text x="600" y="330" text-anchor="end" class="ioc">env + cwd shape</text>
+  <text x="600" y="326" text-anchor="end" class="ioc">env + cwd shape</text>
   <line x1="360" y1="330" x2="360" y2="362" class="arrow" marker-end="url(#arr)"/>
 
   <!-- Stage 4 -->
   <circle cx="80" cy="385" r="14" class="stagebg"/>
   <text x="80" y="389" text-anchor="middle" class="stagenum">4</text>
   <rect x="110" y="362" width="500" height="68" rx="6" class="bg-stage"/>
-  <text x="124" y="381" class="label">Credential harvest (shallow-recursive from cwd)</text>
+  <text x="124" y="381" class="label">Credential harvest from cwd</text>
+
   <text x="124" y="398" class="sub">~/.ssh + ~/.aws + ~/.npmrc + ~/.foundry/keystores</text>
   <text x="124" y="414" class="sub">~/.ethereum/keystore + ~/.brownie/accounts + .env*</text>
-  <text x="124" y="430" class="ioc">env var regex: TOKEN|SECRET|KEY|PASSWORD|MNEMONIC|DEPLOY</text>
-  <text x="600" y="381" text-anchor="end" class="mitre">T1552.001 . T1552.004 . T1555.005</text>
-  <text x="600" y="430" text-anchor="end" class="ioc">single-shot</text>
+  <text x="124" y="426" class="ioc">env regex: TOKEN|SECRET|KEY|PASSWORD|MNEMONIC|DEPLOY</text>
+  <text x="600" y="381" text-anchor="end" class="mitre">T1552.001 . T1555.005</text>
+  <text x="600" y="426" text-anchor="end" class="ioc">single-shot</text>
   <line x1="360" y1="430" x2="360" y2="462" class="arrow" marker-end="url(#arr)"/>
 
   <!-- Stage 5 -->
@@ -134,9 +135,9 @@
   <text x="124" y="741" class="label">On-chain wallet drain</text>
   <text x="124" y="758" class="sub">Sign transactions with stolen MNEMONIC / DEPLOYER_KEY</text>
   <text x="124" y="774" class="sub">Republish typosquat from victim's npm identity</text>
-  <text x="124" y="790" class="ioc">aws iam abuse + ssh lateral to other dev hosts</text>
+  <text x="124" y="786" class="ioc">aws iam abuse + ssh lateral to other dev hosts</text>
   <text x="600" y="741" text-anchor="end" class="mitre">T1657</text>
-  <text x="600" y="790" text-anchor="end" class="ioc">funds gone</text>
+  <text x="600" y="786" text-anchor="end" class="ioc">funds gone</text>
 
   <!-- Operator cluster -->
   <rect x="640" y="92" width="220" height="600" rx="6" class="bg-c2"/>

@@ -60,7 +60,7 @@
   <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
   <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
   <text x="124" y="111" class="label">Supply-chain CI/CD or valid AD account</text>
-  <text x="124" y="128" class="sub">TeamPCP-trojanized Trivy GHA, KICS, LiteLLM, Telnyx SDK</text>
+  <text x="124" y="128" class="sub">Trivy GHA / KICS / LiteLLM / Telnyx</text>
   <text x="600" y="111" text-anchor="end" class="mitre">T1195.002 . T1078</text>
   <text x="600" y="128" text-anchor="end" class="ioc">cloud key / RDP / SSO</text>
   <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
@@ -70,7 +70,7 @@
   <text x="80" y="199" text-anchor="middle" class="stagenum">2</text>
   <rect x="110" y="172" width="500" height="48" rx="6" class="bg-stage"/>
   <text x="124" y="191" class="label">Locker drop — Windows or Linux/ESXi</text>
-  <text x="124" y="208" class="sub">C++ / MSVC, libsodium statically linked, no UPX</text>
+  <text x="124" y="208" class="sub">C++ / MSVC, libsodium static</text>
   <text x="600" y="191" text-anchor="end" class="mitre">T1129 . T1059.003 . T1059.001</text>
   <text x="600" y="208" text-anchor="end" class="ioc">svchostupdate.exe / encesxi.elf</text>
   <line x1="360" y1="220" x2="360" y2="252" class="arrow" marker-end="url(#arr)"/>
@@ -80,7 +80,7 @@
   <text x="80" y="279" text-anchor="middle" class="stagenum">3</text>
   <rect x="110" y="252" width="500" height="48" rx="6" class="bg-stage"/>
   <text x="124" y="271" class="label">Check local killswitch marker, abort if present</text>
-  <text x="124" y="288" class="sub">Single-byte sentinel file — abuses the operator's own double-pass guard</text>
+  <text x="124" y="288" class="sub">Single-byte sentinel file</text>
   <text x="600" y="271" text-anchor="end" class="mitre">T1497</text>
   <text x="600" y="288" text-anchor="end" class="ioc">C:\ProgramData\.vect / /var/run/.vect</text>
   <line x1="360" y1="300" x2="360" y2="332" class="arrow" marker-end="url(#arr)"/>
@@ -91,7 +91,7 @@
   <rect x="110" y="332" width="500" height="68" rx="6" class="bg-stage"/>
   <text x="124" y="351" class="label">Transient Safe-Boot persistence (Windows)</text>
   <text x="124" y="368" class="sub">bcdedit /set {default} safeboot minimal + reg key</text>
-  <text x="124" y="384" class="ioc">HKLM\SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\&lt;svc&gt;</text>
+  <text x="124" y="384" class="ioc">HKLM\...\SafeBoot\Minimal\&lt;svc&gt;</text>
   <text x="600" y="351" text-anchor="end" class="mitre">T1547.001 . T1529</text>
   <text x="600" y="384" text-anchor="end" class="ioc">residual reg key = gold IOC</text>
   <line x1="360" y1="400" x2="360" y2="432" class="arrow" marker-end="url(#arr)"/>
@@ -102,7 +102,7 @@
   <rect x="110" y="432" width="500" height="58" rx="6" class="bg-stage"/>
   <text x="124" y="451" class="label">Disable AV/EDR + EVTX XOR-wipe</text>
   <text x="124" y="468" class="sub">taskkill/sc stop WinDefend, Sense, MsMpSvc; channel names XOR-decrypted</text>
-  <text x="124" y="484" class="ioc">XOR key 0xBB55FF59DF597B8D over App/Sec/Sys/PowerShell, EvtClearLog()</text>
+  <text x="124" y="484" class="ioc">XOR 0xBB55FF59DF597B8D + EvtClearLog</text>
   <text x="600" y="451" text-anchor="end" class="mitre">T1562.001 . T1562.002 . T1070.001</text>
   <text x="600" y="484" text-anchor="end" class="ioc">EID 1102 / 104</text>
   <line x1="360" y1="490" x2="360" y2="522" class="arrow" marker-end="url(#arr)"/>
@@ -112,22 +112,22 @@
   <text x="80" y="549" text-anchor="middle" class="stagenum">6</text>
   <rect x="110" y="522" width="500" height="58" rx="6" class="bg-stage"/>
   <text x="124" y="541" class="label">Mass process termination — pre-encryption flush</text>
-  <text x="124" y="558" class="sub">DB engines, MS Office, mail, browsers, Veeam, vmms — release file handles</text>
-  <text x="124" y="574" class="ioc">sqlservr/oracle/mysqld/winword/excel/outlook/firefox/thunderbird</text>
-  <text x="600" y="541" text-anchor="end" class="mitre">T1489 . T1490 . T1562.004</text>
-  <text x="600" y="574" text-anchor="end" class="ioc">vssadmin delete shadows</text>
+  <text x="124" y="558" class="sub">DB engines / MS Office / mail / browsers / Veeam</text>
+  <text x="124" y="574" class="ioc">sqlservr / oracle / mysqld / office / mail</text>
+  <text x="600" y="541" text-anchor="end" class="mitre">T1489 . T1490</text>
+  <text x="600" y="574" text-anchor="end" class="ioc">vssadmin delete</text>
   <line x1="360" y1="580" x2="360" y2="612" class="arrow" marker-end="url(#arr)"/>
 
   <!-- Stage 7: ChaCha20 raw + nonce bug -->
   <circle cx="80" cy="640" r="14" class="stagebg-bug"/>
   <text x="80" y="644" text-anchor="middle" class="stagenum">7</text>
   <rect x="110" y="612" width="500" height="78" rx="6" class="bg-bug"/>
-  <text x="124" y="631" class="label-bug">ChaCha20-IETF raw, 4 chunks share ONE nonce buffer</text>
-  <text x="124" y="648" class="sub">RFC 8439 stream, no Poly1305 AEAD; chunk size 32768 B</text>
-  <text x="124" y="664" class="sub">For files &gt; 131072 B (128 KB): 4 randombytes_buf() into same 12-B header</text>
-  <text x="124" y="680" class="ioc">only last nonce persists -&gt; chunks 0/1/2 unrecoverable to the OPERATOR</text>
-  <text x="600" y="631" text-anchor="end" class="mitre">T1486 intent / T1485 effect</text>
-  <text x="600" y="680" text-anchor="end" class="ioc">crypto_stream_chacha20_ietf_xor</text>
+  <text x="124" y="631" class="label-bug">ChaCha20-IETF raw, 4 chunks share 1 nonce</text>
+  <text x="124" y="648" class="sub">RFC 8439 stream, no Poly1305 AEAD; chunk 32768 B</text>
+  <text x="124" y="664" class="sub">Files &gt; 128 KB: 4 randombytes_buf into same buffer</text>
+  <text x="124" y="680" class="ioc">only last nonce persists; chunks 0/1/2 lost</text>
+  <text x="600" y="631" text-anchor="end" class="mitre">T1486 / T1485</text>
+  <text x="600" y="680" text-anchor="end" class="ioc">chacha20_ietf_xor</text>
   <line x1="360" y1="690" x2="360" y2="722" class="arrow" marker-end="url(#arr)"/>
 
   <!-- Stage 8: SSH lateral to ESXi -->
@@ -135,20 +135,20 @@
   <text x="80" y="749" text-anchor="middle" class="stagenum">8</text>
   <rect x="110" y="722" width="500" height="48" rx="6" class="bg-stage"/>
   <text x="124" y="741" class="label">SSH lateral to ESXi / Linux hosts</text>
-  <text x="124" y="758" class="sub">--ssh-keyfile / --ssh-userlist; harvest ~/.ssh/known_hosts, id_*, ~/.aws</text>
-  <text x="600" y="741" text-anchor="end" class="mitre">T1021.004 . T1552.001 . T1003.001</text>
-  <text x="600" y="758" text-anchor="end" class="ioc">/etc/hosts + ARP cache</text>
+  <text x="124" y="758" class="sub">--ssh-keyfile / --ssh-userlist + ~/.ssh harvest</text>
+  <text x="600" y="741" text-anchor="end" class="mitre">T1021.004 . T1552.001</text>
+  <text x="600" y="758" text-anchor="end" class="ioc">ARP cache</text>
   <line x1="360" y1="770" x2="360" y2="802" class="arrow" marker-end="url(#arr)"/>
 
   <!-- Stage 9: encesxi.elf + geofence -->
   <circle cx="80" cy="825" r="14" class="stagebg"/>
   <text x="80" y="829" text-anchor="middle" class="stagenum">9</text>
   <rect x="110" y="802" width="500" height="68" rx="6" class="bg-stage"/>
-  <text x="124" y="821" class="label">encesxi.elf — VMDK encryption + CIS geofence</text>
-  <text x="124" y="838" class="sub">vim-cmd vmsvc/getallvms + power.off, then encrypt .vmdk in 32 KB chunks</text>
-  <text x="124" y="854" class="ioc">timedatectl + LANG + LC_ALL excl. ru_*/be_*/kk_*/uk_*  -&gt; abort()</text>
-  <text x="600" y="821" text-anchor="end" class="mitre">T1614.001 . T1561.002 . T1497</text>
-  <text x="600" y="854" text-anchor="end" class="ioc">ptrace TRACEME anti-debug</text>
+  <text x="124" y="821" class="label">encesxi.elf — VMDK encrypt</text>
+  <text x="124" y="838" class="sub">vim-cmd vmsvc power.off, then encrypt .vmdk</text>
+  <text x="124" y="854" class="ioc">excl. ru_/be_/kk_/uk_ via LC_ALL</text>
+  <text x="600" y="821" text-anchor="end" class="mitre">T1614.001 . T1561.002</text>
+  <text x="600" y="854" text-anchor="end" class="ioc">ptrace anti-debug</text>
   <line x1="360" y1="870" x2="360" y2="902" class="arrow" marker-end="url(#arr)"/>
 
   <!-- Stage 10: Impact -->
@@ -156,9 +156,9 @@
   <text x="80" y="929" text-anchor="middle" class="stagenum">10</text>
   <rect x="110" y="902" width="500" height="58" rx="6" class="bg-bug"/>
   <text x="124" y="921" class="label-bug">Impact — ransomware intent, wiper effect</text>
-  <text x="124" y="938" class="sub">Rename in-place .vect, drop ransom note; files &gt; 128 KB destroyed</text>
-  <text x="124" y="954" class="ioc">VMDK, databases, backups, large office docs -&gt; not recoverable even on payment</text>
-  <text x="600" y="921" text-anchor="end" class="mitre">T1485 . T1486 . T1561.002</text>
+  <text x="124" y="938" class="sub">Rename .vect, drop ransom note</text>
+  <text x="124" y="954" class="ioc">VMDK / DBs / backups &gt; 128 KB unrecoverable</text>
+  <text x="600" y="921" text-anchor="end" class="mitre">T1485 . T1486</text>
   <text x="600" y="954" text-anchor="end" class="ioc">single-extortion</text>
 
   <!-- Attacker C2 cluster -->

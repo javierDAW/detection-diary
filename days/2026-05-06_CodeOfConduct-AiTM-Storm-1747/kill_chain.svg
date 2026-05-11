@@ -54,7 +54,7 @@
   <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
   <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
   <text x="124" y="111" class="label">PDF lure email — HR disciplinary framing</text>
-  <text x="124" y="128" class="sub">"Code of Conduct" / "Disciplinary Action" / "Employee Device Handling"</text>
+  <text x="124" y="128" class="sub">"Code of Conduct" / "Disciplinary Action"</text>
   <text x="600" y="111" text-anchor="end" class="mitre">T1566.001 . T1566.002</text>
   <text x="600" y="128" text-anchor="end" class="ioc">PDF &lt; 200 KB</text>
   <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
@@ -85,9 +85,9 @@
   <rect x="110" y="332" width="500" height="58" rx="6" class="bg-stage"/>
   <text x="124" y="351" class="label">AiTM reverse-proxy auth replay</text>
   <text x="124" y="368" class="sub">Operator relays login.microsoftonline.com from their host</text>
-  <text x="124" y="384" class="ioc">victim sees real Microsoft branding + completes MFA</text>
+  <text x="124" y="384" class="ioc">victim sees real Microsoft branding</text>
   <text x="600" y="351" text-anchor="end" class="mitre">T1557</text>
-  <text x="600" y="384" text-anchor="end" class="ioc">acceptable-use-policy-calendly[.]de</text>
+  <text x="600" y="384" text-anchor="end" class="ioc">calendly[.]de landing</text>
   <line x1="600" y1="365" x2="700" y2="365" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
   <line x1="360" y1="390" x2="360" y2="422" class="arrow" marker-end="url(#arr)"/>
 
@@ -103,16 +103,16 @@
   <line x1="360" y1="480" x2="360" y2="512" class="arrow" marker-end="url(#arr)"/>
 
   <!-- Stage 6 -->
-  <circle cx="80" cy="535" r="14" class="stagebg"/>
-  <text x="80" y="539" text-anchor="middle" class="stagenum">6</text>
-  <rect x="110" y="512" width="500" height="68" rx="6" class="bg-stage"/>
+  <circle cx="80" cy="540" r="14" class="stagebg"/>
+  <text x="80" y="544" text-anchor="middle" class="stagenum">6</text>
+  <rect x="110" y="512" width="500" height="84" rx="6" class="bg-stage"/>
   <text x="124" y="531" class="label">Entra ID device-add + PRT derive (&lt; 10 min)</text>
   <text x="124" y="548" class="sub">enterpriseregistration.windows.net -&gt; new device + PRT</text>
-  <text x="124" y="564" class="ioc">PRT SURVIVES password rotation</text>
-  <text x="124" y="580" class="ioc">requires Remove-MgDevice + Revoke-MgUserSignInSession</text>
+  <text x="124" y="566" class="ioc">PRT SURVIVES password rotation</text>
+  <text x="124" y="584" class="ioc">needs Remove-MgDevice + Revoke-MgUserSignInSession</text>
   <text x="600" y="531" text-anchor="end" class="mitre">T1098.005 . T1078.004</text>
-  <text x="600" y="580" text-anchor="end" class="ioc">durable foothold</text>
-  <line x1="360" y1="580" x2="360" y2="612" class="arrow" marker-end="url(#arr)"/>
+  <text x="600" y="584" text-anchor="end" class="ioc">durable foothold</text>
+  <line x1="360" y1="596" x2="360" y2="612" class="arrow" marker-end="url(#arr)"/>
 
   <!-- Stage 7 -->
   <circle cx="80" cy="635" r="14" class="stagebg"/>
@@ -141,7 +141,7 @@
   <text x="80" y="819" text-anchor="middle" class="stagenum">9</text>
   <rect x="110" y="792" width="500" height="48" rx="6" class="bg-stage"/>
   <text x="124" y="811" class="label">BEC payment fraud + federated SaaS takeover</text>
-  <text x="124" y="828" class="sub">Wire-fraud lure to finance counterparty + cross-SaaS pivot</text>
+  <text x="124" y="828" class="sub">Wire-fraud lure + cross-SaaS pivot</text>
   <text x="600" y="811" text-anchor="end" class="mitre">T1657</text>
   <text x="600" y="828" text-anchor="end" class="ioc">downstream impact</text>
 
