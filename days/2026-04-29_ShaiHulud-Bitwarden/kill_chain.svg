@@ -54,7 +54,7 @@
   <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
   <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
   <text x="124" y="111" class="label">npm install @bitwarden/cli@2026.4.0</text>
-  <text x="124" y="128" class="sub">preinstall: node bw_setup.js (compromised maintainer credential)</text>
+  <text x="124" y="128" class="sub">preinstall: node bw_setup.js (compromised maintainer)</text>
   <text x="600" y="111" text-anchor="end" class="mitre">T1195.002</text>
   <text x="600" y="128" text-anchor="end" class="ioc">bw_setup.js</text>
   <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
@@ -95,7 +95,7 @@
   <rect x="110" y="412" width="500" height="68" rx="6" class="bg-stage"/>
   <text x="124" y="431" class="label">Credential harvest — cloud + CI + AI-CLI</text>
   <text x="124" y="448" class="sub">.npmrc / .git-credentials / .aws / .gcloud / .azure</text>
-  <text x="124" y="464" class="ioc">~/.config/{claude,codex,cursor,gemini}/ — novel surface</text>
+  <text x="124" y="464" class="ioc">~/.config/{claude,codex,cursor,gemini}/</text>
   <text x="600" y="431" text-anchor="end" class="mitre">T1552.001 . T1552.005</text>
   <text x="600" y="464" text-anchor="end" class="ioc">SSH keys, GH/npm tokens</text>
   <line x1="360" y1="480" x2="360" y2="512" class="arrow" marker-end="url(#arr)"/>

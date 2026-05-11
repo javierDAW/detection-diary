@@ -54,7 +54,7 @@
   <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
   <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
   <text x="124" y="111" class="label">External recon of exposed WebVPN</text>
-  <text x="124" y="128" class="sub">Internet-facing ASA / FTD with `/+CSCOE+/` reachable</text>
+  <text x="124" y="128" class="sub">Internet-facing /+CSCOE+/ reachable</text>
   <text x="600" y="111" text-anchor="end" class="mitre">T1595 . T1190</text>
   <text x="600" y="128" text-anchor="end" class="ioc">Shodan / Censys / banner</text>
   <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
@@ -64,7 +64,7 @@
   <text x="80" y="199" text-anchor="middle" class="stagenum">2</text>
   <rect x="110" y="172" width="500" height="48" rx="6" class="bg-stage"/>
   <text x="124" y="191" class="label">CVE-2025-20333 — unauth RCE in WebVPN</text>
-  <text x="124" y="208" class="sub">Buffer overflow on `/+CSCOE+/logon.html` -&gt; root inside LINA</text>
+  <text x="124" y="208" class="sub">Stack overflow on /+CSCOE+/logon.html</text>
   <text x="600" y="191" text-anchor="end" class="mitre">T1190</text>
   <text x="600" y="208" text-anchor="end" class="ioc">CVSS 9.9 . CVE-2025-20333</text>
   <line x1="360" y1="220" x2="360" y2="252" class="arrow" marker-end="url(#arr)"/>
@@ -74,7 +74,7 @@
   <text x="80" y="279" text-anchor="middle" class="stagenum">3</text>
   <rect x="110" y="252" width="500" height="48" rx="6" class="bg-stage"/>
   <text x="124" y="271" class="label">CVE-2025-20362 — authentication bypass</text>
-  <text x="124" y="288" class="sub">Path / access-control flaw on ASA HTTPS endpoint -&gt; chained with RCE</text>
+  <text x="124" y="288" class="sub">Path / access control flaw, chains with RCE</text>
   <text x="600" y="271" text-anchor="end" class="mitre">T1190 . T1078</text>
   <text x="600" y="288" text-anchor="end" class="ioc">CVSS 6.5 . CVE-2025-20362</text>
   <line x1="360" y1="300" x2="360" y2="332" class="arrow" marker-end="url(#arr)"/>
@@ -94,7 +94,7 @@
   <circle cx="80" cy="465" r="14" class="stagebg"/>
   <text x="80" y="469" text-anchor="middle" class="stagenum">5</text>
   <rect x="110" y="432" width="500" height="78" rx="6" class="bg-stage"/>
-  <text x="124" y="451" class="label">FIRESTARTER — ELF hook on LINA WebVPN XML handler</text>
+  <text x="124" y="451" class="label">FIRESTARTER — ELF hook on LINA</text>
   <text x="124" y="468" class="sub">Function-pointer overwrite via dlopen / dlsym style patching</text>
   <text x="124" y="484" class="sub">Hardcoded offsets per FXOS build (5500-X -&gt; any ASA / FTD)</text>
   <text x="124" y="500" class="ioc">rwx region in LINA outside original .text</text>
@@ -109,7 +109,7 @@
   <text x="124" y="561" class="label">SIGTERM handler rewrites CSP_MOUNT_LIST</text>
   <text x="124" y="578" class="sub">sigaction(SIGTERM, ...) -&gt; on graceful shutdown,</text>
   <text x="124" y="594" class="sub">overwrites /opt/cisco/config/platform/rmdb/CSP_MOUNT_LIST</text>
-  <text x="124" y="610" class="ioc">next boot remounts manipulated FS -&gt; survives firmware upgrade</text>
+  <text x="124" y="610" class="ioc">remounts manipulated FS on next boot</text>
   <text x="600" y="561" text-anchor="end" class="mitre">T1542.001 . T1037 . T1490</text>
   <text x="600" y="610" text-anchor="end" class="ioc">"SIGTERM" . "sigaction"</text>
   <line x1="360" y1="620" x2="360" y2="652" class="arrow" marker-end="url(#arr)"/>
@@ -118,9 +118,9 @@
   <circle cx="80" cy="685" r="14" class="stagebg"/>
   <text x="80" y="689" text-anchor="middle" class="stagenum">7</text>
   <rect x="110" y="652" width="500" height="58" rx="6" class="bg-stage"/>
-  <text x="124" y="671" class="label">Passive C2 — implant waits for magic-byte POST</text>
+  <text x="124" y="671" class="label">Passive C2 — magic-byte POST trigger</text>
   <text x="124" y="688" class="sub">No outbound beacon . no DGA . no heartbeat</text>
-  <text x="124" y="704" class="ioc">POST /+CSCOE+/ &gt;= 8 KiB . XML magic prefix -&gt; shellcode in-place</text>
+  <text x="124" y="704" class="ioc">POST /+CSCOE+/ &gt;= 8 KiB . magic prefix</text>
   <text x="600" y="671" text-anchor="end" class="mitre">T1071.001 . T1573.001</text>
   <text x="600" y="704" text-anchor="end" class="ioc">HTTP 200 empty</text>
   <line x1="600" y1="681" x2="700" y2="681" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
@@ -141,11 +141,11 @@
   <circle cx="80" cy="865" r="14" class="stagebg"/>
   <text x="80" y="869" text-anchor="middle" class="stagenum">9</text>
   <rect x="110" y="832" width="500" height="58" rx="6" class="bg-stage"/>
-  <text x="124" y="851" class="label">Long dwell + AAA / VPN credential harvest + internal pivot</text>
-  <text x="124" y="868" class="sub">TACACS / RADIUS secrets, VPN PSKs, SNMP communities, AnyConnect profiles</text>
-  <text x="124" y="884" class="ioc">ASA used as proxy -&gt; RDP / SSH / WinRM to jump hosts</text>
-  <text x="600" y="851" text-anchor="end" class="mitre">T1056.004 . T1040 . T1213 . T1110.003 . T1018 . T1046 . T1090.003 . T1082</text>
-  <text x="600" y="884" text-anchor="end" class="ioc">dwell &gt;= 6 months (FCEB)</text>
+  <text x="124" y="851" class="label">Long dwell + credential harvest</text>
+  <text x="124" y="868" class="sub">TACACS / RADIUS, VPN PSKs, SNMP, AnyConnect</text>
+  <text x="124" y="884" class="ioc">ASA as proxy -&gt; RDP / SSH / WinRM</text>
+  <text x="600" y="851" text-anchor="end" class="mitre">T1056 . T1040 . T1213 . T1090.003</text>
+  <text x="600" y="884" text-anchor="end" class="ioc">dwell &gt;= 6 months</text>
 
   <!-- Attacker C2 cluster -->
   <rect x="640" y="92" width="220" height="600" rx="6" class="bg-c2"/>
