@@ -10,9 +10,9 @@
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-05-10 | AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security) | Unattributed-LLM-assisted-operator | [`2026-05-10_Mexico-Water-AI-Assisted-OT/`](../../days/2026-05-10_Mexico-Water-AI-Assisted-OT/) |
-| 2026-05-07 | EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026) | namikazesarada010206 · harunosakura030303-maker | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
-| 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
-| 2026-05-05 | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | [`2026-05-05_Akira-SonicWall-CVE-2024-40766/`](../../days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
-| 2026-05-02 | Nexcorium Mirai variant (TBK DVR + Huawei HG532) | Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
-| 2026-05-01 | VECT 2.0 RaaS — wiper-by-accident | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
-| 2026-04-29 | Shai-Hulud: The Third Coming (Bitwarden CLI 2026.4.0) | TeamPCP | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |
+| 2026-05-07 | EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026) | namikazesarada010206 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
+| 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026) | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
+| 2026-05-05 | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | [`2026-05-05_Akira-SonicWall-CVE-2024-40766/`](../../days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
+| 2026-05-02 | Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026) | Nexcorium · Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
+| 2026-05-01 | VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026) | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
+| 2026-04-29 | Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm | TeamPCP · Shai-Hulud | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |

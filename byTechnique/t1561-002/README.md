@@ -9,5 +9,5 @@
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
-| 2026-05-04 | C0063 Poland Wiper Attacks (DynoWiper + LazyWiper) | Static Tundra · Sandworm · APT44 · G0034 · Seashell Blizzard | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026-05-04_C0063-Poland-Wiper/) |
-| 2026-05-01 | VECT 2.0 RaaS — wiper-by-accident | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
+| 2026-05-04 | Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026) | Sandworm overlap · Static Tundra · TEMP.Veles · C0063 | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026-05-04_C0063-Poland-Wiper/) |
+| 2026-05-01 | VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026) | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |

@@ -13,16 +13,15 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 |---|---|
 | [active-directory](./active-directory/) | 3 |
 | [android](./android/) | 1 |
-| [cisco-asa](./cisco-asa/) | 1 |
-| [cloud-multi](./cloud-multi/) | 5 |
-| [embedded](./embedded/) | 1 |
-| [esxi](./esxi/) | 2 |
+| [cloud-multi](./cloud-multi/) | 3 |
+| [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 1 |
 | [linux](./linux/) | 7 |
 | [macos](./macos/) | 2 |
-| [network-edge](./network-edge/) | 4 |
+| [microsoft-365](./microsoft-365/) | 1 |
+| [network-edge](./network-edge/) | 3 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
-| [ot-ics](./ot-ics/) | 3 |
-| [plc](./plc/) | 1 |
-| [supply-chain](./supply-chain/) | 4 |
-| [windows](./windows/) | 9 |
+| [ot-ics](./ot-ics/) | 2 |
+| [supply-chain](./supply-chain/) | 3 |
+| [vmware-esxi](./vmware-esxi/) | 2 |
+| [windows](./windows/) | 10 |

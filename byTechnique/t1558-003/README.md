@@ -9,5 +9,5 @@
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
-| 2026-05-05 | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | [`2026-05-05_Akira-SonicWall-CVE-2024-40766/`](../../days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
-| 2026-05-04 | C0063 Poland Wiper Attacks (DynoWiper + LazyWiper) | Static Tundra · Sandworm · APT44 · G0034 · Seashell Blizzard | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026-05-04_C0063-Poland-Wiper/) |
+| 2026-05-05 | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | [`2026-05-05_Akira-SonicWall-CVE-2024-40766/`](../../days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
+| 2026-05-04 | Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026) | Sandworm overlap · Static Tundra · TEMP.Veles · C0063 | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026-05-04_C0063-Poland-Wiper/) |

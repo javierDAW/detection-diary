@@ -9,5 +9,5 @@
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
-| 2026-05-01 | VECT 2.0 RaaS — wiper-by-accident | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
-| 2026-04-29 | Shai-Hulud: The Third Coming (Bitwarden CLI 2026.4.0) | TeamPCP | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |
+| 2026-05-01 | VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026) | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
+| 2026-04-29 | Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm | TeamPCP · Shai-Hulud | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |

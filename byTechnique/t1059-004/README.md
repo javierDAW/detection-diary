@@ -9,8 +9,8 @@
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
-| 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
-| 2026-05-03 | BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
-| 2026-05-02 | Nexcorium Mirai variant (TBK DVR + Huawei HG532) | Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
-| 2026-04-30 | FIRESTARTER + LINE VIPER on Cisco ASA | UAT-4356 · Storm-1849 · ArcaneDoor | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/`](../../days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
-| 2026-04-29 | Shai-Hulud: The Third Coming (Bitwarden CLI 2026.4.0) | TeamPCP | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |
+| 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026) | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
+| 2026-05-03 | BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026) | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| 2026-05-02 | Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026) | Nexcorium · Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
+| 2026-04-30 | FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A) | UAT-4356 · Storm-1849 · ArcaneDoor | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/`](../../days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
+| 2026-04-29 | Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm | TeamPCP · Shai-Hulud | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |

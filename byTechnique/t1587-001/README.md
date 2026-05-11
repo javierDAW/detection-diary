@@ -9,4 +9,4 @@
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
-| 2026-05-07 | EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026) | namikazesarada010206 · harunosakura030303-maker | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
+| 2026-05-07 | EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026) | namikazesarada010206 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |

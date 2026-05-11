@@ -18,52 +18,52 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | 2026-05-11 | [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) | UAT-8302 — China-nexus government espionage with shared APT arsenal | UAT-8302 · Jewelbug · REF7707 · CL-STA-0049 · LongNosedGoblin · UNC5174 · UAT-6382 · Earth Estries · Erudite Mogwai | government |
 | 2026-05-10 | [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/) | AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security) | Unattributed-LLM-assisted-operator | water, government, energy |
 | 2026-05-09 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) | Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026) | Albiriox | finance, cryptocurrency, any |
-| 2026-05-08 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Talos, May 2026) | CloudZ · Pheno | any |
-| 2026-05-07 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) | EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026) | namikazesarada010206 · harunosakura030303-maker | software-development, cryptocurrency, defi, finance |
-| 2026-05-07 | [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester | QLNX · Quasar Linux | technology, software-development, cloud-multi |
-| 2026-05-06 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) | Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747) | Storm-1747 · Tycoon2FA · Storm-1575 · Dadsec | healthcare, finance, professional-services, technology |
-| 2026-05-05 | [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | construction, engineering, manufacturing, healthcare, msp, public-sector |
-| 2026-05-04 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) | C0063 Poland Wiper Attacks (DynoWiper + LazyWiper) | Static Tundra · Sandworm · APT44 · G0034 · Seashell Blizzard | energy, chp-plant, wind-solar, water-wastewater, manufacturing |
-| 2026-05-03 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) | BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | water-wastewater, energy, government, desalination-il |
-| 2026-05-02 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) | Nexcorium Mirai variant (TBK DVR + Huawei HG532) | Nexus Team | consumer-cctv, misc-iot |
-| 2026-05-01 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) | VECT 2.0 RaaS — wiper-by-accident | VECT · TeamPCP · BreachForums | mixed-enterprise |
-| 2026-04-30 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) | FIRESTARTER + LINE VIPER on Cisco ASA | UAT-4356 · Storm-1849 · ArcaneDoor | us-fceb-agency |
-| 2026-04-29 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/) | Shai-Hulud: The Third Coming (Bitwarden CLI 2026.4.0) | TeamPCP | software-developers, ci-cd |
-| 2026-04-28 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/) | The Gentlemen RaaS + SystemBC | The Gentlemen | mixed-enterprise |
+| 2026-05-08 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026) | CloudZ · Pheno | any |
+| 2026-05-07 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) | EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026) | namikazesarada010206 | software-development, blockchain, defi |
+| 2026-05-07 | [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026) | QLNX · Quasar Linux | software-development, devops, cicd-pipelines |
+| 2026-05-06 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) | Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026) | Storm-1747 · Storm-1575 · Tycoon2FA · Dadsec | healthcare, finance, technology, professional-services |
+| 2026-05-05 | [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | construction, engineering, manufacturing, healthcare, msp, public-sector |
+| 2026-05-04 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) | Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026) | Sandworm overlap · Static Tundra · TEMP.Veles · C0063 | energy |
+| 2026-05-03 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) | BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026) | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | water-wastewater, energy, government |
+| 2026-05-02 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) | Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026) | Nexcorium · Nexus Team | any |
+| 2026-05-01 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) | VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026) | VECT · TeamPCP · BreachForums | any |
+| 2026-04-30 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) | FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A) | UAT-4356 · Storm-1849 · ArcaneDoor | government, any |
+| 2026-04-29 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/) | Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm | TeamPCP · Shai-Hulud | software-development, cicd-pipelines, cloud-multi |
+| 2026-04-28 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/) | The Gentlemen RaaS + SystemBC — GPO-weaponised ransomware with custom RC4 SOCKS5 proxy | The Gentlemen | manufacturing, healthcare, professional-services, retail, public-sector |
 
 ---
 
 ## By actor / cluster
 
-### APT44
-- 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (FSB Center 16 / GRU 74455 — contested)*
-
 ### Akira
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *Russian-speaking e-crime (Conti lineage)*
 
 ### Albiriox
 - 2026-05-09 — [Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026)](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) · *Russian-speaking e-crime (MaaS)*
 
 ### ArcaneDoor
-- 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*
+- 2026-04-30 — [FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A)](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*
 
 ### BAUXITE
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
+- 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran IRGC-CEC (high confidence — multi-vendor convergence under MITRE G1027)*
 
 ### BreachForums
-- 2026-05-01 — [VECT 2.0 RaaS — wiper-by-accident](days/2026-05-01_VECT-2.0-RaaS/) · *e-crime / RaaS*
+- 2026-05-01 — [VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026)](days/2026-05-01_VECT-2.0-RaaS/) · *Russian-speaking e-crime alliance*
+
+### C0063
+- 2026-05-04 — [Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (medium confidence) — GRU Unit 74455 ecosystem*
 
 ### CL-STA-0049
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/) · *China-nexus (government espionage)*
 
 ### CloudZ
-- 2026-05-08 — [CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Talos, May 2026)](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) · *Unattributed (no public attribution as of 2026-05-07)*
+- 2026-05-08 — [CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026)](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) · *unattributed (low confidence) — financially-motivated credential / OTP theft*
 
 ### CyberAv3ngers
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
+- 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran IRGC-CEC (high confidence — multi-vendor convergence under MITRE G1027)*
 
 ### Dadsec
-- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — multiple operators and affiliates)*
+- 2026-05-06 — [Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *PhaaS operator — kit-fingerprint attribution, opportunistic affiliates*
 
 ### Earth Estries
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/) · *China-nexus (government espionage)*
@@ -71,20 +71,17 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 ### Erudite Mogwai
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/) · *China-nexus (government espionage)*
 
-### G0034
-- 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (FSB Center 16 / GRU 74455 — contested)*
-
 ### G1027
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
+- 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran IRGC-CEC (high confidence — multi-vendor convergence under MITRE G1027)*
 
 ### Gold Sahara
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *Russian-speaking e-crime (Conti lineage)*
 
 ### Howling Scorpius
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *Russian-speaking e-crime (Conti lineage)*
 
 ### Hydro Kitten
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
+- 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran IRGC-CEC (high confidence — multi-vendor convergence under MITRE G1027)*
 
 ### Jewelbug
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/) · *China-nexus (government espionage)*
@@ -92,63 +89,69 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 ### LongNosedGoblin
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/) · *China-nexus (government espionage)*
 
+### Nexcorium
+- 2026-05-02 — [Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026)](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) · *e-crime (DDoS-for-hire), opportunistic — non state-nexus, medium confidence by branding*
+
 ### Nexus Team
-- 2026-05-02 — [Nexcorium Mirai variant (TBK DVR + Huawei HG532)](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) · *botnet / IoT crime*
+- 2026-05-02 — [Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026)](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) · *e-crime (DDoS-for-hire), opportunistic — non state-nexus, medium confidence by branding*
 
 ### Pheno
-- 2026-05-08 — [CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Talos, May 2026)](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) · *Unattributed (no public attribution as of 2026-05-07)*
+- 2026-05-08 — [CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026)](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) · *unattributed (low confidence) — financially-motivated credential / OTP theft*
 
 ### Punk Spider
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *Russian-speaking e-crime (Conti lineage)*
 
 ### QLNX
-- 2026-05-07 — [QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester](days/2026-05-07_QLNX-Quasar-Linux-RAT/) · *Unattributed (e-crime hypothesis — financially motivated supply-chain pre-position)*
+- 2026-05-07 — [QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026)](days/2026-05-07_QLNX-Quasar-Linux-RAT/) · *unattributed (low confidence) — fits 2026 supply-chain pre-position trend*
 
 ### Quasar Linux
-- 2026-05-07 — [QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester](days/2026-05-07_QLNX-Quasar-Linux-RAT/) · *Unattributed (e-crime hypothesis — financially motivated supply-chain pre-position)*
+- 2026-05-07 — [QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026)](days/2026-05-07_QLNX-Quasar-Linux-RAT/) · *unattributed (low confidence) — fits 2026 supply-chain pre-position trend*
 
 ### REF7707
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/) · *China-nexus (government espionage)*
 
-### Sandworm
-- 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (FSB Center 16 / GRU 74455 — contested)*
-
-### Seashell Blizzard
-- 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (FSB Center 16 / GRU 74455 — contested)*
+### Sandworm overlap
+- 2026-05-04 — [Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (medium confidence) — GRU Unit 74455 ecosystem*
 
 ### Shahid Kaveh Group
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
+- 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran IRGC-CEC (high confidence — multi-vendor convergence under MITRE G1027)*
+
+### Shai-Hulud
+- 2026-04-29 — [Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm](days/2026-04-29_ShaiHulud-Bitwarden/) · *e-crime / supply-chain worm (financially motivated, no nation-state nexus)*
 
 ### Static Tundra
-- 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (FSB Center 16 / GRU 74455 — contested)*
+- 2026-05-04 — [Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (medium confidence) — GRU Unit 74455 ecosystem*
 
 ### Storm-0784
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
+- 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran IRGC-CEC (high confidence — multi-vendor convergence under MITRE G1027)*
 
 ### Storm-1567
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *e-crime (Conti-lineage; Russian-speaking ecosystem)*
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) · *Russian-speaking e-crime (Conti lineage)*
 
 ### Storm-1575
-- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — multiple operators and affiliates)*
+- 2026-05-06 — [Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *PhaaS operator — kit-fingerprint attribution, opportunistic affiliates*
 
 ### Storm-1747
-- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — multiple operators and affiliates)*
+- 2026-05-06 — [Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *PhaaS operator — kit-fingerprint attribution, opportunistic affiliates*
 
 ### Storm-1849
-- 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*
+- 2026-04-30 — [FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A)](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*
+
+### TEMP.Veles
+- 2026-05-04 — [Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (medium confidence) — GRU Unit 74455 ecosystem*
 
 ### TeamPCP
-- 2026-05-01 — [VECT 2.0 RaaS — wiper-by-accident](days/2026-05-01_VECT-2.0-RaaS/) · *e-crime / RaaS*
-- 2026-04-29 — [Shai-Hulud: The Third Coming (Bitwarden CLI 2026.4.0)](days/2026-04-29_ShaiHulud-Bitwarden/) · *e-crime / supply-chain*
+- 2026-05-01 — [VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026)](days/2026-05-01_VECT-2.0-RaaS/) · *Russian-speaking e-crime alliance*
+- 2026-04-29 — [Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm](days/2026-04-29_ShaiHulud-Bitwarden/) · *e-crime / supply-chain worm (financially motivated, no nation-state nexus)*
 
 ### The Gentlemen
-- 2026-04-28 — [The Gentlemen RaaS + SystemBC](days/2026-04-28_TheGentlemen-SystemBC/) · *e-crime / RaaS*
+- 2026-04-28 — [The Gentlemen RaaS + SystemBC — GPO-weaponised ransomware with custom RC4 SOCKS5 proxy](days/2026-04-28_TheGentlemen-SystemBC/) · *Russian-speaking e-crime / RaaS (financially motivated, no nation-state nexus)*
 
 ### Tycoon2FA
-- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *e-crime (PhaaS — multiple operators and affiliates)*
+- 2026-05-06 — [Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) · *PhaaS operator — kit-fingerprint attribution, opportunistic affiliates*
 
 ### UAT-4356
-- 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*
+- 2026-04-30 — [FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A)](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) · *China-nexus (medium confidence)*
 
 ### UAT-6382
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/) · *China-nexus (government espionage)*
@@ -160,19 +163,16 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/) · *China-nexus (government espionage)*
 
 ### UNC5691
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran-nexus (IRGC-CEC)*
+- 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) · *Iran IRGC-CEC (high confidence — multi-vendor convergence under MITRE G1027)*
 
 ### Unattributed-LLM-assisted-operator
 - 2026-05-10 — [AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security)](days/2026-05-10_Mexico-Water-AI-Assisted-OT/) · *Unattributed (single-operator hypothesis)*
 
 ### VECT
-- 2026-05-01 — [VECT 2.0 RaaS — wiper-by-accident](days/2026-05-01_VECT-2.0-RaaS/) · *e-crime / RaaS*
-
-### harunosakura030303-maker
-- 2026-05-07 — [EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) · *Unattributed (e-crime hypothesis — credential-first / opportunistic supply-chain)*
+- 2026-05-01 — [VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026)](days/2026-05-01_VECT-2.0-RaaS/) · *Russian-speaking e-crime alliance*
 
 ### namikazesarada010206
-- 2026-05-07 — [EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) · *Unattributed (e-crime hypothesis — credential-first / opportunistic supply-chain)*
+- 2026-05-07 — [EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) · *unattributed — credential-first opportunistic supply-chain*
 
 ---
 
@@ -180,18 +180,8 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 
 | Technique | Cases |
 |---|---|
-| T0809 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0813 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0815 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0816 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0822 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0826 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0831 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0832 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0855 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0857 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0866 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T0883 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
+| T0831 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| T0832 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
 | T1003.001 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
 | T1005 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1014 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
@@ -208,7 +198,6 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1036 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
 | T1036.005 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1037 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
-| T1037.003 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
 | T1037.004 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
 | T1040 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
 | T1041 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
@@ -226,11 +215,12 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1059.006 | [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/) |
 | T1059.007 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
 | T1069.002 | [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
-| T1070.001 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
+| T1070.001 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) |
 | T1070.004 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
-| T1071.001 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
-| T1078 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
+| T1071.001 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
+| T1078 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
 | T1078.001 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| T1078.002 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
 | T1078.004 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/), [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/) |
 | T1082 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
 | T1083 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/) |
@@ -242,7 +232,6 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1090.004 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1095 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
 | T1098 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
-| T1098.002 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
 | T1098.005 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
 | T1102 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/) |
 | T1102.002 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
@@ -254,11 +243,11 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1114.003 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
 | T1115 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1129 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
-| T1133 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
+| T1133 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
 | T1134.001 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) |
 | T1135 | [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
 | T1140 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
-| T1190 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
+| T1190 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
 | T1195.001 | [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
 | T1195.002 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
 | T1204.001 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
@@ -309,8 +298,9 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1557 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
 | T1558.003 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
 | T1561 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| T1561.001 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
 | T1561.002 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
-| T1562.001 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) |
+| T1562.001 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/) |
 | T1562.002 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) |
 | T1562.004 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) |
 | T1564.001 | [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
@@ -357,76 +347,69 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 ## By platform
 
 ### active-directory
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
-- 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/)
-- 2026-04-28 — [The Gentlemen RaaS + SystemBC](days/2026-04-28_TheGentlemen-SystemBC/)
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
+- 2026-05-04 — [Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026)](days/2026-05-04_C0063-Poland-Wiper/)
+- 2026-04-28 — [The Gentlemen RaaS + SystemBC — GPO-weaponised ransomware with custom RC4 SOCKS5 proxy](days/2026-04-28_TheGentlemen-SystemBC/)
 
 ### android
 - 2026-05-09 — [Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026)](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/)
 
-### cisco-asa
-- 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/)
-
 ### cloud-multi
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/)
 - 2026-05-10 — [AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security)](days/2026-05-10_Mexico-Water-AI-Assisted-OT/)
-- 2026-05-07 — [EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/)
-- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/)
-- 2026-04-29 — [Shai-Hulud: The Third Coming (Bitwarden CLI 2026.4.0)](days/2026-04-29_ShaiHulud-Bitwarden/)
+- 2026-05-06 — [Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/)
 
-### embedded
-- 2026-05-02 — [Nexcorium Mirai variant (TBK DVR + Huawei HG532)](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/)
-
-### esxi
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
-- 2026-05-01 — [VECT 2.0 RaaS — wiper-by-accident](days/2026-05-01_VECT-2.0-RaaS/)
+### cryptocurrency
+- 2026-05-07 — [EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/)
 
 ### iot
-- 2026-05-02 — [Nexcorium Mirai variant (TBK DVR + Huawei HG532)](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/)
+- 2026-05-02 — [Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026)](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/)
 
 ### linux
 - 2026-05-10 — [AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security)](days/2026-05-10_Mexico-Water-AI-Assisted-OT/)
-- 2026-05-07 — [EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/)
-- 2026-05-07 — [QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester](days/2026-05-07_QLNX-Quasar-Linux-RAT/)
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
-- 2026-05-02 — [Nexcorium Mirai variant (TBK DVR + Huawei HG532)](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/)
-- 2026-05-01 — [VECT 2.0 RaaS — wiper-by-accident](days/2026-05-01_VECT-2.0-RaaS/)
-- 2026-04-29 — [Shai-Hulud: The Third Coming (Bitwarden CLI 2026.4.0)](days/2026-04-29_ShaiHulud-Bitwarden/)
+- 2026-05-07 — [EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/)
+- 2026-05-07 — [QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026)](days/2026-05-07_QLNX-Quasar-Linux-RAT/)
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
+- 2026-05-02 — [Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026)](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/)
+- 2026-05-01 — [VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026)](days/2026-05-01_VECT-2.0-RaaS/)
+- 2026-04-29 — [Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm](days/2026-04-29_ShaiHulud-Bitwarden/)
 
 ### macos
-- 2026-05-07 — [EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/)
-- 2026-04-29 — [Shai-Hulud: The Third Coming (Bitwarden CLI 2026.4.0)](days/2026-04-29_ShaiHulud-Bitwarden/)
+- 2026-05-07 — [EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/)
+- 2026-04-29 — [Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm](days/2026-04-29_ShaiHulud-Bitwarden/)
+
+### microsoft-365
+- 2026-05-06 — [Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/)
 
 ### network-edge
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
-- 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/)
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/)
-- 2026-04-30 — [FIRESTARTER + LINE VIPER on Cisco ASA](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/)
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
+- 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/)
+- 2026-04-30 — [FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A)](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/)
 
 ### nutanix-ahv
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
 
 ### ot-ics
 - 2026-05-10 — [AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security)](days/2026-05-10_Mexico-Water-AI-Assisted-OT/)
-- 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/)
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/)
-
-### plc
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/)
+- 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/)
 
 ### supply-chain
-- 2026-05-07 — [EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/)
-- 2026-05-07 — [QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester](days/2026-05-07_QLNX-Quasar-Linux-RAT/)
-- 2026-05-06 — [Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/)
-- 2026-04-29 — [Shai-Hulud: The Third Coming (Bitwarden CLI 2026.4.0)](days/2026-04-29_ShaiHulud-Bitwarden/)
+- 2026-05-07 — [EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/)
+- 2026-05-07 — [QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026)](days/2026-05-07_QLNX-Quasar-Linux-RAT/)
+- 2026-04-29 — [Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm](days/2026-04-29_ShaiHulud-Bitwarden/)
+
+### vmware-esxi
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
+- 2026-05-01 — [VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026)](days/2026-05-01_VECT-2.0-RaaS/)
 
 ### windows
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/)
 - 2026-05-10 — [AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security)](days/2026-05-10_Mexico-Water-AI-Assisted-OT/)
-- 2026-05-08 — [CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Talos, May 2026)](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/)
-- 2026-05-07 — [EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/)
-- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
-- 2026-05-04 — [C0063 Poland Wiper Attacks (DynoWiper + LazyWiper)](days/2026-05-04_C0063-Poland-Wiper/)
-- 2026-05-03 — [BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/)
-- 2026-05-01 — [VECT 2.0 RaaS — wiper-by-accident](days/2026-05-01_VECT-2.0-RaaS/)
-- 2026-04-28 — [The Gentlemen RaaS + SystemBC](days/2026-04-28_TheGentlemen-SystemBC/)
+- 2026-05-08 — [CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026)](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/)
+- 2026-05-07 — [EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026)](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/)
+- 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
+- 2026-05-04 — [Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026)](days/2026-05-04_C0063-Poland-Wiper/)
+- 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/)
+- 2026-05-01 — [VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026)](days/2026-05-01_VECT-2.0-RaaS/)
+- 2026-04-29 — [Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm](days/2026-04-29_ShaiHulud-Bitwarden/)
+- 2026-04-28 — [The Gentlemen RaaS + SystemBC — GPO-weaponised ransomware with custom RC4 SOCKS5 proxy](days/2026-04-28_TheGentlemen-SystemBC/)

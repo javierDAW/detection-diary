@@ -10,4 +10,4 @@
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-05-11 | UAT-8302 — China-nexus government espionage with shared APT arsenal | UAT-8302 · Jewelbug · REF7707 · CL-STA-0049 · LongNosedGoblin · UNC5174 · UAT-6382 · Earth Estries · Erudite Mogwai | [`2026-05-11_UAT-8302-China-Government-Espionage/`](../../days/2026-05-11_UAT-8302-China-Government-Espionage/) |
-| 2026-04-28 | The Gentlemen RaaS + SystemBC | The Gentlemen | [`2026-04-28_TheGentlemen-SystemBC/`](../../days/2026-04-28_TheGentlemen-SystemBC/) |
+| 2026-04-28 | The Gentlemen RaaS + SystemBC — GPO-weaponised ransomware with custom RC4 SOCKS5 proxy | The Gentlemen | [`2026-04-28_TheGentlemen-SystemBC/`](../../days/2026-04-28_TheGentlemen-SystemBC/) |

@@ -9,4 +9,4 @@
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
-| 2026-05-06 | Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747) | Storm-1747 · Tycoon2FA · Storm-1575 · Dadsec | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747/`](../../days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
+| 2026-05-06 | Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026) | Storm-1747 · Storm-1575 · Tycoon2FA · Dadsec | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747/`](../../days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |

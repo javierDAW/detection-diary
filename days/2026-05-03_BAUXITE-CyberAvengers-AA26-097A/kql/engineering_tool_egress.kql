@@ -26,7 +26,6 @@ let DropbearOnDisk =
     | where Timestamp >= ago(7d)
     | where ActionType in ("FileCreated","FileModified")
     | where FileName has_any ("dropbear","dropbearmulti","dbclient")
-       or SHA256 == "<add_known_dropbear_hash_if_available>"
     | project Timestamp, DeviceName, FileName, FolderPath, InitiatingProcessFileName, SHA256;
 EngineeringEgress
 | union DropbearOnDisk

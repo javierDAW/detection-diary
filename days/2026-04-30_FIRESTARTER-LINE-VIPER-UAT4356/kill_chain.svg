@@ -1,0 +1,197 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1080" role="img" aria-labelledby="t d">
+  <title id="t">FIRESTARTER + LINE VIPER kill chain — UAT-4356 / Storm-1849 / ArcaneDoor on Cisco ASA / FTD / Firepower (CISA AR26-113A)</title>
+  <desc id="d">Vertical timeline. External recon discovers an exposed Cisco ASA WebVPN endpoint. CVE-2025-20333 (unauthenticated RCE) is chained with CVE-2025-20362 (auth bypass) to drop LINE VIPER, a user-mode shellcode loader that runs inside the LINA process. LINE VIPER plants FIRESTARTER, an ELF Linux implant that hooks a WebVPN XML handler in LINA and installs a SIGTERM handler. On every graceful shutdown the SIGTERM handler rewrites /opt/cisco/config/platform/rmdb/CSP_MOUNT_LIST so the manipulated filesystem is remounted on next boot — surviving firmware upgrades and security patches. Activation is passive: the operator sends a POST /+CSCOE+/ with an XML body prefixed by hardcoded magic bytes; no outbound beacon is produced. Dwell time observed at six months on a US FCEB agency.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      .anchor       { fill: #1f2328; font: 600 12px sans-serif; }
+      .anchor-sub   { fill: #424a53; font: 11.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .anchor-bg    { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+        .anchor     { fill: #c9d1d9; }
+        .anchor-sub { fill: #8b949e; }
+        .anchor-bg  { fill: #0c2d6b; stroke: #1f6feb; }
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="40" class="header">FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor — Cisco ASA / FTD / Firepower</text>
+  <text x="40" y="60" class="subhead">CISA AR26-113A . CVE-2025-20333 + CVE-2025-20362 . persists across firmware upgrades . passive WebVPN trigger . FCEB dwell &gt;= 6 months</text>
+
+  <text x="20" y="120" class="lane" transform="rotate(-90, 20, 120)">VICTIM HOST (Cisco ASA / FTD / Firepower)</text>
+  <text x="855" y="120" class="lane" transform="rotate(90, 855, 120)">ATTACKER C2 (passive — magic-byte WebVPN POSTs)</text>
+
+  <!-- Stage 1: External recon -->
+  <circle cx="80" cy="115" r="14" class="stagebg"/>
+  <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
+  <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="111" class="label">External recon of exposed WebVPN</text>
+  <text x="124" y="128" class="sub">Internet-facing ASA / FTD with `/+CSCOE+/` reachable</text>
+  <text x="600" y="111" text-anchor="end" class="mitre">T1595 . T1190</text>
+  <text x="600" y="128" text-anchor="end" class="ioc">Shodan / Censys / banner</text>
+  <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 2: CVE-2025-20333 RCE -->
+  <circle cx="80" cy="195" r="14" class="stagebg"/>
+  <text x="80" y="199" text-anchor="middle" class="stagenum">2</text>
+  <rect x="110" y="172" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="191" class="label">CVE-2025-20333 — unauth RCE in WebVPN</text>
+  <text x="124" y="208" class="sub">Buffer overflow on `/+CSCOE+/logon.html` -&gt; root inside LINA</text>
+  <text x="600" y="191" text-anchor="end" class="mitre">T1190</text>
+  <text x="600" y="208" text-anchor="end" class="ioc">CVSS 9.9 . CVE-2025-20333</text>
+  <line x1="360" y1="220" x2="360" y2="252" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 3: CVE-2025-20362 auth bypass -->
+  <circle cx="80" cy="275" r="14" class="stagebg"/>
+  <text x="80" y="279" text-anchor="middle" class="stagenum">3</text>
+  <rect x="110" y="252" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="271" class="label">CVE-2025-20362 — authentication bypass</text>
+  <text x="124" y="288" class="sub">Path / access-control flaw on ASA HTTPS endpoint -&gt; chained with RCE</text>
+  <text x="600" y="271" text-anchor="end" class="mitre">T1190 . T1078</text>
+  <text x="600" y="288" text-anchor="end" class="ioc">CVSS 6.5 . CVE-2025-20362</text>
+  <line x1="360" y1="300" x2="360" y2="332" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 4: LINE VIPER user-mode shellcode -->
+  <circle cx="80" cy="365" r="14" class="stagebg"/>
+  <text x="80" y="369" text-anchor="middle" class="stagenum">4</text>
+  <rect x="110" y="332" width="500" height="68" rx="6" class="bg-stage"/>
+  <text x="124" y="351" class="label">LINE VIPER — user-mode shellcode loader</text>
+  <text x="124" y="368" class="sub">In-process runner inside LINA, no persistent disk drop</text>
+  <text x="124" y="384" class="ioc">already seen on ArcaneDoor 2024 victims</text>
+  <text x="600" y="351" text-anchor="end" class="mitre">T1059.004 . T1106 . T1620</text>
+  <text x="600" y="384" text-anchor="end" class="ioc">in-memory only</text>
+  <line x1="360" y1="400" x2="360" y2="432" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 5: FIRESTARTER ELF hook on LINA -->
+  <circle cx="80" cy="465" r="14" class="stagebg"/>
+  <text x="80" y="469" text-anchor="middle" class="stagenum">5</text>
+  <rect x="110" y="432" width="500" height="78" rx="6" class="bg-stage"/>
+  <text x="124" y="451" class="label">FIRESTARTER — ELF hook on LINA WebVPN XML handler</text>
+  <text x="124" y="468" class="sub">Function-pointer overwrite via dlopen / dlsym style patching</text>
+  <text x="124" y="484" class="sub">Hardcoded offsets per FXOS build (5500-X -&gt; any ASA / FTD)</text>
+  <text x="124" y="500" class="ioc">rwx region in LINA outside original .text</text>
+  <text x="600" y="451" text-anchor="end" class="mitre">T1574.006 . T1014 . T1027</text>
+  <text x="600" y="500" text-anchor="end" class="ioc">"lina" . "webvpn_handle_post"</text>
+  <line x1="360" y1="510" x2="360" y2="542" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 6: CSP_MOUNT_LIST rewrite at SIGTERM -->
+  <circle cx="80" cy="575" r="14" class="stagebg"/>
+  <text x="80" y="579" text-anchor="middle" class="stagenum">6</text>
+  <rect x="110" y="542" width="500" height="78" rx="6" class="bg-stage"/>
+  <text x="124" y="561" class="label">SIGTERM handler rewrites CSP_MOUNT_LIST</text>
+  <text x="124" y="578" class="sub">sigaction(SIGTERM, ...) -&gt; on graceful shutdown,</text>
+  <text x="124" y="594" class="sub">overwrites /opt/cisco/config/platform/rmdb/CSP_MOUNT_LIST</text>
+  <text x="124" y="610" class="ioc">next boot remounts manipulated FS -&gt; survives firmware upgrade</text>
+  <text x="600" y="561" text-anchor="end" class="mitre">T1542.001 . T1037 . T1490</text>
+  <text x="600" y="610" text-anchor="end" class="ioc">"SIGTERM" . "sigaction"</text>
+  <line x1="360" y1="620" x2="360" y2="652" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 7: Passive C2 wait -->
+  <circle cx="80" cy="685" r="14" class="stagebg"/>
+  <text x="80" y="689" text-anchor="middle" class="stagenum">7</text>
+  <rect x="110" y="652" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="671" class="label">Passive C2 — implant waits for magic-byte POST</text>
+  <text x="124" y="688" class="sub">No outbound beacon . no DGA . no heartbeat</text>
+  <text x="124" y="704" class="ioc">POST /+CSCOE+/ &gt;= 8 KiB . XML magic prefix -&gt; shellcode in-place</text>
+  <text x="600" y="671" text-anchor="end" class="mitre">T1071.001 . T1573.001</text>
+  <text x="600" y="704" text-anchor="end" class="ioc">HTTP 200 empty</text>
+  <line x1="600" y1="681" x2="700" y2="681" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
+  <line x1="360" y1="710" x2="360" y2="742" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 8: Survive reboot / upgrade -->
+  <circle cx="80" cy="775" r="14" class="stagebg"/>
+  <text x="80" y="779" text-anchor="middle" class="stagenum">8</text>
+  <rect x="110" y="742" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="761" class="label">Survive reboot, security patch, firmware upgrade</text>
+  <text x="124" y="778" class="sub">Only hard power cycle dislodges it — CISA discourages it</text>
+  <text x="124" y="794" class="ioc">cluster failover does NOT equal clean</text>
+  <text x="600" y="761" text-anchor="end" class="mitre">T1490 . T1542.001</text>
+  <text x="600" y="794" text-anchor="end" class="ioc">on-disk + remount</text>
+  <line x1="360" y1="800" x2="360" y2="832" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 9: Long dwell + internal recon -->
+  <circle cx="80" cy="865" r="14" class="stagebg"/>
+  <text x="80" y="869" text-anchor="middle" class="stagenum">9</text>
+  <rect x="110" y="832" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="851" class="label">Long dwell + AAA / VPN credential harvest + internal pivot</text>
+  <text x="124" y="868" class="sub">TACACS / RADIUS secrets, VPN PSKs, SNMP communities, AnyConnect profiles</text>
+  <text x="124" y="884" class="ioc">ASA used as proxy -&gt; RDP / SSH / WinRM to jump hosts</text>
+  <text x="600" y="851" text-anchor="end" class="mitre">T1056.004 . T1040 . T1213 . T1110.003 . T1018 . T1046 . T1090.003 . T1082</text>
+  <text x="600" y="884" text-anchor="end" class="ioc">dwell &gt;= 6 months (FCEB)</text>
+
+  <!-- Attacker C2 cluster -->
+  <rect x="640" y="92" width="220" height="600" rx="6" class="bg-c2"/>
+  <text x="660" y="115" class="label">Passive C2 fabric</text>
+
+  <text x="660" y="148" class="sub">Trigger</text>
+  <text x="660" y="166" class="ioc">POST /+CSCOE+/</text>
+  <text x="660" y="182" class="ioc">POST /+webvpn+/</text>
+  <text x="660" y="198" class="ioc">POST /CSCOSSLC/</text>
+
+  <text x="660" y="230" class="sub">Body</text>
+  <text x="660" y="248" class="ioc">size &gt;= 8 KiB</text>
+  <text x="660" y="264" class="ioc">XML with hardcoded</text>
+  <text x="660" y="280" class="ioc">magic-byte prefix</text>
+  <text x="660" y="296" class="ioc">tail = shellcode</text>
+
+  <text x="660" y="328" class="sub">Reply</text>
+  <text x="660" y="346" class="ioc">HTTP 200 empty</text>
+  <text x="660" y="362" class="ioc">no error log</text>
+
+  <text x="660" y="394" class="sub">Outbound</text>
+  <text x="660" y="412" class="ioc">no beacon</text>
+  <text x="660" y="428" class="ioc">no DGA</text>
+  <text x="660" y="444" class="ioc">no heartbeat</text>
+
+  <text x="660" y="476" class="sub">Encryption</text>
+  <text x="660" y="494" class="ioc">outer TLS = WebVPN</text>
+  <text x="660" y="510" class="ioc">inner XOR / RC4 / ChaCha20</text>
+
+  <text x="660" y="542" class="sub">Source IPs</text>
+  <text x="660" y="560" class="ioc">residential proxies</text>
+  <text x="660" y="576" class="ioc">bulletproof VPS</text>
+
+  <text x="660" y="608" class="sub">Genealogy</text>
+  <text x="660" y="626" class="ioc">RayInitiator Stage-3</text>
+  <text x="660" y="642" class="ioc">(ArcaneDoor 2024)</text>
+
+  <text x="660" y="674" class="sub">Cluster</text>
+  <text x="660" y="690" class="ioc">UAT-4356 / Storm-1849</text>
+
+  <!-- Detection anchors box -->
+  <rect x="40" y="920" width="800" height="150" rx="6" class="anchor-bg"/>
+  <text x="60" y="946" class="anchor">Detection anchors (rules in this folder)</text>
+  <text x="60" y="970" class="anchor-sub">sigma/cisco_asa_webvpn_large_post.yml — POST /+CSCOE+/ with body &gt;= 8 KiB from non-AnyConnect UA</text>
+  <text x="60" y="992" class="anchor-sub">kql/cisco_asa_reboot_webvpn_correlation.kql — ASA reboot joined with large WebVPN POST in a 30-min window</text>
+  <text x="60" y="1014" class="anchor-sub">yara/FIRESTARTER_ELF_Heuristic.yar — ELF + CSP_MOUNT_LIST + /+CSCOE+/ + SIGTERM/sigaction + magic-byte family + crypto cues</text>
+  <text x="60" y="1042" class="anchor">Pedagogical anchor</text>
+  <text x="60" y="1062" class="anchor-sub">On-device Sigma does NOT work (CISA explicit). Hunt network and management side-effects. SIGTERM is the persistence primitive.</text>
+</svg>

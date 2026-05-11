@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1080" role="img" aria-labelledby="t d">
+  <title id="t">VECT 2.0 RaaS kill chain — Check Point Research, 28 April 2026</title>
+  <desc id="d">Vertical timeline of the VECT 2.0 multi-platform locker. A supply-chain CI/CD compromise from TeamPCP or a valid AD account drops svchostupdate.exe on Windows or encesxi.elf on Linux/ESXi. The loader checks the .vect killswitch marker, plants bcdedit safeboot minimal plus a SafeBoot\Minimal\&lt;svc&gt; service, XOR-clears EVTX channels with key 0xBB55FF59DF597B8D, mass-terminates DB/office/mail/browser processes, then encrypts files in 32 KB chunks with raw ChaCha20-IETF — the four nonces per file share a single 12-byte buffer so only the last persists, destroying the first 3 chunks of every file above 128 KB. SSH lateral movement reaches ESXi, where encesxi.elf geofences out CIS states and encrypts VMDKs. The C2 lane on the right shows the BreachForums escrow plus TeamPCP affiliate panel.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .bg-bug       { fill: #ffebe9; stroke: #ff8182; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagebg-bug  { fill: #cf222e; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .label-bug    { fill: #82071e; font: 700 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      .anchor       { fill: #1f2328; font: 600 12px sans-serif; }
+      .anchor-sub   { fill: #424a53; font: 11.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .anchor-bg    { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .bg-bug     { fill: #3c0a0a; stroke: #f85149; }
+        .stagebg    { fill: #58a6ff; }
+        .stagebg-bug{ fill: #f85149; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .label-bug  { fill: #ffa198; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+        .anchor     { fill: #c9d1d9; }
+        .anchor-sub { fill: #8b949e; }
+        .anchor-bg  { fill: #0c2d6b; stroke: #1f6feb; }
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="40" class="header">VECT 2.0 RaaS — kill chain</text>
+  <text x="40" y="60" class="subhead">Check Point Research, 28 Apr 2026 . Ransomware by design, Wiper by accident . svchostupdate.exe + encesxi.elf . libsodium static</text>
+
+  <text x="20" y="120" class="lane" transform="rotate(-90, 20, 120)">VICTIM HOST (Windows / Linux ESXi)</text>
+  <text x="855" y="120" class="lane" transform="rotate(90, 855, 120)">ATTACKER C2 (BreachForums + TeamPCP)</text>
+
+  <!-- Stage 1: Supply-chain entry -->
+  <circle cx="80" cy="115" r="14" class="stagebg"/>
+  <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
+  <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="111" class="label">Supply-chain CI/CD or valid AD account</text>
+  <text x="124" y="128" class="sub">TeamPCP-trojanized Trivy GHA, KICS, LiteLLM, Telnyx SDK</text>
+  <text x="600" y="111" text-anchor="end" class="mitre">T1195.002 . T1078</text>
+  <text x="600" y="128" text-anchor="end" class="ioc">cloud key / RDP / SSO</text>
+  <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 2: Payload drop -->
+  <circle cx="80" cy="195" r="14" class="stagebg"/>
+  <text x="80" y="199" text-anchor="middle" class="stagenum">2</text>
+  <rect x="110" y="172" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="191" class="label">Locker drop — Windows or Linux/ESXi</text>
+  <text x="124" y="208" class="sub">C++ / MSVC, libsodium statically linked, no UPX</text>
+  <text x="600" y="191" text-anchor="end" class="mitre">T1129 . T1059.003 . T1059.001</text>
+  <text x="600" y="208" text-anchor="end" class="ioc">svchostupdate.exe / encesxi.elf</text>
+  <line x1="360" y1="220" x2="360" y2="252" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 3: Killswitch marker -->
+  <circle cx="80" cy="275" r="14" class="stagebg"/>
+  <text x="80" y="279" text-anchor="middle" class="stagenum">3</text>
+  <rect x="110" y="252" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="271" class="label">Check local killswitch marker, abort if present</text>
+  <text x="124" y="288" class="sub">Single-byte sentinel file — abuses the operator's own double-pass guard</text>
+  <text x="600" y="271" text-anchor="end" class="mitre">T1497</text>
+  <text x="600" y="288" text-anchor="end" class="ioc">C:\ProgramData\.vect / /var/run/.vect</text>
+  <line x1="360" y1="300" x2="360" y2="332" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 4: bcdedit safeboot + reg key -->
+  <circle cx="80" cy="365" r="14" class="stagebg"/>
+  <text x="80" y="369" text-anchor="middle" class="stagenum">4</text>
+  <rect x="110" y="332" width="500" height="68" rx="6" class="bg-stage"/>
+  <text x="124" y="351" class="label">Transient Safe-Boot persistence (Windows)</text>
+  <text x="124" y="368" class="sub">bcdedit /set {default} safeboot minimal + reg key</text>
+  <text x="124" y="384" class="ioc">HKLM\SYSTEM\CurrentControlSet\Control\SafeBoot\Minimal\&lt;svc&gt;</text>
+  <text x="600" y="351" text-anchor="end" class="mitre">T1547.001 . T1529</text>
+  <text x="600" y="384" text-anchor="end" class="ioc">residual reg key = gold IOC</text>
+  <line x1="360" y1="400" x2="360" y2="432" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 5: EVTX XOR-wipe + defender kill -->
+  <circle cx="80" cy="455" r="14" class="stagebg"/>
+  <text x="80" y="459" text-anchor="middle" class="stagenum">5</text>
+  <rect x="110" y="432" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="451" class="label">Disable AV/EDR + EVTX XOR-wipe</text>
+  <text x="124" y="468" class="sub">taskkill/sc stop WinDefend, Sense, MsMpSvc; channel names XOR-decrypted</text>
+  <text x="124" y="484" class="ioc">XOR key 0xBB55FF59DF597B8D over App/Sec/Sys/PowerShell, EvtClearLog()</text>
+  <text x="600" y="451" text-anchor="end" class="mitre">T1562.001 . T1562.002 . T1070.001</text>
+  <text x="600" y="484" text-anchor="end" class="ioc">EID 1102 / 104</text>
+  <line x1="360" y1="490" x2="360" y2="522" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 6: Mass process kill -->
+  <circle cx="80" cy="545" r="14" class="stagebg"/>
+  <text x="80" y="549" text-anchor="middle" class="stagenum">6</text>
+  <rect x="110" y="522" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="541" class="label">Mass process termination — pre-encryption flush</text>
+  <text x="124" y="558" class="sub">DB engines, MS Office, mail, browsers, Veeam, vmms — release file handles</text>
+  <text x="124" y="574" class="ioc">sqlservr/oracle/mysqld/winword/excel/outlook/firefox/thunderbird</text>
+  <text x="600" y="541" text-anchor="end" class="mitre">T1489 . T1490 . T1562.004</text>
+  <text x="600" y="574" text-anchor="end" class="ioc">vssadmin delete shadows</text>
+  <line x1="360" y1="580" x2="360" y2="612" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 7: ChaCha20 raw + nonce bug -->
+  <circle cx="80" cy="640" r="14" class="stagebg-bug"/>
+  <text x="80" y="644" text-anchor="middle" class="stagenum">7</text>
+  <rect x="110" y="612" width="500" height="78" rx="6" class="bg-bug"/>
+  <text x="124" y="631" class="label-bug">ChaCha20-IETF raw, 4 chunks share ONE nonce buffer</text>
+  <text x="124" y="648" class="sub">RFC 8439 stream, no Poly1305 AEAD; chunk size 32768 B</text>
+  <text x="124" y="664" class="sub">For files &gt; 131072 B (128 KB): 4 randombytes_buf() into same 12-B header</text>
+  <text x="124" y="680" class="ioc">only last nonce persists -&gt; chunks 0/1/2 unrecoverable to the OPERATOR</text>
+  <text x="600" y="631" text-anchor="end" class="mitre">T1486 intent / T1485 effect</text>
+  <text x="600" y="680" text-anchor="end" class="ioc">crypto_stream_chacha20_ietf_xor</text>
+  <line x1="360" y1="690" x2="360" y2="722" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 8: SSH lateral to ESXi -->
+  <circle cx="80" cy="745" r="14" class="stagebg"/>
+  <text x="80" y="749" text-anchor="middle" class="stagenum">8</text>
+  <rect x="110" y="722" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="741" class="label">SSH lateral to ESXi / Linux hosts</text>
+  <text x="124" y="758" class="sub">--ssh-keyfile / --ssh-userlist; harvest ~/.ssh/known_hosts, id_*, ~/.aws</text>
+  <text x="600" y="741" text-anchor="end" class="mitre">T1021.004 . T1552.001 . T1003.001</text>
+  <text x="600" y="758" text-anchor="end" class="ioc">/etc/hosts + ARP cache</text>
+  <line x1="360" y1="770" x2="360" y2="802" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 9: encesxi.elf + geofence -->
+  <circle cx="80" cy="825" r="14" class="stagebg"/>
+  <text x="80" y="829" text-anchor="middle" class="stagenum">9</text>
+  <rect x="110" y="802" width="500" height="68" rx="6" class="bg-stage"/>
+  <text x="124" y="821" class="label">encesxi.elf — VMDK encryption + CIS geofence</text>
+  <text x="124" y="838" class="sub">vim-cmd vmsvc/getallvms + power.off, then encrypt .vmdk in 32 KB chunks</text>
+  <text x="124" y="854" class="ioc">timedatectl + LANG + LC_ALL excl. ru_*/be_*/kk_*/uk_*  -&gt; abort()</text>
+  <text x="600" y="821" text-anchor="end" class="mitre">T1614.001 . T1561.002 . T1497</text>
+  <text x="600" y="854" text-anchor="end" class="ioc">ptrace TRACEME anti-debug</text>
+  <line x1="360" y1="870" x2="360" y2="902" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 10: Impact -->
+  <circle cx="80" cy="925" r="14" class="stagebg-bug"/>
+  <text x="80" y="929" text-anchor="middle" class="stagenum">10</text>
+  <rect x="110" y="902" width="500" height="58" rx="6" class="bg-bug"/>
+  <text x="124" y="921" class="label-bug">Impact — ransomware intent, wiper effect</text>
+  <text x="124" y="938" class="sub">Rename in-place .vect, drop ransom note; files &gt; 128 KB destroyed</text>
+  <text x="124" y="954" class="ioc">VMDK, databases, backups, large office docs -&gt; not recoverable even on payment</text>
+  <text x="600" y="921" text-anchor="end" class="mitre">T1485 . T1486 . T1561.002</text>
+  <text x="600" y="954" text-anchor="end" class="ioc">single-extortion</text>
+
+  <!-- Attacker C2 cluster -->
+  <rect x="640" y="92" width="220" height="780" rx="6" class="bg-c2"/>
+  <text x="660" y="115" class="label">VECT x TeamPCP x BreachForums</text>
+
+  <text x="660" y="148" class="sub">Alliance formalized</text>
+  <text x="660" y="166" class="ioc">2026-04-16 (Dataminr)</text>
+
+  <text x="660" y="200" class="sub">BreachForums = escrow</text>
+  <text x="660" y="218" class="ioc">key-distribution panel</text>
+  <text x="660" y="234" class="ioc">any forum user -&gt; affiliate</text>
+
+  <text x="660" y="268" class="sub">TeamPCP entry vectors</text>
+  <text x="660" y="286" class="ioc">Trivy GHA (Mar-2026)</text>
+  <text x="660" y="302" class="ioc">Checkmarx KICS</text>
+  <text x="660" y="318" class="ioc">LiteLLM 1.82.7-8</text>
+  <text x="660" y="334" class="ioc">Telnyx SDK 4.87.1-2</text>
+  <text x="660" y="350" class="ioc">Shai-Hulud Bitwarden</text>
+
+  <text x="660" y="384" class="sub">Locker build</text>
+  <text x="660" y="402" class="ioc">C++ / MSVC x64</text>
+  <text x="660" y="418" class="ioc">libsodium static</text>
+  <text x="660" y="434" class="ioc">no packer, symbols stripped</text>
+
+  <text x="660" y="468" class="sub">CLI flags</text>
+  <text x="660" y="486" class="ioc">--force-safemode</text>
+  <text x="660" y="502" class="ioc">--no-shadow-delete</text>
+  <text x="660" y="518" class="ioc">--target=&lt;path&gt;</text>
+  <text x="660" y="534" class="ioc">--ssh-keyfile</text>
+  <text x="660" y="550" class="ioc">--ssh-userlist</text>
+
+  <text x="660" y="584" class="sub">Crypto</text>
+  <text x="660" y="602" class="ioc">ChaCha20-IETF raw</text>
+  <text x="660" y="618" class="ioc">RFC 8439 no Poly1305</text>
+  <text x="660" y="634" class="ioc">chunk 32768 B / 4 nonces</text>
+  <text x="660" y="650" class="ioc">shared 12-B header buffer</text>
+
+  <text x="660" y="684" class="sub">EVTX wipe</text>
+  <text x="660" y="702" class="ioc">XOR key</text>
+  <text x="660" y="718" class="ioc">0xBB55FF59DF597B8D</text>
+  <text x="660" y="734" class="ioc">App/Sec/Sys/PowerShell</text>
+
+  <text x="660" y="768" class="sub">Geofence (ESXi)</text>
+  <text x="660" y="786" class="ioc">timedatectl + LANG</text>
+  <text x="660" y="802" class="ioc">excl. ru_/be_/kk_/uk_</text>
+
+  <text x="660" y="836" class="sub">Leak site (TOR)</text>
+  <text x="660" y="854" class="ioc">2 victims at end of Apr</text>
+
+  <!-- C2 link arrows -->
+  <line x1="610" y1="116" x2="640" y2="116" class="arrow" marker-end="url(#arr)"/>
+  <line x1="610" y1="640" x2="640" y2="640" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Detection anchors box -->
+  <rect x="40" y="980" width="800" height="90" rx="6" class="anchor-bg"/>
+  <text x="60" y="1002" class="anchor">Detection anchors (rules in this folder)</text>
+  <text x="60" y="1021" class="anchor-sub">sigma/vect_killswitch_marker.yml  .  sigma/vect_safeboot_bcdedit.yml  .  sigma/vect_safeboot_regset.yml</text>
+  <text x="60" y="1039" class="anchor-sub">kql/vect_mass_process_kill.kql  .  yara/VECT2_ChaCha20_Nonce_Bug_Heuristic.yar</text>
+  <text x="60" y="1058" class="anchor-sub">Pedagogical anchor — files &gt; 128 KB are unrecoverable even to the operator. Do not negotiate; restore from air-gapped backups.</text>
+</svg>

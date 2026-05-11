@@ -9,8 +9,8 @@
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
-| 2026-05-05 | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab (sub-4h dwell) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | [`2026-05-05_Akira-SonicWall-CVE-2024-40766/`](../../days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
-| 2026-05-04 | C0063 Poland Wiper Attacks (DynoWiper + LazyWiper) | Static Tundra · Sandworm · APT44 · G0034 · Seashell Blizzard | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026-05-04_C0063-Poland-Wiper/) |
-| 2026-05-01 | VECT 2.0 RaaS — wiper-by-accident | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
-| 2026-04-30 | FIRESTARTER + LINE VIPER on Cisco ASA | UAT-4356 · Storm-1849 · ArcaneDoor | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/`](../../days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
-| 2026-04-28 | The Gentlemen RaaS + SystemBC | The Gentlemen | [`2026-04-28_TheGentlemen-SystemBC/`](../../days/2026-04-28_TheGentlemen-SystemBC/) |
+| 2026-05-05 | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | [`2026-05-05_Akira-SonicWall-CVE-2024-40766/`](../../days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
+| 2026-05-04 | Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026) | Sandworm overlap · Static Tundra · TEMP.Veles · C0063 | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026-05-04_C0063-Poland-Wiper/) |
+| 2026-05-01 | VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026) | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
+| 2026-04-30 | FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A) | UAT-4356 · Storm-1849 · ArcaneDoor | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/`](../../days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
+| 2026-04-28 | The Gentlemen RaaS + SystemBC — GPO-weaponised ransomware with custom RC4 SOCKS5 proxy | The Gentlemen | [`2026-04-28_TheGentlemen-SystemBC/`](../../days/2026-04-28_TheGentlemen-SystemBC/) |

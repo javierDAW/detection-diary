@@ -13,7 +13,8 @@ alert tls $HOME_NET any -> any 443 (msg:"UAT-8302 C2 SNI msiidentity.com"; \
     classtype:trojan-activity; sid:8110002; rev:1;)
 
 alert http $HOME_NET any -> any any (msg:"UAT-8302 C2 Host trafficmanagerupdate.com index.php"; \
-    flow:established,to_server; http.host; content:"trafficmanagerupdate.com"; nocase; \
+    flow:established,to_server; \
+    http.host; content:"trafficmanagerupdate.com"; \
     http.uri; content:"/index.php"; \
     classtype:trojan-activity; sid:8110003; rev:1;)
 

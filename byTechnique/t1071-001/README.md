@@ -4,17 +4,16 @@
 
 # Techniques: T1071.001
 
-9 day(s) covering this technique.
+8 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-05-11 | UAT-8302 — China-nexus government espionage with shared APT arsenal | UAT-8302 · Jewelbug · REF7707 · CL-STA-0049 · LongNosedGoblin · UNC5174 · UAT-6382 · Earth Estries · Erudite Mogwai | [`2026-05-11_UAT-8302-China-Government-Espionage/`](../../days/2026-05-11_UAT-8302-China-Government-Espionage/) |
-| 2026-05-08 | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Talos, May 2026) | CloudZ · Pheno | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink/`](../../days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
-| 2026-05-07 | EVM/DeFi npm typosquatting — six packages by namikazesarada010206 (Xygeni, 6-may-2026) | namikazesarada010206 · harunosakura030303-maker | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
-| 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
-| 2026-05-06 | Code of Conduct AiTM — Tycoon2FA-class campaign, PRT post-AiTM persistence (Storm-1747) | Storm-1747 · Tycoon2FA · Storm-1575 · Dadsec | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747/`](../../days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
-| 2026-05-04 | C0063 Poland Wiper Attacks (DynoWiper + LazyWiper) | Static Tundra · Sandworm · APT44 · G0034 · Seashell Blizzard | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026-05-04_C0063-Poland-Wiper/) |
-| 2026-05-03 | BAUXITE / CyberAv3ngers vs Rockwell PLC (CISA AA26-097A) + ZionSiphon | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
-| 2026-05-02 | Nexcorium Mirai variant (TBK DVR + Huawei HG532) | Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
-| 2026-04-30 | FIRESTARTER + LINE VIPER on Cisco ASA | UAT-4356 · Storm-1849 · ArcaneDoor | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/`](../../days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
+| 2026-05-08 | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026) | CloudZ · Pheno | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink/`](../../days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
+| 2026-05-07 | EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026) | namikazesarada010206 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
+| 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026) | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
+| 2026-05-06 | Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026) | Storm-1747 · Storm-1575 · Tycoon2FA · Dadsec | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747/`](../../days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
+| 2026-05-03 | BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026) | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| 2026-05-02 | Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026) | Nexcorium · Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
+| 2026-04-30 | FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A) | UAT-4356 · Storm-1849 · ArcaneDoor | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/`](../../days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
