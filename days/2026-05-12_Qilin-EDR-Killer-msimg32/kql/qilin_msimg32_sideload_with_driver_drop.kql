@@ -1,0 +1,23 @@
+// Title:        Qilin EDR Killer — msimg32.dll Sideload Followed by rwdrv / hlpdrv Drop
+// Id:           1555436f-5b61-4ace-8939-03bdd85775c1
+// MITRE:        T1574.002, T1068, T1562.001
+// Reference:    https://blog.talosintelligence.com/qilin-edr-killer/
+// Author:       Jarmi
+// Date:         2026-05-12
+// Tested on:    Sentinel / Defender XDR — DeviceImageLoadEvents, DeviceFileEvents
+// FP notes:     Filter by FolderPath if a custom in-house app legitimately ships msimg32.dll out of an install dir
+//               (rare). The 30-minute window correlation is the gating signal for the BYOVD landing stage.
+
+DeviceImageLoadEvents
+| where Timestamp > ago(7d)
+| where FileName =~ "msimg32.dll"
+| where not(FolderPath has_any ("\\Windows\\System32\\", "\\Windows\\SysWOW64\\", "\\Windows\\WinSxS\\"))
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, FolderPath, SHA256
+| join kind=leftouter (
+    DeviceFileEvents
+    | where Timestamp > ago(7d)
+    | where FileName in~ ("rwdrv.sys", "hlpdrv.sys")
+    | project drvDeviceName=DeviceName, drvTime=Timestamp, drvPath=FolderPath, drvSha=SHA256, drvFileName=FileName
+    ) on $left.DeviceName == $right.drvDeviceName
+| where isnull(drvTime) or (drvTime between ((Timestamp - 30m) .. (Timestamp + 30m)))
+| order by Timestamp desc

@@ -1,0 +1,17 @@
+# Author: Jarmi
+# Date:   2026-05-12
+# Reference: https://blog.talosintelligence.com/qilin-edr-killer/
+# Purpose: Flag in-flight delivery of known Qilin / Warlock EDR-killer artefacts
+#          over plain HTTP. For HTTPS C2 deliveries, file extraction at the proxy
+#          or TLS interception is required to apply file_data anchors.
+#
+# Known artefacts (from Cisco Talos):
+#   16F83F056177C4EC24C7E99D01CA9D9D6713BD0497EEEDB777A3FFEFA99C97F0  rwdrv.sys
+#   BD1F381E5A3DB22E88776B7873D4D2835E9A1EC620571D2B1DA0C58F81C84A56  hlpdrv.sys
+#   7787DA25451F5538766240F4A8A2846D0A589C59391E15F188AA077E8B888497  msimg32.dll
+
+alert http any any -> $HOME_NET any (msg:"Qilin EDR killer rwdrv.sys ThrottleStop driver download (filename anchor)"; flow:established,to_client; http.header_names; content:"|0d 0a|"; http.response_line; content:"200"; file.name; content:"rwdrv.sys"; nocase; classtype:trojan-activity; metadata:family qilin, family warlock, stage byovd; sid:8120001; rev:1;)
+
+alert http any any -> $HOME_NET any (msg:"Qilin EDR killer hlpdrv.sys helper driver download (filename anchor)"; flow:established,to_client; http.response_line; content:"200"; file.name; content:"hlpdrv.sys"; nocase; classtype:trojan-activity; metadata:family qilin, family warlock, stage byovd; sid:8120002; rev:1;)
+
+alert http any any -> $HOME_NET any (msg:"Qilin EDR killer msimg32.dll loader payload download (filename anchor)"; flow:established,to_client; http.response_line; content:"200"; file.name; content:"msimg32.dll"; nocase; classtype:trojan-activity; metadata:family qilin, family warlock, stage loader; sid:8120003; rev:1;)

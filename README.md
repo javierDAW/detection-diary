@@ -255,10 +255,4 @@ See [`INDEX.md`](INDEX.md) for the chronological + thematic index of all cases.
 
 ## Contributing
 
-This is primarily a personal notebook, but PRs that fix typos, broken links, FP-surface notes or that tighten a rule are very welcome. For new rules, open an issue first so we can decide whether the case warrants a full daily folder or fits as an addendum to an existing one.
-
----
-
-## License
-
-MIT — see [LICENSE](LICENSE). Copyright (c) 2026 Jarmi ([jarmidaw](https://github.com/jarmidaw)).
+This is primarily a personal notebook, but PRs that fix typos, broken links, FP-surface notes or that tighten a r

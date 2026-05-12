@@ -11,6 +11,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 
 | Group | Days |
 |---|---|
+| [Agenda](./agenda/) | 1 |
 | [Akira](./akira/) | 1 |
 | [Albiriox](./albiriox/) | 1 |
 | [ArcaneDoor](./arcanedoor/) | 1 |
@@ -34,6 +35,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Pheno](./pheno/) | 1 |
 | [Punk Spider](./punk-spider/) | 1 |
 | [QLNX](./qlnx/) | 1 |
+| [Qilin](./qilin/) | 1 |
 | [Quasar Linux](./quasar-linux/) | 1 |
 | [REF7707](./ref7707/) | 1 |
 | [Sandworm overlap](./sandworm-overlap/) | 1 |
@@ -56,4 +58,5 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [UNC5691](./unc5691/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |
+| [Warlock](./warlock/) | 1 |
 | [namikazesarada010206](./namikazesarada010206/) | 1 |

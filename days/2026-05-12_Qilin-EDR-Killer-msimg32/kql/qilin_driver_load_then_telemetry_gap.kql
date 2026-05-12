@@ -1,0 +1,23 @@
+// Title:        Qilin EDR Killer — Suspicious Driver Load Followed By EDR Telemetry Gap
+// Id:           540ba30f-ba57-43eb-9874-22c7cff6b287
+// MITRE:        T1068, T1562.001, T1014
+// Reference:    https://blog.talosintelligence.com/qilin-edr-killer/
+// Author:       Jarmi
+// Date:         2026-05-12
+// Tested on:    Sentinel / Defender XDR — DeviceImageLoadEvents, DeviceProcessEvents
+// FP notes:     A small but non-zero baseline of low-volume hosts (e.g., kiosks) may show legitimate quiet windows.
+//               Tune eventCount threshold to your fleet baseline for DeviceProcessEvents.
+
+let suspicious_drivers = DeviceImageLoadEvents
+    | where Timestamp > ago(24h)
+    | where FileName in~ ("rwdrv.sys", "hlpdrv.sys")
+    | project DeviceName, drvTime=Timestamp, drvPath=FolderPath, drvSha=SHA256;
+let telemetry_quiescence = DeviceProcessEvents
+    | where Timestamp > ago(24h)
+    | summarize eventCount=count() by DeviceName, bin_5m=bin(Timestamp, 5m)
+    | where eventCount < 3;
+suspicious_drivers
+| join kind=inner telemetry_quiescence on DeviceName
+| where bin_5m between ((drvTime) .. (drvTime + 15m))
+| project DeviceName, drvTime, drvPath, drvSha, telemetry_window=bin_5m, eventCount
+| order by drvTime desc

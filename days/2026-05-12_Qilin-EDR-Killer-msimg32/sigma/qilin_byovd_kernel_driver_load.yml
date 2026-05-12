@@ -1,0 +1,44 @@
+title: Qilin BYOVD Kernel Driver Loaded (rwdrv.sys / hlpdrv.sys / mis-placed ThrottleStop)
+id: bc6f3c1d-4ae4-4596-8324-1474a5cba244
+status: experimental
+description: |
+  Detects load of rwdrv.sys, hlpdrv.sys or ThrottleStop.sys from a non-tooling path.
+  rwdrv.sys is a renamed copy of ThrottleStop.sys signed by TechPowerUp LLC and is
+  abused as a BYOVD physical-memory-access primitive by Qilin and Warlock ransomware.
+  hlpdrv.sys is a purpose-built malicious helper driver that exposes IOCTL 0x2222008
+  to unprotect and terminate EDR processes such as Defender. Known SHA-256 hashes
+  from the Cisco Talos analysis are included as a high-confidence anchor.
+references:
+  - https://blog.talosintelligence.com/qilin-edr-killer/
+  - https://thehackernews.com/2026/04/qilin-and-warlock-ransomware-use.html
+  - https://github.com/magicsword-io/LOLDrivers/issues/254
+author: Jarmi
+date: 2026/05/12
+tags:
+  - attack.defense-evasion
+  - attack.privilege-escalation
+  - attack.t1068
+  - attack.t1543.003
+logsource:
+  product: windows
+  category: driver_load
+detection:
+  by_name:
+    ImageLoaded|endswith:
+      - '\rwdrv.sys'
+      - '\hlpdrv.sys'
+  by_known_hash:
+    Hashes|contains:
+      - '16F83F056177C4EC24C7E99D01CA9D9D6713BD0497EEEDB777A3FFEFA99C97F0'
+      - 'BD1F381E5A3DB22E88776B7873D4D2835E9A1EC620571D2B1DA0C58F81C84A56'
+  throttlestop_outside_tools:
+    ImageLoaded|endswith: '\ThrottleStop.sys'
+  filter_legit_throttlestop:
+    ImageLoaded|contains:
+      - '\ThrottleStop\'
+      - '\GPU-Z\'
+      - '\TechPowerUp\'
+  condition: by_name or by_known_hash or (throttlestop_outside_tools and not filter_legit_throttlestop)
+falsepositives:
+  - GPU-Z or ThrottleStop installed by a developer or overclocker (filter by ImageLoaded path or hash)
+level: critical

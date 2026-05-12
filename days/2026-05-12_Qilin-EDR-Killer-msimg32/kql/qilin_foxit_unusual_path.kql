@@ -1,0 +1,17 @@
+// Title:        Qilin EDR Killer — FoxitPDFReader.exe Run From Non-Install Path
+// Id:           56ce6e5a-e21b-413c-9e55-f15906752e1d
+// MITRE:        T1574.002, T1218
+// Reference:    https://blog.talosintelligence.com/qilin-edr-killer/
+// Author:       Jarmi
+// Date:         2026-05-12
+// Tested on:    Sentinel / Defender XDR — DeviceProcessEvents, DeviceImageLoadEvents
+// FP notes:     Some users carry a portable Foxit on USB or in a per-user temporary path.
+//               Cross-correlate with msimg32.dll image_load to keep noise down.
+
+DeviceImageLoadEvents
+| where Timestamp > ago(30d)
+| where InitiatingProcessFileName =~ "FoxitPDFReader.exe"
+| where FileName =~ "msimg32.dll"
+| where not(InitiatingProcessFolderPath has_any ("\\Program Files\\", "\\Program Files (x86)\\"))
+| project Timestamp, DeviceName, InitiatingProcessFolderPath, msimg32_FolderPath=FolderPath, msimg32_SHA256=SHA256, InitiatingProcessSHA256
+| order by Timestamp desc
