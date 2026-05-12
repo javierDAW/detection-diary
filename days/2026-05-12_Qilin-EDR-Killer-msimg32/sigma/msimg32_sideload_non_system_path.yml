@@ -1,0 +1,33 @@
+title: msimg32.dll Loaded From Non-System Path (Qilin EDR Killer Loader)
+id: 555ab170-7006-4f05-8445-3cc9414a0923
+status: experimental
+description: |
+  Detects an image_load event where msimg32.dll is loaded from a path other than
+  System32, SysWOW64 or WinSxS. Qilin (alias Agenda) and Warlock ransomware operators
+  side-load a malicious msimg32.dll under FoxitPDFReader.exe to start a four-stage
+  loader that ends in BYOVD-driven EDR termination. Legitimate applications that
+  consume msimg32.dll always load it from the operating system path.
+references:
+  - https://blog.talosintelligence.com/qilin-edr-killer/
+  - https://thehackernews.com/2026/04/qilin-and-warlock-ransomware-use.html
+  - https://securityarsenal.com/blog/qilin-and-warlock-byovd-attack-detecting-msimg32dll-and-edr-bypass
+author: Jarmi
+date: 2026/05/12
+tags:
+  - attack.defense-evasion
+  - attack.t1574.002
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection:
+    ImageLoaded|endswith: '\msimg32.dll'
+  filter_legit_path:
+    ImageLoaded|startswith:
+      - 'C:\Windows\System32\'
+      - 'C:\Windows\SysWOW64\'
+      - 'C:\Windows\WinSxS\'
+  condition: selection and not filter_legit_path
+falsepositives:
+  - Custom in-house applications shipping their own msimg32.dll out of an installation directory (rare, baseline first)
+level: high

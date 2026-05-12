@@ -1,0 +1,21 @@
+type,value,context,confidence,source
+sha256,7787da25451f5538766240f4a8a2846d0a589c59391e15f188aa077e8b888497,Qilin EDR killer msimg32.dll loader Stage 1,high,Cisco Talos
+sha256,16f83f056177c4ec24c7e99d01ca9d9d6713bd0497eeedb777a3ffefa99c97f0,rwdrv.sys renamed ThrottleStop.sys signed by TechPowerUp LLC,high,Cisco Talos
+sha256,bd1f381e5a3db22e88776b7873d4d2835e9a1ec620571d2b1da0c58f81c84a56,hlpdrv.sys purpose-built malicious helper driver IOCTL 0x2222008 unprotect+terminate,high,Cisco Talos
+sha256,12fcde06ddadf1b48a61b12596e6286316fd33e850687fe4153dfd9383f0a4a0,EDRKiller.exe Stage 4 PE memory dump with overlay TS 0x684d33f0 ImpHash 05aa031a007e2f51e3f48ae2ed1e1fcb,high,Cisco Talos
+sha1,01d00d3dd8bc8fd92dae9e04d0f076cb3158dc9c,msimg32.dll Qilin loader,high,Cisco Talos
+sha1,82ed942a52cdcf120a8919730e00ba37619661a3,rwdrv.sys,high,Cisco Talos
+sha1,ce1b9909cef820e5281618a7a0099a27a70643dc,hlpdrv.sys,high,Cisco Talos
+sha1,84e2d2084fe08262c2c378a377963a1482b35ac5,EDRKiller.exe,high,Cisco Talos
+md5,89ee7235906f7d12737679860264feaf,msimg32.dll,high,Cisco Talos
+md5,6bc8e3505d9f51368ddf323acb6abc49,rwdrv.sys,high,Cisco Talos
+md5,cf7cad39407d8cd93135be42b6bd258f,hlpdrv.sys,high,Cisco Talos
+md5,1305e8b0f9c459d5ed85e7e474fbebb1,EDRKiller.exe,high,Cisco Talos
+string,IOCTL 0x2222008,hlpdrv.sys terminate-protected-process IOCTL code,high,Cisco Talos
+string,hasherezade,Provocative DLL name string used in Stage 3 VEH path,medium,Cisco Talos
+path,C:\Windows\Temp\rwdrv.sys,Typical transient drop location for the BYOVD driver,medium,Cisco Talos
+path,C:\Windows\Temp\hlpdrv.sys,Typical transient drop location for the helper driver,medium,Cisco Talos
+regkey,HKLM\SYSTEM\CurrentControlSet\Services\rwdrv,Kernel driver service registration anchor,medium,Cisco Talos
+regkey,HKLM\SYSTEM\CurrentControlSet\Services\hlpdrv,Kernel driver service registration anchor,medium,Cisco Talos
+note,n/a,Stages 2 and 3 of the loader live entirely in memory; only the two driver files plus the malicious msimg32.dll touch disk in the typical chain. Acquire RAM before reboot to preserve the embedded EDR driver list,high,Cisco Talos
+note,n/a,Q2-2026 victims claimed by Qilin in the past week include Cushman & Wakefield (2026-05-04 US real estate), Imex International (2026-05-08 EG business services) and DL Cohen Construction (2026-05-08 US construction); use these as customer-context anchors for proactive notification,medium,DeXpose / PurpleOps trackers

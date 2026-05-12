@@ -4,11 +4,12 @@
 
 # Techniques: T1480
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-12 | Qilin EDR Killer — msimg32.dll four-stage loader and BYOVD chain | Qilin · Agenda · Warlock | [`2026-05-12_Qilin-EDR-Killer-msimg32/`](../../days/2026-05-12_Qilin-EDR-Killer-msimg32/) |
 | 2026-05-07 | EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026) | namikazesarada010206 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
 | 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026) | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
 | 2026-05-02 | Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026) | Nexcorium · Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |

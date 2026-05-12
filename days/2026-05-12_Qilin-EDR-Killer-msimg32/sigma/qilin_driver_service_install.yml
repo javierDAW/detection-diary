@@ -1,0 +1,42 @@
+title: Kernel Driver Service Install For rwdrv or hlpdrv (Qilin BYOVD chain)
+id: 9a701809-c319-4155-87d6-4950d89a09de
+status: experimental
+description: |
+  Detects an attempt to register a kernel-mode service named rwdrv or hlpdrv via
+  sc.exe create with a kernel driver type. This is the typical persistence step
+  used by Qilin and Warlock to load their BYOVD pair before terminating EDR
+  protections. Catches both PowerShell-driven sc.exe and direct registry writes
+  to HKLM\SYSTEM\CurrentControlSet\Services\<name>.
+references:
+  - https://blog.talosintelligence.com/qilin-edr-killer/
+  - https://thehackernews.com/2026/04/qilin-and-warlock-ransomware-use.html
+author: Jarmi
+date: 2026/05/12
+tags:
+  - attack.defense-evasion
+  - attack.privilege-escalation
+  - attack.t1543.003
+  - attack.t1068
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_sc:
+    Image|endswith: '\sc.exe'
+    CommandLine|contains|all:
+      - 'create'
+      - 'type='
+  selection_name:
+    CommandLine|contains:
+      - ' rwdrv '
+      - ' hlpdrv '
+      - ' rwdrv'
+      - ' hlpdrv'
+  selection_kernel:
+    CommandLine|contains:
+      - 'kernel'
+      - 'binPath='
+  condition: selection_sc and selection_name and selection_kernel
+falsepositives:
+  - Highly unusual; legitimate kernel driver services do not have these names
+level: critical

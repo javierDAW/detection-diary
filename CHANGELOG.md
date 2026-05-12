@@ -7,6 +7,27 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.12 — Day 16 — Qilin EDR Killer msimg32.dll four-stage loader and BYOVD chain
+
+### Added
+- `days/2026-05-12_Qilin-EDR-Killer-msimg32/` — Cisco Talos disclosure (2-April-2026) of the multi-stage loader that Qilin (alias Agenda) and Warlock ransomware operators side-load under `FoxitPDFReader.exe` to disable endpoint detection and response (EDR) before encrypting victims. The `msimg32.dll` loader runs four stages: Stage 1 builds a slot-policy table over `ntdll` Nt* exports, overwrites the `.mrdata` exception dispatcher slot via `LdrProtectMrdata` and uses Halo's Gate-style scanning of clean neighbouring syscall stubs to bypass user-mode hooks; Stage 2 maps a paging-file-backed section with two views (RW + RWX) and IAT-hooks `ExitProcess` so the next stage detonates only after the host process exits cleanly; Stage 3 abuses VEH plus hardware breakpoints on `NtOpenSection` and `NtMapViewOfSection` to stack-pivot through `LdrpMinimalMapModule` and map the embedded PE on top of `shell32.dll` in memory (with a provocative `hasherezade_*.dll` string in the path); Stage 4 drops two drivers — `rwdrv.sys` (a renamed copy of `ThrottleStop.sys` signed by TechPowerUp LLC, providing physical-memory read/write IOCTLs) and `hlpdrv.sys` (a purpose-built malicious helper exposing `IOCTL 0x2222008` to unprotect and terminate processes). The Stage 4 PE iterates a hardcoded list of more than 300 EDR drivers, locates kernel callbacks like `cng!CngCreateProcessNotifyRoutine` via the Superfetch class of `NtQuerySystemInformation` plus a Page Frame Number metadata vector, and unregisters them by direct physical-memory writes before terminating the EDR processes themselves. Recent Qilin victims include Cushman & Wakefield (4-May-2026), Imex International and DL Cohen Construction (both 8-May-2026); Qilin holds the #1 RaaS leaderboard for the third consecutive quarter with 338 victims in Q1 2026.
+- Sigma (3): `msimg32.dll` image_load from outside System32 / SysWOW64 / WinSxS; `rwdrv.sys` / `hlpdrv.sys` / mis-placed `ThrottleStop.sys` driver load with known SHA-256 anchors; `sc.exe create` or registry write under `\Services\rwdrv` or `\hlpdrv` as a kernel driver service install.
+- KQL (3): Defender XDR — non-system-path `msimg32.dll` image_load joined with `rwdrv.sys` / `hlpdrv.sys` file drop within 30 minutes; Defender XDR — suspicious driver load followed by EDR telemetry quiescence (`DeviceProcessEvents` count drop) within 15 minutes; Defender XDR — `FoxitPDFReader.exe` running from non-install paths and loading `msimg32.dll`.
+- YARA (1 file, 2 rules): `Qilin_EDR_Killer_msimg32_Heuristic_2026` (forwarder strings + Halo's Gate Nt* and `LdrProtectMrdata` anchors + VEH `NtOpenSection` / `NtMapViewOfSection` / `LdrpMinimalMapModule` anchors + provocative `hasherezade` string + PE/MZ magic + filesize cap), and `Qilin_EDR_Killer_Known_Hashes_2026` (high-confidence SHA-256 anchors from Talos for `msimg32.dll`, `rwdrv.sys`, `hlpdrv.sys` and the Stage 4 EDR killer PE).
+- Suricata (1, 3 sids 8120001-8120003): file-name anchors for `rwdrv.sys`, `hlpdrv.sys` and `msimg32.dll` delivered over plain HTTP into the home network.
+- PEAK hunts (3): H1 — Foxit PDF Reader as a side-load vehicle for the loader; H2 — retroactive sweep for hosts with a kernel driver load followed by EDR telemetry gap; H3 — kernel callback baseline drift detection (ELAM-style ground truth).
+- `iocs.csv` — 12 file hashes (SHA-256, SHA-1, MD5) for the four artefacts, plus `IOCTL 0x2222008`, the `hasherezade` string anchor, transient drop paths, kernel driver service registry anchors, and operator notes.
+- `kill_chain.svg` — adaptive light/dark palette diagram with 8 numbered stages on the victim host (Initial Access through `hlpdrv.sys` IOCTL terminate-protected-process), an attacker C2 / ransomware panel on the right (Qilin operator playbook, recent victims, driver IOC anchors, post-loader chain), and a bottom detection anchors box mapping each stage to the rules in `sigma/`, `kql/`, `yara/`, `suricata/` and the three PEAK hunts.
+
+### Pedagogy
+- *EDR telemetry gap is the highest-confidence signal you have.* When the agent goes silent, the SIEM has to fire — design out-of-band heartbeats and correlate gaps with kernel-driver events.
+- *BYOVD has a familiar shape: a legitimate-signed driver plus a purpose-built helper driver.* The helper is often the cleaner anchor because it lacks any legitimate use case (`hlpdrv.sys` here, `nseckrnl.sys` in Warlock, `truesight.sys` in Akira and DragonForce).
+- *DLL side-loading via signed userland apps remains a recurring pattern* (Foxit, ScreenConnect, Yandex, VMtools, Communicator). Lock down portable executables and force managed MSI installs.
+- *Halo's Gate-style user-mode-hook bypass means EDR user-mode hooks alone are insufficient.* Defenders need ETW-TI plus kernel callback baselining; the bypass works precisely because the kernel only checks `eax` for the syscall ID, not which exported stub initiated the call.
+- *Re-image, never clean.* Once a host has had its kernel callbacks unhooked and its EDR killed, there is no ground truth about what else the operator dropped.
+
+---
+
 ## 2026.05.11 — Maintenance — Full README and kill_chain.svg rebuild across all 15 days
 
 ### Changed
@@ -179,116 +200,4 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ## 2026.05.06 — Day 9 — Code of Conduct AiTM (Storm-1747 / Tycoon2FA)
 
-### Added
-- `days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/` — Microsoft Threat Intelligence campaign (4-may-2026): 35,000 users / 13,000 orgs / 26 countries / 92% US. PDF lure + Cloudflare CAPTCHA + reverse-proxy AiTM + device-add < 10 min for PRT persistence + inbox rules for BEC.
-- Sigma (3): PDF lure on M365 EmailEvents; Entra ID device registration post sign-in; invisible-name InboxRule (BEC).
-- KQL (3): AiTM kill-chain correlation (signin + device + inbox rule, 24h); first-seen attacker domain via PDF; PEAK H1 click-to-device hunt.
-- SPL (1): InboxRule one-char/symbol-only name on Office 365 Management Activity.
-- YARA (1): `CodeOfConduct_AiTM_PDF_Lure_2026` heuristic (PDF magic + URI Action + theme keywords + cheap-TLD anchors).
-- Suricata (1): TLS SNI + HTTP Host signatures for known landing domains (`acceptable-use-policy-calendly[.]de`, `compliance-protectionoutlook[.]de`) plus heuristic for keyword-in-cheap-TLD.
-- PEAK hunt write-up: H1 (click → device-add 2h window).
-- `iocs.csv` — 2 attacker domains, 2 PDF filenames, lure keywords, Tycoon2FA TLD pattern, behavioral indicators, cluster identifiers.
-
-### Pedagogy
-- T1098.005 (Account Manipulation: Device Registration) — the persistence technique that survives password rotation.
-- Why TOTP/SMS/push MFA do NOT mitigate AiTM, and why FIDO2/passkeys do.
-- IR runbook emphasising `Remove-MgDevice` as the critical eradication step (not just password reset).
-
----
-
-## Unreleased — drop CI workflows (2026-05-04, evening)
-
-### Removed
-- `.github/workflows/sigma-lint.yml`
-- `.github/workflows/validate.yml`
-
-Rationale: validation now runs locally before each commit via `tools/validate_all.py`,
-`tools/lint_all.sh` and `tools/lint_sigma.sh`. The CI workflows added noise to the
-repo (red ❌ badges on the commit history) without giving us anything we don't
-already have on the laptop. If you want them back, both files are recoverable
-from `git log --diff-filter=D -- .github/workflows/`.
-
-
-
-## Unreleased — repo overhaul (2026.05.04)
-
-### Added
-- `tools/validate_all.py` — offline multi-format validator (Sigma, YARA, Suricata, KQL, SPL, CSV, YAML, Markdown links, Bash). PyYAML-only dependency.
-- `tools/lint_all.sh` — wrapper that runs `validate_all.py` plus optional external tools: `sigma-cli`, `yara`, `suricata`, `actionlint`, `shellcheck`, `markdownlint`.
-- `tools/sigma_check.py` — Sigma-only offline validator (also re-used by the offline path of `lint_sigma.sh`).
-- `tools/generate_index.py` — regenerates `INDEX.md` and the auto-views from each day's YAML frontmatter. Tolerates filesystems that disallow unlink (Cowork / WSL bind-mounts) by falling back to merge mode.
-- `.github/workflows/validate.yml` — full multi-format CI that installs sigma-cli + yara + suricata + actionlint + shellcheck + markdownlint and runs `lint_all.sh`.
-- `byActor/`, `byTechnique/`, `byPlatform/` — auto-generated views (one folder per cluster / MITRE technique / platform) with their own README listing the days that match. Source of truth: each day's YAML frontmatter.
-- YAML frontmatter at the top of every `days/<slug>/README.md` (date, title, clusters, cluster_country, techniques_enterprise, techniques_ics, platforms, sectors).
-- Three new atomic Sigma rules under `days/2026-05-01_VECT-2.0-RaaS/sigma/`:
-  - `vect_safeboot_bcdedit.yml` (`category: process_creation`)
-  - `vect_safeboot_regset.yml`  (`category: registry_set`)
-  - `vect_killswitch_marker.yml` (`category: file_event`)
-  These replace the old monolithic `vect_safeboot_persistence.yml`.
-
-### Changed
-- All authorship migrated from "Prof. Ciber" to **"Jarmi"** in 27 rule files (Sigma `author:`, YARA `meta.author`, KQL `// Author:`, SPL `; Author:`). "Prof. Ciber" remains as the pedagogical role in prompts, not as an author.
-- LICENSE copyright holder unified to "Jarmi (jarmidaw)".
-- Sigma rule taxonomy fixed: ATT&CK tactic tags now use **dashes** (e.g. `attack.defense-evasion`, not `attack.defense_evasion`) — fixes `InvalidATTACKTagIssue`.
-- `rockwell_studio5000_outbound.yml` rewritten with `category: network_connection` (was `service: sysmon`), fixing `SpecificInsteadOfGenericLogsourceIssue`.
-- `lint_all.sh` Suricata section now creates a tmp logdir with `mktemp -d` and auto-generates a stub `suricata.yaml` declaring every `$VAR_NET` referenced in the rules — so `suricata -T` no longer fails on user-defined vars.
-- Suricata rule `bauxite_dropbear.rules`: `dsize:>20<256` → `dsize:20<>256` (Suricata 7.x range syntax).
-- `lint_sigma.sh` and `lint_all.sh` rewritten using arrays (`SIGMA_CMD=( ... )`) instead of word-split scalars — fixes `shellcheck` SC2086 / SC2128.
-
-### Fixed
-- All 7 original Sigma rule IDs were mnemonic placeholders, not valid UUID v4. Replaced with real UUID v4.
-- Trailing NULL bytes in 5 Sigma rules (artifact of the Windows editor) stripped.
-- Two YARA rules had unreferenced `$strings` (compiler error in real `yara`):
-  - `FIRESTARTER_ELF_LINA_Hook_Heuristic` — added `any of ($magic_tag*) or any of ($crypto*)` to condition.
-  - `Nexcorium_Mirai_Variant_2026` — `$hg532_uri` → `any of ($hg532_*)` in condition.
-- `validate_all.py` now also catches the YARA "unreferenced string" class of error offline, so it cannot regress.
-
-### Deprecated
-- `days/2026-05-01_VECT-2.0-RaaS/sigma/vect_safeboot_persistence.yml` — replaced by the 3 atomic rules above. Kept as a tombstone for git history; `git rm` it when you want a fully clean tree.
-
-
-
-## 2026.05.04 — DynoWiper / C0063
-
-- **Added** day 7: `2026-05-04_C0063-Poland-Wiper`
-  - 1 Sigma rule: GPO Computer Startup Script weaponization (T1484.001)
-  - 2 KQL queries: LSASS dump via Task Manager (T1003.001), Rubeus s4u TGS burst (T1558.003)
-  - 1 SPL query: rsocx SOCKS5 reverse + GPO mass-write (T1090.002 + T1484.001)
-  - 1 YARA rule: DynoWiper heuristic (PDB + skiplist + MT19937 + ExitWindowsEx)
-
-## 2026.05.03 — BAUXITE / CyberAv3ngers
-
-- **Added** day 6: `2026-05-03_BAUXITE-CyberAvengers-AA26-097A`
-  - 1 Sigma rule: Rockwell Studio 5000 outbound to public network on EIP/CIP (T1133, T0866)
-  - 1 Suricata ruleset: Dropbear SSH banner sourced FROM OT host + external CIP `List Identity`
-  - 1 KQL query: engineering tool egress + Dropbear file drop dual-channel
-  - 1 YARA rule: ZionSiphon target-list and broken comparator heuristic
-
-## 2026.05.02 — Nexcorium / TBK DVR
-
-- **Added** day 5: `2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`
-  - 1 Sigma rule: Nexcorium TBK DVR exploit attempt (CVE-2024-3721)
-  - 1 Suricata ruleset: exploit URI + `X-Hacked-By: Nexus Team` branding header
-  - 1 KQL query: WAF / IIS reflective branding header detection
-  - 1 YARA rule: Nexcorium Mirai variant heuristic (XOR 0x13 + FNV-1a + branding)
-
-## 2026.05.01 — VECT 2.0 RaaS
-
-- **Added** day 4: `2026-05-01_VECT-2.0-RaaS`
-  - 1 Sigma rule: VECT safe-boot persistence (bcdedit + SafeBoot\Minimal)
-  - 1 KQL query: mass terminate of office/db/browser processes in 60s window
-  - 1 SPL query: Sysmon marker + bcdedit + SafeBoot reg combination
-  - 1 YARA rule: VECT2 ChaCha20 nonce-bug heuristic (XOR key + libsodium + .vect)
-
-## 2026.04.30 — FIRESTARTER + LINE VIPER (UAT-4356)
-
-- **Added** day 3: `2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`
-  - 1 Sigma rule: anomalous large WebVPN POST to `/+CSCOE+/`
-  - 1 KQL query: Cisco ASA reboot + WebVPN large-body correlation
-  - 1 SPL query: ASA `show version` + mount-list diff baseline drift
-  - 1 YARA rule: FIRESTARTER ELF structural heuristic + `CSP_MOUNT_LIST` reference
-
-## 2026.04.29 — Shai-Hulud Bitwarden (TeamPCP)
-
-- **Added** day 2: `2026-04-29_ShaiHulud-Bitwarden`
-  - 1 Sigma rule: np
+###

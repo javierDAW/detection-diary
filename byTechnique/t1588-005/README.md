@@ -4,10 +4,11 @@
 
 # Techniques: T1588.005
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-12 | Qilin EDR Killer — msimg32.dll four-stage loader and BYOVD chain | Qilin · Agenda · Warlock | [`2026-05-12_Qilin-EDR-Killer-msimg32/`](../../days/2026-05-12_Qilin-EDR-Killer-msimg32/) |
 | 2026-05-03 | BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026) | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
 | 2026-05-02 | Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026) | Nexcorium · Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |

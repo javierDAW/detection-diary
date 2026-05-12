@@ -4,9 +4,10 @@
 
 # Techniques: T1587.001
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-12 | Qilin EDR Killer — msimg32.dll four-stage loader and BYOVD chain | Qilin · Agenda · Warlock | [`2026-05-12_Qilin-EDR-Killer-msimg32/`](../../days/2026-05-12_Qilin-EDR-Killer-msimg32/) |
 | 2026-05-07 | EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026) | namikazesarada010206 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
