@@ -1,0 +1,24 @@
+// Title:        Python AST traversal payload in agent application logs (CVE-2026-26030 anchor)
+// Id:           5a73a1fd-5271-485d-ac9d-31925efb5b19
+// MITRE:        T1059.006, T1190
+// Reference:    https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/
+// Author:       Jarmi
+// Date:         2026-05-13
+// Tested on:    Sentinel custom log table for agent runtime activity. Replace <add_known_sk_table> with your ingest table (for example SK_Agent_CL when streamed via Azure Monitor Agent, or AgentEvents_CL via a custom collector).
+// FP notes:     Internal red-team or developer exercises that test the framework with the public CTF payload. Baseline against dev tenants and label legitimate test agents.
+<add_known_sk_table>
+| where TimeGenerated > ago(30d)
+| where Message has_any (
+    "__subclasses__",
+    "__class__.__bases__",
+    "__class__.__mro__",
+    "BuiltinImporter",
+    "load_module",
+    "().__class__"
+  )
+| where Message has_any (
+    "os.system","subprocess.Popen","os.popen","__import__","exec(","eval("
+  )
+   or Message has "lambda x:"
+| project TimeGenerated, AgentId_s, UserId_s, ToolName_s, Message
+| sort by TimeGenerated desc

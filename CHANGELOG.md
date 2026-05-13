@@ -7,6 +7,27 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.13 — Day 17 — Semantic Kernel Prompt-to-RCE (CVE-2026-26030 and CVE-2026-25592)
+
+### Added
+- `days/2026-05-13_SemanticKernel-Prompt2RCE/` — Microsoft Defender Security Research disclosure (7-May-2026) of two pre-patch vulnerabilities in Microsoft's open-source agent framework `semantic-kernel` (27K stars, foundational for Copilot Studio, M365 Copilot extensions and Azure AI Foundry integrations). CVE-2026-26030 (CVSS 9.8) lives in the Python `InMemoryVectorStore` default filter, which interpolates a model-controlled string into a Python lambda executed under `eval()` with an empty `__builtins__`; a Python AST traversal payload reaches `BuiltinImporter.load_module('os').system(...)` and pops a host shell despite a pre-`eval` validator that blocklists names like `eval`, `exec`, `open` and `__import__`. CVE-2026-25592 (CVSS 7.5) lives in the .NET SDK `SessionsPythonPlugin`, where `DownloadFileAsync` was accidentally marked with `[KernelFunction]`; the AI model can invoke it to write attacker-generated payloads from an Azure Container Apps dynamic Python session directly to the host Windows Startup folder, defeating sandbox isolation. The symmetric `UploadFileAsync` primitive enables arbitrary host-to-sandbox file read of `id_rsa`, `~/.aws/credentials`, `%APPDATA%\Microsoft\Credentials`, and similar. Patched in `semantic-kernel >= 1.39.4` (PyPI) and `Microsoft.SemanticKernel >= 1.71.0` (NuGet). The class of bug — untrusted natural-language input mapped to system tools — is the structural successor of SQL string concatenation in agent runtimes.
+- Sigma (3): shell or recon LOLBin spawned by a Semantic Kernel agent runtime; agent runtime writes to a Windows Startup folder (T1547.001); agent application log message contains Python AST traversal anchors (`__subclasses__`, `BuiltinImporter`, `load_module`, `__class__.__bases__`).
+- KQL (3): Defender XDR `DeviceProcessEvents` extension of the Microsoft-published advanced hunting query with a broader LOLBin set; Defender XDR `DeviceFileEvents` Startup folder write by an agent runtime; Sentinel custom log heuristic for AST traversal anchors in agent runtime logs (placeholder `<add_known_sk_table>` for tenant-specific ingest table).
+- YARA (1 file, 2 rules): `SK_PromptInjection_AST_Traversal_Heuristic_2026` (AST-traversal band) and `SK_SessionsPython_SandboxEscape_Heuristic_2026` (Startup folder + DownloadFileAsync / SessionsPythonPlugin / UploadFileAsync band).
+- Suricata (1, 3 sids 8140001-8140003): AST traversal payload in HTTP request body; DownloadFileAsync targeting the Windows Startup folder; UploadFileAsync targeting `\.ssh\`, `\.aws\`, or `\AppData\Roaming\Microsoft\Credentials`.
+- PEAK hunts (3): H1 — agent runtime spawning shell / recon LOLBin in a short window after a tool call; H2 — agent service principal in Entra ID emitting token requests for scopes outside its 30-day baseline; H3 — agent egress to destinations outside the tenant allowlist of model endpoints, declared tools and registered MCP servers.
+- `iocs.csv` — 14 entries covering both CVEs, the canonical AST traversal string anchors, the misexposed `[KernelFunction]` names, the Startup folder path sink, the patch baselines, the Microsoft CTF harness and the patch PR.
+- `kill_chain.svg` — GitHub-friendly adaptive light / dark palette diagram with 8 numbered stages on the victim agent host (prompt injection through impact via agent identity), an attacker-and-sandbox panel on the right (prompt source plus Azure Container Apps dynamic Python session that hosts the SessionsPythonPlugin escape), a patch baseline panel and a bottom detection-anchors box mapping each stage to the rules in `sigma/`, `kql/`, `yara/`, `suricata/` plus the three PEAK hunts.
+
+### Pedagogy
+- *The LLM is not a security boundary.* Treat any tool parameter the model can influence as attacker-controlled, exactly as you would treat any HTTP request parameter in a web app.
+- *Allowlists beat blocklists in dynamic languages.* Python's type system is flexible enough to reintroduce every restricted operation via alternate syntax — `obj['__class__']` vs `obj.__class__`, `__subclasses__()`, `__bases__`. A four-line AST allowlist beats a fifty-line blocklist.
+- *`[KernelFunction]` is the modern equivalent of "marked as public".* Every method so decorated is part of the attack surface. Audit your `Http*`, `File*`, `Process*`, `Db*` exposure explicitly.
+- *Egress from an agent host is indistinguishable from legitimate tool traffic at the transport layer.* Defenders must rely on a tenant-curated destination allowlist; the discriminator is the FQDN, not the protocol or the user agent.
+- *Couple framework-level guardrails with host-level EDR.* AST allowlist plus path canonicalisation at the framework. Process-tree, file-event and identity-token telemetry at the host. Neither layer is sufficient alone.
+
+---
+
 ## 2026.05.12 — Day 16 — Qilin EDR Killer msimg32.dll four-stage loader and BYOVD chain
 
 ### Added
@@ -200,4 +221,42 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ## 2026.05.06 — Day 9 — Code of Conduct AiTM (Storm-1747 / Tycoon2FA)
 
-###
+### Added
+- `days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/` — Microsoft Threat Intelligence campaign (4-may-2026): 35,000 users / 13,000 orgs / 26 countries / 92% US. PDF lure + Cloudflare CAPTCHA + reverse-proxy AiTM + device-add < 10 min for PRT persistence + inbox rules for BEC.
+- Sigma (3): PDF lure on M365 EmailEvents; Entra ID device registration post sign-in; invisible-name InboxRule (BEC).
+- KQL (3): AiTM kill-chain correlation (signin + device + inbox rule, 24h); first-seen attacker domain via PDF; PEAK H1 click-to-device hunt.
+- SPL (1): InboxRule one-char/symbol-only name on Office 365 Management Activity.
+- YARA (1): `CodeOfConduct_AiTM_PDF_Lure_2026` heuristic (PDF magic + URI Action + theme keywords + cheap-TLD anchors).
+- Suricata (1): TLS SNI + HTTP Host signatures for known landing domains (`acceptable-use-policy-calendly[.]de`, `compliance-protectionoutlook[.]de`) plus heuristic for keyword-in-cheap-TLD.
+- PEAK hunt write-up: H1 (click → device-add 2h window).
+- `iocs.csv` — 2 attacker domains, 2 PDF filenames, lure keywords, Tycoon2FA TLD pattern, behavioral indicators, cluster identifiers.
+
+### Pedagogy
+- T1098.005 (Account Manipulation: Device Registration) — the persistence technique that survives password rotation.
+- Why TOTP/SMS/push MFA do NOT mitigate AiTM, and why FIDO2/passkeys do.
+- IR runbook emphasising `Remove-MgDevice` as the critical eradication step (not just password reset).
+
+---
+
+## Unreleased — drop CI workflows (2026-05-04, evening)
+
+### Removed
+- `.github/workflows/sigma-lint.yml`
+- `.github/workflows/validate.yml`
+
+Rationale: validation now runs locally before each commit via `tools/validate_all.py`,
+`tools/lint_all.sh` and `tools/lint_sigma.sh`. The CI workflows added noise to the
+repo (red ❌ badges on the commit history) without giving us anything we don't
+already have on the laptop. If you want them back, both files are recoverable
+from `git log --diff-filter=D -- .github/workflows/`.
+
+
+
+## Unreleased — repo overhaul (2026.05.04)
+
+### Added
+- `tools/validate_all.py` — offline multi-format validator (Sigma, YARA, Suricata, KQL, SPL, CSV, YAML, Markdown links, Bash). PyYAML-only dependency.
+- `tools/lint_all.sh` — wrapper that runs `validate_all.py` plus optional external tools: `sigma-cli`, `yara`, `suricata`, `actionlint`, `shellcheck`, `markdownlint`.
+- `tools/sigma_check.py` — Sigma-only offline validator (also re-used by the offline path of `lint_sigma.sh`).
+- `tools/generate_index.py` — regenerates `INDEX.md` and the auto-views from each day's YAML frontmatter. Tolerates filesystems that disallow unlink (Cowork / WSL bind-mounts) by falling back to merge mode.
+- `.github/workflows/validate.yml` — full multi

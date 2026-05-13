@@ -4,10 +4,11 @@
 
 # Techniques: T1552.005
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-13 | Semantic Kernel Prompt-to-RCE — CVE-2026-26030 and CVE-2026-25592 | Microsoft Defender Security Research (vulnerability disclosure, no threat actor) | [`2026-05-13_SemanticKernel-Prompt2RCE/`](../../days/2026-05-13_SemanticKernel-Prompt2RCE/) |
 | 2026-05-10 | AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security) | Unattributed-LLM-assisted-operator | [`2026-05-10_Mexico-Water-AI-Assisted-OT/`](../../days/2026-05-10_Mexico-Water-AI-Assisted-OT/) |
 | 2026-04-29 | Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm | TeamPCP · Shai-Hulud | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |

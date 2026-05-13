@@ -1,0 +1,20 @@
+// Title:        Agent host (dotnet/python/node) writes Windows Startup folder
+// Id:           5b8e915f-7fd5-41c1-8f22-1c4c94db41a2
+// MITRE:        T1547.001
+// Reference:    https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/
+// Author:       Jarmi
+// Date:         2026-05-13
+// Tested on:    Defender XDR — DeviceFileEvents
+// FP notes:     Vendor-signed installer bundles or RPA agents that drop run-once helpers in Startup. Baseline a 30-day allowlist of InitiatingProcessSHA256.
+DeviceFileEvents
+| where Timestamp > ago(30d)
+| where ActionType in ("FileCreated","FileModified")
+| where FolderPath has @"\Start Menu\Programs\Startup\"
+   or FolderPath has @"\Microsoft\Windows\Start Menu\Programs\StartUp\"
+| where InitiatingProcessFileName in~ ("dotnet.exe","python.exe","python3.exe","node.exe")
+| where InitiatingProcessCommandLine matches regex @"(?i)semantic[\s_\-]?kernel|SKAgent|kernel\.run|SessionsPythonPlugin"
+| project
+    Timestamp, DeviceName, FileName, FolderPath,
+    InitiatingProcessFileName, InitiatingProcessCommandLine,
+    InitiatingProcessSHA256
+| sort by Timestamp desc

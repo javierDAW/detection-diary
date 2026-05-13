@@ -1,0 +1,27 @@
+# Suricata 7.x rules — Semantic Kernel prompt-to-RCE network anchors
+# Author:    Jarmi
+# Date:      2026-05-13
+# Reference: https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/
+#
+# Operator variables required in suricata.yaml:
+#   vars.address-groups.AGENT_HOSTS = [10.10.50.0/24]   # the subnet hosting agent runtimes
+# If the operator has not defined AGENT_HOSTS, $HOME_NET is used as a fallback by overriding sids 8140001 and 8140002 to $HOME_NET.
+
+alert http any any -> any any (msg:"SK CVE-2026-26030 AST traversal payload in HTTP request body"; \
+    flow:established,to_server; \
+    http.method; content:"POST"; \
+    http.request_body; content:"__subclasses__"; nocase; \
+    pcre:"/(load_module|os\.system|BuiltinImporter|\(\)\.__class__|__class__\.__mro__)/i"; \
+    classtype:attempted-admin; sid:8140001; rev:1;)
+
+alert http any any -> any any (msg:"SK CVE-2026-25592 DownloadFileAsync targeting Windows Startup folder"; \
+    flow:established,to_server; \
+    http.request_body; content:"DownloadFileAsync"; nocase; \
+    content:"Start Menu"; nocase; distance:0; within:512; \
+    classtype:attempted-admin; sid:8140002; rev:1;)
+
+alert http any any -> any any (msg:"SK SessionsPythonPlugin UploadFileAsync against sensitive host path"; \
+    flow:established,to_server; \
+    http.request_body; content:"UploadFileAsync"; nocase; \
+    pcre:"/(\\\\\\.ssh\\\\|\\\\\\.aws\\\\|\\\\AppData\\\\Roaming\\\\Microsoft\\\\Credentials)/i"; \
+    classtype:attempted-recon; sid:8140003; rev:1;)
