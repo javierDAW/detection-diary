@@ -1,0 +1,40 @@
+title: Python AST traversal payload in agent prompt or filter argument
+id: 5ff4546b-f849-4aa3-88f6-d291423bf9f6
+status: experimental
+description: Detects Python AST traversal escape patterns inside agent application logs, prompt inputs, or filter arguments. These string anchors are the canonical bypass of the Semantic Kernel InMemoryVectorStore filter validator (CVE-2026-26030). Apply to any custom log table that ingests agent runtime activity, tool-call arguments, or chat transcripts.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/
+  - https://nvd.nist.gov/vuln/detail/CVE-2026-26030
+author: Jarmi
+date: 2026/05/13
+tags:
+  - attack.execution
+  - attack.t1059.006
+  - attack.t1190
+logsource:
+  category: application
+  product: agent_runtime
+detection:
+  ast_traversal:
+    Message|contains:
+      - '().__class__.__bases__'
+      - '__subclasses__()'
+      - 'BuiltinImporter'
+      - '.load_module('
+      - '__class__.__mro__'
+      - '__class__.__base__'
+  exec_primitive:
+    Message|contains:
+      - 'os.system('
+      - 'subprocess.Popen('
+      - 'os.popen('
+      - 'commands.getoutput('
+      - '__import__('
+  lambda_anchor:
+    Message|contains:
+      - 'lambda x: x.'
+      - 'lambda x:'
+  condition: ast_traversal and ( exec_primitive or lambda_anchor )
+falsepositives:
+  - Internal red-team or developer exercises that test the framework with the public CTF payload. Baseline against dev tenants and label legitimate test agents.
+level: high

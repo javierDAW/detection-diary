@@ -1,0 +1,43 @@
+title: Agent runtime writes to Windows Startup folder
+id: 7759acdc-ba86-42ae-9f13-7a9266331977
+status: experimental
+description: Detects file creation under a Windows Startup folder by a Semantic Kernel agent runtime (python.exe, python3.exe, dotnet.exe, node.exe). Canonical persistence primitive for CVE-2026-25592 (SessionsPythonPlugin DownloadFileAsync sandbox escape) and any prompt-injection-to-host-write chain.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/
+  - https://nvd.nist.gov/vuln/detail/CVE-2026-25592
+author: Jarmi
+date: 2026/05/13
+tags:
+  - attack.persistence
+  - attack.t1547.001
+logsource:
+  category: file_event
+  product: windows
+detection:
+  agent_runtime:
+    Image|endswith:
+      - '\dotnet.exe'
+      - '\python.exe'
+      - '\python3.exe'
+      - '\node.exe'
+  agent_marker_image:
+    Image|contains:
+      - 'SemanticKernel'
+      - 'semantic-kernel'
+      - 'semantic_kernel'
+  agent_marker_cmdline:
+    CommandLine|contains:
+      - 'semantic-kernel'
+      - 'semantic_kernel'
+      - 'SemanticKernel'
+      - 'SKAgent'
+      - 'kernel.run'
+      - 'SessionsPythonPlugin'
+  startup_path:
+    TargetFilename|contains:
+      - '\Start Menu\Programs\Startup\'
+      - '\Microsoft\Windows\Start Menu\Programs\StartUp\'
+  condition: agent_runtime and (agent_marker_image or agent_marker_cmdline) and startup_path
+falsepositives:
+  - Vendor-signed installer bundles that ship an agent-integrated software stack. Keep an allowlist of approved SHA256 initiators.
+level: critical

@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1180" role="img" aria-labelledby="t d">
+  <title id="t">Semantic Kernel prompt-to-RCE kill chain — Microsoft Defender Research, May 2026</title>
+  <desc id="d">Two CVEs in Microsoft Semantic Kernel — CVE-2026-26030 (Python InMemoryVectorStore filter eval) and CVE-2026-25592 (.NET SessionsPythonPlugin DownloadFileAsync) — turn prompt injection into native host RCE. Left lane shows the victim agent host; right lane shows the attacker side (prompt source plus Azure Container Apps sandbox). Detection anchors at the bottom map every stage to Sigma, KQL, YARA, and Suricata rules in this folder.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .bg-det       { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .bg-det     { fill: #0c2d6b; stroke: #1f6feb; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <!-- Header -->
+  <text x="40" y="34" class="header">Semantic Kernel prompt-to-RCE kill chain</text>
+  <text x="40" y="54" class="subhead">Microsoft Defender Security Research — published 2026-05-07 — CVE-2026-26030, CVE-2026-25592</text>
+
+  <!-- Lane labels -->
+  <text x="40" y="92" class="lane" transform="rotate(-90 40 92)">VICTIM AGENT HOST</text>
+  <text x="840" y="92" class="lane" transform="rotate(-90 840 92)">ATTACKER + SANDBOX</text>
+
+  <!-- Stage 1 -->
+  <rect x="70" y="80" width="460" height="86" rx="6" class="bg-stage"/>
+  <circle cx="92" cy="102" r="13" class="stagebg"/>
+  <text x="92" y="106" text-anchor="middle" class="stagenum">1</text>
+  <text x="116" y="106" class="label">Prompt Injection — direct or indirect</text>
+  <text x="116" y="125" class="sub">Adversarial text reaches the agent via chat, email, RAG doc, ticket, tool reply</text>
+  <text x="116" y="143" class="ioc">AML.T0051 (LLM Prompt Injection) — direct or via cross-channel content</text>
+  <text x="116" y="160" class="mitre">T1190</text>
+
+  <!-- Stage 2 -->
+  <rect x="70" y="186" width="460" height="100" rx="6" class="bg-stage"/>
+  <circle cx="92" cy="208" r="13" class="stagebg"/>
+  <text x="92" y="212" text-anchor="middle" class="stagenum">2</text>
+  <text x="116" y="212" class="label">Tool selection — model parses NL into tool schema</text>
+  <text x="116" y="231" class="sub">search_hotels(city=...) or DownloadFileAsync(remoteFilePath, localFilePath)</text>
+  <text x="116" y="249" class="ioc">SK builds: lambda x: x.city == '&lt;ai-controlled-string&gt;'</text>
+  <text x="116" y="267" class="ioc">.NET SK exposes DownloadFileAsync via [KernelFunction] attribute</text>
+  <text x="116" y="282" class="mitre">AML.T0050</text>
+
+  <!-- Stage 3 -->
+  <rect x="70" y="306" width="460" height="116" rx="6" class="bg-stage"/>
+  <circle cx="92" cy="328" r="13" class="stagebg"/>
+  <text x="92" y="332" text-anchor="middle" class="stagenum">3</text>
+  <text x="116" y="332" class="label">CVE-2026-26030 — Python InMemoryVectorStore eval</text>
+  <text x="116" y="351" class="sub">AST-traversal payload escapes lambda, bypasses validator blocklist</text>
+  <text x="116" y="370" class="ioc">().__class__.__bases__[0].__subclasses__()</text>
+  <text x="116" y="386" class="ioc">[c for c in ... if c.__name__=='BuiltinImporter'][0]()</text>
+  <text x="116" y="402" class="ioc">.load_module('os').system('powershell -nop -enc ...')</text>
+  <text x="116" y="418" class="mitre">T1059.006</text>
+
+  <!-- Stage 4 -->
+  <rect x="70" y="442" width="460" height="120" rx="6" class="bg-stage"/>
+  <circle cx="92" cy="464" r="13" class="stagebg"/>
+  <text x="92" y="468" text-anchor="middle" class="stagenum">4</text>
+  <text x="116" y="468" class="label">CVE-2026-25592 — SessionsPythonPlugin sandbox escape</text>
+  <text x="116" y="487" class="sub">Sandbox-side ExecuteCode drops /tmp/payload.ps1 in Azure Container Apps session</text>
+  <text x="116" y="506" class="sub">DownloadFileAsync transfers payload to host Startup folder, bypassing isolation</text>
+  <text x="116" y="525" class="ioc">localFilePath = C:\Users\&lt;svc&gt;\...\Start Menu\Programs\Startup\sk_init.ps1</text>
+  <text x="116" y="541" class="ioc">UploadFileAsync (reverse) exfils id_rsa, .aws\credentials, KeePass DB</text>
+  <text x="116" y="558" class="mitre">T1547.001  T1106</text>
+
+  <!-- Stage 5 -->
+  <rect x="70" y="582" width="460" height="86" rx="6" class="bg-stage"/>
+  <circle cx="92" cy="604" r="13" class="stagebg"/>
+  <text x="92" y="608" text-anchor="middle" class="stagenum">5</text>
+  <text x="116" y="608" class="label">Execution — RCE on agent host</text>
+  <text x="116" y="627" class="sub">python.exe or dotnet.exe spawns cmd, powershell, certutil, whoami, curl</text>
+  <text x="116" y="645" class="ioc">calc.exe in PoC; production payloads pull staged loader</text>
+  <text x="116" y="662" class="mitre">T1059.001  T1059.006</text>
+
+  <!-- Stage 6 -->
+  <rect x="70" y="688" width="460" height="86" rx="6" class="bg-stage"/>
+  <circle cx="92" cy="710" r="13" class="stagebg"/>
+  <text x="92" y="714" text-anchor="middle" class="stagenum">6</text>
+  <text x="116" y="714" class="label">Privilege Escalation — workload identity abuse</text>
+  <text x="116" y="733" class="sub">Token requested from IMDS or local MSI endpoint inherits agent service principal scopes</text>
+  <text x="116" y="751" class="ioc">169.254.169.254/metadata/identity/oauth2/token</text>
+  <text x="116" y="768" class="mitre">T1552.005</text>
+
+  <!-- Stage 7 -->
+  <rect x="70" y="794" width="460" height="86" rx="6" class="bg-stage"/>
+  <circle cx="92" cy="816" r="13" class="stagebg"/>
+  <text x="92" y="820" text-anchor="middle" class="stagenum">7</text>
+  <text x="116" y="820" class="label">Persistence — Startup folder + token replay</text>
+  <text x="116" y="839" class="sub">Logon-triggered loader; agent OAuth refresh tokens hoarded off-host</text>
+  <text x="116" y="857" class="ioc">%APPDATA%\Microsoft\Windows\Start Menu\Programs\Startup\</text>
+  <text x="116" y="874" class="mitre">T1547.001  T1078</text>
+
+  <!-- Stage 8 -->
+  <rect x="70" y="900" width="460" height="86" rx="6" class="bg-stage"/>
+  <circle cx="92" cy="922" r="13" class="stagebg"/>
+  <text x="92" y="926" text-anchor="middle" class="stagenum">8</text>
+  <text x="116" y="926" class="label">Impact — corporate data via agent identity</text>
+  <text x="116" y="945" class="sub">Graph, Mail.ReadWrite, Files.ReadWrite.All, Cosmos, KeyVault</text>
+  <text x="116" y="963" class="ioc">Egress carried by the agent's own HTTPS client — indistinguishable from tool traffic</text>
+  <text x="116" y="980" class="mitre">T1213  T1567  T1078.004</text>
+
+  <!-- Attacker / sandbox panel (right lane) -->
+  <rect x="560" y="80" width="280" height="280" rx="6" class="bg-c2"/>
+  <text x="700" y="106" text-anchor="middle" class="label">Prompt source + sandbox</text>
+  <text x="700" y="125" text-anchor="middle" class="sub">attacker-controlled content</text>
+
+  <text x="578" y="155" class="ioc">Direct chat: malicious user</text>
+  <text x="578" y="172" class="ioc">Indirect: poisoned RAG / email /</text>
+  <text x="578" y="187" class="ioc">  Jira ticket / web search result</text>
+  <text x="578" y="204" class="ioc">  HTML comment in tool reply</text>
+
+  <text x="578" y="234" class="label">Azure Container Apps</text>
+  <text x="578" y="251" class="sub">dynamic Python session</text>
+  <text x="578" y="271" class="ioc">SessionsPythonPlugin.ExecuteCode</text>
+  <text x="578" y="288" class="ioc">  → writes /tmp/payload.ps1</text>
+  <text x="578" y="305" class="ioc">SessionsPythonPlugin.DownloadFileAsync</text>
+  <text x="578" y="322" class="ioc">  → host Startup folder write</text>
+  <text x="578" y="342" class="ioc">  ^^ KernelFunction exposed</text>
+
+  <!-- Patch panel -->
+  <rect x="560" y="382" width="280" height="180" rx="6" class="bg-c2"/>
+  <text x="700" y="408" text-anchor="middle" class="label">Patch baseline</text>
+  <text x="578" y="436" class="ioc">PyPI semantic-kernel &gt;= 1.39.4</text>
+  <text x="578" y="455" class="ioc">NuGet Microsoft.SemanticKernel</text>
+  <text x="578" y="470" class="ioc">                 &gt;= 1.71.0</text>
+  <text x="578" y="494" class="ioc">Defence in depth (1.39.4 patch):</text>
+  <text x="578" y="510" class="ioc">  AST node-type allowlist</text>
+  <text x="578" y="526" class="ioc">  function-call allowlist</text>
+  <text x="578" y="542" class="ioc">  __class__/__subclasses__ deny</text>
+  <text x="578" y="558" class="ioc">  name-restriction to {x}</text>
+
+  <!-- Arrows from victim stages to attacker panel -->
+  <path d="M 530 123 L 560 123" class="arrow" marker-end="url(#arr)"/>
+  <path d="M 530 232 L 560 232" class="arrow" marker-end="url(#arr)"/>
+  <path d="M 530 500 L 560 500" class="arrow" marker-end="url(#arr)"/>
+  <path d="M 560 285 L 530 510" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Detection anchors box -->
+  <rect x="70" y="1010" width="770" height="148" rx="6" class="bg-det"/>
+  <text x="92" y="1035" class="label">Detection anchors</text>
+  <text x="92" y="1058" class="ioc">sigma/sk_agent_host_spawns_shell_lolbin.yml      — process_creation: agent runtime → cmd/powershell/curl/whoami/nltest</text>
+  <text x="92" y="1075" class="ioc">sigma/sk_agent_writes_startup_folder.yml         — file_event: agent runtime writes Startup folder (T1547.001)</text>
+  <text x="92" y="1092" class="ioc">sigma/sk_prompt_injection_ast_traversal_payload.yml — agent log message contains AST-traversal anchors</text>
+  <text x="92" y="1109" class="ioc">kql/sk_host_spawns_shell_lolbin.kql + sk_host_writes_startup_folder.kql + sk_filter_string_ast_traversal.kql</text>
+  <text x="92" y="1126" class="ioc">yara/sk_prompt2rce_heuristic.yar  — AST-traversal band + SessionsPython sandbox-escape band</text>
+  <text x="92" y="1143" class="ioc">suricata/sk_prompt2rce_anchors.rules — sids 8140001-8140003: AST in body, DownloadFileAsync → Startup, UploadFileAsync exfil</text>
+</svg>

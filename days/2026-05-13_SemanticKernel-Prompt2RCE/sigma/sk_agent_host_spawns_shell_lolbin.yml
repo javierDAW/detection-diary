@@ -1,0 +1,55 @@
+title: Suspicious shell or recon LOLBin child spawned by Semantic Kernel agent host
+id: 24121ffa-8835-439d-9f90-6da9b82a139c
+status: experimental
+description: Detects shells and recon LOLBins spawned as children of a Semantic Kernel agent host process. Combined with CVE-2026-26030 (Python InMemoryVectorStore filter eval RCE) and CVE-2026-25592 (.NET SessionsPythonPlugin sandbox escape), prompt injection turns into native process creation. Agent runtimes rarely have a legitimate need to spawn cmd, powershell, certutil, curl, whoami, nltest, or nslookup.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/
+  - https://nvd.nist.gov/vuln/detail/CVE-2026-26030
+  - https://nvd.nist.gov/vuln/detail/CVE-2026-25592
+author: Jarmi
+date: 2026/05/13
+tags:
+  - attack.execution
+  - attack.t1059.001
+  - attack.t1059.006
+  - attack.initial-access
+  - attack.t1190
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  parent_is_sk_agent:
+    ParentCommandLine|contains:
+      - 'semantic-kernel'
+      - 'semantic_kernel'
+      - 'SemanticKernel'
+      - 'SKAgent'
+      - 'kernel.run'
+      - 'SessionsPythonPlugin'
+  suspicious_child:
+    Image|endswith:
+      - '\cmd.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\bash.exe'
+      - '\wsl.exe'
+      - '\certutil.exe'
+      - '\mshta.exe'
+      - '\rundll32.exe'
+      - '\regsvr32.exe'
+      - '\wscript.exe'
+      - '\cscript.exe'
+      - '\bitsadmin.exe'
+      - '\curl.exe'
+      - '\wget.exe'
+      - '\whoami.exe'
+      - '\net.exe'
+      - '\net1.exe'
+      - '\nltest.exe'
+      - '\klist.exe'
+      - '\nslookup.exe'
+      - '\dsquery.exe'
+  condition: parent_is_sk_agent and suspicious_child
+falsepositives:
+  - DevOps or RPA agents that intentionally spawn shells as part of their tool catalog. Allowlist by AccountSid or by the agent's deployment id when known.
+level: high

@@ -30,6 +30,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Hydro Kitten](./hydro-kitten/) | 1 |
 | [Jewelbug](./jewelbug/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
+| [Microsoft Defender Security Research (vulnerability disclosure, no threat actor)](./microsoft-defender-security-research-vulnerability-disclosure-no-threat-actor/) | 1 |
 | [Nexcorium](./nexcorium/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
 | [Pheno](./pheno/) | 1 |

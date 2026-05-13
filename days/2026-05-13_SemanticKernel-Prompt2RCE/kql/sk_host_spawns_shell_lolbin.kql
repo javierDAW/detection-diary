@@ -1,0 +1,25 @@
+// Title:        Semantic Kernel agent host spawns shell or recon LOLBin
+// Id:           3cb664c0-8cb6-43f2-a569-958b74558994
+// MITRE:        T1059.001, T1059.006, T1190
+// Reference:    https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/
+// Author:       Jarmi
+// Date:         2026-05-13
+// Tested on:    Defender XDR — DeviceProcessEvents
+// FP notes:     DevOps or RPA agents that intentionally spawn shells. Allowlist by AccountSid or by InitiatingProcessSHA256 of approved agent runtimes.
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where (InitiatingProcessCommandLine matches regex @"(?i)semantic[\s_\-]?kernel|SKAgent|kernel\.run|SessionsPythonPlugin"
+      or InitiatingProcessFolderPath matches regex @"(?i)semantic[\s_\-]?kernel")
+| where FileName in~ (
+    "cmd.exe","powershell.exe","pwsh.exe","bash.exe","wsl.exe",
+    "certutil.exe","mshta.exe","rundll32.exe","regsvr32.exe",
+    "wscript.exe","cscript.exe","bitsadmin.exe","curl.exe",
+    "wget.exe","whoami.exe","net.exe","net1.exe","nltest.exe",
+    "klist.exe","dsquery.exe","nslookup.exe"
+  )
+| project
+    Timestamp, DeviceName, AccountName,
+    FileName, ProcessCommandLine,
+    InitiatingProcessFileName, InitiatingProcessCommandLine,
+    InitiatingProcessFolderPath, InitiatingProcessSHA256
+| sort by Timestamp desc
