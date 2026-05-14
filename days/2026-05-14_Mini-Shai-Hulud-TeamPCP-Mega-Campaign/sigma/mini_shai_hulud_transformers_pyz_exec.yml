@@ -1,0 +1,40 @@
+title: Mini Shai-Hulud Python Zipapp Drop and Execution in Temp
+id: f3a92b1c-7e84-4d21-b3f5-9c2a0e6d1f47
+status: stable
+description: >
+  Detects download and execution of .pyz Python zipapp files from /tmp
+  associated with the TeamPCP Mini Shai-Hulud supply-chain worm (May 2026).
+  The worm compromised 170+ npm and PyPI packages including @tanstack, @uipath,
+  @mistralai/mistralai, guardrails-ai and opensearch. The payload (transformers.pyz)
+  is fetched from git-tanstack[.]com and executed directly, harvesting dev credentials.
+author: Jarmi
+date: 2026/05/14
+references:
+  - https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised
+  - https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem
+  - https://snyk.io/blog/tanstack-npm-packages-compromised/
+tags:
+  - attack.initial-access
+  - attack.t1195.002
+  - attack.execution
+  - attack.t1059.006
+  - attack.credential-access
+  - attack.t1552.001
+logsource:
+  category: process_creation
+detection:
+  selection_ioc_cmdline:
+    CommandLine|contains:
+      - '/tmp/transformers.pyz'
+      - 'git-tanstack'
+      - '83.142.209.194'
+  selection_python_pyz_exec:
+    Image|endswith:
+      - '/python3'
+      - '/python'
+    CommandLine|contains: '/tmp/'
+    CommandLine|endswith: '.pyz'
+  condition: 1 of selection_*
+falsepositives:
+  - Legitimate Python zipapps deployed to /tmp by internal build systems (verify source domain and hash)
+level: high

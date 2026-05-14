@@ -49,7 +49,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Storm-1747](./storm-1747/) | 1 |
 | [Storm-1849](./storm-1849/) | 1 |
 | [TEMP.Veles](./temp-veles/) | 1 |
-| [TeamPCP](./teampcp/) | 2 |
+| [TeamPCP](./teampcp/) | 3 |
 | [The Gentlemen](./the-gentlemen/) | 1 |
 | [Tycoon2FA](./tycoon2fa/) | 1 |
 | [UAT-4356](./uat-4356/) | 1 |

@@ -1,0 +1,22 @@
+# Author: Jarmi
+# Date: 2026-05-14
+# Family: MiniShaiHulud / TeamPCP
+# Reference: https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised
+#            https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem
+#
+# Description: Detection rules for TeamPCP Mini Shai-Hulud C2 infrastructure
+# (May 2026 mega-campaign). Covers DNS lookups, HTTP payload download, IP-based
+# exfiltration POST, and Session messenger C2 channel used as fallback.
+#
+# Deployment note: these rules target developer workstation VLANs and CI/CD runner
+# networks. Adjust HOME_NET to match your runner subnet.
+
+alert dns any any -> any 53 (msg:"SUPPLY-CHAIN TeamPCP Mini-ShaiHulud C2 Domain git-tanstack.com DNS Query"; dns.query; content:"git-tanstack.com"; nocase; fast_pattern; sid:6001401; rev:1; classtype:trojan-activity; metadata:affected_product npm_ecosystem, attack_target Developer_Workstation, created_at 2026_05_14, malware_family MiniShaiHulud;)
+
+alert http any any -> any 80 (msg:"SUPPLY-CHAIN TeamPCP Mini-ShaiHulud transformers.pyz Payload Download"; http.uri; content:"/tmp/transformers.pyz"; startswith; fast_pattern; sid:6001402; rev:1; classtype:trojan-activity; metadata:affected_product npm_ecosystem, attack_target Developer_Workstation, created_at 2026_05_14, malware_family MiniShaiHulud;)
+
+alert ip any any -> 83.142.209.194 any (msg:"SUPPLY-CHAIN TeamPCP Mini-ShaiHulud Exfil to Known C2 IP 83.142.209.194"; sid:6001403; rev:1; classtype:trojan-activity; metadata:affected_product npm_ecosystem, attack_target Developer_Workstation, created_at 2026_05_14, malware_family MiniShaiHulud;)
+
+alert http any any -> 83.142.209.194 80 (msg:"SUPPLY-CHAIN TeamPCP Mini-ShaiHulud HTTP POST Credential Exfil /ingest Endpoint"; http.method; content:"POST"; http.uri; content:"/ingest"; startswith; sid:6001404; rev:1; classtype:trojan-activity; metadata:affected_product npm_ecosystem, attack_target Developer_Workstation, created_at 2026_05_14, malware_family MiniShaiHulud;)
+
+alert dns any any -> any 53 (msg:"SUPPLY-CHAIN TeamPCP Mini-ShaiHulud Session Messenger Fallback C2 getsession.org DNS Query"; dns.query; content:"getsession.org"; nocase; sid:6001405; rev:1; classtype:trojan-activity; metadata:affected_product npm_ecosystem, attack_target Developer_Workstation, created_at 2026_05_14, malware_family MiniShaiHulud;)

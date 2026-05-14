@@ -1,0 +1,32 @@
+title: GitHub Token Monitor Persistence Daemon Installation
+id: 8b4e2d9f-1c37-4a56-b8e2-3f7d0c5a9b21
+status: stable
+description: >
+  Detects creation of the gh-token-monitor systemd service or macOS LaunchAgent
+  installed by the TeamPCP Mini Shai-Hulud supply-chain worm (May 2026 campaign).
+  The daemon polls GitHub API every 60 seconds using a stolen token and executes
+  rm -rf ~/ if the token is revoked (HTTP 40x), creating a destructive tripwire
+  against incident responders. Auto-exits after 24h if not triggered.
+author: Jarmi
+date: 2026/05/14
+references:
+  - https://www.stepsecurity.io/blog/mini-shai-hulud-is-back-a-self-spreading-supply-chain-attack-hits-the-npm-ecosystem
+  - https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised
+tags:
+  - attack.persistence
+  - attack.t1543.002
+  - attack.defense-evasion
+  - attack.t1036
+  - attack.impact
+  - attack.t1485
+logsource:
+  category: file_event
+detection:
+  selection:
+    TargetFilename|contains:
+      - '/etc/systemd/system/gh-token-monitor'
+      - 'LaunchAgents/com.github.token-monitor'
+  condition: selection
+falsepositives:
+  - None expected — service name is specific to the TeamPCP Mini Shai-Hulud worm
+level: critical
