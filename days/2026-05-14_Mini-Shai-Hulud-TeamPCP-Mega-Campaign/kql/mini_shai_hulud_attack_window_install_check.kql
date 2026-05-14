@@ -1,0 +1,43 @@
+// Title:        Mini Shai-Hulud — Package Install During Malicious Distribution Window
+// Id:           a1e8f4b2-3c90-4d72-b5f1-7e6d0a2c8b39
+// MITRE:        T1195.002, T1059.007
+// Reference:    https://www.wiz.io/blog/mini-shai-hulud-strikes-again-tanstack-more-npm-packages-compromised
+//               https://orca.security/resources/blog/tanstack-npm-supply-chain-worm/
+// Author:       Jarmi
+// Date:         2026-05-14
+// Tested on:    Defender XDR — DeviceProcessEvents
+// FP notes:     Any install of these packages outside the malicious window (2026-05-11 19:20 UTC
+//               to 2026-05-12 14:00 UTC) is clean. Flag only hits in that window.
+//
+// Logic: identifies hosts that ran npm install / pip install of the known-compromised
+// packages during the TeamPCP Mini Shai-Hulud distribution window (May 11-12, 2026).
+// Cross-join with network egress to C2 to confirm active compromise.
+let MaliciousWindowStart = datetime(2026-05-11T19:20:00Z);
+let MaliciousWindowEnd   = datetime(2026-05-12T14:00:00Z);
+let CompromisedPackages  = dynamic([
+    "@tanstack", "@uipath", "@mistralai",
+    "guardrails-ai", "mistralai==2.4.6",
+    "@opensearch-project/opensearch"
+]);
+let C2IPs = dynamic(["83.142.209.194"]);
+let C2Domains = dynamic(["git-tanstack.com", "getsession.org"]);
+// Step 1: find installs during the attack window
+let SuspectInstalls =
+    DeviceProcessEvents
+    | where Timestamp between (MaliciousWindowStart .. MaliciousWindowEnd)
+    | where ProcessCommandLine has_any (CompromisedPackages)
+    | where ProcessCommandLine has_any ("npm install", "pip install", "pip3 install",
+                                        "yarn add", "pnpm add")
+    | project InstallTime = Timestamp, DeviceId, DeviceName, AccountName, ProcessCommandLine;
+// Step 2: find post-install C2 egress on same device within 30 minutes
+let C2Egress =
+    DeviceNetworkEvents
+    | where Timestamp between (MaliciousWindowStart .. (MaliciousWindowEnd + 30min))
+    | where RemoteIP has_any (C2IPs) or RemoteUrl has_any (C2Domains)
+    | project EgressTime = Timestamp, DeviceId, RemoteIP, RemoteUrl;
+// Join to confirm active compromise
+SuspectInstalls
+| join kind=leftouter C2Egress on DeviceId
+| project InstallTime, EgressTime, DeviceName, AccountName,
+          ProcessCommandLine, RemoteIP, RemoteUrl
+| order by InstallTime asc

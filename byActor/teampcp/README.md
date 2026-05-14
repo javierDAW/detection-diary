@@ -4,10 +4,11 @@
 
 # Actors: TeamPCP
 
-2 day(s) covering this actor.
+3 day(s) covering this actor.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-14 | Mini Shai-Hulud Mega-Campaign: TeamPCP Poisons 170+ npm/PyPI Packages via GitHub Actions OIDC Hijack and SLSA Provenance Forgery | TeamPCP | [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/`](../../days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |
 | 2026-05-01 | VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026) | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
 | 2026-04-29 | Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm | TeamPCP · Shai-Hulud | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |

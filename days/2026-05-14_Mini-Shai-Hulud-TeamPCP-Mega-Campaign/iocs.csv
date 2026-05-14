@@ -1,0 +1,17 @@
+type,value,context,confidence,source
+note,Mini Shai-Hulud TeamPCP mega-campaign — 170+ npm/PyPI packages compromised 2026-05-11,,,
+domain,git-tanstack[.]com,Primary C2 domain and transformers.pyz payload download host,high,"Wiz, StepSecurity, Socket"
+ipv4,83.142.209.194,C2 HTTP POST exfiltration endpoint (/ingest),high,"Microsoft, Wiz, Aikido"
+url,https://git-tanstack[.]com/tmp/transformers.pyz,transformers.pyz Python zipapp payload download URL,high,"Wiz, StepSecurity"
+sha256,ab4fcadaec49c03278063dd269ea5eef82d24f2124a8e15d7b90f2fa8601266c,router_init.js embedded in all @tanstack compromised packages (byte-identical),high,"OX Security, Socket"
+domain,getsession.org,Session messenger fallback C2 channel (decentralized — not blockable via single IP),medium,"Wiz, BleepingComputer"
+string,gh-token-monitor,Systemd service name of the persistence daemon installed by the worm,high,StepSecurity
+string,com.github.token-monitor,macOS LaunchAgent identifier for the persistence daemon,high,StepSecurity
+string,zblgg/configuration,Attacker GitHub fork of TanStack/router (renamed to evade fork-list searches),high,TanStack post-mortem
+cve,CVE-2026-45321,CVSS 9.6 — pull_request_target cache poisoning + OIDC token extraction in GitHub Actions,high,GitHub Security
+string,mistralai==2.4.6,Malicious PyPI version of Mistral AI Python SDK (legitimate was 2.4.5),high,"Microsoft, Aikido"
+string,guardrails-ai==0.10.1,Malicious PyPI version of Guardrails AI,high,"Aikido, Wiz"
+string,transformers.pyz,Filename of the Python zipapp credential-stealer payload,high,Multiple
+string,/ingest,HTTP POST path used for credential exfiltration to C2,medium,Wiz
+note,Compromised npm versions include all @tanstack packages published 2026-05-11 19:20-19:26 UTC and @uipath namespace packages in the same window,,,
+note,Verify lockfiles against npm provenance transparency log to confirm exact compromised version hashes for your specific packages,,,

@@ -54,3 +54,6 @@ malware/
 *.log
 .cache/
 output/
+
+# Local .git safety backups created during repo recovery (never commit)
+.git.bak-*/
