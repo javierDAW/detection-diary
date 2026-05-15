@@ -1,0 +1,31 @@
+// Title:        EtherRAT staging chain — MSI/cmd downloads Node.js portable plus egress to Ethereum RPC 1rpc.io
+// Id:           686cff25-bdea-4eb9-980c-aa6db20eac1d
+// MITRE:        T1204.002, T1059.007, T1568.002
+// Reference:    https://thedfirreport.com/2026/05/11/flash-alert-etherrat-and-tuktuk-c2-end-in-the-gentleman-ransomware/
+// Author:       Jarmi
+// Date:         2026-05-15
+// Tested on:    Defender XDR — DeviceProcessEvents + DeviceNetworkEvents
+// FP notes:     Legitimate Node developers can pull from nodejs.org/dist through corporate proxies; the discriminator
+//               is the 30 minute correlation window between the curl/Invoke-WebRequest download and the egress to
+//               1rpc.io or other public Ethereum RPC endpoints — that combination is rarely benign.
+let window = 30m;
+let nodejs_downloads =
+    DeviceProcessEvents
+    | where Timestamp > ago(7d)
+    | where InitiatingProcessFileName in~ ("msiexec.exe", "cmd.exe")
+    | where ProcessCommandLine has_any ("nodejs.org/dist", "curl", "Invoke-WebRequest")
+    | where ProcessCommandLine has "node-v"
+    | project Timestamp, DeviceId, DeviceName, ProcessCommandLine,
+              InitiatingProcessFileName, InitiatingProcessId;
+let ethereum_egress =
+    DeviceNetworkEvents
+    | where Timestamp > ago(7d)
+    | where RemoteUrl has_any ("1rpc.io", "ethereum.publicnode.com",
+                                "mainnet.infura.io", "rpc.ankr.com")
+    | project EthTimestamp = Timestamp, DeviceId, DeviceName,
+              RemoteUrl, RemoteIP, InitiatingProcessFileName;
+nodejs_downloads
+| join kind=inner (ethereum_egress) on DeviceId
+| where (EthTimestamp - Timestamp) between (0min .. window)
+| project Timestamp, DeviceName, Stage1_CommandLine = ProcessCommandLine,
+          Stage2_RemoteUrl = RemoteUrl, Stage2_Process = InitiatingProcessFileName1

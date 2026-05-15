@@ -1,0 +1,28 @@
+// Title:        GoTo Resolve install on DC/server tier plus SYSVOL/NETLOGON write within 24h — pre-ransomware fan-out chain
+// Id:           1f9c5e66-c0f5-413e-965f-bb2540b08176
+// MITRE:        T1543.003, T1219, T1484.001, T1486
+// Reference:    https://thedfirreport.com/2026/05/11/flash-alert-etherrat-and-tuktuk-c2-end-in-the-gentleman-ransomware/
+// Author:       Jarmi
+// Date:         2026-05-15
+// Tested on:    Defender XDR — DeviceProcessEvents + DeviceFileEvents
+// FP notes:     Authorised GoTo Resolve installs on admin workstations are fine; the discriminator is the device
+//               tier — DCs, file servers, hypervisor hosts, and application servers should never carry third-party
+//               RMM. Adjust the regex to match your naming convention for those tiers.
+DeviceProcessEvents
+| where Timestamp > ago(3d)
+| where ProcessCommandLine has_any ("GoToResolveProcessChecker", "GoTo Resolve Unattended")
+   and InitiatingProcessFileName =~ "msiexec.exe"
+| where DeviceName matches regex @"(?i)(dc|sql|file|hyperv|esx|app)\d*[\.\-]"
+| project Timestamp, DeviceName, Account = InitiatingProcessAccountName,
+          CommandLine = ProcessCommandLine, MD5 = InitiatingProcessMD5
+| join kind=inner (
+    DeviceFileEvents
+    | where Timestamp > ago(3d)
+    | where FolderPath has_any (@"\SYSVOL\", @"\NETLOGON\")
+    | where ActionType in ("FileCreated", "FileModified")
+    | where FileName endswith ".exe" or FileName endswith ".dll"
+         or FileName endswith ".ps1" or FileName endswith ".bat"
+    | project GpoTimestamp = Timestamp, DeviceName, FileName, FolderPath
+) on DeviceName
+| where (GpoTimestamp - Timestamp) between (-1h .. 24h)
+| project Timestamp, GpoTimestamp, DeviceName, Account, CommandLine, FileName, FolderPath

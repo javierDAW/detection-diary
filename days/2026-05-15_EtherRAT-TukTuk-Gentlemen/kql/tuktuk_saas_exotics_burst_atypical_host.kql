@@ -1,0 +1,29 @@
+// Title:        TukTuk SaaS exotics burst — ClickHouse + Supabase + Ably + Arweave + TryCloudflare from a host with no baseline
+// Id:           eb219536-207a-4e53-bbb8-4f2d13a6579e
+// MITRE:        T1102.002, T1568.002
+// Reference:    https://thedfirreport.com/2026/05/11/flash-alert-etherrat-and-tuktuk-c2-end-in-the-gentleman-ransomware/
+// Author:       Jarmi
+// Date:         2026-05-15
+// Tested on:    Defender XDR — DeviceNetworkEvents
+// FP notes:     Data engineering and developer-experience hosts will legitimately hit ClickHouse Cloud or Supabase.
+//               This query suppresses devices with a 30-day baseline for the destination; review the result and
+//               extend the suppression list with confirmed-legitimate device IDs.
+let baseline =
+    DeviceNetworkEvents
+    | where Timestamp between (ago(30d) .. ago(7d))
+    | where RemoteUrl has_any ("clickhouse.cloud", "supabase.co", "ably.io",
+                                "1rpc.io", "arweave.net", "g8way.io",
+                                "trycloudflare.com")
+    | summarize baseline_hits = count() by DeviceId, RemoteUrl;
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteUrl has_any ("clickhouse.cloud", "supabase.co", "ably.io",
+                            "1rpc.io", "arweave.net", "g8way.io",
+                            "trycloudflare.com")
+| join kind=leftouter baseline on DeviceId, RemoteUrl
+| where isempty(baseline_hits) or baseline_hits < 3
+| summarize hits        = count(),
+            sample_url  = any(RemoteUrl),
+            sample_proc = any(InitiatingProcessFileName)
+            by DeviceId, DeviceName, bin(Timestamp, 1h)
+| where hits >= 5

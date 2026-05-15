@@ -1,0 +1,30 @@
+title: LSASS memory dump via comsvcs.dll MiniDump ordinal
+id: 8d1750ae-5720-470a-84a3-27b12835e11b
+status: stable
+description: Detects rundll32.exe invoking comsvcs.dll MiniDumpW export via its ordinal pattern (`#+0000` or numeric ordinal 24) targeting LSASS. The DFIR Report TB40048 observed inconsistent casing on the parent (CmD.eXe) as a primitive anti-signature trick, plus a tasklist piped lookup of the lsass PID. The same pattern is used by Qilin, Akira, Black Basta, The Gentlemen, and many other e-crime affiliates.
+references:
+  - https://thedfirreport.com/2026/05/11/flash-alert-etherrat-and-tuktuk-c2-end-in-the-gentleman-ransomware/
+  - https://lolbas-project.github.io/lolbas/OtherMSBinaries/Comsvcs/
+author: Jarmi
+date: 2026/05/15
+tags:
+  - attack.credential-access
+  - attack.t1003.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith: '\rundll32.exe'
+    CommandLine|contains|all:
+      - 'comsvcs.dll'
+      - 'lsass'
+  selection_ordinal:
+    CommandLine|contains:
+      - '#+0000'
+      - 'MiniDump'
+      - 'full'
+  condition: selection and selection_ordinal
+falsepositives:
+  - Microsoft tooling rarely uses this exact pattern; very low false-positive rate when both selectors fire together
+level: critical

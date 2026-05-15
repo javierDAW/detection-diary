@@ -1,0 +1,49 @@
+title: Node.js headless launched from user AppData with cfg payload (EtherRAT pattern)
+id: d366ae1d-9416-44c3-9b2f-d3e0af73c2b5
+status: experimental
+description: Detects node.exe or conhost.exe with --headless launched from AppData or Temp paths and passing a .cfg or .ini argument. This is the canonical EtherRAT runtime anchor reported by The DFIR Report TB40048 (May 2026), Sysdig TRT (December 2025) and Atos TRC (March 2026). The implant downloads a portable Node.js runtime from nodejs.org and runs malicious JavaScript stored in an encrypted .cfg blob.
+references:
+  - https://thedfirreport.com/2026/05/11/flash-alert-etherrat-and-tuktuk-c2-end-in-the-gentleman-ransomware/
+  - https://www.sysdig.com/blog/etherrat-dprk-uses-novel-ethereum-implant-in-react2shell-attacks
+  - https://atos.net/en/lp/cybershield/etherrat-distribution-spoofing-administrative-tools-via-github-facades
+author: Jarmi
+date: 2026/05/15
+tags:
+  - attack.execution
+  - attack.t1059.007
+  - attack.persistence
+  - attack.t1547.001
+  - attack.defense-evasion
+  - attack.t1027
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_img:
+    Image|endswith:
+      - '\node.exe'
+      - '\conhost.exe'
+  selection_path_or_cli:
+    - Image|contains:
+        - '\AppData\Local\'
+        - '\AppData\Roaming\'
+        - '\Temp\'
+    - CommandLine|contains:
+        - '--headless'
+        - '\AppData\Local\'
+        - '\AppData\Roaming\'
+        - '\Temp\'
+  selection_cfg:
+    CommandLine|contains:
+      - '.cfg'
+      - '.ini'
+  filter_known_paths:
+    CommandLine|contains:
+      - '\Program Files\nodejs\'
+      - '\Program Files (x86)\nodejs\'
+  condition: selection_img and selection_path_or_cli and selection_cfg and not filter_known_paths
+falsepositives:
+  - Developers running custom Node.js tooling from portable installs in AppData
+  - Some Electron applications spawn node.exe from AppData with custom argument names that may overlap
+  - Verify parent process is not a known development IDE such as Visual Studio Code or JetBrains tools
+level: high
