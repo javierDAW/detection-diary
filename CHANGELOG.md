@@ -7,6 +7,28 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.15 — Day 19 — EtherRAT + TukTuk → The Gentlemen ransomware (DFIR Report TB40048)
+
+### Added
+- `days/2026-05-15_EtherRAT-TukTuk-Gentlemen/` — The DFIR Report's Flash Alert TB40048 (11-May-2026) documenting an April-2026 intrusion in which the **EtherRAT** implant (DPRK-linked lineage first surfaced by Sysdig in December 2025 via CVE-2025-55182 React2Shell on Linux, ported to Windows by an Atos-mapped campaign in March 2026 across 44 GitHub facades impersonating Sysinternals tools) is co-deployed with **TukTuk**, a brand-new framework that Evangelos G's parallel analysis identifies as **AI-generated** based on a symmetric multi-transport bus, inconsistent naming across modules, redundant generic exception handling, and a fully-wired but unused Arweave dead-drop resolver. The operator is e-crime — **The Gentlemen RaaS** affiliate — chaining EtherRAT (Run-key persistence under `AppResolver` with `conhost --headless node.exe <random>.cfg`, Ethereum smart contract C2 resolution through `1rpc.io` to rotating TryCloudflare tunnels, AES-256-CBC layered configs, `AsyncFunction` constructor as RCE primitive, `/api/reobf/` runtime self-overwrite), TukTuk (DLL side-loading under signed Greenshot / SyncTrayzor / DocFX / Cake with a fake `log4net.dll`, multi-transport SaaS C2 across ClickHouse Cloud, Supabase, Ably, Dropbox, and GitHub Issues, plus the Arweave Drive-Id `a6278417-39f4-407e-90bf-599f74726e66` dead drop), GoTo Resolve installed laterally on DCs and tier-0 servers as an RMM-as-backdoor, NetExec `nxc -M lsassy` plus `comsvcs.dll` ordinal `#+0000` for LSASS dumps and `--ntds` for AD extraction, Rclone to Wasabi cloud storage with aggressive multi-thread tuning for exfiltration, and a final domain-wide ransomware detonation via a malicious GPO that drops staged ransomware binaries into `\\<dc>\SYSVOL\<domain>\NETLOGON\` and fans out via scheduled tasks across the AD environment. Dwell time approximately three days. Genealogy: continues the Gentlemen track from Day 1 (`days/2026-04-28_TheGentlemen-SystemBC/`) with an evolved toolchain (SystemBC + Brute Ratel to EtherRAT + TukTuk + GoTo Resolve).
+- Sigma (3): `etherrat_node_headless_appdata.yml` — `node.exe` or `conhost.exe --headless` from AppData / Temp with a `.cfg` or `.ini` argument; `tuktuk_sideload_signed_apps_log4net.yml` — helper DLL (`log4net.dll`, `Newtonsoft.Json.dll`, `System.Net.Http.dll`) loaded by Greenshot / SyncTrayzor / DocFX / Cake from non-install paths; `lsass_dump_comsvcs_ordinal.yml` — LSASS minidump via `rundll32 comsvcs.dll #+0000` ordinal with the canonical `tasklist | find "lsass"` PID lookup (critical level).
+- KQL (3): `etherrat_staging_chain_nodejs_ethereum.kql` — MSI or cmd downloads `nodejs.org/dist` plus egress to Ethereum RPC providers (`1rpc.io`, `ethereum.publicnode.com`, `mainnet.infura.io`, `rpc.ankr.com`) within a thirty-minute window; `tuktuk_saas_exotics_burst_atypical_host.kql` — egress to ClickHouse Cloud, Supabase, Ably, Arweave, 1rpc.io, or TryCloudflare from a host without a thirty-day baseline; `gotoresolve_install_dc_plus_gpo_drop.kql` — GoTo Resolve install on a DC, file server, hypervisor, or app server tier joined to a SYSVOL or NETLOGON file write within twenty-four hours.
+- YARA (1 file, 2 rules): `TukTuk_log4net_sideload_2026` — heuristic combining MZ + .NET CLR magic + log4net impersonation + three or more multi-transport bus anchors (ClickHouse, Supabase, Ably, Dropbox, GitHub Issues) + at least one Arweave dead-drop anchor (`arweave.net`, `g8way.io`, or the literal `Drive-Id`), capped at five MB; `TukTuk_log4net_known_hashes_2026` — exact SHA256 anchor for the DFIR Report `log4net.dll` (`19021e53b9929fdf4b7d0e0707434d56bb73c1a9b7403c8837b44d1c417198dc`).
+- Suricata (1 file, 8 sids 8190001-8190008): DNS `1rpc.io`, DNS `arweave.net`, DNS `g8way.io`, TLS SNI `trycloudflare.com`, TLS SNI `clickhouse.cloud`, TLS SNI `supabase.co`, TLS SNI `wasabisys.com`, DNS `borjumaniya.store`. Complements the ET OPEN sids 2058788, 2058739, 2034552, 2058175, 2060250, 2050130, 2061992, 2061989, 2046657.
+- PEAK hunts (3): H1 — Headless Node from AppData reaching Ethereum RPC or TryCloudflare within five minutes; H2 — Signed userland binary side-loading from non-install paths; H3 — GoTo Resolve installed on a DC plus a SYSVOL or NETLOGON write within twenty-four hours (the lethal pre-ransomware fan-out chain).
+- `iocs.csv` — 47 entries covering all six payload hashes in SHA256, MD5, and SHA1 forms, the 11 TryCloudflare tunnel URLs, both Ethereum smart contract addresses, the Arweave Drive-Id, all SaaS and HTTP C2 domains observed in this campaign and in a related one, the React2Shell CVE-2025-55182 upstream anchor, the Run-key path, the Softperfect Network Scanner canonical path, and three operational notes covering SaaS allowlisting, TryCloudflare IP rotation, and the disk-vs-RAM forensics caveat for the `/api/reobf/` self-overwrite.
+- `kill_chain.svg` — GitHub-friendly adaptive light / dark palette diagram with viewBox 880x1280, eleven numbered stages on the victim host lane (initial access through impact), an attacker C2 panel on the right showing the Ethereum smart contracts, the eleven TryCloudflare tunnels, the TukTuk multi-transport bus, and the Arweave dead-drop block, plus a separate exfil destination panel for Wasabi, bidirectional yellow arrows for the EtherRAT and TukTuk C2 channels, and a bottom detection-anchors box mapping every Sigma, KQL, YARA, Suricata, and hunt deliverable.
+
+### Pedagogy
+- *Three layers of modern tradecraft converge in one operation*: blockchain-resolved C2 (Ethereum smart contracts plus Arweave dead drop), SaaS-abusing C2 (ClickHouse, Supabase, Ably, Dropbox, GitHub Issues), and AI-generated payloads. Defenders cannot ignore any layer in isolation.
+- *Operator vs. tooling attribution*: EtherRAT carries DPRK fingerprints but the operator here is e-crime. Attribution is best read at the operational layer; implants travel between actors as commodity tooling.
+- *RMM-as-backdoor is the dominant lateral pattern in 2026 e-crime*: GoTo Resolve here, ScreenConnect in Akira intrusions, AnyDesk in Black Basta, TeamViewer in Conti-era. Domain controllers and other tier-0 systems must never carry third-party RMM.
+- *GPO plus SYSVOL is the fastest ransomware fan-out path*. Detection on SYSVOL writes plus tier-0 RMM installs is the last reliable moment before domain-wide encryption. Audit GPO changes as if they were code commits.
+- *Always RAM-dump before reboot*: the runtime self-overwrite of EtherRAT plus TukTuk's in-memory transport configuration mean disk artefacts are stale snapshots. Disk forensics alone is insufficient for this implant class.
+- *AI-generated malware has stylistic fingerprints*: symmetric multi-transport buses, inconsistent naming across modules, redundant generic exception handling, fully-wired but unused capabilities. Build a detection-engineering checklist for these style anchors — they will appear in more frameworks across the rest of 2026.
+
+---
+
 ## 2026.05.14 — Day 18 — Mini Shai-Hulud TeamPCP Mega-Campaign (CVE-2026-45321)
 
 ### Added
@@ -204,80 +226,4 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 ## 2026.05.07 — Day 11 — EVM/DeFi npm typosquatting (`namikazesarada010206`)
 
 ### Added
-- `days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/` — Xygeni write-up (6-may-2026) of a six-package brand-adjacency squat campaign (`viem-core`, `viem-utils-core`, `hardhat-core-utils`, `evm-utils`, `foundry-utils`, `web3-utils-core`) targeting Ethereum / Solidity / Hardhat / Foundry / Brownie developers to steal wallet keystores, deployer keys, AWS / npm / SSH credentials and `.env*`. Activation is on `require()` (not `postinstall`) — `npm install --ignore-scripts` does *not* mitigate.
-- Sigma (2): credential-read burst from `node`/`ts-node` PID; `node` outbound to literal IPv4 (incl. known C2 `76.13.37.80`).
-- YARA (1): `EVMDeFi_NPM_Typosquat_Telemetry_2026` — known-hash rule plus heuristic anchors (env-var gate strings + AES-256-GCM creation + `NODE_TLS_REJECT_UNAUTHORIZED` + IPv4 literal + dev-secret paths).
-- KQL (2): Defender XDR — credential burst on dev host with Hardhat/Foundry/Brownie tooling; Sentinel — first-seen IPv4 outbound from `node` (30-day baseline).
-- SPL (1): correlation between `npm install` of any of the six IOC packages and a credential-read burst within 2 h on the same host.
-- Suricata (1): three sids — known C2 IP, TLS handshake to public IPv4 with empty SNI from dev VLAN, HTTP POST `/ingest` with binary-body shape from dev VLAN.
-- PEAK hunts (2): H1 — "Builder bait" credential burst from `node` on host with dev tooling; H2 — "IP-only egress from dev tooling" without SNI.
-- `iocs.csv` — `76.13.37.80`, `telemetry.js` SHA-256 `71426e93cb6143052d5aeeca920850f8a0343c95bc65aab9a15145848cc5bff1`, all six tarball shasums, npm publisher `namikazesarada010206` and GitHub repo `harunosakura030303-maker/evmchain-config`.
-
-### Pedagogy
-- *Activation on `require()` instead of `postinstall`* is the operational pivot of the year — your `--ignore-scripts` policy buys you nothing here. Hunt the **child of `node` reading dev secrets**, not the install hook.
-- *Brand-adjacency squat ≠ classic typosquat* — names are plausible suffixes (`-core`, `-utils`, `-utils-core`), not character flips. Watchlists need to model "supplemental package vs real library" patterns.
-- The Day 10 (QLNX) and Day 11 (this) cases are **two ends of the same supply-chain kill chain** — QLNX is the upstream RAT that exfiltrates `~/.npmrc` to enable account take-over; this is the downstream typosquat that feeds the operator's wallet drainage.
-- When `DEPLOYER_KEY` / `MNEMONIC` is exfiltrated, **first move funds on-chain** to fresh wallets — *then* clean the host. The atypical IR ordering reflects that the impact is off-host.
-
----
-
-## 2026.05.07 — Day 10 — QLNX (Quasar Linux RAT)
-
-### Added
-- `days/2026-05-07_QLNX-Quasar-Linux-RAT/` — Trend Micro write-up (5-may-2026) of a previously undocumented Linux RAT (v1.4.1) that targets developer/DevOps endpoints to harvest registry tokens (npm, PyPI, GitHub, AWS, GCP, Azure, kube, Docker, Vault, SSH) — *the upstream cause of npm/PyPI supply-chain compromises*.
-- Sigma (4): write to `/etc/ld.so.preload`; drop of `.so` under `/tmp` `/var/log/.ICE-unix`; gcc compiling `.so` at runtime; `QLNX_MANAGED` marker in newly created persistence files.
-- KQL (4): Defender XDR for Linux — `DeviceFileEvents` on `/etc/ld.so.preload`; burst of >=3 dev-credential file reads in 60 s by a single process; `ip-api.com` recon from server tier; `/tmp/.X<DJB2>-lock` mutex.
-- SPL (3): auditd watch on `/etc/ld.so.preload`; `QLNX_MANAGED` literal hunt over osquery file ingest; credential burst by single process.
-- YARA (1): `QLNX_Quasar_Linux_RAT_2026` — multi-anchor heuristic (markers + master pw `O$$f$QtYJK` + lock path + version `1.4.1` + dev-credential file paths + ELF magic).
-- Suricata (1): 4 sids — DNS / HTTP / TLS to `ip-api.com` from server tier + custom-TCP beacon shape with `QLNX` + `1.4.1` markers.
-- PEAK hunt: H1 — credential-burst + geo-recon correlation on developer/DevOps host.
-- `iocs.csv` — file paths, markers, master password, mutex, version, family.
-
-### Pedagogy
-- T1574.006 (Hijack Execution Flow: Dynamic Linker Hijacking) and T1556.003 (Modify Authentication Process: PAM) — primary persistence vectors.
-- Why "find the implant" hunts must anchor on **side-effects** (credential reads, ld.so.preload writes, gcc-on-host) rather than on signed binaries — QLNX runs in-memory and self-deletes.
-- Re-image instead of clean: 7 persistence anchors + LD_PRELOAD respawn make on-disk eradication unsafe.
-
----
-
-## 2026.05.06 — Day 9 — Code of Conduct AiTM (Storm-1747 / Tycoon2FA)
-
-### Added
-- `days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/` — Microsoft Threat Intelligence campaign (4-may-2026): 35,000 users / 13,000 orgs / 26 countries / 92% US. PDF lure + Cloudflare CAPTCHA + reverse-proxy AiTM + device-add < 10 min for PRT persistence + inbox rules for BEC.
-- Sigma (3): PDF lure on M365 EmailEvents; Entra ID device registration post sign-in; invisible-name InboxRule (BEC).
-- KQL (3): AiTM kill-chain correlation (signin + device + inbox rule, 24h); first-seen attacker domain via PDF; PEAK H1 click-to-device hunt.
-- SPL (1): InboxRule one-char/symbol-only name on Office 365 Management Activity.
-- YARA (1): `CodeOfConduct_AiTM_PDF_Lure_2026` heuristic (PDF magic + URI Action + theme keywords + cheap-TLD anchors).
-- Suricata (1): TLS SNI + HTTP Host signatures for known landing domains (`acceptable-use-policy-calendly[.]de`, `compliance-protectionoutlook[.]de`) plus heuristic for keyword-in-cheap-TLD.
-- PEAK hunt write-up: H1 (click → device-add 2h window).
-- `iocs.csv` — 2 attacker domains, 2 PDF filenames, lure keywords, Tycoon2FA TLD pattern, behavioral indicators, cluster identifiers.
-
-### Pedagogy
-- T1098.005 (Account Manipulation: Device Registration) — the persistence technique that survives password rotation.
-- Why TOTP/SMS/push MFA do NOT mitigate AiTM, and why FIDO2/passkeys do.
-- IR runbook emphasising `Remove-MgDevice` as the critical eradication step (not just password reset).
-
----
-
-## Unreleased — drop CI workflows (2026-05-04, evening)
-
-### Removed
-- `.github/workflows/sigma-lint.yml`
-- `.github/workflows/validate.yml`
-
-Rationale: validation now runs locally before each commit via `tools/validate_all.py`,
-`tools/lint_all.sh` and `tools/lint_sigma.sh`. The CI workflows added noise to the
-repo (red ❌ badges on the commit history) without giving us anything we don't
-already have on the laptop. If you want them back, both files are recoverable
-from `git log --diff-filter=D -- .github/workflows/`.
-
-
-
-## Unreleased — repo overhaul (2026.05.04)
-
-### Added
-- `tools/validate_all.py` — offline multi-format validator (Sigma, YARA, Suricata, KQL, SPL, CSV, YAML, Markdown links, Bash). PyYAML-only dependency.
-- `tools/lint_all.sh` — wrapper that runs `validate_all.py` plus optional external tools: `sigma-cli`, `yara`, `suricata`, `actionlint`, `shellcheck`, `markdownlint`.
-- `tools/sigma_check.py` — Sigma-only offline validator (also re-used by the offline path of `lint_sigma.sh`).
-- `tools/generate_index.py` — regenerates `INDEX.md` and the auto-views from each day's YAML frontmatter. Tolerates filesystems that disallow unlink (Cowork / WSL bind-mounts) by falling back to merge mode.
-- `.github/workflows/validate.yml` — full multi
+- `days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/` — Xygeni write-up (6-may-2026) of a six-package brand-adjacency squat campaign (`viem-core`, `viem-utils-core`, `hardhat-core-utils`,

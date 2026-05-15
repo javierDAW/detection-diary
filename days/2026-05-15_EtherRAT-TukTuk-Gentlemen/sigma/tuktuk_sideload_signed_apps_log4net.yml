@@ -1,0 +1,38 @@
+title: Suspicious DLL side-loading under signed userland binaries (TukTuk pattern)
+id: c4f79412-a30d-428c-93b9-131c6d98cedd
+status: experimental
+description: Detects helper DLLs such as log4net.dll, Newtonsoft.Json.dll, or System.Net.Http.dll loaded by Greenshot, SyncTrayzor, DocFX, or Cake from non-install paths. This is the TukTuk side-loading anchor reported by The DFIR Report TB40048 (May 2026). Expel previously reported the same Greenshot abuse pattern. TukTuk is an AI-generated framework that uses a multi-transport bus over SaaS services such as ClickHouse, Supabase, Ably, Dropbox, and GitHub Issues, plus an Arweave dead-drop resolver.
+references:
+  - https://thedfirreport.com/2026/05/11/flash-alert-etherrat-and-tuktuk-c2-end-in-the-gentleman-ransomware/
+  - https://expel.com/blog/along-for-the-ride-when-legitimate-software-becomes-a-signed-malware-loader/
+author: Jarmi
+date: 2026/05/15
+tags:
+  - attack.defense-evasion
+  - attack.persistence
+  - attack.t1574.002
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection_host:
+    Image|endswith:
+      - '\Greenshot.exe'
+      - '\SyncTrayzor.exe'
+      - '\docfx.exe'
+      - '\Cake.exe'
+  selection_dll:
+    ImageLoaded|endswith:
+      - '\log4net.dll'
+      - '\Newtonsoft.Json.dll'
+      - '\System.Net.Http.dll'
+  filter_official_paths:
+    ImageLoaded|startswith:
+      - 'C:\Program Files\'
+      - 'C:\Program Files (x86)\'
+      - 'C:\Windows\Microsoft.NET\'
+  condition: selection_host and selection_dll and not filter_official_paths
+falsepositives:
+  - Portable installs of these tools under the user profile that ship their own dependency DLLs — verify the signing chain on the loaded DLL with signtool
+  - Internal developer toolchains that ship Greenshot or Cake from a build artifact share
+level: high

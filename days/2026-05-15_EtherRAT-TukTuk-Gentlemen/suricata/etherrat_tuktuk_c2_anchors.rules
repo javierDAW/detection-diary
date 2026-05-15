@@ -1,0 +1,28 @@
+# Author:    Jarmi
+# Date:      2026-05-15
+# Reference: https://thedfirreport.com/2026/05/11/flash-alert-etherrat-and-tuktuk-c2-end-in-the-gentleman-ransomware/
+#
+# EtherRAT and TukTuk C2 anchors plus Wasabi exfil destination.
+#
+# These rules complement the Emerging Threats OPEN ruleset. If subscribed, prefer the
+# vendor sids 2058788 / 2058739 (1rpc.io), 2034552 / 2058175 / 2060250 (TryCloudflare),
+# 2050130 (Supabase), 2061992 / 2061989 (GoTo Resolve), 2046657 (Wasabi). The rules
+# below are kept independent so the repo is self-contained for operators without ET OPEN.
+#
+# Suricata 7.x sticky-buffer syntax (dns.query, tls.sni) is used throughout.
+
+alert dns $HOME_NET any -> any any (msg:"PROFCIBER EtherRAT smart-chain C2 resolver DNS 1rpc.io"; dns.query; content:"1rpc.io"; nocase; sid:8190001; rev:1; classtype:trojan-activity;)
+
+alert dns $HOME_NET any -> any any (msg:"PROFCIBER TukTuk Arweave dead-drop resolver DNS arweave.net"; dns.query; content:"arweave.net"; nocase; sid:8190002; rev:1; classtype:trojan-activity;)
+
+alert dns $HOME_NET any -> any any (msg:"PROFCIBER TukTuk Arweave alt gateway DNS g8way.io"; dns.query; content:"g8way.io"; nocase; sid:8190003; rev:1; classtype:trojan-activity;)
+
+alert tls $HOME_NET any -> any 443 (msg:"PROFCIBER EtherRAT or TukTuk TryCloudflare tunnel TLS SNI"; tls.sni; content:"trycloudflare.com"; nocase; endswith; sid:8190004; rev:1; classtype:trojan-activity;)
+
+alert tls $HOME_NET any -> any 443 (msg:"PROFCIBER TukTuk ClickHouse Cloud SaaS C2 TLS SNI"; tls.sni; content:"clickhouse.cloud"; nocase; endswith; sid:8190005; rev:1; classtype:policy-violation;)
+
+alert tls $HOME_NET any -> any 443 (msg:"PROFCIBER TukTuk Supabase SaaS C2 TLS SNI"; tls.sni; content:"supabase.co"; nocase; endswith; sid:8190006; rev:1; classtype:policy-violation;)
+
+alert tls $HOME_NET any -> any 443 (msg:"PROFCIBER Gentlemen exfil to Wasabi cloud storage TLS SNI"; tls.sni; content:"wasabisys.com"; nocase; endswith; sid:8190007; rev:1; classtype:policy-violation;)
+
+alert dns $HOME_NET any -> any any (msg:"PROFCIBER TukTuk fallback HTTP C2 domain borjumaniya.store"; dns.query; content:"borjumaniya.store"; nocase; sid:8190008; rev:1; classtype:trojan-activity;)
