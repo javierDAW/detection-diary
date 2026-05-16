@@ -1,0 +1,39 @@
+title: Catalyst SD-WAN VDAEMON control-connection peering as vHub from unexpected IP
+id: 9c94620f-af15-4053-ac90-90ddec9443d1
+status: experimental
+description: |
+  Detects a Cisco Catalyst SD-WAN VDAEMON control-connection-state-change event where the
+  peer-type is `vhub` and the peer transitions to state `up`. CVE-2026-20182 abuses the lack
+  of a verification branch for device_type == 2 (vHub) in `vbond_proc_challenge_ack()`: the
+  function falls through to `peer->authenticated = 1` without any certificate or serial check.
+  Most deployments do NOT host vHub peers; if a tenant has no vHub topology, any vhub peering
+  event is by itself an indicator of exploitation. If the deployment legitimately has vHubs,
+  the peering event must be correlated with the allowed public-ip range for vHub controllers.
+references:
+    - https://www.rapid7.com/blog/post/ve-cve-2026-20182-critical-authentication-bypass-cisco-catalyst-sd-wan-controller-fixed/
+    - https://blog.talosintelligence.com/uat-8616-sd-wan/
+    - https://blog.talosintelligence.com/sd-wan-ongoing-exploitation/
+author: Jarmi
+date: 2026/05/16
+tags:
+    - attack.initial-access
+    - attack.t1190
+    - attack.defense-evasion
+    - attack.t1078.003
+logsource:
+    product: linux
+    service: syslog
+detection:
+    sel:
+        Message|contains|all:
+            - 'VDAEMON_0'
+            - 'control-connection-state-change'
+            - 'peer-type:vhub'
+            - 'new-state:up'
+    filter_known_vhub_ip:
+        Message|contains:
+            - '<add_known_vhub_public_ip>'
+    condition: sel and not filter_known_vhub_ip
+falsepositives:
+    - Deployments that legitimately use vHub peers. Add their public-ip ranges to the allowlist.
+level: high

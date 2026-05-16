@@ -15,6 +15,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 
 | Date | Slug | Headline | Clusters | Sectors |
 |---|---|---|---|---|
+| 2026-05-16 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) | Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters | UAT-8616 · Talos Cluster 1 (Tas9er Godzilla) · Talos Cluster 2 (Behinder Base64) · Talos Cluster 3 (XenShell + Behinder) · Talos Cluster 4 (Godzilla variant) · Talos Cluster 5 (AdaptixC2 shadowcore) · Talos Cluster 6 (Sliver mTLS) · Talos Cluster 7 (XMRig + Cobalt Strike) · Talos Cluster 8 (NimPlant-variant agent1) · Talos Cluster 9 (gsocket + XMRig) · Talos Cluster 10 (vManage credential extractor) | critical-infrastructure, telecommunications, enterprise |
 | 2026-05-15 | [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) | EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion | The Gentlemen RaaS · EtherRAT (DPRK-linked, UNC5342 toolchain overlap) · TukTuk (AI-generated framework) | enterprise-it, manufacturing, professional-services |
 | 2026-05-14 | [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign`](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) | Mini Shai-Hulud Mega-Campaign: TeamPCP Poisons 170+ npm/PyPI Packages via GitHub Actions OIDC Hijack and SLSA Provenance Forgery | TeamPCP | technology, finance, healthcare, ai-ml |
 | 2026-05-13 | [`2026-05-13_SemanticKernel-Prompt2RCE`](days/2026-05-13_SemanticKernel-Prompt2RCE/) | Semantic Kernel Prompt-to-RCE — CVE-2026-26030 and CVE-2026-25592 | Microsoft Defender Security Research (vulnerability disclosure, no threat actor) | cross-sector |
@@ -156,6 +157,36 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 ### TEMP.Veles
 - 2026-05-04 — [Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026)](days/2026-05-04_C0063-Poland-Wiper/) · *Russia-nexus (medium confidence) — GRU Unit 74455 ecosystem*
 
+### Talos Cluster 1 (Tas9er Godzilla)
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
+
+### Talos Cluster 10 (vManage credential extractor)
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
+
+### Talos Cluster 2 (Behinder Base64)
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
+
+### Talos Cluster 3 (XenShell + Behinder)
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
+
+### Talos Cluster 4 (Godzilla variant)
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
+
+### Talos Cluster 5 (AdaptixC2 shadowcore)
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
+
+### Talos Cluster 6 (Sliver mTLS)
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
+
+### Talos Cluster 7 (XMRig + Cobalt Strike)
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
+
+### Talos Cluster 8 (NimPlant-variant agent1)
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
+
+### Talos Cluster 9 (gsocket + XMRig)
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
+
 ### TeamPCP
 - 2026-05-14 — [Mini Shai-Hulud Mega-Campaign: TeamPCP Poisons 170+ npm/PyPI Packages via GitHub Actions OIDC Hijack and SLSA Provenance Forgery](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) · *Unknown (financially motivated, no state nexus attributed)*
 - 2026-05-01 — [VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026)](days/2026-05-01_VECT-2.0-RaaS/) · *Russian-speaking e-crime alliance*
@@ -181,6 +212,9 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 
 ### UAT-8302
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/) · *China-nexus (government espionage)*
+
+### UAT-8616
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) · *Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A*
 
 ### UNC5174
 - 2026-05-11 — [UAT-8302 — China-nexus government espionage with shared APT arsenal](days/2026-05-11_UAT-8302-China-Government-Espionage/) · *China-nexus (government espionage)*
@@ -208,6 +242,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 |---|---|
 | T0831 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
 | T0832 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| T1003 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1003.001 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1003.003 | [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1005 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
@@ -217,7 +252,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1021.002 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1021.004 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
 | T1021.006 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
-| T1027 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign`](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
+| T1027 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign`](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/), [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1027.002 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1027.004 | [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
 | T1027.007 | [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/) |
@@ -242,28 +277,32 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1057 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1059.001 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/), [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-13_SemanticKernel-Prompt2RCE`](days/2026-05-13_SemanticKernel-Prompt2RCE/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1059.003 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
-| T1059.004 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
+| T1059.004 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1059.006 | [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/), [`2026-05-13_SemanticKernel-Prompt2RCE`](days/2026-05-13_SemanticKernel-Prompt2RCE/), [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign`](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |
 | T1059.007 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign`](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1068 | [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/) |
 | T1069.002 | [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
 | T1070.001 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
+| T1070.002 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
+| T1070.003 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1070.004 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
-| T1071.001 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
+| T1071.001 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1078 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/), [`2026-05-13_SemanticKernel-Prompt2RCE`](days/2026-05-13_SemanticKernel-Prompt2RCE/) |
 | T1078.001 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
 | T1078.002 | [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
+| T1078.003 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1078.004 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/), [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/), [`2026-05-13_SemanticKernel-Prompt2RCE`](days/2026-05-13_SemanticKernel-Prompt2RCE/) |
 | T1082 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
 | T1083 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1087 | [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/) |
 | T1087.002 | [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1090.001 | [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
-| T1090.002 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
+| T1090.002 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1090.003 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |
 | T1090.004 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1095 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
 | T1098 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| T1098.004 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1098.005 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
 | T1102 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign`](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |
 | T1102.002 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
@@ -275,11 +314,11 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1114.003 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
 | T1115 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1129 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
-| T1133 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
+| T1133 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1134.001 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) |
 | T1135 | [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/) |
 | T1140 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
-| T1190 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/), [`2026-05-13_SemanticKernel-Prompt2RCE`](days/2026-05-13_SemanticKernel-Prompt2RCE/) |
+| T1190 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/), [`2026-05-13_SemanticKernel-Prompt2RCE`](days/2026-05-13_SemanticKernel-Prompt2RCE/), [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1195.001 | [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
 | T1195.002 | [`2026-04-29_ShaiHulud-Bitwarden`](days/2026-04-29_ShaiHulud-Bitwarden/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign`](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |
 | T1204.001 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
@@ -288,25 +327,26 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1213 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/), [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/), [`2026-05-13_SemanticKernel-Prompt2RCE`](days/2026-05-13_SemanticKernel-Prompt2RCE/) |
 | T1218 | [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/) |
 | T1218.007 | [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
-| T1219 | [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
+| T1219 | [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/), [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1411 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 | T1417 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 | T1430 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 | T1437.001 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
-| T1480 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/), [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign`](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |
+| T1480 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/), [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign`](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/), [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1482 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1484.001 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1485 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign`](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |
 | T1486 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1490 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-04_C0063-Poland-Wiper`](days/2026-05-04_C0063-Poland-Wiper/), [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1495 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| T1496 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1497 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/) |
 | T1497.001 | [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/) |
 | T1497.003 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1498 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
 | T1498.001 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
 | T1498.002 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
-| T1505.003 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| T1505.003 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1513 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 | T1517 | [`2026-05-09_Albiriox-Android-MaaS-AcVNC`](days/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |
 | T1518 | [`2026-05-01_VECT-2.0-RaaS`](days/2026-05-01_VECT-2.0-RaaS/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
@@ -342,6 +382,8 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1564.001 | [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
 | T1564.008 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
 | T1565.001 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| T1565.002 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
+| T1565.003 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1566 | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1566.001 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
 | T1566.002 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
@@ -352,17 +394,19 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 | T1568.002 | [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1569.002 | [`2026-05-10_Mexico-Water-AI-Assisted-OT`](days/2026-05-10_Mexico-Water-AI-Assisted-OT/) |
 | T1570 | [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
-| T1572 | [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
+| T1572 | [`2026-05-05_Akira-SonicWall-CVE-2024-40766`](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/), [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/), [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1573 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |
 | T1573.001 | [`2026-04-28_TheGentlemen-SystemBC`](days/2026-04-28_TheGentlemen-SystemBC/), [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
 | T1573.002 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/), [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink`](days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | T1574.002 | [`2026-05-11_UAT-8302-China-Government-Espionage`](days/2026-05-11_UAT-8302-China-Government-Espionage/), [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/), [`2026-05-15_EtherRAT-TukTuk-Gentlemen`](days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | T1574.006 | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/), [`2026-05-07_QLNX-Quasar-Linux-RAT`](days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
+| T1574.011 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1583.001 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/), [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
 | T1583.006 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
 | T1587.001 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/), [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/) |
 | T1588.005 | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/), [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/), [`2026-05-12_Qilin-EDR-Killer-msimg32`](days/2026-05-12_Qilin-EDR-Killer-msimg32/) |
 | T1595 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A`](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
+| T1595.002 | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616`](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | T1606.001 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
 | T1608.001 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada`](days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
 | T1608.005 | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747`](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |
@@ -405,6 +449,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-05-02 — [Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026)](days/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/)
 
 ### linux
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/)
 - 2026-05-14 — [Mini Shai-Hulud Mega-Campaign: TeamPCP Poisons 170+ npm/PyPI Packages via GitHub Actions OIDC Hijack and SLSA Provenance Forgery](days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/)
 - 2026-05-13 — [Semantic Kernel Prompt-to-RCE — CVE-2026-26030 and CVE-2026-25592](days/2026-05-13_SemanticKernel-Prompt2RCE/)
 - 2026-05-10 — [AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security)](days/2026-05-10_Mexico-Water-AI-Assisted-OT/)
@@ -424,6 +469,7 @@ Auto-generated. Edit the per-day frontmatter to change anything here.
 - 2026-05-06 — [Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026)](days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/)
 
 ### network-edge
+- 2026-05-16 — [Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters](days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/)
 - 2026-05-05 — [Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)](days/2026-05-05_Akira-SonicWall-CVE-2024-40766/)
 - 2026-05-03 — [BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)](days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/)
 - 2026-04-30 — [FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A)](days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/)

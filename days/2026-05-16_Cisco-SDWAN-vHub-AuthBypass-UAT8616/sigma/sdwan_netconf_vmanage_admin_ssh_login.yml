@@ -1,0 +1,42 @@
+title: Catalyst SD-WAN NETCONF SSH login as vmanage-admin after suspicious peering
+id: 8ac966ec-2d3b-4c74-a7c5-942d75364c63
+status: experimental
+description: |
+  Detects an interactive SSH public-key login to the NETCONF service (TCP/830) of a Cisco
+  Catalyst SD-WAN Controller (formerly vSmart) or Manager (formerly vManage) as the internal
+  service account `vmanage-admin`. In CVE-2026-20182 (Rapid7 / Talos, 14-May-2026), a remote
+  unauthenticated attacker bypasses peer authentication on the vdaemon DTLS service (UDP/12346)
+  by claiming to be a vHub device, then writes an attacker-controlled SSH public key to
+  `/home/vmanage-admin/.ssh/authorized_keys` (append mode) via MSG_VMANAGE_TO_PEER (msg_type=14),
+  and finally logs in over NETCONF as that service account. Tenants should add the orchestrator
+  IP allowlist to the filter to remove legitimate vManage-to-vSmart traffic.
+references:
+    - https://www.rapid7.com/blog/post/ve-cve-2026-20182-critical-authentication-bypass-cisco-catalyst-sd-wan-controller-fixed/
+    - https://blog.talosintelligence.com/sd-wan-ongoing-exploitation/
+    - https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-rpa2-v69WY2SW
+author: Jarmi
+date: 2026/05/16
+tags:
+    - attack.initial-access
+    - attack.t1190
+    - attack.persistence
+    - attack.t1098.004
+    - attack.t1133
+    - attack.lateral-movement
+    - attack.t1021.004
+logsource:
+    product: linux
+    service: auth
+detection:
+    sel_login:
+        Message|contains|all:
+            - 'Accepted publickey for vmanage-admin'
+            - 'port 830'
+    filter_known_orchestrator:
+        Message|contains:
+            - '<add_known_vmanage_orchestrator_ip>'
+    condition: sel_login and not filter_known_orchestrator
+falsepositives:
+    - Legitimate vManage orchestrator initiating NETCONF sessions against vSmart from a known operational IP range. Add those ranges to the orchestrator allowlist.
+    - Authorized administrator tooling that authenticates to NETCONF as vmanage-admin from a jumphost (rare).
+level: critical

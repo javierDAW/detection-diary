@@ -7,6 +7,27 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.16 — Day 20 — Cisco Catalyst SD-WAN vHub auth bypass (CVE-2026-20182) — UAT-8616 + ten post-compromise clusters
+
+### Added
+- `days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/` — Rapid7 Labs and Cisco Talos joint disclosure (14-May-2026) of CVE-2026-20182, a CVSS 10.0 authentication bypass in `vdaemon` over DTLS UDP/12346 affecting Catalyst SD-WAN Controller (formerly vSmart) and Manager (formerly vManage). `vbond_proc_challenge_ack()` has no verification branch for `device_type == 2` (vHub) and falls through to `peer->authenticated = 1` without any certificate check; the actor then uses `MSG_VMANAGE_TO_PEER` (msg_type=14) to append an attacker SSH public key to `/home/vmanage-admin/.ssh/authorized_keys` and logs in via NETCONF on TCP/830. Cisco PSIRT confirmed limited in-the-wild exploitation by UAT-8616 (medium-high confidence China-nexus via ORB-network infrastructure overlap, three-year operational continuity from CVE-2026-20127 since 2023). In parallel Talos documented ten distinct activity clusters opportunistically exploiting the unpatched February-2026 chain (CVE-2026-20133 / 20128 / 20122) since March 2026 with ZeroZenX Labs' public PoC, deploying JSP webshells (Godzilla, Behinder, XenShell), AdaptixC2 with custom `shadowcore` banner, Sliver mTLS, NimPlant-variant `agent1` (AI-modified clone with custom `/api/v1/*` REST), gsocket GSRN tunneling, XMRig miners, and a vManage credential extractor. Sixth SD-WAN zero-day exploited in 2026.
+- Sigma (3): `sdwan_vdaemon_vhub_peering_anomalous.yml` — VDAEMON `peer-type:vhub` + `new-state:up` from non-allowlisted public-ip; `sdwan_netconf_vmanage_admin_ssh_login.yml` — NETCONF TCP/830 SSH public-key login as `vmanage-admin` from non-orchestrator source; `sdwan_authorized_keys_modification_vmanage_admin.yml` — file_event writes to `/home/vmanage-admin/.ssh/authorized_keys` (critical level).
+- KQL (3): `sdwan_vhub_peering_then_netconf_login.kql` — join of vHub peering and NETCONF login per appliance within a 24-hour window; `sdwan_post_compromise_webshell_jsp_drop.kql` — `DeviceFileEvents` detection of the six known cluster webshell filenames; `sdwan_post_compromise_c2_egress_known_clusters.kql` — `DeviceNetworkEvents` egress to the curated cluster IP set (clusters 1-10).
+- YARA (1 file, 2 rules): `SDWAN_AdaptixC2_Implant_Shadowcore_2026` (ELF + custom `shadowcore` banner + Cluster 5 C2 anchors + filesize cap); `SDWAN_NimImplant_AgentOne_2026` (ELF + Nim anchors + custom `/api/v1/*` REST paths + Cluster 8 C2 anchors).
+- Suricata (1 file, 7 sids 8200001-8200007): AdaptixC2 shadowcore IP/port; Sliver mTLS C2 IP/port; XMRig downloader and Cobalt Strike host; NimPlant-variant C2 IP/port; NimPlant-variant custom REST URI; Replit dropper SNI; webshell operator IPs for Clusters 1-4.
+- PEAK hunts (3): H1 — anomalous vHub peering on Catalyst SD-WAN Controllers; H2 — authorized_keys drift on `vmanage-admin` across the SD-WAN fleet; H3 — JSP webshell drop plus egress to Talos-curated cluster C2.
+- `iocs.csv` (47 entries) — CVE anchors, file paths, syslog string anchors, the ten clusters' operator IPs and SHA256s for AdaptixC2 / Sliver / NimPlant-variant / KScan / gsocket / XMRig / credential extractor, webshell filenames, Cisco port inventory and Talos Snort SID references.
+- `kill_chain.svg` — adaptive GitHub light/dark palette, viewBox 880x1080, eight numbered stages on the victim Catalyst SD-WAN Controller lane (reconnaissance, vHub fallthrough exploit, SSH key injection, NETCONF SSH login, root downgrade-chain, log truncation, post-compromise tooling, control-plane impact), bidirectional yellow C2 arrows to the AdaptixC2 / Sliver / NimPlant-variant cluster panel, separate webshell-operator and mining/tunneling panels, and a detection-anchors footer mapping each Sigma / KQL / YARA / Suricata deliverable.
+
+### Pedagogy
+- A missing `else` default is an authentication primitive. Every device-type-specific branch in `vbond_proc_challenge_ack()` is sound; the bug is the absence of a default reject path. Auth-state machines must end in `goto LABEL_REJECT` unless every branch has explicitly returned success.
+- Append-mode file writes are stealth persistence. `fopen("authorized_keys","a+")` keeps legitimate keys in place — detection must be drift-based on fleet-wide SHA256 baselines, not content-based.
+- Two exploitation populations on one product: targeted UAT-8616 versus opportunistic Clusters 1-10. Same control-plane appliance, different tradecraft, different IR posture (re-image vs. fleet-wide credential rotation).
+- ORB-network infrastructure overlap is high-signal CTI for China-nexus attribution per Mandiant; Talos's note on UAT-8616 makes it the most concrete attribution anchor in this disclosure.
+- Edge-device control planes are 2026's preferred persistent foothold for state-nexus actors — Days 3 and 20 of this repo are bookends of that pattern.
+
+---
+
 ## 2026.05.15 — Day 19 — EtherRAT + TukTuk → The Gentlemen ransomware (DFIR Report TB40048)
 
 ### Added
@@ -188,42 +209,4 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 - MTD CIM-normalised correlation (Lookout / Zimperium / Workspace ONE Intelligence) across install + accessibility + admin grant + SMS handler change in a 24h window per package per device.
 - Suricata (1): three sids — plain-TCP heartbeat shape (HWID + battery + AcVNC body anchors) from corporate mobile VLAN, in-stream `blackscreen:` operator command, and a heuristic empty-SNI TLS rule for AcVNC stream egress.
 - PEAK hunts (2): H1 — sideload + AccessibilityService grant within 24h on a banking-app device; H2 — Notification Listener + `READ_SMS` coexistence on a non-stock package.
-- `iocs.csv` — capability and string anchors (AcVNC marker, AppInfos class, blackscreen commands, Golden Crypt crypter name, JSONPacker dropper string, target packages including BBVA, Santander, Binance, Coinbase, MetaMask, Bitget, Trust Wallet, Phantom). SHA256 hashes and live C2 IPs sit behind the Cleafy paywall feed and are noted but not duplicated here.
-- `kill_chain.svg` — single-page accessible diagram with adaptive light/dark palette, two lanes (victim host vs attacker C2), nine numbered stages and a detection-anchors box that maps directly to the rules in `sigma/`, `kql/`, `yara/` and `suricata/`.
-
-### Pedagogy
-- *`FLAG_SECURE` is not a panacea on Android.* It protects the framebuffer and `MediaProjection`, not the AccessibilityNodeInfo tree. Banking and wallet apps that rely on it must combine it with `setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO)` on sensitive views and with `Activity.setRecentsScreenshotEnabled(false)`.
-- *Accessibility is the universal escalation primitive on Android.* Anatsa, BingoMod, Brokewell and Albiriox all converge on the same single user-facing toggle. Any policy that does not constrain Accessibility-service grants on managed devices is incomplete.
-- *SMS-OTP, push-2FA without number matching, and TOTP that is visible in the foreground are all reachable from an Albiriox-owned device.* The only durable second factor on Android is FIDO2 / passkey bound to the secure element.
-- *Detection is on the side-effects, not the binary.* Sideload + Accessibility bind + Notification Listener + Default SMS handler change on the same device within 24h is a high-signal precursor that survives Golden Crypt and DEX string encryption.
-- *Crypto custody requires action before host remediation.* Once seed phrases may have been exfiltrated, on-chain funds must be moved to a clean wallet before the device is wiped.
-
-### Structural milestone
-- First entry under the **Day 13 README standard** (15 sections, fixed order, exact heading names) and the new mandatory `kill_chain.svg` next to the README. Both gates pass: language gate (no Spanish prose) and structural gate (all 15 headings present, SVG present and referenced from the README).
-
----
-
-## 2026.05.08 — Day 12 — CloudZ RAT + Pheno plugin (Microsoft Phone Link OTP theft)
-
-### Added
-- `days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/` — Cisco Talos write-up (5-may-2026) of a campaign active since January 2026 that pairs a ConfuserEx-packed .NET RAT (`CloudZ`, compiled 2026-01-13) with a previously undocumented plugin (`Pheno`) that abuses the Microsoft `Microsoft.YourPhone_8wekyb3d8bbwe` UWP package on Windows 11. Pheno reads the local `PhoneExperiences-*.db` SQLite cache to harvest mirrored SMS bodies and OTP-bearing notifications without any compromise of the paired phone — a host-side bypass of SMS-based 2FA.
-- Sigma (2): non-YourPhone process reading `PhoneExperiences-*.db`; AppData-resident parent creating a scheduled task (loader persistence chain).
-- KQL (2): Defender XDR — Phone Link DB read joined with `*.hellohiall.workers.dev` or backend-IP egress within 30 minutes; Pastebin raw fetch combined with Workers or backend-IP egress on the same host.
-- SPL (1): same-host correlation across Pastebin, Workers C2 and backend IP `185.196.10.136` over Sysmon EID 3 / EID 22.
-- YARA (1): `CloudZ_Pheno_Heuristic_2026` — PE + ConfuserEx markers + Phone Link package strings + Workers FQDN + dynamic-IL emit primitives + embedded `Microsoft.Data.Sqlite`.
-- Suricata (1): four sids — TLS SNI for `hellohiall.workers.dev`, DNS query for the same, IP egress to `185.196.10.136`, and HTTP GET to the seven Pastebin raw paths used as dead-drop config.
-- PEAK hunt (1): H1 — Phone Link DB read followed by Workers / backend egress within 30 minutes on the same host.
-- `iocs.csv` — five SHA256 hashes (Rust dropper, two .NET loader variants, CloudZ, Pheno), three Cloudflare Workers FQDNs, backend IP, seven Pastebin URLs and the `HELLOHIALL` operator handle.
-
-### Pedagogy
-- *SMS-based 2FA is no longer "what's on your phone".* Windows 11 Phone Link mirrors SMS into a SQLite file in user space — any user-context implant can read it. SIM swap is no longer the only route to OTP capture.
-- *Detection is on the file-event side, not the binary side.* CloudZ uses dynamic IL emit at runtime, so on-disk method signatures are weak. The cheap, durable detection is "who reads the SQLite that is not the YourPhone package" and "who beacons to `*.hellohiall.workers.dev`".
-- *Cloudflare Workers + Pastebin* is a low-cost-infra C2 fabric: defenders rarely block `*.workers.dev` outright, Pastebin is often allow-listed, and rotating hostnames does not require rebuilding the binary.
-- *Recovery is not a password reset.* SMS-mirrored content captured during dwell remains valid for service-side use. Revoke device tokens, rotate every code that may have been mirrored, and migrate to FIDO2 / passkey before re-enabling identity.
-
----
-
-## 2026.05.07 — Day 11 — EVM/DeFi npm typosquatting (`namikazesarada010206`)
-
-### Added
-- `days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/` — Xygeni write-up (6-may-2026) of a six-package brand-adjacency squat campaign (`viem-core`, `viem-utils-core`, `hardhat-core-utils`,
+- `iocs.csv` — capability and string anchors (AcVNC marker, AppInfos class, blackscreen commands, Golden Crypt crypter name, JSONPacker dropper string, target packages including BBVA, Santander, Binance, Coinbase, MetaMask, Bitget, Trust Wallet, Phantom). SHA256 hashes and live C2 IPs sit behind the Cleafy paywall feed and are no

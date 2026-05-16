@@ -1,0 +1,26 @@
+# Suricata rules — Cisco Catalyst SD-WAN exploitation, UAT-8616 targeted activity and
+# Talos clusters 1-10 post-compromise infrastructure.
+# Reference: https://blog.talosintelligence.com/sd-wan-ongoing-exploitation/
+# Reference: https://github.com/Cisco-Talos/IOCs/tree/main/2026/05
+# Author: Jarmi
+# Date: 2026-05-16
+# Variables expected in your suricata.yaml:
+#   HOME_NET    - protected networks (controllers + management VLANs)
+#   EXTERNAL_NET - everything outside HOME_NET
+#
+# These rules complement Talos Snort SIDs 66482-66483 (CVE-2026-20182 protocol-level),
+# 66200-66202 (clusters), and the ET OPEN sids already deployed in most environments.
+
+alert tcp $HOME_NET any -> [194.163.175.135] 4445 (msg:"SDWAN-POST [Jarmi] AdaptixC2 (Cluster 5) shadowcore C2 IP/port"; flow:to_server,established; sid:8200001; rev:1; metadata:author Jarmi, ref talos-sdwan-ongoing, confidence high;)
+
+alert tcp $HOME_NET any -> [23.27.143.170] 443 (msg:"SDWAN-POST [Jarmi] Sliver mTLS C2 (Cluster 6) on TCP/443"; flow:to_server,established; sid:8200002; rev:1; metadata:author Jarmi, ref talos-sdwan-ongoing, confidence high;)
+
+alert tcp $HOME_NET any -> [83.229.126.195] [8081,80] (msg:"SDWAN-POST [Jarmi] XMRig downloader / Cobalt Strike host (Cluster 7)"; flow:to_server,established; sid:8200003; rev:1; metadata:author Jarmi, ref talos-sdwan-ongoing, confidence high;)
+
+alert tcp $HOME_NET any -> [13.62.52.206] 5004 (msg:"SDWAN-POST [Jarmi] NimPlant variant agent1 C2 (Cluster 8) on TCP/5004"; flow:to_server,established; sid:8200004; rev:1; metadata:author Jarmi, ref talos-sdwan-ongoing, confidence high;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"SDWAN-POST [Jarmi] NimPlant variant REST API path observed in Cluster 8"; flow:to_server,established; http.uri; content:"/api/v1/"; startswith; pcre:"/\/api\/v1\/(handshake|results|payloads|exfiltrate|tasks|init)/"; sid:8200005; rev:1; metadata:author Jarmi, ref talos-sdwan-ongoing, confidence medium;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"SDWAN-POST [Jarmi] Replit-hosted dropper used by Cluster 8 to deliver NimPlant variant"; flow:to_server,established; tls.sni; content:"replit.dev"; endswith; sid:8200006; rev:1; metadata:author Jarmi, ref talos-sdwan-ongoing, confidence low;)
+
+alert tcp $HOME_NET any -> [38.181.52.89,89.125.244.33,89.125.244.51,71.80.85.135,212.83.162.37,38.60.214.92,65.20.67.134,104.233.156.1,194.233.100.40] any (msg:"SDWAN-POST [Jarmi] Webshell operator IPs (Talos Clusters 1-4)"; flow:to_server,established; sid:8200007; rev:1; metadata:author Jarmi, ref talos-sdwan-ongoing, confidence high;)

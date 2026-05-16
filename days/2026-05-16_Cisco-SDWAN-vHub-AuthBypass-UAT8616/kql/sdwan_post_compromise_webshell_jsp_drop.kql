@@ -1,0 +1,25 @@
+// Title:        SD-WAN webshell drops associated with mass exploitation of CVE-2026-20133/20128/20122
+// Id:           2a982646-ff97-4c12-84df-e8efa9d6e4e1
+// MITRE:        T1190, T1505.003, T1059.004
+// Reference:    https://blog.talosintelligence.com/sd-wan-ongoing-exploitation/
+// Reference:    https://github.com/Cisco-Talos/IOCs/tree/main/2026/05
+// Author:       Jarmi
+// Date:         2026-05-16
+// Tested on:    Sentinel — Syslog table; or Defender XDR DeviceFileEvents if the controller is
+//               instrumented as a Linux host with MDE for Linux installed.
+// FP notes:     The four known webshell filenames are highly specific to Talos clusters 1-4.
+//               Any legitimate JSP file dropped under the Tomcat / wildfly deploy path on
+//               vManage in those exact filenames is implausible.
+let known_webshell_names = dynamic([
+    "20251117022131.jsp",   // Cluster 1 — Tas9er ByPassGodzilla
+    "conf.jsp",             // Cluster 2 — Behinder Base64-only variant
+    "sysv.jsp",             // Cluster 3 — XenShell
+    "sysinit.jsp",          // Cluster 3 — Behinder follow-up
+    "vmurnp_ikp.jsp",       // Cluster 4 — Godzilla variant
+    "cmd.jsp"               // ZeroZenX Labs PoC default (XenShell upstream)
+]);
+DeviceFileEvents
+| where ActionType in ("FileCreated","FileModified","FileRenamed")
+| where FileName has_any (known_webshell_names)
+| where FolderPath has_any (".jsp",".war","webapps","tomcat","wildfly","vmanage","sdwan")
+| project Timestamp, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName

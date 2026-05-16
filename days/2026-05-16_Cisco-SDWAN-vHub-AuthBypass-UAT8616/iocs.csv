@@ -1,0 +1,50 @@
+type,value,context,confidence,source
+cve,CVE-2026-20182,Cisco Catalyst SD-WAN Controller vHub authentication bypass; CVSS 10.0; CWE-287,high,Cisco PSIRT advisory cisco-sa-sdwan-rpa2-v69WY2SW
+cve,CVE-2026-20127,Earlier vdaemon authentication bypass (Feb 2026); same DTLS service; exploited by UAT-8616 since 2023,high,Cisco PSIRT + Talos
+cve,CVE-2026-20133,vManage chain CVE patched Feb 2026; mass-exploited from March 2026,high,Cisco PSIRT advisory cisco-sa-sdwan-authbp-qwCX8D4v
+cve,CVE-2026-20128,vManage chain CVE patched Feb 2026,high,Cisco PSIRT advisory cisco-sa-sdwan-authbp-qwCX8D4v
+cve,CVE-2026-20122,vManage chain CVE patched Feb 2026,high,Cisco PSIRT advisory cisco-sa-sdwan-authbp-qwCX8D4v
+cve,CVE-2022-20775,Used by UAT-8616 in downgrade chain to escalate to root after gaining vmanage-admin via 20127/20182,high,Talos UAT-8616 blog
+path,/home/vmanage-admin/.ssh/authorized_keys,SSH key injection sink — append-mode primitive,high,Rapid7 technical analysis
+path,/etc/ssh/sshd_config,Audit for PermitRootLogin yes (post-downgrade escalation),high,Talos UAT-8616 blog
+string,peer-type:vhub,VDAEMON syslog signature of CHALLENGE_ACK with device_type=2 exploit,high,Talos UAT-8616 blog
+string,new-state:up,VDAEMON syslog signature of peer transition after exploit,high,Talos UAT-8616 blog
+note,Talos clusters 1-10 are oppportunistic post-compromise activity on the Feb-2026 CVE chain — distinct from UAT-8616 targeted activity on 20127/20182,Context for IR triage prioritization,high,Talos sd-wan-ongoing-exploitation post
+ipv4,38.181.52.89,Cluster 1 (Tas9er ByPassGodzilla) operator IP,high,Talos clusters report
+ipv4,89.125.244.33,Cluster 1 operator IP,high,Talos clusters report
+ipv4,89.125.244.51,Cluster 1 operator IP,high,Talos clusters report
+ipv4,71.80.85.135,Cluster 2 (Behinder Base64-only) operator IP,high,Talos clusters report
+ipv4,212.83.162.37,Cluster 3 (XenShell + Behinder) operator IP,high,Talos clusters report
+ipv4,38.60.214.92,Cluster 4 (Godzilla variant) operator IP,high,Talos clusters report
+ipv4,65.20.67.134,Cluster 4 operator IP,high,Talos clusters report
+ipv4,104.233.156.1,Cluster 4 operator IP,high,Talos clusters report
+ipv4,194.233.100.40,Cluster 4 operator IP,high,Talos clusters report
+ipv4,194.163.175.135,Cluster 5 AdaptixC2 + Mythic C2 (Contabo VPS) — banner shadowcore,high,Talos clusters report
+ipv4,23.27.143.170,Cluster 6 Sliver mTLS C2 IP,high,Talos clusters report
+ipv4,83.229.126.195,Cluster 7 XMRig downloader (HK) — also a Cobalt Strike C2 host per VirusTotal,high,Talos clusters report
+ipv4,13.62.52.206,Cluster 8 NimPlant-variant 'agent1' C2 IP,high,Talos clusters report
+ipv4,79.135.105.208,Cluster 8 attacker IP (likely ProtonVPN) that downloaded the Nim implant,medium,Talos clusters report
+ipv4,176.65.139.31,Cluster 8 supporting infrastructure IP,medium,Talos clusters report
+ipv4,47.104.248.7,Cluster 9 XMRig miner activity IP,high,Talos clusters report
+domain,replit.dev,Cluster 8 dropper host (Replit AI-platform subdomain),medium,Talos clusters report
+url,https://1a820b09-95ba-44eb-b350-417e8241b725-00-1lgwuuen9b77p.worf.replit.dev/download,Cluster 8 NimPlant-variant download URL,high,Talos clusters report
+sha256,f6f8e0d790645395188fc521039385b7c4f42fa8b426fd035f489f6cda9b5da1,Cluster 5 AdaptixC2 implant 'systemd-resolved',high,Talos clusters report
+sha256,02654acfb21f83485393ba8b14bd8862b919b9ec966fc6768f6aac1338a45ee8,Cluster 6 Sliver implant 'CWan',high,Talos clusters report
+sha256,0ed72d52347bfe4a78afff8a6982a64050c8fc86d8957a20eeb3e0f3f5342ed0,Cluster 7 XMRig downloader script,high,Talos clusters report
+sha256,96fc528ca5e7d1c2b3add5e31b8797cb126f704976c8fbeaecdbf0aa4309ad46,Cluster 7 XMRig sample,high,Talos clusters report
+sha256,7aa88a64a527ade7d93c20faf23b54f2ee33ad9b1246cdc2f8ded2ab639affb1,Cluster 7 XMRig configuration file,high,Talos clusters report
+sha256,0c87871642f84e09e8d3fb23ec36bf55601323e31151a7017a85dbec929cf15d,Cluster 8 NimPlant-variant backdoor 'agent1',high,Talos clusters report
+sha256,18d77c9c5bbb5b9d5bdfd366fdfcf26bad9e64c63ca865fad711bcce8e3d5a80,Cluster 8 KScan/QScan scanning tool,high,Talos clusters report
+sha256,d94f75a70b5cabaf786ac57177ed841732e62bdcc9a29e06e5b41d9be567bcfa,Cluster 9 gsocket binary,high,Talos clusters report
+sha256,5bc5998161056b7c8f70c9724d8a63abc7ff8c3843b91c30cffab0899e39b7f8,Cluster 9 gsocket peer-secret file,high,Talos clusters report
+sha256,b0f51b098842cd630097b462aab0ec357e2c7824af37cca6d08165265da2c2d3,Cluster 10 vManage credential extractor script (loot_run.sh),high,Talos clusters report
+sha256,72f570ce97de3eaaffef33d90b0c337a153fc9690cc34ee207b557d868360060,Cluster 10 root-escalation check script,high,Talos clusters report
+sha256,17302d903baf182f94dc3be40ab1e0874dd0eb2ec5255bf9131fd53591efe925,Cluster 10 root-escalation check script (alt),high,Talos clusters report
+string,shadowcore,Custom TCP banner replacing the default 'AdapticC2 server' banner in Cluster 5 implants,high,Talos clusters report
+string,20251117022131.jsp,Cluster 1 webshell filename (Tas9er Godzilla variant),high,Talos clusters report
+string,conf.jsp,Cluster 2 webshell filename (Behinder Base64-only variant),high,Talos clusters report
+string,sysv.jsp,Cluster 3 webshell filename (XenShell),high,Talos clusters report
+string,sysinit.jsp,Cluster 3 follow-up webshell (Behinder),high,Talos clusters report
+string,vmurnp_ikp.jsp,Cluster 4 webshell filename (Godzilla variant),high,Talos clusters report
+note,Talos Snort SIDs for CVE-2026-20182: 66482-66483; for clusters: 66200-66201-66202 (Snort2) and 301461-301462-66252 (Snort3),Coverage reference,high,Talos clusters report
+note,Cisco Catalyst SD-WAN ports: TCP/22 (SSH) TCP/830 (NETCONF) UDP/12346 (vdaemon DTLS control plane),Attack surface inventory,high,Rapid7 technical analysis

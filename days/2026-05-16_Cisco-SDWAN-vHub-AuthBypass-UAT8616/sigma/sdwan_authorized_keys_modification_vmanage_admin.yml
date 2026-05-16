@@ -1,0 +1,33 @@
+title: Modification of vmanage-admin authorized_keys file on Catalyst SD-WAN appliance
+id: 29797f24-cc6a-42d6-840f-edcb04424a11
+status: experimental
+description: |
+  Detects writes to `/home/vmanage-admin/.ssh/authorized_keys` on a Cisco Catalyst SD-WAN
+  Controller or Manager. CVE-2026-20182 exploitation injects an attacker-controlled public key
+  via the MSG_VMANAGE_TO_PEER (msg_type=14) primitive once the vHub authentication bypass has
+  succeeded. The handler `vbond_proc_vmanage_to_peer()` opens the file in append mode, so the
+  attacker key is added alongside any existing legitimate keys and the file timestamps are
+  the primary forensic anchor. Any write to this file outside of a known maintenance window
+  must be treated as a critical lead. Pair with `sdwan_vdaemon_vhub_peering_anomalous.yml`
+  and `sdwan_netconf_vmanage_admin_ssh_login.yml` for the full chain.
+references:
+    - https://www.rapid7.com/blog/post/ve-cve-2026-20182-critical-authentication-bypass-cisco-catalyst-sd-wan-controller-fixed/
+    - https://sec.cloudapps.cisco.com/security/center/content/CiscoSecurityAdvisory/cisco-sa-sdwan-rpa2-v69WY2SW
+author: Jarmi
+date: 2026/05/16
+tags:
+    - attack.persistence
+    - attack.t1098.004
+    - attack.lateral-movement
+    - attack.t1021.004
+logsource:
+    product: linux
+    category: file_event
+detection:
+    sel:
+        TargetFilename|endswith:
+            - '/home/vmanage-admin/.ssh/authorized_keys'
+    condition: sel
+falsepositives:
+    - Authorized re-keying performed by a network operator during a scheduled maintenance window. Document such events and exclude only by exact correlation with change tickets.
+level: critical
