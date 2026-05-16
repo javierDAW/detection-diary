@@ -50,6 +50,16 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Storm-1747](./storm-1747/) | 1 |
 | [Storm-1849](./storm-1849/) | 1 |
 | [TEMP.Veles](./temp-veles/) | 1 |
+| [Talos Cluster 1 (Tas9er Godzilla)](./talos-cluster-1-tas9er-godzilla/) | 1 |
+| [Talos Cluster 10 (vManage credential extractor)](./talos-cluster-10-vmanage-credential-extractor/) | 1 |
+| [Talos Cluster 2 (Behinder Base64)](./talos-cluster-2-behinder-base64/) | 1 |
+| [Talos Cluster 3 (XenShell + Behinder)](./talos-cluster-3-xenshell-behinder/) | 1 |
+| [Talos Cluster 4 (Godzilla variant)](./talos-cluster-4-godzilla-variant/) | 1 |
+| [Talos Cluster 5 (AdaptixC2 shadowcore)](./talos-cluster-5-adaptixc2-shadowcore/) | 1 |
+| [Talos Cluster 6 (Sliver mTLS)](./talos-cluster-6-sliver-mtls/) | 1 |
+| [Talos Cluster 7 (XMRig + Cobalt Strike)](./talos-cluster-7-xmrig-cobalt-strike/) | 1 |
+| [Talos Cluster 8 (NimPlant-variant agent1)](./talos-cluster-8-nimplant-variant-agent1/) | 1 |
+| [Talos Cluster 9 (gsocket + XMRig)](./talos-cluster-9-gsocket-xmrig/) | 1 |
 | [TeamPCP](./teampcp/) | 3 |
 | [The Gentlemen](./the-gentlemen/) | 1 |
 | [The Gentlemen RaaS](./the-gentlemen-raas/) | 1 |
@@ -58,6 +68,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [UAT-4356](./uat-4356/) | 1 |
 | [UAT-6382](./uat-6382/) | 1 |
 | [UAT-8302](./uat-8302/) | 1 |
+| [UAT-8616](./uat-8616/) | 1 |
 | [UNC5174](./unc5174/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |

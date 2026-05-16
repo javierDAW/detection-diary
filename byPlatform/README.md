@@ -16,10 +16,10 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [cloud-multi](./cloud-multi/) | 5 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 1 |
-| [linux](./linux/) | 9 |
+| [linux](./linux/) | 10 |
 | [macos](./macos/) | 3 |
 | [microsoft-365](./microsoft-365/) | 1 |
-| [network-edge](./network-edge/) | 3 |
+| [network-edge](./network-edge/) | 4 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 2 |
 | [supply-chain](./supply-chain/) | 5 |

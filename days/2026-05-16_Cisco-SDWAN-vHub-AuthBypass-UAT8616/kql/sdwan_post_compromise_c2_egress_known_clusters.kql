@@ -1,0 +1,28 @@
+// Title:        SD-WAN post-compromise egress to known UAT-8616 / cluster C2 infrastructure
+// Id:           4b3ef7b8-6f12-4f5b-8b2e-2dcf2f87ab3a
+// MITRE:        T1071.001, T1219, T1090.002, T1496
+// Reference:    https://blog.talosintelligence.com/sd-wan-ongoing-exploitation/
+// Reference:    https://github.com/Cisco-Talos/IOCs/tree/main/2026/05
+// Author:       Jarmi
+// Date:         2026-05-16
+// Tested on:    Defender XDR — DeviceNetworkEvents; Sentinel — CommonSecurityLog / Syslog for
+//               firewall logs forwarding controller egress.
+// FP notes:     The IP set is from Talos clusters 1-10 (March-May 2026). Some IPs (Cobalt
+//               Strike on 83.229.126.195, Contabo VPS on 194.163.175.135) may host short-lived
+//               operational infrastructure — re-tune by removing IPs older than 90 days.
+let cluster_ips = dynamic([
+    "38.181.52.89","89.125.244.33","89.125.244.51",   // Cluster 1 Godzilla
+    "71.80.85.135",                                    // Cluster 2 Behinder
+    "212.83.162.37",                                   // Cluster 3 XenShell/Behinder
+    "38.60.214.92","65.20.67.134","104.233.156.1","194.233.100.40",  // Cluster 4 Godzilla
+    "194.163.175.135",                                 // Cluster 5 AdaptixC2 shadowcore
+    "23.27.143.170",                                   // Cluster 6 Sliver mTLS
+    "83.229.126.195",                                  // Cluster 7 XMRig downloader + Cobalt Strike
+    "13.62.52.206","79.135.105.208","176.65.139.31",   // Cluster 8 Nim implant + KScan
+    "47.104.248.7"                                     // Cluster 9 XMRig miner
+]);
+DeviceNetworkEvents
+| where RemoteIP in (cluster_ips)
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine,
+          RemoteIP, RemotePort, RemoteUrl, Protocol, InitiatingProcessAccountName
+| order by Timestamp desc

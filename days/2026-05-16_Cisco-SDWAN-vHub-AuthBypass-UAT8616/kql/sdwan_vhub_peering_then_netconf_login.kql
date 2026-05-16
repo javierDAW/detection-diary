@@ -1,0 +1,24 @@
+// Title:        SD-WAN vHub peering followed by NETCONF login as vmanage-admin within 24 hours
+// Id:           77309866-15b2-4488-9e35-d247a52bf580
+// MITRE:        T1190, T1098.004, T1133, T1078.003
+// Reference:    https://www.rapid7.com/blog/post/ve-cve-2026-20182-critical-authentication-bypass-cisco-catalyst-sd-wan-controller-fixed/
+// Reference:    https://blog.talosintelligence.com/sd-wan-ongoing-exploitation/
+// Author:       Jarmi
+// Date:         2026-05-16
+// Tested on:    Sentinel — Syslog table (Catalyst SD-WAN forwarding via syslog ingest)
+// FP notes:     Add legitimate vManage orchestrator IP ranges and authorized vHub public-ip
+//               ranges (if any) to the placeholders. Correlation window is 24h based on
+//               UAT-8616 observed dwell between initial peering and NETCONF interaction.
+let suspicious_peer = Syslog
+| where SyslogMessage has_all ("VDAEMON","control-connection-state-change","peer-type:vhub","new-state:up")
+| extend public_ip = extract(@"public-ip:(\S+)", 1, SyslogMessage)
+| where public_ip !in (dynamic(["<add_known_vhub_public_ip>"]))
+| project PeerTime = TimeGenerated, Computer, public_ip, PeerMsg = SyslogMessage;
+let netconf_login = Syslog
+| where SyslogMessage has_all ("Accepted publickey for vmanage-admin","port 830")
+| where SyslogMessage !has "<add_known_vmanage_orchestrator_ip>"
+| project LoginTime = TimeGenerated, Computer, LoginMsg = SyslogMessage;
+suspicious_peer
+| join kind=inner (netconf_login) on Computer
+| where (LoginTime - PeerTime) between (0min .. 24h)
+| project PeerTime, LoginTime, Computer, public_ip, PeerMsg, LoginMsg
