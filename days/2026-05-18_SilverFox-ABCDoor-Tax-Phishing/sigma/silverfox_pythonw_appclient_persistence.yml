@@ -1,0 +1,46 @@
+title: Silver Fox ABCDoor pythonw -m appclient persistence anchor
+id: c97b7931-5f8a-4c03-a0bc-c34aa281b455
+status: experimental
+description: |
+  Detects the ABCDoor Python backdoor execution anchor used by Silver Fox in the
+  tax-themed campaign disclosed by Kaspersky on 2026-04-30. The implant is launched
+  via the legitimate signed pythonw.exe interpreter using the canonical command
+  line "pythonw.exe -m appclient" and the Cython-compiled core in
+  %LOCALAPPDATA%\appclient\ or C:\ProgramData\Tailscale\ (Tailscale brand abuse).
+  The same string is reused for HKCU Run-key persistence and the AppClient
+  scheduled task.
+references:
+  - https://securelist.com/silver-fox-tax-notification-campaign/119575/
+  - https://thehackernews.com/2026/05/silver-fox-deploys-abcdoor-malware-via.html
+  - https://blog.sekoia.io/silver-fox-the-only-tax-audit-where-the-fine-print-installs-malware/
+author: Jarmi
+date: 2026/05/18
+tags:
+  - attack.persistence
+  - attack.execution
+  - attack.t1547.001
+  - attack.t1053.005
+  - attack.t1059.006
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    Image|endswith:
+      - '\pythonw.exe'
+      - '\python.exe'
+  selection_cmdline:
+    CommandLine|contains|all:
+      - '-m'
+      - 'appclient'
+  selection_path:
+    CommandLine|contains:
+      - '\AppData\Local\appclient\'
+      - '\ProgramData\Tailscale\'
+      - '\AppData\Local\Programs\Python\'
+  filter_legit_tailscale:
+    Image|contains: '\Program Files\Tailscale\'
+  condition: selection_image and selection_cmdline and selection_path and not filter_legit_tailscale
+falsepositives:
+  - Internal Python packages named "appclient" — unlikely outside a malware lab. Validate the parent process and the absence of legitimate Tailscale install paths.
+level: high

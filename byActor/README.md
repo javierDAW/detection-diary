@@ -43,12 +43,14 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Sandworm overlap](./sandworm-overlap/) | 1 |
 | [Shahid Kaveh Group](./shahid-kaveh-group/) | 1 |
 | [Shai-Hulud](./shai-hulud/) | 1 |
+| [Silver Fox](./silver-fox/) | 1 |
 | [Static Tundra](./static-tundra/) | 1 |
 | [Storm-0784](./storm-0784/) | 1 |
 | [Storm-1567](./storm-1567/) | 1 |
 | [Storm-1575](./storm-1575/) | 1 |
 | [Storm-1747](./storm-1747/) | 1 |
 | [Storm-1849](./storm-1849/) | 1 |
+| [SwimSnake](./swimsnake/) | 1 |
 | [TEMP.Veles](./temp-veles/) | 1 |
 | [Talos Cluster 1 (Tas9er Godzilla)](./talos-cluster-1-tas9er-godzilla/) | 1 |
 | [Talos Cluster 10 (vManage credential extractor)](./talos-cluster-10-vmanage-credential-extractor/) | 1 |
@@ -71,7 +73,9 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [UAT-8616](./uat-8616/) | 1 |
 | [UNC5174](./unc5174/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
+| [UTG-Q-1000](./utg-q-1000/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |
+| [Void Arachne](./void-arachne/) | 1 |
 | [Warlock](./warlock/) | 1 |
 | [namikazesarada010206](./namikazesarada010206/) | 1 |

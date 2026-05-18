@@ -1,0 +1,35 @@
+title: Silver Fox ABCDoor AppClient scheduled task registration
+id: 5d7d79b5-6ba7-4eae-87cc-ad92dba60086
+status: experimental
+description: |
+  Detects the creation of the canonical Silver Fox ABCDoor scheduled task named
+  "AppClient" with a one-minute schedule that re-launches the Python backdoor.
+  Kaspersky documented the exact schtasks command line on 2026-04-30. The task
+  name combined with the pythonw.exe -m appclient task action is a very
+  high-confidence anchor with no benign baseline outside this campaign.
+references:
+  - https://securelist.com/silver-fox-tax-notification-campaign/119575/
+author: Jarmi
+date: 2026/05/18
+tags:
+  - attack.persistence
+  - attack.t1053.005
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    Image|endswith: '\schtasks.exe'
+  selection_args:
+    CommandLine|contains|all:
+      - '/create'
+      - '/tn'
+      - 'AppClient'
+  selection_action:
+    CommandLine|contains:
+      - 'pythonw.exe'
+      - '-m appclient'
+  condition: selection_image and selection_args and selection_action
+falsepositives:
+  - In-house deployment of an internal Python package literally named "appclient" via schtasks. Confirm by inspecting the action path; the malicious variant lives in %LOCALAPPDATA%\appclient\ or C:\ProgramData\Tailscale\.
+level: critical

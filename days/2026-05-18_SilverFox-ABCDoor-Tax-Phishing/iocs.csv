@@ -1,0 +1,44 @@
+type,value,context,confidence,source
+domain,abc.haijing88.com,Silver Fox payload-host domain serving CBDT.rar and similar tax-themed lure archives,high,Kaspersky Securelist 2026-04-30
+domain,mcagov.cc,India Ministry of Corporate Affairs lookalike hosting download.php payload selector,high,Kaspersky Securelist 2026-04-30
+domain,abc.fetish-friends.com,Silver Fox staging host for ABCDoor appclient.zip pulls and channel-tagged setup endpoints,high,Kaspersky Securelist 2026-04-30
+domain,vnc.kcii2.com,Silver Fox auxiliary VNC-themed staging host observed in ABCDoor delivery,medium,Kaspersky Securelist 2026-04-30
+domain,roldco.com,TinyURL redirect target used as Silver Fox staging during the 2025 channel campaign,medium,Kaspersky Securelist 2026-04-30
+domain,sudsmama.com,TinyURL redirect target used as Silver Fox staging during the 2025 channel campaign,medium,Kaspersky Securelist 2026-04-30
+ipv4,207.56.138.28,ValleyRAT Winos 4.0 C2 IP observed on TCP 6666 in the ABCDoor delivery chain,high,Kaspersky Securelist 2026-04-30
+ipv4,154.82.81.205,Plugin C2 host serving YD20251001143052.zip and YN20250923193706.zip ABCDoor payload bundles,high,Kaspersky Securelist 2026-04-30
+url,https://abc.haijing88.com/uploads/印度邮箱/CBDT.rar,Direct payload URL for India-targeted CBDT lure archive,high,Kaspersky Securelist 2026-04-30
+url,https://abc.haijing88.com/uploads/фнс/фнс.zip,Direct payload URL for Russia-targeted FNS lure archive,high,Kaspersky Securelist 2026-04-30
+url,http://154.82.81.205/YD20251001143052.zip,Auxiliary ABCDoor payload bundle pulled by ValleyRAT plugin,high,Kaspersky Securelist 2026-04-30
+url,http://154.82.81.205/YN20250923193706.zip,Auxiliary ABCDoor payload bundle pulled by ValleyRAT plugin,high,Kaspersky Securelist 2026-04-30
+url,https://mcagov.cc/download.php?type=exe,India MCA lookalike download selector returning the Silver Fox installer,high,Kaspersky Securelist 2026-04-30
+md5,e6362a81991323e198a463a8ce255533,RustSL loader build with Japan added to country allow-list (2026-01-19),high,Kaspersky Securelist 2026-04-30
+md5,2c5a1dd4cb53287fe0ed14e0b7b7b1b7,RustSL loader build with Phantom Persistence (2026-01-07),high,Kaspersky Securelist 2026-04-30
+md5,5b998a5bc5ad1c550564294034d4a62c,ABCDoor appclient.core .pyd (version v121 — earliest observed),high,Kaspersky Securelist 2026-04-30
+md5,c50c980d3f4b7ed970f083b0d37a6a6a,ABCDoor appclient.core .pyd (version v143),high,Kaspersky Securelist 2026-04-30
+md5,de8f0008b15f2404f721f76fac34456a,ABCDoor appclient.core .pyd (version v152),high,Kaspersky Securelist 2026-04-30
+md5,9bf9f635019494c4b70fb0a7c0fb53e4,ABCDoor appclient.core .pyd (version v154),high,Kaspersky Securelist 2026-04-30
+md5,a543b96b0938de798dd4f683dd92a94a,ABCDoor appclient.core .pyd (version v156),high,Kaspersky Securelist 2026-04-30
+md5,fa08b243f12e31940b8b4b82d3498804,ABCDoor appclient.core .pyd (version v157 — August build),high,Kaspersky Securelist 2026-04-30
+md5,13669b8f2bd0af53a3fe9ac0490499e5,ABCDoor appclient.core .pyd (version v157 — September build),high,Kaspersky Securelist 2026-04-30
+md5,4a5195a38a458cdd2c1b5ab13af3b393,ValleyRAT plugin 保86.dll observed in ABCDoor delivery chain (2025-12-04),high,Kaspersky Securelist 2026-04-30
+md5,e66bae6e8621db2a835fa6721c3e5bbe,ValleyRAT plugin 保86.dll second variant,high,Kaspersky Securelist 2026-04-30
+md5,11705121f64fa36f1e9d7e59867b0724,Go-language stager GSTSuvidha.exe (India lure),high,Kaspersky Securelist 2026-04-30
+md5,04194f8ddd0518fd8005f0e87ae96335,C++ stager GST Suvidha.exe (India lure),high,Kaspersky Securelist 2026-04-30
+regkey,HKCU\Software\Microsoft\Windows\CurrentVersion\Run\AppClient,ABCDoor persistence value pointing to pythonw.exe -m appclient,high,Kaspersky Securelist 2026-04-30
+regkey,HKCU\Software\CarEmu\InstallChannel,Silver Fox ABCDoor channel/campaign tracker registry key,high,Kaspersky Securelist 2026-04-30
+regkey,HKCU\Software\CarEmu\FirstInstallTime,Silver Fox ABCDoor install timestamp tracker registry key,high,Kaspersky Securelist 2026-04-30
+path,%LOCALAPPDATA%\appclient\,ABCDoor Python implant install directory,high,Kaspersky Securelist 2026-04-30
+path,%LOCALAPPDATA%\applogs\device.log,ABCDoor UUID4 device identifier overwritten by MachineGuid,high,Kaspersky Securelist 2026-04-30
+path,C:\ProgramData\Tailscale\,ABCDoor implant copy directory abusing the legitimate Tailscale brand,high,Kaspersky Securelist 2026-04-30
+path,%TEMP%\appclient_YYYYMMDDHHMMSS.zip,ABCDoor self-update package staged before execution,high,Kaspersky Securelist 2026-04-30
+mutex,\Sessions\1\BaseNamedObjects\python(<pid>): AppClientABC,Named object Mutex used by ABCDoor to prevent double-execution,high,Kaspersky Securelist 2026-04-30
+string,PythonDownloader,HTTP User-Agent emitted by ABCDoor downloader stage,high,Kaspersky Securelist 2026-04-30
+string,RSL_STEG_2025_KEY,Verbatim XOR key embedded in RustSL loader for payload decryption,high,Kaspersky Securelist 2026-04-30
+string,God-Tier Telemetry Blinding: Deployed via HalosGate Indirect Syscalls,Verbatim Phantom Persistence debug-log banner emitted by RustSL,high,Kaspersky Securelist 2026-04-30
+string,winos4.0测试插件.pdb,PDB string in ValleyRAT plugin compiled binary,high,Kaspersky Securelist 2026-04-30
+note,Targeted geographies: India Russia Indonesia South Africa Cambodia and Japan added 2026-01-19,Geofence allow-list enforced inside the RustSL loader before any payload detonation,high,Kaspersky Securelist 2026-04-30
+note,Targeted sectors: industrial consulting retail and transportation,Sector telemetry observed in Kaspersky email-detection corpus 2026-01 to 2026-02,high,Kaspersky Securelist 2026-04-30
+note,More than 1600 malicious tax-themed emails recorded between early January and early February 2026,Email volume baseline for Silver Fox campaign throughput,high,Kaspersky Securelist 2026-04-30
+note,ABCDoor v121 compiled 2024-12-19 18:27:11 marks the earliest observed Cython build of appclient.core,Provides timeline anchor for retrospective hunts inside the past eighteen months,medium,Kaspersky Securelist 2026-04-30
+note,Cluster aliases for Silver Fox include SwimSnake Void Arachne Monarch The Great Thief of Valley and UTG-Q-1000,Helps cross-reference older Mandiant Trend Micro Sekoia and Zscaler reports,high,The Hacker News 2026-05-04
