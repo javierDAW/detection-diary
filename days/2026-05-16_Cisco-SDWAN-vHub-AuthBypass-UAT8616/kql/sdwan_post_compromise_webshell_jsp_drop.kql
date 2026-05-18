@@ -19,7 +19,9 @@ let known_webshell_names = dynamic([
     "cmd.jsp"               // ZeroZenX Labs PoC default (XenShell upstream)
 ]);
 DeviceFileEvents
+| where Timestamp > ago(90d)
 | where ActionType in ("FileCreated","FileModified","FileRenamed")
 | where FileName has_any (known_webshell_names)
 | where FolderPath has_any (".jsp",".war","webapps","tomcat","wildfly","vmanage","sdwan")
 | project Timestamp, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName
+| order by Timestamp desc

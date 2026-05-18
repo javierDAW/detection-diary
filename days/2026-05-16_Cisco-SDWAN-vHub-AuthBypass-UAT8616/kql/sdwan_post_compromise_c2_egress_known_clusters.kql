@@ -22,6 +22,7 @@ let cluster_ips = dynamic([
     "47.104.248.7"                                     // Cluster 9 XMRig miner
 ]);
 DeviceNetworkEvents
+| where Timestamp > ago(30d)
 | where RemoteIP in (cluster_ips)
 | project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine,
           RemoteIP, RemotePort, RemoteUrl, Protocol, InitiatingProcessAccountName

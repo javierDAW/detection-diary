@@ -10,11 +10,13 @@
 //               ranges (if any) to the placeholders. Correlation window is 24h based on
 //               UAT-8616 observed dwell between initial peering and NETCONF interaction.
 let suspicious_peer = Syslog
+| where TimeGenerated > ago(7d)
 | where SyslogMessage has_all ("VDAEMON","control-connection-state-change","peer-type:vhub","new-state:up")
 | extend public_ip = extract(@"public-ip:(\S+)", 1, SyslogMessage)
 | where public_ip !in (dynamic(["<add_known_vhub_public_ip>"]))
 | project PeerTime = TimeGenerated, Computer, public_ip, PeerMsg = SyslogMessage;
 let netconf_login = Syslog
+| where TimeGenerated > ago(7d)
 | where SyslogMessage has_all ("Accepted publickey for vmanage-admin","port 830")
 | where SyslogMessage !has "<add_known_vmanage_orchestrator_ip>"
 | project LoginTime = TimeGenerated, Computer, LoginMsg = SyslogMessage;
@@ -22,3 +24,4 @@ suspicious_peer
 | join kind=inner (netconf_login) on Computer
 | where (LoginTime - PeerTime) between (0min .. 24h)
 | project PeerTime, LoginTime, Computer, public_ip, PeerMsg, LoginMsg
+| order by LoginTime desc
