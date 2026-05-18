@@ -4,10 +4,11 @@
 
 # Techniques: T1102
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-18 | Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist) | Silver Fox · SwimSnake · Void Arachne · UTG-Q-1000 | [`2026-05-18_SilverFox-ABCDoor-Tax-Phishing/`](../../days/2026-05-18_SilverFox-ABCDoor-Tax-Phishing/) |
 | 2026-05-14 | Mini Shai-Hulud Mega-Campaign: TeamPCP Poisons 170+ npm/PyPI Packages via GitHub Actions OIDC Hijack and SLSA Provenance Forgery | TeamPCP | [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/`](../../days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |
 | 2026-04-29 | Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm | TeamPCP · Shai-Hulud | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |

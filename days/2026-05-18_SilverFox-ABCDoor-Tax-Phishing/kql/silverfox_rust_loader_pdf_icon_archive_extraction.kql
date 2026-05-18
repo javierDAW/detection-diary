@@ -1,0 +1,30 @@
+// Title:        Silver Fox RustSL PDF-icon executable extracted from RAR or ZIP tax-themed lure
+// Id:           5e307b5f-cdd7-4c53-ab96-701f06a09553
+// MITRE:        T1566.001, T1204.002, T1027.006
+// Reference:    https://securelist.com/silver-fox-tax-notification-campaign/119575/
+// Author:       Jarmi
+// Date:         2026-05-18
+// Tested on:    Defender XDR — DeviceFileEvents, DeviceProcessEvents
+// FP notes:     Standalone .exe files inside RAR or ZIP archives with tax-themed filenames are extremely rare in normal
+//               office workflows. Validate any hit against the lure-file inventory in iocs.csv and the recipient role
+//               (HR, accounting and legal are the highest-value targets for this campaign).
+let lures = dynamic([
+    "Click File.exe","BillReceipt.exe","Review the file.exe","statement.exe","statement verify .exe",
+    "Related material.exe","GST.pdf.exe","CBDT.rar","GST Suvidha.exe","GSTSuvidha.exe"]);
+let archives = dynamic([".rar",".zip",".7z"]);
+DeviceFileEvents
+| where Timestamp > ago(7d)
+| where ActionType in ("FileCreated","FileRenamed")
+| where FileName in~ (lures) or FileName has_any ("ITD","CBDT","GST","fns","фнс","November Statement","December Statement","Statement of Account")
+| extend ext = tolower(extract(@"\.([a-z0-9]+)$", 1, FileName))
+| where ext == "exe"
+| join kind=leftouter (
+    DeviceProcessEvents
+    | where Timestamp > ago(7d)
+    | where InitiatingProcessFileName in~ ("winrar.exe","7zg.exe","7zfm.exe","explorer.exe","outlook.exe","msedge.exe","chrome.exe","firefox.exe")
+    | project Timestamp, DeviceId, ProcessCommandLine, InitiatingProcessFileName
+  ) on DeviceId
+| where FolderPath has_any ("\\Downloads\\","\\Temp\\","\\Desktop\\","\\Outlook\\")
+| project Timestamp, DeviceId, DeviceName, FileName, FolderPath, InitiatingProcessFileName, InitiatingProcessAccountName
+| summarize Drops=count(), first=min(Timestamp), files=make_set(FileName, 6) by DeviceId, DeviceName, InitiatingProcessAccountName
+| order by Drops desc

@@ -2,12 +2,11 @@
 <!-- Source of truth: YAML frontmatter in each days/<slug>/README.md -->
 
 
-# Techniques: T1115
+# Actors: UTG-Q-1000
 
-2 day(s) covering this technique.
+1 day(s) covering this actor.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-05-18 | Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist) | Silver Fox · SwimSnake · Void Arachne · UTG-Q-1000 | [`2026-05-18_SilverFox-ABCDoor-Tax-Phishing/`](../../days/2026-05-18_SilverFox-ABCDoor-Tax-Phishing/) |
-| 2026-05-08 | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026) | CloudZ · Pheno | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink/`](../../days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |

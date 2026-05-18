@@ -4,11 +4,12 @@
 
 # Techniques: T1480
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-18 | Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist) | Silver Fox · SwimSnake · Void Arachne · UTG-Q-1000 | [`2026-05-18_SilverFox-ABCDoor-Tax-Phishing/`](../../days/2026-05-18_SilverFox-ABCDoor-Tax-Phishing/) |
 | 2026-05-16 | Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters | UAT-8616 · Talos Cluster 1 (Tas9er Godzilla) · Talos Cluster 2 (Behinder Base64) · Talos Cluster 3 (XenShell + Behinder) · Talos Cluster 4 (Godzilla variant) · Talos Cluster 5 (AdaptixC2 shadowcore) · Talos Cluster 6 (Sliver mTLS) · Talos Cluster 7 (XMRig + Cobalt Strike) · Talos Cluster 8 (NimPlant-variant agent1) · Talos Cluster 9 (gsocket + XMRig) · Talos Cluster 10 (vManage credential extractor) | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/`](../../days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | 2026-05-14 | Mini Shai-Hulud Mega-Campaign: TeamPCP Poisons 170+ npm/PyPI Packages via GitHub Actions OIDC Hijack and SLSA Provenance Forgery | TeamPCP | [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/`](../../days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |
 | 2026-05-12 | Qilin EDR Killer — msimg32.dll four-stage loader and BYOVD chain | Qilin · Agenda · Warlock | [`2026-05-12_Qilin-EDR-Killer-msimg32/`](../../days/2026-05-12_Qilin-EDR-Killer-msimg32/) |

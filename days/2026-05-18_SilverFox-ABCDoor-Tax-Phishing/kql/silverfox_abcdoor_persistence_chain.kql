@@ -1,0 +1,33 @@
+// Title:        Silver Fox ABCDoor persistence chain — Run key + scheduled task + appclient path
+// Id:           af5f78f2-fe19-4c97-8e81-8efbfa0b54f1
+// MITRE:        T1547.001, T1053.005, T1059.006
+// Reference:    https://securelist.com/silver-fox-tax-notification-campaign/119575/
+// Author:       Jarmi
+// Date:         2026-05-18
+// Tested on:    Defender XDR — DeviceRegistryEvents, DeviceProcessEvents
+// FP notes:     Internal Python package literally named appclient would fire on the path anchor.
+//               Validate the dual anchor (registry HKCU Run\AppClient AND a scheduled task or pythonw -m appclient).
+let window = 24h;
+let RunKey = DeviceRegistryEvents
+| where Timestamp > ago(window)
+| where ActionType in ("RegistryValueSet", "RegistryKeyCreated")
+| where RegistryKey has "\\Software\\Microsoft\\Windows\\CurrentVersion\\Run"
+| where RegistryValueName =~ "AppClient"
+| where RegistryValueData has "pythonw" and RegistryValueData has "appclient"
+| project RunKeyTime=Timestamp, DeviceId, DeviceName, InitiatingProcessFileName, RegistryValueData;
+let SchedTask = DeviceProcessEvents
+| where Timestamp > ago(window)
+| where FileName =~ "schtasks.exe"
+| where ProcessCommandLine has "/create" and ProcessCommandLine has "AppClient" and ProcessCommandLine has "appclient"
+| project SchedTime=Timestamp, DeviceId, DeviceName, ProcessCommandLine;
+let PyExec = DeviceProcessEvents
+| where Timestamp > ago(window)
+| where FileName in~ ("pythonw.exe","python.exe")
+| where ProcessCommandLine has "-m" and ProcessCommandLine has "appclient"
+| where ProcessCommandLine has_any ("AppData\\Local\\appclient","ProgramData\\Tailscale")
+| project PyTime=Timestamp, DeviceId, DeviceName, ProcessCommandLine, InitiatingProcessFileName;
+RunKey
+| join kind=inner (PyExec) on DeviceId
+| union (SchedTask | join kind=inner (PyExec) on DeviceId)
+| summarize Hits=count(), first=min(coalesce(RunKeyTime, SchedTime)), last=max(PyTime) by DeviceId, DeviceName, ProcessCommandLine
+| order by Hits desc

@@ -1,0 +1,24 @@
+# Suricata 7.x rule pack — Silver Fox ABCDoor + ValleyRAT tax-themed campaign
+# Author: Jarmi
+# Date: 2026-05-18
+# Reference: https://securelist.com/silver-fox-tax-notification-campaign/119575/
+# Notes: Variables $HOME_NET and $EXTERNAL_NET use Suricata defaults.
+#        Adjust the listed IPs and SNI anchors to the per-tenant allow-list if you front Silver Fox lookalike infra.
+
+# 1. DNS lookups against the Silver Fox payload-hosting domain abc.haijing88[.]com
+alert dns $HOME_NET any -> any any (msg:"SILVERFOX ABCDoor — DNS query for abc.haijing88.com payload host"; dns.query; content:"abc.haijing88.com"; nocase; classtype:trojan-activity; sid:8210001; rev:1; metadata:author Jarmi,date 2026_05_18;)
+
+# 2. DNS lookup against the Silver Fox Ministry of Corporate Affairs impersonation lookalike
+alert dns $HOME_NET any -> any any (msg:"SILVERFOX ABCDoor — DNS query for mcagov.cc India MCA lookalike"; dns.query; content:"mcagov.cc"; nocase; classtype:trojan-activity; sid:8210002; rev:1; metadata:author Jarmi,date 2026_05_18;)
+
+# 3. DNS lookup against the abc.fetish-friends[.]com staging host
+alert dns $HOME_NET any -> any any (msg:"SILVERFOX ABCDoor — DNS query for abc.fetish-friends.com staging host"; dns.query; content:"abc.fetish-friends.com"; nocase; classtype:trojan-activity; sid:8210003; rev:1; metadata:author Jarmi,date 2026_05_18;)
+
+# 4. ValleyRAT C2 IP 207.56.138.28 on TCP/6666 — high-confidence in-the-wild anchor
+alert tcp $HOME_NET any -> 207.56.138.0/24 6666 (msg:"SILVERFOX ValleyRAT — TCP egress to 207.56.138.0/24:6666 C2 cluster"; flow:to_server,established; classtype:trojan-activity; sid:8210004; rev:1; metadata:author Jarmi,date 2026_05_18;)
+
+# 5. Plugin C2 hosting infrastructure 154.82.81.205 — ZIP payload pulls
+alert http $HOME_NET any -> 154.82.81.0/24 any (msg:"SILVERFOX — HTTP fetch from 154.82.81.0/24 plugin C2 cluster"; flow:to_server,established; http.method; content:"GET"; http.uri; pcre:"/\/(YD|YN)\d{8,}/i"; classtype:trojan-activity; sid:8210005; rev:1; metadata:author Jarmi,date 2026_05_18;)
+
+# 6. HTTP request with the verbatim PythonDownloader User-Agent used by ABCDoor pre-Socket.IO downloader stage
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"SILVERFOX ABCDoor — HTTP User-Agent PythonDownloader anchor"; flow:to_server,established; http.user_agent; content:"PythonDownloader"; nocase; classtype:trojan-activity; sid:8210006; rev:1; metadata:author Jarmi,date 2026_05_18;)

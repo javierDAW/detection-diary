@@ -1,0 +1,20 @@
+// Title:        Silver Fox ValleyRAT and ABCDoor C2 egress to known infrastructure
+// Id:           f865d5d8-3cd0-4919-914a-36cffade2804
+// MITRE:        T1071.001, T1102, T1041
+// Reference:    https://securelist.com/silver-fox-tax-notification-campaign/119575/
+// Author:       Jarmi
+// Date:         2026-05-18
+// Tested on:    Defender XDR — DeviceNetworkEvents
+// FP notes:     The IPs 207.56.138.205 and 154.82.81.205 sit on bulletproof ranges with no business-legitimate traffic
+//               observed in the Kaspersky disclosure. The mcagov.cc domain is a Silver Fox impersonation of an Indian
+//               Ministry of Corporate Affairs lookalike. Validate any hit against an internal allow-list of legitimate
+//               .gov.in resolves.
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where (RemoteIP in ("207.56.138.28","154.82.81.205"))
+    or (RemoteUrl has_any ("abc.haijing88.com", "mcagov.cc", "abc.fetish-friends.com", "vnc.kcii2.com", "roldco.com", "sudsmama.com"))
+    or (RemoteUrl has "tinyurl.com" and InitiatingProcessFileName in~ ("pythonw.exe","python.exe","node.exe","powershell.exe"))
+| where InitiatingProcessFileName !in~ ("msedge.exe","chrome.exe","firefox.exe","brave.exe","edge.exe","iexplore.exe")
+| project Timestamp, DeviceId, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, RemoteIP, RemotePort, RemoteUrl, ActionType
+| summarize Hits=count(), Endpoints=make_set(strcat(RemoteIP, ":", tostring(RemotePort)), 8), URLs=make_set(RemoteUrl, 6) by DeviceId, DeviceName, InitiatingProcessFileName
+| order by Hits desc

@@ -4,11 +4,12 @@
 
 # Techniques: T1547.001
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-18 | Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist) | Silver Fox · SwimSnake · Void Arachne · UTG-Q-1000 | [`2026-05-18_SilverFox-ABCDoor-Tax-Phishing/`](../../days/2026-05-18_SilverFox-ABCDoor-Tax-Phishing/) |
 | 2026-05-15 | EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion | The Gentlemen RaaS · EtherRAT (DPRK-linked, UNC5342 toolchain overlap) · TukTuk (AI-generated framework) | [`2026-05-15_EtherRAT-TukTuk-Gentlemen/`](../../days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | 2026-05-13 | Semantic Kernel Prompt-to-RCE — CVE-2026-26030 and CVE-2026-25592 | Microsoft Defender Security Research (vulnerability disclosure, no threat actor) | [`2026-05-13_SemanticKernel-Prompt2RCE/`](../../days/2026-05-13_SemanticKernel-Prompt2RCE/) |
 | 2026-05-01 | VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026) | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
