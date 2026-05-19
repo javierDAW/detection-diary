@@ -7,6 +7,26 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.19 — Day 22 — Embargo Ransomware Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs)
+
+### Added
+- `days/2026-05-19_Embargo-Rust-SafeMode-BYOVD/` — Rust RaaS Embargo (ESET WeLiveSecurity 23-Oct-2024, Holman and Zvara) closes the four-driver BYOVD catalogue of the diary (Akira/DragonForce truesight.sys, Warlock nseckrnl.sys, Qilin rwdrv+hlpdrv from Day 16, now Embargo probmon.sys) and introduces the first repo entry pairing `T1562.009 Safe Mode Boot` with BYOVD. TRM Labs (8-Aug-2025) assesses Embargo as a likely BlackCat/ALPHV rebrand via Rust + leak-site + on-chain wallet overlap, with USD 34.2 M cumulative incoming volume. US healthcare victims include Memorial Hospital and Manor (Bainbridge GA, 1.15 TB, 120085 individuals).
+- Sigma (3): `embargo_safemode_boot_persistence.yml` — bcdedit safeboot Minimal / sc create irnagentd / reg \Safeboot\Network\irnagentd / reg delete WinDefend (critical); `embargo_mdeployer_debug_drops.yml` — file creation of canonical MDeployer filenames in `C:\Windows\Debug\` (high); `byovd_probmon_driver_load.yml` — kernel driver load of Sysprox.sys / Sysmon64.sys / Proxmon.sys from non-canonical path or matching probmon.sys v3.0.0.4 hash or ITM System signer (critical).
+- KQL (3): `embargo_safemode_chain_defender_xdr.kql` — bcdedit + sc + reg Safeboot + shutdown chain join within 10 min; `embargo_debug_dir_drops_join_scheduled_task.kql` — `C:\Windows\Debug\` drops joined with `schtasks Perf_sys` creation; `byovd_probmon_driver_load_defender_xdr.kql` — non-canonical kernel driver load + AV process termination join within 15 min.
+- YARA (1 file, 2 rules): `Embargo_MDeployer_MS4Killer_Heuristic_2026` (MDeployer + MS4Killer RC4 keys + XOR string anchors + mutex lyric anchors + minifilter API imports + service-name rotation + filesize cap) and `Embargo_MDeployer_MS4Killer_Known_Hashes_2026` (SHA1/SHA256 anchors for ESET-published samples and probmon.sys).
+- Suricata (1 file, 4 sids 8220001-8220004): HTTP filename anchors for `praxisbackup.exe` and `dtest.dll`, SMB lateral delivery anchors for `Sysprox.sys` and `b.cache`.
+- PEAK hunts (3): `peak_h1_safemode_boot_silent_reboot.md` — bcdedit safeboot + `\Safeboot\Network\` write + forced reboot without maintenance window; `peak_h2_byovd_unsigned_driver_load_burst.md` — kernel driver load outside `\System32\drivers\` plus AV process stop within 15 min; `peak_h3_debug_dir_rust_loader_landing_pad.md` — burst of canonical MDeployer filenames in `C:\Windows\Debug\`.
+- `iocs.csv` (38 entries) — eight SHA1 sample anchors plus probmon.sys SHA256, mutex lyric strings, two hardcoded RC4 keys, MDeployer payload paths, registry persistence keys, service name rotations, and operator/victimology notes.
+- `kill_chain.svg` — viewBox 880×1180, GitHub-friendly adaptive light/dark palette, eight numbered stages on victim host lane (PowerShell staging through Perf_sys task, MDeployer drops, Safe Mode Boot + irnagentd persistence, BYOVD probmon.sys, MS4Killer AV termination, discovery, encryption impact), operator/toolkit panel on right anchoring Rust toolkit + per-victim AV list + victimology, separate on-chain laundering panel (USD 34.2 M total, USD 13.5 M to VASPs, USD 1 M via Cryptex.net, USD 18.8 M parked), bidirectional yellow arrows on stages 3 and 5, purple arrow from impact to laundering panel, detection-anchors footer mapping every deliverable plus IR order-of-operations and three explicit DO-NOT directives.
+
+### Pedagogy
+- `T1562.009 Safe Mode Boot` is the cleanest 2026 evasion vector for ransomware — detection must live at the `\Safeboot\Network\<service>` registry write and at `bcdedit safeboot Minimal`, not at the encryption payload that runs in a defence-stripped host.
+- BYOVD has become commoditised; track it by driver name, not by ransomware family — Embargo (`probmon.sys`) joins the existing repo catalogue and the LOLDrivers project is now a first-class detection-engineering dependency.
+- Per-victim custom compile is the new normal — MS4Killer ships a superset of decoy AV process names and recompiles with the actual target subset, so YARA must anchor on compile-time invariants (RC4 keys, mutex lyric, minifilter API imports) rather than on the process list.
+- BlackCat → Embargo rebrand is supported by Rust + leak-site + on-chain wallet overlap; apply the same multi-modal heuristic when triaging future rebrand claims.
+
+---
+
 ## 2026.05.18 — Day 21 — Silver Fox ABCDoor tax-themed phishing in India and Russia (Kaspersky Securelist)
 
 ### Added

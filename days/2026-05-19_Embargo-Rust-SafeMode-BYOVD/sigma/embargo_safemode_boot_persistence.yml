@@ -1,0 +1,53 @@
+title: Embargo MDeployer Safe Mode Boot and irnagentd persistence
+id: 980c1173-0e76-4863-b676-1d4a710fb97f
+status: experimental
+description: |
+  Detects three discriminating process-creation events used by the Embargo
+  MDeployer DLL variant to reboot the host into Safe Mode with Network and to
+  register the persistence service irnagentd that re-executes the loader after
+  the Safe Mode reboot: bcdedit setting safeboot Minimal, sc.exe creating the
+  irnagentd service, and reg.exe writing the Safeboot Network subkey for
+  irnagentd. Any one of these by itself is rare in legitimate Windows operation
+  and the combination is a strong Embargo indicator. T1562.009 Safe Mode Boot
+  is the discriminating technique that none of the BYOVD ransomware families
+  previously catalogued in this repo used.
+references:
+  - https://www.welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/
+  - https://attack.mitre.org/techniques/T1562/009/
+author: Jarmi
+date: 2026/05/19
+tags:
+  - attack.defense-evasion
+  - attack.persistence
+  - attack.t1562.009
+  - attack.t1547.001
+  - attack.t1569.002
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  bcdedit_safeboot:
+    Image|endswith: '\bcdedit.exe'
+    CommandLine|contains|all:
+      - 'safeboot'
+      - 'Minimal'
+  sc_create_irnagentd:
+    Image|endswith: '\sc.exe'
+    CommandLine|contains|all:
+      - 'create'
+      - 'irnagentd'
+  reg_safeboot_network_irnagentd:
+    Image|endswith: '\reg.exe'
+    CommandLine|contains|all:
+      - 'Safeboot\Network'
+      - 'irnagentd'
+  reg_delete_safeboot_windefend:
+    Image|endswith: '\reg.exe'
+    CommandLine|contains|all:
+      - 'delete'
+      - 'Safeboot\Network\WinDefend'
+  condition: 1 of (bcdedit_safeboot, sc_create_irnagentd, reg_safeboot_network_irnagentd, reg_delete_safeboot_windefend)
+falsepositives:
+  - Legitimate troubleshooting sessions where an administrator manually enables Safe Mode boot via bcdedit (rare; should always be in a documented maintenance window).
+  - Custom recovery scripts that disable Windows Defender persistence in Safe Mode (rare; high-trust environments only).
+level: critical

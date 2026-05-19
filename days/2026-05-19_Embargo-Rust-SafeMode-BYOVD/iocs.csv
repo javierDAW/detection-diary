@@ -1,0 +1,40 @@
+type,value,context,confidence,source
+sha1,A1B98B1FBF69AF79E5A3F27AA6256417488CC117,MDeployer dtest.dll - DLL variant with Safe Mode Boot capability,high,ESET WeLiveSecurity Oct 2024
+sha1,F0A25529B0D0AABCE9D72BA46AAF1C78C5B48C31,MDeployer fxc.exe - EXE variant without Safe Mode branch,high,ESET WeLiveSecurity Oct 2024
+sha1,2BA9BF8DD320990119F42F6F68846D8FB14194D6,MDeployer fdasvc.exe - EXE variant,high,ESET WeLiveSecurity Oct 2024
+sha1,888F27DD2269119CF9524474A6A0B559D0D201A1,MS4Killer praxisbackup.exe - Rust EDR killer with BYOVD,high,ESET WeLiveSecurity Oct 2024
+sha1,BA14C43031411240A0836BEDF8C8692B54698E05,MS4Killer alternate build observed in same intrusion,high,ESET WeLiveSecurity Oct 2024
+sha1,8A85C1399A0E404C8285A723C4214942A45BBFF9,Embargo ransomware pay.exe - Win32/Filecoder.Embargo.A,high,ESET WeLiveSecurity Oct 2024
+sha1,612EC1D41B2AA2518363B18381FD89C12315100F,Embargo ransomware win32.exe - alternate build,high,ESET WeLiveSecurity Oct 2024
+sha1,7310D6399683BA3EB2F695A2071E0E45891D743B,probmon.sys v3.0.0.4 - vulnerable minifilter abused by MS4Killer,high,ESET WeLiveSecurity Oct 2024
+sha256,023d722cbbdd04e3db77de7e6e3cfeabcef21ba5b2f04c3f3a33691801dd45eb,probmon.sys v3.0.0.4 - VirusTotal anchor for the vulnerable driver,high,VirusTotal
+string,IntoTheFloodAgainSameOldTrip,Embargo mutex newer builds - Alice in Chains Would lyric,high,ESET WeLiveSecurity Oct 2024
+string,LoadUpOnGunsBringYourFriends,Embargo mutex older builds - Nirvana Smells Like Teen Spirit lyric,medium,Cyble Jul 2024
+string,wlQYLoPCil3niI7x8CvR9EtNtL/aeaHrZ23LP3fAsJogVTIzdnZ5Pi09ZVeHFkiB,RC4 key hardcoded in MDeployer for a.cache/b.cache decryption,high,ESET WeLiveSecurity Oct 2024
+string,FGFOUDa87c21Vg+cxrr71boU6EG+QC1mwViTciNaTUBuW4gQbcKboN9THK4K35sL,RC4 key hardcoded in MS4Killer for driver-blob decryption,high,ESET WeLiveSecurity Oct 2024
+path,C:\Windows\Debug\a.cache,RC4-encrypted Embargo ransomware payload staged by MDeployer,high,ESET WeLiveSecurity Oct 2024
+path,C:\Windows\Debug\b.cache,RC4-encrypted MS4Killer payload staged by MDeployer,high,ESET WeLiveSecurity Oct 2024
+path,C:\Windows\Debug\pay.exe,Decrypted Embargo ransomware,high,ESET WeLiveSecurity Oct 2024
+path,C:\Windows\praxisbackup.exe,Decrypted MS4Killer Rust EDR killer,high,ESET WeLiveSecurity Oct 2024
+path,C:\Windows\Debug\fail.txt,MDeployer log file with stage prefixes,high,ESET WeLiveSecurity Oct 2024
+path,C:\Windows\Debug\stop.exe,Flow-control sentinel created by MDeployer to prevent double encryption,high,ESET WeLiveSecurity Oct 2024
+path,C:\Windows\Sysmon64.sys,probmon.sys vulnerable driver dropped under Sysmon64.sys name outside System32 drivers,high,ESET WeLiveSecurity Oct 2024
+path,C:\Windows\System32\drivers\Sysprox.sys,probmon.sys vulnerable driver dropped under Sysprox.sys name,high,ESET WeLiveSecurity Oct 2024
+path,C:\Windows\System32\drivers\Sysmon64.sys,probmon.sys vulnerable driver dropped under Sysmon64.sys name in System32 drivers,high,ESET WeLiveSecurity Oct 2024
+regkey,HKLM\SYSTEM\CurrentControlSet\Control\Safeboot\Network\irnagentd,Safe Mode persistence service entry for MDeployer DLL variant,high,ESET WeLiveSecurity Oct 2024
+regkey,HKLM\SYSTEM\CurrentControlSet\Services\Sysprox,Service registration for the vulnerable driver under rotated name Sysprox,high,ESET WeLiveSecurity Oct 2024
+regkey,HKLM\SYSTEM\CurrentControlSet\Services\Sysmon64,Service registration for the vulnerable driver under rotated name Sysmon64 (off-canonical path),high,ESET WeLiveSecurity Oct 2024
+regkey,HKLM\SYSTEM\CurrentControlSet\Services\Proxmon,Service registration for the vulnerable driver under rotated name Proxmon,medium,ESET WeLiveSecurity Oct 2024
+string,Sysprox,Service name rotation used by MS4Killer for the probmon.sys driver,high,ESET WeLiveSecurity Oct 2024
+string,Proxmon,Service name rotation used by MS4Killer for the probmon.sys driver,high,ESET WeLiveSecurity Oct 2024
+string,irnagentd,Persistence service name created by MDeployer DLL variant under Safeboot Network,high,ESET WeLiveSecurity Oct 2024
+string,Perf_sys,Canonical scheduled task name created by BITCH Administrator to launch MDeployer,high,ESET WeLiveSecurity Oct 2024
+string,BITCH\Administrator,Privileged principal observed creating the Perf_sys scheduled task,high,ESET WeLiveSecurity Oct 2024
+string,HOW_TO_RECOVER_FILES.txt,Embargo ransom note filename dropped per encrypted directory,high,ESET WeLiveSecurity Oct 2024
+string,ITM System Co.,Code-signing certificate subject (revoked) used by probmon.sys v3.0.0.4,high,VirusTotal
+string,A88758892ED21DD1704E5528AD2D8036FEE4102C,ITM System Co LTD code-signing certificate thumbprint (revoked),high,VirusTotal
+note,Embargo encrypts files with a random 6-hex-char extension (examples observed: .b58eeb / .3d828a); the extension is per-victim not per-build,n/a,ESET WeLiveSecurity Oct 2024
+note,MS4Killer is custom-compiled per victim with the AV process names hardcoded; the embedded list contains decoys including firefox.exe to throw off static YARA,n/a,ESET WeLiveSecurity Oct 2024
+note,TRM Labs assesses Embargo as a likely BlackCat/ALPHV rebrand based on Rust + leak-site design + shared wallet infrastructure with historical BlackCat addresses,n/a,TRM Labs Aug 2025
+note,Embargo cumulative incoming on-chain volume tracked by TRM Labs is USD 34.2 million since April 2024; approximately USD 18.8 million remains parked in unattributed wallets,n/a,TRM Labs Aug 2025
+note,Notable US victims include Memorial Hospital and Manor (Bainbridge GA - 120085 individuals 1.15 TB exfil), American Associated Pharmacies, and Weiser Memorial Hospital (Idaho),n/a,HIPAA Journal / TRM Labs

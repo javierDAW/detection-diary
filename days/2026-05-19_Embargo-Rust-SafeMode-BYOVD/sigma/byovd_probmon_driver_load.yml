@@ -1,0 +1,50 @@
+title: BYOVD probmon.sys driver load from non-canonical path or known hash
+id: f9974dbd-3e74-4b4f-9abe-7288fd89fdce
+status: experimental
+description: |
+  Detects kernel driver load events corresponding to the vulnerable minifilter
+  probmon.sys v3.0.0.4 abused by Embargo MS4Killer. Two flavours are matched:
+  a kernel driver loaded from a path containing Sysprox.sys, Sysmon64.sys or
+  Proxmon.sys (the three rotated names MS4Killer uses for the same probmon.sys
+  blob); and a driver load whose Hashes field matches the known SHA1 or SHA256
+  of probmon.sys v3.0.0.4 signed by ITM System Co LTD with the now-revoked
+  certificate. Legitimate Sysmon64.sys from Microsoft Sysinternals lives under
+  Program Files and has its own signer; this rule is intentionally tight on
+  the path anchor to avoid clashing with Sysinternals Sysmon.
+references:
+  - https://www.welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/
+  - https://www.virustotal.com/gui/file/023d722cbbdd04e3db77de7e6e3cfeabcef21ba5b2f04c3f3a33691801dd45eb
+author: Jarmi
+date: 2026/05/19
+tags:
+  - attack.defense-evasion
+  - attack.privilege-escalation
+  - attack.t1068
+  - attack.t1562.001
+  - attack.t1014
+logsource:
+  product: windows
+  category: driver_load
+detection:
+  selection_path:
+    ImageLoaded|endswith:
+      - '\Sysprox.sys'
+      - '\Proxmon.sys'
+    Signed: 'true'
+  selection_sysmon64_off_canonical:
+    ImageLoaded|endswith: '\Sysmon64.sys'
+    ImageLoaded|contains|all:
+      - '\Windows\'
+    ImageLoaded|contains:
+      - '\Windows\Sysmon64.sys'
+  selection_known_hash:
+    Hashes|contains:
+      - 'SHA1=7310D6399683BA3EB2F695A2071E0E45891D743B'
+      - 'SHA256=023d722cbbdd04e3db77de7e6e3cfeabcef21ba5b2f04c3f3a33691801dd45eb'
+  selection_known_signer:
+    Signature: 'ITM System Co.,LTD'
+  condition: 1 of selection_*
+falsepositives:
+  - Legitimate Microsoft Sysinternals Sysmon driver Sysmon64.sys is installed under Program Files (or under \Windows\system32\drivers when registered via Sysmon -i); this rule matches only the off-canonical \Windows\Sysmon64.sys variant used by MS4Killer.
+  - Legacy systems with leftover probmon.sys from genuine ITM System ProBuMain installations may match the hash selection; cross-check with installed-software inventory.
+level: critical

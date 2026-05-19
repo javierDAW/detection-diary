@@ -1,0 +1,29 @@
+// Title:        BYOVD probmon.sys driver load + AV process stop join (Embargo MS4Killer)
+// Id:           6ac661f6-3d8d-4721-a0cf-2af2b518f313
+// MITRE:        T1068, T1562.001, T1014
+// Reference:    https://www.welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/
+// Author:       Jarmi
+// Date:         2026-05-19
+// Tested on:    Defender XDR — DeviceImageLoadEvents + DeviceProcessEvents
+// FP notes:     Genuine ITM System ProBuMain installations on legacy systems may load probmon.sys legitimately; cross-check with installed-software inventory before alerting. Sysinternals Sysmon registered as a service writes to \\System32\\drivers\\, so the off-canonical Sysmon64.sys path is the discriminating anchor here.
+let WindowMin = 15m;
+let SuspectDrivers = DeviceImageLoadEvents
+  | where Timestamp > ago(7d)
+  | where FolderPath !startswith @"C:\Windows\System32\drivers"
+  | where FileName in~ ("Sysprox.sys", "Sysmon64.sys", "Proxmon.sys")
+  | project Timestamp, DeviceId, DeviceName, DriverFile = FileName, DriverPath = FolderPath, DriverSHA1 = SHA1, DriverSHA256 = SHA256;
+let KnownHashHits = DeviceImageLoadEvents
+  | where Timestamp > ago(7d)
+  | where SHA1 =~ "7310D6399683BA3EB2F695A2071E0E45891D743B"
+     or SHA256 =~ "023d722cbbdd04e3db77de7e6e3cfeabcef21ba5b2f04c3f3a33691801dd45eb"
+  | project Timestamp, DeviceId, DeviceName, DriverFile = FileName, DriverPath = FolderPath, DriverSHA1 = SHA1, DriverSHA256 = SHA256;
+let AvStops = DeviceProcessEvents
+  | where Timestamp > ago(7d)
+  | where ActionType in ("ProcessTerminated", "ProcessCrashed")
+  | where FileName has_any ("MsMpEng.exe", "SentinelAgent.exe", "ekrn.exe", "WRSA.exe", "CylanceSvc.exe", "ds_monitor.exe", "EPSecurityService.exe", "bdredline.exe")
+  | project AvStopTime = Timestamp, DeviceId, AvProcess = FileName;
+union SuspectDrivers, KnownHashHits
+| join kind=inner (AvStops) on DeviceId
+| where datetime_diff('minute', AvStopTime, Timestamp) between (-(WindowMin / 1m) .. (WindowMin / 1m))
+| project Timestamp, AvStopTime, DeviceId, DeviceName, DriverFile, DriverPath, DriverSHA1, DriverSHA256, AvProcess
+| order by Timestamp desc

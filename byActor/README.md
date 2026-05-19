@@ -11,11 +11,13 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 
 | Group | Days |
 |---|---|
+| [ALPHV](./alphv/) | 1 |
 | [Agenda](./agenda/) | 1 |
 | [Akira](./akira/) | 1 |
 | [Albiriox](./albiriox/) | 1 |
 | [ArcaneDoor](./arcanedoor/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
+| [BlackCat](./blackcat/) | 1 |
 | [BreachForums](./breachforums/) | 1 |
 | [C0063](./c0063/) | 1 |
 | [CL-STA-0049](./cl-sta-0049/) | 1 |
@@ -23,6 +25,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
 | [Dadsec](./dadsec/) | 1 |
 | [Earth Estries](./earth-estries/) | 1 |
+| [Embargo](./embargo/) | 1 |
 | [Erudite Mogwai](./erudite-mogwai/) | 1 |
 | [EtherRAT (DPRK-linked, UNC5342 toolchain overlap)](./etherrat-dprk-linked-unc5342-toolchain-overlap/) | 1 |
 | [G1027](./g1027/) | 1 |

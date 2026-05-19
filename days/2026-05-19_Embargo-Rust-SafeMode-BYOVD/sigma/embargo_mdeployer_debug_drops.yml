@@ -1,0 +1,38 @@
+title: Embargo MDeployer payload drop in C\:\\Windows\\Debug
+id: 80c2fb70-c71e-4769-bdf9-2640404e0b72
+status: experimental
+description: |
+  Detects file creation events of Embargo MDeployer canonical filenames in the
+  C\:\\Windows\\Debug directory. MDeployer drops a.cache, b.cache, pay.exe,
+  dtest.dll, stop.exe and fail.txt as part of its execution flow. None of these
+  filenames are produced by normal Windows tooling in this directory; the
+  combination is a strong Embargo indicator. The praxisbackup.exe artefact
+  lands one directory up at C\:\\Windows\\praxisbackup.exe and is matched by
+  the separate BYOVD driver-load rule.
+references:
+  - https://www.welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/
+author: Jarmi
+date: 2026/05/19
+tags:
+  - attack.execution
+  - attack.defense-evasion
+  - attack.t1027.013
+  - attack.t1574.002
+logsource:
+  product: windows
+  category: file_event
+detection:
+  selection:
+    TargetFilename|contains: '\Windows\Debug\'
+    TargetFilename|endswith:
+      - '\a.cache'
+      - '\b.cache'
+      - '\pay.exe'
+      - '\dtest.dll'
+      - '\stop.exe'
+      - '\fail.txt'
+  condition: selection
+falsepositives:
+  - Legitimate Microsoft trace files in C\:\\Windows\\Debug (mostly *.log and Bluetooth-Audio-Capture trace files) do not match the canonical Embargo filename set.
+  - Custom monitoring tools that write to C\:\\Windows\\Debug using a non-conflicting filename are not flagged by this rule.
+level: high
