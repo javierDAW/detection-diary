@@ -2,12 +2,11 @@
 <!-- Source of truth: YAML frontmatter in each days/<slug>/README.md -->
 
 
-# Techniques: T1569.002
+# Techniques: T1136.002
 
-2 day(s) covering this technique.
+1 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-05-19 | Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs) | Embargo · ALPHV · BlackCat | [`2026-05-19_Embargo-Rust-SafeMode-BYOVD/`](../../days/2026-05-19_Embargo-Rust-SafeMode-BYOVD/) |
-| 2026-05-10 | AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security) | Unattributed-LLM-assisted-operator | [`2026-05-10_Mexico-Water-AI-Assisted-OT/`](../../days/2026-05-10_Mexico-Water-AI-Assisted-OT/) |

@@ -1,0 +1,36 @@
+// Title:        Embargo MDeployer Safe Mode Boot chain (bcdedit + sc + reg + shutdown)
+// Id:           9d5fe5cb-61f0-4f0b-bf9f-9a0d652aa18a
+// MITRE:        T1562.009, T1547.001, T1569.002
+// Reference:    https://www.welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/
+// Author:       Jarmi
+// Date:         2026-05-19
+// Tested on:    Defender XDR — DeviceProcessEvents
+// FP notes:     Legitimate troubleshooting sessions that manually enable Safe Mode boot are rare and should always live in a documented maintenance window. The chain join (two or more discriminating events within 10 minutes on the same DeviceId) makes single legitimate uses unlikely to match.
+let WindowMin = 10m;
+let Bcdedit = DeviceProcessEvents
+  | where Timestamp > ago(7d)
+  | where FileName =~ "bcdedit.exe"
+  | where ProcessCommandLine has "safeboot" and ProcessCommandLine has_any ("Minimal", "Network")
+  | project Timestamp, DeviceId, DeviceName, AccountName, BcdeditCmd = ProcessCommandLine;
+let ScCreate = DeviceProcessEvents
+  | where Timestamp > ago(7d)
+  | where FileName =~ "sc.exe"
+  | where ProcessCommandLine has "create" and ProcessCommandLine has "irnagentd"
+  | project Timestamp, DeviceId, ScCmd = ProcessCommandLine;
+let RegSafeboot = DeviceProcessEvents
+  | where Timestamp > ago(7d)
+  | where FileName =~ "reg.exe"
+  | where ProcessCommandLine has @"Safeboot\Network" and (ProcessCommandLine has "irnagentd" or ProcessCommandLine has "WinDefend")
+  | project Timestamp, DeviceId, RegCmd = ProcessCommandLine;
+let ShutdownR = DeviceProcessEvents
+  | where Timestamp > ago(7d)
+  | where FileName =~ "shutdown.exe"
+  | where ProcessCommandLine has "-r" and ProcessCommandLine has "-f"
+  | project Timestamp, DeviceId, ShutdownCmd = ProcessCommandLine;
+Bcdedit
+| join kind=inner (ScCreate) on DeviceId
+| where datetime_diff('minute', Timestamp1, Timestamp) between (0 .. (WindowMin / 1m))
+| join kind=leftouter (RegSafeboot) on DeviceId
+| join kind=leftouter (ShutdownR) on DeviceId
+| project Timestamp, DeviceId, DeviceName, AccountName, BcdeditCmd, ScCmd, RegCmd, ShutdownCmd
+| order by Timestamp desc

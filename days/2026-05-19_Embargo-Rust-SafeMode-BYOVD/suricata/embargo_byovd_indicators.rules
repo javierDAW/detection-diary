@@ -1,0 +1,18 @@
+# Embargo Ransomware — MDeployer / MS4Killer / probmon.sys network anchors
+# Suricata 7.x — sids 8220001..8220004
+# Author: Jarmi
+# Reference: https://www.welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/
+# Notes:
+#   These are file-name and HTTP-URI anchors. Embargo C2 is per-affiliate
+#   (Tox + email + leak-site negotiation), so the rules focus on staging and
+#   lateral movement file delivery rather than C2 beaconing. SMB filename
+#   match for probmon.sys / Sysprox.sys / Sysmon64.sys catches lateral
+#   delivery of the vulnerable driver inside an enterprise LAN.
+
+alert http any any -> $HOME_NET any (msg:"Embargo MDeployer/MS4Killer payload delivered over HTTP (filename anchor: praxisbackup.exe)"; flow:established,to_client; file_data; content:"praxisbackup.exe"; nocase; classtype:trojan-activity; reference:url,welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/; sid:8220001; rev:1;)
+
+alert http any any -> $HOME_NET any (msg:"Embargo MDeployer payload delivered over HTTP (filename anchor: dtest.dll)"; flow:established,to_client; file_data; content:"dtest.dll"; nocase; classtype:trojan-activity; reference:url,welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/; sid:8220002; rev:1;)
+
+alert smb any any -> $HOME_NET any (msg:"Embargo BYOVD probmon.sys lateral delivery over SMB (filename anchor: probmon.sys / Sysprox.sys / Sysmon64.sys)"; flow:established; content:"|73 00 79 00 73 00 70 00 72 00 6F 00 78 00 2E 00 73 00 79 00 73 00|"; nocase; classtype:trojan-activity; reference:url,welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/; sid:8220003; rev:1;)
+
+alert smb any any -> $HOME_NET any (msg:"Embargo MDeployer payload (a.cache / b.cache) delivered over SMB"; flow:established; content:"|62 00 2E 00 63 00 61 00 63 00 68 00 65 00|"; nocase; classtype:trojan-activity; reference:url,welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/; sid:8220004; rev:1;)

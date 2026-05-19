@@ -4,11 +4,12 @@
 
 # Techniques: T1490
 
-7 day(s) covering this technique.
+8 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-19 | Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs) | Embargo · ALPHV · BlackCat | [`2026-05-19_Embargo-Rust-SafeMode-BYOVD/`](../../days/2026-05-19_Embargo-Rust-SafeMode-BYOVD/) |
 | 2026-05-15 | EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion | The Gentlemen RaaS · EtherRAT (DPRK-linked, UNC5342 toolchain overlap) · TukTuk (AI-generated framework) | [`2026-05-15_EtherRAT-TukTuk-Gentlemen/`](../../days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | 2026-05-12 | Qilin EDR Killer — msimg32.dll four-stage loader and BYOVD chain | Qilin · Agenda · Warlock | [`2026-05-12_Qilin-EDR-Killer-msimg32/`](../../days/2026-05-12_Qilin-EDR-Killer-msimg32/) |
 | 2026-05-05 | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | [`2026-05-05_Akira-SonicWall-CVE-2024-40766/`](../../days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |

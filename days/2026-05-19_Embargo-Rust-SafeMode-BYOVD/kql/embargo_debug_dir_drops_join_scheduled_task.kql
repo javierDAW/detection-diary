@@ -1,0 +1,24 @@
+// Title:        Embargo MDeployer C\:\\Windows\\Debug drops joined with schtasks Perf_sys creation
+// Id:           baaa9473-4194-4db9-8503-c80a60a9c9ed
+// MITRE:        T1053.005, T1547.001, T1574.002
+// Reference:    https://www.welivesecurity.com/en/eset-research/embargo-ransomware-rocknrust/
+// Author:       Jarmi
+// Date:         2026-05-19
+// Tested on:    Defender XDR — DeviceFileEvents + DeviceProcessEvents
+// FP notes:     Legitimate Microsoft trace files in C\:\\Windows\\Debug (BluetoothAudioCapture trace, WIA logs) do not match the canonical Embargo filename set. Custom monitoring tools that write to that directory with a non-conflicting filename are not flagged.
+let WindowMin = 30m;
+let DebugDrops = DeviceFileEvents
+  | where Timestamp > ago(7d)
+  | where FolderPath has @"C:\Windows\Debug"
+  | where FileName in~ ("a.cache", "b.cache", "fail.txt", "stop.exe", "pay.exe", "dtest.dll")
+  | project Timestamp, DeviceId, DeviceName, DropFile = FileName, DropPath = FolderPath, DropInitiator = InitiatingProcessFileName;
+let TaskCreate = DeviceProcessEvents
+  | where Timestamp > ago(7d)
+  | where FileName =~ "schtasks.exe"
+  | where ProcessCommandLine has_any ("Perf_sys", "/Create")
+  | project TaskTime = Timestamp, DeviceId, TaskCmd = ProcessCommandLine, TaskInitiator = InitiatingProcessFileName, TaskAccount = AccountName;
+DebugDrops
+| join kind=inner (TaskCreate) on DeviceId
+| where datetime_diff('minute', TaskTime, Timestamp) between (0 .. (WindowMin / 1m))
+| project Timestamp, TaskTime, DeviceId, DeviceName, DropFile, DropPath, DropInitiator, TaskCmd, TaskInitiator, TaskAccount
+| order by Timestamp desc
