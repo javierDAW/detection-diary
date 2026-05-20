@@ -1,0 +1,42 @@
+// Title:        Storm-2949 ARM Control-Plane Burst — publishxml + Key Vault + Storage listkeys within 30 min
+// Id:           66b3ace5-df11-425e-8f20-a9de68bd2bce
+// MITRE:        T1552.001, T1552.005, T1606, T1562.007
+// Reference:    https://www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/
+// Author:       Jarmi
+// Date:         2026-05-20
+// Tested on:    Microsoft Defender XDR — CloudAuditEvents (also adaptable to Sentinel AzureActivity)
+// FP notes:     Some IaC pipelines (Terraform, Bicep, ARM templates) batch publishxml and listkeys calls;
+//               exclude pipeline service principals by displayName. Genuine admin work rarely chains
+//               publishxml + KV access-policy write + secrets/read + listkeys in the same 30-min window.
+//
+CloudAuditEvents
+| where Timestamp > ago(7d)
+| where DataSource == "Azure Resource Manager"
+| where OperationName in~ (
+    "microsoft.web/sites/publishxml/action",
+    "microsoft.keyvault/vaults/accesspolicies/write",
+    "microsoft.keyvault/vaults/secrets/read",
+    "microsoft.storage/storageaccounts/listkeys/action",
+    "microsoft.storage/storageaccounts/write",
+    "microsoft.sql/servers/firewallrules/write",
+    "microsoft.sql/servers/firewallrules/delete")
+| extend Caller = tostring(parse_json(RawEventData).caller)
+| extend CallerIp = tostring(parse_json(RawEventData).callerIpAddress)
+| extend ResourceId = tostring(parse_json(RawEventData).resourceId)
+| summarize
+    DistinctOps      = dcount(OperationName),
+    OpsList          = make_set(OperationName, 32),
+    EventCount       = count(),
+    FirstSeen        = min(Timestamp),
+    LastSeen         = max(Timestamp),
+    DistinctIps      = dcount(CallerIp),
+    IpList           = make_set(CallerIp, 16),
+    DistinctResources = dcount(ResourceId)
+  by Caller, bin(Timestamp, 30m)
+| where DistinctOps >= 3
+| where OpsList has_any (dynamic([
+    "microsoft.keyvault/vaults/secrets/read",
+    "microsoft.storage/storageaccounts/listkeys/action",
+    "microsoft.web/sites/publishxml/action"]))
+| order by EventCount desc, FirstSeen asc
+| project Caller, CallerIps = IpList, OpsObserved = OpsList, DistinctOps, EventCount, DistinctResources, FirstSeen, LastSeen

@@ -1,0 +1,241 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d" font-family="sans-serif">
+  <title id="t">Storm-2949 — Identity-driven cloud-wide breach kill chain</title>
+  <desc id="d">Storm-2949 kill chain: vishing plus SSPR drives MFA hijack and Microsoft Authenticator rebind, then Graph API enumeration, OneDrive and SharePoint bulk exfiltration, Azure RBAC pivot, App Service publishxml, Key Vault secrets, SQL and Storage exfiltration, VMAccess and Run Command for IMDS token and ScreenConnect persistence. Operator lane lists egress IPs 176.123.4.44, 91.208.197.87 and ScreenConnect 185.241.208.243. Footer maps detection anchors per Sigma, KQL, YARA, and Suricata.</desc>
+  <defs>
+    <style><![CDATA[
+      .bg{fill:#ffffff}
+      .frame{fill:none;stroke:#24292f;stroke-width:1.5}
+      .lane{fill:#f6f8fa;stroke:#d0d7de;stroke-width:1}
+      .laneL{fill:#24292f;font-size:11px;font-weight:700;letter-spacing:1.5px}
+      .box{fill:#ffffff;stroke:#24292f;stroke-width:1.2}
+      .boxOp{fill:#fff8f0;stroke:#9a3412;stroke-width:1.2}
+      .boxKv{fill:#eef2ff;stroke:#1e3a8a;stroke-width:1.2}
+      .badge{fill:#0969da}
+      .badgeT{fill:#ffffff;font-size:11px;font-weight:700;text-anchor:middle}
+      .h1{fill:#24292f;font-size:13px;font-weight:700}
+      .h2{fill:#57606a;font-size:10.5px}
+      .mitre{fill:#1e40af;font-family:ui-monospace,'SFMono-Regular',Consolas,monospace;font-size:9.5px;font-weight:600}
+      .ioc{fill:#7e2b16;font-family:ui-monospace,'SFMono-Regular',Consolas,monospace;font-size:9px}
+      .title{fill:#24292f;font-size:16px;font-weight:800}
+      .sub{fill:#57606a;font-size:10.5px}
+      .anchor{fill:#24292f;font-size:11px;font-weight:700}
+      .anchorL{fill:#24292f;font-size:10px}
+      .anchorMono{fill:#0a3069;font-family:ui-monospace,'SFMono-Regular',Consolas,monospace;font-size:9.5px}
+      .arrow{stroke:#24292f;stroke-width:1.5;fill:none}
+      .arrowC2{stroke:#bf8700;stroke-width:1.8;fill:none}
+      .opH{fill:#9a3412;font-size:11px;font-weight:700}
+      .opM{fill:#9a3412;font-family:ui-monospace,'SFMono-Regular',Consolas,monospace;font-size:9.5px}
+      @media (prefers-color-scheme: dark){
+        .bg{fill:#0d1117}
+        .frame{stroke:#c9d1d9}
+        .lane{fill:#161b22;stroke:#30363d}
+        .laneL{fill:#c9d1d9}
+        .box{fill:#0d1117;stroke:#c9d1d9}
+        .boxOp{fill:#2d1b00;stroke:#f0883e}
+        .boxKv{fill:#0c1a3a;stroke:#79c0ff}
+        .badge{fill:#1f6feb}
+        .h1{fill:#c9d1d9}
+        .h2{fill:#8b949e}
+        .mitre{fill:#79c0ff}
+        .ioc{fill:#ffa198}
+        .title{fill:#c9d1d9}
+        .sub{fill:#8b949e}
+        .anchor{fill:#c9d1d9}
+        .anchorL{fill:#c9d1d9}
+        .anchorMono{fill:#79c0ff}
+        .arrow{stroke:#c9d1d9}
+        .arrowC2{stroke:#f0883e}
+        .opH{fill:#f0883e}
+        .opM{fill:#f0883e}
+      }
+    ]]></style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="context-stroke"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="880" height="1280"/>
+  <rect class="frame" x="6" y="6" width="868" height="1268" rx="8"/>
+
+  <!-- Header -->
+  <text class="title" x="24" y="36">Storm-2949 — Identity-driven cloud-wide breach</text>
+  <text class="sub" x="24" y="54">Microsoft Threat Intelligence • Microsoft Defender Security Research • published 2026-05-18</text>
+
+  <!-- Lanes -->
+  <rect class="lane" x="24" y="76" width="500" height="1080" rx="6"/>
+  <rect class="lane" x="540" y="76" width="316" height="1080" rx="6"/>
+  <text class="laneL" x="38" y="94">VICTIM TENANT / CLOUD ESTATE</text>
+  <text class="laneL" x="554" y="94">OPERATOR INFRASTRUCTURE</text>
+
+  <!-- Stage 1 -->
+  <rect class="box" x="40" y="108" width="468" height="78" rx="6"/>
+  <circle class="badge" cx="60" cy="128" r="13"/>
+  <text class="badgeT" x="60" y="132">1</text>
+  <text class="h1" x="84" y="128">Initial Access — vishing plus SSPR abuse</text>
+  <text class="h2" x="84" y="144">Actor initiates SSPR for IT / leadership victim. Phone-call impersonates IT support.</text>
+  <text class="h2" x="84" y="158">User approves MFA prompts believing it is routine verification.</text>
+  <text class="mitre" x="84" y="176">T1078.004 • T1566.004</text>
+  <text class="ioc" x="320" y="176">caller: 176.123.4[.]44</text>
+
+  <!-- Stage 2 -->
+  <rect class="box" x="40" y="200" width="468" height="78" rx="6"/>
+  <circle class="badge" cx="60" cy="220" r="13"/>
+  <text class="badgeT" x="60" y="224">2</text>
+  <text class="h1" x="84" y="220">Persistence (identity) — MFA strip + Authenticator rebind</text>
+  <text class="h2" x="84" y="236">Reset password, remove every prior MFA method (phone, email, Authenticator),</text>
+  <text class="h2" x="84" y="250">register attacker Microsoft Authenticator. User locked out, attacker persistent.</text>
+  <text class="mitre" x="84" y="268">T1556.006 • T1098.005</text>
+  <text class="ioc" x="270" y="268">anchor: methods removed + new device &lt;5 min</text>
+
+  <!-- Stage 3 -->
+  <rect class="box" x="40" y="292" width="468" height="72" rx="6"/>
+  <circle class="badge" cx="60" cy="312" r="13"/>
+  <text class="badgeT" x="60" y="316">3</text>
+  <text class="h1" x="84" y="312">Discovery — Microsoft Graph API enumeration</text>
+  <text class="h2" x="84" y="328">Custom Python plus curl: enumerate users by name pattern, role members,</text>
+  <text class="h2" x="84" y="342">service principals, application IDs. Three more accounts compromised same way.</text>
+  <text class="mitre" x="84" y="358">T1087.004 • T1526 • T1580 • T1098.001 (attempt)</text>
+
+  <!-- Stage 4 -->
+  <rect class="box" x="40" y="378" width="468" height="72" rx="6"/>
+  <circle class="badge" cx="60" cy="398" r="13"/>
+  <text class="badgeT" x="60" y="402">4</text>
+  <text class="h1" x="84" y="398">M365 mass exfil — OneDrive + SharePoint</text>
+  <text class="h2" x="84" y="414">OneDrive web UI: thousands of files downloaded in one action.</text>
+  <text class="h2" x="84" y="428">SharePoint search focused on VPN configs and remote access procedures.</text>
+  <text class="mitre" x="84" y="446">T1530 • T1213 • T1567.002</text>
+
+  <!-- Stage 5 -->
+  <rect class="box" x="40" y="464" width="468" height="78" rx="6"/>
+  <circle class="badge" cx="60" cy="484" r="13"/>
+  <text class="badgeT" x="60" y="488">5</text>
+  <text class="h1" x="84" y="484">Cloud pivot — Azure RBAC + App Service publishxml</text>
+  <text class="h2" x="84" y="500">Compromised identities hold custom RBAC on production subscriptions.</text>
+  <text class="h2" x="84" y="514">microsoft.Web/sites/publishxml/action → Kudu / FTP / Web Deploy credentials.</text>
+  <text class="mitre" x="84" y="532">T1199 • T1078.004 • T1552.001</text>
+
+  <!-- Stage 6 -->
+  <rect class="boxKv" x="40" y="556" width="468" height="86" rx="6"/>
+  <circle class="badge" cx="60" cy="576" r="13"/>
+  <text class="badgeT" x="60" y="580">6</text>
+  <text class="h1" x="84" y="576">Credential Access — Key Vault burst</text>
+  <text class="h2" x="84" y="592">Owner role on KV → accesspolicies/write → secrets/read burst.</text>
+  <text class="h2" x="84" y="606">Dozens of secrets read in 4 minutes. Production app creds extracted, password rotated.</text>
+  <text class="mitre" x="84" y="624">T1552.001 • T1606</text>
+  <text class="anchorMono" x="220" y="640">microsoft.keyvault/vaults/secrets/read (burst)</text>
+
+  <!-- Stage 7 -->
+  <rect class="box" x="40" y="656" width="468" height="80" rx="6"/>
+  <circle class="badge" cx="60" cy="676" r="13"/>
+  <text class="badgeT" x="60" y="680">7</text>
+  <text class="h1" x="84" y="676">SQL + Storage exfil with firewall ACL manipulation</text>
+  <text class="h2" x="84" y="692">SQL firewall opened → query / exfil → firewall rule deleted (defense evasion).</text>
+  <text class="h2" x="84" y="706">Storage network ACL opened → listkeys → SAS tokens + account keys.</text>
+  <text class="mitre" x="84" y="724">T1562.007 • T1530 • T1552.005 • T1606</text>
+
+  <!-- Stage 8 -->
+  <rect class="box" x="40" y="750" width="468" height="82" rx="6"/>
+  <circle class="badge" cx="60" cy="770" r="13"/>
+  <text class="badgeT" x="60" y="774">8</text>
+  <text class="h1" x="84" y="770">Execution (VM) — VMAccess + Run Command + IMDS</text>
+  <text class="h2" x="84" y="786">VMAccess: new local admin on target VM.</text>
+  <text class="h2" x="84" y="800">Run Command PowerShell: IMDS token request → Key Vault REST (failed, perms).</text>
+  <text class="mitre" x="84" y="818">T1059.001 • T1651 • T1136.001</text>
+
+  <!-- Stage 9 -->
+  <rect class="box" x="40" y="846" width="468" height="82" rx="6"/>
+  <circle class="badge" cx="60" cy="866" r="13"/>
+  <text class="badgeT" x="60" y="870">9</text>
+  <text class="h1" x="84" y="866">Persistence (endpoint) — ScreenConnect masquerade</text>
+  <text class="h2" x="84" y="882">Run Command installs ScreenConnect from operator IP.</text>
+  <text class="h2" x="84" y="896">Service renamed to Windows-component-like, files placed in masquerading paths.</text>
+  <text class="mitre" x="84" y="914">T1219 • T1543.003</text>
+
+  <!-- Stage 10 -->
+  <rect class="box" x="40" y="942" width="468" height="80" rx="6"/>
+  <circle class="badge" cx="60" cy="962" r="13"/>
+  <text class="badgeT" x="60" y="966">10</text>
+  <text class="h1" x="84" y="962">Defense Evasion (endpoint) + endpoint credential collection</text>
+  <text class="h2" x="84" y="978">Set-MpPreference disables Defender RT and Behavior. Event Logs cleared.</text>
+  <text class="h2" x="84" y="992">.pfx exfil + file-share grep for password-related strings.</text>
+  <text class="mitre" x="84" y="1010">T1562.001 • T1070.001 • T1552.004</text>
+
+  <!-- Stage 11 -->
+  <rect class="box" x="40" y="1036" width="468" height="78" rx="6"/>
+  <circle class="badge" cx="60" cy="1056" r="13"/>
+  <text class="badgeT" x="60" y="1060">11</text>
+  <text class="h1" x="84" y="1056">Long-tail exfiltration over multiple days</text>
+  <text class="h2" x="84" y="1072">Operator alternates SAS-based and OAuth-based authentication as access controls evolve.</text>
+  <text class="h2" x="84" y="1086">Continuous blob downloads with Python plus Azure Storage SDK.</text>
+  <text class="mitre" x="84" y="1104">T1530 • T1567.002</text>
+
+  <!-- OPERATOR LANE -->
+  <rect class="boxOp" x="554" y="108" width="288" height="186" rx="6"/>
+  <text class="opH" x="566" y="126">Egress IPs (identity + cloud plane)</text>
+  <text class="opM" x="566" y="146">176.123.4[.]44</text>
+  <text class="opM" x="566" y="160">91.208.197[.]87</text>
+  <text class="opH" x="566" y="184">SSPR + vishing playbook</text>
+  <text class="sub" x="566" y="200">Voice impersonation of IT support.</text>
+  <text class="sub" x="566" y="214">Targets: IT personnel + senior leadership.</text>
+  <text class="opH" x="566" y="240">Custom tooling</text>
+  <text class="sub" x="566" y="256">Python plus curl against Graph API.</text>
+  <text class="sub" x="566" y="270">Python plus Azure Storage SDK for blob exfil.</text>
+
+  <rect class="boxOp" x="554" y="308" width="288" height="160" rx="6"/>
+  <text class="opH" x="566" y="326">ARM operations weaponised</text>
+  <text class="opM" x="566" y="346">microsoft.Web/sites/publishxml/action</text>
+  <text class="opM" x="566" y="362">microsoft.keyvault/vaults/accesspolicies/write</text>
+  <text class="opM" x="566" y="378">microsoft.keyvault/vaults/secrets/read</text>
+  <text class="opM" x="566" y="394">microsoft.Storage/storageAccounts/listkeys/action</text>
+  <text class="opM" x="566" y="410">microsoft.storage/storageaccounts/write</text>
+  <text class="opM" x="566" y="426">microsoft.sql/servers/firewallrules/write+delete</text>
+  <text class="opM" x="566" y="442">virtualMachines/extensions/write (VMAccess)</text>
+  <text class="opM" x="566" y="458">virtualMachines/runCommand/action</text>
+
+  <rect class="boxOp" x="554" y="482" width="288" height="160" rx="6"/>
+  <text class="opH" x="566" y="500">Endpoint capability</text>
+  <text class="opM" x="566" y="520">ScreenConnect from 185.241.208[.]243</text>
+  <text class="sub" x="566" y="538">RMM masqueraded as Windows component.</text>
+  <text class="opH" x="566" y="564">Tamper sequence</text>
+  <text class="opM" x="566" y="582">Set-MpPreference -DisableRealtimeMonitoring</text>
+  <text class="opM" x="566" y="598">Set-MpPreference -DisableBehaviorMonitoring</text>
+  <text class="opM" x="566" y="614">wevtutil cl Security / System / Application</text>
+  <text class="opM" x="566" y="630">PSReadline + Temp dir cleanup</text>
+
+  <rect class="boxOp" x="554" y="656" width="288" height="120" rx="6"/>
+  <text class="opH" x="566" y="674">Long-tail exfil</text>
+  <text class="sub" x="566" y="692">Alternates SAS + OAuth across multiple days.</text>
+  <text class="opM" x="566" y="712">169.254.169.254/metadata/identity/oauth2/token</text>
+  <text class="sub" x="566" y="730">IMDS token request as cloud-to-host bridge.</text>
+  <text class="opM" x="566" y="754">curl -H "Metadata:true" ...</text>
+
+  <!-- Arrows: stage to operator lane -->
+  <line class="arrowC2" x1="508" y1="156" x2="554" y2="148" marker-end="url(#arr)"/>
+  <line class="arrowC2" x1="508" y1="500" x2="554" y2="360" marker-end="url(#arr)"/>
+  <line class="arrowC2" x1="508" y1="600" x2="554" y2="378" marker-end="url(#arr)"/>
+  <line class="arrowC2" x1="508" y1="700" x2="554" y2="442" marker-end="url(#arr)"/>
+  <line class="arrowC2" x1="508" y1="780" x2="554" y2="710" marker-end="url(#arr)"/>
+  <line class="arrowC2" x1="508" y1="870" x2="554" y2="520" marker-end="url(#arr)"/>
+  <line class="arrowC2" x1="508" y1="970" x2="554" y2="600" marker-end="url(#arr)"/>
+  <line class="arrowC2" x1="508" y1="1070" x2="554" y2="710" marker-end="url(#arr)"/>
+
+  <!-- Stage-to-stage vertical arrows -->
+  <line class="arrow" x1="270" y1="186" x2="270" y2="200" marker-end="url(#arr)"/>
+  <line class="arrow" x1="270" y1="278" x2="270" y2="292" marker-end="url(#arr)"/>
+  <line class="arrow" x1="270" y1="364" x2="270" y2="378" marker-end="url(#arr)"/>
+  <line class="arrow" x1="270" y1="450" x2="270" y2="464" marker-end="url(#arr)"/>
+  <line class="arrow" x1="270" y1="542" x2="270" y2="556" marker-end="url(#arr)"/>
+  <line class="arrow" x1="270" y1="642" x2="270" y2="656" marker-end="url(#arr)"/>
+  <line class="arrow" x1="270" y1="736" x2="270" y2="750" marker-end="url(#arr)"/>
+  <line class="arrow" x1="270" y1="832" x2="270" y2="846" marker-end="url(#arr)"/>
+  <line class="arrow" x1="270" y1="928" x2="270" y2="942" marker-end="url(#arr)"/>
+  <line class="arrow" x1="270" y1="1022" x2="270" y2="1036" marker-end="url(#arr)"/>
+
+  <!-- DETECTION ANCHORS -->
+  <rect class="box" x="24" y="1172" width="832" height="92" rx="6"/>
+  <text class="anchor" x="40" y="1192">Detection anchors</text>
+  <text class="anchorL" x="40" y="1210">• Identity: MFA methods removed + new Authenticator registered &lt;5 min on same principal (Defender for Identity / Entra AuditLogs).</text>
+  <text class="anchorL" x="40" y="1226">• ARM control plane: burst of publishxml + accesspolicies/write + secrets/read + listkeys + firewallrules/write by single caller within 30 min (CloudAuditEvents).</text>
+  <text class="anchorL" x="40" y="1242">• VM bridge: powershell.exe parented by WindowsAzureGuestAgent.exe issuing IMDS token request (DeviceProcessEvents).</text>
+  <text class="anchorL" x="40" y="1258">• Storage rotation rule: regenerate BOTH account keys to invalidate prior SAS tokens; rotating one key leaves SAS signed with the other valid.</text>
+</svg>

@@ -1,0 +1,32 @@
+type,value,context,confidence,source
+ipv4,176.123.4.44,Attacker egress IP during identity and M365 phases,high,Microsoft Security Blog 2026-05-18
+ipv4,91.208.197.87,Attacker egress IP alternated with 176.123.4.44,high,Microsoft Security Blog 2026-05-18
+ipv4,185.241.208.243,ScreenConnect instance used by Storm-2949 over compromised VMs,high,Microsoft Security Blog 2026-05-18
+note,microsoft.Web/sites/publishxml/action,ARM operation anchor - returns App Service publishing profile (Kudu FTP Web Deploy creds),high,Microsoft Security Blog 2026-05-18
+note,microsoft.keyvault/vaults/accesspolicies/write,ARM operation anchor - access policy or RBAC pre-condition for secret bulk read,high,Microsoft Security Blog 2026-05-18
+note,microsoft.keyvault/vaults/secrets/read (burst),Per-secret read events - burst of dozens within five minutes is the high-confidence signature,high,Microsoft Security Blog 2026-05-18
+note,microsoft.Storage/storageAccounts/listkeys/action,ARM operation anchor - returns account keys plus SAS tokens - rotate both keys to invalidate SAS,high,Microsoft Security Blog 2026-05-18
+note,microsoft.storage/storageaccounts/write,ARM operation anchor - used to open public access from attacker IP set,high,Microsoft Security Blog 2026-05-18
+note,microsoft.sql/servers/firewallrules/write then microsoft.sql/servers/firewallrules/delete,ARM operation anchor - defense-evasion pattern open then close firewall,high,Microsoft Security Blog 2026-05-18
+note,microsoft.compute/virtualmachines/extensions/write (VMAccess),Azure VM extension abuse - creates host-level admin via control plane,high,Microsoft Security Blog 2026-05-18
+note,microsoft.compute/virtualmachines/runcommand/action,Azure VM Run Command abuse - delivers PowerShell scripts for IMDS theft and ScreenConnect install,high,Microsoft Security Blog 2026-05-18
+string,169.254.169.254/metadata/identity/oauth2/token,IMDS managed-identity token endpoint requested via Run Command,medium,Microsoft Security Blog 2026-05-18
+string,Metadata: true,Required HTTP header for IMDS token requests - anchor for off-host visibility,medium,Microsoft Security Blog 2026-05-18
+string,Set-MpPreference -DisableRealtimeMonitoring,Defender Antivirus tamper command inside Run Command script,medium,Microsoft Security Blog 2026-05-18
+string,Set-MpPreference -DisableBehaviorMonitoring,Defender Antivirus tamper command inside Run Command script,medium,Microsoft Security Blog 2026-05-18
+string,Stop-Service -Name WinDefend,Defender Antivirus tamper command inside Run Command script,medium,Microsoft Security Blog 2026-05-18
+string,wevtutil cl Security,Event log clearing observed at end of script,medium,Microsoft Security Blog 2026-05-18
+string,wevtutil cl System,Event log clearing observed at end of script,medium,Microsoft Security Blog 2026-05-18
+string,wevtutil cl Application,Event log clearing observed at end of script,medium,Microsoft Security Blog 2026-05-18
+path,%ProgramData%\ScreenConnect Client (*),Default ScreenConnect installation path - present even after service rename,medium,Microsoft Security Blog 2026-05-18
+path,C:\Program Files (x86)\ScreenConnect Client (*),Default ScreenConnect installation path on 64-bit Windows,medium,Microsoft Security Blog 2026-05-18
+note,Microsoft Authenticator registered shortly after all prior MFA methods removed,Highest-confidence identity-takeover anchor - tune to local baseline for shorter windows,high,Microsoft Security Blog 2026-05-18
+note,OneDrive bulk download thousands of files in one action,Behavioural anchor - mass download in single session is rare benignly,medium,Microsoft Security Blog 2026-05-18
+note,SharePoint search query focused on VPN configurations and remote access,Behavioural anchor for cloud-to-endpoint reconnaissance,medium,Microsoft Security Blog 2026-05-18
+note,Custom Python script using Microsoft Graph for directory enumeration,Behavioural anchor - rare from a regular user identity,medium,Microsoft Security Blog 2026-05-18
+note,Custom Python script using Azure SDK for Storage for blob exfiltration,Behavioural anchor - sustained programmatic blob enumeration outside known apps,medium,Microsoft Security Blog 2026-05-18
+note,.pfx exfiltration from compromised VMs,Endpoint credential collection - private keys can be reused elsewhere,medium,Microsoft Security Blog 2026-05-18
+note,File-share scanning for password-related strings,Endpoint credential collection - grep pattern for password keywords across mounted shares,medium,Microsoft Security Blog 2026-05-18
+note,IR rule - regenerate both Storage account keys to invalidate prior SAS tokens,Operational guidance - rotating only one key leaves SAS signed with the other valid,high,Microsoft Security Blog 2026-05-18
+note,IR rule - extend Key Vault diagnostic retention to one year before incident,Operational guidance - default 90-day retention can be too short to scope a Storm-2949 incident,high,Microsoft Security Blog 2026-05-18
+note,IR rule - revoke refresh tokens not just password reset after Authenticator rebind,Operational guidance - password reset alone leaves the attacker MFA device active,high,Microsoft Security Blog 2026-05-18

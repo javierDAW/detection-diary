@@ -1,0 +1,46 @@
+// Title:        Storm-2949 SSPR + MFA Method Strip + Authenticator Rebind on Same User within 5 min
+// Id:           66d472db-ab20-4d13-882c-4494a2e726d3
+// MITRE:        T1556.006, T1098.005, T1078.004
+// Reference:    https://www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/
+// Author:       Jarmi
+// Date:         2026-05-20
+// Tested on:    Microsoft Sentinel — AuditLogs (Entra ID); also exposed via Defender XDR IdentityDirectoryEvents
+// FP notes:     Lost-device MFA re-registration normally takes longer than 5 min and pairs with a help-desk
+//               ticket. Migration campaigns must be excluded by InitiatedBy.user.userPrincipalName service-account.
+//
+AuditLogs
+| where TimeGenerated > ago(7d)
+| where Category in ("UserManagement", "AuthenticationMethods")
+| extend Target = tostring(TargetResources[0].userPrincipalName)
+| where isnotempty(Target)
+| extend Action = ActivityDisplayName
+| where Action in (
+    "Reset password (self-service)",
+    "Delete authentication phone",
+    "Delete authentication email",
+    "Delete Microsoft Authenticator app",
+    "User deleted security info",
+    "Register Microsoft Authenticator app",
+    "User registered security info")
+| summarize
+    Actions       = make_set(Action, 16),
+    EventCount    = count(),
+    FirstSeen     = min(TimeGenerated),
+    LastSeen      = max(TimeGenerated),
+    Correlations  = make_set(CorrelationId, 16)
+  by Target, bin(TimeGenerated, 5m)
+| where EventCount >= 3
+| extend HasSspr        = Actions has "Reset password (self-service)"
+| extend HasStrip       = Actions has_any (dynamic([
+    "Delete authentication phone",
+    "Delete authentication email",
+    "Delete Microsoft Authenticator app",
+    "User deleted security info"]))
+| extend HasRebind      = Actions has_any (dynamic([
+    "Register Microsoft Authenticator app",
+    "User registered security info"]))
+| where HasStrip and HasRebind
+| extend Severity = case(HasSspr and HasStrip and HasRebind, "Critical",
+                         HasStrip and HasRebind, "High",
+                         "Medium")
+| project Target, Severity, Actions, EventCount, FirstSeen, LastSeen, Correlations

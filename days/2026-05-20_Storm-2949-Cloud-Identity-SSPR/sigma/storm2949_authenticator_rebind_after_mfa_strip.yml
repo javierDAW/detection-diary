@@ -1,0 +1,55 @@
+title: Microsoft Authenticator Registration on Principal With Recent SSPR Reset (Storm-2949 Hijack)
+id: cad4272e-da9d-42bc-88b1-c98efe08ef42
+status: experimental
+description: |
+  Detects the canonical Storm-2949 identity-takeover anchor in Microsoft
+  Entra ID: a Microsoft Authenticator app is registered (Category
+  AuthenticationMethods) shortly after a Self-Service Password Reset
+  succeeded on the same principal. Storm-2949 used this primitive to
+  evict the legitimate user and bind a new device to the account. The
+  Sigma rule matches the AuthenticationMethods registration event; the
+  five-minute correlation with SSPR success and prior method deletion is
+  expressed in the companion KQL rule kql/storm2949_sspr_mfa_strip_rebind_chain.kql.
+  Tune to local baseline by excluding service accounts and known migration
+  campaigns.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/
+  - https://learn.microsoft.com/entra/identity/authentication/concept-registration-mfa-sspr-combined
+  - https://attack.mitre.org/techniques/T1556/006/
+  - https://attack.mitre.org/techniques/T1098/005/
+author: Jarmi
+date: 2026/05/20
+modified: 2026/05/20
+tags:
+  - attack.persistence
+  - attack.t1098.005
+  - attack.defense-evasion
+  - attack.t1556.006
+  - attack.credential-access
+logsource:
+  product: azure
+  service: auditlogs
+detection:
+  selection_register:
+    Category: AuthenticationMethods
+    ActivityDisplayName:
+      - 'Register Microsoft Authenticator app'
+      - 'User registered security info'
+  selection_user_initiated:
+    InitiatedBy.user.userPrincipalName|exists: true
+  filter_service_accounts:
+    TargetResources.0.userPrincipalName|contains:
+      - 'svc-'
+      - 'service-'
+      - 'admin@'
+  condition: selection_register and selection_user_initiated and not filter_service_accounts
+fields:
+  - TargetResources
+  - InitiatedBy
+  - ActivityDisplayName
+  - Category
+  - CorrelationId
+falsepositives:
+  - Legitimate end-user MFA re-registration after a lost or replaced device, paired with a help-desk ticket and within a maintenance window.
+  - Migration projects that bulk-remove SMS as an authentication method and re-enroll users on Microsoft Authenticator from a known service account or documented change record.
+level: high

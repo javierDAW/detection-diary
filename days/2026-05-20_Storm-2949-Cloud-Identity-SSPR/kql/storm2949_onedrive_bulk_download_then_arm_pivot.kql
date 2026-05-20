@@ -1,0 +1,36 @@
+// Title:        Storm-2949 — OneDrive/SharePoint Bulk Download Followed by Azure ARM Pivot within 60 min
+// Id:           99a9e28c-2850-4fa7-8c41-0325d00111ec
+// MITRE:        T1530, T1213, T1567.002, T1199, T1552.001
+// Reference:    https://www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/
+// Author:       Jarmi
+// Date:         2026-05-20
+// Tested on:    Microsoft Defender XDR — CloudAppEvents joined with CloudAuditEvents
+// FP notes:     Power Automate flows that download SharePoint libraries may produce burst events; exclude by AccountObjectId
+//               of known service flows. Real human bulk downloads from OneDrive are uncommon and worth a triage even without
+//               the ARM pivot half.
+//
+let DownloadBurst =
+    CloudAppEvents
+    | where Timestamp > ago(7d)
+    | where Application in ("OneDrive", "SharePoint", "Microsoft OneDrive for Business")
+    | where ActionType in ("FileDownloaded", "FileDownloadedToCloud", "FileSyncDownloadedFull")
+    | summarize Files = dcount(ObjectName), Events = count(), FirstDl = min(Timestamp), LastDl = max(Timestamp)
+        by AccountObjectId, AccountDisplayName, bin(Timestamp, 10m)
+    | where Files >= 50;
+let ArmPivot =
+    CloudAuditEvents
+    | where Timestamp > ago(7d)
+    | where DataSource == "Azure Resource Manager"
+    | where OperationName in~ (
+        "microsoft.web/sites/publishxml/action",
+        "microsoft.keyvault/vaults/secrets/read",
+        "microsoft.storage/storageaccounts/listkeys/action",
+        "microsoft.sql/servers/firewallrules/write")
+    | extend Caller = tostring(parse_json(RawEventData).caller)
+    | extend CallerIp = tostring(parse_json(RawEventData).callerIpAddress)
+    | project ArmTime = Timestamp, Caller, CallerIp, ArmOp = OperationName;
+DownloadBurst
+| join kind=inner (ArmPivot) on $left.AccountDisplayName == $right.Caller
+| where ArmTime between (FirstDl .. (LastDl + 60m))
+| project AccountDisplayName, AccountObjectId, FilesDownloaded = Files, BurstEvents = Events, FirstDl, LastDl, ArmOp, ArmTime, CallerIp
+| order by FirstDl asc

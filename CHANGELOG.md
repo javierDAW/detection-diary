@@ -7,6 +7,26 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.20 — Day 23 — Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure
+
+### Added
+- `days/2026-05-20_Storm-2949-Cloud-Identity-SSPR/` — Microsoft Threat Intelligence and Microsoft Defender Security Research disclosure (18-May-2026) of Storm-2949, a financially motivated cluster that chained vishing plus Self-Service Password Reset (SSPR) abuse, MFA method strip and Microsoft Authenticator rebind, Microsoft Graph enumeration, OneDrive plus SharePoint bulk exfiltration, App Service `publishxml`, Key Vault secret burst, SQL plus Storage exfiltration, VMAccess plus Run Command plus IMDS token theft, and ScreenConnect endpoint persistence. The case is the canonical 2026 zero-CVE identity-as-perimeter intrusion and complements Day 9 (CodeOfConduct AiTM) as the SSPR-based counterpart to proxy-based AiTM.
+- Sigma (3): `storm2949_run_command_imds_token_request.yml` — PowerShell child of `WindowsAzureGuestAgent.exe` hitting `169.254.169.254/metadata/identity` (high); `storm2949_authenticator_rebind_after_mfa_strip.yml` — Entra AuditLogs `Register Microsoft Authenticator app` event with service-account exclusion (high); `storm2949_defender_av_tamper_via_run_command.yml` — `Set-MpPreference -DisableRealtimeMonitoring` invoked from a Run Command shell (critical).
+- KQL (3): `storm2949_arm_publishxml_keyvault_storage_chain.kql` — ARM control-plane burst (publishxml plus KV plus listkeys plus SQL firewall) within 30 min on `CloudAuditEvents`; `storm2949_sspr_mfa_strip_rebind_chain.kql` — SSPR plus MFA-method strip plus Authenticator rebind within 5 min on the same user; `storm2949_onedrive_bulk_download_then_arm_pivot.kql` — OneDrive or SharePoint bulk download followed by ARM pivot within 60 min by the same identity.
+- YARA (1 file, 2 rules): `Storm2949_ScreenConnect_Masquerade_Heuristic_2026` (PE plus ConnectWise vendor anchors plus Windows-component masquerade strings plus Defender-tamper command anchors) and `Storm2949_OperatorInfra_IP_Anchor_2026` (operator IPs `185.241.208.243`, `176.123.4.44`, `91.208.197.87` plus IMDS endpoint anchor).
+- Suricata (1 file, 4 sids 8230001-8230004): egress IP anchors for the three operator IPs and an HTTP IMDS token request anchor visible in east-west cloud mirroring.
+- PEAK hunts (3): `peak_h1_sspr_mfa_strip_rebind.md` — SSPR plus MFA strip plus Authenticator rebind chain; `peak_h2_arm_credential_burst.md` — ARM control-plane credential burst; `peak_h3_vmaccess_runcommand_imds.md` — VMAccess local admin plus Run Command IMDS token request.
+- `iocs.csv` (31 entries) — three operator IPs, eight canonical ARM operation anchors, IMDS endpoint and header strings, Defender-tamper command anchors, event-log-clearing anchors, ScreenConnect installation paths, behavioural and IR-operational notes.
+- `kill_chain.svg` — viewBox 880x1280 GitHub-friendly adaptive light or dark palette, eleven numbered stages on the victim identity and cloud lane (vishing through long-tail exfil), operator panels on the right (egress IPs, ARM operations weaponised, endpoint capability with ScreenConnect, long-tail exfil with IMDS anchor), bidirectional yellow C2 arrows on every operator-touching stage, and a footer detection-anchors box mapping identity, ARM control plane, VM bridge anchors and the dual-key Storage rotation rule.
+
+### Pedagogy
+- Identity is the new perimeter — the entire cloud-plane attack chain uses zero CVEs; every primitive is a documented Azure feature used with valid privileged credentials, so detection has to live in `CloudAuditEvents`, `AzureActivity` and Key Vault diagnostic logs, not in EDR.
+- The MFA method strip plus Authenticator rebind within five minutes on a single principal is the highest-confidence SSPR-takeover anchor and applies far beyond Storm-2949.
+- PowerShell parented by `WindowsAzureGuestAgent.exe` requesting an IMDS managed-identity token is a one-line hunt for cloud-to-host pivot.
+- Rotate both Storage account keys after `listkeys` abuse — rotating one leaves SAS tokens signed with the other still valid; extend Key Vault diagnostic retention to one year before an incident, not after.
+
+---
+
 ## 2026.05.19 — Day 22 — Embargo Ransomware Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs)
 
 ### Added
@@ -308,59 +328,4 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ### Added
 - `days/2026-05-07_QLNX-Quasar-Linux-RAT/` — Trend Micro write-up (5-may-2026) of a previously undocumented Linux RAT (v1.4.1) that targets developer/DevOps endpoints to harvest registry tokens (npm, PyPI, GitHub, AWS, GCP, Azure, kube, Docker, Vault, SSH) — *the upstream cause of npm/PyPI supply-chain compromises*.
-- Sigma (4): write to `/etc/ld.so.preload`; drop of `.so` under `/tmp` `/var/log/.ICE-unix`; gcc compiling `.so` at runtime; `QLNX_MANAGED` marker in newly created persistence files.
-- KQL (4): Defender XDR for Linux — `DeviceFileEvents` on `/etc/ld.so.preload`; burst of >=3 dev-credential file reads in 60 s by a single process; `ip-api.com` recon from server tier; `/tmp/.X<DJB2>-lock` mutex.
-- SPL (3): auditd watch on `/etc/ld.so.preload`; `QLNX_MANAGED` literal hunt over osquery file ingest; credential burst by single process.
-- YARA (1): `QLNX_Quasar_Linux_RAT_2026` — multi-anchor heuristic (markers + master pw `O$$f$QtYJK` + lock path + version `1.4.1` + dev-credential file paths + ELF magic).
-- Suricata (1): 4 sids — DNS / HTTP / TLS to `ip-api.com` from server tier + custom-TCP beacon shape with `QLNX` + `1.4.1` markers.
-- PEAK hunt: H1 — credential-burst + geo-recon correlation on developer/DevOps host.
-- `iocs.csv` — file paths, markers, master password, mutex, version, family.
-
-### Pedagogy
-- T1574.006 (Hijack Execution Flow: Dynamic Linker Hijacking) and T1556.003 (Modify Authentication Process: PAM) — primary persistence vectors.
-- Why "find the implant" hunts must anchor on **side-effects** (credential reads, ld.so.preload writes, gcc-on-host) rather than on signed binaries — QLNX runs in-memory and self-deletes.
-- Re-image instead of clean: 7 persistence anchors + LD_PRELOAD respawn make on-disk eradication unsafe.
-
----
-
-## 2026.05.06 — Day 9 — Code of Conduct AiTM (Storm-1747 / Tycoon2FA)
-
-### Added
-- `days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/` — Microsoft Threat Intelligence campaign (4-may-2026): 35,000 users / 13,000 orgs / 26 countries / 92% US. PDF lure + Cloudflare CAPTCHA + reverse-proxy AiTM + device-add < 10 min for PRT persistence + inbox rules for BEC.
-- Sigma (3): PDF lure on M365 EmailEvents; Entra ID device registration post sign-in; invisible-name InboxRule (BEC).
-- KQL (3): AiTM kill-chain correlation (signin + device + inbox rule, 24h); first-seen attacker domain via PDF; PEAK H1 click-to-device hunt.
-- SPL (1): InboxRule one-char/symbol-only name on Office 365 Management Activity.
-- YARA (1): `CodeOfConduct_AiTM_PDF_Lure_2026` heuristic (PDF magic + URI Action + theme keywords + cheap-TLD anchors).
-- Suricata (1): TLS SNI + HTTP Host signatures for known landing domains (`acceptable-use-policy-calendly[.]de`, `compliance-protectionoutlook[.]de`) plus heuristic for keyword-in-cheap-TLD.
-- PEAK hunt write-up: H1 (click → device-add 2h window).
-- `iocs.csv` — 2 attacker domains, 2 PDF filenames, lure keywords, Tycoon2FA TLD pattern, behavioral indicators, cluster identifiers.
-
-### Pedagogy
-- T1098.005 (Account Manipulation: Device Registration) — the persistence technique that survives password rotation.
-- Why TOTP/SMS/push MFA do NOT mitigate AiTM, and why FIDO2/passkeys do.
-- IR runbook emphasising `Remove-MgDevice` as the critical eradication step (not just password reset).
-
----
-
-## Unreleased — drop CI workflows (2026-05-04, evening)
-
-### Removed
-- `.github/workflows/sigma-lint.yml`
-- `.github/workflows/validate.yml`
-
-Rationale: validation now runs locally before each commit via `tools/validate_all.py`,
-`tools/lint_all.sh` and `tools/lint_sigma.sh`. The CI workflows added noise to the
-repo (red ❌ badges on the commit history) without giving us anything we don't
-already have on the laptop. If you want them back, both files are recoverable
-from `git log --diff-filter=D -- .github/workflows/`.
-
-
-
-## Unreleased — repo overhaul (2026.05.04)
-
-### Added
-- `tools/validate_all.py` — offline multi-format validator (Sigma, YARA, Suricata, KQL, SPL, CSV, YAML, Markdown links, Bash). PyYAML-only dependency.
-- `tools/lint_all.sh` — wrapper that runs `validate_all.py` plus optional external tools: `sigma-cli`, `yara`, `suricata`, `actionlint`, `shellcheck`, `markdownlint`.
-- `tools/sigma_check.py` — Sigma-only offline validator (also re-used by the offline path of `lint_sigma.sh`).
-- `tools/generate_index.py` — regenerates `INDEX.md` and the auto-views from each day's YAML frontmatter. Tolerates filesystems that disallow unlink (Cowork / WSL bind-mounts) by falling back to merge mode.
-- `.github/workflows/validate.yml` — full multi
+- Sigma (4): write to `/etc/ld.so.preload`; drop of `.so` under `/tmp` `/var/log/.ICE-unix`;

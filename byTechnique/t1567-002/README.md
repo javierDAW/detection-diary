@@ -4,11 +4,12 @@
 
 # Techniques: T1567.002
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-20 | Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure | Storm-2949 | [`2026-05-20_Storm-2949-Cloud-Identity-SSPR/`](../../days/2026-05-20_Storm-2949-Cloud-Identity-SSPR/) |
 | 2026-05-15 | EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion | The Gentlemen RaaS · EtherRAT (DPRK-linked, UNC5342 toolchain overlap) · TukTuk (AI-generated framework) | [`2026-05-15_EtherRAT-TukTuk-Gentlemen/`](../../days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | 2026-05-11 | UAT-8302 — China-nexus government espionage with shared APT arsenal | UAT-8302 · Jewelbug · REF7707 · CL-STA-0049 · LongNosedGoblin · UNC5174 · UAT-6382 · Earth Estries · Erudite Mogwai | [`2026-05-11_UAT-8302-China-Government-Espionage/`](../../days/2026-05-11_UAT-8302-China-Government-Espionage/) |
 | 2026-05-05 | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | [`2026-05-05_Akira-SonicWall-CVE-2024-40766/`](../../days/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |
