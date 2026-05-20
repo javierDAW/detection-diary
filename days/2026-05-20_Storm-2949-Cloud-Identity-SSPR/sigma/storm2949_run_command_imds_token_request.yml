@@ -1,0 +1,56 @@
+title: Azure VM Run Command Requesting IMDS Managed-Identity Token (Storm-2949 Bridge)
+id: 4b871f4f-2272-465e-9c4e-ea839ef18ed7
+status: experimental
+description: |
+  Detects PowerShell or a child shell of WindowsAzureGuestAgent.exe (the
+  Azure VM agent that materialises Run Command invocations) requesting a
+  token from the Instance Metadata Service (IMDS) at 169.254.169.254.
+  Storm-2949 used this pattern as a bridge from cloud control-plane access
+  to Azure Key Vault, asking the IMDS for a managed-identity token and
+  reusing it against vault.azure.net. Genuine automation rarely fans out
+  IMDS token requests via interactive Run Command.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/
+  - https://learn.microsoft.com/azure/virtual-machines/run-command-overview
+  - https://attack.mitre.org/techniques/T1552/005/
+  - https://attack.mitre.org/techniques/T1651/
+author: Jarmi
+date: 2026/05/20
+modified: 2026/05/20
+tags:
+  - attack.credential-access
+  - attack.t1552.005
+  - attack.t1651
+  - attack.execution
+  - attack.t1059.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_parent:
+    ParentImage|endswith:
+      - '\WindowsAzureGuestAgent.exe'
+      - '\GuestAgent\WaAppAgent.exe'
+  selection_shell:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\curl.exe'
+      - '\wget.exe'
+  selection_imds:
+    CommandLine|contains|all:
+      - '169.254.169.254'
+      - '/metadata/identity'
+  selection_imds_header:
+    CommandLine|contains: 'Metadata:true'
+  condition: selection_parent and selection_shell and (selection_imds or selection_imds_header)
+fields:
+  - User
+  - Image
+  - ParentImage
+  - CommandLine
+  - ProcessGuid
+falsepositives:
+  - Approved automation runbooks that pull managed-identity tokens via Run Command (should be inventoried and excluded by exact CommandLine or by Azure Automation account principal).
+  - Azure Update Management and Inventory extensions when invoked through Run Command in non-standard configurations.
+level: high

@@ -1,0 +1,22 @@
+# Storm-2949 — Operator infrastructure and IMDS abuse anchors
+# Author: Jarmi
+# Date:   2026-05-20
+# Reference: https://www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/
+# Notes:
+#   Egress destinations published by Microsoft Defender Security Research for the
+#   Storm-2949 cloud-wide breach (2026-05-18). The first three rules anchor on
+#   the egress IPs used by the operator during identity and ARM control-plane
+#   abuse, and the ScreenConnect endpoint distributed via Azure VM Run Command.
+#   The fourth rule fires on Instance Metadata Service (IMDS) token requests
+#   originating off-host (i.e. from anywhere other than the localhost-routed
+#   169.254.169.254 default) — useful when the sensor sees east-west cloud
+#   traffic via mirroring.
+#   sid range: 8230001-8230004
+#
+alert ip any any -> 176.123.4.44 any (msg:"STORM2949 Egress to operator IP 176.123.4.44 (identity / ARM control-plane abuse) - Microsoft Defender Security Research 2026-05-18"; reference:url,www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/; classtype:trojan-activity; sid:8230001; rev:1;)
+
+alert ip any any -> 91.208.197.87 any (msg:"STORM2949 Egress to operator IP 91.208.197.87 (identity / ARM control-plane abuse) - Microsoft Defender Security Research 2026-05-18"; reference:url,www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/; classtype:trojan-activity; sid:8230002; rev:1;)
+
+alert ip any any -> 185.241.208.243 any (msg:"STORM2949 ScreenConnect operator IP 185.241.208.243 (RMM-as-backdoor) - Microsoft Defender Security Research 2026-05-18"; reference:url,www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/; classtype:trojan-activity; sid:8230003; rev:1;)
+
+alert http any any -> any any (msg:"STORM2949 IMDS managed-identity token request observed in HTTP payload (off-host egress) - Microsoft Defender Security Research 2026-05-18"; flow:established,to_server; http.uri; content:"/metadata/identity/oauth2/token"; nocase; http.header; content:"Metadata|3a 20|true"; nocase; reference:url,www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/; classtype:trojan-activity; sid:8230004; rev:1;)

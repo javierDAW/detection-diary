@@ -1,0 +1,54 @@
+title: Defender Antivirus Disabled by PowerShell Child of Azure Run Command (Storm-2949 Endpoint Pivot)
+id: c1880579-2355-46b8-8521-bf0c2296367a
+status: experimental
+description: |
+  Detects PowerShell or pwsh, parented by the Azure VM agent
+  (WindowsAzureGuestAgent.exe / WaAppAgent.exe), invoking Set-MpPreference
+  to disable real-time monitoring or behavior monitoring. This is the
+  Storm-2949 endpoint-tamper sequence: the operator pushes a Run Command
+  script that weakens Defender before installing ScreenConnect. Genuine
+  Run Command invocations against Defender are vanishingly rare —
+  Defender tuning belongs in policy and Intune, not in an ad-hoc Run
+  Command.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/05/18/storm-2949-turned-compromised-identity-into-cloud-wide-breach/
+  - https://learn.microsoft.com/azure/virtual-machines/run-command-overview
+  - https://attack.mitre.org/techniques/T1562/001/
+author: Jarmi
+date: 2026/05/20
+modified: 2026/05/20
+tags:
+  - attack.defense-evasion
+  - attack.t1562.001
+  - attack.execution
+  - attack.t1059.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_parent:
+    ParentImage|endswith:
+      - '\WindowsAzureGuestAgent.exe'
+      - '\GuestAgent\WaAppAgent.exe'
+  selection_shell:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_tamper:
+    CommandLine|contains:
+      - 'Set-MpPreference -DisableRealtimeMonitoring'
+      - 'Set-MpPreference -DisableBehaviorMonitoring'
+      - 'Set-MpPreference -DisableScriptScanning'
+      - 'Set-MpPreference -DisableIOAVProtection'
+      - 'Stop-Service -Name WinDefend'
+      - 'sc.exe stop WinDefend'
+  condition: selection_parent and selection_shell and selection_tamper
+fields:
+  - User
+  - Image
+  - ParentImage
+  - CommandLine
+falsepositives:
+  - Approved tamper-protection bypass scripts for golden image preparation, run from a documented Run Command runbook.
+  - Defender troubleshooting by support engineers — should always be ticketed and signed off.
+level: critical

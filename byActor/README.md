@@ -53,6 +53,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Storm-1575](./storm-1575/) | 1 |
 | [Storm-1747](./storm-1747/) | 1 |
 | [Storm-1849](./storm-1849/) | 1 |
+| [Storm-2949](./storm-2949/) | 1 |
 | [SwimSnake](./swimsnake/) | 1 |
 | [TEMP.Veles](./temp-veles/) | 1 |
 | [Talos Cluster 1 (Tas9er Godzilla)](./talos-cluster-1-tas9er-godzilla/) | 1 |
