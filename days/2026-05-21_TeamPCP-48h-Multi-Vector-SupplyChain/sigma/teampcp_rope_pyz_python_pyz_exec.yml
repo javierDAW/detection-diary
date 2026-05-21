@@ -1,0 +1,39 @@
+title: TeamPCP rope.pyz Worm Execution via python3 on /tmp pyz Drop
+id: 189ecd2f-65cb-4179-a579-8972722bad58
+status: experimental
+description: |
+  Detects execution of the rope.pyz Python zipapp payload dropped by the durabletask PyPI worm
+  (TeamPCP, 2026-05-19). The payload is staged as /tmp/managed.pyz or /tmp/rope-<random>.pyz and
+  executed by python3. The same anchor also flags transformers.pyz v2 lineage from the Day-18
+  Mini Shai-Hulud wave and any future TeamPCP wheel injection that follows the same staging
+  convention. Tested on Sysmon for Linux EID 1.
+references:
+  - https://www.wiz.io/blog/durabletask-teampcp-supply-chain-attack
+  - https://www.stepsecurity.io/blog/microsofts-durabletask-pypi-package-compromised-in-supply-chain-attack
+  - https://snyk.io/blog/durabletask-pypi-supply-chain-attack/
+author: Jarmi
+date: 2026/05/21
+tags:
+  - attack.execution
+  - attack.t1059.006
+  - attack.t1480
+  - attack.command-and-control
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  selection_python:
+    Image|endswith:
+      - '/python3'
+      - '/python'
+  selection_pyz_path:
+    CommandLine|contains:
+      - '/tmp/managed.pyz'
+      - '/tmp/rope-'
+      - '/tmp/rope.pyz'
+  condition: selection_python and selection_pyz_path
+falsepositives:
+  - Internal red-team replay of the IOC chain in an isolated lab.
+  - Bespoke developer tooling that legitimately ships a zipapp under /tmp (unusual; investigate
+    before suppressing).
+level: critical

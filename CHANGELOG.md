@@ -7,6 +7,26 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.21 — Day 24 — TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Worm, Nx Console VS Code Extension and the GitHub Internal Repo Breach
+
+### Added
+- `days/2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain/` — TeamPCP / UNC6780 (Google Threat Intelligence Group) ran four overlapping supply-chain intrusions between 18-May 12:36 UTC and 20-May 2026, all converging on shared C2 spine `check.git-service.com`, `t.m-kosche.com` and the Day-18 legacy C2 IP `83.142.209.194`. Vendor postmortems: StepSecurity (18-May, actions-cool tag poisoning with 68 imposter commits and bun-plus-`/proc/<Runner.Worker PID>/mem` secret scrape), Wiz (19-May, `durabletask` v1.4.1-v1.4.3 PyPI worm with AWS SSM and Kubernetes lateral propagation), Aikido Security (20-May, `nrwl.angular-console v18.95.0` Marketplace candidate for the GitHub internal-repo breach), GitHub corporate statement (20-May, ~3,800 internal repos exfiltrated).
+- Sigma (3): `actions_cool_bun_runner_secret_dump.yml` — python3 reading `/proc/<other PID>/mem` from a Runner.Worker context anchor; `teampcp_rope_pyz_python_pyz_exec.yml` — python3 executing `/tmp/managed.pyz` or `/tmp/rope-*.pyz`; `teampcp_infection_marker_dotcache_sys_update.yml` — file_event creation of `~/.cache/.sys-update-check` and `~/.cache/.sys-update-check-k8s`.
+- KQL (3): `teampcp_t_m_kosche_egress_join_developer_endpoint.kql` — Defender XDR egress to the three IoC anchors joined with developer endpoint process context within 30 min; `teampcp_vscode_extension_anomalous_egress_after_install.kql` — extension folder write followed by Code.exe-node-child egress to a FQDN not on the tenant `<add_known_vscode_telemetry>` allowlist within 30 min; `teampcp_durabletask_install_burst_then_pyz_drop.kql` — `pip install durabletask` or wheel-SHA match followed within 60 min by `/tmp/*.pyz` drop and python3 exec.
+- YARA (1 file, 2 rules): `TeamPCP_rope_pyz_Heuristic_2026` (zipapp PK plus `__main__.py` plus 2+ C2 anchors plus 1+ runtime artefact plus 2+ credential-path anchors plus filesize cap) and `TeamPCP_rope_pyz_Known_Hashes_2026` (rope.pyz plus the three durabletask wheel SHA256 anchors).
+- Suricata (1 file, 6 sids 8210001-8210006): DNS for the two TeamPCP FQDNs, TLS SNI match, legacy C2 IP, HTTP POST `/api/public/version` exfil, HTTP `/audio.mp3` destructive trigger and `/v1/models` killswitch endpoints.
+- PEAK hunts (3): `peak_h1_imposter_commit_runner_memory_read.md` — actions-cool workflow run plus bun install plus python3 `/proc/<PID>/mem` read; `peak_h2_rope_pyz_worm_dev_endpoints.md` — durabletask install plus `/tmp/*.pyz` drop plus infection marker plus cred-path reads with isolation-before-revocation rule; `peak_h3_vscode_marketplace_anomalous_egress.md` — extension write plus anomalous Code.exe-node-child egress within 30 min.
+- `iocs.csv` (97 entries) — three C2 anchors, six payload SHA256s, six runtime paths, the Nx Console v18.95.0 string anchor, all 53 actions-cool/issues-helper imposter commits and all 15 actions-cool/maintain-one-comment imposter commits with their tag-to-SHA mapping, plus operational notes on the repo-pinning remediation.
+- `kill_chain.svg` — viewBox 880x1280 GitHub-friendly adaptive light or dark palette, three parallel victim lanes (Marketplace extension, tag poisoning, PyPI worm) numbered 1-12 with one impact box for the GitHub corporate breach, shared C2 spine on the right with domains plus URL paths plus payload artefacts plus imposter-commit anchors plus operator monetisation, bidirectional yellow C2 arrows on the bun-stage and rope.pyz-stage, footer detection-anchors box mapping Sigma plus KQL plus YARA plus Suricata plus the three PEAK hunts and the isolation-before-revocation IR rule.
+
+### Pedagogy
+- Tag mutability is the structural weakness — pinning by tag is trust-on-first-use; only a verified full commit SHA is a stable pin, and SLSA provenance does not catch a maintainer-credentialled tag rewrite.
+- `/proc/<PID>/mem` is the GitHub Actions secret jar — once arbitrary code runs in the runner with bun or python3, every decrypted secret in Runner.Worker memory is reachable.
+- VS Code Marketplace extensions execute pre-auth on the developer endpoint with full file-system and network access — eleven-minute Marketplace detection windows are exposure windows, not safety margins.
+- Shared exfil infrastructure across npm, PyPI and Marketplace in 48 hours confirms a single operator — treat any egress to `t.m-kosche.com` or `check.git-service.com` as TeamPCP across vector lines.
+
+---
+
 ## 2026.05.20 — Day 23 — Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure
 
 ### Added
@@ -328,4 +348,59 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ### Added
 - `days/2026-05-07_QLNX-Quasar-Linux-RAT/` — Trend Micro write-up (5-may-2026) of a previously undocumented Linux RAT (v1.4.1) that targets developer/DevOps endpoints to harvest registry tokens (npm, PyPI, GitHub, AWS, GCP, Azure, kube, Docker, Vault, SSH) — *the upstream cause of npm/PyPI supply-chain compromises*.
-- Sigma (4): write to `/etc/ld.so.preload`; drop of `.so` under `/tmp` `/var/log/.ICE-unix`;
+- Sigma (4): write to `/etc/ld.so.preload`; drop of `.so` under `/tmp` `/var/log/.ICE-unix`; gcc compiling `.so` at runtime; `QLNX_MANAGED` marker in newly created persistence files.
+- KQL (4): Defender XDR for Linux — `DeviceFileEvents` on `/etc/ld.so.preload`; burst of >=3 dev-credential file reads in 60 s by a single process; `ip-api.com` recon from server tier; `/tmp/.X<DJB2>-lock` mutex.
+- SPL (3): auditd watch on `/etc/ld.so.preload`; `QLNX_MANAGED` literal hunt over osquery file ingest; credential burst by single process.
+- YARA (1): `QLNX_Quasar_Linux_RAT_2026` — multi-anchor heuristic (markers + master pw `O$$f$QtYJK` + lock path + version `1.4.1` + dev-credential file paths + ELF magic).
+- Suricata (1): 4 sids — DNS / HTTP / TLS to `ip-api.com` from server tier + custom-TCP beacon shape with `QLNX` + `1.4.1` markers.
+- PEAK hunt: H1 — credential-burst + geo-recon correlation on developer/DevOps host.
+- `iocs.csv` — file paths, markers, master password, mutex, version, family.
+
+### Pedagogy
+- T1574.006 (Hijack Execution Flow: Dynamic Linker Hijacking) and T1556.003 (Modify Authentication Process: PAM) — primary persistence vectors.
+- Why "find the implant" hunts must anchor on **side-effects** (credential reads, ld.so.preload writes, gcc-on-host) rather than on signed binaries — QLNX runs in-memory and self-deletes.
+- Re-image instead of clean: 7 persistence anchors + LD_PRELOAD respawn make on-disk eradication unsafe.
+
+---
+
+## 2026.05.06 — Day 9 — Code of Conduct AiTM (Storm-1747 / Tycoon2FA)
+
+### Added
+- `days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/` — Microsoft Threat Intelligence campaign (4-may-2026): 35,000 users / 13,000 orgs / 26 countries / 92% US. PDF lure + Cloudflare CAPTCHA + reverse-proxy AiTM + device-add < 10 min for PRT persistence + inbox rules for BEC.
+- Sigma (3): PDF lure on M365 EmailEvents; Entra ID device registration post sign-in; invisible-name InboxRule (BEC).
+- KQL (3): AiTM kill-chain correlation (signin + device + inbox rule, 24h); first-seen attacker domain via PDF; PEAK H1 click-to-device hunt.
+- SPL (1): InboxRule one-char/symbol-only name on Office 365 Management Activity.
+- YARA (1): `CodeOfConduct_AiTM_PDF_Lure_2026` heuristic (PDF magic + URI Action + theme keywords + cheap-TLD anchors).
+- Suricata (1): TLS SNI + HTTP Host signatures for known landing domains (`acceptable-use-policy-calendly[.]de`, `compliance-protectionoutlook[.]de`) plus heuristic for keyword-in-cheap-TLD.
+- PEAK hunt write-up: H1 (click → device-add 2h window).
+- `iocs.csv` — 2 attacker domains, 2 PDF filenames, lure keywords, Tycoon2FA TLD pattern, behavioral indicators, cluster identifiers.
+
+### Pedagogy
+- T1098.005 (Account Manipulation: Device Registration) — the persistence technique that survives password rotation.
+- Why TOTP/SMS/push MFA do NOT mitigate AiTM, and why FIDO2/passkeys do.
+- IR runbook emphasising `Remove-MgDevice` as the critical eradication step (not just password reset).
+
+---
+
+## Unreleased — drop CI workflows (2026-05-04, evening)
+
+### Removed
+- `.github/workflows/sigma-lint.yml`
+- `.github/workflows/validate.yml`
+
+Rationale: validation now runs locally before each commit via `tools/validate_all.py`,
+`tools/lint_all.sh` and `tools/lint_sigma.sh`. The CI workflows added noise to the
+repo (red ❌ badges on the commit history) without giving us anything we don't
+already have on the laptop. If you want them back, both files are recoverable
+from `git log --diff-filter=D -- .github/workflows/`.
+
+
+
+## Unreleased — repo overhaul (2026.05.04)
+
+### Added
+- `tools/validate_all.py` — offline multi-format validator (Sigma, YARA, Suricata, KQL, SPL, CSV, YAML, Markdown links, Bash). PyYAML-only dependency.
+- `tools/lint_all.sh` — wrapper that runs `validate_all.py` plus optional external tools: `sigma-cli`, `yara`, `suricata`, `actionlint`, `shellcheck`, `markdownlint`.
+- `tools/sigma_check.py` — Sigma-only offline validator (also re-used by the offline path of `lint_sigma.sh`).
+- `tools/generate_index.py` — regenerates `INDEX.md` and the auto-views from each day's YAML frontmatter. Tolerates filesystems that disallow unlink (Cowork / WSL bind-mounts) by falling back to merge mode.
+- `.github/workflows/validate.yml` — full multi

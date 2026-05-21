@@ -1,0 +1,30 @@
+// Title:        VS Code extension install or update followed by anomalous Code.exe-child egress
+// Id:           b0fb9fcc-cdb5-4cf6-9ce7-f85533362622
+// MITRE:        T1195.002, T1199, T1041
+// Reference:    https://www.aikido.dev/blog/vs-code-extension-github-breach
+//               https://www.helpnetsecurity.com/2026/05/20/github-breached-teampcp/
+// Author:       Jarmi
+// Date:         2026-05-21
+// Tested on:    Defender XDR — DeviceFileEvents + DeviceNetworkEvents + DeviceProcessEvents
+// FP notes:     Many legitimate extensions phone home to vendor telemetry / Marketplace check.
+//               This hunt narrows to (a) recent first-time install/update, (b) Code.exe parent,
+//               (c) egress to FQDNs not on a per-tenant <add_known_vscode_telemetry> allowlist.
+//               Tenants substitute the placeholder with their tenant-curated allowlist.
+let lookback = 14d;
+let extension_writes = DeviceFileEvents
+| where Timestamp > ago(lookback)
+| where FolderPath has @"\.vscode\extensions\"
+       or FolderPath has "/.vscode/extensions/"
+| where FileName endswith ".vsixmanifest" or FileName endswith "package.json"
+| extend ExtFolder = tostring(extract(@"([\\/]\.vscode[\\/]extensions[\\/][^\\/]+)", 1, FolderPath))
+| project InstallTime = Timestamp, DeviceId, DeviceName, ExtFolder, FolderPath, FileName, InitiatingProcessAccountName;
+let dev_egress = DeviceNetworkEvents
+| where Timestamp > ago(lookback)
+| where InitiatingProcessFileName in~ ("Code.exe","code-insiders.exe","node.exe","cursor.exe")
+| where RemoteUrl !in~ ("update.code.visualstudio.com","marketplace.visualstudio.com","vscode.blob.core.windows.net","az764295.vo.msecnd.net","raw.githubusercontent.com","api.github.com","<add_known_vscode_telemetry>")
+| project EgressTime = Timestamp, DeviceId, RemoteUrl, RemoteIP, RemotePort, InitiatingProcessFileName, InitiatingProcessCommandLine;
+extension_writes
+| join kind=inner dev_egress on DeviceId
+| where datetime_diff('minute', EgressTime, InstallTime) between (0 .. 30)
+| project InstallTime, EgressTime, DeviceName, ExtFolder, RemoteUrl, RemoteIP, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName
+| sort by EgressTime desc
