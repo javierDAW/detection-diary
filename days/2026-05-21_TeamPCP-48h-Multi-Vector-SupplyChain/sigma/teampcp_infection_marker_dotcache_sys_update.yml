@@ -1,0 +1,30 @@
+title: TeamPCP rope.pyz Infection Marker Creation in dot-cache
+id: c2562d14-85f9-44c8-a0f3-b9f5463df78d
+status: experimental
+description: |
+  Detects creation of the rope.pyz infection markers in user dot-cache directory. The TeamPCP
+  durabletask worm sets ~/.cache/.sys-update-check after successful execution on a host and
+  ~/.cache/.sys-update-check-k8s when the Kubernetes lateral branch ran. Presence of either
+  marker confirms payload execution and lets the operator avoid re-infection.
+  Tested on auditd file create / Sysmon for Linux EID 11.
+references:
+  - https://www.wiz.io/blog/durabletask-teampcp-supply-chain-attack
+author: Jarmi
+date: 2026/05/21
+tags:
+  - attack.persistence
+  - attack.t1098.001
+  - attack.defense-evasion
+  - attack.t1480
+logsource:
+  product: linux
+  category: file_event
+detection:
+  selection_path:
+    TargetFilename|contains:
+      - '/.cache/.sys-update-check'
+  condition: selection_path
+falsepositives:
+  - No known legitimate use of a hidden file named .sys-update-check in user .cache directories.
+    Treat any hit as high-confidence compromise pending RAM capture and host quarantine.
+level: critical

@@ -35,6 +35,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Jewelbug](./jewelbug/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
 | [Microsoft Defender Security Research (vulnerability disclosure, no threat actor)](./microsoft-defender-security-research-vulnerability-disclosure-no-threat-actor/) | 1 |
+| [Mini Shai-Hulud](./mini-shai-hulud/) | 1 |
 | [Nexcorium](./nexcorium/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
 | [Pheno](./pheno/) | 1 |
@@ -66,7 +67,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Talos Cluster 7 (XMRig + Cobalt Strike)](./talos-cluster-7-xmrig-cobalt-strike/) | 1 |
 | [Talos Cluster 8 (NimPlant-variant agent1)](./talos-cluster-8-nimplant-variant-agent1/) | 1 |
 | [Talos Cluster 9 (gsocket + XMRig)](./talos-cluster-9-gsocket-xmrig/) | 1 |
-| [TeamPCP](./teampcp/) | 3 |
+| [TeamPCP](./teampcp/) | 4 |
 | [The Gentlemen](./the-gentlemen/) | 1 |
 | [The Gentlemen RaaS](./the-gentlemen-raas/) | 1 |
 | [TukTuk (AI-generated framework)](./tuktuk-ai-generated-framework/) | 1 |
@@ -77,6 +78,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [UAT-8616](./uat-8616/) | 1 |
 | [UNC5174](./unc5174/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
+| [UNC6780](./unc6780/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |

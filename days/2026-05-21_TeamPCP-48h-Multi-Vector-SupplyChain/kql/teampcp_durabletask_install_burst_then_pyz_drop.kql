@@ -1,0 +1,42 @@
+// Title:        durabletask install or wheel-sha match followed by /tmp pyz drop and python3 exec
+// Id:           1f197f5b-0c1e-40e5-9735-5933a3092b4a
+// MITRE:        T1195.002, T1059.006, T1480
+// Reference:    https://www.wiz.io/blog/durabletask-teampcp-supply-chain-attack
+//               https://www.stepsecurity.io/blog/microsofts-durabletask-pypi-package-compromised-in-supply-chain-attack
+// Author:       Jarmi
+// Date:         2026-05-21
+// Tested on:    Defender XDR — DeviceFileEvents + DeviceProcessEvents (Linux MDE)
+// FP notes:     /tmp pyz drops by legitimate developer tooling are rare; if a tenant runs
+//               internal Python zipapps from /tmp, allowlist the build SHA in the WHERE clause.
+let lookback = 14d;
+let bad_wheels = dynamic([
+  "7d80b3ef74ad7992b93c31966962612e4e2ceb93e7727cdbd1d2a9af47d44ba8",
+  "aeaf583e20347bf850e2fabdcd6f4982996ba023f8c2cd56bbd299cfd56516f5",
+  "877ff2531a63393c4cb9c3c86908b62d9c4fc3db971bc231c48537faae6cb3ec"
+]);
+let install_signal = DeviceProcessEvents
+| where Timestamp > ago(lookback)
+| where (FileName has_any ("pip","pip3","pipx","uv") or ProcessCommandLine has_any ("pip install","pip3 install","uv pip install","pipx install"))
+        and ProcessCommandLine has "durabletask"
+| project InstallTime = Timestamp, DeviceId, DeviceName, ProcessCommandLine, InitiatingProcessFileName;
+let wheel_match = DeviceFileEvents
+| where Timestamp > ago(lookback)
+| where SHA256 in (bad_wheels) or FileName matches regex @"durabletask-1\.4\.(1|2|3)-.*\.whl"
+| project InstallTime = Timestamp, DeviceId, DeviceName, FileName, SHA256, FolderPath;
+let install_combined = install_signal | union wheel_match;
+let pyz_drop = DeviceFileEvents
+| where Timestamp > ago(lookback)
+| where FolderPath startswith "/tmp"
+        and (FileName == "managed.pyz" or FileName matches regex @"rope-.*\.pyz" or FileName == "rope.pyz")
+| project DropTime = Timestamp, DeviceId, DropFolder = FolderPath, DropFile = FileName, DropSha = SHA256;
+let pyz_exec = DeviceProcessEvents
+| where Timestamp > ago(lookback)
+| where FileName in~ ("python3","python")
+        and (ProcessCommandLine has "/tmp/managed.pyz" or ProcessCommandLine has "/tmp/rope-" or ProcessCommandLine has "/tmp/rope.pyz")
+| project ExecTime = Timestamp, DeviceId, ExecCommandLine = ProcessCommandLine;
+install_combined
+| join kind=inner pyz_drop on DeviceId
+| where datetime_diff('minute', DropTime, InstallTime) between (0 .. 60)
+| join kind=leftouter pyz_exec on DeviceId
+| project InstallTime, DropTime, ExecTime, DeviceName, ProcessCommandLine, DropFile, DropFolder, ExecCommandLine
+| sort by InstallTime desc

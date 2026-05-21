@@ -1,0 +1,27 @@
+// Title:        TeamPCP shared C2 egress from developer endpoints
+// Id:           6ac9a078-db01-49a6-8a93-63e5538906ba
+// MITRE:        T1071.001, T1041, T1567.002
+// Reference:    https://www.wiz.io/blog/durabletask-teampcp-supply-chain-attack
+//               https://www.stepsecurity.io/blog/actions-cool-issues-helper-github-action-compromised-all-tags-point-to-imposter-commit-that-exfiltrates-ci-cd-credentials
+// Author:       Jarmi
+// Date:         2026-05-21
+// Tested on:    Defender XDR — DeviceNetworkEvents + DeviceProcessEvents
+// FP notes:     check.git-service.com is a typo-squat of git-service.com; legitimate
+//               git-service.com traffic is unrelated. t.m-kosche.com has no legitimate use.
+//               83.142.209.194 is the legacy TeamPCP C2 from Day 18 — pure IoC.
+let teampcp_fqdns = dynamic(["check.git-service.com","t.m-kosche.com"]);
+let teampcp_ip = "83.142.209.194";
+let dev_proc_hints = dynamic(["Code.exe","code-insiders.exe","cursor.exe","node.exe","python3","python","python.exe","npm","npm.exe","pnpm","pnpm.exe","yarn","yarn.exe","pip","pip3"]);
+let net = DeviceNetworkEvents
+| where Timestamp > ago(14d)
+| where RemoteUrl has_any (teampcp_fqdns) or RemoteIP == teampcp_ip
+| project NetTimestamp = Timestamp, DeviceId, DeviceName, RemoteUrl, RemoteIP, RemotePort, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName;
+let proc = DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FileName in~ (dev_proc_hints) or InitiatingProcessFileName in~ (dev_proc_hints)
+| project ProcTimestamp = Timestamp, DeviceId, ProcessFileName = FileName, ProcessCommandLine = ProcessCommandLine, InitiatingProcessFileNameProc = InitiatingProcessFileName;
+net
+| join kind=inner proc on DeviceId
+| where abs(datetime_diff('minute', NetTimestamp, ProcTimestamp)) <= 30
+| project NetTimestamp, DeviceName, RemoteUrl, RemoteIP, InitiatingProcessFileName, InitiatingProcessCommandLine, ProcessFileName, ProcessCommandLine, InitiatingProcessAccountName
+| sort by NetTimestamp desc

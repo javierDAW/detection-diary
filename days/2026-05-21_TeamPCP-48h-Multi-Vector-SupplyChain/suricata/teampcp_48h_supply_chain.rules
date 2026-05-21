@@ -1,0 +1,29 @@
+# TeamPCP 48-hour multi-vector supply chain campaign — Suricata 7.x rules
+# Author: Jarmi
+# Date:   2026-05-21
+# References:
+#   https://www.wiz.io/blog/durabletask-teampcp-supply-chain-attack
+#   https://www.stepsecurity.io/blog/actions-cool-issues-helper-github-action-compromised-all-tags-point-to-imposter-commit-that-exfiltrates-ci-cd-credentials
+#   https://www.helpnetsecurity.com/2026/05/20/github-breached-teampcp/
+# Notes:
+#   - Targets DNS lookups, TLS SNI matches and HTTP URI matches for the three TeamPCP IoC anchors.
+#   - Variable HOME_NET is the standard Suricata variable; no custom variables required.
+#   - Use sid range 8210001-8210006 for this day.
+
+# DNS: primary payload + C2 domain check.git-service.com
+alert dns $HOME_NET any -> any any (msg:"TEAMPCP 2026-05 DNS lookup check.git-service.com"; dns.query; content:"check.git-service.com"; nocase; classtype:trojan-activity; sid:8210001; rev:1;)
+
+# DNS: fallback C2 + actions-cool exfil domain t.m-kosche.com
+alert dns $HOME_NET any -> any any (msg:"TEAMPCP 2026-05 DNS lookup t.m-kosche.com"; dns.query; content:"t.m-kosche.com"; nocase; classtype:trojan-activity; sid:8210002; rev:1;)
+
+# TLS SNI: HTTPS to either TeamPCP domain
+alert tls $HOME_NET any -> any 443 (msg:"TEAMPCP 2026-05 TLS SNI check.git-service.com or t.m-kosche.com"; tls.sni; pcre:"/^(check\.git-service\.com|t\.m-kosche\.com)$/i"; classtype:trojan-activity; sid:8210003; rev:1;)
+
+# Legacy C2 IP reused from Day 18 transformers.pyz lineage
+alert ip $HOME_NET any -> 83.142.209.194 any (msg:"TEAMPCP 2026-05 outbound to legacy C2 IP 83.142.209.194"; classtype:trojan-activity; sid:8210004; rev:1;)
+
+# HTTP exfil endpoint /api/public/version on either TeamPCP domain
+alert http $HOME_NET any -> any any (msg:"TEAMPCP 2026-05 HTTP POST exfil to /api/public/version"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/api/public/version"; http.host; pcre:"/^(check\.git-service\.com|t\.m-kosche\.com|83\.142\.209\.194)$/i"; classtype:trojan-activity; sid:8210005; rev:1;)
+
+# HTTP destructive trigger /audio.mp3 or killswitch /v1/models from internal hosts
+alert http $HOME_NET any -> any any (msg:"TEAMPCP 2026-05 HTTP request to /audio.mp3 or /v1/models on TeamPCP host"; flow:established,to_server; http.uri; pcre:"/^\/(audio\.mp3|v1\/models)$/i"; http.host; pcre:"/^(check\.git-service\.com|t\.m-kosche\.com|83\.142\.209\.194)$/i"; classtype:trojan-activity; sid:8210006; rev:1;)

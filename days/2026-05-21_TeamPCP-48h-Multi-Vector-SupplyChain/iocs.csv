@@ -1,0 +1,93 @@
+type,value,context,confidence,source
+note,"TeamPCP 48-hour mega-campaign 2026-05-18 to 2026-05-20 — actions-cool tag-poisoning + durabletask PyPI worm + Nx Console VS Code Marketplace extension + GitHub corporate breach (3800 internal repos). Shared exfil sink t.m-kosche.com ties all vectors to the same operator (UNC6780/TeamPCP).",high,StepSecurity + Wiz + Snyk + Aikido + GitHub corporate 2026-05-18/19/20
+domain,check.git-service.com,Primary payload + C2 channel for rope.pyz on durabletask hosts,high,Wiz 2026-05-19
+domain,t.m-kosche.com,Fallback C2 and primary exfil sink for actions-cool runner secrets and @antv installs,high,StepSecurity 2026-05-18 + Wiz 2026-05-19
+ipv4,83.142.209.194,Legacy C2 IP reused from Day-18 transformers.pyz lineage,high,Wiz 2026-05-19
+url,https://check.git-service.com/rope.pyz,Primary rope.pyz payload URL,high,Wiz 2026-05-19
+url,https://t.m-kosche.com/rope.pyz,Backup rope.pyz payload URL,high,Wiz 2026-05-19
+url,https://t.m-kosche.com/api/public/version,Exfil endpoint for stolen secrets,high,Wiz 2026-05-19
+url,https://check.git-service.com/v1/models,Killswitch / command endpoint (OpenAI API path mimicry),high,Wiz 2026-05-19
+url,https://check.git-service.com/audio.mp3,Destructive trigger for Israel/Iran-locale hosts,high,Wiz 2026-05-19
+sha256,069ac1dc7f7649b76bc72a11ac700f373804bfd81dab7e561157b703999f44ce,rope.pyz Python zipapp payload,high,Wiz 2026-05-19
+sha256,7d80b3ef74ad7992b93c31966962612e4e2ceb93e7727cdbd1d2a9af47d44ba8,durabletask-1.4.1-py3-none-any.whl malicious wheel,high,Wiz 2026-05-19
+sha256,aeaf583e20347bf850e2fabdcd6f4982996ba023f8c2cd56bbd299cfd56516f5,durabletask-1.4.2-py3-none-any.whl malicious wheel,high,Wiz 2026-05-19
+sha256,877ff2531a63393c4cb9c3c86908b62d9c4fc3db971bc231c48537faae6cb3ec,durabletask-1.4.3-py3-none-any.whl malicious wheel,high,Wiz 2026-05-19
+path,/tmp/managed.pyz,Primary rope.pyz drop path on Linux dev hosts and runners,high,Wiz 2026-05-19
+path,/tmp/rope-*.pyz,Secondary rope.pyz drop path with random suffix,high,Wiz 2026-05-19
+path,/tmp/rope.pyz,Alternate rope.pyz drop name observed in some samples,high,Wiz 2026-05-19
+path,~/.cache/.sys-update-check,Infection marker confirming rope.pyz execution on the host,high,Wiz 2026-05-19
+path,~/.cache/.sys-update-check-k8s,Infection marker confirming Kubernetes lateral branch ran,high,Wiz 2026-05-19
+path,/tmp/.rope_state/ssm_instances.json,AWS SSM lateral state file enumerating targeted EC2 instances,high,Wiz 2026-05-19
+path,/home/runner/.bun/bin/bun,bun runtime download path on GitHub Actions runner used by actions-cool imposter,high,StepSecurity 2026-05-18
+string,nrwl.angular-console v18.95.0,VS Code Marketplace extension candidate for the GitHub corporate breach,medium,Aikido Security 2026-05-20
+note,"All actions-cool/issues-helper tags repointed 2026-05-18T19:10:24Z to 19:13:40Z (53 tags inside 3 min 16 sec window) — every full SHA below is a dangling imposter commit not reachable from the default branch.",high,StepSecurity 2026-05-18
+sha1,1c9e803c80cc7fed000022d4c94f4b5bc2e90062,actions-cool/issues-helper imposter commit for tag v3.8.0,high,StepSecurity 2026-05-18
+sha1,f0448c62fc57b8a5ce23d8acd6e795cdd76a3b6c,actions-cool/issues-helper imposter commit for tag v3.7.6,high,StepSecurity 2026-05-18
+sha1,abc4310e6b8520aff6af79a4880217917cd1436b,actions-cool/issues-helper imposter commit for tag v3.7.5,high,StepSecurity 2026-05-18
+sha1,aea87833045e38098e64310e962b897ae8aaba33,actions-cool/issues-helper imposter commit for tag v3.7.4,high,StepSecurity 2026-05-18
+sha1,aeb05195dbd618afce6f22ca4937e46940d86be1,actions-cool/issues-helper imposter commit for tag v3.7.3,high,StepSecurity 2026-05-18
+sha1,4b10341e231301a86c66f6c09e3e4de76d8719fe,actions-cool/issues-helper imposter commit for tag v3.7.2,high,StepSecurity 2026-05-18
+sha1,8a3a7c2960ff3a4e3fd1481cfd1eb31301e16337,actions-cool/issues-helper imposter commit for tag v3.7.1,high,StepSecurity 2026-05-18
+sha1,aa44b5492c787fbc4c51edb8d98d88b668fe89d1,actions-cool/issues-helper imposter commit for tag v3.7.0,high,StepSecurity 2026-05-18
+sha1,03bbf452b52fb318196d9c193fd178a79a6d7f9b,actions-cool/issues-helper imposter commit for tag v3.6.3,high,StepSecurity 2026-05-18
+sha1,257849272e291fb74ff4bee4d3be4796dd35fbbb,actions-cool/issues-helper imposter commit for tag v3.6.2,high,StepSecurity 2026-05-18
+sha1,4bb72d31eaee87562b70a0cf1b93579bb2b14c23,actions-cool/issues-helper imposter commit for tag v3.6.1,high,StepSecurity 2026-05-18
+sha1,e0585c10366288eeec3117d65ed24240ccbf1f47,actions-cool/issues-helper imposter commit for tag v3.6.0,high,StepSecurity 2026-05-18
+sha1,419b34c603623ea8749a98b7153df20e389dd0ec,actions-cool/issues-helper imposter commit for tag v3.5.2,high,StepSecurity 2026-05-18
+sha1,8cc2629c5681d794c494b79283d23aa3ce78749c,actions-cool/issues-helper imposter commit for tag v3.5.1,high,StepSecurity 2026-05-18
+sha1,4b69521f9829a1114b94d74fdc1a38f2291d8c34,actions-cool/issues-helper imposter commit for tag v3.5.0,high,StepSecurity 2026-05-18
+sha1,dc5687b71897e8b57bc9743e325ac72cee763c9c,actions-cool/issues-helper imposter commit for tag v3.4.0,high,StepSecurity 2026-05-18
+sha1,3846bd4230da36f68a4cc1527298ca9ab2652fb9,actions-cool/issues-helper imposter commit for tag v3.3.3,high,StepSecurity 2026-05-18
+sha1,459b0cfc4dd708b6218b72a7a01dda6c6a7ab0c0,actions-cool/issues-helper imposter commit for tag v3.3.2,high,StepSecurity 2026-05-18
+sha1,fa6a4ca487f2dc699d428126ea2b18e9d0d15c9d,actions-cool/issues-helper imposter commit for tag v3.3.1,high,StepSecurity 2026-05-18
+sha1,15c89f718cd325833aad8000d3ec72e2660f6584,actions-cool/issues-helper imposter commit for tag v3.3.0,high,StepSecurity 2026-05-18
+sha1,a7d3c46a35564fa85321f3557700f6ea0c0616a9,actions-cool/issues-helper imposter commit for tag v3.2.1,high,StepSecurity 2026-05-18
+sha1,85c9d842e1c0f41f8805f17600c25237e08a0224,actions-cool/issues-helper imposter commit for tag v3.2.0,high,StepSecurity 2026-05-18
+sha1,64ed6d61b6eee8744417e1d1cc651665a8bce236,actions-cool/issues-helper imposter commit for tag v3.1.0,high,StepSecurity 2026-05-18
+sha1,d9b1764cbe78ec9b12f01a66b2d2c902b15981b6,actions-cool/issues-helper imposter commit for tag v3.0.1,high,StepSecurity 2026-05-18
+sha1,b9c83f01929e190cda300e76f688bf7ea7e37a7a,actions-cool/issues-helper imposter commit for tag v3.0.0,high,StepSecurity 2026-05-18
+sha1,147337a919d92f4bf42f02843682d694650f1e22,actions-cool/issues-helper imposter commit for tag v3,high,StepSecurity 2026-05-18
+sha1,e9631d2e615d95a19111c272049444fb073a99be,actions-cool/issues-helper imposter commit for tag v2.5.0,high,StepSecurity 2026-05-18
+sha1,91b26b99c50ad890f98c2184d251bd3a16f5b1b1,actions-cool/issues-helper imposter commit for tag v2.4.3,high,StepSecurity 2026-05-18
+sha1,3f4d6804812734dfe945bbe8ef619f151e4b27f6,actions-cool/issues-helper imposter commit for tag v2.4.2,high,StepSecurity 2026-05-18
+sha1,46eff1378ad0faee27c017ebd97f605548777098,actions-cool/issues-helper imposter commit for tag v2.4.1,high,StepSecurity 2026-05-18
+sha1,071e169dfb36005b3262b3853c9894698b8b303b,actions-cool/issues-helper imposter commit for tag v2.4.0,high,StepSecurity 2026-05-18
+sha1,55253d49c68133ae52e791a3f1f8242b191f5e91,actions-cool/issues-helper imposter commit for tag v2.3.1,high,StepSecurity 2026-05-18
+sha1,edf8cf78d6feeb5a73cda9317af5ddfc4da6c5fd,actions-cool/issues-helper imposter commit for tag v2.3.0,high,StepSecurity 2026-05-18
+sha1,a0c53dd42fc842d2f9276c5a1d4f9a26abe8713d,actions-cool/issues-helper imposter commit for tag v2.2.1,high,StepSecurity 2026-05-18
+sha1,896379edfaac994ff214a3097c6c82e21be16066,actions-cool/issues-helper imposter commit for tag v2.2.0,high,StepSecurity 2026-05-18
+sha1,9bd6ce03e0c279f347b519548b87d26699ad31c9,actions-cool/issues-helper imposter commit for tag v2.1.2,high,StepSecurity 2026-05-18
+sha1,d2877f69bae9d8dcbadb06b3214ebf0789ed566e,actions-cool/issues-helper imposter commit for tag v2.1.1,high,StepSecurity 2026-05-18
+sha1,601e1296a5a0853b5e109f9820151c72619e11e4,actions-cool/issues-helper imposter commit for tag v2.1.0,high,StepSecurity 2026-05-18
+sha1,75fb02043af24e6f3eaf534464de338173993629,actions-cool/issues-helper imposter commit for tag v2.0.0,high,StepSecurity 2026-05-18
+sha1,3480e51eec2be03a70d6fe17507413a96fe5b57d,actions-cool/issues-helper imposter commit for tag v2,high,StepSecurity 2026-05-18
+sha1,67716d94ad07d7fe793cabc6f6d1ffe24f77bdf7,actions-cool/issues-helper imposter commit for tag v1.12,high,StepSecurity 2026-05-18
+sha1,cd96d6518c6338f8510638bce764c7abd7194983,actions-cool/issues-helper imposter commit for tag v1.11,high,StepSecurity 2026-05-18
+sha1,6a538e928b8856062de61103ed5a08f0ea0faee9,actions-cool/issues-helper imposter commit for tag v1.10,high,StepSecurity 2026-05-18
+sha1,9793761b1bc3dde7ad1ccb9be6211919e20a3f01,actions-cool/issues-helper imposter commit for tag v1.9,high,StepSecurity 2026-05-18
+sha1,8a64710bb8fee9f5c92eb1a816e016ed00fbcce0,actions-cool/issues-helper imposter commit for tag v1.8,high,StepSecurity 2026-05-18
+sha1,710ff89debb143f6859cf8d54c0e8739224ff6c1,actions-cool/issues-helper imposter commit for tag v1.7,high,StepSecurity 2026-05-18
+sha1,3904fe935f1a18fee5dbad6db46a66c9dcffde01,actions-cool/issues-helper imposter commit for tag v1.6,high,StepSecurity 2026-05-18
+sha1,cfbd14ccc97afd3baa822bd231df8460e4f02f29,actions-cool/issues-helper imposter commit for tag v1.5,high,StepSecurity 2026-05-18
+sha1,15dc537110a44b0625622e82b7d6ca95583f276a,actions-cool/issues-helper imposter commit for tag v1.4,high,StepSecurity 2026-05-18
+sha1,e778a401e233bf0a416f3fe2a52d9039949b30a6,actions-cool/issues-helper imposter commit for tag v1.3,high,StepSecurity 2026-05-18
+sha1,203671479d663755cb5bf8ffbeca6d2b685af7ae,actions-cool/issues-helper imposter commit for tag v1.2,high,StepSecurity 2026-05-18
+sha1,a7156495f3403674cafe3796382bded1d9af8931,actions-cool/issues-helper imposter commit for tag v1.1,high,StepSecurity 2026-05-18
+sha1,5c267592a87e92c2b005b338bd0d2724c2f64acb,actions-cool/issues-helper imposter commit for tag v1,high,StepSecurity 2026-05-18
+note,"All actions-cool/maintain-one-comment tags repointed 2026-05-18T19:30:30Z to 19:31:09Z (15 tags inside 39 sec window).",high,StepSecurity 2026-05-18
+sha1,7f6120bb10c870b9fde146961a18e5bf0b3d4401,actions-cool/maintain-one-comment imposter commit for tag v3.3.0,high,StepSecurity 2026-05-18
+sha1,4a6ac28684e2b0c48d502b31363ec5dd72f9d7ff,actions-cool/maintain-one-comment imposter commit for tag v3.2.1,high,StepSecurity 2026-05-18
+sha1,f3593fb4454aff5a6e1fb67024f94bfa48591dd5,actions-cool/maintain-one-comment imposter commit for tag v3.2.0,high,StepSecurity 2026-05-18
+sha1,5d844d6b1c6a0c09a96844521bb01f149d9fe2c1,actions-cool/maintain-one-comment imposter commit for tag v3.1.1,high,StepSecurity 2026-05-18
+sha1,2ab0aa3449ffe526ea64489193955d82a6848669,actions-cool/maintain-one-comment imposter commit for tag v3.1.0,high,StepSecurity 2026-05-18
+sha1,c43d668894bebbeea688878ab6774fa405f22251,actions-cool/maintain-one-comment imposter commit for tag v3,high,StepSecurity 2026-05-18
+sha1,93ec180e89e8fdd8525869daa5590c433b6c30fb,actions-cool/maintain-one-comment imposter commit for tag v2.0.2,high,StepSecurity 2026-05-18
+sha1,cbb2ba52a811cb6152eee0607519cc5df78289b5,actions-cool/maintain-one-comment imposter commit for tag v2.0.1,high,StepSecurity 2026-05-18
+sha1,99b7f41bf9e14a2a2c7cc524731336543f552178,actions-cool/maintain-one-comment imposter commit for tag v2.0.0,high,StepSecurity 2026-05-18
+sha1,ef01721dfd04f9c7ff1a256292f7dceabfd08d9b,actions-cool/maintain-one-comment imposter commit for tag v2,high,StepSecurity 2026-05-18
+sha1,d6622cc2415156cf4e81cf57866420479a966b3a,actions-cool/maintain-one-comment imposter commit for tag v1.2.1,high,StepSecurity 2026-05-18
+sha1,74b8a9a600daf6fc6070ca0a10d840a7bb6890ae,actions-cool/maintain-one-comment imposter commit for tag v1.2.0,high,StepSecurity 2026-05-18
+sha1,cae76b34894429e693e9b0d2731e7654c373ce81,actions-cool/maintain-one-comment imposter commit for tag v1.1.0,high,StepSecurity 2026-05-18
+sha1,7bb44528a0869f4074cc5448601804878704963f,actions-cool/maintain-one-comment imposter commit for tag v1.0.0,high,StepSecurity 2026-05-18
+sha1,8bb68050bc2a353f9d3032e2b42732a69d97499b,actions-cool/maintain-one-comment imposter commit for tag v0.0.1-wip,high,StepSecurity 2026-05-18
+note,"The repo-pinning remediation: every workflow reference to actions-cool/issues-helper or actions-cool/maintain-one-comment must resolve to a full commit SHA verified clean prior to 2026-05-18T19:10:24Z. Floating tags are unsafe until the owners publish a confirmed clean rotation.",high,StepSecurity 2026-05-18
