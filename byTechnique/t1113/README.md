@@ -4,9 +4,10 @@
 
 # Techniques: T1113
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-22 | Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux kworker masquerade) targeting Asian telecoms | Red Lamassu · Calypso APT | [`2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/`](../../days/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/) |
 | 2026-05-18 | Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist) | Silver Fox · SwimSnake · Void Arachne · UTG-Q-1000 | [`2026-05-18_SilverFox-ABCDoor-Tax-Phishing/`](../../days/2026-05-18_SilverFox-ABCDoor-Tax-Phishing/) |

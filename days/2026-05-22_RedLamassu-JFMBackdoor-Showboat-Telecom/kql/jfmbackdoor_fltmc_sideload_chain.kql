@@ -1,0 +1,32 @@
+// Title:        JFMBackdoor side-load chain: 1.bat -> hidden PowerShell -> FLTLIB.dll fetch -> fltMC.exe from %TEMP%
+// Id:           869ae2f6-0174-41a6-99fe-b32f0376f2fa
+// MITRE:        T1574.002, T1218, T1059.001, T1105
+// Reference:    https://www.pwc.com/gx/en/issues/cybersecurity/cyber-threat-intelligence/red-lamassu-open-season.html
+// Author:       Jarmi
+// Date:         2026-05-22
+// Tested on:    Defender XDR — DeviceProcessEvents + DeviceFileEvents
+// FP notes:     Air-gapped Filter Manager installs from a maintenance share — rare.
+//               If a tenant intentionally stages fltMC.exe outside System32, add the
+//               calling parent process hash to the exclusion list.
+let lookback = 14d;
+let staging = DeviceFileEvents
+| where Timestamp > ago(lookback)
+| where FileName in~ ("FLTLIB.dll","fltMC.exe","scr.mui","flt.bin")
+| where FolderPath has_any (
+    "\\AppData\\Local\\Temp\\",
+    "\\AppData\\Roaming\\",
+    "\\ProgramData\\Microsoft\\Network\\",
+    "\\Users\\Public\\",
+    "\\Windows\\Temp\\")
+| summarize StagedFiles = make_set(FileName), StagedAt = min(Timestamp) by DeviceId, DeviceName, FolderPath
+| where array_length(StagedFiles) >= 3;
+let exec = DeviceProcessEvents
+| where Timestamp > ago(lookback)
+| where FileName =~ "fltMC.exe"
+| where not (FolderPath startswith "C:\\Windows\\System32" or FolderPath startswith "C:\\Windows\\SysWOW64")
+| project ExecTime = Timestamp, DeviceId, DeviceName, FolderPath, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine;
+staging
+| join kind=inner exec on DeviceId
+| where ExecTime between (StagedAt .. (StagedAt + 1h))
+| project StagedAt, ExecTime, DeviceName, FolderPath, StagedFiles, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by ExecTime desc

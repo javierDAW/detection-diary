@@ -1,0 +1,39 @@
+# Red Lamassu / Calypso APT — JFMBackdoor + Showboat IoC anchors — Suricata 7.x rules
+# Author: Jarmi
+# Date:   2026-05-22
+# References:
+#   https://www.pwc.com/gx/en/issues/cybersecurity/cyber-threat-intelligence/red-lamassu-open-season.html
+#   https://www.lumen.com/blog/en-us/introducing-showboat-a-new-malware-family-taunts-defenses-and-targets-international-telecom-firms
+#   https://github.com/PwCUK-CTO/TI-blog-2026-Red-Lamassu-JFMBackdoor
+# Notes:
+#   - DNS lookups, TLS SNI matches and HTTP host/URI matches for the published anchors.
+#   - The open-directory IP 23.27.201.160 was the JFMBackdoor stager host on port 8000 (plain HTTP).
+#   - The X.509 origin certificate fingerprint 27df47... was shared across primary cluster C2 nodes.
+#   - Variable HOME_NET is the standard Suricata variable; no custom variables required.
+#   - Use sid range 8220001-8220010 for this day.
+
+# DNS: JFMBackdoor primary C2 namefuture.site
+alert dns $HOME_NET any -> any any (msg:"RED-LAMASSU 2026-05 DNS lookup namefuture.site (JFMBackdoor C2)"; dns.query; content:"namefuture.site"; nocase; classtype:trojan-activity; sid:8220001; rev:1;)
+
+# DNS: JFMBackdoor secondary C2 namespaces
+alert dns $HOME_NET any -> any any (msg:"RED-LAMASSU 2026-05 DNS lookup cumm.info or xcent.online (JFMBackdoor C2)"; dns.query; pcre:"/^(en\.)?(cumm\.info|xcent\.online)$/i"; classtype:trojan-activity; sid:8220002; rev:1;)
+
+# DNS: Showboat primary C2 telecom.webredirect.org and impersonated telecom domains
+alert dns $HOME_NET any -> any any (msg:"RED-LAMASSU 2026-05 DNS lookup Showboat telecom-themed C2"; dns.query; pcre:"/^(telecom\.webredirect\.org|kaztelecom\.shop|singtelcom\.site|newsprojects\.online)$/i"; classtype:trojan-activity; sid:8220003; rev:1;)
+
+# TLS SNI: HTTPS to JFMBackdoor or Showboat C2 domains
+alert tls $HOME_NET any -> any 443 (msg:"RED-LAMASSU 2026-05 TLS SNI to Red Lamassu C2 domain"; tls.sni; pcre:"/^((en\.)?cumm\.info|xcent\.online|namefuture\.site|telecom\.webredirect\.org|kaztelecom\.shop|singtelcom\.site|newsprojects\.online)$/i"; classtype:trojan-activity; sid:8220004; rev:1;)
+
+# HTTP: Plain-HTTP staging from JFMBackdoor open directory IP on port 8000
+alert http $HOME_NET any -> 23.27.201.160 8000 (msg:"RED-LAMASSU 2026-05 JFMBackdoor staging HTTP fetch from 23.27.201.160:8000"; flow:established,to_server; http.method; content:"GET"; classtype:trojan-activity; sid:8220005; rev:1;)
+
+# HTTP: Plain-HTTP staging artefact fetches by filename (flt.bin, FLTLIB.dll, scr.mui, fltMC.exe)
+alert http $HOME_NET any -> any any (msg:"RED-LAMASSU 2026-05 HTTP GET for JFMBackdoor staging artefact"; flow:established,to_server; http.method; content:"GET"; http.uri; pcre:"/\/(flt\.bin|FLTLIB\.dll|scr\.mui|fltMC\.exe)(\?|$)/i"; classtype:trojan-activity; sid:8220006; rev:1;)
+
+# IP: Outbound to Red Lamassu primary-cluster origin servers
+alert ip $HOME_NET any -> 139.84.227.139 any (msg:"RED-LAMASSU 2026-05 Outbound to Showboat primary origin 139.84.227.139"; classtype:trojan-activity; sid:8220007; rev:1;)
+alert ip $HOME_NET any -> 194.135.25.132 any (msg:"RED-LAMASSU 2026-05 Outbound to Showboat secondary origin 194.135.25.132"; classtype:trojan-activity; sid:8220008; rev:1;)
+alert ip $HOME_NET any -> 166.88.11.196 any (msg:"RED-LAMASSU 2026-05 Outbound to JFMBackdoor Cloudflare origin 166.88.11.196"; classtype:trojan-activity; sid:8220009; rev:1;)
+
+# X.509: Self-signed My Organization certificate fingerprint anchor
+alert tls $HOME_NET any -> any any (msg:"RED-LAMASSU 2026-05 TLS X.509 self-signed My Organization fingerprint (Showboat primary cluster)"; flow:established; tls.cert_fingerprint; content:"27:df:47:56:26:aa:fc:e2:ea:15:48:a9:f3:5e:fb:9a:d9:51:29:8c:8b:11:a6:ad:b3:cc:df:cd:51:70:c6:77"; nocase; classtype:trojan-activity; sid:8220010; rev:1;)

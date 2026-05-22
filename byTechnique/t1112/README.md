@@ -4,9 +4,10 @@
 
 # Techniques: T1112
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-22 | Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux kworker masquerade) targeting Asian telecoms | Red Lamassu · Calypso APT | [`2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/`](../../days/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/) |
 | 2026-05-19 | Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs) | Embargo · ALPHV · BlackCat | [`2026-05-19_Embargo-Rust-SafeMode-BYOVD/`](../../days/2026-05-19_Embargo-Rust-SafeMode-BYOVD/) |

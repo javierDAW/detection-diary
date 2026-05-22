@@ -1,0 +1,44 @@
+title: JFMBackdoor — fltMC.exe Side-Loading FLTLIB.dll from User-Writable Path
+id: 6271e9b5-51d3-4e94-9806-31ccfadb7140
+status: experimental
+description: |
+  Detects the JFMBackdoor side-load chain published by PwC Threat Intelligence on
+  2026-05-21. A LOLBin-style copy of the legitimate Windows Filter Manager command
+  line tool (fltMC.exe) is dropped to %TEMP% or %ProgramData% next to a malicious
+  FLTLIB.dll. When fltMC.exe runs from a user-writable directory it loads the
+  attacker-supplied FLTLIB.dll which then decrypts scr.mui (XOR key Zs0@31=KDw.*7ev)
+  and loads the flt.bin shellcode that maps the JFMBackdoor PE into memory. The
+  legitimate FLTLIB.dll is signed by Microsoft and only loads from System32; any
+  load from %TEMP%, %ProgramData% or %AppData% is high-confidence malicious.
+references:
+  - https://www.pwc.com/gx/en/issues/cybersecurity/cyber-threat-intelligence/red-lamassu-open-season.html
+  - https://github.com/PwCUK-CTO/TI-blog-2026-Red-Lamassu-JFMBackdoor
+author: Jarmi
+date: 2026/05/22
+tags:
+  - attack.defense-evasion
+  - attack.t1574.002
+  - attack.execution
+  - attack.t1218
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_image:
+    Image|endswith: '\fltMC.exe'
+  selection_path:
+    Image|contains:
+      - '\AppData\Local\Temp\'
+      - '\AppData\Roaming\'
+      - '\ProgramData\Microsoft\Network\'
+      - '\Users\Public\'
+      - '\Windows\Temp\'
+  filter_legit_system32:
+    Image|startswith:
+      - 'C:\Windows\System32\'
+      - 'C:\Windows\SysWOW64\'
+  condition: selection_image and selection_path and not filter_legit_system32
+falsepositives:
+  - Internal IT scripts that intentionally stage Filter Manager from a custom path
+    for an air-gapped install. Pair with a FLTLIB.dll hash allowlist if needed.
+level: high

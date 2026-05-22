@@ -1,0 +1,51 @@
+title: JFMBackdoor — PowerShell Hidden Download Chain Staging FLTLIB+scr.mui+flt.bin+fltMC
+id: 1069e6d3-1267-4874-85c4-4e24891c87ce
+status: experimental
+description: |
+  Detects the 1.bat staging chain reported by PwC Threat Intelligence on 2026-05-21
+  for the Red Lamassu / Calypso JFMBackdoor side-load. The batch file launches a
+  hidden PowerShell that uses Invoke-WebRequest to fetch the four side-load
+  artefacts (fltMC.exe, FLTLIB.dll, scr.mui, flt.bin) from a single C2 over HTTP
+  port 8000 into %TEMP%, then runs fltMC.exe with WindowStyle Hidden. The
+  combination of an HTTP download to %TEMP% of the literal artefact filenames is
+  the highest-confidence anchor.
+references:
+  - https://www.pwc.com/gx/en/issues/cybersecurity/cyber-threat-intelligence/red-lamassu-open-season.html
+author: Jarmi
+date: 2026/05/22
+tags:
+  - attack.command-and-control
+  - attack.t1105
+  - attack.execution
+  - attack.t1059.001
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_powershell:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_hidden:
+    CommandLine|contains:
+      - 'WindowStyle Hidden'
+      - 'WindowStyle hidden'
+      - '-w hidden'
+      - '-W Hidden'
+  selection_artifact:
+    CommandLine|contains:
+      - 'FLTLIB.dll'
+      - 'flt.bin'
+      - 'scr.mui'
+      - 'fltMC.exe'
+  selection_remote:
+    CommandLine|contains:
+      - 'Invoke-WebRequest'
+      - 'iwr '
+      - 'curl '
+      - 'wget '
+  condition: selection_powershell and selection_hidden and selection_artifact and selection_remote
+falsepositives:
+  - Legitimate offline installers that stage Filter Manager components from an
+    internal share are uncommon. If observed, allowlist the calling script hash.
+level: critical

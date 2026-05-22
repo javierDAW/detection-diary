@@ -4,9 +4,10 @@
 
 # Techniques: T1090.003
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-22 | Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux kworker masquerade) targeting Asian telecoms | Red Lamassu · Calypso APT | [`2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/`](../../days/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/) |
 | 2026-04-30 | FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A) | UAT-4356 · Storm-1849 · ArcaneDoor | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/`](../../days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |

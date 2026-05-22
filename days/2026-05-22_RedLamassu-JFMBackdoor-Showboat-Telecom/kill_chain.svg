@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1260" role="img" aria-labelledby="t d">
+  <title id="t">Red Lamassu / Calypso kill chain — JFMBackdoor (Windows) + Showboat (Linux) targeting Asian telecoms</title>
+  <desc id="d">A two-lane kill chain. Left lane (VICTIM HOST) shows nine stages from initial-access staging through Windows side-load of FLTLIB.dll via fltMC.exe, JFMBackdoor in-memory PE, persistence under ProgramData, and Linux Showboat / kworker masquerade. Right lane (ATTACKER C2) shows the Red Lamassu primary cluster: namefuture.site fronted by Cloudflare, the My Organization self-signed certificate fingerprint, Showboat origin at 139.84.227.139, open-directory staging IP 23.27.201.160. Bidirectional arrows mark JFMBackdoor C2 and Showboat SOCKS5 channel. A two-column detection-anchors box at the bottom summarises Sigma, KQL, YARA, Suricata, PEAK hunts and pedagogy.</desc>
+  <defs>
+    <style>
+      .bg-card{fill:#ffffff;stroke:#d0d7de;stroke-width:1.2}
+      .bg-header{fill:#0b3d91;}
+      .bg-c2{fill:#fff8e1;stroke:#d0a200;stroke-width:1.2}
+      .bg-impact{fill:#ffe5e5;stroke:#cf222e;stroke-width:1.4}
+      .bg-anchor{fill:#eef6fb;stroke:#0969da;stroke-width:1.2}
+      .lane{fill:none;stroke:#bbbbbb;stroke-width:1;stroke-dasharray:6 4}
+      .lane-label{font-family:sans-serif;font-size:12px;font-weight:700;fill:#57606a;letter-spacing:1.5px}
+      .h1{font-family:sans-serif;font-size:18px;font-weight:700;fill:#ffffff}
+      .h2{font-family:sans-serif;font-size:12px;fill:#cfd8e3}
+      .stage-title{font-family:sans-serif;font-size:13.5px;font-weight:700;fill:#0b3d91}
+      .stage-sub{font-family:sans-serif;font-size:11.5px;fill:#24292f}
+      .mono{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:10.5px;fill:#24292f}
+      .mono-c2{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:10px;fill:#6e4c00}
+      .badge{fill:#0b3d91}
+      .badge-impact{fill:#cf222e}
+      .badge-text{font-family:sans-serif;font-size:12px;font-weight:700;fill:#ffffff;text-anchor:middle}
+      .arrow{stroke:#444;stroke-width:1.5;fill:none;marker-end:url(#arr)}
+      .arrow-c2{stroke:#d0a200;stroke-width:2;fill:none;marker-end:url(#arrc2);marker-start:url(#arrc2)}
+      .anchor-title{font-family:sans-serif;font-size:13.5px;font-weight:700;fill:#0969da}
+      .anchor-label{font-family:sans-serif;font-size:11.5px;font-weight:700;fill:#0b3d91}
+      .anchor-line{font-family:sans-serif;font-size:11px;fill:#24292f}
+      .anchor-foot{font-family:sans-serif;font-size:10.5px;fill:#57606a;font-style:italic}
+      @media (prefers-color-scheme: dark) {
+        .bg-card{fill:#0d1117;stroke:#30363d}
+        .bg-header{fill:#1f6feb}
+        .bg-c2{fill:#1c1810;stroke:#9e6a03}
+        .bg-impact{fill:#2d0d0d;stroke:#f85149}
+        .bg-anchor{fill:#0d1c2c;stroke:#58a6ff}
+        .lane{stroke:#444c56}
+        .lane-label{fill:#8b949e}
+        .h1{fill:#ffffff}
+        .h2{fill:#9aa6b2}
+        .stage-title{fill:#79c0ff}
+        .stage-sub{fill:#c9d1d9}
+        .mono{fill:#c9d1d9}
+        .mono-c2{fill:#e3b341}
+        .badge{fill:#1f6feb}
+        .badge-impact{fill:#f85149}
+        .anchor-title{fill:#58a6ff}
+        .anchor-label{fill:#79c0ff}
+        .anchor-line{fill:#c9d1d9}
+        .anchor-foot{fill:#8b949e}
+        .arrow{stroke:#8b949e}
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker>
+    <marker id="arrc2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d0a200"/></marker>
+  </defs>
+
+  <rect class="bg-header" x="0" y="0" width="1200" height="64"/>
+  <text class="h1" x="20" y="28">Red Lamassu / Calypso — JFMBackdoor (Windows) + Showboat (Linux)</text>
+  <text class="h2" x="20" y="48">PwC Threat Intelligence + Lumen Black Lotus Labs, 2026-05-21 — telecom victims in KZ, AF, IN, AZ, MENA</text>
+
+  <line class="lane" x1="770" y1="80" x2="770" y2="1000"/>
+  <text class="lane-label" x="30" y="86">VICTIM HOST</text>
+  <text class="lane-label" x="800" y="86">ATTACKER C2 / INFRA</text>
+
+  <rect class="bg-card" x="30" y="96" width="720" height="78" rx="6"/>
+  <circle class="badge" cx="52" cy="118" r="13"/>
+  <text class="badge-text" x="52" y="122">1</text>
+  <text class="stage-title" x="78" y="116">Initial Access — open-directory staging</text>
+  <text class="stage-sub" x="78" y="134">User pulls 1.bat from open directory on 23.27.201.160:8000 (vector: phishing link or compromised share)</text>
+  <text class="mono" x="78" y="152">MITRE: T1566.002 - T1608.001 - T1105</text>
+  <text class="mono" x="78" y="167">IOC: hxxp://23.27.201[.]160:8000/1.bat -- SHA256 a23d126f04467558...</text>
+
+  <rect class="bg-card" x="30" y="186" width="720" height="78" rx="6"/>
+  <circle class="badge" cx="52" cy="208" r="13"/>
+  <text class="badge-text" x="52" y="212">2</text>
+  <text class="stage-title" x="78" y="206">Execution — hidden PowerShell stager</text>
+  <text class="stage-sub" x="78" y="224">1.bat launches powershell -WindowStyle Hidden + Invoke-WebRequest fetching four artefacts</text>
+  <text class="mono" x="78" y="242">MITRE: T1059.001 - T1564.003</text>
+  <text class="mono" x="78" y="257">Drops to %TEMP%:  fltMC.exe - FLTLIB.dll - scr.mui - flt.bin</text>
+
+  <rect class="bg-card" x="30" y="276" width="720" height="78" rx="6"/>
+  <circle class="badge" cx="52" cy="298" r="13"/>
+  <text class="badge-text" x="52" y="302">3</text>
+  <text class="stage-title" x="78" y="296">Defense Evasion — DLL side-load via fltMC.exe</text>
+  <text class="stage-sub" x="78" y="314">Copy of legitimate fltMC.exe in %TEMP% loads attacker-supplied FLTLIB.dll</text>
+  <text class="mono" x="78" y="332">MITRE: T1574.002 - T1218</text>
+  <text class="mono" x="78" y="347">XOR key  Zs0@31=KDw.*7ev  decrypts scr.mui config (length-prefixed XOR entries)</text>
+
+  <rect class="bg-card" x="30" y="366" width="720" height="78" rx="6"/>
+  <circle class="badge" cx="52" cy="388" r="13"/>
+  <text class="badge-text" x="52" y="392">4</text>
+  <text class="stage-title" x="78" y="386">In-Memory Implant — JFMBackdoor PE</text>
+  <text class="stage-sub" x="78" y="404">flt.bin shellcode decodes and maps the embedded JFMBackdoor PE — never on disk as PE</text>
+  <text class="mono" x="78" y="422">MITRE: T1620 - T1055.002 - T1027</text>
+  <text class="mono" x="78" y="437">SHA256: 176aec5d33c459a42e7e4e984a718c52e11213ef9a6aa961...  (Win32 DLL, 1,119,744 B)</text>
+
+  <rect class="bg-card" x="30" y="456" width="720" height="78" rx="6"/>
+  <circle class="badge" cx="52" cy="478" r="13"/>
+  <text class="badge-text" x="52" y="482">5</text>
+  <text class="stage-title" x="78" y="476">Persistence + Config — ProgramData stage</text>
+  <text class="stage-sub" x="78" y="494">Encrypted config persists under C:\ProgramData\Microsoft\Network; second cfg btasc.cfg</text>
+  <text class="mono" x="78" y="512">MITRE: T1547 - T1112</text>
+  <text class="mono" x="78" y="527">Reg: SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows</text>
+
+  <rect class="bg-card" x="30" y="546" width="720" height="78" rx="6"/>
+  <circle class="badge" cx="52" cy="568" r="13"/>
+  <text class="badge-text" x="52" y="572">6</text>
+  <text class="stage-title" x="78" y="566">C2 — CppServer TCPSession / WSSession / WSSSession</text>
+  <text class="stage-sub" x="78" y="584">JFMBackdoor talks to namefuture[.]site fronted by Cloudflare; rotates to cumm[.]info / xcent[.]online</text>
+  <text class="mono" x="78" y="602">MITRE: T1071.001 - T1568.002</text>
+  <text class="mono" x="78" y="617">Cloudflare origin 166.88.11.196 - origin cert serial 7222155474213935499068004...</text>
+
+  <rect class="bg-card" x="30" y="636" width="720" height="78" rx="6"/>
+  <circle class="badge" cx="52" cy="658" r="13"/>
+  <text class="badge-text" x="52" y="662">7</text>
+  <text class="stage-title" x="78" y="656">Recon + Operator Ops — full Windows CRUD</text>
+  <text class="stage-sub" x="78" y="674">Reverse shell x2, file CRUD, registry CRUD, GDI+ screenshots, TCP proxy</text>
+  <text class="mono" x="78" y="692">MITRE: T1083 - T1057 - T1090 - T1113 - T1112</text>
+  <text class="mono" x="78" y="707">Shell variant 0xAD uses FreeConsole + AttachConsole to evade console inspection</text>
+
+  <rect class="bg-card" x="30" y="726" width="720" height="78" rx="6"/>
+  <circle class="badge" cx="52" cy="748" r="13"/>
+  <text class="badge-text" x="52" y="752">8</text>
+  <text class="stage-title" x="78" y="746">Lateral / Pivot — Showboat ELF masquerades as kworker</text>
+  <text class="stage-sub" x="78" y="764">Linux post-exploitation framework on edge devices, Outlook servers, mail gateways</text>
+  <text class="mono" x="78" y="782">MITRE: T1036.005 - T1090 - T1102.001</text>
+  <text class="mono" x="78" y="797">XOR key  "look me, AV!"  -  SOCKS5 banner port 9999  -  Pastebin dead-drop</text>
+
+  <rect class="bg-impact" x="30" y="816" width="720" height="78" rx="6"/>
+  <circle class="badge-impact" cx="52" cy="838" r="13"/>
+  <text class="badge-text" x="52" y="842">9</text>
+  <text class="stage-title" x="78" y="836" style="fill:#cf222e">Collection + Espionage objective</text>
+  <text class="stage-sub" x="78" y="854">Long-dwell collection on telecom infra; SOCKS5 / portmap pivot into internal LAN</text>
+  <text class="mono" x="78" y="872">MITRE: T1005 - T1041 - T1090.003</text>
+  <text class="mono" x="78" y="887">Victims: KZ ISP - AF telecom - IN gov - AZ host - MENA telecom provider</text>
+
+  <rect class="bg-c2" x="790" y="96" width="380" height="200" rx="8"/>
+  <text class="stage-title" x="806" y="118" style="fill:#9a7300">JFMBackdoor C2 (Windows track)</text>
+  <text class="mono-c2" x="806" y="138">namefuture[.]site         (Cloudflare front)</text>
+  <text class="mono-c2" x="806" y="155">en[.]cumm[.]info   -   cumm[.]info</text>
+  <text class="mono-c2" x="806" y="172">xcent[.]online</text>
+  <text class="mono-c2" x="806" y="195">Cloudflare origin   166.88.11.196</text>
+  <text class="mono-c2" x="806" y="212">DNS resolver alt    139.180.223.193</text>
+  <text class="mono-c2" x="806" y="235">CppServer transports:</text>
+  <text class="mono-c2" x="806" y="252">  TCPSession - WSSession - WSSSession</text>
+  <text class="mono-c2" x="806" y="275">Cloudflare origin cert serial:</text>
+  <text class="mono-c2" x="806" y="290">  7222155474213935499068004...</text>
+
+  <rect class="bg-c2" x="790" y="316" width="380" height="200" rx="8"/>
+  <text class="stage-title" x="806" y="338" style="fill:#9a7300">Showboat / kworker C2 (Linux track)</text>
+  <text class="mono-c2" x="806" y="358">telecom[.]webredirect[.]org</text>
+  <text class="mono-c2" x="806" y="375">kaztelecom[.]shop   (impersonates KZ telco)</text>
+  <text class="mono-c2" x="806" y="392">singtelcom[.]site   (impersonates SG telco)</text>
+  <text class="mono-c2" x="806" y="409">newsprojects[.]online</text>
+  <text class="mono-c2" x="806" y="432">Primary origin     139.84.227.139</text>
+  <text class="mono-c2" x="806" y="449">Secondary          194.135.25.132</text>
+  <text class="mono-c2" x="806" y="466">Upstream Chengdu   116.169.244.208</text>
+  <text class="mono-c2" x="806" y="489">My Organization X.509 fingerprint:</text>
+  <text class="mono-c2" x="806" y="504">  27df475626aafce2ea1548a9f35efb9ad...</text>
+
+  <rect class="bg-c2" x="790" y="536" width="380" height="160" rx="8"/>
+  <text class="stage-title" x="806" y="558" style="fill:#9a7300">Open directory + dead-drop infra</text>
+  <text class="mono-c2" x="806" y="578">23.27.201.160:8000 - staging server</text>
+  <text class="mono-c2" x="806" y="595">  hosts FLTLIB.dll / scr.mui / flt.bin / fltMC.exe</text>
+  <text class="mono-c2" x="806" y="612">  hosts systemd-ac-update (Showboat ELF)</text>
+  <text class="mono-c2" x="806" y="635">Pastebin dead-drop for Showboat hide</text>
+  <text class="mono-c2" x="806" y="652">  (snippet first posted January 2022)</text>
+  <text class="mono-c2" x="806" y="675">Campaign timeline: mid-2022 -- 2026</text>
+
+  <path class="arrow-c2" d="M 750 595 C 770 595 780 200 790 200"/>
+  <path class="arrow-c2" d="M 750 775 C 770 775 780 416 790 416"/>
+
+  <path class="arrow" d="M 390 174 L 390 186"/>
+  <path class="arrow" d="M 390 264 L 390 276"/>
+  <path class="arrow" d="M 390 354 L 390 366"/>
+  <path class="arrow" d="M 390 444 L 390 456"/>
+  <path class="arrow" d="M 390 534 L 390 546"/>
+  <path class="arrow" d="M 390 624 L 390 636"/>
+  <path class="arrow" d="M 390 714 L 390 726"/>
+  <path class="arrow" d="M 390 804 L 390 816"/>
+
+  <rect class="bg-anchor" x="30" y="920" width="1140" height="310" rx="8"/>
+  <text class="anchor-title" x="50" y="946">Detection anchors</text>
+
+  <text class="anchor-label" x="50" y="972">Sigma</text>
+  <text class="anchor-line" x="50" y="990">- fltMC.exe executing from a non-System32 user-writable path (T1574.002)</text>
+  <text class="anchor-line" x="50" y="1008">- Hidden PowerShell + Invoke-WebRequest fetching the four staging artefacts (T1059.001)</text>
+  <text class="anchor-line" x="50" y="1026">- User-space "kworker" + curl/wget to Pastebin / ghostbin / paste.ee (T1036.005)</text>
+
+  <text class="anchor-label" x="50" y="1054">KQL</text>
+  <text class="anchor-line" x="50" y="1072">- %TEMP% staging of 3+ artefacts joined to fltMC.exe outside System32 within 1 h</text>
+  <text class="anchor-line" x="50" y="1090">- Egress to the 8 Red Lamassu C2 domains and the 12 IPv4 anchors</text>
+  <text class="anchor-line" x="50" y="1108">- User-space kworker process joined to outbound HTTPS / SOCKS5 (Linux MDE)</text>
+
+  <text class="anchor-label" x="50" y="1136">YARA</text>
+  <text class="anchor-line" x="50" y="1154">- PE heuristic: Zs0@31=KDw.*7ev + CppServer classes (TCPSession / WSSession)</text>
+  <text class="anchor-line" x="50" y="1172">- ELF heuristic: "look me, AV!" + kworker + SKS / MAP + sleep-config fields</text>
+  <text class="anchor-line" x="50" y="1190">- Known-hash anchors: 11 SHA256s from the open-directory artefacts</text>
+
+  <text class="anchor-label" x="610" y="972">Suricata</text>
+  <text class="anchor-line" x="610" y="990">- DNS + TLS SNI for the 8 Red Lamassu C2 FQDNs (sids 8220001-8220004)</text>
+  <text class="anchor-line" x="610" y="1008">- Plain-HTTP GET against 23.27.201.160:8000 for the 4 artefacts (sids 8220005-6)</text>
+  <text class="anchor-line" x="610" y="1026">- X.509 fingerprint 27df475626aafce2... on TLS handshakes (sid 8220010)</text>
+
+  <text class="anchor-label" x="610" y="1054">PEAK hunts</text>
+  <text class="anchor-line" x="610" y="1072">- H1: fltMC.exe staging chain inside 1 h (memory-first action)</text>
+  <text class="anchor-line" x="610" y="1090">- H2: kworker masquerade + outbound egress to the 17 IP anchors</text>
+  <text class="anchor-line" x="610" y="1108">- H3: X.509 fingerprint pivot across 20+ historic C2 nodes</text>
+
+  <text class="anchor-label" x="610" y="1136">Pedagogy</text>
+  <text class="anchor-line" x="610" y="1154">- Hunt by certificate, not by hostname -- fingerprints outlast IP rotation</text>
+  <text class="anchor-line" x="610" y="1172">- Anchor on the legitimate-binary path anomaly, not the malicious DLL hash</text>
+  <text class="anchor-line" x="610" y="1190">- Real Linux kworker is kernel-space -- any user-space match is masquerading</text>
+
+  <text class="anchor-foot" x="50" y="1218">PwC TI + Lumen Black Lotus Labs (2026-05-21) - 3 Sigma + 3 KQL + 1 YARA (3 rules) + 1 Suricata (10 sids) + 3 PEAK hunts - ground truth: this folder.</text>
+</svg>
