@@ -1,0 +1,28 @@
+// Title:        Showboat user-space "kworker" process performing outbound HTTPS — masquerading anchor
+// Id:           b66c1084-4c93-48ed-a7c3-8d4cd5ae628b
+// MITRE:        T1036.005, T1571, T1102.001
+// Reference:    https://www.lumen.com/blog/en-us/introducing-showboat-a-new-malware-family-taunts-defenses-and-targets-international-telecom-firms
+// Author:       Jarmi
+// Date:         2026-05-22
+// Tested on:    Defender XDR — DeviceProcessEvents + DeviceNetworkEvents (Linux MDE)
+// FP notes:     Real kworker threads are kernel-space and never produce ProcessId entries
+//               in DeviceProcessEvents. A user-space process whose FileName or
+//               ProcessCommandLine starts with "kworker" is the masquerading anchor.
+//               Pair with a network egress in the same 60s window.
+let lookback = 14d;
+let kworker_user = DeviceProcessEvents
+| where Timestamp > ago(lookback)
+| where DeviceType == "Workstation" or DeviceType == "Server"
+| where (FileName startswith "kworker" or ProcessCommandLine startswith "kworker")
+| where AccountName != "root" or InitiatingProcessFileName !in ("systemd","init","kthreadd")
+| project ProcTime = Timestamp, DeviceId, DeviceName, ProcessId, AccountName, FileName, ProcessCommandLine, FolderPath, InitiatingProcessFileName;
+let net = DeviceNetworkEvents
+| where Timestamp > ago(lookback)
+| where ActionType == "ConnectionSuccess"
+| where RemotePort in (80,443,53,2096,9999)
+| project NetTime = Timestamp, DeviceId, DeviceName, ProcessId = InitiatingProcessId, RemoteIP, RemotePort, RemoteUrl, InitiatingProcessFileName;
+kworker_user
+| join kind=inner net on DeviceId, ProcessId
+| where NetTime between (ProcTime .. (ProcTime + 5m))
+| project ProcTime, NetTime, DeviceName, AccountName, FileName, ProcessCommandLine, FolderPath, RemoteIP, RemotePort, RemoteUrl
+| order by ProcTime desc

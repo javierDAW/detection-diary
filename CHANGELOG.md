@@ -7,6 +7,26 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.22 — Day 25 — Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux kworker masquerade) targeting Asian telecoms
+
+### Added
+- `days/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/` — PwC Threat Intelligence and Lumen Black Lotus Labs published tandem analyses on 2026-05-21 of Red Lamassu (Calypso APT), a PRC-aligned (Sichuan/Chengdu) cluster active since at least mid-2022 against telecommunications and government in Kazakhstan, Afghanistan, India, Azerbaijan and the Middle East. Toolkit: JFMBackdoor (Windows) delivered via fltMC.exe side-load of attacker FLTLIB.dll with XOR key `Zs0@31=KDw.*7ev` and CppServer TCPSession/WSSession/WSSSession transports; Showboat / kworker (Linux) ELF post-exploitation framework with XOR key `look me, AV!`, SOCKS5+portmap pivots, and Pastebin dead-drop via the hide command.
+- Sigma (3): `jfmbackdoor_fltmc_sideload_fltlib_dll.yml` — fltMC.exe executing from a non-System32 user-writable path; `jfmbackdoor_artifact_drop_temp_chain.yml` — hidden PowerShell + Invoke-WebRequest fetching the four staging artefacts (FLTLIB.dll, flt.bin, scr.mui, fltMC.exe); `showboat_kworker_pastebin_deaddrop.yml` — user-space process named kworker calling curl/wget against Pastebin or similar dead-drop sites.
+- KQL (3): `jfmbackdoor_fltmc_sideload_chain.kql` — DeviceFileEvents %TEMP% staging of 3+ side-load artefacts joined to DeviceProcessEvents fltMC.exe outside System32 within 1 h; `red_lamassu_c2_egress_telecom_themed_domains.kql` — DeviceNetworkEvents egress to the eight Red Lamassu C2 domains and the 12 IP anchors; `showboat_kworker_anomalous_egress.kql` — user-space kworker process joined with outbound HTTPS/SOCKS5 in 5-minute windows on Linux MDE.
+- YARA (1 file, 3 rules): `RedLamassu_JFMBackdoor_PE_Heuristic_2026` (PE + XOR key + CppServer class names + side-load artefact strings), `RedLamassu_Showboat_ELF_Heuristic_2026` (ELF + `look me, AV!` + kworker + SKS/MAP + sleep-config fields), `RedLamassu_OpenDirectory_KnownHashes_2026` (11 SHA256 anchors for the open-directory artefacts).
+- Suricata (1 file, 10 sids 8220001-8220010): DNS for the eight Red Lamassu C2 FQDNs; TLS SNI match; plain-HTTP GET against 23.27.201.160:8000 for `flt.bin`/`FLTLIB.dll`/`scr.mui`/`fltMC.exe`; outbound IP anchors for the three primary Showboat origins; X.509 fingerprint anchor for `27df475626aafce2…`.
+- PEAK hunts (3): `peak_h1_jfmbackdoor_fltmc_sideload.md` — side-load chain inside 1 h with memory-first action; `peak_h2_showboat_kworker_masquerade.md` — kworker user-space anchor with outbound egress, treating Outlook/mail/edge devices as pivot points; `peak_h3_red_lamassu_cert_pivot.md` — X.509 fingerprint pivot across 20+ historic C2 nodes.
+- `iocs.csv` (52 entries) — 11 SHA256s (incl. JFMBackdoor PE 176aec5d…), eight C2 domains, 17 IPv4 anchors covering 2023-2026, four string anchors (XOR keys + `C:\Users\public\jfm`), four registry/path anchors, four X.509 fingerprint/serial anchors.
+- `kill_chain.svg` — viewBox 880x1180, GitHub-friendly adaptive light/dark palette, nine numbered stages on the victim-host lane (open-directory staging through Showboat lateral and collection), C2 lane on the right with three panels (JFMBackdoor C2, Showboat C2, open-directory + Pastebin dead-drop), bidirectional yellow arrows on JFMBackdoor C2 and Showboat SOCKS5 channels, footer detection-anchors box mapping Sigma + KQL + YARA + Suricata + the three PEAK hunts and the certificate-fingerprint pivot rule.
+
+### Pedagogy
+- DLL side-loading is the dominant Windows-implant evasion of 2026 — anchor on the legitimate-binary path anomaly (fltMC.exe outside System32), not on the malicious DLL hash, which rotates faster than detection content.
+- Real Linux `kworker` threads are kernel-space only — any user-space process whose `comm` is kworker is the highest-confidence masquerade anchor; hook `execve` so the actual `exe` path is captured.
+- X.509 certificate fingerprints outlast IP rotation — Red Lamassu shared one self-signed `My Organization` SHA256 across 20+ C2 nodes for three years; hunt by certificate, by serial number for fronted services, not by hostname.
+- A single open-directory IP cascaded into a complete two-platform toolkit story — exhaust X.509 pivots before the binaries when you find an exposed staging host.
+
+---
+
 ## 2026.05.21 — Day 24 — TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Worm, Nx Console VS Code Extension and the GitHub Internal Repo Breach
 
 ### Added

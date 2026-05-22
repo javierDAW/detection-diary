@@ -1,0 +1,29 @@
+// Title:        Red Lamassu / Calypso C2 egress — JFMBackdoor and Showboat domain + IP set
+// Id:           49eff735-daa1-4ec8-bd3d-954f3cee086b
+// MITRE:        T1071.001, T1568.002
+// Reference:    https://www.pwc.com/gx/en/issues/cybersecurity/cyber-threat-intelligence/red-lamassu-open-season.html
+//               https://www.lumen.com/blog/en-us/introducing-showboat-a-new-malware-family-taunts-defenses-and-targets-international-telecom-firms
+// Author:       Jarmi
+// Date:         2026-05-22
+// Tested on:    Defender XDR — DeviceNetworkEvents + DeviceFileEvents
+// FP notes:     telecom.webredirect[.]org is a generic dynamic-DNS hostname; pair with
+//               a process anchor when possible. The Cloudflare front masks final IP so
+//               anchor on the SNI plus the IPs that served the namefuture[.]site and
+//               newsprojects[.]online origin certificates.
+let lookback = 14d;
+let red_lamassu_domains = dynamic([
+    "namefuture.site","en.cumm.info","cumm.info","xcent.online",
+    "newsprojects.online","telecom.webredirect.org",
+    "singtelcom.site","kaztelecom.shop"]);
+let red_lamassu_ips = dynamic([
+    "23.27.201.160","23.27.201.115","139.84.227.139","194.135.25.132",
+    "166.88.11.196","139.180.223.193","166.88.99.32","64.176.43.209",
+    "192.9.141.111","116.169.244.208","101.36.105.222","64.227.128.21"]);
+DeviceNetworkEvents
+| where Timestamp > ago(lookback)
+| where (RemoteUrl has_any (red_lamassu_domains))
+     or (RemoteIP in (red_lamassu_ips))
+| extend HitDomain = iff(RemoteUrl has_any (red_lamassu_domains), tostring(RemoteUrl), ""), HitIP = iff(RemoteIP in (red_lamassu_ips), RemoteIP, "")
+| project Timestamp, DeviceName, ActionType, RemoteUrl, RemoteIP, RemotePort, HitDomain, HitIP,
+          InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName
+| order by Timestamp desc

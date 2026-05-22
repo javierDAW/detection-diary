@@ -1,0 +1,54 @@
+type,value,context,confidence,source
+note,"Red Lamassu / Calypso APT (China-nexus, Sichuan/Chengdu) targeted telecommunications providers in Kazakhstan, Afghanistan, India, Azerbaijan and the Middle East from mid-2022 to 2026 using JFMBackdoor (Windows side-load via FLTLIB.dll under fltMC.exe) and Showboat / kworker (Linux post-exploitation framework). Disclosed in tandem by PwC TI and Lumen Black Lotus Labs on 2026-05-21.",high,PwC TI 2026-05-21 + Lumen Black Lotus Labs 2026-05-21
+sha256,a05fbe8734a5a5a994a44dee9d21134ad7108d24ab0749499fe24fc4b36c4cbc,Showboat ELF sample staged as systemd-ac-update on the open directory,high,PwC TI 2026-05-21
+sha256,047307aca3a94a6fc46c4af25580945defb15574fb236d13d2bb48037cc42208,FLTLIB.dll malicious side-load DLL,high,PwC TI 2026-05-21
+sha256,ac50887e2c513b50b2170d77441b9f7e8afcc774df6b54fdd8aac863095239f4,Linux log-file tampering utility staged as clear on the open directory,high,PwC TI 2026-05-21
+sha256,a23d126f0446755859e4d81c0c9b50b65e0062c3de2a014c543f6b263321ad78,1.bat PowerShell stager that fetches the four side-load artefacts to %TEMP%,high,PwC TI 2026-05-21
+sha256,ea57b5768c84164fcdb25bb8338d660c5586e17e37cee924c4e5a745510925f3,scr.mui XOR-encrypted JFMBackdoor configuration blob,high,PwC TI 2026-05-21
+sha256,cbef2064cf49b4b27dbf7d0c88c8f7bcdd6a7f25ee9c087beacb48cdd1b78731,fltMC.exe binary copied alongside the malicious FLTLIB.dll,high,PwC TI 2026-05-21
+sha256,b77a233735ff237ab964d2bdb3f6d261a90efb2f86dcde458c419cee528686a9,flt.bin shellcode stub that decodes and maps the JFMBackdoor PE in memory,high,PwC TI 2026-05-21
+sha256,176aec5d33c459a42e7e4e984a718c52e11213ef9a6aa961b483a836fc22b507,JFMBackdoor Win32 DLL final payload mapped in memory only,high,PwC TI 2026-05-21
+sha256,b118f74dc2b974678a50349d04686f6b2df4b287a69e40c4513cd603c7271793,CiWinCng32.dll variant using the same XOR key submitted from KZ,high,PwC TI 2026-05-21
+sha256,1003bc9e3650fd290e44fd79b270c1b29f572fbb7647fa2bbf1f600d53673b53,scr.mui variant submitted from CN with three additional domains,high,PwC TI 2026-05-21
+sha256,f820e4e4c5d433714842f6d64d1a8773958f782cde8d27f6a54d4f9862598933,sllauncherloc.dll side-load DLL variant submitted from CN,high,PwC TI 2026-05-21
+domain,namefuture.site,Primary JFMBackdoor C2 domain fronted by Cloudflare,high,PwC TI 2026-05-21
+domain,en.cumm.info,JFMBackdoor secondary C2 subdomain,high,PwC TI 2026-05-21
+domain,cumm.info,JFMBackdoor secondary C2 domain,high,PwC TI 2026-05-21
+domain,xcent.online,JFMBackdoor secondary C2 domain,high,PwC TI 2026-05-21
+domain,newsprojects.online,Showboat secondary C2 domain served by Cloudflare-origin certificate,high,PwC TI 2026-05-21
+domain,telecom.webredirect.org,Showboat primary C2 dynamic-DNS hostname,high,Lumen BLL 2026-05-21
+domain,kaztelecom.shop,Showboat telecom-impersonating C2 hosted on 101.36.105.222,high,Lumen BLL 2026-05-21
+domain,singtelcom.site,Showboat telecom-impersonating C2 hosted on 23.27.201.160,high,Lumen BLL 2026-05-21
+ipv4,23.27.201.160,Open directory and Showboat C2 IP (active July to October 2025),high,PwC TI + Lumen BLL 2026-05-21
+ipv4,23.27.201.115,Resolves xcent.online; tied to newsprojects.online certificate,high,PwC TI 2026-05-21
+ipv4,139.84.227.139,Showboat primary C2 IP serving the My Organization certificate,high,Lumen BLL 2026-05-21
+ipv4,194.135.25.132,Showboat secondary C2 IP linked to Afghan ISP victim,high,Lumen BLL 2026-05-21
+ipv4,166.88.11.196,JFMBackdoor Cloudflare origin IP for namefuture.site,high,PwC TI 2026-05-21
+ipv4,139.180.223.193,Additional DNS resolution for namefuture.site,high,PwC TI 2026-05-21
+ipv4,166.88.99.32,Served newsprojects.online certificate from 2026-04-23 to 2026-05-12,high,PwC TI 2026-05-21
+ipv4,64.176.43.209,Showboat secondary cluster C2 contacting Ukrainian IPs,medium,Lumen BLL 2026-05-21
+ipv4,192.9.141.111,Showboat secondary cluster C2 with US victims and SOCKS5 banner on port 9999,medium,Lumen BLL 2026-05-21
+ipv4,116.169.244.208,Suspected upstream / test environment IP at China Unicom Chengdu,medium,Lumen BLL 2026-05-21
+ipv4,101.36.105.222,Hosted kaztelecom.shop telecom-impersonating domain,high,Lumen BLL 2026-05-21
+ipv4,64.227.128.21,DNS resolution from newsprojects.online,medium,PwC TI 2026-05-21
+ipv4,195.86.120.2,Hosted the My Organization certificate alongside Afghan government and telecom certs,high,PwC TI 2026-05-21
+ipv4,66.42.49.27,Historical IP serving newsprojects.online certificate in 2024,medium,PwC TI 2026-05-21
+ipv4,45.76.157.243,Historical IP serving newsprojects.online certificate 2023 to 2025,medium,PwC TI 2026-05-21
+ipv4,207.90.205.55,Historical IP serving newsprojects.online certificate in 2024 to 2025,medium,PwC TI 2026-05-21
+ipv4,193.124.93.153,Historical IP serving newsprojects.online certificate in 2023,medium,PwC TI 2026-05-21
+ipv4,152.32.159.11,Historical IP serving newsprojects.online certificate in 2023 to 2024,medium,PwC TI 2026-05-21
+string,Zs0@31=KDw.*7ev,XOR key used by FLTLIB.dll to decrypt scr.mui configuration,high,PwC TI 2026-05-21
+string,"look me, AV!",XOR key used by Showboat ELF to decrypt its embedded configuration,high,Lumen BLL 2026-05-21
+string,C:\Users\public\jfm,Internal hardcoded path that gave JFMBackdoor its name,high,PwC TI 2026-05-21
+path,%TEMP%\FLTLIB.dll,JFMBackdoor side-load DLL staging path,high,PwC TI 2026-05-21
+path,%TEMP%\fltMC.exe,JFMBackdoor LOLBin staging path outside System32,high,PwC TI 2026-05-21
+path,%TEMP%\flt.bin,JFMBackdoor shellcode stub staging path,high,PwC TI 2026-05-21
+path,%TEMP%\scr.mui,JFMBackdoor encrypted configuration file staging path,high,PwC TI 2026-05-21
+path,C:\ProgramData\Microsoft\Network,JFMBackdoor persistent staging directory referenced in scr.mui config,high,PwC TI 2026-05-21
+regkey,SOFTWARE\Microsoft\Windows NT\CurrentVersion\Windows,Registry path referenced in scr.mui as a persistence anchor,medium,PwC TI 2026-05-21
+string,27df475626aafce2ea1548a9f35efb9ad951298c8b11a6adb3ccdfcd5170c677,SHA256 fingerprint of the My Organization self-signed certificate shared across Red Lamassu primary cluster,high,Lumen BLL 2026-05-21
+string,a72427af3c046fd90999a6505b2372dc4ffde122227f30ed21621ecd4f2d3e8b,SHA256 fingerprint of the secondary certificate served on port 53,high,Lumen BLL 2026-05-21
+string,e28a96f983b8605decd2ac1db16ebad5fa741a6aa4e585a38ade0e5ad7d6cec0,SHA256 fingerprint of the port-80 certificate that pivoted to 194.135.25.132,high,Lumen BLL 2026-05-21
+string,2229e7f3cabbce4d67cd79c89fd5a100b20e8a99f4a2bf9aac77a978f49eb520,SHA256 fingerprint of a secondary cluster certificate observed on two IPs,medium,Lumen BLL 2026-05-21
+string,722215547421393549906800483143167899186483629093,Cloudflare-origin certificate serial number for namefuture.site,high,PwC TI 2026-05-21
+string,604003291824433169701962900588762674473924908065,Cloudflare-origin certificate serial number for newsprojects.online,high,PwC TI 2026-05-21

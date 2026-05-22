@@ -21,6 +21,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [BreachForums](./breachforums/) | 1 |
 | [C0063](./c0063/) | 1 |
 | [CL-STA-0049](./cl-sta-0049/) | 1 |
+| [Calypso APT](./calypso-apt/) | 1 |
 | [CloudZ](./cloudz/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
 | [Dadsec](./dadsec/) | 1 |
@@ -44,6 +45,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Qilin](./qilin/) | 1 |
 | [Quasar Linux](./quasar-linux/) | 1 |
 | [REF7707](./ref7707/) | 1 |
+| [Red Lamassu](./red-lamassu/) | 1 |
 | [Sandworm overlap](./sandworm-overlap/) | 1 |
 | [Shahid Kaveh Group](./shahid-kaveh-group/) | 1 |
 | [Shai-Hulud](./shai-hulud/) | 1 |

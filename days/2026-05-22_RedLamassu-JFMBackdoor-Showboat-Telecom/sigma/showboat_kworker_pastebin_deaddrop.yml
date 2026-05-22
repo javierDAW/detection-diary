@@ -1,0 +1,50 @@
+title: Showboat (kworker) — Linux Process Named "kworker" Egressing to Pastebin or Online Forum Dead-Drop
+id: 3de2051b-11ca-438b-b834-e10eea1287eb
+status: experimental
+description: |
+  Detects the Showboat hide-command dead-drop pattern published by Lumen Black
+  Lotus Labs on 2026-05-21. The Showboat ELF post-exploitation framework
+  masquerades its process name as "kworker" (a legitimate Linux kernel-worker
+  thread name) and uses the hide command to fetch code stored on Pastebin or
+  similar online forums for execution as a dead-drop. A user-space process named
+  kworker that performs an outbound HTTPS connection to pastebin.com,
+  ghostbin.co, paste.ee, justpaste.it or similar is highly suspicious — real
+  kworker threads are kernel-space and never make network connections.
+references:
+  - https://www.lumen.com/blog/en-us/introducing-showboat-a-new-malware-family-taunts-defenses-and-targets-international-telecom-firms
+  - https://www.pwc.com/gx/en/issues/cybersecurity/cyber-threat-intelligence/red-lamassu-open-season.html
+author: Jarmi
+date: 2026/05/22
+tags:
+  - attack.command-and-control
+  - attack.t1102.001
+  - attack.defense-evasion
+  - attack.t1036.005
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  selection_proc:
+    Image|endswith:
+      - '/curl'
+      - '/wget'
+      - '/python'
+      - '/python3'
+  selection_parent_kworker:
+    ParentImage|endswith:
+      - '/kworker'
+    ParentCommandLine|contains: 'kworker'
+  selection_deaddrop:
+    CommandLine|contains:
+      - 'pastebin.com'
+      - 'ghostbin.co'
+      - 'paste.ee'
+      - 'justpaste.it'
+      - 'rentry.co'
+      - 'hastebin.com'
+  condition: selection_proc and selection_parent_kworker and selection_deaddrop
+falsepositives:
+  - Misnamed user-space binaries that happen to use kworker in their command line
+    and legitimately fetch text from Pastebin — extremely rare. Pair with a
+    user-context allowlist for known developer accounts.
+level: high
