@@ -1,290 +1,269 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1180" role="img" aria-labelledby="t d" font-family="sans-serif">
-  <title id="t">Operation Saffron — First VPN Service takedown by Europol, France, Netherlands and FBI on 19-20 May 2026</title>
-  <desc id="d">Three-lane diagram. Left lane: ransomware affiliate (subscription, exit-node selection, scanning, brute force, valid-account auth, ransom negotiation, exfiltration). Middle lane: First VPN infrastructure (1vpns.com web, 1jabber.com Jabber, Telegram @FVPNS, 32 exit nodes across 27 countries). Right lane: victim corporate network (perimeter, identity provider, RDP/SSH, tier-0). Bottom panel: law-enforcement takedown (33 servers, four domains, 506 users in 83 intelligence packages). Detection-anchor footer maps Sigma, KQL, YARA, Suricata, and PEAK hunts to the IOC anchors.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1380" role="img" aria-labelledby="t d" font-family="sans-serif">
+  <title id="t">Operation Saffron — First VPN Service takedown kill chain</title>
+  <desc id="d">Two-lane diagram. Left lane: affiliate operations and victim impact (subscription on Russian-language forum, exit-node selection, reconnaissance, brute force, valid-account authentication, tier-0 lateral pivot, exfiltration, downstream ransomware encryption). Right lane: First VPN Service infrastructure stack (web domains, admin and billing back-end, customer-support channels, exit-node cluster, protocol catalogue). Bottom panel: law-enforcement takedown of 19-20 May 2026 (Europol, France BL2C, Netherlands NHTC, FBI). Detection-anchors footer maps Sigma, KQL, YARA, Suricata, and PEAK hunts to the IOC anchors.</desc>
 
   <defs>
     <style>
-      .bg     { fill: #ffffff; }
-      .lane   { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1; }
-      .lane-l { fill: #fff8f0; stroke: #fb8500; stroke-width: 1; }
-      .lane-m { fill: #f0f4ff; stroke: #0969da; stroke-width: 1; }
-      .lane-r { fill: #eaf6ec; stroke: #1a7f37; stroke-width: 1; }
-      .lane-le{ fill: #fdf6f0; stroke: #6e4500; stroke-width: 1; }
-      .lane-d { fill: #f7eef8; stroke: #6f42c1; stroke-width: 1; }
-      .stage  { fill: #ffffff; stroke: #1f2328; stroke-width: 1.4; }
-      .stage-critical { fill: #ffe4e0; stroke: #cf222e; stroke-width: 1.6; }
-      .badge  { fill: #0969da; }
-      .badge-text { fill: #ffffff; font-weight: 700; font-size: 12px; text-anchor: middle; }
-      .title  { fill: #1f2328; font-weight: 700; font-size: 18px; }
-      .subtitle { fill: #57606a; font-size: 12px; }
-      .lane-label { fill: #1f2328; font-weight: 700; font-size: 13px; text-anchor: middle; }
-      .stage-label { fill: #1f2328; font-weight: 700; font-size: 12px; }
-      .stage-sub { fill: #57606a; font-size: 10.5px; }
-      .mitre  { fill: #1f6feb; font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: 10px; }
-      .ioc    { fill: #6e4500; font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: 10px; }
-      .arrow  { stroke: #57606a; stroke-width: 1.4; fill: none; }
-      .arrow-bidir { stroke: #fb8500; stroke-width: 1.6; fill: none; }
-      .arrow-le    { stroke: #6f42c1; stroke-width: 1.6; fill: none; }
-      .footer-box  { fill: #f6f8fa; stroke: #1f2328; stroke-width: 1.2; }
-      .footer-title { fill: #1f2328; font-weight: 700; font-size: 12px; }
-      .footer-line  { fill: #1f2328; font-size: 10.5px; }
+      .bg     { fill:#ffffff; }
+      .lane   { fill:#f6f8fa; stroke:#d0d7de; stroke-width:1; }
+      .laneL  { fill:#0969da; font-weight:700; font-size:12px; letter-spacing:1px; }
+      .laneLE { fill:#6f42c1; font-weight:700; font-size:12px; letter-spacing:1px; }
+      .stage  { fill:#ddf4ff; stroke:#0969da; stroke-width:1.5; }
+      .stageK { fill:#ffebe9; stroke:#cf222e; stroke-width:1.5; }
+      .C2box  { fill:#fff8c5; stroke:#d4a72c; stroke-width:1.5; }
+      .LEbox  { fill:#f7eef8; stroke:#6f42c1; stroke-width:1.5; }
+      .badge  { fill:#0969da; }
+      .badgeLE{ fill:#6f42c1; }
+      .badgeT { fill:#ffffff; font-size:11px; font-weight:700; text-anchor:middle; }
+      .stageT { fill:#1f2328; font-size:13px; font-weight:700; }
+      .stageS { fill:#57606a; font-size:11px; }
+      .C2T    { fill:#1f2328; font-size:12px; font-weight:700; }
+      .C2L    { fill:#1f2328; font-size:10.5px; font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; }
+      .mitre  { fill:#0550ae; font-size:10.5px; font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; }
+      .ioc    { fill:#1f2328; font-size:10px; font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; }
+      .arrow  { fill:none; stroke:#57606a; stroke-width:1.5; }
+      .arrowC { fill:none; stroke:#bf8700; stroke-width:1.6; stroke-dasharray:4,3; }
+      .arrowLE{ fill:none; stroke:#6f42c1; stroke-width:1.6; }
+      .head   { fill:#1f2328; font-size:18px; font-weight:700; }
+      .meta   { fill:#57606a; font-size:11px; }
+      .anchor { fill:#dafbe1; stroke:#1a7f37; stroke-width:1.5; }
+      .anchorT{ fill:#1a7f37; font-size:12px; font-weight:700; }
+      .anchorL{ fill:#1f2328; font-size:11px; }
+
       @media (prefers-color-scheme: dark) {
-        .bg       { fill: #0d1117; }
-        .lane     { fill: #161b22; stroke: #30363d; }
-        .lane-l   { fill: #2a1d10; stroke: #fb8500; }
-        .lane-m   { fill: #0f1a2b; stroke: #2f81f7; }
-        .lane-r   { fill: #102818; stroke: #2da44e; }
-        .lane-le  { fill: #2a200f; stroke: #d29922; }
-        .lane-d   { fill: #1d1626; stroke: #a371f7; }
-        .stage    { fill: #161b22; stroke: #d0d7de; }
-        .stage-critical { fill: #4a1316; stroke: #ff7b72; }
-        .badge    { fill: #2f81f7; }
-        .title    { fill: #f0f6fc; }
-        .subtitle { fill: #8b949e; }
-        .lane-label { fill: #f0f6fc; }
-        .stage-label { fill: #f0f6fc; }
-        .stage-sub { fill: #8b949e; }
-        .mitre    { fill: #79c0ff; }
-        .ioc      { fill: #d29922; }
-        .arrow    { stroke: #8b949e; }
-        .arrow-bidir { stroke: #fb8500; }
-        .arrow-le    { stroke: #a371f7; }
-        .footer-box  { fill: #161b22; stroke: #d0d7de; }
-        .footer-title { fill: #f0f6fc; }
-        .footer-line  { fill: #c9d1d9; }
+        .bg     { fill:#0d1117; }
+        .lane   { fill:#161b22; stroke:#30363d; }
+        .laneL  { fill:#58a6ff; }
+        .laneLE { fill:#a371f7; }
+        .stage  { fill:#0c2d6b; stroke:#58a6ff; }
+        .stageK { fill:#5a1a1a; stroke:#f85149; }
+        .C2box  { fill:#473a0a; stroke:#d29922; }
+        .LEbox  { fill:#2b1a3d; stroke:#a371f7; }
+        .badge  { fill:#58a6ff; }
+        .badgeLE{ fill:#a371f7; }
+        .badgeT { fill:#0d1117; }
+        .stageT { fill:#f0f6fc; }
+        .stageS { fill:#8b949e; }
+        .C2T    { fill:#f0f6fc; }
+        .C2L    { fill:#f0f6fc; }
+        .mitre  { fill:#a5d6ff; }
+        .ioc    { fill:#f0f6fc; }
+        .arrow  { stroke:#8b949e; }
+        .arrowC { stroke:#d29922; }
+        .arrowLE{ stroke:#a371f7; }
+        .head   { fill:#f0f6fc; }
+        .meta   { fill:#8b949e; }
+        .anchor { fill:#0f2e1b; stroke:#3fb950; }
+        .anchorT{ fill:#3fb950; }
+        .anchorL{ fill:#f0f6fc; }
       }
     </style>
-    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#57606a"/>
+    <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#57606a"/>
     </marker>
-    <marker id="ahbi" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#fb8500"/>
+    <marker id="mc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#bf8700"/>
     </marker>
-    <marker id="ahle" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
-      <path d="M0,0 L10,5 L0,10 z" fill="#6f42c1"/>
+    <marker id="mle" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#6f42c1"/>
     </marker>
   </defs>
 
-  <rect class="bg" width="880" height="1180"/>
+  <rect class="bg" width="880" height="1380"/>
 
   <!-- Header -->
-  <text class="title" x="20" y="32">Operation Saffron — First VPN Service takedown</text>
-  <text class="subtitle" x="20" y="52">Europol + Eurojust JIT (France BL2C + Netherlands NHTC) + FBI · action 19-20 May 2026 · announced 21 May 2026 · FBI FLASH-20260521-001</text>
+  <text class="head" x="20" y="32">Operation Saffron — First VPN Service Takedown</text>
+  <text class="meta" x="20" y="52">Europol + Eurojust JIT (France BL2C + Netherlands NHTC) + FBI · action 19-20 May 2026 · public 21 May 2026 · FBI FLASH-20260521-001</text>
 
-  <!-- Lane backgrounds -->
-  <rect class="lane-l"  x="20"  y="70" width="270" height="900" rx="8"/>
-  <rect class="lane-m"  x="305" y="70" width="270" height="900" rx="8"/>
-  <rect class="lane-r"  x="590" y="70" width="270" height="900" rx="8"/>
+  <!-- Lanes -->
+  <rect class="lane" x="20"  y="80"  width="510" height="940" rx="6"/>
+  <rect class="lane" x="550" y="80"  width="310" height="940" rx="6"/>
+  <text class="laneL" x="35"  y="100">AFFILIATE OPERATIONS · VICTIM IMPACT</text>
+  <text class="laneL" x="565" y="100">FIRST VPN SERVICE · INFRASTRUCTURE</text>
 
-  <!-- Lane labels -->
-  <text class="lane-label" x="155" y="92">RANSOMWARE AFFILIATE</text>
-  <text class="lane-label" x="440" y="92">FIRST VPN INFRASTRUCTURE</text>
-  <text class="lane-label" x="725" y="92">VICTIM CORPORATE NETWORK</text>
+  <!-- ===== Stage 1: Subscription ===== -->
+  <rect class="stage" x="40" y="120" width="470" height="90" rx="6"/>
+  <circle class="badge" cx="62" cy="142" r="13"/>
+  <text class="badgeT" x="62" y="146">1</text>
+  <text class="stageT" x="85" y="142">Resource development · subscribe on Russian-language forum</text>
+  <text class="stageS" x="85" y="160">Affiliate buys subscription on Exploit[.]in or XSS[.]is at $2/day to $483/year.</text>
+  <text class="mitre"  x="85" y="178">MITRE: T1583.003</text>
+  <text class="ioc"    x="85" y="194">Payment: BTC, Perfect Money, Webmoney, EgoPay, InterKass</text>
 
-  <!-- Affiliate stage 1: subscription -->
-  <rect class="stage" x="40" y="110" width="230" height="78" rx="6"/>
-  <circle class="badge" cx="58" cy="128" r="12"/>
-  <text class="badge-text" x="58" y="132">1</text>
-  <text class="stage-label" x="78" y="132">Subscribe on Exploit/XSS forum</text>
-  <text class="stage-sub" x="44" y="150">$2/day to $483/year, paid in BTC,</text>
-  <text class="stage-sub" x="44" y="164">Perfect Money, Webmoney, EgoPay</text>
-  <text class="mitre" x="44" y="180">T1583.003</text>
+  <!-- ===== Stage 2: Exit-node selection ===== -->
+  <rect class="stage" x="40" y="225" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="247" r="13"/>
+  <text class="badgeT" x="62" y="251">2</text>
+  <text class="stageT" x="85" y="247">Pick exit node by victim country (up to 4 hops)</text>
+  <text class="stageS" x="85" y="265">Choose protocol: OpenConnect, WireGuard, Outline, VLess+Reality (HTTPS-mimicking).</text>
+  <text class="mitre"  x="85" y="283">MITRE: T1090.003 / T1572 / T1571</text>
 
-  <!-- Affiliate stage 2: pick exit -->
-  <rect class="stage" x="40" y="198" width="230" height="74" rx="6"/>
-  <circle class="badge" cx="58" cy="216" r="12"/>
-  <text class="badge-text" x="58" y="220">2</text>
-  <text class="stage-label" x="78" y="220">Pick exit node by victim country</text>
-  <text class="stage-sub" x="44" y="238">Multi-hop up to 4 nodes available</text>
-  <text class="ioc" x="44" y="262">protocol: VLess+Reality (TCP)</text>
+  <!-- ===== Stage 3: Reconnaissance ===== -->
+  <rect class="stage" x="40" y="320" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="342" r="13"/>
+  <text class="badgeT" x="62" y="346">3</text>
+  <text class="stageT" x="85" y="342">Reconnaissance &amp; network discovery from exit node</text>
+  <text class="stageS" x="85" y="360">Port and service scan against victim public surface; geo at perimeter = exit-node country.</text>
+  <text class="mitre"  x="85" y="378">MITRE: T1595 / T1046 / T1018</text>
 
-  <!-- Affiliate stage 3: scan -->
-  <rect class="stage" x="40" y="282" width="230" height="78" rx="6"/>
-  <circle class="badge" cx="58" cy="300" r="12"/>
-  <text class="badge-text" x="58" y="304">3</text>
-  <text class="stage-label" x="78" y="304">Recon + scan from exit node</text>
-  <text class="stage-sub" x="44" y="322">Port + service discovery against</text>
-  <text class="stage-sub" x="44" y="336">victim public surface</text>
-  <text class="mitre" x="44" y="352">T1595 · T1046 · T1018</text>
+  <!-- ===== Stage 4: Brute force ===== -->
+  <rect class="stageK" x="40" y="415" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="437" r="13"/>
+  <text class="badgeT" x="62" y="441">4</text>
+  <text class="stageT" x="85" y="437">Brute force / password spray against public auth</text>
+  <text class="stageS" x="85" y="455">SSH, RDP, OWA, M365, Okta SSO, corporate VPN portal — primary use per FBI flash.</text>
+  <text class="mitre"  x="85" y="473">MITRE: T1110 / T1110.003</text>
 
-  <!-- Affiliate stage 4: brute force -->
-  <rect class="stage stage-critical" x="40" y="370" width="230" height="80" rx="6"/>
-  <circle class="badge" cx="58" cy="388" r="12"/>
-  <text class="badge-text" x="58" y="392">4</text>
-  <text class="stage-label" x="78" y="392">Brute force / password spray</text>
-  <text class="stage-sub" x="44" y="410">SSH, RDP, OWA, Okta SSO,</text>
-  <text class="stage-sub" x="44" y="424">corporate VPN portal</text>
-  <text class="mitre" x="44" y="442">T1110 · T1110.003</text>
+  <!-- ===== Stage 5: Valid-account auth ===== -->
+  <rect class="stageK" x="40" y="510" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="532" r="13"/>
+  <text class="badgeT" x="62" y="536">5</text>
+  <text class="stageT" x="85" y="532">Authenticate with valid account from IAB</text>
+  <text class="stageS" x="85" y="550">IdP records source IP as exit node; geo "impossible travel" rule does NOT fire.</text>
+  <text class="mitre"  x="85" y="568">MITRE: T1133 / T1078 / T1078.002 / T1078.004</text>
 
-  <!-- Affiliate stage 5: auth -->
-  <rect class="stage stage-critical" x="40" y="460" width="230" height="80" rx="6"/>
-  <circle class="badge" cx="58" cy="478" r="12"/>
-  <text class="badge-text" x="58" y="482">5</text>
-  <text class="stage-label" x="78" y="482">Authenticate with valid account</text>
-  <text class="stage-sub" x="44" y="500">Credentials from IAB; geo at IdP</text>
-  <text class="stage-sub" x="44" y="514">= exit-node country, not real</text>
-  <text class="mitre" x="44" y="532">T1133 · T1078 · T1078.002</text>
+  <!-- ===== Stage 6: Tier-0 pivot ===== -->
+  <rect class="stageK" x="40" y="605" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="627" r="13"/>
+  <text class="badgeT" x="62" y="631">6</text>
+  <text class="stageT" x="85" y="627">Tier-0 lateral pivot (post-auth)</text>
+  <text class="stageS" x="85" y="645">DA, DC, EDR console, cloud control plane via valid account — see Day 23 Storm-2949 pattern.</text>
+  <text class="ioc"    x="85" y="663">Anchor: KQL union of SigninLogs + DeviceLogonEvents + AuditLogs by FBI IP</text>
 
-  <!-- Affiliate stage 6: ransom -->
-  <rect class="stage" x="40" y="550" width="230" height="78" rx="6"/>
-  <circle class="badge" cx="58" cy="568" r="12"/>
-  <text class="badge-text" x="58" y="572">6</text>
-  <text class="stage-label" x="78" y="572">Negotiate / route C2 + exfil</text>
-  <text class="stage-sub" x="44" y="590">Ransom chat + exfil through</text>
-  <text class="stage-sub" x="44" y="604">same exit set; Akira/Phobos/Avaddon</text>
-  <text class="mitre" x="44" y="620">T1090.003 · T1567 · T1572</text>
+  <!-- ===== Stage 7: C2 + exfil ===== -->
+  <rect class="stage" x="40" y="700" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="722" r="13"/>
+  <text class="badgeT" x="62" y="726">7</text>
+  <text class="stageT" x="85" y="722">Command-and-control · ransom negotiation · exfiltration</text>
+  <text class="stageS" x="85" y="740">Same exit-node set routes ransom chat and exfil (Rclone, Mega, Wasabi).</text>
+  <text class="mitre"  x="85" y="758">MITRE: T1090.003 / T1572 / T1567 / T1041</text>
 
-  <!-- Affiliate stage 7: DDoS / botnet -->
-  <rect class="stage" x="40" y="638" width="230" height="62" rx="6"/>
-  <circle class="badge" cx="58" cy="656" r="12"/>
-  <text class="badge-text" x="58" y="660">7</text>
-  <text class="stage-label" x="78" y="660">DDoS / botnet relay (side use)</text>
-  <text class="mitre" x="44" y="680">T1498</text>
+  <!-- ===== Stage 8: Downstream encryption ===== -->
+  <rect class="stageK" x="40" y="795" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="817" r="13"/>
+  <text class="badgeT" x="62" y="821">8</text>
+  <text class="stageT" x="85" y="817">Downstream impact · ransomware encryption</text>
+  <text class="stageS" x="85" y="835">25+ RaaS named by FBI — Avaddon explicit, Phobos confirmed, 23 unnamed.</text>
+  <text class="mitre"  x="85" y="853">MITRE: T1486 / T1498 (DDoS as side use)</text>
 
-  <!-- Middle lane: First VPN infrastructure -->
-  <rect class="stage" x="325" y="110" width="230" height="60" rx="6"/>
-  <text class="stage-label" x="335" y="132">Web: 1vpns[.]com / .net / .org</text>
-  <text class="ioc" x="335" y="148">seized 20-May-2026</text>
-  <text class="ioc" x="335" y="162">+ .onion mirror</text>
+  <!-- ===== Stage 9: Forensic anchor ===== -->
+  <rect class="stage" x="40" y="890" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="912" r="13"/>
+  <text class="badgeT" x="62" y="916">9</text>
+  <text class="stageT" x="85" y="912">Forensic retrospective hunt — 24 months back</text>
+  <text class="stageS" x="85" y="930">Drop 98-IP FBI watchlist into SIEM; re-run identity, perimeter, EDR telemetry.</text>
+  <text class="ioc"    x="85" y="948">Anchor: failed≥5 then success same (UPN, IP) within 24h = affiliate dwell-time</text>
 
-  <rect class="stage" x="325" y="180" width="230" height="58" rx="6"/>
-  <text class="stage-label" x="335" y="202">Admin / billing back-end</text>
-  <text class="ioc" x="335" y="218">5000+ accounts (user DB seized)</text>
-  <text class="ioc" x="335" y="232">+ 506 users in 83 intel packages</text>
+  <!-- ===== Right lane: First VPN infrastructure stack ===== -->
+  <rect class="C2box" x="565" y="120" width="280" height="80" rx="6"/>
+  <text class="C2T"   x="578" y="142">Customer-facing web</text>
+  <text class="C2L"   x="578" y="160">1vpns[.]com / .net / .org</text>
+  <text class="C2L"   x="578" y="176">+ .onion mirror</text>
+  <text class="C2L"   x="578" y="192">SEIZED 20-May-2026</text>
 
-  <rect class="stage" x="325" y="248" width="230" height="68" rx="6"/>
-  <text class="stage-label" x="335" y="270">Customer support channels</text>
-  <text class="ioc" x="335" y="286">1jabber[.]com / @FVPNS</text>
-  <text class="ioc" x="335" y="300">support@1vpns[.]com · ICQ 82822222</text>
+  <rect class="C2box" x="565" y="215" width="280" height="80" rx="6"/>
+  <text class="C2T"   x="578" y="237">Admin / billing back-end</text>
+  <text class="C2L"   x="578" y="255">5000+ accounts</text>
+  <text class="C2L"   x="578" y="271">DB extracted → 83 intel</text>
+  <text class="C2L"   x="578" y="287">packages · 506 users id'd</text>
 
-  <rect class="stage" x="325" y="328" width="230" height="160" rx="6"/>
-  <text class="stage-label" x="335" y="350">32 exit nodes / 27 countries</text>
-  <text class="ioc" x="335" y="368">US: 92.223.66.103</text>
-  <text class="ioc" x="335" y="382">US: 5.181.234.59</text>
-  <text class="ioc" x="335" y="396">US: 92.38.148.58</text>
-  <text class="ioc" x="335" y="412">EU: 92.38.180.39, 195.206.107.203</text>
-  <text class="ioc" x="335" y="426">EU: 37.120.143.203, 86.105.25.219</text>
-  <text class="ioc" x="335" y="440">EU: 178.175.139.203, 51.79.208.134</text>
-  <text class="stage-sub" x="335" y="460">+ ~30 current + ~65 historical IPs</text>
-  <text class="stage-sub" x="335" y="476">on OVH / M247 / Cloudbridge / etc</text>
+  <rect class="C2box" x="565" y="310" width="280" height="80" rx="6"/>
+  <text class="C2T"   x="578" y="332">Customer-support channels</text>
+  <text class="C2L"   x="578" y="350">Jabber 1jabber[.]com</text>
+  <text class="C2L"   x="578" y="366">Telegram @FVPNS</text>
+  <text class="C2L"   x="578" y="382">ICQ 82822222</text>
 
-  <rect class="stage" x="325" y="500" width="230" height="84" rx="6"/>
-  <text class="stage-label" x="335" y="522">Protocols offered</text>
-  <text class="ioc" x="335" y="540">OpenConnect · WireGuard · Outline</text>
-  <text class="ioc" x="335" y="554">VLess+Reality (HTTPS-mimicking)</text>
-  <text class="ioc" x="335" y="568">OpenVPN ECC · L2TP/IPSec · PPtP</text>
+  <rect class="C2box" x="565" y="405" width="280" height="180" rx="6"/>
+  <text class="C2T"   x="578" y="427">Exit-node cluster · 32 nodes / 27 countries</text>
+  <text class="C2L"   x="578" y="447">US: 92.223.66.103</text>
+  <text class="C2L"   x="578" y="463">US: 5.181.234.59</text>
+  <text class="C2L"   x="578" y="479">US: 92.38.148.58</text>
+  <text class="C2L"   x="578" y="497">EU: 92.38.180.39</text>
+  <text class="C2L"   x="578" y="513">EU: 195.206.107.203</text>
+  <text class="C2L"   x="578" y="529">EU: 178.175.139.203</text>
+  <text class="C2L"   x="578" y="545">EU: 37.120.143.203</text>
+  <text class="stageS" x="578" y="565">33 current + 65 historical IPs</text>
+  <text class="stageS" x="578" y="580">OVH / M247 / Cloudbridge ASNs</text>
 
-  <!-- Right lane: victim corporate network -->
-  <rect class="stage" x="610" y="110" width="230" height="76" rx="6"/>
-  <text class="stage-label" x="620" y="132">Corporate VPN gateway</text>
-  <text class="stage-sub" x="620" y="150">Fortinet / Palo Alto GP / Cisco AC</text>
-  <text class="stage-sub" x="620" y="164">/ Pulse / NetScaler</text>
-  <text class="ioc" x="620" y="180">log: sourceIP in FBI list</text>
+  <rect class="C2box" x="565" y="600" width="280" height="100" rx="6"/>
+  <text class="C2T"   x="578" y="622">Protocols offered</text>
+  <text class="C2L"   x="578" y="640">OpenConnect · WireGuard</text>
+  <text class="C2L"   x="578" y="656">Outline · OpenVPN ECC</text>
+  <text class="C2L"   x="578" y="672">L2TP/IPSec · PPtP</text>
+  <text class="C2L"   x="578" y="688">VLess+Reality (TCP)</text>
 
-  <rect class="stage" x="610" y="196" width="230" height="76" rx="6"/>
-  <text class="stage-label" x="620" y="218">Identity provider (IdP)</text>
-  <text class="stage-sub" x="620" y="236">Entra ID SigninLogs · Okta SystemLog</text>
-  <text class="stage-sub" x="620" y="250">Duo Auth API</text>
-  <text class="ioc" x="620" y="266">geo = exit-node country (misleading)</text>
+  <rect class="anchor" x="565" y="715" width="280" height="80" rx="6"/>
+  <text class="anchorT" x="578" y="737">VLess+Reality discriminator</text>
+  <text class="anchorL" x="578" y="755">Presents real ServerHello of</text>
+  <text class="anchorL" x="578" y="770">high-reputation site → SNI-only</text>
+  <text class="anchorL" x="578" y="785">proxies fail · anchor: JA4 + IP</text>
 
-  <rect class="stage" x="610" y="282" width="230" height="74" rx="6"/>
-  <text class="stage-label" x="620" y="304">Public-facing services</text>
-  <text class="stage-sub" x="620" y="322">SSH bastion · RDP gateway · OWA</text>
-  <text class="stage-sub" x="620" y="336">M365 endpoints</text>
-  <text class="ioc" x="620" y="352">brute force burst from exit IP</text>
+  <rect class="anchor" x="565" y="810" width="280" height="80" rx="6"/>
+  <text class="anchorT" x="578" y="832">CTI tradecraft anchor</text>
+  <text class="anchorL" x="578" y="850">Jabber / Telegram / ICQ survive</text>
+  <text class="anchorL" x="578" y="865">infrastructure rotation — most</text>
+  <text class="anchorL" x="578" y="880">durable cluster pivots</text>
 
-  <rect class="stage stage-critical" x="610" y="366" width="230" height="80" rx="6"/>
-  <text class="stage-label" x="620" y="388">Tier-0 lateral pivot</text>
-  <text class="stage-sub" x="620" y="406">DA / DCs / EDR console / privileged</text>
-  <text class="stage-sub" x="620" y="420">M365 admin · cloud control plane</text>
-  <text class="ioc" x="620" y="438">post-auth pivot via valid account</text>
+  <rect class="anchor" x="565" y="905" width="280" height="80" rx="6"/>
+  <text class="anchorT" x="578" y="927">Forum marketing</text>
+  <text class="anchorL" x="578" y="945">Exclusive on Exploit[.]in + XSS[.]is</text>
+  <text class="anchorL" x="578" y="960">Russian-language carding /</text>
+  <text class="anchorL" x="578" y="975">RaaS forums</text>
 
-  <rect class="stage stage-critical" x="610" y="456" width="230" height="78" rx="6"/>
-  <text class="stage-label" x="620" y="478">Pre-encryption staging + exfil</text>
-  <text class="stage-sub" x="620" y="496">Rclone / Mega / Wasabi pull</text>
-  <text class="stage-sub" x="620" y="510">ransom negotiation chat traffic</text>
-  <text class="ioc" x="620" y="528">outbound to exit IP set</text>
+  <!-- ===== Arrows between affiliate stages and right-lane infra ===== -->
+  <!-- Stage 1 -> Web -->
+  <path class="arrow" d="M510,160 L565,160" marker-end="url(#m)"/>
+  <!-- Stage 2 -> Exit-node cluster (affiliate picks node + protocol) -->
+  <path class="arrow" d="M510,255 L565,440" marker-end="url(#m)"/>
+  <!-- Stage 3,4,5 -> Exit-node cluster (all traffic routes through exit) -->
+  <path class="arrow" d="M510,355 L565,470" marker-end="url(#m)"/>
+  <path class="arrow" d="M510,450 L565,495" marker-end="url(#m)"/>
+  <path class="arrow" d="M510,545 L565,520" marker-end="url(#m)"/>
+  <!-- Stage 7 -> Exit-node cluster (bidirectional ransom chat + exfil C2) -->
+  <path class="arrowC" d="M510,740 L565,560" marker-end="url(#mc)" marker-start="url(#mc)"/>
 
-  <rect class="stage stage-critical" x="610" y="544" width="230" height="70" rx="6"/>
-  <text class="stage-label" x="620" y="566">Encryption (downstream)</text>
-  <text class="stage-sub" x="620" y="584">Akira / Phobos / Avaddon / etc</text>
-  <text class="ioc" x="620" y="602">cluster of 25+ RaaS named by FBI</text>
+  <!-- ===== LE Takedown band (bottom) ===== -->
+  <rect class="LEbox" x="20" y="1040" width="840" height="170" rx="6"/>
+  <text class="laneLE" x="35" y="1062">LAW-ENFORCEMENT TAKEDOWN · 19-20 May 2026</text>
 
-  <!-- Arrows -->
-  <!-- affiliate -> infrastructure (subscription + select node) -->
-  <path class="arrow" d="M270,150 C295,150 305,140 325,140" marker-end="url(#ah)"/>
-  <path class="arrow" d="M270,232 C295,232 305,250 325,278" marker-end="url(#ah)"/>
+  <rect class="stage" x="40" y="1078" width="265" height="116" rx="6"/>
+  <circle class="badgeLE" cx="62" cy="1100" r="13"/>
+  <text class="badgeT" x="62" y="1104">L1</text>
+  <text class="stageT" x="85" y="1100">Seizure</text>
+  <text class="stageS" x="48" y="1122">33 servers across 27 countries</text>
+  <text class="stageS" x="48" y="1138">domains 1vpns[.]* + 1jabber[.]com</text>
+  <text class="stageS" x="48" y="1154">+ .onion mirrors; user DB extracted</text>
+  <text class="ioc"    x="48" y="1176">FBI FLASH-20260521-001</text>
 
-  <!-- affiliate scan -> victim public surface (via infra exit node) -->
-  <path class="arrow" d="M270,318 C295,318 555,318 600,318" marker-end="url(#ah)"/>
-  <!-- affiliate brute force -> victim public services -->
-  <path class="arrow" d="M270,408 C295,408 555,408 600,408" marker-end="url(#ah)"/>
-  <!-- affiliate auth -> victim IdP (success) -->
-  <path class="arrow" d="M270,496 C295,496 555,236 600,232" marker-end="url(#ah)"/>
-  <!-- affiliate auth -> tier-0 -->
-  <path class="arrow" d="M270,510 C295,510 555,400 600,400" marker-end="url(#ah)"/>
-  <!-- affiliate ransom traffic -> exfil staging (bidirectional) -->
-  <path class="arrow-bidir" d="M270,592 C295,592 555,490 600,490" marker-end="url(#ahbi)" marker-start="url(#ahbi)"/>
-  <!-- affiliate DDoS -> victim -->
-  <path class="arrow" d="M270,668 C295,668 555,578 600,578" marker-end="url(#ah)"/>
+  <rect class="stage" x="315" y="1078" width="265" height="116" rx="6"/>
+  <circle class="badgeLE" cx="337" cy="1100" r="13"/>
+  <text class="badgeT" x="337" y="1104">L2</text>
+  <text class="stageT" x="360" y="1100">Admin interview · intel sharing</text>
+  <text class="stageS" x="323" y="1122">Ukrainian operator interviewed</text>
+  <text class="stageS" x="323" y="1138">in-country (no extradition);</text>
+  <text class="stageS" x="323" y="1154">DB partitioned across 83 packages</text>
+  <text class="ioc"    x="323" y="1176">506 users id'd · 21 EC3 cases adv.</text>
 
-  <!-- Infrastructure web -> exit nodes (internal infra) -->
-  <path class="arrow" d="M440,170 L440,328" marker-end="url(#ah)"/>
-  <path class="arrow" d="M440,238 L440,328" marker-end="url(#ah)"/>
-  <path class="arrow" d="M440,316 L440,328" marker-end="url(#ah)"/>
+  <rect class="stage" x="590" y="1078" width="265" height="116" rx="6"/>
+  <circle class="badgeLE" cx="612" cy="1100" r="13"/>
+  <text class="badgeT" x="612" y="1104">L3</text>
+  <text class="stageT" x="635" y="1100">Customer notification</text>
+  <text class="stageS" x="598" y="1122">"All users have received a</text>
+  <text class="stageS" x="598" y="1138">message stating the service is</text>
+  <text class="stageS" x="598" y="1154">offline and they are identified."</text>
+  <text class="ioc"    x="598" y="1176">— Dutch Police, 21-May-2026</text>
 
-  <!-- Law-enforcement takedown lane (bottom) -->
-  <rect class="lane-le" x="20" y="720" width="840" height="200" rx="8"/>
-  <text class="lane-label" x="440" y="744">LAW-ENFORCEMENT TAKEDOWN — 19-20 May 2026</text>
+  <!-- LE arrows from the infra/right lane down into the takedown band -->
+  <path class="arrowLE" d="M705,995 L705,1040" marker-end="url(#mle)"/>
 
-  <rect class="stage" x="40" y="758" width="260" height="146" rx="6"/>
-  <circle class="badge" cx="58" cy="776" r="12"/>
-  <text class="badge-text" x="58" y="780">L1</text>
-  <text class="stage-label" x="78" y="780">Seizure</text>
-  <text class="stage-sub" x="44" y="800">33 servers across 27 countries</text>
-  <text class="stage-sub" x="44" y="816">domains 1vpns[.]com/.net/.org +</text>
-  <text class="stage-sub" x="44" y="830">1jabber[.]com + .onion mirrors</text>
-  <text class="stage-sub" x="44" y="846">user database extracted</text>
-  <text class="ioc" x="44" y="868">FBI FLASH-20260521-001</text>
-  <text class="ioc" x="44" y="884">Europol + Eurojust + BL2C + NHTC</text>
-
-  <rect class="stage" x="310" y="758" width="260" height="146" rx="6"/>
-  <circle class="badge" cx="328" cy="776" r="12"/>
-  <text class="badge-text" x="328" y="780">L2</text>
-  <text class="stage-label" x="348" y="780">Admin interview</text>
-  <text class="stage-sub" x="314" y="800">Ukrainian operator interviewed</text>
-  <text class="stage-sub" x="314" y="816">in-country (no extradition)</text>
-  <text class="stage-sub" x="314" y="832">customer-DB partitioned across</text>
-  <text class="stage-sub" x="314" y="846">83 intelligence packages</text>
-  <text class="ioc" x="314" y="868">506 specific users identified</text>
-  <text class="ioc" x="314" y="884">21 EC3 cases advanced</text>
-
-  <rect class="stage" x="580" y="758" width="260" height="146" rx="6"/>
-  <circle class="badge" cx="598" cy="776" r="12"/>
-  <text class="badge-text" x="598" y="780">L3</text>
-  <text class="stage-label" x="618" y="780">Customer notification</text>
-  <text class="stage-sub" x="584" y="800">"All users of this service have</text>
-  <text class="stage-sub" x="584" y="816">received a message stating the</text>
-  <text class="stage-sub" x="584" y="832">VPN service has been taken</text>
-  <text class="stage-sub" x="584" y="846">offline and they have been</text>
-  <text class="stage-sub" x="584" y="862">identified as the user."</text>
-  <text class="ioc" x="584" y="884">— Dutch Police, 21-May-2026</text>
-
-  <path class="arrow-le" d="M120,720 L120,710 L120,704 L120,700" />
-  <path class="arrow-le" d="M440,720 L440,710 L440,704 L440,700" />
-
-  <!-- Detection anchors footer -->
-  <rect class="footer-box" x="20" y="940" width="840" height="220" rx="8"/>
-  <text class="footer-title" x="32" y="962">Detection anchors</text>
-  <text class="footer-line" x="32" y="982">Sigma · firstvpn_corp_vpn_auth_from_known_node.yml — successful VPN auth where source IP is in the FBI list (highest-fidelity retro hit).</text>
-  <text class="footer-line" x="32" y="1000">Sigma · firstvpn_outbound_dns_corp_endpoint.yml — DNS query from corp endpoint to 1vpns.* or 1jabber.com (insider / contractor anchor).</text>
-  <text class="footer-line" x="32" y="1018">Sigma · firstvpn_brute_force_burst_known_node.yml — &gt;20 failed RDP/SSH/web auths from a single First VPN IP in 1h (affiliate spray).</text>
-  <text class="footer-line" x="32" y="1036">KQL · firstvpn_signin_from_known_node.kql — Entra ID successful sign-in from FBI IP list (user, app, country, CA result).</text>
-  <text class="footer-line" x="32" y="1054">KQL · firstvpn_failed_then_success_burst.kql — same UPN, ≥5 failures then a success from a First VPN IP within 24h.</text>
-  <text class="footer-line" x="32" y="1072">KQL · firstvpn_corp_endpoint_outbound.kql — DeviceNetworkEvents outbound from managed endpoint to First VPN IP (insider exfil anchor).</text>
-  <text class="footer-line" x="32" y="1090">YARA · firstvpn_client_config_artifacts.yar — First VPN client config / OpenVPN profile artifacts on disk (forensic anchor).</text>
-  <text class="footer-line" x="32" y="1108">Suricata · firstvpn_dns_tls_egress.rules — DNS, TLS SNI, HTTP host, IP egress to First VPN infrastructure (8 sids).</text>
-  <text class="footer-line" x="32" y="1126">PEAK hunts · H1 24-month retro corp auth from First VPN · H2 insider outbound to First VPN · H3 brute-force burst then success.</text>
-  <text class="footer-line" x="32" y="1148">CTI tradecraft anchor: communication-channel artifacts (Jabber, Telegram, ICQ) survive infrastructure rotation — these are the most durable cluster pivots.</text>
+  <!-- ===== Detection-anchors footer ===== -->
+  <rect class="anchor" x="20" y="1230" width="840" height="130" rx="6"/>
+  <text class="anchorT" x="35" y="1252">Detection anchors</text>
+  <text class="anchorL" x="35" y="1270">Sigma · firstvpn_corp_vpn_auth_from_known_node.yml — successful corp VPN auth where source IP is in the FBI list (highest-fidelity retro hit).</text>
+  <text class="anchorL" x="35" y="1286">Sigma · firstvpn_outbound_dns_corp_endpoint.yml — DNS from corp endpoint to 1vpns[.]* / 1jabber[.]com (insider / contractor anchor).</text>
+  <text class="anchorL" x="35" y="1302">Sigma · firstvpn_brute_force_burst_known_node.yml — failed auth burst from First VPN IP (apply ≥20/60min count at SIEM layer).</text>
+  <text class="anchorL" x="35" y="1318">KQL · signin_from_known_node · failed_then_success_burst · corp_endpoint_outbound — Entra ID + Defender XDR retro 730d.</text>
+  <text class="anchorL" x="35" y="1334">YARA · firstvpn_client_config_artifacts.yar (OpenVPN/WireGuard/VLess+Reality on disk) · Suricata · 8 sids for DNS / TLS-SNI / IP egress + ingress.</text>
+  <text class="anchorL" x="35" y="1350">PEAK hunts · H1 24-month retro corp auth from First VPN · H2 insider outbound · H3 brute-force burst then success.</text>
 
 </svg>
