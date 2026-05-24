@@ -1,0 +1,157 @@
+type,value,context,confidence,source
+note,"All IOCs below are extracted verbatim from FBI FLASH-20260521-001 (TLP:CLEAR) released 21 May 2026 alongside the Operation Saffron takedown. Domains and four key IPs are confirmed by Europol, Eurojust, the Dutch Police (politie.nl) and Bitdefender Draco Team. ASN concentration is mainly OVH (AS16276) and M247 (AS9009).",high,FBI_FLASH-20260521-001
+domain,1vpns.com,First VPN Service primary website (seized 20-May-2026 by joint LE),high,FBI_FLASH-20260521-001
+domain,1vpns.net,First VPN Service secondary domain (seized),high,FBI_FLASH-20260521-001
+domain,1vpns.org,First VPN Service tertiary domain (seized),high,FBI_FLASH-20260521-001
+domain,1jabber.com,Self-hosted Jabber server for customer support (seized),high,FBI_FLASH-20260521-001
+email,support@1vpns.com,Customer-support email and Jabber account,high,FBI_FLASH-20260521-001
+string,1vpns@1jabber.com,Administrator Jabber account,high,FBI_FLASH-20260521-001
+string,@FVPNS,Telegram channel handle for customer support,high,FBI_FLASH-20260521-001
+url,https://t.me/FirstVPNService,Telegram channel URL,high,FBI_FLASH-20260521-001
+string,82822222,ICQ contact ID,high,FBI_FLASH-20260521-001
+note,"Current exit-node IPs (as of May 2026 per FBI FLASH). Three explicitly flagged as US-based; remainder distributed across 27 countries.",high,FBI_FLASH-20260521-001
+ipv4,92.223.66.103,Current exit node (US),high,FBI_FLASH-20260521-001
+ipv4,5.181.234.59,Current exit node (US),high,FBI_FLASH-20260521-001
+ipv4,92.38.148.58,Current exit node (US),high,FBI_FLASH-20260521-001
+ipv4,92.38.180.39,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,195.206.107.203,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,178.175.139.203,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,37.120.143.203,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,91.232.29.114,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,86.105.25.219,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,134.255.210.160,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,190.97.163.88,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,193.106.31.98,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,82.146.50.52,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,185.247.71.107,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,51.79.208.134,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,92.38.162.4,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,77.246.157.26,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,54.37.200.68,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,185.253.98.243,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,51.79.111.220,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,188.92.78.242,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,51.75.34.158,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,46.105.79.45,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,92.38.186.86,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,82.202.160.36,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,193.239.86.19,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,139.99.255.144,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,91.193.5.91,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,91.132.139.67,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,95.213.164.12,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,89.38.224.3,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,77.83.247.81,Current exit node,high,FBI_FLASH-20260521-001
+ipv4,152.89.162.139,Current exit node,high,FBI_FLASH-20260521-001
+note,"Historical exit-node IPs prior to May 2026 — used by First VPN customers at some point in the 2014-2026 lifetime of the service. May have rotated to legitimate hosting customers; do not mass-block at perimeter without ASN-current ownership verification.",medium,FBI_FLASH-20260521-001
+ipv4,31.135.14.182,Historical exit node (pre-May 2026),medium,FBI_FLASH-20260521-001
+ipv4,31.210.70.184,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,31.210.70.186,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,31.210.70.190,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,139.99.68.157,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,37.235.55.113,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,37.235.60.141,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,152.89.162.138,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,46.148.16.138,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,49.12.133.165,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,49.50.66.72,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,5.135.164.8,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,5.181.234.56,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,5.181.234.58,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,5.188.163.34,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,51.38.66.162,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,178.175.139.202,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,185.247.71.106,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,190.97.163.213,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,62.112.8.202,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,77.83.247.80,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,80.90.39.95,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,80.90.55.44,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,195.206.107.202,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,88.150.220.248,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,217.182.199.126,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,45.12.222.150,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,66.70.179.236,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,92.38.162.11,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,93.113.36.137,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,93.113.36.142,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,93.190.142.7,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,94.185.85.210,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,94.23.218.129,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,79.137.69.34,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,94.23.27.208,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,94.242.253.11,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,94.242.253.13,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,94.242.254.43,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,94.242.254.54,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,94.242.254.8,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,94.26.226.75,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,95.141.32.237,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,95.213.164.11,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,95.215.61.192,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,95.216.15.11,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,95.216.15.25,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,103.16.26.135,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,103.16.26.229,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,103.16.27.96,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,108.59.1.133,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,111.90.141.47,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,111.90.158.72,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,139.99.122.162,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,139.99.149.85,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,193.239.86.18,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,147.135.11.223,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,147.135.11.234,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,147.135.36.162,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,147.135.40.102,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,147.135.87.184,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,46.105.107.231,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,158.255.208.155,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,158.255.211.165,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,176.123.1.250,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,176.123.175.242,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,176.123.6.58,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,176.31.252.121,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,176.53.40.221,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,134.255.210.26,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,178.209.51.234,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,179.43.184.22,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,185.128.43.54,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,185.178.209.193,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,185.184.192.108,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,145.239.5.30,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,185.253.98.242,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,185.65.205.82,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,188.126.79.82,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,188.127.244.3,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,188.165.236.151,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,188.227.173.198,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,188.40.81.84,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,188.42.253.16,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,190.123.46.11,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,190.2.142.25,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,190.2.142.28,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,190.97.163.117,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,190.97.163.142,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,192.71.211.77,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,192.71.249.70,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,192.99.0.114,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,193.105.134.152,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,193.106.31.99,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,37.120.143.202,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,51.161.128.135,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,198.50.157.109,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,199.71.233.178,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,209.58.131.32,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,212.7.217.5,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,213.128.89.184,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,217.12.219.11,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,217.23.1.110,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,86.105.25.218,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,89.38.224.2,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,91.132.139.66,Historical exit node,medium,FBI_FLASH-20260521-001
+ipv4,91.193.5.90,Historical exit node,medium,FBI_FLASH-20260521-001
+note,"Forum marketing — First VPN advertised exclusively on these two Russian-language carding/RaaS forums. Useful for correlation against Day 18 / Day 24 TeamPCP / Mini-Shai-Hulud forum-sale narratives and Day 22 Embargo leak-site provenance.",high,FBI_FLASH-20260521-001
+string,Exploit.in,Russian-language carding/RaaS forum where First VPN was marketed,high,FBI_FLASH-20260521-001
+string,XSS.is,Russian-language carding/RaaS forum where First VPN was marketed,high,FBI_FLASH-20260521-001
+note,"Pricing tier $2/day to $483/year accepting Bitcoin, Perfect Money, Webmoney, EgoPay, InterKass. Subscription duration ranged from one day to one year. Some tiers allowed up to four chained exit nodes.",high,FBI_FLASH-20260521-001

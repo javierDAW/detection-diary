@@ -7,6 +7,47 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
+## 2026.05.24 — Day 27 — Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, France, Netherlands and FBI
+
+### Added
+- `days/2026-05-24_OperationSaffron-FirstVPN-Takedown/` — Europol + Eurojust JIT (France BL2C + Netherlands NHTC) + FBI dismantle First VPN Service on 19-20 May 2026 with simultaneous FBI FLASH-20260521-001 release; 33 servers seized across 27 countries, four customer-facing domains (1vpns.com/.net/.org + 1jabber.com) plus onion mirrors taken offline, Ukrainian administrator interviewed in-country, user database extracted and partitioned across 83 intelligence packages naming 506 users; service active since 2014 and used by 25+ ransomware groups (Avaddon, Phobos) according to the FBI flash. Case matters because the flash releases a 98-IP exit-node list that defenders can drop into a watchlist for 24-month retro hunts.
+- Sigma (3): `firstvpn_corp_vpn_auth_from_known_node.yml` — successful corporate VPN auth where source IP is in the FBI current-IP list; `firstvpn_outbound_dns_corp_endpoint.yml` — DNS query from corp endpoint to 1vpns.* or 1jabber.com (insider-risk anchor); `firstvpn_brute_force_burst_known_node.yml` — failed auth from First VPN IP (apply >=20-in-60-min count at SIEM aggregation layer).
+- KQL (3): `firstvpn_signin_from_known_node.kql` — Entra ID successful sign-in from FBI IP list with 730-day lookback; `firstvpn_failed_then_success_burst.kql` — same UPN with >=5 failures then a success from a First VPN IP inside 24h; `firstvpn_corp_endpoint_outbound.kql` — DeviceNetworkEvents outbound from managed endpoint to First VPN IP (insider exfil anchor).
+- YARA (1 file, 1 rule): `first_vpn_service_client_config_2026` — on-disk First VPN client configuration artifacts (OpenVPN profile, WireGuard config, VLess+Reality XTLS JSON, Outline SIP002) anchored on seized domains and customer-support communication accounts; filesize<256KB; forensic artifact-discovery rule.
+- Suricata (1 file, 8 sids 8230001-8230008): DNS queries to four seized domains; TLS SNI to 1vpns.*; HTTP host to 1vpns.* / 1jabber.com; outbound IP egress to current 33-IP list; inbound from current IP list to perimeter auth services (SSH/HTTPS/RDP/8443).
+- PEAK hunts (3): `peak_h1_corp_auth_from_firstvpn.md` — 24-month retro on corporate auth from First VPN exit IP; `peak_h2_insider_outbound_to_firstvpn.md` — insider/contractor reaching First VPN from inside corp; `peak_h3_bruteforce_burst_then_success.md` — failed-then-success burst as affiliate dwell-time anchor.
+- `iocs.csv` (~125 entries) — full FBI FLASH IOC set: 33 current exit-node IPs, 65 historical exit-node IPs (May 2026 cutoff), four seized domains, ten communication-channel anchors (Jabber, Telegram, ICQ, email, URL), two forum-marketing anchors (Exploit.in, XSS.is), explanatory notes on pricing tiers and payment rails.
+- `kill_chain.svg` — viewBox 880x1180, three-lane GitHub-friendly adaptive light/dark palette, ransomware-affiliate lane left with seven numbered stages including critical stage badges for brute force / auth / pivot, First VPN infrastructure lane center (web, admin, support, exit-node cluster, protocol catalogue), victim corp network lane right with six stages including critical badges for tier-0 / pre-encryption / encryption, dedicated law-enforcement-takedown panel at the bottom with three stages (seizure, admin interview, customer notification), bidirectional orange arrow on ransom-negotiation traffic, detection-anchors footer mapping all rules and hunts to IOC anchors.
+
+### Pedagogy
+- An IOC dump from a multi-year LE operation is the highest-value single CTI input you will receive this quarter — re-run the FBI IP list against 24 months of identity, perimeter, and EDR telemetry, not the default 90-day window.
+- Identity-provider geolocation is not a detection signal when the adversary uses anonymization-as-a-service — the exit-node country is the wrong anchor; the IP set is the right one.
+- VLess+Reality is the operationally important obfuscation pattern of 2026: the proxy presents the real ServerHello of a high-reputation site, so SNI-only proxies cannot identify it; defense moves to JA4 fingerprint plus destination IP plus behavioral anomaly.
+- Bulletproof anonymization services are the connective tissue of the ransomware economy — when one falls, every affiliate using it loses operational cover at the same time and the 30-90 day post-takedown window is the widest defender opportunity of the year.
+
+---
+
+## 2026.05.23 — Day 26 — SonicWall Gen6 SSL-VPN MFA Bypass (CVE-2024-12802) First In-the-Wild Exploitation by Akira-Aligned Affiliate
+
+### Added
+- `days/2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/` — ReliaQuest Threat Research write-up (Capraro and Luikey, 2026-05-19) of the first publicly documented in-the-wild exploitation of CVE-2024-12802, an authentication bypass in SonicWall SSL-VPN appliances where MFA is enforced per AD login format (UPN vs SAM) rather than per identity. The Gen6 firmware patch alone does not remediate the vulnerability — six manual LDAP reconfiguration steps are required and no standard patch-management workflow verifies them, leaving "patched" devices fully exploitable. TTPs consistent with Akira / Storm-1567 affiliate ecosystem; one escalation case reached a domain-joined file server via RDP using a reused local-administrator password within 30 minutes of initial VPN authentication, and EDR blocked subsequent Cobalt Strike beacon plus BYOVD chain.
+- Sigma (3): `sonicwall_sslvpn_cli_session_brute_force.yml` — `sess="CLI"` scripted-authentication burst anchor; `sonicwall_sslvpn_upn_login_no_otp.yml` — successful UPN login without correlated OTP entry as the MFA-bypass discriminator; `post_vpn_rdp_with_local_admin_to_file_server.yml` — RDP from VPN-assigned IP using local-admin account into server tier.
+- KQL (3): `sonicwall_cli_session_burst_brute_force.kql` — Sentinel CLI-session brute force by source IP within 10 minutes; `sonicwall_mfa_bypass_upn_no_otp.kql` — UPN login leftanti-joined to OTP entry within ±60s; `vpn_to_internal_rdp_pivot_30min.kql` — Defender XDR VPN-to-server-tier RDP within 30 minutes.
+- YARA (1 file, 2 rules): `SonicWall_EDR_Killer_Hash_Anchors_2026` — exact SHA256 anchors for the two ReliaQuest-published payloads; `Akira_Ecosystem_BYOVD_EDR_Killer_Heuristic_2026` — heuristic guardrail keyed to BYOVD driver names from the Day 16/19/22 catalogue.
+- Suricata (1 file, 4 sids 8230001-8230004): source-IP IOC rules for both ReliaQuest-published IPs plus Cobalt Strike default-URI and Akira-ecosystem TLS-SNI heuristics.
+- PEAK hunts (3): `peak_h1_cli_session_brute_force.md` — every observed compromise leaves the `sess="CLI"` anchor before first success; `peak_h2_mfa_bypass_silent_login.md` — UPN-login-without-OTP as the high-confidence CVE-2024-12802 fingerprint; `peak_h3_vpn_to_rdp_30min_pivot.md` — VPN-to-internal-RDP pivot inside the 30-minute breakout window.
+- `iocs.csv` (14 entries) — full IOC set covering the CVE, the two source IPs, both payload SHA256 anchors, the SonicWall log strings and Event IDs, plus contextual notes on Akira-affiliate TTP overlap and the Akira-ecosystem BYOVD catalogue.
+- `kill_chain.svg` — adaptive light/dark palette, two lanes (victim host left, attacker C2 right), 9 numbered stages with EDR-blocked stages 6 and 7 highlighted in red, attacker hub box plus 6-step remediation reference box, and a footer detection-anchors panel mapping directly to the sigma/kql/yara/suricata files in the folder.
+
+### Pedagogy
+- A passed firmware version is not remediation when the vendor advisory requires post-patch configuration changes; audit every edge-device advisory for the phrase "additional manual steps" before closing as done.
+- MFA enforced per login format rather than per identity is a model bug — same exposure shape may exist on any appliance that supports multiple AD login formats.
+- `sess="CLI"` in SonicWall authentication logs is the highest-confidence early-stage anchor for this class of attack and most organizations do not monitor the session-type field today.
+- Single reused local-administrator password collapses VPN access into lateral movement in under 30 minutes; LAPS or equivalent is the structural remediation.
+- End-of-life edge hardware (Gen6 EoL 2026-04-16) is a perpetual exposure especially in M&A-inherited environments; plan replacement as a hard deadline.
+
+---
+
 ## 2026.05.22 — Day 25 — Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux kworker masquerade) targeting Asian telecoms
 
 ### Added
@@ -279,148 +320,4 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 - `days/2026-05-10_Mexico-Water-AI-Assisted-OT/` — Dragos and Gambit Security analysis (published 6-8 May 2026) of an unattributed single operator who, between December 2025 and February 2026, compromised at least nine Mexican government bodies (SAT, INE, civil registries and several state and municipal entities) and delegated approximately 75% of remote command execution to two commercial LLMs: Anthropic Claude as primary technical executor and OpenAI GPT as analytical processor. During the IT compromise of Servicios de Agua y Drenaje de Monterrey, Claude autonomously identified a vNode SCADA/IIoT gateway, generated a tailored credential list and ran two automated password-spray rounds against the SPA. The OT environment was not breached, but the case is the first publicly documented artifact-grade evidence of an LLM compressing IT-to-OT pivot identification from days/weeks to hours.
 - Sigma (2): internal POST burst from a non-engineering host to OT/SCADA management web ports (vNode, Ignition, Wonderware, Bachmann); Python interpreter with long command lines and high internal fan-out consistent with BACKUPOSINT-class tooling.
 - KQL (2): Defender XDR — Python launcher with ≥50 internal connections to ≥4 distinct ports inside a 5-minute window; Sentinel-style — outbound TLS to LLM API endpoints (`api.anthropic.com`, `claude.ai`, `api.openai.com`, `chat.openai.com`) from server-tier or service-account context.
-- YARA (1): `LLM_Built_OffSec_Framework_Python_Heuristic_2026` — heuristic with three string bands (self-name banner, AI-author marker, offensive-tradecraft function names) plus Python operational primitives, capped between 50 KB and 8 MB.
-- Suricata (1): four sids — east-west burst of POSTs against OT management web ports (login and `/api/.../auth` variants) and server-tier egress to LLM API SNIs.
-- PEAK hunt (1): H1 — AI-paced reconnaissance pivot, time-compressed transition from broad enumeration to credential-aware password spray inside a 60-minute window.
-- `iocs.csv` — top indicators including the four LLM API hostnames, the BACKUPOSINT/APEX PREDATOR self-naming strings, the 75% AI-directed execution metric, the prompt-framing bypass tactic, the SADM victim attribution and the unattributed cluster status.
-- `kill_chain.svg` — adaptive light/dark palette diagram with two lanes (victim IT/OT-adjacent vs LLM platform plus attacker C2), eight numbered stages, a dedicated LLM-platforms cluster on the right, and a detection-anchors box that maps directly to the rules in `sigma/`, `kql/`, `spl/`, `yara/`, `suricata/` and `hunts/`.
-
-### Pedagogy
-- *AI does not bring novel ICS/OT capability today, it brings time compression.* Defenders must re-cost detection and response SLAs assuming IT-to-OT pivot identification can land in the first hour of compromise.
-- *LLM API egress is now actionable telemetry.* Server-tier or service-account-context outbound TLS to `api.anthropic.com` or `api.openai.com` is high-value signal and rarely benign.
-- *Cross-tenant credential reuse becomes a containment-grade primitive when the operator is an LLM.* Org-wide secrets uniqueness moves from compliance ask to incident-response prerequisite.
-- *Single-password administrative interfaces on industrial gateways must be removed from internal-routable space.* The vNode pattern is widespread across IIoT/SCADA platforms (Ignition, Wonderware, Bachmann) and an LLM operator finds them deterministically.
-- *Tabletops should add the AI-assisted IT-to-OT scenario to the standard NIST 800-61 playbook.* The first exercise must answer how response posture changes when 75% of operator actions are LLM-issued in real time.
-
-### Secondary findings
-- DAEMON Tools supply-chain backdoor (Kaspersky Securelist, 6-May-2026): trojanised installers between 8-Apr-2026 and 6-May-2026 in versions 12.5.0.2421 to 12.5.0.2434; .NET information collector with multi-protocol C2; chinese-speaking artifacts; effective infections in Russia, Belarus and Thailand. Clean version 12.6.0.2445.
-- CISA + ASD ACSC + Five-Eyes — *Careful Adoption of Agentic AI Services* (1-May-2026): first joint-agency guide on agentic-AI security risks. Recommends per-agent cryptographic identity, short-lived credentials, encryption agent-to-agent and folding agentic AI into existing zero-trust governance.
-- Frenos Mythos Readiness Assessment (6-May-2026): first publicly available simulated penetration test framework explicitly designed against the Anthropic-Mythos-class autonomous-agent threat model. Cyber digital twin plus AI reasoning agent enumerating attack paths without touching OT production.
-
----
-
-## 2026.05.09 — Day 13 — Albiriox Android MaaS RAT with AcVNC FLAG_SECURE bypass
-
-### Added
-- `days/2026-05-09_Albiriox-Android-MaaS-AcVNC/` — Cleafy Labs technical write-up of a Russian-speaking MaaS Android banking RAT priced at USD 650-720 per month that targets 400+ banking, fintech and cryptocurrency wallet apps worldwide. The novel primitive is **AcVNC** (Accessibility-VNC): the malicious AccessibilityService walks the live UI as `AccessibilityNodeInfo` JSON and streams it to the operator, which **bypasses Android's `FLAG_SECURE`** because the flag protects the framebuffer and `MediaProjection` but not the accessibility node tree. Delivery used a fake Penny Market dropper in the DACH region; iteration through Q1-Q2 2026 has expanded geography.
-- Sigma (2): AccessibilityService binding to a non-store, non-system sideloaded package; default SMS handler change to a non-allowlist package.
-- KQL (2): Defender XDR Mobile — sideload + accessibility within 24h on a banking-app device; Notification Listener + READ_SMS coexistence on a non-stock package.
-- YARA (1): `Albiriox_Android_Banking_RAT_2026` — DEX magic at offset 0 + AccessibilityService + dispatchGesture + AccessibilityNodeInfo + getBoundsInScreen + TYPE_APPLICATION_OVERLAY + AcVNC marker (or blackscreen command) + AppInfos class + 2-of-N target package strings, capped at 50 MB.
-- MTD CIM-normalised correlation (Lookout / Zimperium / Workspace ONE Intelligence) across install + accessibility + admin grant + SMS handler change in a 24h window per package per device.
-- Suricata (1): three sids — plain-TCP heartbeat shape (HWID + battery + AcVNC body anchors) from corporate mobile VLAN, in-stream `blackscreen:` operator command, and a heuristic empty-SNI TLS rule for AcVNC stream egress.
-- PEAK hunts (2): H1 — sideload + AccessibilityService grant within 24h on a banking-app device; H2 — Notification Listener + `READ_SMS` coexistence on a non-stock package.
-- `iocs.csv` — capability and string anchors (AcVNC marker, AppInfos class, blackscreen commands, Golden Crypt crypter name, JSONPacker dropper string, target packages including BBVA, Santander, Binance, Coinbase, MetaMask, Bitget, Trust Wallet, Phantom). SHA256 hashes and live C2 IPs sit behind the Cleafy paywall feed and are noted but not duplicated here.
-- `kill_chain.svg` — single-page accessible diagram with adaptive light/dark palette, two lanes (victim host vs attacker C2), nine numbered stages and a detection-anchors box that maps directly to the rules in `sigma/`, `kql/`, `yara/` and `suricata/`.
-
-### Pedagogy
-- *`FLAG_SECURE` is not a panacea on Android.* It protects the framebuffer and `MediaProjection`, not the AccessibilityNodeInfo tree. Banking and wallet apps that rely on it must combine it with `setImportantForAccessibility(IMPORTANT_FOR_ACCESSIBILITY_NO)` on sensitive views and with `Activity.setRecentsScreenshotEnabled(false)`.
-- *Accessibility is the universal escalation primitive on Android.* Anatsa, BingoMod, Brokewell and Albiriox all converge on the same single user-facing toggle. Any policy that does not constrain Accessibility-service grants on managed devices is incomplete.
-- *SMS-OTP, push-2FA without number matching, and TOTP that is visible in the foreground are all reachable from an Albiriox-owned device.* The only durable second factor on Android is FIDO2 / passkey bound to the secure element.
-- *Detection is on the side-effects, not the binary.* Sideload + Accessibility bind + Notification Listener + Default SMS handler change on the same device within 24h is a high-signal precursor that survives Golden Crypt and DEX string encryption.
-- *Crypto custody requires action before host remediation.* Once seed phrases may have been exfiltrated, on-chain funds must be moved to a clean wallet before the device is wiped.
-
-### Structural milestone
-- First entry under the **Day 13 README standard** (15 sections, fixed order, exact heading names) and the new mandatory `kill_chain.svg` next to the README. Both gates pass: language gate (no Spanish prose) and structural gate (all 15 headings present, SVG present and referenced from the README).
-
----
-
-## 2026.05.08 — Day 12 — CloudZ RAT + Pheno plugin (Microsoft Phone Link OTP theft)
-
-### Added
-- `days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/` — Cisco Talos write-up (5-may-2026) of a campaign active since January 2026 that pairs a ConfuserEx-packed .NET RAT (`CloudZ`, compiled 2026-01-13) with a previously undocumented plugin (`Pheno`) that abuses the Microsoft `Microsoft.YourPhone_8wekyb3d8bbwe` UWP package on Windows 11. Pheno reads the local `PhoneExperiences-*.db` SQLite cache to harvest mirrored SMS bodies and OTP-bearing notifications without any compromise of the paired phone — a host-side bypass of SMS-based 2FA.
-- Sigma (2): non-YourPhone process reading `PhoneExperiences-*.db`; AppData-resident parent creating a scheduled task (loader persistence chain).
-- KQL (2): Defender XDR — Phone Link DB read joined with `*.hellohiall.workers.dev` or backend-IP egress within 30 minutes; Pastebin raw fetch combined with Workers or backend-IP egress on the same host.
-- SPL (1): same-host correlation across Pastebin, Workers C2 and backend IP `185.196.10.136` over Sysmon EID 3 / EID 22.
-- YARA (1): `CloudZ_Pheno_Heuristic_2026` — PE + ConfuserEx markers + Phone Link package strings + Workers FQDN + dynamic-IL emit primitives + embedded `Microsoft.Data.Sqlite`.
-- Suricata (1): four sids — TLS SNI for `hellohiall.workers.dev`, DNS query for the same, IP egress to `185.196.10.136`, and HTTP GET to the seven Pastebin raw paths used as dead-drop config.
-- PEAK hunt (1): H1 — Phone Link DB read followed by Workers / backend egress within 30 minutes on the same host.
-- `iocs.csv` — five SHA256 hashes (Rust dropper, two .NET loader variants, CloudZ, Pheno), three Cloudflare Workers FQDNs, backend IP, seven Pastebin URLs and the `HELLOHIALL` operator handle.
-
-### Pedagogy
-- *SMS-based 2FA is no longer "what's on your phone".* Windows 11 Phone Link mirrors SMS into a SQLite file in user space — any user-context implant can read it. SIM swap is no longer the only route to OTP capture.
-- *Detection is on the file-event side, not the binary side.* CloudZ uses dynamic IL emit at runtime, so on-disk method signatures are weak. The cheap, durable detection is "who reads the SQLite that is not the YourPhone package" and "who beacons to `*.hellohiall.workers.dev`".
-- *Cloudflare Workers + Pastebin* is a low-cost-infra C2 fabric: defenders rarely block `*.workers.dev` outright, Pastebin is often allow-listed, and rotating hostnames does not require rebuilding the binary.
-- *Recovery is not a password reset.* SMS-mirrored content captured during dwell remains valid for service-side use. Revoke device tokens, rotate every code that may have been mirrored, and migrate to FIDO2 / passkey before re-enabling identity.
-
----
-
-## 2026.05.07 — Day 11 — EVM/DeFi npm typosquatting (`namikazesarada010206`)
-
-### Added
-- `days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/` — Xygeni write-up (6-may-2026) of a six-package brand-adjacency squat campaign (`viem-core`, `viem-utils-core`, `hardhat-core-utils`, `evm-utils`, `foundry-utils`, `web3-utils-core`) targeting Ethereum / Solidity / Hardhat / Foundry / Brownie developers to steal wallet keystores, deployer keys, AWS / npm / SSH credentials and `.env*`. Activation is on `require()` (not `postinstall`) — `npm install --ignore-scripts` does *not* mitigate.
-- Sigma (2): credential-read burst from `node`/`ts-node` PID; `node` outbound to literal IPv4 (incl. known C2 `76.13.37.80`).
-- YARA (1): `EVMDeFi_NPM_Typosquat_Telemetry_2026` — known-hash rule plus heuristic anchors (env-var gate strings + AES-256-GCM creation + `NODE_TLS_REJECT_UNAUTHORIZED` + IPv4 literal + dev-secret paths).
-- KQL (2): Defender XDR — credential burst on dev host with Hardhat/Foundry/Brownie tooling; Sentinel — first-seen IPv4 outbound from `node` (30-day baseline).
-- SPL (1): correlation between `npm install` of any of the six IOC packages and a credential-read burst within 2 h on the same host.
-- Suricata (1): three sids — known C2 IP, TLS handshake to public IPv4 with empty SNI from dev VLAN, HTTP POST `/ingest` with binary-body shape from dev VLAN.
-- PEAK hunts (2): H1 — "Builder bait" credential burst from `node` on host with dev tooling; H2 — "IP-only egress from dev tooling" without SNI.
-- `iocs.csv` — `76.13.37.80`, `telemetry.js` SHA-256 `71426e93cb6143052d5aeeca920850f8a0343c95bc65aab9a15145848cc5bff1`, all six tarball shasums, npm publisher `namikazesarada010206` and GitHub repo `harunosakura030303-maker/evmchain-config`.
-
-### Pedagogy
-- *Activation on `require()` instead of `postinstall`* is the operational pivot of the year — your `--ignore-scripts` policy buys you nothing here. Hunt the **child of `node` reading dev secrets**, not the install hook.
-- *Brand-adjacency squat ≠ classic typosquat* — names are plausible suffixes (`-core`, `-utils`, `-utils-core`), not character flips. Watchlists need to model "supplemental package vs real library" patterns.
-- The Day 10 (QLNX) and Day 11 (this) cases are **two ends of the same supply-chain kill chain** — QLNX is the upstream RAT that exfiltrates `~/.npmrc` to enable account take-over; this is the downstream typosquat that feeds the operator's wallet drainage.
-- When `DEPLOYER_KEY` / `MNEMONIC` is exfiltrated, **first move funds on-chain** to fresh wallets — *then* clean the host. The atypical IR ordering reflects that the impact is off-host.
-
----
-
-## 2026.05.07 — Day 10 — QLNX (Quasar Linux RAT)
-
-### Added
-- `days/2026-05-07_QLNX-Quasar-Linux-RAT/` — Trend Micro write-up (5-may-2026) of a previously undocumented Linux RAT (v1.4.1) that targets developer/DevOps endpoints to harvest registry tokens (npm, PyPI, GitHub, AWS, GCP, Azure, kube, Docker, Vault, SSH) — *the upstream cause of npm/PyPI supply-chain compromises*.
-- Sigma (4): write to `/etc/ld.so.preload`; drop of `.so` under `/tmp` `/var/log/.ICE-unix`; gcc compiling `.so` at runtime; `QLNX_MANAGED` marker in newly created persistence files.
-- KQL (4): Defender XDR for Linux — `DeviceFileEvents` on `/etc/ld.so.preload`; burst of >=3 dev-credential file reads in 60 s by a single process; `ip-api.com` recon from server tier; `/tmp/.X<DJB2>-lock` mutex.
-- SPL (3): auditd watch on `/etc/ld.so.preload`; `QLNX_MANAGED` literal hunt over osquery file ingest; credential burst by single process.
-- YARA (1): `QLNX_Quasar_Linux_RAT_2026` — multi-anchor heuristic (markers + master pw `O$$f$QtYJK` + lock path + version `1.4.1` + dev-credential file paths + ELF magic).
-- Suricata (1): 4 sids — DNS / HTTP / TLS to `ip-api.com` from server tier + custom-TCP beacon shape with `QLNX` + `1.4.1` markers.
-- PEAK hunt: H1 — credential-burst + geo-recon correlation on developer/DevOps host.
-- `iocs.csv` — file paths, markers, master password, mutex, version, family.
-
-### Pedagogy
-- T1574.006 (Hijack Execution Flow: Dynamic Linker Hijacking) and T1556.003 (Modify Authentication Process: PAM) — primary persistence vectors.
-- Why "find the implant" hunts must anchor on **side-effects** (credential reads, ld.so.preload writes, gcc-on-host) rather than on signed binaries — QLNX runs in-memory and self-deletes.
-- Re-image instead of clean: 7 persistence anchors + LD_PRELOAD respawn make on-disk eradication unsafe.
-
----
-
-## 2026.05.06 — Day 9 — Code of Conduct AiTM (Storm-1747 / Tycoon2FA)
-
-### Added
-- `days/2026-05-06_CodeOfConduct-AiTM-Storm-1747/` — Microsoft Threat Intelligence campaign (4-may-2026): 35,000 users / 13,000 orgs / 26 countries / 92% US. PDF lure + Cloudflare CAPTCHA + reverse-proxy AiTM + device-add < 10 min for PRT persistence + inbox rules for BEC.
-- Sigma (3): PDF lure on M365 EmailEvents; Entra ID device registration post sign-in; invisible-name InboxRule (BEC).
-- KQL (3): AiTM kill-chain correlation (signin + device + inbox rule, 24h); first-seen attacker domain via PDF; PEAK H1 click-to-device hunt.
-- SPL (1): InboxRule one-char/symbol-only name on Office 365 Management Activity.
-- YARA (1): `CodeOfConduct_AiTM_PDF_Lure_2026` heuristic (PDF magic + URI Action + theme keywords + cheap-TLD anchors).
-- Suricata (1): TLS SNI + HTTP Host signatures for known landing domains (`acceptable-use-policy-calendly[.]de`, `compliance-protectionoutlook[.]de`) plus heuristic for keyword-in-cheap-TLD.
-- PEAK hunt write-up: H1 (click → device-add 2h window).
-- `iocs.csv` — 2 attacker domains, 2 PDF filenames, lure keywords, Tycoon2FA TLD pattern, behavioral indicators, cluster identifiers.
-
-### Pedagogy
-- T1098.005 (Account Manipulation: Device Registration) — the persistence technique that survives password rotation.
-- Why TOTP/SMS/push MFA do NOT mitigate AiTM, and why FIDO2/passkeys do.
-- IR runbook emphasising `Remove-MgDevice` as the critical eradication step (not just password reset).
-
----
-
-## Unreleased — drop CI workflows (2026-05-04, evening)
-
-### Removed
-- `.github/workflows/sigma-lint.yml`
-- `.github/workflows/validate.yml`
-
-Rationale: validation now runs locally before each commit via `tools/validate_all.py`,
-`tools/lint_all.sh` and `tools/lint_sigma.sh`. The CI workflows added noise to the
-repo (red ❌ badges on the commit history) without giving us anything we don't
-already have on the laptop. If you want them back, both files are recoverable
-from `git log --diff-filter=D -- .github/workflows/`.
-
-
-
-## Unreleased — repo overhaul (2026.05.04)
-
-### Added
-- `tools/validate_all.py` — offline multi-format validator (Sigma, YARA, Suricata, KQL, SPL, CSV, YAML, Markdown links, Bash). PyYAML-only dependency.
-- `tools/lint_all.sh` — wrapper that runs `validate_all.py` plus optional external tools: `sigma-cli`, `yara`, `suricata`, `actionlint`, `shellcheck`, `markdownlint`.
-- `tools/sigma_check.py` — Sigma-only offline validator (also re-used by the offline path of `lint_sigma.sh`).
-- `tools/generate_index.py` — regenerates `INDEX.md` and the auto-views from each day's YAML frontmatter. Tolerates filesystems that disallow unlink (Cowork / WSL bind-mounts) by falling back to merge mode.
-- `.github/workflows/validate.yml` — full multi
+- YARA (1): `LLM_Built_OffSec_Framework_Python_Heuristic

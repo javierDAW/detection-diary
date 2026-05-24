@@ -1,0 +1,78 @@
+title: Successful Corporate VPN Authentication From Known First VPN Exit Node
+id: 9eef8601-8f4b-4208-9812-35064f20d61a
+status: experimental
+description: |
+  Detects a successful corporate VPN / SSL-VPN authentication where the source
+  IP address is on the FBI FLASH-20260521-001 (Operation Saffron) First VPN
+  Service exit-node list, current as of May 2026. A successful auth from this
+  set is a high-confidence indicator that a ransomware affiliate, IAB, or other
+  cybercrime operator used the anonymization service to reach the corporate
+  perimeter using a valid account. Designed for retrospective hunting across at
+  least 24 months of authentication telemetry, but works equally as a live
+  detection.
+author: Jarmi
+date: 2026/05/24
+references:
+  - https://www.ic3.gov/CSA/2026/260521.pdf
+  - https://www.europol.europa.eu/media-press/newsroom/news/cybercriminal-vpn-used-ransomware-actors-dismantled-in-global-crackdown
+  - https://www.bitdefender.com/en-us/blog/businessinsights/operation-saffron-bitdefender-joins-first-vpn-takedown
+tags:
+  - attack.initial-access
+  - attack.credential-access
+  - attack.t1133
+  - attack.t1078
+  - attack.t1078.002
+  - attack.t1090
+  - attack.t1090.003
+logsource:
+  category: webserver
+  product: vpn
+detection:
+  selection_status:
+    cs-method|contains:
+      - 'auth-success'
+      - 'login-success'
+      - 'sslvpn-tunnel-up'
+      - 'globalprotect-portal-auth-success'
+      - 'GroupPolicy.*Configuration'
+      - '%ASA-6-722022'
+  selection_ip:
+    src_ip:
+      - '92.223.66.103'
+      - '5.181.234.59'
+      - '92.38.148.58'
+      - '92.38.180.39'
+      - '195.206.107.203'
+      - '178.175.139.203'
+      - '37.120.143.203'
+      - '91.232.29.114'
+      - '86.105.25.219'
+      - '134.255.210.160'
+      - '190.97.163.88'
+      - '193.106.31.98'
+      - '82.146.50.52'
+      - '185.247.71.107'
+      - '51.79.208.134'
+      - '92.38.162.4'
+      - '77.246.157.26'
+      - '54.37.200.68'
+      - '185.253.98.243'
+      - '51.79.111.220'
+      - '188.92.78.242'
+      - '51.75.34.158'
+      - '46.105.79.45'
+      - '92.38.186.86'
+      - '82.202.160.36'
+      - '193.239.86.19'
+      - '139.99.255.144'
+      - '91.193.5.91'
+      - '91.132.139.67'
+      - '95.213.164.12'
+      - '89.38.224.3'
+      - '77.83.247.81'
+      - '152.89.162.139'
+  condition: selection_status and selection_ip
+falsepositives:
+  - Legitimate user on travel deliberately tunneling through a commercial VPN that happens to share an exit IP with the historical (post-rotation) set; correlate with the FBI current-IP vs historical-IP designation before triaging as malicious.
+  - Penetration testers or red-team operators whose engagement included anonymization egress; verify against an authorized testing change record.
+level: high

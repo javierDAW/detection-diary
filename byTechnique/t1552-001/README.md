@@ -4,11 +4,12 @@
 
 # Techniques: T1552.001
 
-8 day(s) covering this technique.
+9 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-23 | SonicWall Gen6 SSL-VPN MFA Bypass (CVE-2024-12802) — First In-the-Wild Exploitation by Akira-Aligned Affiliate | Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem) | [`2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/`](../../days/2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/) |
 | 2026-05-21 | TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Worm, Nx Console VS Code Extension and the GitHub Internal Repo Breach | TeamPCP · UNC6780 · Mini Shai-Hulud | [`2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain/`](../../days/2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain/) |
 | 2026-05-20 | Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure | Storm-2949 | [`2026-05-20_Storm-2949-Cloud-Identity-SSPR/`](../../days/2026-05-20_Storm-2949-Cloud-Identity-SSPR/) |
 | 2026-05-14 | Mini Shai-Hulud Mega-Campaign: TeamPCP Poisons 170+ npm/PyPI Packages via GitHub Actions OIDC Hijack and SLSA Provenance Forgery | TeamPCP | [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/`](../../days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |

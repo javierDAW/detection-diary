@@ -4,9 +4,10 @@
 
 # Techniques: T1090
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-24 | Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, France, Netherlands and FBI | First VPN Service (1vpns.com) | [`2026-05-24_OperationSaffron-FirstVPN-Takedown/`](../../days/2026-05-24_OperationSaffron-FirstVPN-Takedown/) |
 | 2026-05-22 | Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux kworker masquerade) targeting Asian telecoms | Red Lamassu · Calypso APT | [`2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/`](../../days/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/) |

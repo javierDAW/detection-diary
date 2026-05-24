@@ -4,10 +4,12 @@
 
 # Techniques: T1078.002
 
-2 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-24 | Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, France, Netherlands and FBI | First VPN Service (1vpns.com) | [`2026-05-24_OperationSaffron-FirstVPN-Takedown/`](../../days/2026-05-24_OperationSaffron-FirstVPN-Takedown/) |
+| 2026-05-23 | SonicWall Gen6 SSL-VPN MFA Bypass (CVE-2024-12802) — First In-the-Wild Exploitation by Akira-Aligned Affiliate | Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem) | [`2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/`](../../days/2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/) |
 | 2026-05-15 | EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion | The Gentlemen RaaS · EtherRAT (DPRK-linked, UNC5342 toolchain overlap) · TukTuk (AI-generated framework) | [`2026-05-15_EtherRAT-TukTuk-Gentlemen/`](../../days/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | 2026-05-04 | Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026) | Sandworm overlap · Static Tundra · TEMP.Veles · C0063 | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026-05-04_C0063-Poland-Wiper/) |
