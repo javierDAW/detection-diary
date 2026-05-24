@@ -1,0 +1,76 @@
+title: Brute Force Burst Against Public Service From Known First VPN Exit Node
+id: e0c8dab4-ede2-4492-a859-73e4c4297f49
+status: experimental
+description: |
+  Detects failed authentication attempts from a source IP that is on the FBI
+  FLASH-20260521-001 First VPN Service exit-node list, where the target is a
+  public-facing service such as SSH, RDP, OWA, M365 endpoints, or the corporate
+  VPN portal. This is the canonical password-spray / brute-force pattern that
+  the FBI flash explicitly calls out as a primary observed use of First VPN
+  infrastructure. The rule fires per-failure; apply a count-by-source-IP
+  threshold (recommended >= 20 failures in 60 minutes) at the SIEM aggregation
+  layer to detect a burst. The same source IP followed by a successful auth
+  (firstvpn_corp_vpn_auth_from_known_node) is the highest-confidence ransomware
+  affiliate dwell-time anchor.
+author: Jarmi
+date: 2026/05/24
+references:
+  - https://www.ic3.gov/CSA/2026/260521.pdf
+  - https://www.bitdefender.com/en-us/blog/businessinsights/operation-saffron-bitdefender-joins-first-vpn-takedown
+tags:
+  - attack.credential-access
+  - attack.t1110
+  - attack.t1110.003
+  - attack.initial-access
+  - attack.t1133
+logsource:
+  category: authentication
+  product: linux
+detection:
+  selection_failure:
+    EventType:
+      - 'Failed password'
+      - 'auth_failure'
+      - 'AuthenticationFailed'
+      - 'InvalidCredentials'
+  selection_ip:
+    src_ip:
+      - '92.223.66.103'
+      - '5.181.234.59'
+      - '92.38.148.58'
+      - '92.38.180.39'
+      - '195.206.107.203'
+      - '178.175.139.203'
+      - '37.120.143.203'
+      - '91.232.29.114'
+      - '86.105.25.219'
+      - '134.255.210.160'
+      - '190.97.163.88'
+      - '193.106.31.98'
+      - '82.146.50.52'
+      - '185.247.71.107'
+      - '51.79.208.134'
+      - '92.38.162.4'
+      - '77.246.157.26'
+      - '54.37.200.68'
+      - '185.253.98.243'
+      - '51.79.111.220'
+      - '188.92.78.242'
+      - '51.75.34.158'
+      - '46.105.79.45'
+      - '92.38.186.86'
+      - '82.202.160.36'
+      - '193.239.86.19'
+      - '139.99.255.144'
+      - '91.193.5.91'
+      - '91.132.139.67'
+      - '95.213.164.12'
+      - '89.38.224.3'
+      - '77.83.247.81'
+      - '152.89.162.139'
+  condition: selection_failure and selection_ip
+falsepositives:
+  - Legitimate user repeatedly mistyping a password from a commercial VPN that happens to share an exit IP with the historical (post-rotation) set; rare but documented; correlate with the FBI current-IP vs historical-IP designation.
+  - Automated scanner of the SOC's own engagement (red team, security validation tooling) that egresses through a chosen exit IP; verify against an authorized testing change record.
+level: high
+

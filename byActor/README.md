@@ -29,6 +29,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Embargo](./embargo/) | 1 |
 | [Erudite Mogwai](./erudite-mogwai/) | 1 |
 | [EtherRAT (DPRK-linked, UNC5342 toolchain overlap)](./etherrat-dprk-linked-unc5342-toolchain-overlap/) | 1 |
+| [First VPN Service (1vpns.com)](./first-vpn-service-1vpns-com/) | 1 |
 | [G1027](./g1027/) | 1 |
 | [Gold Sahara](./gold-sahara/) | 1 |
 | [Howling Scorpius](./howling-scorpius/) | 1 |
@@ -82,6 +83,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [UNC5691](./unc5691/) | 1 |
 | [UNC6780](./unc6780/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
+| [Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)](./unattributed-ransomware-aligned-iab-ttp-overlap-with-akira-storm-1567-affiliate-ecosystem/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |
 | [Void Arachne](./void-arachne/) | 1 |

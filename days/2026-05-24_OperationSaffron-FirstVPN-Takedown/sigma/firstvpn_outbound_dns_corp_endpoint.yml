@@ -1,0 +1,38 @@
+title: Outbound DNS Query From Corporate Endpoint To First VPN Service Infrastructure
+id: 926f368b-7907-4712-874d-2beb92273fb8
+status: experimental
+description: |
+  Detects a DNS query from a managed corporate endpoint to one of the seized
+  First VPN Service domains (1vpns.com / .net / .org or the customer-support
+  Jabber server 1jabber.com). After the 19-20 May 2026 takedown the domains
+  are sinkholed, so a successful resolution is itself an indicator that a user,
+  contractor, or compromised endpoint is attempting to reach the anonymization
+  service from inside the corporate network. This is the insider-risk
+  counterpart to the inbound-auth rule firstvpn_corp_vpn_auth_from_known_node.
+author: Jarmi
+date: 2026/05/24
+references:
+  - https://www.ic3.gov/CSA/2026/260521.pdf
+  - https://www.europol.europa.eu/media-press/newsroom/news/cybercriminal-vpn-used-ransomware-actors-dismantled-in-global-crackdown
+  - https://thehackernews.com/2026/05/first-vpn-dismantled-in-global-takedown.html
+tags:
+  - attack.command-and-control
+  - attack.t1090
+  - attack.t1090.003
+  - attack.t1571
+  - attack.t1572
+logsource:
+  category: dns
+  product: zeek
+detection:
+  selection:
+    query|endswith:
+      - '1vpns.com'
+      - '1vpns.net'
+      - '1vpns.org'
+      - '1jabber.com'
+  condition: selection
+falsepositives:
+  - SOC analyst manually validating an IOC by performing a deliberate DNS lookup from a workstation; whitelist analyst hosts.
+  - Threat-intel platforms or sandboxes that auto-resolve seized domains as part of their enrichment pipeline; exclude enrichment hosts and known TI infrastructure.
+level: medium
