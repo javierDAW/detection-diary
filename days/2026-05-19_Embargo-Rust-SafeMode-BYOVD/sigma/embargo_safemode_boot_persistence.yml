@@ -46,7 +46,7 @@ detection:
     CommandLine|contains|all:
       - 'delete'
       - 'Safeboot\Network\WinDefend'
-  condition: 1 of (bcdedit_safeboot, sc_create_irnagentd, reg_safeboot_network_irnagentd, reg_delete_safeboot_windefend)
+  condition: bcdedit_safeboot or sc_create_irnagentd or reg_safeboot_network_irnagentd or reg_delete_safeboot_windefend
 falsepositives:
   - Legitimate troubleshooting sessions where an administrator manually enables Safe Mode boot via bcdedit (rare; should always be in a documented maintenance window).
   - Custom recovery scripts that disable Windows Defender persistence in Safe Mode (rare; high-trust environments only).
