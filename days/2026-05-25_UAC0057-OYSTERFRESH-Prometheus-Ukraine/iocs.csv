@@ -1,0 +1,34 @@
+type,value,context,confidence,source
+note,"All malware-family and persistence anchors below are extracted from CERT-UA advisory #6315762 (22-May-2026), triangulated with The Hacker News, ESET WeLiveSecurity FrostyNeighbor report (14-May-2026), Bitdefender Draco, SC Media, SecurityAffairs, The Record, and SOC Prime. File hashes are deliberately not invented here; pull authoritative SHA1/SHA256/MD5 values from CERT-UA advisory body and SOC Prime TDM bundles when operationalising.",high,CERT-UA-6315762
+note,"Cluster aliases: UAC-0057 (CERT-UA), UNC1151 (Mandiant / Google TIG), Ghostwriter (Mandiant), FrostyNeighbor (ESET), PUSHCHA (Trend Micro), Storm-0257 (Microsoft), TA445 (Proofpoint), Umbral Bison (CrowdStrike), White Lynx. Belarus-aligned, active since at least 2016.",high,Mandiant-2021
+string,OYSTERFRESH,First-stage JavaScript loader family name (CERT-UA),high,CERT-UA-6315762
+string,OYSTERBLUES,Registry-resident encrypted second-stage payload family name (CERT-UA),high,CERT-UA-6315762
+string,OYSTERSHUCK,In-memory decoder for OYSTERBLUES (CERT-UA),high,CERT-UA-6315762
+string,CSBEACON,Cobalt Strike DLL component referenced by SOC Prime detection rules,high,SOC-Prime
+string,PicassoLoader,Companion loader family used by the same cluster in parallel chain (ESET 2026-05-14),high,ESET-FrostyNeighbor
+string,prometheus,Lure brand impersonation (Prometheus Ukrainian online learning platform) in email subject and attachment naming,high,CERT-UA-6315762
+string,Ukrtelecom,Lure brand impersonation in the parallel ESET FrostyNeighbor PicassoLoader chain,high,ESET-FrostyNeighbor
+regkey,HKCU\Software\Microsoft\Windows\CurrentVersion\Run\MicrosoftEdgeUpdate,Persistence anchor (Run-key masquerade for OYSTERSHUCK / OYSTERBLUES),high,CERT-UA-6315762
+regkey,HKCU\Software\Microsoft\Windows\CurrentVersion\Run\EdgeApp,Persistence anchor (Run-key masquerade for OYSTERSHUCK / OYSTERBLUES),high,CERT-UA-6315762
+regkey,HKCU\Software\Microsoft\Windows\CurrentVersion\Run\MicrosoftEdge,Variant Run-key masquerade name observed in companion campaigns,medium,CERT-UA-6315762
+path,C:\Windows\System32\Tasks\MicrosoftEdgeUpdateTaskMachine,Scheduled-task masquerade (genuine task has Core or UA suffix; attacker task has neither),high,CERT-UA-6315762
+path,MicrosoftEdgeUpdate.exe,Persistence binary masquerade dropped under user-writable path (not the genuine Edge updater under Program Files),high,CERT-UA-6315762
+path,EdgeApp.exe,Persistence binary masquerade dropped under user-writable path,high,CERT-UA-6315762
+path,%TEMP%,Common archive-extraction path for OYSTERFRESH .js (Windows Script Host execution origin),high,CERT-UA-6315762
+path,%APPDATA%\Roaming,Common drop location for OYSTERSHUCK persistence binaries (MicrosoftEdgeUpdate.exe / EdgeApp.exe),high,CERT-UA-6315762
+path,%USERPROFILE%\Downloads,Spearphishing ZIP archive landing path for the lure,high,CERT-UA-6315762
+string,wscript.exe,Execution anchor — Windows Script Host running OYSTERFRESH JavaScript,high,CERT-UA-6315762
+string,WScript.Shell,COM object used by OYSTERFRESH for registry writes and process spawning,high,CERT-UA-6315762
+string,WScript.Network,COM object used by OYSTERFRESH for host discovery,high,CERT-UA-6315762
+string,eval(,JavaScript eval() entry point used by OYSTERBLUES to load the next-stage Cobalt Strike beacon,high,CERT-UA-6315762
+string,decodeURIComponent,URL-decode primitive in the stacked OYSTERFRESH decode chain,high,CERT-UA-6315762
+string,split('').reverse().join('),String-reversal primitive in the stacked OYSTERFRESH decode chain,high,CERT-UA-6315762
+string,charCodeAt,ROT13 alphabet-shift primitive in the stacked OYSTERFRESH decode chain,medium,CERT-UA-6315762
+note,"C2 infrastructure pattern: Cloudflare-fronted .icu domains. CERT-UA's official advisory enumerates the specific FQDNs used in the May 2026 wave; pull them from the source advisory or SOC Prime TDM destination-IP / destination-domain feeds for current operationalisation. The .icu TLD anchor is durable across campaigns even after FQDN rotation.",high,CERT-UA-6315762
+string,.icu,C2 TLD heavily reused by UAC-0057 across multiple campaigns since 2022; statistically rare in legitimate enterprise outbound,medium,CERT-UA + ESET 2024-2026
+string,Cloudflare CDN,UAC-0057 fronts C2 with Cloudflare to hide origin IPs and blend with legitimate CDN traffic,high,CERT-UA + ESET 2024-2026
+note,"Discovery primitives observed in OYSTERBLUES profile-and-exfil: COMPUTERNAME, USERNAME, OS version (Win32_OperatingSystem.Caption / Version), LastBootUpTime, running process list. Exfil cadence ~10 minutes via HTTP POST to .icu C2.",high,CERT-UA-6315762
+cve,CVE-2024-42009,Roundcube XSS exploited by UNC1151 in prior mailbox-compromise feeder campaign (CERT Polska 2025-06); supplies the compromised originating mailboxes used in current OYSTERFRESH delivery,medium,CERT-Polska-2025-06
+note,"Targeting: Ukrainian government and defense organisations. Companion ESET FrostyNeighbor PicassoLoader campaign (2026-05-14) additionally targets Poland (broader sectoral footprint including manufacturing healthcare logistics) and Lithuania. Ukraine-only geofencing observed in the PicassoLoader chain — sandbox detonation from non-Ukrainian egress will report false-negative.",high,ESET-FrostyNeighbor
+note,"Final payload: Cobalt Strike beacon delivered via JavaScript eval() after operator manual triage of the ~10-minute heartbeat. Post-exploitation tradecraft is standard Cobalt Strike (sleep mask, named pipes, malleable C2 profile, sometimes Rubeus and Mimikatz follow-on).",high,CERT-UA-6315762
+note,"Defensive emphasis: restrict wscript.exe / cscript.exe execution for standard user accounts via SRP / WDAC / AppLocker; this single control breaks the OYSTERFRESH entry point.",high,CERT-UA-6315762

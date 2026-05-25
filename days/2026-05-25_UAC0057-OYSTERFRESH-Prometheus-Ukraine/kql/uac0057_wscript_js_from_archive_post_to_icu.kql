@@ -1,0 +1,37 @@
+// Title:        WScript .js execution followed by HTTP POST to a .icu domain within 5 minutes
+// Id:           a99201e0-ec57-44fe-8fca-5a4c98a7094b
+// MITRE:        T1059.007, T1204.002, T1071.001, T1041, T1568.002
+// Reference:    https://cert.gov.ua/article/6315762
+// Reference:    https://thehackernews.com/2026/05/ghostwriter-targets-ukraine-government.html
+// Author:       Jarmi
+// Date:         2026-05-25
+// Tested on:    Defender XDR — DeviceProcessEvents + DeviceNetworkEvents
+// FP notes:     Legitimate enterprise scripting that calls a third-party .icu service is rare
+//               but possible; document any internal allow-list. Software installer JS stubs
+//               that contact a .icu service should be reviewed and excluded per signer.
+
+let lookback = 14d;
+let window = 5m;
+let icu_pattern = @"\.icu(\:|\/|$)";
+let wscript_events =
+    DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where FileName =~ "wscript.exe"
+    | where InitiatingProcessFileName in~ ("explorer.exe", "outlook.exe", "winrar.exe", "7zfm.exe")
+    | where ProcessCommandLine matches regex @"(?i)\.js(e)?(\s|$|"")"
+    | project js_time = Timestamp, DeviceId, DeviceName, AccountUpn,
+              js_cmd = ProcessCommandLine, js_parent = InitiatingProcessFileName;
+let icu_posts =
+    DeviceNetworkEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType in ("ConnectionSuccess", "HttpConnectionInspected")
+    | where RemoteUrl matches regex icu_pattern or RemoteUrl endswith ".icu"
+    | project net_time = Timestamp, DeviceId, RemoteUrl, RemoteIP, RemotePort,
+              net_proc = InitiatingProcessFileName, net_cmd = InitiatingProcessCommandLine;
+wscript_events
+| join kind=inner (icu_posts) on DeviceId
+| where net_time between (js_time .. (js_time + window))
+| extend lag_seconds = datetime_diff('second', net_time, js_time)
+| project js_time, net_time, lag_seconds, DeviceName, AccountUpn,
+          js_parent, js_cmd, net_proc, RemoteUrl, RemoteIP, RemotePort
+| order by js_time desc

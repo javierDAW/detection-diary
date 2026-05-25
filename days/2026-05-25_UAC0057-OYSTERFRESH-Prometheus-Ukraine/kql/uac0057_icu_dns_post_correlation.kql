@@ -1,0 +1,36 @@
+// Title:        DNS query for a .icu domain followed by HTTP POST egress from the same host within 60 seconds
+// Id:           4d6a9c8b-7f2e-4d1a-bcc3-8e5f3a2b1d6c
+// MITRE:        T1071.001, T1568, T1568.002
+// Reference:    https://cert.gov.ua/article/6315762
+// Reference:    https://thehackernews.com/2026/05/ghostwriter-targets-ukraine-government.html
+// Author:       Jarmi
+// Date:         2026-05-25
+// Tested on:    Defender XDR — DeviceNetworkEvents (DNS + HTTP)
+// FP notes:     A handful of legitimate services use .icu domains; review per FQDN and
+//               whitelist by exact-match domain. Cloudflare-fronted CDN traffic dominates
+//               the responding IP set so do not anchor on the destination IP alone.
+
+let lookback = 14d;
+let window = 60s;
+let dns_icu =
+    DeviceNetworkEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType == "DnsQuery"
+    | where RemoteUrl endswith ".icu"
+    | project dns_time = Timestamp, DeviceId, DeviceName, icu_fqdn = RemoteUrl;
+let posts =
+    DeviceNetworkEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType in ("ConnectionSuccess", "HttpConnectionInspected")
+    | where RemotePort in (80, 443, 8080, 8443)
+    | project post_time = Timestamp, DeviceId, RemoteIP, RemotePort,
+              post_proc = InitiatingProcessFileName,
+              post_cmd = InitiatingProcessCommandLine,
+              RemoteUrl;
+dns_icu
+| join kind=inner (posts) on DeviceId
+| where post_time between (dns_time .. (dns_time + window))
+| extend lag_seconds = datetime_diff('second', post_time, dns_time)
+| project dns_time, post_time, lag_seconds, DeviceName, icu_fqdn,
+          post_proc, post_cmd, RemoteIP, RemotePort, RemoteUrl
+| order by dns_time desc

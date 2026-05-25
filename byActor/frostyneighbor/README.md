@@ -2,12 +2,11 @@
 <!-- Source of truth: YAML frontmatter in each days/<slug>/README.md -->
 
 
-# Techniques: T1082
+# Actors: FrostyNeighbor
 
-2 day(s) covering this technique.
+1 day(s) covering this actor.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-05-25 | UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OYSTERBLUES Targeting Ukrainian Government via Prometheus Lures | UAC-0057 · Ghostwriter · FrostyNeighbor · UNC1151 | [`2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/`](../../days/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/) |
-| 2026-04-30 | FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A) | UAT-4356 · Storm-1849 · ArcaneDoor | [`2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/`](../../days/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) |

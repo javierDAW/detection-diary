@@ -30,7 +30,9 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Erudite Mogwai](./erudite-mogwai/) | 1 |
 | [EtherRAT (DPRK-linked, UNC5342 toolchain overlap)](./etherrat-dprk-linked-unc5342-toolchain-overlap/) | 1 |
 | [First VPN Service (1vpns.com)](./first-vpn-service-1vpns-com/) | 1 |
+| [FrostyNeighbor](./frostyneighbor/) | 1 |
 | [G1027](./g1027/) | 1 |
+| [Ghostwriter](./ghostwriter/) | 1 |
 | [Gold Sahara](./gold-sahara/) | 1 |
 | [Howling Scorpius](./howling-scorpius/) | 1 |
 | [Hydro Kitten](./hydro-kitten/) | 1 |
@@ -75,10 +77,12 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [The Gentlemen RaaS](./the-gentlemen-raas/) | 1 |
 | [TukTuk (AI-generated framework)](./tuktuk-ai-generated-framework/) | 1 |
 | [Tycoon2FA](./tycoon2fa/) | 1 |
+| [UAC-0057](./uac-0057/) | 1 |
 | [UAT-4356](./uat-4356/) | 1 |
 | [UAT-6382](./uat-6382/) | 1 |
 | [UAT-8302](./uat-8302/) | 1 |
 | [UAT-8616](./uat-8616/) | 1 |
+| [UNC1151](./unc1151/) | 1 |
 | [UNC5174](./unc5174/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
 | [UNC6780](./unc6780/) | 1 |
