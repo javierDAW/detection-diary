@@ -1,0 +1,59 @@
+title: Scheduled Task Named MicrosoftEdgeUpdateTaskMachine Without Core or UA Suffix
+id: 25209468-cc68-46e9-83fd-24c3f934e4e7
+status: experimental
+description: |
+  Detects the creation of a scheduled task whose name matches
+  MicrosoftEdgeUpdateTaskMachine but does NOT end with the genuine suffixes
+  Core or UA. The legitimate Microsoft Edge auto-update mechanism registers
+  two scheduled tasks, MicrosoftEdgeUpdateTaskMachineCore and
+  MicrosoftEdgeUpdateTaskMachineUA, both whose action is the signed
+  MicrosoftEdgeUpdate.exe. The UAC-0057 / Ghostwriter OYSTERSHUCK persistence
+  anchor (CERT-UA#6315762, 22-May-2026) drops a task named only
+  MicrosoftEdgeUpdateTaskMachine (no suffix) whose action launches
+  wscript.exe with a .js argument. This rule fires on schtasks.exe creating
+  any task whose name contains MicrosoftEdgeUpdateTaskMachine, and the
+  selection is narrowed by the wscript.exe action and the absence of the
+  Core / UA suffix. The same shape covers the equivalent PowerShell
+  Register-ScheduledTask path via the New-ScheduledTaskAction cmdline.
+author: Jarmi
+date: 2026/05/25
+references:
+  - https://cert.gov.ua/article/6315762
+  - https://thehackernews.com/2026/05/ghostwriter-targets-ukraine-government.html
+  - https://socprime.com/active-threats/uac-0057-updates-its-toolkit-with-oysterfresh-oystershuck-and-oysterblues/
+tags:
+  - attack.persistence
+  - attack.t1053.005
+  - attack.defense-evasion
+  - attack.t1036.005
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_schtasks:
+    Image|endswith:
+      - '\schtasks.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_create:
+    CommandLine|contains:
+      - '/Create'
+      - 'Register-ScheduledTask'
+      - 'New-ScheduledTask'
+  selection_taskname:
+    CommandLine|contains: 'MicrosoftEdgeUpdateTaskMachine'
+  selection_wscript_action:
+    CommandLine|contains:
+      - 'wscript.exe'
+      - 'WScript.exe'
+      - '.js'
+  filter_genuine:
+    CommandLine|contains:
+      - 'MicrosoftEdgeUpdateTaskMachineCore'
+      - 'MicrosoftEdgeUpdateTaskMachineUA'
+  condition: selection_schtasks and selection_create and selection_taskname and selection_wscript_action and not filter_genuine
+falsepositives:
+  - Enterprise endpoint-management tooling that legitimately registers an Edge-update auxiliary task with a custom name; rare; verify the action invokes the signed MicrosoftEdgeUpdate.exe and not wscript.exe.
+  - SOC red-team exercises emulating UAC-0057 persistence; correlate with engagement records.
+
+level: high

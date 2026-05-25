@@ -1,0 +1,49 @@
+title: Microsoft Edge Update Run Key Masquerade in HKCU Software
+id: 966ff62f-1ad7-4901-81ab-b22485be9001
+status: experimental
+description: |
+  Detects an HKCU Run-key value named MicrosoftEdgeUpdate or EdgeApp whose
+  target path is NOT the genuine Microsoft Edge updater install path
+  (C:\Program Files (x86)\Microsoft\EdgeUpdate\). This is the persistence
+  anchor used by the UAC-0057 / Ghostwriter OYSTERBLUES / OYSTERSHUCK toolset
+  (CERT-UA#6315762, 22-May-2026) which masquerades its persistence binaries
+  as MicrosoftEdgeUpdate.exe and EdgeApp.exe to blend with the legitimate
+  Edge auto-update mechanism. The genuine Edge updater never registers itself
+  under HKCU; it lives under HKLM and Program Files. Any HKCU Run-key value
+  bearing these names is therefore highly suspicious by itself; the path
+  check eliminates the rare false positive of an Edge enterprise deployment
+  variant under HKCU. The rule fires on registry_set events so it captures
+  both creation and modification of the value. Pair with the
+  scheduled-task-masquerade Sigma to catch the second persistence anchor.
+author: Jarmi
+date: 2026/05/25
+references:
+  - https://cert.gov.ua/article/6315762
+  - https://thehackernews.com/2026/05/ghostwriter-targets-ukraine-government.html
+  - https://socprime.com/active-threats/uac-0057-updates-its-toolkit-with-oysterfresh-oystershuck-and-oysterblues/
+tags:
+  - attack.persistence
+  - attack.t1547.001
+  - attack.defense-evasion
+  - attack.t1036.005
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_path:
+    TargetObject|contains: '\Software\Microsoft\Windows\CurrentVersion\Run\'
+  selection_name:
+    TargetObject|endswith:
+      - '\MicrosoftEdgeUpdate'
+      - '\EdgeApp'
+      - '\MicrosoftEdge'
+  filter_genuine_edge:
+    Details|contains:
+      - 'C:\Program Files (x86)\Microsoft\EdgeUpdate\'
+      - 'C:\Program Files\Microsoft\EdgeUpdate\'
+  condition: selection_path and selection_name and not filter_genuine_edge
+falsepositives:
+  - Enterprise-managed Edge deployment variant that installs the updater under HKCU; rare and per-tenant; verify the Details path resolves to a Microsoft-signed binary before suppressing.
+  - Third-party browser-management tooling that registers an Edge-related Run value with a custom path; document and exclude per environment.
+
+level: high

@@ -1,0 +1,52 @@
+title: WScript Executing JavaScript Dropped from a User-Writable Archive Path
+id: 9a755a3a-5c47-4e05-84d4-b67d195aa6f2
+status: experimental
+description: |
+  Detects wscript.exe executing a .js file located in a user-writable archive
+  extraction path such as %TEMP%, %APPDATA%, the user's Desktop, or Downloads.
+  This is the entry-point pattern for the UAC-0057 / Ghostwriter OYSTERFRESH
+  JavaScript loader (CERT-UA#6315762, 22-May-2026) where the user opens a
+  spearphished ZIP attachment that contains a .js file and double-clicks it.
+  The same pattern covers many other 2026 JS-loader campaigns. False positives
+  are uncommon because legitimate enterprise tooling rarely runs JavaScript
+  from user-writable archive paths via the legacy Windows Script Host. Add
+  any internal IT automation that legitimately calls wscript.exe with a .js
+  to the per-environment allow list.
+author: Jarmi
+date: 2026/05/25
+references:
+  - https://cert.gov.ua/article/6315762
+  - https://thehackernews.com/2026/05/ghostwriter-targets-ukraine-government.html
+  - https://socprime.com/active-threats/uac-0057-updates-its-toolkit-with-oysterfresh-oystershuck-and-oysterblues/
+tags:
+  - attack.execution
+  - attack.t1059.007
+  - attack.t1204.002
+  - attack.defense-evasion
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    Image|endswith:
+      - '\wscript.exe'
+      - '\WScript.exe'
+  selection_jsarg:
+    CommandLine|contains:
+      - '.js"'
+      - '.js '
+      - '.jse'
+  selection_userpath:
+    CommandLine|contains:
+      - '\AppData\Local\Temp\'
+      - '\AppData\Roaming\'
+      - '\Downloads\'
+      - '\Desktop\'
+      - 'C:\Users\Public\'
+      - '\Temp\'
+  condition: selection_image and selection_jsarg and selection_userpath
+falsepositives:
+  - Legitimate enterprise scripting that intentionally distributes .js helpers to user-writable paths; rare; document any internal automation and exclude per-host.
+  - Software installers that drop and execute a .js stub from the user temp during MSI / setup execution; usually short-lived and signed; correlate with installer image.
+
+level: high

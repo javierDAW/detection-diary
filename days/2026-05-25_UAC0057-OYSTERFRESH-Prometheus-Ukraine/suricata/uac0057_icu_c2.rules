@@ -1,0 +1,28 @@
+# Suricata 7.x — UAC-0057 / Ghostwriter OYSTERFRESH / OYSTERBLUES C2 anchors (.icu Cloudflare-fronted)
+# Author: Jarmi
+# Date:   2026-05-25
+# References:
+#   https://cert.gov.ua/article/6315762
+#   https://thehackernews.com/2026/05/ghostwriter-targets-ukraine-government.html
+#   https://socprime.com/active-threats/uac-0057-updates-its-toolkit-with-oysterfresh-oystershuck-and-oysterblues/
+# Notes:
+#   - $HOME_NET is expected to be the corporate IPv4 ranges.
+#   - The .icu TLD is statistically rare in legitimate enterprise outbound traffic;
+#     UAC-0057 has used .icu heavily across multiple campaigns since 2022.
+#   - Pair with DNS sinkhole telemetry — DNS query is the cheapest detection anchor.
+#   - sid range 8240001..8240005 reserved for this case.
+
+# DNS — corporate endpoint resolving any .icu domain (broad anchor, low cost)
+alert dns $HOME_NET any -> any any (msg:"UAC0057 OYSTERFRESH Corporate endpoint DNS query for .icu TLD (suspicious by base rate)"; dns.query; pcre:"/\.icu$/i"; sid:8240001; rev:1; classtype:bad-unknown; metadata:author Jarmi, attack T1071.001, attack T1568, ioc-source CERT-UA-6315762;)
+
+# TLS SNI — corporate endpoint TLS handshake to a .icu host (HTTPS C2 anchor)
+alert tls $HOME_NET any -> any 443 (msg:"UAC0057 OYSTERFRESH TLS SNI for .icu host (likely OYSTERBLUES C2)"; tls.sni; pcre:"/\.icu$/i"; sid:8240002; rev:1; classtype:bad-unknown; metadata:author Jarmi, attack T1071.001, attack T1090.004;)
+
+# HTTP host — corporate endpoint HTTP request to a .icu host (cleartext fallback)
+alert http $HOME_NET any -> any any (msg:"UAC0057 OYSTERFRESH HTTP Host header for .icu host"; http.host; pcre:"/\.icu$/i"; sid:8240003; rev:1; classtype:bad-unknown; metadata:author Jarmi, attack T1071.001;)
+
+# HTTP POST to .icu — high-confidence OYSTERBLUES exfil pattern
+alert http $HOME_NET any -> any any (msg:"UAC0057 OYSTERBLUES HTTP POST to .icu host (system profile exfil)"; flow:to_server,established; http.method; content:"POST"; http.host; pcre:"/\.icu$/i"; sid:8240004; rev:1; classtype:bad-unknown; metadata:author Jarmi, attack T1041, attack T1071.001, ioc-source CERT-UA-6315762;)
+
+# HTTP user-agent — wscript / WinHTTP-style requests to .icu (script-host fingerprint)
+alert http $HOME_NET any -> any any (msg:"UAC0057 OYSTERFRESH HTTP request from script-host user-agent to .icu host"; http.host; pcre:"/\.icu$/i"; http.user_agent; pcre:"/(?i)(WinHttp|wscript|Microsoft.*XMLHTTP|JSXHR)/"; sid:8240005; rev:1; classtype:bad-unknown; metadata:author Jarmi, attack T1071.001, attack T1059.007;)

@@ -1,0 +1,30 @@
+// Title:        HKCU Run-key value MicrosoftEdgeUpdate or EdgeApp pointing outside the genuine Edge install
+// Id:           7f8b5d2a-3e1d-4b7c-9c8e-2b4a8c6d1e3f
+// MITRE:        T1547.001, T1036.005
+// Reference:    https://cert.gov.ua/article/6315762
+// Reference:    https://thehackernews.com/2026/05/ghostwriter-targets-ukraine-government.html
+// Author:       Jarmi
+// Date:         2026-05-25
+// Tested on:    Defender XDR — DeviceRegistryEvents
+// FP notes:     Enterprise Edge management variants that legitimately register under HKCU are rare;
+//               verify the path resolves to a Microsoft-signed binary and whitelist by signer.
+
+let lookback = 30d;
+let edge_genuine_paths = pack_array(
+    @"C:\Program Files (x86)\Microsoft\EdgeUpdate\",
+    @"C:\Program Files\Microsoft\EdgeUpdate\",
+    @"C:\Program Files (x86)\Microsoft\Edge\Application\",
+    @"C:\Program Files\Microsoft\Edge\Application\");
+DeviceRegistryEvents
+| where Timestamp > ago(lookback)
+| where ActionType in ("RegistryValueSet", "RegistryKeyCreated")
+| where RegistryKey contains @"\Software\Microsoft\Windows\CurrentVersion\Run"
+| where RegistryValueName in~ ("MicrosoftEdgeUpdate", "EdgeApp", "MicrosoftEdge")
+| where isnotempty(RegistryValueData)
+| extend genuine = iff(
+       RegistryValueData has_any (edge_genuine_paths), true, false)
+| where genuine == false
+| project Timestamp, DeviceName, InitiatingProcessAccountName,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          RegistryKey, RegistryValueName, RegistryValueData, PreviousRegistryValueData
+| order by Timestamp desc
