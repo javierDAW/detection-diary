@@ -35,5 +35,8 @@ alert ip $HOME_NET any -> 139.84.227.139 any (msg:"RED-LAMASSU 2026-05 Outbound 
 alert ip $HOME_NET any -> 194.135.25.132 any (msg:"RED-LAMASSU 2026-05 Outbound to Showboat secondary origin 194.135.25.132"; classtype:trojan-activity; sid:8220008; rev:1;)
 alert ip $HOME_NET any -> 166.88.11.196 any (msg:"RED-LAMASSU 2026-05 Outbound to JFMBackdoor Cloudflare origin 166.88.11.196"; classtype:trojan-activity; sid:8220009; rev:1;)
 
-# X.509: Self-signed My Organization certificate fingerprint anchor
-alert tls $HOME_NET any -> any any (msg:"RED-LAMASSU 2026-05 TLS X.509 self-signed My Organization fingerprint (Showboat primary cluster)"; flow:established; tls.cert_fingerprint; content:"27:df:47:56:26:aa:fc:e2:ea:15:48:a9:f3:5e:fb:9a:d9:51:29:8c:8b:11:a6:ad:b3:cc:df:cd:51:70:c6:77"; nocase; classtype:trojan-activity; sid:8220010; rev:1;)
+# X.509: Self-signed My Organization certificate subject anchor.
+# Note: tls.cert_fingerprint in Suricata 7.x exposes SHA1 only, so the SHA256 fingerprint
+# 27:df:47:56:26:aa:fc:e2:ea:15:48:a9:f3:5e:fb:9a:d9:51:29:8c:8b:11:a6:ad:b3:cc:df:cd:51:70:c6:77
+# cannot be matched as a sticky buffer at this layer. Anchor instead on the cert subject
+# string "My Organization" (the same self-signed CN reused across the
