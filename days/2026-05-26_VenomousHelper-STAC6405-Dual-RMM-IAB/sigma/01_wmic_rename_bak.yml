@@ -1,0 +1,38 @@
+title: VENOMOUS#HELPER STAC6405 wmic.exe.bak Rename Masquerade
+id: 2168f2ec-881a-4d1f-a957-8ef15db434d1
+status: experimental
+description: |
+  Detects the renamed WMIC LOLBin pattern used by the VENOMOUS#HELPER / STAC6405
+  dual-RMM IAB cluster published by Securonix (2026-05-04). The operator places
+  a copy of WMIC at C:\Windows\System32\wbem\wmic.exe.bak and fires
+  SecurityCenter2 enumeration via cmd.exe /c against that renamed copy in
+  parallel to the canonical wmic.exe, defeating name-based EDR rules. The
+  presence of a process executing wmic.exe.bak is, per Securonix, the single
+  highest-confidence host indicator of this cluster. Sigma covers the process
+  creation event; companion KQL covers file create. Rule is intentionally narrow
+  on the .exe.bak suffix to avoid false positives against legitimate WMIC
+  invocations.
+references:
+  - https://www.securonix.com/blog/venomous-helper-phishing-campaign/
+  - https://thehackernews.com/2026/05/phishing-campaign-hits-80-orgs-using.html
+author: Jarmi
+date: 2026/05/26
+tags:
+  - attack.defense-evasion
+  - attack.t1036.003
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    Image|endswith: '\wmic.exe.bak'
+  selection_cmdline:
+    CommandLine|contains: 'wmic.exe.bak'
+  condition: selection_image or selection_cmdline
+falsepositives:
+  - Legitimate administrators who manually rename WMIC during defensive backup
+    operations (rare and traceable to a change ticket)
+  - Endpoint backup or imaging tooling that snapshots system binaries with a
+    .bak suffix in their working directory (should not land in System32\wbem)
+
+level: high

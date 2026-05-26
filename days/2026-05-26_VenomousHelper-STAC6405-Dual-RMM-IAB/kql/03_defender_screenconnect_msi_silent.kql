@@ -1,0 +1,43 @@
+// Title:        VENOMOUS#HELPER / STAC6405 — ScreenConnect MSI silent install via Remote Access.exe
+// Id:           3c39031c-ebdb-4930-9b18-12ec7c37c843
+// MITRE:        T1218.007, T1219
+// Reference:    https://www.securonix.com/blog/venomous-helper-phishing-campaign/
+// Author:       Jarmi
+// Date:         2026-05-26
+// Tested on:    Defender XDR — DeviceProcessEvents + DeviceFileEvents
+// FP notes:     msiexec /qn is normal under SCCM / Intune. The high-fidelity
+//               signal here is msiexec /i sc.msi /qn parented by a binary
+//               named "Remote Access.exe" under ProgramData. The campaign
+//               ScreenConnect install GUID adbce2b92cb435b3 is invariant
+//               across victims and is the cleanest filename anchor.
+
+let WindowStart = ago(30d);
+let CampaignGuid = "adbce2b92cb435b3";
+// 1. Parent-child: Remote Access.exe spawns msiexec /i sc.msi /qn
+let MsiHits =
+    DeviceProcessEvents
+    | where Timestamp > WindowStart
+    | where FileName =~ "msiexec.exe"
+    | where ProcessCommandLine has_cs "sc.msi"
+       and ProcessCommandLine has "/qn"
+    | where InitiatingProcessFileName =~ "Remote Access.exe"
+       or InitiatingProcessFolderPath has_cs @"\ProgramData\JWrapper-Remote Access"
+    | project Timestamp, DeviceName, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessCommandLine;
+// 2. File-side anchor: ScreenConnect Client (<guid>) install folder created
+let FolderHits =
+    DeviceFileEvents
+    | where Timestamp > WindowStart
+    | where ActionType in ("FolderCreated", "FileCreated")
+    | where FolderPath has_cs strcat(@"\Program Files (x86)\ScreenConnect Client (", CampaignGuid)
+       or  FolderPath has_cs @"\Program Files (x86)\ScreenConnect Client (adbce2b92cb435b3"
+    | project Timestamp, DeviceName, ActionType, FolderPath, FileName, InitiatingProcessFileName, InitiatingProcessFolderPath;
+// 3. The SfxCA rundll32 custom action
+let DllHits =
+    DeviceProcessEvents
+    | where Timestamp > WindowStart
+    | where FileName =~ "rundll32.exe"
+    | where ProcessCommandLine has "zzzzInvokeManagedCustomActionOutOfProc"
+       and ProcessCommandLine has "ScreenConnect.InstallerActions"
+    | project Timestamp, DeviceName, FileName, ProcessCommandLine, InitiatingProcessFileName;
+union MsiHits, FolderHits, DllHits
+| order by DeviceName asc, Timestamp asc

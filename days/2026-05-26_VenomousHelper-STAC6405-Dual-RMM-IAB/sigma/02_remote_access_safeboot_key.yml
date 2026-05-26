@@ -1,0 +1,47 @@
+title: VENOMOUS#HELPER SafeBoot Network Registry Persistence for Remote Access Service
+id: b285fadc-e1a6-46c8-96ea-916e173f84d6
+status: experimental
+description: |
+  Detects creation or modification of a SafeBoot\Network subkey for the
+  Remote Access Service (the Windows service name used by the JWrapper-packaged
+  SimpleHelp RAT in the VENOMOUS#HELPER / STAC6405 campaign reported by
+  Securonix on 2026-05-04). The SafeBoot key keeps the RAT alive even when
+  defenders boot into Safe Mode with Networking for cleanup. This is the same
+  primitive (T1562.009 Impair Defenses: Safe Mode Boot) covered on Day 22 for
+  the Embargo BYOVD case, but here applied to RMM persistence rather than
+  defense impairment. Rule is broader than just the literal name to catch
+  operator rotation of the service display name within the same RMM-naming
+  convention.
+references:
+  - https://www.securonix.com/blog/venomous-helper-phishing-campaign/
+  - https://thehackernews.com/2026/05/phishing-campaign-hits-80-orgs-using.html
+author: Jarmi
+date: 2026/05/26
+tags:
+  - attack.persistence
+  - attack.defense-evasion
+  - attack.t1543.003
+  - attack.t1562.009
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_safeboot:
+    TargetObject|contains: '\SYSTEM\CurrentControlSet\Control\SafeBoot\Network\'
+  selection_name:
+    TargetObject|contains:
+      - 'Remote Access Service'
+      - 'RemoteSupport'
+      - 'JWrapper'
+      - 'SimpleHelp'
+      - 'SimpleGateway'
+      - 'ScreenConnect Client'
+  condition: selection_safeboot and selection_name
+falsepositives:
+  - Legitimate registered Windows services that genuinely require SafeBoot
+    Network availability (network drivers, antivirus tooling) — those should
+    be allow-listed by image-signing certificate
+  - Endpoint admin or backup tooling that legitimately ships a SafeBoot entry
+    under a vendor-controlled name
+
+level: high

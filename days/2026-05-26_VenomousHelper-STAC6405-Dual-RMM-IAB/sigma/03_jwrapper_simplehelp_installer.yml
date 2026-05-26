@@ -1,0 +1,53 @@
+title: VENOMOUS#HELPER JWrapper-Packaged SimpleHelp Process Creation
+id: 167a51fb-e4c1-4a32-a997-b21a4bab3cd9
+status: experimental
+description: |
+  Detects process creation events whose image path falls under the JWrapper
+  installation tree used by the VENOMOUS#HELPER / STAC6405 cluster (Securonix
+  2026-05-04). The cluster always unpacks under C:\ProgramData\JWrapper-Remote
+  Access\ and runs SimpleService.exe, SimpleGatewayService.exe, session_win.exe,
+  elev_win.exe, winpty-agent64.exe and a series of Remote Access.exe / Remote
+  Access Monitoring.exe shims. The combination of path prefix and JWrapper
+  binary naming is highly specific even where SimpleHelp itself is legitimately
+  in use, because legitimate deployments install under Program Files and not
+  under ProgramData. The --mouselocation switch on elev_win.exe is an extra
+  high-confidence anchor — it is used by the 23-second user-presence polling
+  loop and has no benign reason to appear in production telemetry.
+references:
+  - https://www.securonix.com/blog/venomous-helper-phishing-campaign/
+  - https://thehackernews.com/2026/05/phishing-campaign-hits-80-orgs-using.html
+author: Jarmi
+date: 2026/05/26
+tags:
+  - attack.execution
+  - attack.persistence
+  - attack.command-and-control
+  - attack.t1543.003
+  - attack.t1219
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_path:
+    Image|contains: '\ProgramData\JWrapper-Remote Access\'
+  selection_names:
+    Image|endswith:
+      - '\SimpleService.exe'
+      - '\SimpleGatewayService.exe'
+      - '\session_win.exe'
+      - '\elev_win.exe'
+      - '\winpty-agent64.exe'
+      - '\Remote Access.exe'
+      - '\Remote Access Monitoring.exe'
+      - '\Remote AccessLauncher.exe'
+      - '\Remote AccessWinLauncher.exe'
+  selection_mouseloc:
+    CommandLine|contains: '--mouselocation'
+  condition: (selection_path and selection_names) or selection_mouseloc
+falsepositives:
+  - Authorised use of SimpleHelp installed under C:\Program Files (not under
+    ProgramData) by an IT service-desk team — confirm publisher cert is current
+    and the install path is Program Files
+  - Internal red-team exercises using JWrapper-bundled SimpleHelp builds
+
+level: high
