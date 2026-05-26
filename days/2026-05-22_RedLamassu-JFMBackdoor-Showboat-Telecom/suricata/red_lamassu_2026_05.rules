@@ -39,4 +39,8 @@ alert ip $HOME_NET any -> 166.88.11.196 any (msg:"RED-LAMASSU 2026-05 Outbound t
 # Note: tls.cert_fingerprint in Suricata 7.x exposes SHA1 only, so the SHA256 fingerprint
 # 27:df:47:56:26:aa:fc:e2:ea:15:48:a9:f3:5e:fb:9a:d9:51:29:8c:8b:11:a6:ad:b3:cc:df:cd:51:70:c6:77
 # cannot be matched as a sticky buffer at this layer. Anchor instead on the cert subject
-# string "My Organization" (the same self-signed CN reused across the
+# string "My Organization" (the same self-signed CN reused across the Red Lamassu cluster
+# for three years per PwC / Lumen reporting). Pair with the IP-list rules above for high
+# confidence. For SHA256 cert-pinning, compute it at the egress proxy (mitmproxy, NGINX
+# stream module, or HAProxy SNI introspection) and feed back into Suricata via threat.list.
+alert tls $HOME_NET any -> any any (msg:"RED-LAMASSU 2026-05 TLS cert subject My Organization (Showboat / Calypso self-signed reuse)"; flow:established; tls.cert_subject; content:"My Organization"; nocase; classtype:trojan-activity; sid:8220010; rev:1;)

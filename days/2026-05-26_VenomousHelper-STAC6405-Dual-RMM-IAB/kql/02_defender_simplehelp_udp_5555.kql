@@ -1,0 +1,30 @@
+// Title:        VENOMOUS#HELPER / STAC6405 — SimpleHelp UDP/5555 outbound to known C2
+// Id:           1376c035-af16-494f-8076-f7da50d89108
+// MITRE:        T1219, T1071.001, T1573
+// Reference:    https://www.securonix.com/blog/venomous-helper-phishing-campaign/
+// Author:       Jarmi
+// Date:         2026-05-26
+// Tested on:    Defender XDR — DeviceNetworkEvents + DeviceProcessEvents
+// FP notes:     SimpleHelp installed for legitimate IT-support purposes uses
+//               vendor C2 endpoints; this query keys on the campaign-specific
+//               C2 IP and the unusual UDP/5555 transport.
+
+let WindowStart = ago(30d);
+let CampaignC2 = dynamic(["84.200.205.233"]);
+let CampaignDomains = dynamic(["sslzeromail.run.place"]);
+// 1. Outbound to the SimpleHelp C2 IP on UDP/5555 or HTTP/5555
+let NetHits =
+    DeviceNetworkEvents
+    | where Timestamp > WindowStart
+    | where (RemoteIP in (CampaignC2) and RemotePort == 5555)
+       or  (RemoteUrl has_any (CampaignDomains))
+    | project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl, Protocol, InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessId;
+// 2. Pivot to process tree on the initiator
+let ProcContext =
+    DeviceProcessEvents
+    | where Timestamp > WindowStart
+    | project ProcTime=Timestamp, DeviceName, ProcessId, ProcessCommandLine, FolderPath, FileName, InitiatingProcessFileName, InitiatingProcessFolderPath;
+NetHits
+| join kind=leftouter (ProcContext) on $left.DeviceName == $right.DeviceName, $left.InitiatingProcessId == $right.ProcessId
+| project Timestamp, DeviceName, RemoteIP, RemotePort, RemoteUrl, Protocol, InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessCommandLine, ParentImage=InitiatingProcessFileName1, ParentFolder=InitiatingProcessFolderPath1
+| order by DeviceName asc, Timestamp asc

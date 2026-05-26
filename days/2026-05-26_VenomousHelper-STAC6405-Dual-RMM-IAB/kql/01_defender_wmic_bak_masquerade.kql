@@ -1,0 +1,29 @@
+// Title:        VENOMOUS#HELPER / STAC6405 — wmic.exe.bak renamed-LOLBin masquerade
+// Id:           a81150c8-6e96-43bc-8855-89c7ecd67089
+// MITRE:        T1036.003
+// Reference:    https://www.securonix.com/blog/venomous-helper-phishing-campaign/
+// Author:       Jarmi
+// Date:         2026-05-26
+// Tested on:    Defender XDR — DeviceProcessEvents + DeviceFileEvents
+// FP notes:     Legitimate admins almost never rename WMIC. A single
+//               wmic.exe.bak under System32\wbem is, per Securonix, the
+//               highest-confidence host-side anchor for this cluster.
+
+let WindowStart = ago(30d);
+// 1. File create event — the rename or copy that lands wmic.exe.bak
+let FileHits =
+    DeviceFileEvents
+    | where Timestamp > WindowStart
+    | where FileName =~ "wmic.exe.bak"
+    | where FolderPath has_cs @"\Windows\System32\wbem"
+    | project Timestamp, DeviceName, FileEvent=ActionType, FolderPath, FileName, SHA256, InitiatingProcessFileName, InitiatingProcessAccountName;
+// 2. Process create event — execution of the renamed binary by cmd.exe /c or direct
+let ProcHits =
+    DeviceProcessEvents
+    | where Timestamp > WindowStart
+    | where FileName =~ "wmic.exe.bak"
+       or ProcessCommandLine has_cs "wmic.exe.bak"
+    | project Timestamp, DeviceName, ProcessEvent="ProcessCreate", FolderPath, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, AccountName;
+// Combine and order by host then time
+union FileHits, ProcHits
+| order by DeviceName asc, Timestamp asc

@@ -1,0 +1,47 @@
+type,value,context,confidence,source
+ipv4,84.200.205.233,SimpleHelp C2 host serving UDP/5555 SimpleGateway and HTTP/5555 access endpoint,high,Securonix 2026-05-04
+ipv4,213.136.71.246,ScreenConnect relay host on IONOS DE AS8560,high,Securonix 2026-05-04
+domain,sslzeromail.run.place,ScreenConnect relay FQDN resolves to 213.136.71.246,high,Securonix 2026-05-04
+domain,gruta.com.mx,Compromised legitimate MX site used as SSA email-harvesting frontend,high,Securonix 2026-05-04
+domain,server.cubatiendaalimentos.com.mx,Compromised cPanel user account used as payload staging host,high,Securonix 2026-05-04
+url,http://server.cubatiendaalimentos.com.mx/~tiendazoycom/sns/statement5648.exe,Direct payload download URL on compromised cPanel tenant,high,Securonix 2026-05-04
+url,http://84.200.205.233:5555/access/,SimpleHelp HTTP access endpoint on the C2 host,high,Securonix 2026-05-04
+sha256,810a99a7d6696a36491530e286476b4cf8a819a47fb5e3801fdfecfdb2dc6193,customer.jar SimpleHelp RAT core embedded with macOS and Linux helper binaries,high,Securonix 2026-05-04
+sha256,641230a9f3091bdd38d04c6df96062bfc82dfc4ff6f663ceb522d3881d6af53a,SimpleGatewayService.exe service binary speaking UDP/5555 to C2,high,Securonix 2026-05-04
+sha256,dbdddea03c3fc4c2574ce4221450ec86221ebc615c4915c4c4eb3f2a5e3f5b25,SimpleService.exe watchdog tailing sgalive and restarting RAT on stall,high,Securonix 2026-05-04
+sha256,9369d7194ab03362e9e7af022a48bc6d4e7d91a6ab7c4b5cf5d90abbcd8c7012,session_win.exe SeDebugPrivilege + winlogon token theft path,high,Securonix 2026-05-04
+sha256,97f801e750cfc2d4558020fb246782e034fd6101d75a59d8915b4f2b2b50ebd9,elev_win.exe UAC silent elevation and mouse-location polling,high,Securonix 2026-05-04
+sha256,11914d10b51b5a96606ae606b5ab70d79550e36c1cce94a86134107c59075e0c,winpty-agent64.exe PTY helper for interactive shells over the RMM tunnel,high,Securonix 2026-05-04
+sha256,76d85124db2778baecee24cc5ad56c9a3060c41c5b3c1b5cdc7f0435e0f77cac,jwrapper_utils.jar JWrapper helper jar,high,Securonix 2026-05-04
+sha256,d953dfbe8d91dc9fafad0a6117e1276fa636d4ae1b6a4d81616ff2446cf09234,serviceconfig.xml with AllowRecovery=true and RequireSessionConfirmation=false,high,Securonix 2026-05-04
+sha256,3e4b3559fdbe584e19a1ff9b3142b429c6fb91aaa63b5c922c8c5b32c38e426a,simplegateway.service Linux systemd unit packaged in customer.jar,high,Securonix 2026-05-04
+path,C:\Windows\System32\wbem\wmic.exe.bak,Renamed WMIC LOLBin masquerade single highest-confidence host anchor,high,Securonix 2026-05-04
+path,C:\ProgramData\JWrapper-Remote Access\,JWrapper installation tree root,high,Securonix 2026-05-04
+path,C:\ProgramData\JWrapper-Remote Access\JWAppsSharedConfig\sgalive,Watchdog liveness file tailed by SimpleService.exe,high,Securonix 2026-05-04
+path,C:\ProgramData\JWrapper-Remote Access\JWAppsSharedConfig\SimpleGatewayService\SimpleGatewayService.exe,Service binary install path,high,Securonix 2026-05-04
+path,C:\ProgramData\JWrapper-Remote Access\JWAppsSharedConfig\SimpleService.exe,Watchdog binary install path,high,Securonix 2026-05-04
+path,C:\ProgramData\JWrapper-Remote Access\JWAppsSharedConfig\serviceconfig.xml,Service configuration XML,high,Securonix 2026-05-04
+path,C:\Program Files (x86)\ScreenConnect Client (adbce2b92cb435b3)\,ScreenConnect install path with campaign-invariant GUID,high,Securonix 2026-05-04
+regkey,HKLM\SYSTEM\CurrentControlSet\Services\Remote Access Service,Windows service registration for the SimpleHelp RAT,high,Securonix 2026-05-04
+regkey,HKLM\SYSTEM\CurrentControlSet\Control\SafeBoot\Network\Remote Access Service,Safe Mode with Networking persistence subkey,high,Securonix 2026-05-04
+string,43794105415826700294423976831165084124,SimpleHelp sh_app_profile campaign tenant ID invariant across victims,high,Securonix 2026-05-04
+string,bce1222fc9e64aba4dd6f963dfd3377afa1844a1df9d5026e06990c8dc5246453b15e61c4f2e0349702a1940c71716e3d327e5224ac6d6e6a7b6c233c15f10f3,SimpleHelp shpkhash package integrity token 128 hex chars,high,Securonix 2026-05-04
+string,adbce2b92cb435b3,ScreenConnect install GUID shared across all victims,high,Securonix 2026-05-04
+string,1063c106-fb78-4a61-a1c3-959620aa0d1e,ScreenConnect session GUID s= parameter,high,Securonix 2026-05-04
+string,87140605-5d2c-4a7d-9c4a-781ac7f07691,ScreenConnect RunRole GUID,medium,Securonix 2026-05-04
+string,0d393de2-f5aa-4318-9563-b659faff1a49,ScreenConnect RunRole GUID,medium,Securonix 2026-05-04
+string,9dad62c5-42a7-4f31-b383-22ecbad23c7a,ScreenConnect RunRole GUID,medium,Securonix 2026-05-04
+string,426d2985-183b-4d41-9abc-f24af794a2db,ScreenConnect RunRole GUID,medium,Securonix 2026-05-04
+string,f00ff167-e6f2-44ad-9ccb-e30f6906d0f2,ScreenConnect RunRole GUID,medium,Securonix 2026-05-04
+string,1c5eeb04-e194-44a1-b466-87bab51ce23f,ScreenConnect RunRole GUID,medium,Securonix 2026-05-04
+string,add529c0-e532-4f23-84dd-6671686c303e,ScreenConnect RunRole GUID,medium,Securonix 2026-05-04
+string,sg_servers=udp://84.200.205.233:5555,JWrapper launch property carrying hex-encoded C2 address,high,Securonix 2026-05-04
+string,SHRemoteAccessServiceJE_1,Firewall exception name registered via netsh advfirewall add allowedprogram,high,Securonix 2026-05-04
+string,SHRemoteAccessServiceMA_1,Firewall exception name registered via netsh advfirewall add allowedprogram,high,Securonix 2026-05-04
+string,SHRemoteAccessServiceSH_3_1,Firewall exception name registered via netsh advfirewall add allowedprogram,high,Securonix 2026-05-04
+note,statement5648.exe,JWrapper-packaged installer filename observed in dynamic analysis,high,Securonix 2026-05-04
+note,ContractAgreementToSign.exe,Alternate JWrapper-packaged installer filename observed in dynamic analysis,high,Securonix 2026-05-04
+note,SimpleHelp Ltd,Authenticode signer of the JWrapper installer issued by Thawte cert validity 2015-2018 expired in 2018,high,Securonix 2026-05-04
+note,SimpleHelp 5.0.1 compiled 2017-07-07,Cracked SimpleHelp build expired Thawte certificate operator pays no licensing,high,Securonix 2026-05-04
+note,Oracle JRE 1.7.0_79 bundled,Private JRE EOL 2015 packaged inside the JWrapper bundle,high,Securonix 2026-05-04
+note,Three automated polling cadences,WiFi every 15 seconds mouse every 23 seconds SecurityCenter2 batch every 67 seconds ~986 events per hour,high,Securonix 2026-05-04

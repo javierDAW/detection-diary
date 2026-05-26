@@ -1,0 +1,20 @@
+# Author: Jarmi
+# Date:   2026-05-26
+# Case:   VENOMOUS#HELPER / STAC6405 — Dual-RMM IAB phishing campaign
+# Source: https://www.securonix.com/blog/venomous-helper-phishing-campaign/
+#         https://thehackernews.com/2026/05/phishing-campaign-hits-80-orgs-using.html
+# Notes:  Four atomic rules. SID range 2026052601-2026052604.
+#         All four key on the published campaign C2 indicators:
+#         - 84.200.205.233 over UDP/5555 (SimpleHelp SimpleGateway primary C2)
+#         - 213.136.71.246 + sslzeromail.run.place over TCP/8041 (ScreenConnect fallback relay)
+#         - DNS A query for sslzeromail.run.place
+#         - HTTP GET to the cubatiendaalimentos.com.mx payload-staging path
+#         No leading ! anywhere — we alert when the source IS the campaign IOC.
+
+alert udp $HOME_NET any -> [84.200.205.233] 5555 (msg:"VENOMOUS#HELPER STAC6405 SimpleHelp C2 outbound UDP/5555"; flow:to_server; threshold:type limit, track by_src, count 1, seconds 60; metadata:family STAC6405, tlp white; reference:url,securonix.com/blog/venomous-helper-phishing-campaign; classtype:trojan-activity; sid:2026052601; rev:1;)
+
+alert tcp $HOME_NET any -> [213.136.71.246] 8041 (msg:"VENOMOUS#HELPER STAC6405 ScreenConnect relay outbound TCP/8041"; flow:to_server,established; threshold:type limit, track by_src, count 1, seconds 60; metadata:family STAC6405, tlp white; reference:url,securonix.com/blog/venomous-helper-phishing-campaign; classtype:trojan-activity; sid:2026052602; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"VENOMOUS#HELPER STAC6405 DNS lookup for ScreenConnect relay sslzeromail.run.place"; dns.query; content:"sslzeromail.run.place"; nocase; threshold:type limit, track by_src, count 1, seconds 300; metadata:family STAC6405, tlp white; reference:url,securonix.com/blog/venomous-helper-phishing-campaign; classtype:trojan-activity; sid:2026052603; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"VENOMOUS#HELPER STAC6405 HTTP GET to cPanel-staged JWrapper payload statement5648.exe"; flow:to_server,established; http.method; content:"GET"; http.uri; content:"/~tiendazoycom/sns/"; nocase; http.host; content:"cubatiendaalimentos"; nocase; threshold:type limit, track by_src, count 1, seconds 60; metadata:family STAC6405, tlp white; reference:url,securonix.com/blog/venomous-helper-phishing-campaign; classtype:trojan-activity; sid:2026052604; rev:1;)

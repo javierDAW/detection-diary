@@ -49,6 +49,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Quasar Linux](./quasar-linux/) | 1 |
 | [REF7707](./ref7707/) | 1 |
 | [Red Lamassu](./red-lamassu/) | 1 |
+| [STAC6405 (Sophos)](./stac6405-sophos/) | 1 |
 | [Sandworm overlap](./sandworm-overlap/) | 1 |
 | [Shahid Kaveh Group](./shahid-kaveh-group/) | 1 |
 | [Shai-Hulud](./shai-hulud/) | 1 |
@@ -90,6 +91,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)](./unattributed-ransomware-aligned-iab-ttp-overlap-with-akira-storm-1567-affiliate-ecosystem/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |
+| [VENOMOUS#HELPER (Securonix)](./venomous-helper-securonix/) | 1 |
 | [Void Arachne](./void-arachne/) | 1 |
 | [Warlock](./warlock/) | 1 |
 | [namikazesarada010206](./namikazesarada010206/) | 1 |
