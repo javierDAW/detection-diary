@@ -1,0 +1,26 @@
+type,value,context,confidence,source
+domain,enrollms.com,UNC6671 / BlackFile lookalike apex (Tucows-registered); per-victim subdomain pattern <organization>.enrollms.com for SSO portal mimicry,high,GTIG 2026-05-15
+domain,passkeyms.com,UNC6671 / BlackFile lookalike apex (Tucows-registered); passkey-enrollment pretext used in vishing call,high,GTIG 2026-05-15
+domain,setupsso.com,UNC6671 / BlackFile lookalike apex (Tucows-registered); SSO-setup pretext used in vishing call,high,GTIG 2026-05-15
+ipv4,179.43.185.226,UNC6671 SharePoint exfil source IP observed in two GTIG audit-log examples (2026-02-24 and 2026-03-18); commercial VPN ASN; identity rotates frequently,high,GTIG 2026-05-15
+string,python-requests/2.28.1,Attacker UserAgent string observed in M365 Unified Audit Log FileAccessed and FileDownloaded events combined with spoofed ClientAppId=Microsoft Office,high,GTIG 2026-05-15
+string,WindowsPowerShell/5.1,Attacker UserAgent variant when the operator uses PowerShell instead of Python for SharePoint REST or Microsoft Graph requests,high,GTIG 2026-05-15
+string,d3590ed6-52b3-4102-aeff-aad2292ab01c,Microsoft Office native app ClientAppId spoofed by UNC6671 in AppAccessContext to bypass basic Conditional Access app filters,high,GTIG 2026-05-15
+string,[COMPANY NAME] DATA BREACH 72 HOURS TO CONTACT US,BlackFile initial extortion-note subject template (all-caps) sent from pseudorandom Gmail account,high,GTIG 2026-05-15
+string,getsession.org,BlackFile-preferred secure-comms platform from February 2026 onward (Session messenger),high,GTIG 2026-05-15
+string,Tox,BlackFile early-2026 secure-comms channel before the Session migration in February 2026,high,GTIG 2026-05-15
+string,FedAuth,Captured session cookie reused by UNC6671 against SharePoint document resource URLs for direct file streaming,high,GTIG 2026-05-15
+string,SearchQueryPerformed: confidential,UNC6671 SharePoint search-query string literal used to discover high-value documents in compromised tenants,medium,GTIG 2026-05-15
+string,SearchQueryPerformed: SSN,UNC6671 SharePoint search-query string literal used to discover personal-data-bearing documents,medium,GTIG 2026-05-15
+note,UNC6671 / BlackFile / Cordial Spider / CL-CRI-1116 / O-UNC-045 — single cluster cross-vendor naming,high,GTIG 2026-05-15
+note,BlackFile DLS launched 2026-02-06; offline late April 2026; brief return 2026-05-11 with message 'BlackFile is shutting down... under this name' — operator in mid-rebrand,high,GTIG 2026-05-15
+note,Initial extortion always from pseudorandom alphanumeric Gmail local-part; follow-up uses hijacked internal corporate mailbox or Microsoft Teams account,high,GTIG 2026-05-15
+note,Operator escalation playbook: mass Gmail spam from dozens of randomly generated accounts; hijacked internal mailbox spam; Teams hijack; threatening voicemails to executive cell phones; swatting in severe cases,high,GTIG 2026-05-15
+note,VirusTotal GTI Collection 59b667464a0d3c503320bfa43b165d4633288fd0d4226ff51108ac0f9dd02a97 contains the full GTIG IOC bundle for registered users,high,GTIG 2026-05-15
+note,Phishing-resistant FIDO2 / passkey is the structural defense; SMS / push / TOTP MFA all fall to the AiTM stage,high,GTIG 2026-05-15
+note,SaaS workloads explicitly observed compromised: Microsoft 365 (SharePoint OneDrive Outlook Teams) Okta Salesforce Zendesk HubSpot Google Workspace ServiceNow,high,GTIG 2026-05-15
+note,Geographic focus: North America Australia United Kingdom (English-native callers); sectoral concentration: retail and hospitality plus professional services,high,Unit 42 RH-ISAC 2026-05-19
+note,Peer cluster Snarky Spider UNC6661 O-UNC-025 runs parallel workflow with under-an-hour exfil cadence and direct ties to The Com (English-native crew),high,CrowdStrike 2026-05-01
+note,Day 23 Storm-2949 in this repo covers an adjacent identity-only cloud breach pattern (SSPR abuse Entra ID),high,repo cross-reference
+note,Day 27 Operation Saffron in this repo covers infrastructure-tracking-as-detection methodology that applies to the BlackFile mid-rebrand window,high,repo cross-reference
+cve,N/A,Identity-only campaign; no product CVE in the chain; defense is on phishing-resistant MFA plus audit-log instrumentation,high,GTIG 2026-05-15

@@ -1,0 +1,63 @@
+title: BlackFile UNC6671 PowerShell SharePoint Fetch with Scripting-Library User-Agent
+id: a28da0f5-8c63-420b-83e7-202c8bd03e76
+status: experimental
+description: |
+  Detects PowerShell processes invoking Invoke-WebRequest or Invoke-RestMethod
+  against a SharePoint Online URL while spoofing or carrying a scripting-library
+  User-Agent string. UNC6671 / BlackFile / Cordial Spider, per GTIG 2026-05-15,
+  programmatically harvests SharePoint and OneDrive content using either Python
+  (python-requests/2.28.1) or PowerShell (WindowsPowerShell/5.1) against the
+  Microsoft Graph or SharePoint REST API with captured FedAuth session cookies,
+  and spoofs the ClientAppId to "Microsoft Office" while the UserAgent string
+  still identifies the scripting library. This rule covers the on-host PowerShell
+  variant; the operator-on-victim-endpoint case (when the operator decides to
+  pivot through the user's own browser) and the operator-on-attacker-infra case
+  (covered separately by KQL against M365 Unified Audit Log).
+references:
+  - https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation
+  - https://www.crowdstrike.com/en-us/blog/defending-against-cordial-spider-and-snarky-spider-with-falcon-shield/
+author: Jarmi
+date: 2026/05/27
+tags:
+  - attack.collection
+  - attack.exfiltration
+  - attack.t1213.002
+  - attack.t1530
+  - attack.t1119
+  - attack.t1041
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_powershell:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_cmd_verb:
+    CommandLine|contains:
+      - 'Invoke-WebRequest'
+      - 'Invoke-RestMethod'
+      - 'iwr '
+      - 'irm '
+  selection_target_sharepoint:
+    CommandLine|contains:
+      - '.sharepoint.com'
+      - 'graph.microsoft.com'
+      - '/_api/web/'
+      - '/_layouts/15/download.aspx'
+  selection_useragent:
+    CommandLine|contains:
+      - 'python-requests'
+      - 'WindowsPowerShell/5.1'
+      - 'Go-http-client'
+      - 'curl/'
+      - 'aiohttp/'
+  condition: selection_powershell and selection_cmd_verb and selection_target_sharepoint and selection_useragent
+falsepositives:
+  - Custom backup, migration or compliance tooling that legitimately fetches
+    SharePoint content with a scripting User-Agent (should be allowlisted by
+    script path or signing certificate)
+  - Red-team / purple-team exercises emulating UNC6671 tradecraft (expected,
+    coordinate with the engagement schedule)
+
+level: high

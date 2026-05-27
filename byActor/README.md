@@ -18,11 +18,14 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [ArcaneDoor](./arcanedoor/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
 | [BlackCat](./blackcat/) | 1 |
+| [BlackFile (self-branded DLS)](./blackfile-self-branded-dls/) | 1 |
 | [BreachForums](./breachforums/) | 1 |
 | [C0063](./c0063/) | 1 |
+| [CL-CRI-1116 (Palo Alto Unit 42)](./cl-cri-1116-palo-alto-unit-42/) | 1 |
 | [CL-STA-0049](./cl-sta-0049/) | 1 |
 | [Calypso APT](./calypso-apt/) | 1 |
 | [CloudZ](./cloudz/) | 1 |
+| [Cordial Spider (CrowdStrike)](./cordial-spider-crowdstrike/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
 | [Dadsec](./dadsec/) | 1 |
 | [Earth Estries](./earth-estries/) | 1 |
@@ -42,6 +45,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Mini Shai-Hulud](./mini-shai-hulud/) | 1 |
 | [Nexcorium](./nexcorium/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
+| [O-UNC-045 (Okta Defensive Cyber Operations)](./o-unc-045-okta-defensive-cyber-operations/) | 1 |
 | [Pheno](./pheno/) | 1 |
 | [Punk Spider](./punk-spider/) | 1 |
 | [QLNX](./qlnx/) | 1 |
@@ -86,6 +90,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [UNC1151](./unc1151/) | 1 |
 | [UNC5174](./unc5174/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
+| [UNC6671 (GTIG / Mandiant)](./unc6671-gtig-mandiant/) | 1 |
 | [UNC6780](./unc6780/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
 | [Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)](./unattributed-ransomware-aligned-iab-ttp-overlap-with-akira-storm-1567-affiliate-ecosystem/) | 1 |

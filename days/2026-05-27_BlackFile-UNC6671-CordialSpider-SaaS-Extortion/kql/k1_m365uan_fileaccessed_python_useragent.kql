@@ -1,0 +1,36 @@
+// Title:        BlackFile UNC6671 — M365 SharePoint FileAccessed with Scripting-Library User-Agent
+// Id:           6c6e83b5-c3bc-421c-bc62-efbfc10fa212
+// MITRE:        T1213.002, T1530, T1119, T1041
+// Reference:    https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation
+// Author:       Jarmi
+// Date:         2026-05-27
+// Tested on:    Microsoft Sentinel — OfficeActivity table (M365 Unified Audit Log)
+// FP notes:     Custom backup, migration, and compliance tooling may carry a
+//               scripting User-Agent against SharePoint legitimately. Allowlist
+//               by App Display Name or by a known managed ClientIP range.
+//               Treat FileAccessed and FileDownloaded with equal weight here —
+//               UNC6671 deliberately downshifted to FileAccessed in later
+//               intrusions to evade SOCs that demote that event class.
+
+OfficeActivity
+| where TimeGenerated > ago(30d)
+| where Operation in ("FileAccessed", "FileDownloaded", "FileSyncDownloadedFull", "FilePreviewed")
+| where OfficeWorkload in ("SharePoint", "OneDrive")
+| where UserAgent matches regex @"(?i)(python-requests/|WindowsPowerShell/|Go-http-client/|curl/|aiohttp/|httpx/|node-fetch/|axios/)"
+| extend ScriptingLibrary = extract(@"(?i)(python-requests|WindowsPowerShell|Go-http-client|curl|aiohttp|httpx|node-fetch|axios)", 1, UserAgent)
+| extend ClientAppContext = tostring(parse_json(AppAccessContext).ClientAppName)
+| extend SpoofedAsOffice = iff(ClientAppContext == "Microsoft Office" and ScriptingLibrary != "", true, false)
+| project
+    TimeGenerated,
+    UserId,
+    ClientIP,
+    UserAgent,
+    ScriptingLibrary,
+    ClientAppContext,
+    SpoofedAsOffice,
+    Operation,
+    OfficeWorkload,
+    OfficeObjectId,
+    SourceFileName = column_ifexists("SourceFileName", ""),
+    SourceRelativeUrl = column_ifexists("SourceRelativeUrl", "")
+| order by TimeGenerated asc

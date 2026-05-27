@@ -1,0 +1,33 @@
+# BlackFile / UNC6671 / Cordial Spider — Suricata 7.x rule set
+# Author: Jarmi
+# Date:   2026-05-27
+# Reference: https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation
+# Notes:
+#   - Sids 9026001..9026005 in the local 9000000-9999999 range to avoid
+#     collisions with ET Open and other published Suricata rule sets.
+#   - Variable $HOME_NET assumed to be the standard internal address space;
+#     adjust as needed per environment.
+#   - The TLS SNI rules fire on the apex; tune per environment if internal
+#     SaaS happens to use one of these legitimately (highly unlikely).
+
+# 1) TLS SNI to UNC6671 BlackFile lookalike apex enrollms.com
+alert tls $HOME_NET any -> any 443 (msg:"BLACKFILE UNC6671 AiTM SNI to enrollms.com (vishing-driven SSO lookalike)"; tls.sni; content:".enrollms.com"; endswith; nocase; classtype:trojan-activity; sid:9026001; rev:1;)
+
+# 2) TLS SNI to UNC6671 BlackFile lookalike apex passkeyms.com
+alert tls $HOME_NET any -> any 443 (msg:"BLACKFILE UNC6671 AiTM SNI to passkeyms.com (passkey-enrollment pretext lookalike)"; tls.sni; content:".passkeyms.com"; endswith; nocase; classtype:trojan-activity; sid:9026002; rev:1;)
+
+# 3) TLS SNI to UNC6671 BlackFile lookalike apex setupsso.com
+alert tls $HOME_NET any -> any 443 (msg:"BLACKFILE UNC6671 AiTM SNI to setupsso.com (SSO-setup pretext lookalike)"; tls.sni; content:".setupsso.com"; endswith; nocase; classtype:trojan-activity; sid:9026003; rev:1;)
+
+# 4) HTTP request to known UNC6671 exfil source IP 179.43.185.226
+# (Commercial VPN ASN per GTIG; identity rotates, but this specific node was
+#  observed in two distinct Unified Audit Log examples 2026-02-24 and
+#  2026-03-18 — keep as an anchor for retro-hunt.)
+alert ip $HOME_NET any -> [179.43.185.226] any (msg:"BLACKFILE UNC6671 connection to known SharePoint exfil source IP 179.43.185.226"; classtype:trojan-activity; sid:9026004; rev:1;)
+
+# 5) HTTP User-Agent referencing python-requests/2.28.1 or WindowsPowerShell/5.1 to *.sharepoint.com
+# (UNC6671 spoofed ClientAppId="Microsoft Office" but the UserAgent string
+#  still identified the scripting library — this is the high-confidence
+#  network-side anchor that complements the M365 UAL KQL detection.)
+alert http $HOME_NET any -> any any (msg:"BLACKFILE UNC6671 scripting-library User-Agent to SharePoint Online"; http.host; content:".sharepoint.com"; endswith; nocase; http.user_agent; content:"python-requests/2.28.1"; nocase; classtype:trojan-activity; sid:9026005; rev:1;)
+alert http $HOME_NET any -> any any (msg:"BLACKFILE UNC6671 WindowsPowerShell User-Agent to SharePoint Online"; http.host; content:".sharepoint.com"; endswith; nocase; http.user_agent; content:"WindowsPowerShell/5.1"; nocase; classtype:trojan-activity; sid:9026006; rev:1;)
