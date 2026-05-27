@@ -1,0 +1,46 @@
+// Title:        BlackFile UNC6671 — SharePoint file-access burst from unmanaged device
+// Id:           3da30624-3ce2-4ea7-8525-620dd69ef1e8
+// MITRE:        T1213.002, T1530, T1119
+// Reference:    https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation
+// Author:       Jarmi
+// Date:         2026-05-27
+// Tested on:    Microsoft Sentinel — OfficeActivity table (M365 Unified Audit Log)
+// FP notes:     A single user legitimately browsing a large SharePoint library
+//               on a personal (BYOD) device can produce a small spike. The
+//               threshold (300 file events in 10 minutes) is calibrated to the
+//               UNC6671 cadence published by GTIG — one campaign session
+//               pulled over one million files from a single SharePoint tenant.
+//               Tune the threshold per environment; the goal is to spot
+//               automation, not casual browsing.
+
+let WindowMinutes = 10;
+let MinEventsInWindow = 300;
+OfficeActivity
+| where TimeGenerated > ago(7d)
+| where Operation in ("FileAccessed", "FileDownloaded", "FileSyncDownloadedFull", "FilePreviewed")
+| where OfficeWorkload in ("SharePoint", "OneDrive")
+| extend IsManagedDevice = tobool(column_ifexists("IsManagedDevice", false))
+| where IsManagedDevice == false
+| summarize
+    EventCount = count(),
+    DistinctFiles = dcount(OfficeObjectId),
+    FirstEvent = min(TimeGenerated),
+    LastEvent = max(TimeGenerated),
+    UserAgents = make_set(UserAgent, 10),
+    ClientIPs = make_set(ClientIP, 10),
+    Workloads = make_set(OfficeWorkload, 5)
+    by UserId, bin(TimeGenerated, WindowMinutes * 1m)
+| where EventCount >= MinEventsInWindow
+| extend ElapsedMinutes = datetime_diff('minute', LastEvent, FirstEvent)
+| extend FilesPerMinute = todouble(DistinctFiles) / iff(ElapsedMinutes == 0, 1.0, todouble(ElapsedMinutes))
+| project
+    TimeGenerated,
+    UserId,
+    EventCount,
+    DistinctFiles,
+    ElapsedMinutes,
+    FilesPerMinute,
+    UserAgents,
+    ClientIPs,
+    Workloads
+| order by EventCount desc

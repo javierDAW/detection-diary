@@ -13,7 +13,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 |---|---|
 | [active-directory](./active-directory/) | 3 |
 | [android](./android/) | 1 |
-| [cloud-multi](./cloud-multi/) | 8 |
+| [cloud-multi](./cloud-multi/) | 9 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 1 |
 | [linux](./linux/) | 13 |
@@ -22,6 +22,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [network-edge](./network-edge/) | 7 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 2 |
+| [saas](./saas/) | 1 |
 | [supply-chain](./supply-chain/) | 6 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
-| [windows](./windows/) | 22 |
+| [windows](./windows/) | 23 |

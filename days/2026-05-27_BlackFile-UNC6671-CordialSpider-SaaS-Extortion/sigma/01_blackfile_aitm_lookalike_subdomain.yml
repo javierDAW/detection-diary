@@ -1,0 +1,51 @@
+title: BlackFile UNC6671 AiTM Lookalike Subdomain Connection
+id: e737a153-1af2-4267-9564-e1c5d979b76d
+status: experimental
+description: |
+  Detects outbound HTTPS network connections from a browser process to one of the
+  Tucows-registered apex domains that UNC6671 / BlackFile / Cordial Spider uses
+  for its vishing-driven adversary-in-the-middle credential harvest, as
+  documented by Google Threat Intelligence Group (GTIG) on 2026-05-15. The
+  operator stands up a per-victim subdomain (pattern
+  <organization>.enrollms[.]com, <organization>.passkeyms[.]com, or
+  <organization>.setupsso[.]com) minutes before the vishing call and the victim
+  follows the caller's URL into the lookalike SSO portal. A browser process
+  resolving any of these three apex domains is a single-event high-confidence
+  indicator of an active AiTM session. Logs requiring DestinationHostname or
+  DestinationIp resolved against passive DNS or DNS-event telemetry; tune
+  against your environment's known good subdomains if any.
+references:
+  - https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation
+  - https://www.crowdstrike.com/en-us/blog/defending-against-cordial-spider-and-snarky-spider-with-falcon-shield/
+  - https://thehackernews.com/2026/05/cybercrime-groups-using-vishing-and-sso.html
+author: Jarmi
+date: 2026/05/27
+tags:
+  - attack.initial-access
+  - attack.credential-access
+  - attack.t1566.004
+  - attack.t1556.006
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection_browser:
+    Image|endswith:
+      - '\msedge.exe'
+      - '\chrome.exe'
+      - '\firefox.exe'
+      - '\brave.exe'
+      - '\opera.exe'
+  selection_domain:
+    DestinationHostname|endswith:
+      - '.enrollms.com'
+      - '.passkeyms.com'
+      - '.setupsso.com'
+  condition: selection_browser and selection_domain
+falsepositives:
+  - Legitimate enterprise SaaS vendors that legitimately use one of these apex
+    domains (highly unlikely; verify before tuning out)
+  - Security awareness platforms running controlled phishing simulations that
+    happen to mirror the same naming convention (rare)
+
+level: high

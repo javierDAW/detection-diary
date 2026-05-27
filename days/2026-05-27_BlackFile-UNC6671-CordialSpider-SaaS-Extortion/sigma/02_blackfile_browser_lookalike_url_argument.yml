@@ -1,0 +1,47 @@
+title: BlackFile UNC6671 Browser Launched with Lookalike URL Argument
+id: b9787ff0-30fb-4457-8848-c9d564b7a8cb
+status: experimental
+description: |
+  Detects a browser process started with one of the UNC6671 / BlackFile /
+  Cordial Spider lookalike apex domains present as a literal substring in the
+  command-line URL argument. The vishing caller often emails or chats the
+  lookalike URL to the victim and the victim then clicks the link, which
+  launches the browser with the URL as its primary argument. This rule covers
+  the click-from-link path; the companion network_connection rule
+  (01_blackfile_aitm_lookalike_subdomain.yml) covers the resolved-connection
+  path. Both should fire on the same intrusion; if only one fires, investigate.
+  Sigma covers msedge.exe, chrome.exe, firefox.exe, brave.exe and opera.exe.
+references:
+  - https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation
+  - https://www.crowdstrike.com/en-us/blog/defending-against-cordial-spider-and-snarky-spider-with-falcon-shield/
+author: Jarmi
+date: 2026/05/27
+tags:
+  - attack.initial-access
+  - attack.credential-access
+  - attack.t1566.004
+  - attack.t1556.006
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_browser:
+    Image|endswith:
+      - '\msedge.exe'
+      - '\chrome.exe'
+      - '\firefox.exe'
+      - '\brave.exe'
+      - '\opera.exe'
+  selection_url_in_cmdline:
+    CommandLine|contains:
+      - '.enrollms.com'
+      - '.passkeyms.com'
+      - '.setupsso.com'
+  condition: selection_browser and selection_url_in_cmdline
+falsepositives:
+  - User research or threat-intel team intentionally browsing the lookalike
+    domain for analysis (should be sandbox or non-production)
+  - Security awareness platforms running controlled phishing simulations that
+    deliver URLs on these apex domains (rare)
+
+level: high

@@ -1,0 +1,57 @@
+// Title:        BlackFile UNC6671 — Entra ID MFA device registered within 5 minutes after a failed/abandoned MFA challenge
+// Id:           638e1758-e239-4464-a970-9169dda1c2cc
+// MITRE:        T1098.005, T1556.006, T1621
+// Reference:    https://cloud.google.com/blog/topics/threat-intelligence/blackfile-vishing-extortion-operation
+// Author:       Jarmi
+// Date:         2026-05-27
+// Tested on:    Microsoft Sentinel — SigninLogs + AuditLogs
+// FP notes:     A genuine MFA-method change by a user who has just had a
+//               legitimate sign-in failure can trip this. The discriminator is
+//               the source-IP and source-AS of the AuditLog event vs the
+//               SigninLog event: if they differ, especially if the audit IP is
+//               an anonymizer or commercial VPN ASN, escalate. The five-minute
+//               window is calibrated to the UNC6671 cadence — operator
+//               enrolls the new device immediately after first successful
+//               sign-in, often within 30-90 seconds.
+
+let WindowMinutes = 5;
+let SigninFailures =
+    SigninLogs
+    | where TimeGenerated > ago(14d)
+    | where ResultType != 0
+    | where ResultType in (
+        "50074", "50076", "50097", "50140", "50158",  // various MFA failure / abandoned codes
+        "500121", "530002", "530003"                   // strong-auth required / abandoned
+      )
+      or ResultDescription has_any (
+        "MFA failed", "Authentication failed", "abandoned",
+        "user did not complete", "user declined"
+      )
+    | project FailTime = TimeGenerated, UserPrincipalName, SourceIP = IPAddress, SourceASN = tostring(parse_json(tostring(LocationDetails)).countryOrRegion), FailResultType = ResultType;
+AuditLogs
+| where TimeGenerated > ago(14d)
+| where OperationName in (
+    "User registered security info",
+    "User changed default security info",
+    "Add registered security info",
+    "Update registered security info",
+    "Register security info"
+  )
+| extend
+    TargetUser = tostring(parse_json(tostring(TargetResources))[0].userPrincipalName),
+    InitiatedByIP = tostring(parse_json(tostring(InitiatedBy)).user.ipAddress)
+| project AuditTime = TimeGenerated, UserPrincipalName = TargetUser, AuditIP = InitiatedByIP, OperationName, Result
+| join kind=inner (SigninFailures) on UserPrincipalName
+| where AuditTime between (FailTime .. FailTime + WindowMinutes * 1m)
+| extend SuspiciousIPSwap = iff(AuditIP != SourceIP and isnotempty(AuditIP) and isnotempty(SourceIP), true, false)
+| project
+    UserPrincipalName,
+    FailTime,
+    AuditTime,
+    FailResultType,
+    SourceIP,
+    AuditIP,
+    SuspiciousIPSwap,
+    OperationName,
+    Result
+| order by AuditTime desc
