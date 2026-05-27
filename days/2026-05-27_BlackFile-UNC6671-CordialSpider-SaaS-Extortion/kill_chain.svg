@@ -1,4 +1,4 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d" font-family="sans-serif">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1120" role="img" aria-labelledby="t d" font-family="sans-serif">
   <title id="t">BlackFile UNC6671 Cordial Spider vishing AiTM SaaS extortion kill chain</title>
   <desc id="d">Two-lane kill chain. Victim organisation lane (left) shows passive recon, vishing call with IT-helpdesk pretext, adversary-in-the-middle credential and MFA capture, attacker MFA device enrollment and previous-device removal, inbox-rule auto-delete of security notifications, internal directory scrape and pivot to privileged accounts, programmatic SharePoint and OneDrive exfiltration with python-requests or PowerShell User-Agent and spoofed Microsoft Office ClientAppId, and extortion (Tox or Session). BlackFile operations lane (right) shows hired vishing callers, Tucows-registered lookalike apex domains, commercial VPN or residential proxy exfil egress with the GTIG-documented anchor IP, and the BlackFile data leak site lifecycle including the 2026-05-11 shutdown announcement. Detection anchors are at the bottom.</desc>
 
@@ -66,15 +66,15 @@
     </marker>
   </defs>
 
-  <rect class="bg" width="880" height="1280"/>
+  <rect class="bg" width="880" height="1120"/>
 
   <!-- Header -->
   <text class="head" x="20" y="32">BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM</text>
   <text class="meta" x="20" y="52">GTIG + CrowdStrike + Unit 42 / RH-ISAC · public 2026-05-01 / 05-15 / 05-19 · mid-rebrand 2026-05-11</text>
 
-  <!-- Lanes (y=80..1080, h=1000) -->
-  <rect class="lane" x="20"  y="80" width="510" height="1000" rx="6"/>
-  <rect class="lane" x="550" y="80" width="310" height="1000" rx="6"/>
+  <!-- Lanes (y=80..920, h=840) -->
+  <rect class="lane" x="20"  y="80" width="510" height="840" rx="6"/>
+  <rect class="lane" x="550" y="80" width="310" height="840" rx="6"/>
   <text class="laneL" x="35"  y="100">VICTIM ORG · M365 + OKTA TENANT</text>
   <text class="laneR" x="565" y="100">BLACKFILE OPS · AiTM INFRA + DLS</text>
 
@@ -217,13 +217,13 @@
   <path class="arrow" d="M275,700 L275,720" marker-end="url(#m)"/>
   <path class="arrow" d="M275,800 L275,820" marker-end="url(#m)"/>
 
-  <!-- ===== Footer detection anchors band (y=1100..1260, h=160) ===== -->
-  <rect class="anchor" x="20" y="1100" width="840" height="160" rx="6"/>
-  <text class="anchorT" x="35" y="1124">Detection anchors mapped to this folder</text>
-  <text class="anchorL" x="35" y="1146">Sigma · 01 AiTM apex network_connection · 02 browser launched with lookalike URL · 03 PowerShell SharePoint scripting UA</text>
-  <text class="anchorL" x="35" y="1164">KQL · k1 FileAccessed + scripting UA · k2 SharePoint burst from unmanaged device · k3 MFA register after failed challenge</text>
-  <text class="anchorL" x="35" y="1182">YARA · blackfile_phishing_kit_artifacts.yar — apex refs + exfil script boilerplate + extortion note template</text>
-  <text class="anchorL" x="35" y="1200">Suricata · blackfile_unc6671.rules — TLS SNI to 3 apexes + 179.43.185.226 IP + python-requests UA to SharePoint</text>
-  <text class="anchorL" x="35" y="1218">PEAK hunts · h1 python UA on SharePoint FileAccessed · h2 MFA register after failure · h3 Tucows lookalike &lt;14d</text>
-  <text class="anchorL" x="35" y="1240">IOCs · 25 entries in iocs.csv — 3 lookalike apexes, 179.43.185.226 anchor, UA fingerprints, comms anchors, mid-rebrand</text>
+  <!-- ===== Footer detection anchors band (y=940..1100, h=160) ===== -->
+  <rect class="anchor" x="20" y="940" width="840" height="160" rx="6"/>
+  <text class="anchorT" x="35" y="964">Detection anchors mapped to this folder</text>
+  <text class="anchorL" x="35" y="986">Sigma · 01 AiTM apex network_connection · 02 browser launched with lookalike URL · 03 PowerShell SharePoint scripting UA</text>
+  <text class="anchorL" x="35" y="1004">KQL · k1 FileAccessed + scripting UA · k2 SharePoint burst from unmanaged device · k3 MFA register after failed challenge</text>
+  <text class="anchorL" x="35" y="1022">YARA · blackfile_phishing_kit_artifacts.yar — apex refs + exfil script boilerplate + extortion note template</text>
+  <text class="anchorL" x="35" y="1040">Suricata · blackfile_unc6671.rules — TLS SNI to 3 apexes + 179.43.185.226 IP + python-requests UA to SharePoint</text>
+  <text class="anchorL" x="35" y="1058">PEAK hunts · h1 python UA on SharePoint FileAccessed · h2 MFA register after failure · h3 Tucows lookalike &lt;14d</text>
+  <text class="anchorL" x="35" y="1080">IOCs · 25 entries in iocs.csv — 3 lookalike apexes, 179.43.185.226 anchor, UA fingerprints, comms anchors, mid-rebrand</text>
 </svg>
