@@ -1,0 +1,66 @@
+title: TrapDoor Persistence Write to .cursorrules or CLAUDE.md Project Files
+id: 0fda66a0-31ec-42ba-8041-1ac7bee1320a
+status: experimental
+description: |
+  Detects the TrapDoor AI-assistant persistence primitive (Socket, 2026-05-24)
+  where the npm payload trap-core.js writes a .cursorrules or CLAUDE.md file
+  into a developer project root, embedding hidden instructions with zero-width
+  Unicode characters that trick AI coding assistants (Cursor, Claude Code,
+  Aider, Continue) into running a fake "security scan" that silently exfiltrates
+  local secrets. The file-event anchor is a write to any path ending in
+  `.cursorrules` or `CLAUDE.md` whose creator process is node.exe, npm.exe,
+  python.exe, cargo.exe or any shell. Legitimate writes of these files are
+  performed by the developer through their editor (Code.exe, cursor.exe,
+  zed.exe, vim, emacs) — a write originating from a package-manager-spawned
+  process is the discriminator. The same rule covers the parallel `BYPASS.md` /
+  `PAYLOAD.md` / `SWARM.md` / `AUDIT-MATRIX.md` framework files that the
+  attacker seeded via PR-bombing against browser-use, langchain, langflow,
+  llama_index, MetaGPT and OpenHands.
+references:
+  - https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
+  - https://github.com/ddjidd564/defi-security-best-practices/blob/gh-pages/standards/AUDIT-MATRIX.md
+author: Jarmi
+date: 2026/05/28
+tags:
+  - attack.persistence
+  - attack.defense-evasion
+  - attack.t1546
+  - attack.t1027
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_target:
+    TargetFilename|endswith:
+      - '\.cursorrules'
+      - '\CLAUDE.md'
+      - '\AUDIT-MATRIX.md'
+      - '\BYPASS.md'
+      - '\PAYLOAD.md'
+      - '\SWARM.md'
+      - '/.cursorrules'
+      - '/CLAUDE.md'
+      - '/AUDIT-MATRIX.md'
+      - '/BYPASS.md'
+      - '/PAYLOAD.md'
+      - '/SWARM.md'
+  selection_pkg_mgr:
+    Image|endswith:
+      - '\node.exe'
+      - '\npm.exe'
+      - '\npm.cmd'
+      - '\python.exe'
+      - '\python3.exe'
+      - '\cargo.exe'
+      - '\rustc.exe'
+      - '/node'
+      - '/python'
+      - '/python3'
+      - '/cargo'
+  condition: selection_target and selection_pkg_mgr
+falsepositives:
+  - Internal scripts that legitimately bootstrap .cursorrules or CLAUDE.md as
+    part of project scaffolding (allowlist by ParentImage of approved internal
+    scaffolder tooling)
+
+level: high

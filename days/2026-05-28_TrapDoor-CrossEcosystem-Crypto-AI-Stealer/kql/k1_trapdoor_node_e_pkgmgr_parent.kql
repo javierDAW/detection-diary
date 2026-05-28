@@ -1,0 +1,29 @@
+// Title:        TrapDoor node -e From Package-Manager Parent (PyPI / npm)
+// Id:           650831bd-ca0a-4bc4-9e6d-9606320f2ff3
+// MITRE:        T1059.007, T1195.002
+// Reference:    https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
+// Author:       Jarmi
+// Date:         2026-05-28
+// Tested on:    Microsoft Defender XDR — DeviceProcessEvents
+// FP notes:     Internal Python-to-Node bridge scripts and legitimate npm postinstall
+//               hooks that use node -e for trivial work; allowlist by ProcessCommandLine
+//               substring or by parent package name once enumerated.
+
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName in~ ("node.exe", "node")
+| where ProcessCommandLine has " -e "
+| extend ParentLower = tolower(InitiatingProcessFileName)
+| extend ParentCmdLower = tolower(InitiatingProcessCommandLine)
+| where ParentLower in~ ("python.exe", "python3.exe", "pythonw.exe", "python", "python3",
+                          "npm.exe", "npm.cmd", "node.exe", "node")
+        or ParentCmdLower has_any ("npm install", "postinstall", "npm-cli.js")
+        or ProcessCommandLine has_any (
+            "ddjidd564.github.io",
+            "defi-security-best-practices",
+            "trap-core"
+        )
+| project Timestamp, DeviceName, AccountName,
+          ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine,
+          FolderPath, InitiatingProcessFolderPath, SHA256
+| order by Timestamp asc

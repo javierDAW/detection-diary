@@ -1,0 +1,25 @@
+// Title:        TrapDoor .cursorrules / CLAUDE.md Written by Package Manager Process
+// Id:           b7042cd0-e95f-4c6d-a473-4ea287b95ff7
+// MITRE:        T1546, T1027, T1195.002
+// Reference:    https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
+// Author:       Jarmi
+// Date:         2026-05-28
+// Tested on:    Microsoft Defender XDR — DeviceFileEvents
+// FP notes:     Internal scaffolding scripts that legitimately write these files
+//               from a non-editor process; allowlist by InitiatingProcessFolderPath
+//               of approved bootstrap tooling.
+
+DeviceFileEvents
+| where Timestamp > ago(14d)
+| where ActionType in ("FileCreated", "FileModified")
+| where FileName in~ (".cursorrules", "CLAUDE.md", "AUDIT-MATRIX.md",
+                       "BYPASS.md", "PAYLOAD.md", "SWARM.md")
+| extend InitLower = tolower(InitiatingProcessFileName)
+| where InitLower in~ ("node.exe", "node", "npm.exe", "npm.cmd",
+                        "python.exe", "python3.exe", "pythonw.exe", "python", "python3",
+                        "cargo.exe", "cargo", "rustc.exe", "rustc",
+                        "bash.exe", "bash", "sh", "powershell.exe", "pwsh.exe")
+| project Timestamp, DeviceName, AccountName, FolderPath, FileName,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          InitiatingProcessFolderPath, SHA256
+| order by Timestamp asc
