@@ -1,0 +1,30 @@
+// Title:        TrapDoor Egress to ddjidd564.github.io + GitHub Gist Exfil Correlation
+// Id:           4ee0543e-d307-4f10-a618-2cb989ab6c4f
+// MITRE:        T1071.001, T1102, T1567.001
+// Reference:    https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
+// Author:       Jarmi
+// Date:         2026-05-28
+// Tested on:    Microsoft Defender XDR — DeviceNetworkEvents
+// FP notes:     Security researcher or threat hunter investigating the campaign
+//               from a sanctioned analysis host; allowlist by DeviceName.
+
+let pkgmgr = dynamic(["node.exe", "node", "npm.exe", "npm.cmd",
+                       "python.exe", "python3.exe", "pythonw.exe", "python", "python3",
+                       "cargo.exe", "cargo", "rustc.exe"]);
+DeviceNetworkEvents
+| where Timestamp > ago(14d)
+| where RemoteUrl has_any (
+    "ddjidd564.github.io",
+    "defi-security-best-practices/config.json",
+    "defi-security-best-practices/payload"
+  )
+  or InitiatingProcessCommandLine has_any (
+    "ddjidd564.github.io",
+    "defi-security-best-practices"
+  )
+| extend InitLower = tolower(InitiatingProcessFileName)
+| where InitLower in~ (pkgmgr)
+| project Timestamp, DeviceName, AccountName, RemoteUrl, RemoteIP, RemotePort,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          InitiatingProcessFolderPath
+| order by Timestamp asc

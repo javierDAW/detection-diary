@@ -80,6 +80,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [TeamPCP](./teampcp/) | 4 |
 | [The Gentlemen](./the-gentlemen/) | 1 |
 | [The Gentlemen RaaS](./the-gentlemen-raas/) | 1 |
+| [TrapDoor (Socket-tracked)](./trapdoor-socket-tracked/) | 1 |
 | [TukTuk (AI-generated framework)](./tuktuk-ai-generated-framework/) | 1 |
 | [Tycoon2FA](./tycoon2fa/) | 1 |
 | [UAC-0057](./uac-0057/) | 1 |

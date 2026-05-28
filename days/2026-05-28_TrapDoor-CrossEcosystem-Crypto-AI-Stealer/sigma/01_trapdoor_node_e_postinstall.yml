@@ -1,0 +1,65 @@
+title: TrapDoor PyPI Package Spawns node -e From Python Import or NPM Postinstall
+id: 64e0cf13-9f01-45a9-8783-49f52164f3d2
+status: experimental
+description: |
+  Detects the TrapDoor cross-ecosystem supply chain pattern (Socket, 2026-05-24)
+  where a PyPI package auto-executes on import and uses `node -e` to evaluate
+  remote JavaScript fetched from the attacker-controlled GitHub Pages domain
+  ddjidd564.github[.]io, or an npm postinstall hook spawns node with a -e flag
+  to evaluate inline JavaScript that downloads the trap-core.js payload. The
+  command-line fingerprint `node -e` combined with a python interpreter parent
+  (python.exe / python3) or an npm child of a package install (npm.cmd / npm.exe
+  / npm-cli.js) is a high-confidence host anchor; legitimate developer workflows
+  almost never spawn `node -e` from a python interpreter, and npm postinstall
+  hooks that fetch and evaluate remote JavaScript at install time are an
+  extremely low-prevalence pattern outside of supply-chain compromise. Pair this
+  rule with the network-connection rule that detects egress to the GitHub Pages
+  attacker domain and with the file-event rule that detects writes of
+  .cursorrules / CLAUDE.md / trap-core.js under user-writable paths.
+references:
+  - https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
+  - https://thehackernews.com/2026/05/trapdoor-supply-chain-attack-spreads.html
+  - https://phoenix.security/trapdoor-supply-chain-ai-poisoning-npm-pypi-crates/
+author: Jarmi
+date: 2026/05/28
+tags:
+  - attack.initial-access
+  - attack.execution
+  - attack.t1059.007
+  - attack.t1195.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_node_e:
+    Image|endswith:
+      - '\node.exe'
+      - '/node'
+    CommandLine|contains: ' -e '
+  selection_parent_python:
+    ParentImage|endswith:
+      - '\python.exe'
+      - '\python3.exe'
+      - '\pythonw.exe'
+      - '/python'
+      - '/python3'
+  selection_parent_npm:
+    ParentCommandLine|contains:
+      - 'npm install'
+      - 'npm.cmd'
+      - 'npm-cli.js'
+      - 'postinstall'
+  selection_ddjidd564:
+    CommandLine|contains:
+      - 'ddjidd564.github.io'
+      - 'ddjidd564.github[.]io'
+      - 'defi-security-best-practices'
+      - 'trap-core'
+  condition: selection_node_e and (selection_parent_python or selection_parent_npm or selection_ddjidd564)
+falsepositives:
+  - Internal developer tooling that intentionally bridges Python and Node via
+    inline JavaScript (extremely rare; review parent project to confirm)
+  - npm postinstall hooks of legitimate packages that legitimately use node -e
+    for trivial scripts (tune by adding allowlist of internal package names)
+
+level: high

@@ -1,0 +1,47 @@
+title: TrapDoor Egress to ddjidd564.github.io Configuration and Payload Host
+id: b3dd163e-2b82-4be4-9145-026affb89cd5
+status: experimental
+description: |
+  Detects outbound network connections from a developer workstation, build
+  agent, or CI/CD runner to the attacker-controlled GitHub Pages host
+  ddjidd564.github[.]io that serves the TrapDoor configuration JSON
+  (`/defi-security-best-practices/config.json`) and the trap-core.js payload
+  delegate referenced by the PyPI auto-import primitive (Socket, 2026-05-24).
+  Any single connection from a non-developer-tooling process (node, python,
+  cargo, rust, shell, curl, wget, powershell) to this host is a high-confidence
+  campaign indicator; GitHub Pages is a general-purpose hosting service and the
+  TrapDoor campaign is the only documented public reference for this account,
+  so a hit is unambiguous until the account is decommissioned. The rule fires
+  on either the FQDN (DestinationHostname) or the rendered URL
+  (CommandLine|contains for processes that embed the URL inline, common with
+  node -e / python -c / curl).
+references:
+  - https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
+  - https://github.com/ddjidd564/defi-security-best-practices
+author: Jarmi
+date: 2026/05/28
+tags:
+  - attack.command-and-control
+  - attack.exfiltration
+  - attack.t1071.001
+  - attack.t1102
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection_host:
+    DestinationHostname|endswith:
+      - 'ddjidd564.github.io'
+  selection_cmd_url:
+    CommandLine|contains:
+      - 'ddjidd564.github.io'
+      - 'ddjidd564.github[.]io'
+      - 'defi-security-best-practices/config.json'
+      - 'defi-security-best-practices/payload'
+  condition: selection_host or selection_cmd_url
+falsepositives:
+  - Security researcher or threat hunter actively investigating the TrapDoor
+    campaign from a sanctioned analysis host (allowlist by hostname or by IR
+    user account)
+
+level: high
