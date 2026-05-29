@@ -25,4 +25,4 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [saas](./saas/) | 1 |
 | [supply-chain](./supply-chain/) | 7 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
-| [windows](./windows/) | 24 |
+| [windows](./windows/) | 25 |

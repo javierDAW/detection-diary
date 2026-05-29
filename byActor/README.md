@@ -24,6 +24,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [CL-CRI-1116 (Palo Alto Unit 42)](./cl-cri-1116-palo-alto-unit-42/) | 1 |
 | [CL-STA-0049](./cl-sta-0049/) | 1 |
 | [Calypso APT](./calypso-apt/) | 1 |
+| [Chaotic Eclipse / Nightmare-Eclipse](./chaotic-eclipse-nightmare-eclipse/) | 1 |
 | [CloudZ](./cloudz/) | 1 |
 | [Cordial Spider (CrowdStrike)](./cordial-spider-crowdstrike/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
