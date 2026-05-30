@@ -11,13 +11,13 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 
 | Group | Days |
 |---|---|
-| [active-directory](./active-directory/) | 3 |
+| [active-directory](./active-directory/) | 2 |
 | [android](./android/) | 1 |
 | [cloud-multi](./cloud-multi/) | 10 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 1 |
 | [linux](./linux/) | 14 |
-| [macos](./macos/) | 4 |
+| [macos](./macos/) | 5 |
 | [microsoft-365](./microsoft-365/) | 1 |
 | [network-edge](./network-edge/) | 7 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
@@ -25,4 +25,4 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [saas](./saas/) | 1 |
 | [supply-chain](./supply-chain/) | 7 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
-| [windows](./windows/) | 25 |
+| [windows](./windows/) | 24 |

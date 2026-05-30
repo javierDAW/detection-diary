@@ -4,11 +4,12 @@
 
 # Techniques: T1539
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-30 | AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers AI agents and users into installing a multi-key-XOR universal Mach-O wallet and Keychain stealer | AMOS / Atomic macOS Stealer (MaaS) | [`2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/`](../../days/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/) |
 | 2026-05-28 | TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io | TrapDoor (Socket-tracked) | [`2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/`](../../days/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) |
 | 2026-05-08 | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026) | CloudZ · Pheno | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink/`](../../days/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | 2026-05-07 | EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026) | namikazesarada010206 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |

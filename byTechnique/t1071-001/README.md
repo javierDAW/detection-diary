@@ -4,11 +4,12 @@
 
 # Techniques: T1071.001
 
-16 day(s) covering this technique.
+17 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-30 | AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers AI agents and users into installing a multi-key-XOR universal Mach-O wallet and Keychain stealer | AMOS / Atomic macOS Stealer (MaaS) | [`2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/`](../../days/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/) |
 | 2026-05-28 | TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io | TrapDoor (Socket-tracked) | [`2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/`](../../days/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) |
 | 2026-05-26 | VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConnect IAB Operation | VENOMOUS#HELPER (Securonix) · STAC6405 (Sophos) | [`2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/`](../../days/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/) |
 | 2026-05-25 | UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OYSTERBLUES Targeting Ukrainian Government via Prometheus Lures | UAC-0057 · Ghostwriter · FrostyNeighbor · UNC1151 | [`2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/`](../../days/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/) |

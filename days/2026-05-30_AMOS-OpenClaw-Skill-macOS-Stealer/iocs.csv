@@ -1,0 +1,51 @@
+type,value,context,confidence,source
+ipv4,91.92.242[.]30,First-stage AMOS loader host serving payloads under random 16-character paths,high,Trend Micro
+domain,openclawcli[.]vercel[.]app,Fake driver/prerequisite download lure referenced by the malicious OpenClaw SKILL.md,high,Trend Micro
+domain,socifiapp[.]com,AMOS command-and-control report/upload endpoint host,high,Trend Micro
+url,hxxps://socifiapp[.]com/api/reports/upload,Multipart exfiltration endpoint (user_id + build_tag + report_file fields),high,Trend Micro
+url,hxxp://91.92.242[.]30/ece0f208u7uqhs6x,Loader path (first stage),high,Trend Micro
+url,hxxp://91.92.242[.]30/il24xgriequcys45,Loader path serving universal Mach-O AMOS build,high,Trend Micro
+url,hxxp://91.92.242[.]30/6wioz8285kcbax6v,Loader path,high,Trend Micro
+url,hxxp://91.92.242[.]30/6x8c0trkp4l9uugo,Loader path,high,Trend Micro
+url,hxxp://91.92.242[.]30/lamq4uerkruo6ssm,Loader path,high,Trend Micro
+url,hxxp://91.92.242[.]30/q0c7ew2ro8l2cfqp,Loader path,high,Trend Micro
+url,hxxp://91.92.242[.]30/dx2w5j5bka6qkwxi,Loader path,high,Trend Micro
+url,hxxp://91.92.242[.]30/1v07y9e1m6v7thl6,Loader path,high,Trend Micro
+url,hxxp://91.92.242[.]30/l5ou8r739pc48rwi,Loader path,high,Trend Micro
+url,hxxp://91.92.242[.]30/dyrtvwjfveyxjf23,Loader path,high,Trend Micro
+sha256,5968bd7d3a27a6a17ea73be6ee4b00807e83a786fdfa73cc5d8dbf262426c12c,Loader artifact ece0f208u7uqhs6x,high,Trend Micro
+sha256,ca96fe6259d602a22951d5d3e244e1b752bf0d20086f445bf7015c8798e7b95b,Universal Mach-O AMOS build il24xgriequcys45,high,Trend Micro
+sha256,a0e66f3067e4aaf5b83e45b7845cc43b2fc96032a4398cab7cc9d11f4f962e91,AMOS payload zoemtpmgck30oa8n,high,Trend Micro
+sha256,1e6d4b0538558429422b71d1f4d724c8ce31be92d299df33a8339e32316e2298,AMOS payload x5ki60w1ih838sp7,high,Trend Micro
+sha256,5adb10e107d5075abf485f52a387fb419d06ad84d0df38e75769783f16862273,AMOS payload gz1xshcbu77ogmgt,high,Trend Micro
+sha256,95fb8f28d08e19090443bda8bd71bbb79f7c451288a2de6f1ca0ad6fee8b4569,AMOS payload 7buu24ly8m1tn8m4,high,Trend Micro
+sha256,45d8e56bd86960727bcaa4b5c9f7c3422a22723c23ea5b46b6aa9bc42ed1f9f1,AMOS payload 528n21ktxu08pmer,high,Trend Micro
+sha256,0e52566ccff4830e30ef45d2ad804eefba4ffe42062919398bf1334aab74dd65,AMOS payload 66hfqv0uye23dkt2,high,Trend Micro
+sha256,ec2920e56f2f62c6a2ed1242747980f6f7343c2404b7ae9a6e975b66b1c24b6d,AMOS payload q0c7ew2ro8l2cfqp,high,Trend Micro
+sha256,30f97ae88f8861eeadeb54854d47078724e52e2ef36dd847180663b7f5763168,AMOS payload dyrtvwjfveyxjf23,high,Trend Micro
+sha256,d781d5cabaf5f305bbb8afcd9a54d7ba616bfa7aef5c4d16f6bce3d2bf3b4073,AMOS payload 6wioz8285kcbax6v,high,Trend Micro
+sha256,f0a54f2b44e557854b0a5001c4e10185884af945814786f78b86539014f78a16,AMOS payload 1v07y9e1m6v7thl6,high,Trend Micro
+sha256,233a98cb2c5536dabda0944eb2de8d47ad5ce9371a164fe2a8c29d8c55bc240c,AMOS payload b5aesvgf11r8b2qt,high,Trend Micro
+sha256,f2cb9de40cb8b7e13e7d2b0b3e426f8503781a35d8bba3715395430e9b5eeb38,AMOS payload l5ou8r739pc48rwi,high,Trend Micro
+sha256,998c38b430097479b015a68d9435dc5b98684119739572a4dff11e085881187e,AMOS payload dx2w5j5bka6qkwxi,high,Trend Micro
+sha256,5e4696a2cfdc3336b1ecbc17c1642f6bf7d9a34497161659414dae33fe6225d7,Trojanized wallet replacement ledger-wallet,high,Trend Micro
+sha256,5664800f21d63e448b934bfcdc258b0c7dadb36e88cf4dd71b24e19656a2b78d,AMOS main universal Mach-O reverse-engineered by glueckkanja CSOC,high,glueckkanja
+sha256,7c6766e2b05dfbb286a1ba48ff3e766d4507254e217e8cb77343569153d63063,AMOS .mainhelper installed by the osascript dropper via ditto,high,glueckkanja
+path,~/Library/Keychains/login.keychain-db,Login Keychain database read directly by the stealer,high,glueckkanja
+path,/tmp/out.zip,Local staging archive built with ditto and exfiltrated via curl,medium,glueckkanja
+string,report_file=@,Multipart exfil form field used in the C2 upload POST,medium,Trend Micro
+string,build_tag=jhzhhfomng,Affiliate build tag observed in an exfil POST,medium,Trend Micro
+string,user_id=47,Affiliate identifier observed in an exfil POST,medium,Trend Micro
+string,Chip: Unknown,VM/emulation evasion string checked before detonation,medium,glueckkanja
+string,Intel Core 2,Legacy/VM evasion string checked before detonation,medium,glueckkanja
+string,thiagoruss0,OpenClaw publisher account hosting numerous malicious skills,medium,Trend Micro
+string,stveenli,OpenClaw publisher account hosting malicious skills,medium,Trend Micro
+string,heldinhow/speckit-coding-agent,Representative malicious OpenClaw skill,medium,Trend Micro
+string,nkbihfbeogaeaoehlefnkodbefgpgknn,Targeted MetaMask browser-extension ID,medium,Trend Micro
+string,bfnaelmomeimhlpmgjnjophhpkkoljpa,Targeted Phantom (Solana) browser-extension ID,medium,Trend Micro
+string,ibnejdfjmmkpcnlpebklmnkoeoihofec,Targeted TronLink browser-extension ID,medium,Trend Micro
+string,aholpfdialjgjfhomihkjbmgjidlcdno,Targeted Exodus Web3 browser-extension ID,medium,Trend Micro
+string,aeachknmefphepccionboohckonoeemg,Targeted Coin98 browser-extension ID,medium,Trend Micro
+note,AMOS is a malware-as-a-service family; loader hosts and 16-char payload paths rotate frequently. Refresh network indicators from current threat intel before fleet-wide blocking.,,,Trend Micro
+note,glueckkanja anonymized some identifiers in its publication; hashes are exact but C2 host for the RE sample was withheld and may differ from the Trend Micro OpenClaw infrastructure.,,,glueckkanja
+note,Microsoft (2026-05-06) reports the same period ClickFix-macOS campaign delivering AMOS alongside MacSync and Shub Stealer via three execution paths (loader install / script install / helper install).,,,Microsoft

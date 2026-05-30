@@ -4,7 +4,7 @@
 
 # Platforms: windows
 
-25 day(s) covering this platform.
+24 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
@@ -33,4 +33,3 @@
 | 2026-05-03 | BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026) | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
 | 2026-05-01 | VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026) | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026-05-01_VECT-2.0-RaaS/) |
 | 2026-04-29 | Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm | TeamPCP · Shai-Hulud | [`2026-04-29_ShaiHulud-Bitwarden/`](../../days/2026-04-29_ShaiHulud-Bitwarden/) |
-| 2026-04-28 | The Gentlemen RaaS + SystemBC — GPO-weaponised ransomware with custom RC4 SOCKS5 proxy | The Gentlemen | [`2026-04-28_TheGentlemen-SystemBC/`](../../days/2026-04-28_TheGentlemen-SystemBC/) |

@@ -1,0 +1,20 @@
+// Title:       AMOS macOS Stealer — curl multipart exfiltration of staged archive
+// Id:          fa1a9ac7-3456-42d7-81e1-52d61ffcd745 (parallel to Sigma 04)
+// MITRE:       T1041, T1071.001, T1560.001
+// Reference:   https://www.glueckkanja.com/en/posts/2026-04-10-incident-to-intelligence
+//              https://www.trendmicro.com/en_us/research/26/b/openclaw-skills-used-to-distribute-atomic-macos-stealer.html
+// Author:      Jarmi
+// Date:        2026-05-30
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents, macOS onboarded devices)
+// FP notes:    Legitimate diagnostic uploaders may POST a /tmp archive via
+//              curl; validate the destination host against the C2 indicators
+//              (socifiapp.com, 91.92.242.30). The report-endpoint match is
+//              high-fidelity on its own.
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName =~ "curl"
+| where (ProcessCommandLine has "-F" and ProcessCommandLine has "/tmp/" and ProcessCommandLine has ".zip")
+     or ProcessCommandLine has_any ("/api/reports/upload", "report_file=@", "file=@/tmp/")
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine,
+          InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc

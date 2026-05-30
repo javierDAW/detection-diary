@@ -1,0 +1,23 @@
+// Title:       AMOS macOS Stealer — curl-to-shell first-stage loader
+// Id:          46ebb27a-1b54-4f1a-a9d1-ade8c4fe428d (parallel to Sigma 01)
+// MITRE:       T1059.004, T1105
+// Reference:   https://www.trendmicro.com/en_us/research/26/b/openclaw-skills-used-to-distribute-atomic-macos-stealer.html
+//              https://www.microsoft.com/en-us/security/blog/2026/05/06/clickfix-campaign-uses-fake-macos-utilities-lures-deliver-infostealers/
+// Author:      Jarmi
+// Date:        2026-05-30
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents, macOS onboarded devices)
+// FP notes:    Developer bootstrap installers (Homebrew, rustup, nvm) use the
+//              same curl-to-shell shape. Baseline by InitiatingProcessFileName
+//              and the destination host; exclude known-good install domains via
+//              the <add_known_install_domains> list.
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName in~ ("bash", "sh", "zsh")
+| where ProcessCommandLine has "-c"
+| where ProcessCommandLine has "curl"
+| where ProcessCommandLine has_any ("| bash", "|bash", "| sh", "| zsh", "$(curl", "-fsSL", "-sSL", "-fsL")
+// Exclude known-good developer-bootstrap install domains (tune for your fleet): <add_known_install_domains>
+| where ProcessCommandLine !has_any ("brew.sh", "githubusercontent.com", "sh.rustup.rs", "nodejs.org")
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine,
+          InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc

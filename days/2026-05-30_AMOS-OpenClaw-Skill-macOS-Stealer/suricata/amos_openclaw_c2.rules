@@ -1,0 +1,30 @@
+# Suricata 7.x rules — AMOS / Atomic macOS Stealer (OpenClaw-skill delivery + C2)
+# Author:    Jarmi
+# Date:      2026-05-30
+# Family:    AMOS (Atomic macOS Stealer) MaaS
+# Reference: https://www.trendmicro.com/en_us/research/26/b/openclaw-skills-used-to-distribute-atomic-macos-stealer.html
+#            https://www.trendmicro.com/content/dam/trendmicro/global/en/research/26/b/amos-stealer-openclaw/ioc-malicious-openclaw-skills-used-to-distribute-atomic-macos-stealer.txt
+#            https://www.glueckkanja.com/en/posts/2026-04-10-incident-to-intelligence
+#
+# Network coverage intent:
+#   AMOS delivery and exfil are HTTP/TLS-based. These rules sit on the
+#   perimeter / proxy / IDS and catch (a) the fake "driver" download lure on
+#   openclawcli.vercel.app, (b) the first-stage loader pull from 91.92.242.30,
+#   (c) the multipart exfil POST to socifiapp.com/api/reports/upload, and
+#   (d) DNS/TLS resolution of the campaign domains. sids 7203001-7203006.
+#
+# Custom variables expected in suricata.yaml:
+#   $HOME_NET    your internal CIDR (Mac endpoints)
+#   $HTTP_PORTS  default 80,8080,8000,8888
+
+alert dns $HOME_NET any -> any any (msg:"AMOS macOS Stealer DNS query for OpenClaw delivery domain openclawcli.vercel.app"; dns.query; content:"openclawcli.vercel.app"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:7203001; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"AMOS macOS Stealer DNS query for C2 report domain socifiapp.com"; dns.query; content:"socifiapp.com"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:7203002; rev:1;)
+
+alert tls $HOME_NET any -> any any (msg:"AMOS macOS Stealer TLS SNI to C2 report domain socifiapp.com"; tls.sni; content:"socifiapp.com"; nocase; classtype:trojan-activity; sid:7203003; rev:1;)
+
+alert http $HOME_NET any -> [91.92.242.30] any (msg:"AMOS macOS Stealer first-stage loader pull from 91.92.242.30"; flow:established,to_server; http.method; content:"GET"; http.host; content:"91.92.242.30"; classtype:trojan-activity; sid:7203004; rev:1;)
+
+alert http $HOME_NET any -> any any (msg:"AMOS macOS Stealer multipart exfil POST to report-upload endpoint"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/api/reports/upload"; nocase; classtype:trojan-activity; sid:7203005; rev:1;)
+
+alert http $HOME_NET any -> any any (msg:"AMOS macOS Stealer exfil multipart form field report_file in request body"; flow:established,to_server; http.method; content:"POST"; http.request_body; content:"report_file="; nocase; classtype:trojan-activity; sid:7203006; rev:1;)

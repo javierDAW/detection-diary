@@ -4,11 +4,12 @@
 
 # Techniques: T1059.004
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-05-30 | AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers AI agents and users into installing a multi-key-XOR universal Mach-O wallet and Keychain stealer | AMOS / Atomic macOS Stealer (MaaS) | [`2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/`](../../days/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/) |
 | 2026-05-16 | Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters | UAT-8616 · Talos Cluster 1 (Tas9er Godzilla) · Talos Cluster 2 (Behinder Base64) · Talos Cluster 3 (XenShell + Behinder) · Talos Cluster 4 (Godzilla variant) · Talos Cluster 5 (AdaptixC2 shadowcore) · Talos Cluster 6 (Sliver mTLS) · Talos Cluster 7 (XMRig + Cobalt Strike) · Talos Cluster 8 (NimPlant-variant agent1) · Talos Cluster 9 (gsocket + XMRig) · Talos Cluster 10 (vManage credential extractor) | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/`](../../days/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026) | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026-05-07_QLNX-Quasar-Linux-RAT/) |
 | 2026-05-03 | BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026) | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |

@@ -1,0 +1,46 @@
+title: AMOS macOS Stealer Direct login.keychain-db Access by Copy or Archive Tool
+id: 80a451f0-3bd3-4645-9ca1-66f587d03be5
+status: experimental
+description: |
+  Detects direct access to the macOS login Keychain database
+  (~/Library/Keychains/login.keychain-db) by command-line copy or archive
+  utilities, a core AMOS / Atomic macOS Stealer credential-access behaviour
+  confirmed by glueckkanja's 2026-04-10 reverse-engineering (the sample reads
+  the database via cat) and consistent with broad AMOS reporting. The login
+  Keychain is normally accessed only by securityd and Keychain Access through
+  the Security framework, never by cat, cp, ditto or zip on its raw path.
+  Observing one of those tools referencing Keychains/login.keychain-db is
+  high-confidence credential theft. Pair with the osascript fake-password
+  dialog rule (the password is needed to unlock the Keychain) and the curl
+  multipart exfil rule.
+references:
+  - https://www.glueckkanja.com/en/posts/2026-04-10-incident-to-intelligence
+  - https://www.trendmicro.com/en_us/research/26/b/openclaw-skills-used-to-distribute-atomic-macos-stealer.html
+  - https://www.microsoft.com/en-us/security/blog/2026/05/06/clickfix-campaign-uses-fake-macos-utilities-lures-deliver-infostealers/
+author: Jarmi
+date: 2026/05/30
+tags:
+  - attack.credential-access
+  - attack.collection
+  - attack.t1555.001
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_tools:
+    Image|endswith:
+      - '/cat'
+      - '/cp'
+      - '/ditto'
+      - '/zip'
+      - '/rsync'
+      - '/tar'
+  selection_target:
+    CommandLine|contains: 'Keychains/login.keychain-db'
+  condition: selection_tools and selection_target
+falsepositives:
+  - Backup or migration tooling that copies the whole user Library tree
+    (validate the destination is a legitimate backup volume, not /tmp)
+  - Administrator-driven Keychain export during sanctioned maintenance
+
+level: critical
