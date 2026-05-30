@@ -1,0 +1,30 @@
+// Title:       AMOS macOS Stealer — osascript fake-password dialog and login.keychain-db access
+// Id:          c59773a9-e0a9-4107-8587-f1f7119a71ee (parallel to Sigma 02 + 03)
+// MITRE:       T1056.002, T1059.002, T1555.001
+// Reference:   https://www.glueckkanja.com/en/posts/2026-04-10-incident-to-intelligence
+//              https://www.trendmicro.com/en_us/research/26/b/openclaw-skills-used-to-distribute-atomic-macos-stealer.html
+// Author:      Jarmi
+// Date:        2026-05-30
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents, macOS onboarded devices)
+// FP notes:    A few admin/helper apps prompt for a password via osascript;
+//              raw login.keychain-db access by cat/cp/ditto is far rarer and
+//              near-zero noise. Either signal alone is suspicious; the two on
+//              the same host within minutes is ground-truth credential theft.
+let lookback = 7d;
+let dialogs =
+    DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where FileName =~ "osascript"
+    | where ProcessCommandLine has "display dialog" and ProcessCommandLine has "hidden answer"
+    | where ProcessCommandLine has_any ("password", "Password", "passcode")
+    | project Timestamp, DeviceName, Signal = "osascript_password_dialog",
+              FileName, ProcessCommandLine, InitiatingProcessFileName;
+let keychain =
+    DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where FileName in~ ("cat", "cp", "ditto", "zip", "rsync", "tar")
+    | where ProcessCommandLine has "Keychains/login.keychain-db"
+    | project Timestamp, DeviceName, Signal = "login_keychain_db_access",
+              FileName, ProcessCommandLine, InitiatingProcessFileName;
+union dialogs, keychain
+| order by DeviceName asc, Timestamp asc

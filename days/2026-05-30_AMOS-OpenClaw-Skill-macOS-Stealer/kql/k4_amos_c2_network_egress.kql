@@ -1,0 +1,21 @@
+// Title:       AMOS macOS Stealer — egress to OpenClaw delivery and C2 infrastructure
+// Id:          80a451f0-3bd3-4645-9ca1-66f587d03be5 (network companion)
+// MITRE:       T1071.001, T1105, T1041
+// Reference:   https://www.trendmicro.com/content/dam/trendmicro/global/en/research/26/b/amos-stealer-openclaw/ioc-malicious-openclaw-skills-used-to-distribute-atomic-macos-stealer.txt
+//              https://www.trendmicro.com/en_us/research/26/b/openclaw-skills-used-to-distribute-atomic-macos-stealer.html
+// Author:      Jarmi
+// Date:        2026-05-30
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents, macOS onboarded devices)
+// FP notes:    These indicators are campaign-specific; any hit is high-fidelity.
+//              Refresh the indicator set from threat intel as the MaaS rotates
+//              loader hosts. Extend <add_known_amos_hosts> as new infra emerges.
+let amos_domains = dynamic(["openclawcli.vercel.app", "socifiapp.com"]);
+let amos_ips = dynamic(["91.92.242.30"]);
+DeviceNetworkEvents
+| where Timestamp > ago(14d)
+| where RemoteUrl has_any (amos_domains)
+     or RemoteIP in (amos_ips)
+     or RemoteUrl has "/api/reports/upload"
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine,
+          RemoteUrl, RemoteIP, RemotePort, ActionType
+| order by Timestamp desc

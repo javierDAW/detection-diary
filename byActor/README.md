@@ -12,6 +12,7 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | Group | Days |
 |---|---|
 | [ALPHV](./alphv/) | 1 |
+| [AMOS / Atomic macOS Stealer (MaaS)](./amos-atomic-macos-stealer-maas/) | 1 |
 | [Agenda](./agenda/) | 1 |
 | [Akira](./akira/) | 1 |
 | [Albiriox](./albiriox/) | 1 |
@@ -79,7 +80,6 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [Talos Cluster 8 (NimPlant-variant agent1)](./talos-cluster-8-nimplant-variant-agent1/) | 1 |
 | [Talos Cluster 9 (gsocket + XMRig)](./talos-cluster-9-gsocket-xmrig/) | 1 |
 | [TeamPCP](./teampcp/) | 4 |
-| [The Gentlemen](./the-gentlemen/) | 1 |
 | [The Gentlemen RaaS](./the-gentlemen-raas/) | 1 |
 | [TrapDoor (Socket-tracked)](./trapdoor-socket-tracked/) | 1 |
 | [TukTuk (AI-generated framework)](./tuktuk-ai-generated-framework/) | 1 |

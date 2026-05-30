@@ -1,0 +1,49 @@
+title: AMOS macOS Stealer curl Multipart Exfiltration of Staged Archive
+id: fa1a9ac7-3456-42d7-81e1-52d61ffcd745
+status: experimental
+description: |
+  Detects the curl multipart-POST exfiltration used by AMOS / Atomic macOS
+  Stealer to ship collected credentials and wallets to its C&C report endpoint.
+  glueckkanja observed the staged archive uploaded with
+  curl --connect-timeout 120 --max-time 300 -X POST -F "file=@/tmp/out.zip",
+  and Trend Micro observed the OpenClaw builds posting to
+  socifiapp[.]com/api/reports/upload with -F report_file=@FILENAME.zip plus
+  user_id and build_tag fields. This rule fires on a curl process performing a
+  multipart upload of a /tmp zip archive, or any curl command line referencing
+  the report-upload endpoint or the report_file form field. Pair with the
+  curl-to-shell loader rule and the login.keychain-db access rule to confirm
+  the full collect-then-exfil chain.
+references:
+  - https://www.glueckkanja.com/en/posts/2026-04-10-incident-to-intelligence
+  - https://www.trendmicro.com/en_us/research/26/b/openclaw-skills-used-to-distribute-atomic-macos-stealer.html
+  - https://www.trendmicro.com/content/dam/trendmicro/global/en/research/26/b/amos-stealer-openclaw/ioc-malicious-openclaw-skills-used-to-distribute-atomic-macos-stealer.txt
+author: Jarmi
+date: 2026/05/30
+tags:
+  - attack.exfiltration
+  - attack.command-and-control
+  - attack.t1041
+  - attack.t1071.001
+  - attack.t1560.001
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_curl:
+    Image|endswith: '/curl'
+  selection_tmp_zip:
+    CommandLine|contains|all:
+      - '-F'
+      - '/tmp/'
+      - '.zip'
+  selection_report_ep:
+    CommandLine|contains:
+      - '/api/reports/upload'
+      - 'report_file=@'
+      - 'file=@/tmp/'
+  condition: selection_curl and (selection_tmp_zip or selection_report_ep)
+falsepositives:
+  - Legitimate diagnostic or telemetry uploaders that POST a /tmp archive via
+    curl (rare; validate the destination host against the known C2 indicators)
+
+level: high
