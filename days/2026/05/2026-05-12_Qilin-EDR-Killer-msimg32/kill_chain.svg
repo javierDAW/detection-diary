@@ -1,0 +1,199 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1200" role="img" aria-labelledby="t d">
+  <title id="t">Qilin EDR Killer kill chain — Cisco Talos, April 2026</title>
+  <desc id="d">Qilin (alias Agenda) and Warlock ransomware operators side-load a malicious msimg32.dll under FoxitPDFReader.exe to start a four-stage in-memory loader that uses Halo's Gate-style SEH and VEH syscall obfuscation, IAT-hooks ExitProcess to detonate after the host process exits, then drops a BYOVD pair: rwdrv.sys (renamed ThrottleStop.sys signed by TechPowerUp LLC) and hlpdrv.sys (purpose-built malicious helper) to unregister kernel callbacks via direct physical-memory writes and terminate over 300 EDR drivers via IOCTL 0x2222008.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .bg-det       { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      .det-title    { fill: #0550ae; font: 700 13px sans-serif; }
+      .det-sub      { fill: #1f2328; font: 11px sans-serif; }
+      .det-mono     { fill: #1f2328; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .bg-det     { fill: #051d2c; stroke: #265d97; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+        .det-title  { fill: #79c0ff; }
+        .det-sub    { fill: #c9d1d9; }
+        .det-mono   { fill: #c9d1d9; }
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <!-- Header -->
+  <text x="40" y="32" class="header">Qilin EDR Killer — msimg32.dll loader + BYOVD chain</text>
+  <text x="40" y="52" class="subhead">Cisco Talos, 2-April-2026 — disables 300+ EDR drivers via rwdrv.sys + hlpdrv.sys (IOCTL 0x2222008)</text>
+
+  <!-- Lane labels -->
+  <text x="20" y="92" class="lane" transform="rotate(-90 20 92)">VICTIM HOST</text>
+  <text x="860" y="92" class="lane" transform="rotate(-90 860 92)">ATTACKER C2 / RANSOMWARE</text>
+
+  <!-- ============== STAGES (left lane) ============== -->
+
+  <!-- Stage 1 -->
+  <rect x="60" y="80" width="540" height="100" rx="6" class="bg-stage"/>
+  <circle cx="84" cy="105" r="14" class="stagebg"/>
+  <text x="80" y="109" class="stagenum">1</text>
+  <text x="110" y="105" class="label">Initial Access — Foxit + msimg32.dll bundle</text>
+  <text x="110" y="124" class="sub">VPN/edge unpatched, IAB valid accounts,</text>
+  <text x="110" y="140" class="sub">or spear-phish dropping the side-load bundle</text>
+  <text x="110" y="158" class="mitre">T1190 · T1078 · T1218</text>
+  <text x="110" y="174" class="ioc">FoxitPDFReader.exe (signed) + msimg32.dll = hijack</text>
+
+  <!-- Stage 2 -->
+  <rect x="60" y="200" width="540" height="90" rx="6" class="bg-stage"/>
+  <circle cx="84" cy="225" r="14" class="stagebg"/>
+  <text x="80" y="229" class="stagenum">2</text>
+  <text x="110" y="225" class="label">Execution — DLL side-load via FoxitPDFReader</text>
+  <text x="110" y="244" class="sub">DllMain runs; legit exports forwarded to System32</text>
+  <text x="110" y="262" class="mitre">T1574.002 · T1106</text>
+  <text x="110" y="282" class="ioc">msimg32.dll  sha256: 7787da25...8b888497</text>
+
+  <!-- Stage 3 -->
+  <rect x="60" y="310" width="540" height="100" rx="6" class="bg-stage"/>
+  <circle cx="84" cy="335" r="14" class="stagebg"/>
+  <text x="80" y="339" class="stagenum">3</text>
+  <text x="110" y="335" class="label">Defense Evasion S1 — Halo's Gate via SEH</text>
+  <text x="110" y="354" class="sub">Slot-policy table over ntdll Nt* exports;</text>
+  <text x="110" y="370" class="sub">scan clean stubs, syscall by ID — bypasses user hooks</text>
+  <text x="110" y="386" class="sub">Geofence excludes post-Soviet locales</text>
+  <text x="110" y="402" class="mitre">T1027.007 · T1027.012 · T1480 · T1497.001</text>
+
+  <!-- Stage 4 -->
+  <rect x="60" y="430" width="540" height="100" rx="6" class="bg-stage"/>
+  <circle cx="84" cy="455" r="14" class="stagebg"/>
+  <text x="80" y="459" class="stagenum">4</text>
+  <text x="110" y="455" class="label">Defense Evasion S2 — section + IAT hook ExitProcess</text>
+  <text x="110" y="474" class="sub">Two views of one section: RW write + RWX execute</text>
+  <text x="110" y="492" class="sub">ExitProcess IAT redirected to Stage 3 entry point</text>
+  <text x="110" y="510" class="sub">DllMain returns clean; Stage 3 detonates on Foxit exit</text>
+  <text x="110" y="526" class="mitre">T1620 · T1055.002</text>
+
+  <!-- Stage 5 -->
+  <rect x="60" y="550" width="540" height="100" rx="6" class="bg-stage"/>
+  <circle cx="84" cy="575" r="14" class="stagebg"/>
+  <text x="80" y="579" class="stagenum">5</text>
+  <text x="110" y="575" class="label">Defense Evasion S3 — VEH + HW BP stack-pivot</text>
+  <text x="110" y="594" class="sub">LdrLoadDll(hasherezade_*.dll) → HW BP NtOpenSection</text>
+  <text x="110" y="610" class="sub">VEH pivots via LdrpMinimalMapModule mid-function</text>
+  <text x="110" y="626" class="sub">PE Stage 4 mapped on top of shell32.dll in memory</text>
+  <text x="110" y="644" class="mitre">T1620 · T1055.001</text>
+
+  <!-- Stage 6 -->
+  <rect x="60" y="670" width="540" height="100" rx="6" class="bg-stage"/>
+  <circle cx="84" cy="695" r="14" class="stagebg"/>
+  <text x="80" y="699" class="stagenum">6</text>
+  <text x="110" y="695" class="label">PrivEsc — drop and load rwdrv.sys (BYOVD #1)</text>
+  <text x="110" y="714" class="sub">rwdrv.sys = renamed ThrottleStop.sys (TechPowerUp sig)</text>
+  <text x="110" y="730" class="sub">Service: HKLM\...\Services\rwdrv  Type=1 kernel</text>
+  <text x="110" y="748" class="mitre">T1068 · T1543.003</text>
+  <text x="110" y="765" class="ioc">rwdrv.sys  sha256: 16f83f05...99c97f0</text>
+
+  <!-- Stage 7 -->
+  <rect x="60" y="790" width="540" height="100" rx="6" class="bg-stage"/>
+  <circle cx="84" cy="815" r="14" class="stagebg"/>
+  <text x="80" y="819" class="stagenum">7</text>
+  <text x="110" y="815" class="label">Defense Evasion — unhook 300+ EDR kernel callbacks</text>
+  <text x="110" y="834" class="sub">Resolve cng!CngCreateProcessNotifyRoutine via</text>
+  <text x="110" y="850" class="sub">NtQuerySystemInformation Superfetch + PFN vector</text>
+  <text x="110" y="866" class="sub">Direct phys-mem write zeros the callback slots</text>
+  <text x="110" y="884" class="mitre">T1014 · T1562.001</text>
+
+  <!-- Stage 8 -->
+  <rect x="60" y="910" width="540" height="100" rx="6" class="bg-stage"/>
+  <circle cx="84" cy="935" r="14" class="stagebg"/>
+  <text x="80" y="939" class="stagenum">8</text>
+  <text x="110" y="935" class="label">Defense Evasion — load hlpdrv.sys (BYOVD #2)</text>
+  <text x="110" y="954" class="sub">hlpdrv.sys = purpose-built helper, no legit use</text>
+  <text x="110" y="970" class="sub">IOCTL 0x2222008 = unprotect + terminate Defender / EDR</text>
+  <text x="110" y="988" class="mitre">T1562.001 · T1068</text>
+  <text x="110" y="1005" class="ioc">hlpdrv.sys  sha256: bd1f381e...c84a56</text>
+
+  <!-- ============== ATTACKER C2 LANE (right) ============== -->
+
+  <rect x="640" y="80" width="200" height="220" rx="6" class="bg-c2"/>
+  <text x="650" y="100" class="label">Operator playbook</text>
+  <text x="650" y="120" class="sub">Qilin / Agenda RaaS</text>
+  <text x="650" y="138" class="sub">Russian-speaking</text>
+  <text x="650" y="158" class="sub">also Warlock (shared loader)</text>
+  <text x="650" y="184" class="label">Recent victims</text>
+  <text x="650" y="202" class="sub">Cushman &amp; Wakefield</text>
+  <text x="650" y="218" class="sub">Imex International</text>
+  <text x="650" y="234" class="sub">DL Cohen Construction</text>
+  <text x="650" y="260" class="label">Q1 2026</text>
+  <text x="650" y="278" class="sub">338 victims · #1 RaaS</text>
+  <text x="650" y="294" class="sub">3 quarters consecutive</text>
+
+  <!-- Driver IOC anchors panel -->
+  <rect x="640" y="320" width="200" height="200" rx="6" class="bg-c2"/>
+  <text x="650" y="340" class="label">Driver IOC anchors</text>
+  <text x="650" y="362" class="ioc">rwdrv.sys</text>
+  <text x="650" y="378" class="ioc">  16f83f05...99c97f0</text>
+  <text x="650" y="398" class="ioc">hlpdrv.sys</text>
+  <text x="650" y="414" class="ioc">  bd1f381e...c84a56</text>
+  <text x="650" y="434" class="ioc">msimg32.dll</text>
+  <text x="650" y="450" class="ioc">  7787da25...8b888497</text>
+  <text x="650" y="470" class="ioc">EDRKiller.exe</text>
+  <text x="650" y="486" class="ioc">  12fcde06...3f0a4a0</text>
+  <text x="650" y="508" class="ioc">IOCTL 0x2222008</text>
+
+  <!-- Post-loader chain panel -->
+  <rect x="640" y="540" width="200" height="180" rx="6" class="bg-c2"/>
+  <text x="650" y="560" class="label">Post-loader (operator)</text>
+  <text x="650" y="582" class="sub">BloodHound + AdFind</text>
+  <text x="650" y="600" class="sub">Impacket wmiexec/psexec</text>
+  <text x="650" y="618" class="sub">vssadmin delete shadows</text>
+  <text x="650" y="636" class="sub">rclone / Restic exfil</text>
+  <text x="650" y="654" class="sub">Win + Linux + ESXi</text>
+  <text x="650" y="672" class="sub">double extortion</text>
+  <text x="650" y="690" class="sub">leak site publication</text>
+  <text x="650" y="708" class="mitre">T1486 · T1490</text>
+
+  <!-- ============== ARROWS ============== -->
+  <!-- Stages flow downward inside victim lane -->
+  <path d="M 330,180 L 330,200" class="arrow" marker-end="url(#arr)"/>
+  <path d="M 330,290 L 330,310" class="arrow" marker-end="url(#arr)"/>
+  <path d="M 330,410 L 330,430" class="arrow" marker-end="url(#arr)"/>
+  <path d="M 330,530 L 330,550" class="arrow" marker-end="url(#arr)"/>
+  <path d="M 330,650 L 330,670" class="arrow" marker-end="url(#arr)"/>
+  <path d="M 330,770 L 330,790" class="arrow" marker-end="url(#arr)"/>
+  <path d="M 330,890 L 330,910" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Victim ↔ operator (post-loader) -->
+  <path d="M 600,960 L 638,720" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
+
+  <!-- ============== DETECTION ANCHORS BOX (bottom) ============== -->
+  <rect x="60" y="1030" width="780" height="150" rx="6" class="bg-det"/>
+  <text x="80" y="1054" class="det-title">Detection anchors</text>
+  <text x="80" y="1076" class="det-sub">• <tspan class="det-mono">sigma/msimg32_sideload_non_system_path.yml</tspan> — msimg32 outside System32</text>
+  <text x="80" y="1096" class="det-sub">• <tspan class="det-mono">sigma/qilin_byovd_kernel_driver_load.yml</tspan> — rwdrv/hlpdrv + known SHA-256</text>
+  <text x="80" y="1116" class="det-sub">• <tspan class="det-mono">kql/qilin_driver_load_then_telemetry_gap.kql</tspan> — driver + EDR silence ≤15 min</text>
+  <text x="80" y="1136" class="det-sub">• <tspan class="det-mono">yara/qilin_edr_killer_msimg32_2026.yar</tspan> — heuristic + 4 hash anchors</text>
+  <text x="80" y="1156" class="det-sub">• <tspan class="det-mono">suricata/qilin_edr_killer_artifact_delivery.rules</tspan> — file-name HTTP delivery</text>
+  <text x="80" y="1175" class="det-sub">• <tspan class="det-mono">hunts/h1-h2-h3</tspan> — Foxit side-load · telemetry gap · kernel callback drift</text>
+</svg>

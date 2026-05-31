@@ -1,0 +1,189 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1180" role="img" aria-labelledby="t d">
+  <title id="t">Albiriox kill chain — Cleafy Labs, late-2025 / active 2026</title>
+  <desc id="d">Vertical timeline. A sideloaded fake Penny Market dropper installs Albiriox, which guides the user to grant AccessibilityService and then auto-grants Device Admin, Notification Listener, Default SMS handler and SYSTEM_ALERT_WINDOW via simulated taps. AcVNC serialises the AccessibilityNodeInfo tree to bypass FLAG_SECURE and stream UI to the operator. SMS-OTP and push are read via SMS and notification listeners. On-Device Fraud transfers and crypto wallet drain follow.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      .anchor       { fill: #1f2328; font: 600 12px sans-serif; }
+      .anchor-sub   { fill: #424a53; font: 11.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .anchor-bg    { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+        .anchor     { fill: #c9d1d9; }
+        .anchor-sub { fill: #8b949e; }
+        .anchor-bg  { fill: #0c2d6b; stroke: #1f6feb; }
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="40" class="header">Albiriox Android MaaS RAT — kill chain</text>
+  <text x="40" y="60" class="subhead">Cleafy Labs, late-2025 . active 2026 . AcVNC bypass of FLAG_SECURE . 400+ banking/crypto apps</text>
+
+  <text x="20" y="120" class="lane" transform="rotate(-90, 20, 120)">VICTIM HOST (Android)</text>
+  <text x="855" y="120" class="lane" transform="rotate(90, 855, 120)">ATTACKER C2</text>
+
+  <!-- Stage 1: Initial Access -->
+  <circle cx="80" cy="115" r="14" class="stagebg"/>
+  <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
+  <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="111" class="label">Smishing / fake Google Play landing</text>
+  <text x="124" y="128" class="sub">User sideloads dropper (e.g. fake Penny Market APK)</text>
+  <text x="600" y="111" text-anchor="end" class="mitre">T1660</text>
+  <text x="600" y="128" text-anchor="end" class="ioc">REQUEST_INSTALL_PACKAGES</text>
+  <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 2: Dropper -->
+  <circle cx="80" cy="195" r="14" class="stagebg"/>
+  <text x="80" y="199" text-anchor="middle" class="stagenum">2</text>
+  <rect x="110" y="172" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="191" class="label">Dropper installs Albiriox payload</text>
+  <text x="124" y="208" class="sub">Fake "System Update" -&gt; "Install unknown apps"</text>
+  <text x="600" y="191" text-anchor="end" class="mitre">T1660 . T1655.001</text>
+  <text x="600" y="208" text-anchor="end" class="ioc">PackageInstaller.commit</text>
+  <line x1="360" y1="220" x2="360" y2="252" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 3: Anti-analysis -->
+  <circle cx="80" cy="275" r="14" class="stagebg"/>
+  <text x="80" y="279" text-anchor="middle" class="stagenum">3</text>
+  <rect x="110" y="252" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="271" class="label">Anti-analysis gates</text>
+  <text x="124" y="288" class="sub">Anti-emu fingerprint, Magisk/Xposed scan, telephony, battery</text>
+  <text x="600" y="271" text-anchor="end" class="mitre">T1633 . T1622</text>
+  <text x="600" y="288" text-anchor="end" class="ioc">Build.FINGERPRINT</text>
+  <line x1="360" y1="300" x2="360" y2="332" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 4: Accessibility self-grant -->
+  <circle cx="80" cy="365" r="14" class="stagebg"/>
+  <text x="80" y="369" text-anchor="middle" class="stagenum">4</text>
+  <rect x="110" y="332" width="500" height="68" rx="6" class="bg-stage"/>
+  <text x="124" y="351" class="label">AccessibilityService self-grant chain</text>
+  <text x="124" y="368" class="sub">User toggles "Reach Mode" -&gt; dispatchGesture auto-grants:</text>
+  <text x="124" y="384" class="ioc">DEVICE_ADMIN . NOTIF_LISTENER . SMS_HANDLER . OVERLAY</text>
+  <text x="600" y="351" text-anchor="end" class="mitre">T1541 . T1626.001</text>
+  <text x="600" y="384" text-anchor="end" class="ioc">dispatchGesture()</text>
+  <line x1="360" y1="400" x2="360" y2="432" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 5: Persistence -->
+  <circle cx="80" cy="455" r="14" class="stagebg"/>
+  <text x="80" y="459" text-anchor="middle" class="stagenum">5</text>
+  <rect x="110" y="432" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="451" class="label">Persistence + self-protection</text>
+  <text x="124" y="468" class="sub">BOOT_COMPLETED + auto "Back" gesture on App-info screens</text>
+  <text x="600" y="451" text-anchor="end" class="mitre">T1541 . T1624.001</text>
+  <text x="600" y="468" text-anchor="end" class="ioc">BroadcastReceiver</text>
+  <line x1="360" y1="480" x2="360" y2="512" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 6: AcVNC -->
+  <circle cx="80" cy="555" r="14" class="stagebg"/>
+  <text x="80" y="559" text-anchor="middle" class="stagenum">6</text>
+  <rect x="110" y="512" width="500" height="78" rx="6" class="bg-stage"/>
+  <text x="124" y="531" class="label">AcVNC — FLAG_SECURE bypass</text>
+  <text x="124" y="548" class="sub">AccessibilityNodeInfo tree serialised to JSON, streamed</text>
+  <text x="124" y="564" class="sub">Black overlay hides the screen while operator drives UI</text>
+  <text x="124" y="580" class="ioc">getBoundsInScreen + node.text + dispatchGesture</text>
+  <text x="600" y="531" text-anchor="end" class="mitre">T1513 . T1517</text>
+  <text x="600" y="580" text-anchor="end" class="ioc">"AcVNC"</text>
+  <line x1="600" y1="551" x2="700" y2="551" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
+
+  <!-- Stage 7: SMS / Notification harvest -->
+  <circle cx="80" cy="640" r="14" class="stagebg"/>
+  <text x="80" y="644" text-anchor="middle" class="stagenum">7</text>
+  <rect x="110" y="617" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="636" class="label">SMS + notification harvest</text>
+  <text x="124" y="653" class="sub">READ_SMS + NotificationListenerService -&gt; OTP capture</text>
+  <text x="600" y="636" text-anchor="end" class="mitre">T1517 . T1411</text>
+  <text x="600" y="653" text-anchor="end" class="ioc">onNotificationPosted</text>
+  <line x1="360" y1="665" x2="360" y2="697" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 8: Overlay credential -->
+  <circle cx="80" cy="720" r="14" class="stagebg"/>
+  <text x="80" y="724" text-anchor="middle" class="stagenum">8</text>
+  <rect x="110" y="697" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="716" class="label">Overlay credential theft</text>
+  <text x="124" y="733" class="sub">WebView TYPE_APPLICATION_OVERLAY on AppInfos hits</text>
+  <text x="600" y="716" text-anchor="end" class="mitre">T1411</text>
+  <text x="600" y="733" text-anchor="end" class="ioc">"AppInfos"</text>
+  <line x1="360" y1="745" x2="360" y2="777" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 9: ODF impact -->
+  <circle cx="80" cy="800" r="14" class="stagebg"/>
+  <text x="80" y="804" text-anchor="middle" class="stagenum">9</text>
+  <rect x="110" y="777" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="796" class="label">On-Device Fraud + crypto wallet drain</text>
+  <text x="124" y="813" class="sub">Operator drives bank app under black overlay</text>
+  <text x="124" y="828" class="ioc">"blackscreen:on" / seed phrase exfil</text>
+  <text x="600" y="796" text-anchor="end" class="mitre">T1641</text>
+  <text x="600" y="828" text-anchor="end" class="ioc">MetaMask seed read</text>
+
+  <!-- Attacker C2 cluster -->
+  <rect x="640" y="92" width="220" height="500" rx="6" class="bg-c2"/>
+  <text x="660" y="115" class="label">Attacker C2 fabric</text>
+
+  <text x="660" y="148" class="sub">Plain TCP heartbeat (30s)</text>
+  <text x="660" y="166" class="ioc">HWID + battery + AcVNC?</text>
+
+  <text x="660" y="200" class="sub">AcVNC stream</text>
+  <text x="660" y="218" class="ioc">wss://&lt;c2&gt;/api/v1/stream</text>
+  <text x="660" y="234" class="ioc">no TLS pinning</text>
+
+  <text x="660" y="270" class="sub">Operator commands</text>
+  <text x="660" y="288" class="ioc">click / swipe / text</text>
+  <text x="660" y="304" class="ioc">launch:&lt;pkg&gt;</text>
+  <text x="660" y="320" class="ioc">blackscreen:on / off</text>
+  <text x="660" y="336" class="ioc">keylogger:start</text>
+  <text x="660" y="352" class="ioc">installpkg:&lt;url&gt;</text>
+  <text x="660" y="368" class="ioc">uninstall:&lt;pkg&gt;</text>
+  <text x="660" y="384" class="ioc">lockdevice / wipe</text>
+
+  <text x="660" y="420" class="sub">Builder + crypter</text>
+  <text x="660" y="438" class="ioc">Golden Crypt (CaaS)</text>
+  <text x="660" y="454" class="ioc">DEX string XOR</text>
+
+  <text x="660" y="490" class="sub">MaaS economics</text>
+  <text x="660" y="508" class="ioc">Telegram + XSS / Exploit.in</text>
+  <text x="660" y="524" class="ioc">$650 early / $720 list per month</text>
+  <text x="660" y="540" class="ioc">Russian-speaking forums</text>
+
+  <text x="660" y="572" class="sub">Targets in AppInfos</text>
+  <text x="660" y="588" class="ioc">400+ banking, fintech, wallets</text>
+
+  <!-- Detection anchors box -->
+  <rect x="40" y="870" width="800" height="270" rx="6" class="anchor-bg"/>
+  <text x="60" y="898" class="anchor">Detection anchors (rules in this folder)</text>
+  <text x="60" y="924" class="anchor-sub">sigma/albiriox_accessibility_bind_sideloaded_pkg.yml — accessibility bind to non-store, non-system package</text>
+  <text x="60" y="946" class="anchor-sub">sigma/albiriox_default_sms_handler_change.yml — default SMS handler changed to a non-allowlist package</text>
+  <text x="60" y="968" class="anchor-sub">kql/albiriox_sideload_accessibility_with_banking_app.kql — sideload + accessibility within 24h on banking-app device</text>
+  <text x="60" y="990" class="anchor-sub">kql/albiriox_notif_listener_with_read_sms.kql — Notification Listener + READ_SMS coexistence on non-stock package</text>
+  <text x="60" y="1012" class="anchor-sub">yara/albiriox_android_banking_rat.yar — DEX magic + AcVNC marker + AppInfos + dispatchGesture chain + 2 of N targets</text>
+  <text x="60" y="1056" class="anchor-sub">suricata/albiriox_plaintcp_heartbeat.rules — plain-TCP heartbeat shape from a mobile-VLAN client</text>
+  <text x="60" y="1086" class="anchor">Pedagogical anchor</text>
+  <text x="60" y="1108" class="anchor-sub">FLAG_SECURE protects framebuffer + MediaProjection. It does not protect AccessibilityNodeInfo.</text>
+  <text x="60" y="1128" class="anchor-sub">SMS-OTP / push without number matching / TOTP visible in foreground are all reachable. FIDO2 is the durable answer.</text>
+</svg>
