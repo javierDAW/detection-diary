@@ -13,13 +13,13 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**33 cases** · **92 actors/clusters** · **244 ATT&CK techniques** · **15 platforms** · **53 sectors** · 2026-04-29 -> 2026-05-31
+**33 cases** · **92 actors/clusters** · **239 ATT&CK techniques** · **15 platforms** · **56 sectors** · 2026-04-29 -> 2026-05-31
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
-<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/"><img src="days/2026/05/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/kill_chain.svg" alt="2026-05-31 kill chain" width="240"></a><br><sub><b>2026-05-31</b><br>Unattributed AI-assisted operator (Gambit/Dragos)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/"><img src="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/kill_chain.svg" alt="2026-05-31 kill chain" width="240"></a><br><sub><b>2026-05-31</b><br>Black Shadow (Ababil of Minab persona)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/"><img src="days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/kill_chain.svg" alt="2026-05-30 kill chain" width="240"></a><br><sub><b>2026-05-30</b><br>AMOS / Atomic macOS Stealer (MaaS)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/"><img src="days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/kill_chain.svg" alt="2026-05-29 kill chain" width="240"></a><br><sub><b>2026-05-29</b><br>Chaotic Eclipse / Nightmare-Eclipse</sub></td>
 </tr>

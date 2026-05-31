@@ -22,24 +22,23 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 - Keep one source of truth (the per-day frontmatter); generated indexes and the site are disposable and rebuilt on demand.
 
 
-## 2026.05.31 — Day 34 — AI-Assisted IT-to-OT Targeting at a Monterrey Water Utility — Claude/GPT-Driven Intrusion Enumerates a vNode SCADA Gateway and Password-Sprays the IT-OT Boundary
+## 2026.05.31 — Day 34 — Black Shadow / Ababil of Minab — Iran-MOIS Recovery-Layer Destruction (vCenter VM Deletion, Veeam Backup Wipe, SSMS Database Drops)
 
 ### Added
-- `days/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/` — v9 weekend auto-rescue (Sunday; rotation table off) filling the OT-family gap (last OT primary Day 3 BAUXITE). Dragos (assisting Gambit Security) analyzed the OT strand of a Dec 2025-Feb 2026 campaign against nine Mexican government orgs: after compromising the SADM (Servicios de Agua y Drenaje de Monterrey) enterprise IT in Jan 2026, the operator used Anthropic's Claude as primary technical executor and OpenAI's GPT-4.1 for data processing. Claude enumerated the internal network, independently identified a vNode SCADA/IIoT gateway, classed it a critical-infra crown jewel, built credential lists, and ran two failed rounds of password spraying against its single-password SPA login. OT was not breached. Dragos blog 2026-05-06; Gambit report Apr 2026; ~75% of remote commands AI-directed; 17,000-line Claude-written "BACKUPOSINT v9.0 APEX PREDATOR" Python framework (49 modules).
-- Sigma (3): `01_aibreach_cloud_metadata_access.yml` — curl/python/powershell touching link-local metadata `169.254.169.254`; `02_aibreach_internal_tunnel_proxy.yml` — chisel/ligolo/gost/frp/plink + ssh -D/-R internal tunneling; `03_aibreach_ad_interrogation_burst.yml` — nltest/dsquery/setspn/net AD-interrogation LOLBINs.
-- KQL (4): `k1_aibreach_eastwest_to_ot_gateway.kql` — DeviceNetworkEvents IT host to the SCADA gateway off the engineering-jump allowlist; `k2_aibreach_vnode_password_spray.kql` — Syslog spray summary (low password / high account cardinality, one source); `k3_aibreach_ad_interrogation_burst.kql` — distinct AD-interrogation commands per host per window; `k4_aibreach_cloud_metadata_access.kql` — metadata access from script/interactive context.
-- YARA (1 file, 2 rules): `aibreach_backuposint_framework` (BACKUPOSINT/APEX PREDATOR banner + Python markers); `aibreach_ai_offensive_python` (heuristic: large single-file Python with metadata + AD + lateral-movement markers).
-- Suricata (1 file, 5 sids 7205001-7205005): HTTP POST spray burst to the gateway login; 401 and 403 response bursts from the gateway; cloud-metadata GET heuristic; HTTP CONNECT tunnel toward the OT-adjacent segment. Documented variables `$IT_NET`/`$OT_GATEWAY`/`$ENG_JUMP`.
-- PEAK hunts (3): `peak_h1_eastwest_it_to_ot.md` — East-West contact to the gateway; `peak_h2_vnode_password_spray.md` — spray against the single-password login; `peak_h3_ai_tooling_cooccurrence.md` — metadata + AD-interrogation + tunnel co-occurrence on one host.
-- `iocs.csv` (13 entries) — behavioral/structural primitives (BACKUPOSINT banner, `vNode`, `169.254.169.254`, single-password SPA spray, Claude Code + GPT-4.1 split, guardrail bypass via authorized-pentest framing, campaign scoping); no malware hashes or campaign infra published for the OT strand, so detection anchors on behavior not values.
-- `kill_chain.svg` — template A, viewBox 880x1280, canonical palette. Left lane (victim IT to OT boundary) seven stages with critical red badges on the vNode gateway and the failed spray; right lane (AI-assisted operator) six ops boxes for Claude Code, GPT-4.1, BACKUPOSINT, metadata+AD, guardrail bypass, and the 2-day C2. Two cross-lane purple-dashed arrows; six vertical flow arrows; boundary-anchored detection footer. Verifier ran twice clean: viewBox 880x1280.
+- `days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/` — v9 weekend auto-rescue; first repo primary in slot #30 (backup/DR/hypervisor recovery-layer destruction). Gambit (2026-05-26) tied the pro-Iranian "Ababil of Minab" persona — which claimed the LA Metro/LACMTA breach confirmed 2026-04-02 — to Black Shadow (Iran MOIS, per INCD/ClearSky/Simon Kenin). The crew exfiltrated from US/Israel/Saudi/Turkey orgs and, at a subset, ran recovery-denial: authenticated vCenter VM Power Off + Delete from Disk, Disk Management volume deletion (relabeled "Minab"), SSMS Take Offline + DROP, Veeam "delete from disk" of the backup chain, and WipeFile erase of SQLBackup/web roots — scripted and hands-on-keyboard, with ChatGPT used to refine a Python script that dropped 58 SQL Server targets.
+- Sigma (3): `01_blackshadow_wipefile_secure_delete.yml`; `02_blackshadow_veeam_backup_deletion.yml`; `03_blackshadow_proxychains_xfreerdp.yml`.
+- KQL (4): vCenter Destroy_Task/PowerOffVM_Task burst; SQL SET OFFLINE/DROP DATABASE from non-DBA host; WipeFile + Veeam delete-from-disk; A.ExE tunneler C2 egress.
+- YARA (1 file, 2 rules): customized Go tunneler "A.ExE" markers; persona/destruction-script markers.
+- Suricata (1 file, 6 sids 7206001-7206006): DNS/TLS to nefeshhope.com; egress to tunneler/relay/staging IPs.
+- PEAK hunts (3): cross-plane deletion burst; Veeam/WipeFile backup destruction; proxied RDP + tunneler.
+- `iocs.csv` (15 entries) — C2 `members.nefeshhope[.]com`, IPs `46.30.190.173` / `45.150.108.61` / `91.193.19.198` / `31.172.87.20`, truncated hashes, tooling and TTP notes.
+- `kill_chain.svg` — template A, viewBox 880x1280, canonical palette. Critical red nodes on VM Delete-from-Disk, SQL drop, and Veeam backup deletion. Verifier ran twice clean.
 
 ### Pedagogy
-- AI brought speed, not new ICS tradecraft — every technique here is decades old; prevention-only OT strategy degrades as AI compresses IT-to-OT recon from days to hours.
-- Anchor OT detection on the boundary (an IT host reaching the SCADA gateway from a non-engineering subnet), not on the actor's tooling, which AI rotates fast.
-- An IT-resident SCADA management gateway is a crown jewel even when "just" a management interface — inventory it as OT-adjacent and lock its login to one sanctioned source.
-- Credential reuse is the IT-to-OT bridge; strong unique authentication on the boundary is what ended this case in "failed."
-
+- Defend the recovery layer (backups, vCenter, Veeam) as a crown jewel — immutable, isolated, MFA-gated, recovery validated against an adversarial scenario.
+- Detect on destructive verbs across the virtualization/DB/backup planes, not on malware — the chain is living-off-the-land.
+- Multiple destructive techniques = a deliberate recovery-denial strategy; plan IR for parallel, compounding restoration.
+- Hacktivist branding can be state cover; pivot on infrastructure/tooling overlap, not self-attribution.
 
 ## 2026.05.30 — Day 33 — AMOS / Atomic macOS Stealer — Malicious OpenClaw Skill SKILL.md Delivers a Multi-Key-XOR Universal Mach-O Wallet and Keychain Stealer
 

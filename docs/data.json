@@ -3,47 +3,44 @@
   "date": "2026-05-31",
   "year": "2026",
   "month": "2026-05",
-  "slug": "2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT",
-  "title": "AI-assisted IT-to-OT targeting at a Monterrey water utility — Claude/GPT-driven intrusion enumerates a vNode SCADA gateway and password-sprays the IT-OT boundary",
+  "slug": "2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction",
+  "title": "Black Shadow / Ababil of Minab — Iran-MOIS recovery-layer destruction: vCenter VM deletion, Veeam backup wipe, SSMS database drops to deny recovery",
   "clusters": [
-   "Unattributed AI-assisted operator (Gambit/Dragos)"
+   "Black Shadow (Ababil of Minab persona)"
   ],
-  "country": "Unknown operator; campaign against Mexican government and utility orgs",
+  "country": "Iran (MOIS nexus)",
   "platforms": [
-   "ot-ics",
    "windows",
+   "linux",
    "network-edge"
   ],
   "sectors": [
-   "water",
-   "government",
-   "critical-infrastructure"
+   "transportation",
+   "media",
+   "insurance",
+   "education",
+   "government"
   ],
   "techniques": [
-   "T1190",
    "T1078",
+   "T1133",
+   "T1021.001",
+   "T1090.003",
    "T1572",
-   "T1090.001",
-   "T1046",
-   "T1018",
-   "T1087.002",
-   "T1110.003",
-   "T1552.005",
    "T1059.006",
-   "T1071.001",
-   "T1041",
+   "T1485",
+   "T1561.001",
+   "T1561.002",
+   "T1490",
+   "T1529",
    "T1588.007",
-   "T0846",
-   "T0840",
-   "T0812",
-   "T0859",
-   "T0822"
+   "T1041"
   ],
-  "tech_count": 18,
-  "tldr": "Between December 2025 and February 2026 an unidentified operator compromised nine Mexican government organizations, and Dragos (assisting Gambit Security) analyzed one strand of that campaign: the breach of Servicios de Agua y Drenaje de Monterrey (SADM), a municipal water and drainage utility. After taking the enterprise IT environment in January 2026 — likely via a vulnerable web server or stole",
-  "thumb": "thumbs/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT.svg",
-  "case_rel": "../days/2026/05/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/",
-  "q": "ai-assisted it-to-ot targeting at a monterrey water utility — claude/gpt-driven intrusion enumerates a vnode scada gateway and password-sprays the it-ot boundary unattributed ai-assisted operator (gambit/dragos) unknown operator; campaign against mexican government and utility orgs ot-ics windows network-edge water government critical-infrastructure t1190 t1078 t1572 t1090.001 t1046 t1018 t1087.002 t1110.003 t1552.005 t1059.006 t1071.001 t1041 t1588.007 t0846 t0840 t0812 t0859 t0822"
+  "tech_count": 13,
+  "tldr": "Gambit Security (report 2026-05-26) tied the pro-Iranian \"Ababil of Minab\" persona — which publicly claimed the Los Angeles County Metropolitan Transportation Authority (LA Metro / LACMTA) breach confirmed 2026-04-02 — to **Black Shadow**, an Iran Ministry of Intelligence and Security (MOIS) cluster previously named by Israel's National Cyber Directorate. The campaign exfiltrated data from organiz",
+  "thumb": "thumbs/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction.svg",
+  "case_rel": "../days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/",
+  "q": "black shadow / ababil of minab — iran-mois recovery-layer destruction: vcenter vm deletion, veeam backup wipe, ssms database drops to deny recovery black shadow (ababil of minab persona) iran (mois nexus) windows linux network-edge transportation media insurance education government t1078 t1133 t1021.001 t1090.003 t1572 t1059.006 t1485 t1561.001 t1561.002 t1490 t1529 t1588.007 t1041"
  },
  {
   "date": "2026-05-30",

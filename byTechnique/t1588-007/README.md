@@ -9,4 +9,4 @@
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
-| 2026-05-31 | AI-assisted IT-to-OT targeting at a Monterrey water utility — Claude/GPT-driven intrusion enumerates a vNode SCADA gateway and password-sprays the IT-OT boundary | Unattributed AI-assisted operator (Gambit/Dragos) | [`2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/`](../../days/2026/05/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/) |
+| 2026-05-31 | Black Shadow / Ababil of Minab — Iran-MOIS recovery-layer destruction: vCenter VM deletion, Veeam backup wipe, SSMS database drops to deny recovery | Black Shadow (Ababil of Minab persona) | [`2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/`](../../days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/) |

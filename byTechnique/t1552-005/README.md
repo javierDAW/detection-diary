@@ -4,12 +4,11 @@
 
 # Techniques: T1552.005
 
-8 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
-| 2026-05-31 | AI-assisted IT-to-OT targeting at a Monterrey water utility — Claude/GPT-driven intrusion enumerates a vNode SCADA gateway and password-sprays the IT-OT boundary | Unattributed AI-assisted operator (Gambit/Dragos) | [`2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/`](../../days/2026/05/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/) |
 | 2026-05-28 | TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io | TrapDoor (Socket-tracked) | [`2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/`](../../days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) |
 | 2026-05-21 | TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Worm, Nx Console VS Code Extension and the GitHub Internal Repo Breach | TeamPCP · UNC6780 · Mini Shai-Hulud | [`2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain/`](../../days/2026/05/2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain/) |
 | 2026-05-20 | Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure | Storm-2949 | [`2026-05-20_Storm-2949-Cloud-Identity-SSPR/`](../../days/2026/05/2026-05-20_Storm-2949-Cloud-Identity-SSPR/) |

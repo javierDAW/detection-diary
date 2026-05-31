@@ -1,0 +1,17 @@
+// Title:       Black Shadow — WipeFile + Veeam delete-from-disk console actions
+// MITRE:       T1490, T1485
+// Reference:   https://gambit.security/blog-posts/babil-of-minab-iran-mois-destruction-campaign
+// Author:      Jarmi
+// Date:        2026-05-31
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    Sanctioned media sanitisation and Veeam retention pruning look
+//              similar. Confirm target paths (SQLBackup/web roots) and that the
+//              actor is not a backup admin in a change window <add_known_backup_admins>.
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where (FileName in~ ("WipeFile.exe", "sdelete.exe", "sdelete64.exe")
+         and ProcessCommandLine has_any ("SQLBackup", "wwwroot", "inetpub", "Backup", "VeeamBackup"))
+     or (ProcessCommandLine has_any ("Remove-VBRBackup", "Remove-VBRRestorePoint", "Remove-VBRBackupRepository"))
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine,
+          InitiatingProcessFileName
+| order by Timestamp desc

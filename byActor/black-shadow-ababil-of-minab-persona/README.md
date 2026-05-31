@@ -2,12 +2,11 @@
 <!-- Source of truth: YAML frontmatter in each day's README.md -->
 
 
-# Techniques: T1561.001
+# Actors: Black Shadow (Ababil of Minab persona)
 
-2 day(s) covering this technique.
+1 day(s) covering this actor.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-05-31 | Black Shadow / Ababil of Minab — Iran-MOIS recovery-layer destruction: vCenter VM deletion, Veeam backup wipe, SSMS database drops to deny recovery | Black Shadow (Ababil of Minab persona) | [`2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/`](../../days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/) |
-| 2026-05-04 | Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026) | Sandworm overlap · Static Tundra · TEMP.Veles · C0063 | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026/05/2026-05-04_C0063-Poland-Wiper/) |

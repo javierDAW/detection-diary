@@ -18,6 +18,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Albiriox](./albiriox/) | 1 |
 | [ArcaneDoor](./arcanedoor/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
+| [Black Shadow (Ababil of Minab persona)](./black-shadow-ababil-of-minab-persona/) | 1 |
 | [BlackCat](./blackcat/) | 1 |
 | [BlackFile (self-branded DLS)](./blackfile-self-branded-dls/) | 1 |
 | [BreachForums](./breachforums/) | 1 |
@@ -95,7 +96,6 @@ Source of truth: each day's `README.md` frontmatter.
 | [UNC6671 (GTIG / Mandiant)](./unc6671-gtig-mandiant/) | 1 |
 | [UNC6780](./unc6780/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
-| [Unattributed AI-assisted operator (Gambit/Dragos)](./unattributed-ai-assisted-operator-gambit-dragos/) | 1 |
 | [Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)](./unattributed-ransomware-aligned-iab-ttp-overlap-with-akira-storm-1567-affiliate-ecosystem/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |

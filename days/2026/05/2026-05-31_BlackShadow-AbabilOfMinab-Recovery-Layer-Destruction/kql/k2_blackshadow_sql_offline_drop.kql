@@ -1,0 +1,20 @@
+// Title:       Black Shadow — SQL database SET OFFLINE / DROP from non-DBA host
+// MITRE:       T1485, T1059.006
+// Reference:   https://gambit.security/blog-posts/babil-of-minab-iran-mois-destruction-campaign
+// Author:      Jarmi
+// Date:        2026-05-31
+// Tested on:   Microsoft Sentinel (Syslog from SQL Server audit forwarding)
+// FP notes:    DBAs legitimately take databases offline during maintenance. The
+//              signal is mass SET OFFLINE / DROP DATABASE plus "Drop All Active
+//              Connections" from a non-DBA host. Exclude sanctioned DBA hosts via
+//              <add_known_dba_hosts>.
+Syslog
+| where TimeGenerated > ago(30d)
+| where SyslogMessage has_any ("SET OFFLINE", "DROP DATABASE", "Drop All Active Connections", "Delete Object")
+| extend DbHost = tostring(Computer)
+| where DbHost !in~ ("<add_known_dba_hosts>")
+| summarize Actions = count(), Statements = make_set(SyslogMessage, 20),
+            FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated)
+    by DbHost, bin(TimeGenerated, 15m)
+| where Actions > 2
+| order by Actions desc
