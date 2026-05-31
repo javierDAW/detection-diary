@@ -1,0 +1,229 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1120" role="img" aria-labelledby="t d" font-family="sans-serif">
+  <title id="t">BlackFile UNC6671 Cordial Spider vishing AiTM SaaS extortion kill chain</title>
+  <desc id="d">Two-lane kill chain. Victim organisation lane (left) shows passive recon, vishing call with IT-helpdesk pretext, adversary-in-the-middle credential and MFA capture, attacker MFA device enrollment and previous-device removal, inbox-rule auto-delete of security notifications, internal directory scrape and pivot to privileged accounts, programmatic SharePoint and OneDrive exfiltration with python-requests or PowerShell User-Agent and spoofed Microsoft Office ClientAppId, and extortion (Tox or Session). BlackFile operations lane (right) shows hired vishing callers, Tucows-registered lookalike apex domains, commercial VPN or residential proxy exfil egress with the GTIG-documented anchor IP, and the BlackFile data leak site lifecycle including the 2026-05-11 shutdown announcement. Detection anchors are at the bottom.</desc>
+
+  <defs>
+    <style>
+      .bg     { fill:#ffffff; }
+      .lane   { fill:#f6f8fa; stroke:#d0d7de; stroke-width:1; }
+      .laneL  { fill:#0969da; font-weight:700; font-size:12px; letter-spacing:1px; }
+      .laneR  { fill:#8250df; font-weight:700; font-size:12px; letter-spacing:1px; }
+      .stage  { fill:#ddf4ff; stroke:#0969da; stroke-width:1.5; }
+      .stageR { fill:#fff8c5; stroke:#d4a72c; stroke-width:1.5; }
+      .stageK { fill:#ffebe9; stroke:#cf222e; stroke-width:1.5; }
+      .badge  { fill:#0969da; }
+      .badgeK { fill:#cf222e; }
+      .badgeT { fill:#ffffff; font-size:11px; font-weight:700; text-anchor:middle; }
+      .stageT { fill:#1f2328; font-size:13px; font-weight:700; }
+      .stageS { fill:#57606a; font-size:11px; }
+      .mitre  { fill:#0550ae; font-size:10.5px; font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; }
+      .ioc    { fill:#1f2328; font-size:10px; font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; }
+      .arrow  { fill:none; stroke:#57606a; stroke-width:1.5; }
+      .arrowC { fill:none; stroke:#8250df; stroke-width:1.6; stroke-dasharray:4,3; }
+      .head   { fill:#1f2328; font-size:18px; font-weight:700; }
+      .meta   { fill:#57606a; font-size:11px; }
+      .anchor { fill:#dafbe1; stroke:#1a7f37; stroke-width:1.5; }
+      .anchorT{ fill:#1a7f37; font-size:13px; font-weight:700; }
+      .anchorL{ fill:#1f2328; font-size:11px; }
+      .C2box  { fill:#fbefff; stroke:#8250df; stroke-width:1.5; }
+      .C2T    { fill:#1f2328; font-size:13px; font-weight:700; }
+      .C2L    { fill:#1f2328; font-size:10.5px; font-family:ui-monospace,"SFMono-Regular",Consolas,monospace; }
+      .C2S    { fill:#57606a; font-size:11px; }
+
+      @media (prefers-color-scheme: dark) {
+        .bg     { fill:#0d1117; }
+        .lane   { fill:#161b22; stroke:#30363d; }
+        .laneL  { fill:#58a6ff; }
+        .laneR  { fill:#c297ff; }
+        .stage  { fill:#0c2d6b; stroke:#58a6ff; }
+        .stageR { fill:#473a0a; stroke:#d29922; }
+        .stageK { fill:#5a1a1a; stroke:#f85149; }
+        .badge  { fill:#58a6ff; }
+        .badgeK { fill:#f85149; }
+        .badgeT { fill:#0d1117; }
+        .stageT { fill:#f0f6fc; }
+        .stageS { fill:#8b949e; }
+        .mitre  { fill:#a5d6ff; }
+        .ioc    { fill:#f0f6fc; }
+        .arrow  { stroke:#8b949e; }
+        .arrowC { stroke:#c297ff; }
+        .head   { fill:#f0f6fc; }
+        .meta   { fill:#8b949e; }
+        .anchor { fill:#0f2e1b; stroke:#3fb950; }
+        .anchorT{ fill:#3fb950; }
+        .anchorL{ fill:#f0f6fc; }
+        .C2box  { fill:#2b1640; stroke:#c297ff; }
+        .C2T    { fill:#f0f6fc; }
+        .C2L    { fill:#f0f6fc; }
+        .C2S    { fill:#8b949e; }
+      }
+    </style>
+    <marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#57606a"/>
+    </marker>
+    <marker id="mc" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 Z" fill="#8250df"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="880" height="1120"/>
+
+  <!-- Header -->
+  <text class="head" x="20" y="32">BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM</text>
+  <text class="meta" x="20" y="52">GTIG + CrowdStrike + Unit 42 / RH-ISAC · public 2026-05-01 / 05-15 / 05-19 · mid-rebrand 2026-05-11</text>
+
+  <!-- Lanes (y=80..920, h=840) -->
+  <rect class="lane" x="20"  y="80" width="510" height="840" rx="6"/>
+  <rect class="lane" x="550" y="80" width="310" height="840" rx="6"/>
+  <text class="laneL" x="35"  y="100">VICTIM ORG · M365 + OKTA TENANT</text>
+  <text class="laneR" x="565" y="100">BLACKFILE OPS · AiTM INFRA + DLS</text>
+
+  <!-- ===== Stage 1: Recon ===== -->
+  <rect class="stage" x="40" y="120" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="142" r="13"/>
+  <text class="badgeT" x="62" y="146">1</text>
+  <text class="stageT" x="85" y="142">Reconnaissance &amp; Resource Development</text>
+  <text class="stageS" x="85" y="160">Directory scrape; harvest personal cell numbers.</text>
+  <text class="mitre"  x="85" y="178">MITRE: T1591.004 / T1583.001 / T1583.003</text>
+  <text class="ioc"    x="85" y="194">Tucows apex; subdomain stood up minutes before call</text>
+
+  <!-- ===== Stage 2: Vishing call ===== -->
+  <rect class="stage" x="40" y="220" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="242" r="13"/>
+  <text class="badgeT" x="62" y="246">2</text>
+  <text class="stageT" x="85" y="242">Initial Access · vishing helpdesk pretext</text>
+  <text class="stageS" x="85" y="260">Hired callers; pretext: mandatory passkey or MFA.</text>
+  <text class="mitre"  x="85" y="278">MITRE: T1566.004 / T1656 / T1598.004</text>
+  <text class="ioc"    x="85" y="294">English-native callers; off the corporate phone</text>
+
+  <!-- ===== Stage 3: AiTM credential + MFA capture (CRITICAL) ===== -->
+  <rect class="stageK" x="40" y="320" width="470" height="80" rx="6"/>
+  <circle class="badgeK" cx="62" cy="342" r="13"/>
+  <text class="badgeT" x="62" y="346">3</text>
+  <text class="stageT" x="85" y="342">Credential Access · live AiTM cred + MFA capture</text>
+  <text class="stageS" x="85" y="360">Captures user/password + MFA approval; replays to SSO.</text>
+  <text class="mitre"  x="85" y="378">MITRE: T1556.006 / T1621</text>
+  <text class="ioc"    x="85" y="394">Only FIDO2 / passkey survives this stage</text>
+
+  <!-- ===== Stage 4: Attacker MFA device enrollment + removal (CRITICAL) ===== -->
+  <rect class="stageK" x="40" y="420" width="470" height="80" rx="6"/>
+  <circle class="badgeK" cx="62" cy="442" r="13"/>
+  <text class="badgeT" x="62" y="446">4</text>
+  <text class="stageT" x="85" y="442">Persistence · attacker MFA device enrolled</text>
+  <text class="stageS" x="85" y="460">Enrolls new factor; removes victim device in &lt;90 s.</text>
+  <text class="mitre"  x="85" y="478">MITRE: T1098.005 / T1078.004</text>
+  <text class="ioc"    x="85" y="494">FedAuth session cookie reused for full exfil phase</text>
+
+  <!-- ===== Stage 5: Inbox rules to suppress notifications ===== -->
+  <rect class="stage" x="40" y="520" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="542" r="13"/>
+  <text class="badgeT" x="62" y="546">5</text>
+  <text class="stageT" x="85" y="542">Defense Evasion · inbox rules hide MFA alerts</text>
+  <text class="stageS" x="85" y="560">Outlook rules auto-delete IdP security notifications.</text>
+  <text class="mitre"  x="85" y="578">MITRE: T1564.008</text>
+  <text class="ioc"    x="85" y="594">Filters: "Security alert", "MFA", "device added"</text>
+
+  <!-- ===== Stage 6: Directory scrape + pivot ===== -->
+  <rect class="stage" x="40" y="620" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="642" r="13"/>
+  <text class="badgeT" x="62" y="646">6</text>
+  <text class="stageT" x="85" y="642">Discovery · pivot to privileged accounts</text>
+  <text class="stageS" x="85" y="660">Graph enum; SharePoint search "confidential" / "SSN".</text>
+  <text class="mitre"  x="85" y="678">MITRE: T1087.003 / T1087.004 / T1538</text>
+  <text class="ioc"    x="85" y="694">Second-round vishing vs IT-ops, finance, legal</text>
+
+  <!-- ===== Stage 7: Programmatic SaaS exfil (CRITICAL) ===== -->
+  <rect class="stageK" x="40" y="720" width="470" height="80" rx="6"/>
+  <circle class="badgeK" cx="62" cy="742" r="13"/>
+  <text class="badgeT" x="62" y="746">7</text>
+  <text class="stageT" x="85" y="742">Collection + Exfil · python / PowerShell vs SharePoint</text>
+  <text class="stageS" x="85" y="760">Spoofed Office ClientAppId; UA reveals python-requests.</text>
+  <text class="mitre"  x="85" y="778">MITRE: T1213.002 / T1530 / T1119 / T1041</text>
+  <text class="ioc"    x="85" y="794">1M+ files in one session; egress 179.43.185.226</text>
+
+  <!-- ===== Stage 8: Extortion ===== -->
+  <rect class="stageR" x="40" y="820" width="470" height="80" rx="6"/>
+  <circle class="badge" cx="62" cy="842" r="13"/>
+  <text class="badgeT" x="62" y="846">8</text>
+  <text class="stageT" x="85" y="842">Impact · extortion (Tox/Session, mailbox hijack)</text>
+  <text class="stageS" x="85" y="860">Pseudorandom Gmail; pivot to hijacked corp mailbox.</text>
+  <text class="mitre"  x="85" y="878">MITRE: T1657</text>
+  <text class="ioc"    x="85" y="894">Subject: "[COMPANY] DATA BREACH 72 HOURS..."</text>
+
+  <!-- ===== Right lane: BlackFile ops + infrastructure ===== -->
+
+  <!-- Box A: Vishing call infra -->
+  <rect class="C2box" x="565" y="120" width="280" height="120" rx="6"/>
+  <text class="C2T"   x="580" y="142">A · Vishing call center</text>
+  <text class="C2S"   x="580" y="160">Hired English-native callers</text>
+  <text class="C2S"   x="580" y="176">Target personal cell, not desk</text>
+  <text class="C2L"   x="580" y="198">Pretext: passkey / MFA refresh</text>
+  <text class="C2L"   x="580" y="214">Stay on line through AiTM</text>
+  <text class="C2L"   x="580" y="230">Tied to The Com (Unit 42 + CS)</text>
+
+  <!-- Box B: AiTM lookalike infra -->
+  <rect class="C2box" x="565" y="260" width="280" height="160" rx="6"/>
+  <text class="C2T"   x="580" y="282">B · AiTM lookalike apexes</text>
+  <text class="C2S"   x="580" y="300">Tucows-registered; less than 14 d</text>
+  <text class="C2L"   x="580" y="322">*.enrollms[.]com</text>
+  <text class="C2L"   x="580" y="338">*.passkeyms[.]com</text>
+  <text class="C2L"   x="580" y="354">*.setupsso[.]com</text>
+  <text class="C2S"   x="580" y="374">Per-victim subdomain:</text>
+  <text class="C2L"   x="580" y="390">&lt;org&gt;.&lt;apex&gt;</text>
+  <text class="C2L"   x="580" y="406">Up minutes before call</text>
+
+  <!-- Box C: Exfil destination -->
+  <rect class="C2box" x="565" y="440" width="280" height="160" rx="6"/>
+  <text class="C2T"   x="580" y="462">C · Exfil destination + UA</text>
+  <text class="C2S"   x="580" y="480">Commercial VPN + residential proxy</text>
+  <text class="C2L"   x="580" y="502">179.43.185.226 (GTIG anchor)</text>
+  <text class="C2L"   x="580" y="518">UA: python-requests/2.28.1</text>
+  <text class="C2L"   x="580" y="534">UA: WindowsPowerShell/5.1</text>
+  <text class="C2L"   x="580" y="550">ClientAppId spoof: d3590ed6-</text>
+  <text class="C2S"   x="580" y="572">FileAccessed not FileDownloaded</text>
+  <text class="C2S"   x="580" y="588">MS Graph + SharePoint REST</text>
+
+  <!-- Box D: DLS + comms + mid-rebrand -->
+  <rect class="C2box" x="565" y="620" width="280" height="200" rx="6"/>
+  <text class="C2T"   x="580" y="642">D · DLS + comms + rebrand</text>
+  <text class="C2S"   x="580" y="660">DLS launched 2026-02-06</text>
+  <text class="C2S"   x="580" y="676">DLS offline late April 2026</text>
+  <text class="C2S"   x="580" y="692">Brief return 2026-05-11:</text>
+  <text class="C2L"   x="580" y="710">"shutting down... under name"</text>
+  <text class="C2S"   x="580" y="730">Mid-rebrand 60-90 d window</text>
+  <text class="C2L"   x="580" y="752">Tox (early) -&gt; Session (Feb+)</text>
+  <text class="C2L"   x="580" y="768">Pseudorandom Gmail for notes</text>
+  <text class="C2L"   x="580" y="784">Hijacked mailbox + Teams spam</text>
+  <text class="C2L"   x="580" y="800">ShinyHunters brand co-opted</text>
+
+  <!-- ===== Arrows linking stages ===== -->
+  <!-- Stage 2 victim ↔ Box A operator (vishing call) -->
+  <path class="arrowC" d="M510,260 C540,260 545,180 565,180" marker-end="url(#mc)"/>
+  <!-- Stage 3 victim ↔ Box B AiTM portal -->
+  <path class="arrowC" d="M510,360 C540,360 545,340 565,340" marker-end="url(#mc)"/>
+  <!-- Stage 4 ↔ Box B (MFA enrollment via the lookalike chain) -->
+  <path class="arrowC" d="M510,460 C540,460 550,400 565,400" marker-end="url(#mc)"/>
+  <!-- Stage 7 ↔ Box C (programmatic exfil destination) -->
+  <path class="arrowC" d="M510,760 C540,760 545,520 565,520" marker-end="url(#mc)"/>
+  <!-- Stage 8 ↔ Box D (extortion comms + DLS) -->
+  <path class="arrowC" d="M510,860 C540,860 545,720 565,720" marker-end="url(#mc)"/>
+
+  <!-- ===== Vertical flow arrows between stages 1→8 ===== -->
+  <path class="arrow" d="M275,200 L275,220" marker-end="url(#m)"/>
+  <path class="arrow" d="M275,300 L275,320" marker-end="url(#m)"/>
+  <path class="arrow" d="M275,400 L275,420" marker-end="url(#m)"/>
+  <path class="arrow" d="M275,500 L275,520" marker-end="url(#m)"/>
+  <path class="arrow" d="M275,600 L275,620" marker-end="url(#m)"/>
+  <path class="arrow" d="M275,700 L275,720" marker-end="url(#m)"/>
+  <path class="arrow" d="M275,800 L275,820" marker-end="url(#m)"/>
+
+  <!-- ===== Footer detection anchors band (y=940..1100, h=160) ===== -->
+  <rect class="anchor" x="20" y="940" width="840" height="160" rx="6"/>
+  <text class="anchorT" x="35" y="964">Detection anchors mapped to this folder</text>
+  <text class="anchorL" x="35" y="986">Sigma · 01 AiTM apex network_connection · 02 browser launched with lookalike URL · 03 PowerShell SharePoint scripting UA</text>
+  <text class="anchorL" x="35" y="1004">KQL · k1 FileAccessed + scripting UA · k2 SharePoint burst from unmanaged device · k3 MFA register after failed challenge</text>
+  <text class="anchorL" x="35" y="1022">YARA · blackfile_phishing_kit_artifacts.yar — apex refs + exfil script boilerplate + extortion note template</text>
+  <text class="anchorL" x="35" y="1040">Suricata · blackfile_unc6671.rules — TLS SNI to 3 apexes + 179.43.185.226 IP + python-requests UA to SharePoint</text>
+  <text class="anchorL" x="35" y="1058">PEAK hunts · h1 python UA on SharePoint FileAccessed · h2 MFA register after failure · h3 Tucows lookalike &lt;14d</text>
+  <text class="anchorL" x="35" y="1080">IOCs · 25 entries in iocs.csv — 3 lookalike apexes, 179.43.185.226 anchor, UA fingerprints, comms anchors, mid-rebrand</text>
+</svg>

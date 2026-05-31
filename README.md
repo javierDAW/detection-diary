@@ -10,6 +10,29 @@
 
 ---
 
+## Gallery
+
+<!-- AUTOGEN:GALLERY:START -->
+**33 cases** · **92 actors/clusters** · **244 ATT&CK techniques** · **15 platforms** · **53 sectors** · 2026-04-29 -> 2026-05-31
+
+> Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
+
+<table>
+<tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/"><img src="days/2026/05/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/kill_chain.svg" alt="2026-05-31 kill chain" width="240"></a><br><sub><b>2026-05-31</b><br>Unattributed AI-assisted operator (Gambit/Dragos)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/"><img src="days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/kill_chain.svg" alt="2026-05-30 kill chain" width="240"></a><br><sub><b>2026-05-30</b><br>AMOS / Atomic macOS Stealer (MaaS)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/"><img src="days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/kill_chain.svg" alt="2026-05-29 kill chain" width="240"></a><br><sub><b>2026-05-29</b><br>Chaotic Eclipse / Nightmare-Eclipse</sub></td>
+</tr>
+<tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/"><img src="days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/kill_chain.svg" alt="2026-05-28 kill chain" width="240"></a><br><sub><b>2026-05-28</b><br>TrapDoor (Socket-tracked)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/"><img src="days/2026/05/2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/kill_chain.svg" alt="2026-05-27 kill chain" width="240"></a><br><sub><b>2026-05-27</b><br>UNC6671 (GTIG / Mandiant) · BlackFile (self-branded DLS) · Cordial Spider (CrowdStrike) · CL-CRI-1116 (Palo Alto Unit 42) · O-UNC-045 (Okta Defensive Cyber Operations)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/"><img src="days/2026/05/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/kill_chain.svg" alt="2026-05-26 kill chain" width="240"></a><br><sub><b>2026-05-26</b><br>VENOMOUS#HELPER (Securonix) · STAC6405 (Sophos)</sub></td>
+</tr>
+</table>
+<!-- AUTOGEN:GALLERY:END -->
+
+---
+
 ## What this is
 
 This repository is my personal **detection journal**. Every day I pick one high-impact, technically meaty case from the threat-intel feed (vendor write-ups from Mandiant, Microsoft, Volexity, Unit 42, ESET, Talos, Securelist, SentinelOne, CrowdStrike, Dragos, plus DFIR Report and CISA advisories) and translate it into **deployable detection content**:
@@ -36,49 +59,63 @@ Each entry is grounded on a published, sourced case, so it stays defensible and 
 
 ```
 detection-diary/
-├── README.md
-├── INDEX.md                ← AUTO-GENERATED — chronological + by-actor + by-technique + by-platform
+├── README.md               ← landing page; gallery block is AUTO-GENERATED
+├── INDEX.md                ← AUTO-GENERATED — gallery + chronological-by-month + facet links
 ├── CHANGELOG.md
 ├── LICENSE
 ├── .gitignore
 │
-├── days/                   ← source of truth — one folder per case
-│   └── YYYY-MM-DD_<slug>/
-│       ├── README.md       ← YAML frontmatter + the 15-section write-up
-│       ├── kill_chain.svg  ← adaptive light/dark kill-chain diagram (mandatory since Day 13)
-│       ├── sigma/*.yml
-│       ├── kql/*.kql
-│       ├── yara/*.yar
-│       ├── suricata/*.rules
-│       ├── hunts/*.md
-│       └── iocs.csv
+├── days/                   ← source of truth — sharded by year/month
+│   └── YYYY/
+│       └── MM/
+│           └── YYYY-MM-DD_<slug>/
+│               ├── README.md       ← YAML frontmatter + the 15-section write-up
+│               ├── kill_chain.svg  ← adaptive light/dark kill-chain diagram (mandatory since Day 13)
+│               ├── sigma/*.yml
+│               ├── kql/*.kql
+│               ├── yara/*.yar
+│               ├── suricata/*.rules
+│               ├── hunts/*.md
+│               └── iocs.csv
+│
+├── docs/                   ← AUTO-GENERATED GitHub Pages gallery (Settings -> Pages -> /docs)
+│   ├── index.html          ← self-contained filterable gallery, light/dark
+│   ├── data.json           ← one record per case (from frontmatter)
+│   └── thumbs/*.svg         ← kill-chain thumbnails
 │
 ├── byActor/                ← AUTO-GENERATED view: one folder per cluster / alias
 ├── byTechnique/            ← AUTO-GENERATED view: one folder per MITRE ATT&CK ID
 ├── byPlatform/             ← AUTO-GENERATED view: one folder per platform tag
 │
 └── tools/
-    ├── validate_all.py     ← offline multi-format validator
+    ├── validate_all.py     ← offline multi-format validator (recursive days/**)
     ├── sigma_check.py      ← Sigma-only offline validator
     ├── lint_sigma.sh       ← Sigma wrapper
     ├── lint_all.sh         ← full chain wrapper
-    └── generate_index.py   ← rebuilds INDEX.md + byActor/ + byTechnique/ + byPlatform/
+    ├── generate_index.py   ← rebuilds INDEX.md (+ README gallery block) + byActor/ + byTechnique/ + byPlatform/
+    └── generate_site.py    ← rebuilds the docs/ Pages gallery
 ```
 
-> `INDEX.md`, `byActor/`, `byTechnique/` and `byPlatform/` are **auto-generated** from the YAML frontmatter at the top of each `days/<slug>/README.md`. To rebuild them after adding or editing a day:
+> The day folders are **sharded by year/month** so the tree stays browsable and the
+> tooling stays fast as the journal grows — but the layout is cosmetic: every link is
+> computed from the file location and the chronology comes from each case's `date:`
+> field, not its path. `INDEX.md`, the README gallery block, `byActor/`, `byTechnique/`,
+> `byPlatform/` and everything under `docs/` are **auto-generated** from the YAML
+> frontmatter at the top of each day's `README.md`. To rebuild after adding or editing a day:
 >
 > ```bash
-> python3 tools/generate_index.py
+> python3 tools/generate_index.py   # INDEX.md + README gallery + by* facet views
+> python3 tools/generate_site.py    # docs/ Pages gallery (index.html + data.json + thumbs)
 > ```
 >
-> Do not edit those files by hand — your changes will be wiped on the next regen.
+> Do not edit the generated files by hand — your changes will be wiped on the next regen.
 
 ---
 
 ## Naming convention
 
 ```
-days/YYYY-MM-DD_<short-slug>/
+days/YYYY/MM/YYYY-MM-DD_<short-slug>/
 ```
 
 - `YYYY-MM-DD` is the date the **class was delivered**, not the date the case was disclosed.
@@ -98,7 +135,7 @@ Every `days/<slug>/README.md` follows the same 15 canonical sections, in this ex
 3. `## TL;DR` — 3–5 sentences: what happened, who, when, victim sector, dwell time, why it matters.
 4. `## Attribution and confidence` — cluster + aliases + explicit `high` / `medium` / `low` confidence.
 5. `## Kill chain — summary table` — `Stage | MITRE | Detail` rows.
-6. An embedded `kill_chain.svg` reference — mandatory adaptive light/dark diagram. Each day uses the relative path inside its own folder; an example that exists today is [`days/2026-05-09_Albiriox-Android-MaaS-AcVNC/kill_chain.svg`](./days/2026-05-09_Albiriox-Android-MaaS-AcVNC/kill_chain.svg).
+6. An embedded `kill_chain.svg` reference — mandatory adaptive light/dark diagram. Each day uses the relative path inside its own folder; an example that exists today is [`days/2026/05/2026-05-09_Albiriox-Android-MaaS-AcVNC/kill_chain.svg`](./days/2026/05/2026-05-09_Albiriox-Android-MaaS-AcVNC/kill_chain.svg).
 7. `## Stage-by-stage detail` — sub-heading per stage with real commands, hashes, paths.
 8. `## RE notes` *(optional — only if a public sample exists)*.
 9. `## Detection strategy` — telemetry that matters + detection coverage table + threat hunting hypotheses.
@@ -168,7 +205,7 @@ Suricata 7.x is the target version: `dsize:X<>Y` for ranges, HTTP modifiers as s
 
 ```bash
 pip install pysigma pysigma-backend-microsoft365defender
-sigma convert -t microsoft365defender days/2026-05-04_C0063-Poland-Wiper/sigma/*.yml
+sigma convert -t microsoft365defender days/2026/05/2026-05-04_C0063-Poland-Wiper/sigma/*.yml
 ```
 
 If you operate Splunk, run `sigma convert -t splunk -p sysmon <rule>.yml` against the Sigma files on your side. The repo no longer ships `.spl` artifacts — see the CHANGELOG entry from 2026-05-11 for rationale.
@@ -176,13 +213,13 @@ If you operate Splunk, run `sigma convert -t splunk -p sysmon <rule>.yml` agains
 ### YARA — scan a triage image
 
 ```bash
-yara -r days/2026-05-04_C0063-Poland-Wiper/yara/*.yar /mnt/triage/
+yara -r days/2026/05/2026-05-04_C0063-Poland-Wiper/yara/*.yar /mnt/triage/
 ```
 
 ### Suricata — load a ruleset
 
 ```bash
-suricata -T -S days/2026-05-11_UAT-8302-China-Government-Espionage/suricata/uat8302_c2_domains_subnet.rules
+suricata -T -S days/2026/05/2026-05-11_UAT-8302-China-Government-Espionage/suricata/uat8302_c2_domains_subnet.rules
 ```
 
 ---

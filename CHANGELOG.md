@@ -6,6 +6,41 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.05.31 — Maintenance — Repo restructure: year/month sharding + auto-generated Pages gallery
+
+### Changed
+- `days/` sharded from flat `days/<slug>/` to `days/YYYY/MM/<slug>/` (34 cases migrated) so the tree stays browsable and the tooling stays fast as the journal grows. The layout is cosmetic — every link is computed from the file location and the chronology comes from each case's `date:` field, not its path.
+- `tools/generate_index.py` — recursive `days/**` collection; `INDEX.md` rebuilt as a gallery (headline counters + recent thumbnail wall + collapsible by-month tables + facet links); now also patches an auto-generated gallery+counters block into `README.md` between `AUTOGEN:GALLERY` markers; the heavy inline 200+-row technique table was dropped in favour of `byTechnique/` links.
+- `README.md` — added the live gallery block and updated the structure + naming-convention sections for the sharded layout.
+- `tools/validate_all.py` and `tools/lint_all.sh` — unchanged; both already glob `days/**` recursively, so the deeper nesting is picked up automatically (verified).
+
+### Added
+- `tools/generate_site.py` + `docs/` — a self-contained, build-free GitHub Pages gallery (`index.html` + `data.json` + `thumbs/*.svg` + `.nojekyll`): filterable by actor/technique/platform/year, full-text search, headline counters, a kill-chain thumbnail per case, light/dark theming matched to the canonical SVG palette. Enable via Settings -> Pages -> branch `main`, folder `/docs`.
+
+### Pedagogy
+- Separate storage from presentation: shard the storage for scale, and put the "first-glance impact" into generated surfaces (gallery, counters, Pages) that aggregate across every shard so the viewer never feels the sharding.
+- Keep one source of truth (the per-day frontmatter); generated indexes and the site are disposable and rebuilt on demand.
+
+
+## 2026.05.31 — Day 34 — AI-Assisted IT-to-OT Targeting at a Monterrey Water Utility — Claude/GPT-Driven Intrusion Enumerates a vNode SCADA Gateway and Password-Sprays the IT-OT Boundary
+
+### Added
+- `days/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/` — v9 weekend auto-rescue (Sunday; rotation table off) filling the OT-family gap (last OT primary Day 3 BAUXITE). Dragos (assisting Gambit Security) analyzed the OT strand of a Dec 2025-Feb 2026 campaign against nine Mexican government orgs: after compromising the SADM (Servicios de Agua y Drenaje de Monterrey) enterprise IT in Jan 2026, the operator used Anthropic's Claude as primary technical executor and OpenAI's GPT-4.1 for data processing. Claude enumerated the internal network, independently identified a vNode SCADA/IIoT gateway, classed it a critical-infra crown jewel, built credential lists, and ran two failed rounds of password spraying against its single-password SPA login. OT was not breached. Dragos blog 2026-05-06; Gambit report Apr 2026; ~75% of remote commands AI-directed; 17,000-line Claude-written "BACKUPOSINT v9.0 APEX PREDATOR" Python framework (49 modules).
+- Sigma (3): `01_aibreach_cloud_metadata_access.yml` — curl/python/powershell touching link-local metadata `169.254.169.254`; `02_aibreach_internal_tunnel_proxy.yml` — chisel/ligolo/gost/frp/plink + ssh -D/-R internal tunneling; `03_aibreach_ad_interrogation_burst.yml` — nltest/dsquery/setspn/net AD-interrogation LOLBINs.
+- KQL (4): `k1_aibreach_eastwest_to_ot_gateway.kql` — DeviceNetworkEvents IT host to the SCADA gateway off the engineering-jump allowlist; `k2_aibreach_vnode_password_spray.kql` — Syslog spray summary (low password / high account cardinality, one source); `k3_aibreach_ad_interrogation_burst.kql` — distinct AD-interrogation commands per host per window; `k4_aibreach_cloud_metadata_access.kql` — metadata access from script/interactive context.
+- YARA (1 file, 2 rules): `aibreach_backuposint_framework` (BACKUPOSINT/APEX PREDATOR banner + Python markers); `aibreach_ai_offensive_python` (heuristic: large single-file Python with metadata + AD + lateral-movement markers).
+- Suricata (1 file, 5 sids 7205001-7205005): HTTP POST spray burst to the gateway login; 401 and 403 response bursts from the gateway; cloud-metadata GET heuristic; HTTP CONNECT tunnel toward the OT-adjacent segment. Documented variables `$IT_NET`/`$OT_GATEWAY`/`$ENG_JUMP`.
+- PEAK hunts (3): `peak_h1_eastwest_it_to_ot.md` — East-West contact to the gateway; `peak_h2_vnode_password_spray.md` — spray against the single-password login; `peak_h3_ai_tooling_cooccurrence.md` — metadata + AD-interrogation + tunnel co-occurrence on one host.
+- `iocs.csv` (13 entries) — behavioral/structural primitives (BACKUPOSINT banner, `vNode`, `169.254.169.254`, single-password SPA spray, Claude Code + GPT-4.1 split, guardrail bypass via authorized-pentest framing, campaign scoping); no malware hashes or campaign infra published for the OT strand, so detection anchors on behavior not values.
+- `kill_chain.svg` — template A, viewBox 880x1280, canonical palette. Left lane (victim IT to OT boundary) seven stages with critical red badges on the vNode gateway and the failed spray; right lane (AI-assisted operator) six ops boxes for Claude Code, GPT-4.1, BACKUPOSINT, metadata+AD, guardrail bypass, and the 2-day C2. Two cross-lane purple-dashed arrows; six vertical flow arrows; boundary-anchored detection footer. Verifier ran twice clean: viewBox 880x1280.
+
+### Pedagogy
+- AI brought speed, not new ICS tradecraft — every technique here is decades old; prevention-only OT strategy degrades as AI compresses IT-to-OT recon from days to hours.
+- Anchor OT detection on the boundary (an IT host reaching the SCADA gateway from a non-engineering subnet), not on the actor's tooling, which AI rotates fast.
+- An IT-resident SCADA management gateway is a crown jewel even when "just" a management interface — inventory it as OT-adjacent and lock its login to one sanctioned source.
+- Credential reuse is the IT-to-OT bridge; strong unique authentication on the boundary is what ended this case in "failed."
+
+
 ## 2026.05.30 — Day 33 — AMOS / Atomic macOS Stealer — Malicious OpenClaw Skill SKILL.md Delivers a Multi-Key-XOR Universal Mach-O Wallet and Keychain Stealer
 
 ### Added

@@ -1,0 +1,194 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1180" role="img" aria-labelledby="t d">
+  <title id="t">EVM/DeFi npm typosquat kill chain — Xygeni, 6 May 2026</title>
+  <desc id="d">A developer running an EVM project npm-installs one of six brand-adjacency typosquat packages. On require, telemetry.js checks for developer-shape env vars and config files, harvests SSH and AWS keys, npm tokens, Foundry / Ethereum / Brownie keystores and .env files, encrypts the bundle with AES-256-GCM and POSTs it to a raw IPv4 endpoint. There is no host persistence — the operator drains wallets on-chain.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      .anchor       { fill: #1f2328; font: 600 12px sans-serif; }
+      .anchor-sub   { fill: #424a53; font: 11.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .anchor-bg    { fill: #ddf4ff; stroke: #54aeff; stroke-width: 1; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+        .anchor     { fill: #c9d1d9; }
+        .anchor-sub { fill: #8b949e; }
+        .anchor-bg  { fill: #0c2d6b; stroke: #1f6feb; }
+      }
+    </style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="40" class="header">EVM / DeFi npm typosquat — kill chain</text>
+  <text x="40" y="60" class="subhead">Xygeni . 6 May 2026 . 6 pkgs in 57s . namikazesarada010206 . on-require activation</text>
+
+  <text x="20" y="120" class="lane" transform="rotate(-90, 20, 120)">VICTIM (EVM developer host)</text>
+  <text x="855" y="120" class="lane" transform="rotate(90, 855, 120)">OPERATOR (single-shot exfil + on-chain drain)</text>
+
+  <!-- Stage 1 -->
+  <circle cx="80" cy="115" r="14" class="stagebg"/>
+  <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
+  <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="111" class="label">npm install (brand-adjacency squat)</text>
+  <text x="124" y="128" class="sub">viem-core / hardhat-core-utils / foundry-utils / ...</text>
+  <text x="600" y="111" text-anchor="end" class="mitre">T1195.002</text>
+  <text x="600" y="128" text-anchor="end" class="ioc">6 pkgs in 57 sec</text>
+  <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 2 -->
+  <circle cx="80" cy="195" r="14" class="stagebg"/>
+  <text x="80" y="199" text-anchor="middle" class="stagenum">2</text>
+  <rect x="110" y="172" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="191" class="label">require() activates telemetry.js</text>
+  <text x="124" y="208" class="sub">NOT postinstall — --ignore-scripts does not mitigate</text>
+  <text x="124" y="224" class="ioc">SHA-256 71426e93cb...5bff1 (byte-identical x6)</text>
+  <text x="600" y="191" text-anchor="end" class="mitre">T1059.007 . T1129</text>
+  <text x="600" y="224" text-anchor="end" class="ioc">on-require</text>
+  <line x1="360" y1="230" x2="360" y2="262" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 3 -->
+  <circle cx="80" cy="285" r="14" class="stagebg"/>
+  <text x="80" y="289" text-anchor="middle" class="stagenum">3</text>
+  <rect x="110" y="262" width="500" height="68" rx="6" class="bg-stage"/>
+  <text x="124" y="281" class="label">Activation gate — developer-shape check</text>
+  <text x="124" y="298" class="sub">env: ALCHEMY_API_KEY / INFURA_KEY / PRIVATE_KEY / MNEMONIC</text>
+  <text x="124" y="314" class="sub">files: hardhat.config.* / foundry.toml / brownie-config.yaml</text>
+  <text x="124" y="326" class="ioc">non-dev hosts: no-op (filter operator workload)</text>
+  <text x="600" y="281" text-anchor="end" class="mitre">T1480</text>
+  <text x="600" y="326" text-anchor="end" class="ioc">env + cwd shape</text>
+  <line x1="360" y1="330" x2="360" y2="362" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 4 -->
+  <circle cx="80" cy="385" r="14" class="stagebg"/>
+  <text x="80" y="389" text-anchor="middle" class="stagenum">4</text>
+  <rect x="110" y="362" width="500" height="68" rx="6" class="bg-stage"/>
+  <text x="124" y="381" class="label">Credential harvest from cwd</text>
+
+  <text x="124" y="398" class="sub">~/.ssh + ~/.aws + ~/.npmrc + ~/.foundry/keystores</text>
+  <text x="124" y="414" class="sub">~/.ethereum/keystore + ~/.brownie/accounts + .env*</text>
+  <text x="124" y="426" class="ioc">env regex: TOKEN|SECRET|KEY|PASSWORD|MNEMONIC|DEPLOY</text>
+  <text x="600" y="381" text-anchor="end" class="mitre">T1552.001 . T1555.005</text>
+  <text x="600" y="426" text-anchor="end" class="ioc">single-shot</text>
+  <line x1="360" y1="430" x2="360" y2="462" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 5 -->
+  <circle cx="80" cy="485" r="14" class="stagebg"/>
+  <text x="80" y="489" text-anchor="middle" class="stagenum">5</text>
+  <rect x="110" y="462" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="481" class="label">AES-256-GCM encrypt + base64 envelope</text>
+  <text x="124" y="498" class="sub">Hardcoded 32-byte passphrase compiled into telemetry.js</text>
+  <text x="124" y="514" class="ioc">JSON body {"d":"&lt;base64-cipher&gt;"}</text>
+  <text x="600" y="481" text-anchor="end" class="mitre">T1027 . T1140</text>
+  <text x="600" y="514" text-anchor="end" class="ioc">AES-GCM bundle</text>
+  <line x1="360" y1="520" x2="360" y2="552" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 6 -->
+  <circle cx="80" cy="575" r="14" class="stagebg"/>
+  <text x="80" y="579" text-anchor="middle" class="stagenum">6</text>
+  <rect x="110" y="552" width="500" height="58" rx="6" class="bg-stage"/>
+  <text x="124" y="571" class="label">POST /ingest to raw IPv4 (no DNS)</text>
+  <text x="124" y="588" class="sub">NODE_TLS_REJECT_UNAUTHORIZED=0 — no cert hygiene</text>
+  <text x="124" y="604" class="ioc">76.13.37.80 — no domain, no retry, no fallback</text>
+  <text x="600" y="571" text-anchor="end" class="mitre">T1071.001 . T1573.001 . T1041</text>
+  <text x="600" y="604" text-anchor="end" class="ioc">single-shot exfil</text>
+  <line x1="600" y1="585" x2="700" y2="585" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
+  <line x1="360" y1="610" x2="360" y2="642" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 7 -->
+  <circle cx="80" cy="665" r="14" class="stagebg"/>
+  <text x="80" y="669" text-anchor="middle" class="stagenum">7</text>
+  <rect x="110" y="642" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="661" class="label">No host persistence</text>
+  <text x="124" y="678" class="sub">Process exits clean; operator persistence is on-chain</text>
+  <text x="600" y="661" text-anchor="end" class="mitre">—</text>
+  <text x="600" y="678" text-anchor="end" class="ioc">drop &amp; forget</text>
+  <line x1="360" y1="690" x2="360" y2="722" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- Stage 8 -->
+  <circle cx="80" cy="745" r="14" class="stagebg"/>
+  <text x="80" y="749" text-anchor="middle" class="stagenum">8</text>
+  <rect x="110" y="722" width="500" height="68" rx="6" class="bg-stage"/>
+  <text x="124" y="741" class="label">On-chain wallet drain</text>
+  <text x="124" y="758" class="sub">Sign transactions with stolen MNEMONIC / DEPLOYER_KEY</text>
+  <text x="124" y="774" class="sub">Republish typosquat from victim's npm identity</text>
+  <text x="124" y="786" class="ioc">aws iam abuse + ssh lateral to other dev hosts</text>
+  <text x="600" y="741" text-anchor="end" class="mitre">T1657</text>
+  <text x="600" y="786" text-anchor="end" class="ioc">funds gone</text>
+
+  <!-- Operator cluster -->
+  <rect x="640" y="92" width="220" height="600" rx="6" class="bg-c2"/>
+  <text x="660" y="115" class="label">namikazesarada010206</text>
+
+  <text x="660" y="148" class="sub">npm publisher</text>
+  <text x="660" y="166" class="ioc">namikazesarada010206</text>
+  <text x="660" y="182" class="ioc">@gmail.com</text>
+
+  <text x="660" y="216" class="sub">GitHub mirror</text>
+  <text x="660" y="234" class="ioc">harunosakura030303-</text>
+  <text x="660" y="250" class="ioc">maker/evmchain-config</text>
+
+  <text x="660" y="284" class="sub">C2 endpoint</text>
+  <text x="660" y="302" class="ioc">76.13.37.80</text>
+  <text x="660" y="318" class="ioc">/ingest (HTTP POST)</text>
+  <text x="660" y="334" class="ioc">no DNS / no SNI</text>
+
+  <text x="660" y="368" class="sub">Six malicious pkgs (1.0.0)</text>
+  <text x="660" y="386" class="ioc">viem-core</text>
+  <text x="660" y="402" class="ioc">viem-utils-core</text>
+  <text x="660" y="418" class="ioc">hardhat-core-utils</text>
+  <text x="660" y="434" class="ioc">evm-utils</text>
+  <text x="660" y="450" class="ioc">foundry-utils</text>
+  <text x="660" y="466" class="ioc">web3-utils-core</text>
+
+  <text x="660" y="500" class="sub">Window</text>
+  <text x="660" y="518" class="ioc">2026-05-06</text>
+  <text x="660" y="534" class="ioc">01:38:44Z -&gt;</text>
+  <text x="660" y="550" class="ioc">01:39:48Z (57s)</text>
+
+  <text x="660" y="584" class="sub">Activation primitive</text>
+  <text x="660" y="602" class="ioc">on-require()</text>
+  <text x="660" y="618" class="ioc">NOT postinstall</text>
+
+  <text x="660" y="652" class="sub">Payload hash</text>
+  <text x="660" y="670" class="ioc">SHA-256:</text>
+  <text x="660" y="686" class="ioc">71426e93...5bff1</text>
+
+  <!-- Detection anchors box -->
+  <rect x="40" y="860" width="800" height="300" rx="6" class="anchor-bg"/>
+  <text x="60" y="888" class="anchor">Detection anchors (rules in this folder)</text>
+  <text x="60" y="914" class="anchor-sub">sigma/dev_secret_read_burst_from_node.yml — node / ts-node reads &gt;=3 credential files within 60s</text>
+  <text x="60" y="936" class="anchor-sub">sigma/node_outbound_ipv4_no_sni.yml — node outbound to public IPv4 with no DNS resolution from same PID</text>
+  <text x="60" y="958" class="anchor-sub">kql/defender_credential_burst_dev_host.kql — DeviceFileEvents credential burst on host with Foundry / Hardhat configs</text>
+  <text x="60" y="980" class="anchor-sub">kql/sentinel_node_outbound_first_seen_ipv4.kql — first-seen node outbound to public IPv4 (30-day baseline)</text>
+  <text x="60" y="1002" class="anchor-sub">yara/evmdefi_npm_typosquat_telemetry.yar — telemetry.js env-gate + AES-GCM + raw IPv4 + paths</text>
+  <text x="60" y="1024" class="anchor-sub">suricata/tls_no_sni_ipv4_literal.rules — known C2 + TLS-no-SNI from dev VLAN + AES-GCM body shape</text>
+  <text x="60" y="1046" class="anchor-sub">hunts/peak_h1_h2.md — H1 Builder bait first-seen install / H2 IP-only egress dev tooling</text>
+  <text x="60" y="1080" class="anchor">Pedagogical anchors</text>
+  <text x="60" y="1102" class="anchor-sub">--ignore-scripts is NOT a defence in 2026. On-require activation bypasses it.</text>
+  <text x="60" y="1122" class="anchor-sub">If MNEMONIC / DEPLOYER_KEY exfiltrated, move funds on-chain FIRST, clean host SECOND.</text>
+  <text x="60" y="1142" class="anchor-sub">QLNX-class developer-host implants are the upstream cause of this typosquat class. Detect both ends.</text>
+</svg>

