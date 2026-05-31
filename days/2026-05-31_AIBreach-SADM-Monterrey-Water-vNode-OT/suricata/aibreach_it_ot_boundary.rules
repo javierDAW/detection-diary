@@ -1,0 +1,35 @@
+# Suricata 7.x rules — AI-assisted IT-to-OT targeting (SADM water utility)
+# Author:    Jarmi
+# Date:      2026-05-31
+# Family:    AI-assisted-operator-tooling (unattributed)
+# Reference: https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+#            https://industrialcyber.co/reports/dragos-details-ai-assisted-intrusion-targeting-mexican-water-utility-as-claude-openai-models-used-to-pursue-ot-access/
+#
+# Network coverage intent:
+#   These rules sit on the IT-OT boundary sensor / span port in front of the
+#   SCADA/IIoT management gateway (vNode-class). They catch (a) HTTP POST
+#   password-spray bursts to the gateway login, (b) 401/403 response bursts from
+#   the gateway, (c) link-local cloud-metadata access seen on a host sensor, and
+#   (d) a generic HTTP CONNECT tunnel heuristic. No public hashes/IPs exist for
+#   this case; rules anchor on behavior and use documented variables.
+#
+# Custom variables expected in suricata.yaml (define for your environment):
+#   $IT_NET       enterprise IT CIDR (general workstations/servers)
+#   $OT_GATEWAY   the SCADA/IIoT management gateway host/CIDR (vNode-class)
+#   $ENG_JUMP     sanctioned engineering jump host(s) allowed to reach the gateway
+#   $HOME_NET     internal CIDR (host-sensor rules)
+#   sids 7205001-7205005.
+
+# (a) Password-spray burst: many POSTs to the gateway from IT (excluding the eng jump host)
+alert http $IT_NET any -> $OT_GATEWAY any (msg:"AIBREACH IT-to-OT password spray POST burst to SCADA gateway login"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"login"; nocase; threshold:type both, track by_src, count 20, seconds 120; classtype:attempted-recon; sid:7205001; rev:1;)
+
+# (b) Auth-failure response burst from the gateway (401/403) toward a single IT source
+alert http $OT_GATEWAY any -> $IT_NET any (msg:"AIBREACH SCADA gateway 401 Unauthorized response burst (possible spray)"; flow:established,to_client; http.stat_code; content:"401"; threshold:type both, track by_dst, count 20, seconds 120; classtype:attempted-recon; sid:7205002; rev:1;)
+
+alert http $OT_GATEWAY any -> $IT_NET any (msg:"AIBREACH SCADA gateway 403 Forbidden response burst (possible spray)"; flow:established,to_client; http.stat_code; content:"403"; threshold:type both, track by_dst, count 20, seconds 120; classtype:attempted-recon; sid:7205003; rev:1;)
+
+# (c) Cloud instance-metadata access (host sensor view) — credential theft module
+alert http $HOME_NET any -> 169.254.169.254 any (msg:"AIBREACH cloud instance-metadata access (credential harvesting module)"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"meta-data"; nocase; classtype:attempted-recon; sid:7205004; rev:1;)
+
+# (d) HTTP CONNECT tunnel heuristic from IT toward the gateway segment
+alert http $IT_NET any -> $OT_GATEWAY any (msg:"AIBREACH HTTP CONNECT tunnel attempt toward OT-adjacent segment"; flow:established,to_server; http.method; content:"CONNECT"; classtype:attempted-recon; sid:7205005; rev:1;)

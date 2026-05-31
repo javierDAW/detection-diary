@@ -1,0 +1,21 @@
+// Title:       AI-assisted IT-to-OT — East-West connection to SCADA/IIoT gateway
+// Id:          a1c2e3f4-0001-4aaa-bbbb-0001aibreach01 (logical id; not a Sigma UUID)
+// MITRE:       T0846, T0840, T1018, T1046
+// Reference:   https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+// Author:      Jarmi
+// Date:        2026-05-31
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes:    Engineering jump hosts and sanctioned HMI/SCADA admin stations
+//              legitimately reach the gateway. Maintain the allowlist of
+//              sanctioned source devices/subnets in <add_known_eng_jump_hosts>.
+//              Replace <add_known_scada_gateway_ip> with the real gateway IP(s).
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteIP in ("<add_known_scada_gateway_ip>")
+| where RemotePort in (80, 443, 8080, 8443, 4840)
+// Exclude sanctioned engineering jump hosts / HMI admin stations
+| where DeviceName !in~ ("<add_known_eng_jump_hosts>")
+| summarize Connections = count(), Ports = make_set(RemotePort, 10),
+            FirstSeen = min(Timestamp), LastSeen = max(Timestamp)
+    by DeviceName, InitiatingProcessFileName, InitiatingProcessAccountName, RemoteIP
+| order by Connections desc

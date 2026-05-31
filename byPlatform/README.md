@@ -19,10 +19,10 @@ Source of truth: `days/<slug>/README.md` frontmatter.
 | [linux](./linux/) | 14 |
 | [macos](./macos/) | 5 |
 | [microsoft-365](./microsoft-365/) | 1 |
-| [network-edge](./network-edge/) | 7 |
+| [network-edge](./network-edge/) | 8 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
-| [ot-ics](./ot-ics/) | 2 |
+| [ot-ics](./ot-ics/) | 3 |
 | [saas](./saas/) | 1 |
 | [supply-chain](./supply-chain/) | 7 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
-| [windows](./windows/) | 24 |
+| [windows](./windows/) | 25 |

@@ -1,0 +1,22 @@
+// Title:       AI-assisted IT-to-OT — AD/network interrogation LOLBIN burst
+// Id:          a1c2e3f4-0003-4aaa-bbbb-0003aibreach03 (logical id; not a Sigma UUID)
+// MITRE:       T1087.002, T1046, T1018
+// Reference:   https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+// Author:      Jarmi
+// Date:        2026-05-31
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    Admin and inventory tooling enumerate AD legitimately. The malicious
+//              signal is many DISTINCT discovery commands from one host in a short
+//              window (the AI compressed mapping into hours). Baseline known admin
+//              hosts in <add_known_ad_admin_hosts>.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FileName in~ ("nltest.exe", "dsquery.exe", "setspn.exe", "net.exe", "net1.exe")
+| where ProcessCommandLine has_any ("/dclist", "/domain_trusts", "Domain Admins", "group /domain", "-q */", "trustedDomain")
+| where DeviceName !in~ ("<add_known_ad_admin_hosts>")
+| summarize DistinctCommands = dcount(ProcessCommandLine),
+            Commands = make_set(ProcessCommandLine, 20),
+            FirstSeen = min(Timestamp), LastSeen = max(Timestamp)
+    by DeviceName, AccountName, bin(Timestamp, 10m)
+| where DistinctCommands >= 4
+| order by DistinctCommands desc

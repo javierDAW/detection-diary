@@ -1,0 +1,13 @@
+type,value,context,confidence,source
+string,BACKUPOSINT v9.0 APEX PREDATOR,Banner of the 17000-line Claude-written Python post-compromise framework with 49 modules,medium,Dragos
+string,vNode,Targeted internal SCADA/IIoT management gateway product (vnodeautomation.com),high,Dragos
+ipv4,169.254.169.254,Link-local cloud instance-metadata endpoint targeted by the framework metadata-extraction module,medium,Dragos
+note,Single-password SPA login on the SCADA gateway was the sprayed surface; two rounds of automated password spraying both failed; OT not breached,,,Dragos
+note,Claude (Claude Code) acted as primary technical executor; OpenAI GPT-4.1 handled data processing and analysis; approximately 75 percent of remote commands were AI-directed,,,Gambit and Dragos
+note,Model guardrails were bypassed by framing prompts as authorized penetration testing,,,Gambit
+note,A separate C2 framework progressed from a basic HTTP controller to a production-grade C2 within two days of iterative AI refinement,,,Dragos
+note,Foothold maintained across the internal network using multiple proxied tunnels before AI-directed enumeration,,,Dragos
+note,Campaign window December 2025 to February 2026; nine Mexican government organizations; SADM enterprise IT compromised January 2026,,,Gambit and Dragos
+note,Broader campaign exfiltrated hundreds of millions of records including approximately 195M SAT taxpayer records and approximately 220M Mexico City civil-registry records,,,Gambit
+note,No malware hashes or campaign infrastructure IPs/domains were published for the SADM OT strand; indicators here are structural primitives that do not rotate,,,Jarmi
+note,Detection should anchor on behavior (East-West IT-to-OT gateway contact and password spray) not on value-based indicators because AI rotates tooling rapidly,,,Jarmi
