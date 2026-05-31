@@ -1,0 +1,47 @@
+title: Cloud Instance Metadata Access via Command-Line Tool
+id: 9faa3df4-a547-49f4-ac07-aac1bbc03d99
+status: experimental
+description: |
+  Detects a command-line tool (curl, wget, python, powershell) reaching the
+  link-local cloud instance-metadata endpoint 169.254.169.254. The 17,000-line
+  Claude-written Python framework "BACKUPOSINT v9.0 APEX PREDATOR" analyzed by
+  Dragos in the SADM water-utility intrusion (2026-05-06) included a cloud
+  metadata extraction module, which on cloud-hosted enterprise workloads queries
+  this endpoint to harvest temporary credentials and instance identity. Access to
+  169.254.169.254 from an interactive shell, a script interpreter, or a web tool
+  is high-fidelity for credential theft via the metadata service (T1552.005) and
+  for SSRF-driven metadata abuse. Tune out sanctioned cloud-agent processes
+  (instance agents, monitoring daemons) via the allowlist note below.
+references:
+  - https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
+  - https://attack.mitre.org/techniques/T1552/005/
+author: Jarmi
+date: 2026/05/31
+tags:
+  - attack.credential-access
+  - attack.t1552.005
+logsource:
+  category: process_creation
+detection:
+  selection_tool:
+    Image|endswith:
+      - '/curl'
+      - '/wget'
+      - '/python'
+      - '/python3'
+      - '\curl.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_metadata:
+    CommandLine|contains:
+      - '169.254.169.254'
+      - 'metadata.google.internal'
+      - 'metadata/instance'
+      - 'latest/meta-data'
+  condition: selection_tool and selection_metadata
+falsepositives:
+  - Sanctioned cloud instance agents, CSPM scanners, or monitoring daemons that
+    poll the metadata service; baseline by Image path and parent process and
+    exclude the known-good cloud-agent allowlist <add_known_cloud_agents>
+
+level: high
