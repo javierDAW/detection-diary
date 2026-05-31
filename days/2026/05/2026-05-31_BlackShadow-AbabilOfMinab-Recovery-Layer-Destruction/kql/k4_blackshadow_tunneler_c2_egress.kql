@@ -1,0 +1,14 @@
+// Title:       Black Shadow — A.ExE Go tunneler C2 egress
+// MITRE:       T1572, T1071
+// Reference:   https://gambit.security/blog-posts/babil-of-minab-iran-mois-destruction-campaign
+// Author:      Jarmi
+// Date:        2026-05-31
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes:    Value-based; refresh from current intel before blocking. The IPs
+//              are tunneler/C2/relay infrastructure tied to Black Shadow.
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteUrl has "nefeshhope.com"
+     or RemoteIP in ("46.30.190.173", "45.150.108.61", "91.193.19.198", "31.172.87.20")
+| project Timestamp, DeviceName, InitiatingProcessFileName, RemoteIP, RemotePort, RemoteUrl
+| order by Timestamp desc

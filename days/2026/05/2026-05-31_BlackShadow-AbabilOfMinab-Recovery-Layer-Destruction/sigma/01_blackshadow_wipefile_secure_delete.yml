@@ -1,0 +1,45 @@
+title: Secure-Delete Utility Erasing Web Root or Backup Directory
+id: 69752d29-2d70-4093-9593-24662ba3a789
+status: experimental
+description: |
+  Detects execution of WipeFile or comparable secure-deletion utilities against
+  web-hosting trees and backup directories, a recovery-denial behaviour seen in
+  the Black Shadow / Ababil of Minab Iran-MOIS campaign (Gambit, 2026-05-26). The
+  operator used WipeFile to overwrite hosted sites and the SQLBackup directory
+  before deleting the Veeam backup chain. This rule fires on a secure-delete tool
+  whose command line references backup/web/SQL paths. Pair with the Veeam
+  deletion and vCenter destroy rules; treat co-occurrence as a destructive incident.
+references:
+  - https://gambit.security/blog-posts/babil-of-minab-iran-mois-destruction-campaign
+  - https://attack.mitre.org/techniques/T1490/
+author: Jarmi
+date: 2026/05/31
+tags:
+  - attack.impact
+  - attack.t1490
+  - attack.t1485
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_tool:
+    Image|endswith:
+      - '\WipeFile.exe'
+      - '\sdelete.exe'
+      - '\sdelete64.exe'
+    CommandLine|contains:
+      - 'WipeFile'
+      - 'sdelete'
+  selection_target:
+    CommandLine|contains:
+      - 'SQLBackup'
+      - '\Backup'
+      - 'wwwroot'
+      - '\inetpub'
+      - 'VeeamBackup'
+  condition: selection_tool or selection_target
+falsepositives:
+  - Sanctioned secure-wipe of decommissioned media; baseline by host, account and
+    schedule and exclude approved sanitisation jobs <add_known_wipe_jobs>
+
+level: high

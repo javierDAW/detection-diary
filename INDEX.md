@@ -4,7 +4,7 @@
 
 # INDEX
 
-**33 cases** · **92 actors/clusters** · **244 ATT&CK techniques** · **15 platforms** · **53 sectors** · 2026-04-29 -> 2026-05-31
+**33 cases** · **92 actors/clusters** · **239 ATT&CK techniques** · **15 platforms** · **56 sectors** · 2026-04-29 -> 2026-05-31
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,7 +17,7 @@
 
 <table>
 <tr>
-<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/"><img src="days/2026/05/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/kill_chain.svg" alt="2026-05-31 kill chain" width="240"></a><br><sub><b>2026-05-31</b><br>Unattributed AI-assisted operator (Gambit/Dragos)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/"><img src="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/kill_chain.svg" alt="2026-05-31 kill chain" width="240"></a><br><sub><b>2026-05-31</b><br>Black Shadow (Ababil of Minab persona)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/"><img src="days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/kill_chain.svg" alt="2026-05-30 kill chain" width="240"></a><br><sub><b>2026-05-30</b><br>AMOS / Atomic macOS Stealer (MaaS)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/"><img src="days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/kill_chain.svg" alt="2026-05-29 kill chain" width="240"></a><br><sub><b>2026-05-29</b><br>Chaotic Eclipse / Nightmare-Eclipse</sub></td>
 </tr>
@@ -46,7 +46,7 @@
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
-| 2026-05-31 | [AI-assisted IT-to-OT targeting at a Monterrey water utility — Claude/GPT-driven intrusion enumerates a vNode SCADA gateway and password-sprays the IT-OT boundary](days/2026/05/2026-05-31_AIBreach-SADM-Monterrey-Water-vNode-OT/) | Unattributed AI-assisted operator (Gambit/Dragos) | ot-ics, windows, network-edge |
+| 2026-05-31 | [Black Shadow / Ababil of Minab — Iran-MOIS recovery-layer destruction: vCenter VM deletion, Veeam backup wipe, SSMS database drops to deny recovery](days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/) | Black Shadow (Ababil of Minab persona) | windows, linux, network-edge |
 | 2026-05-30 | [AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers AI agents and users into installing a multi-key-XOR universal Mach-O wallet and Keychain stealer](days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/) | AMOS / Atomic macOS Stealer (MaaS) | macos |
 | 2026-05-29 | [MiniPlasma — CVE-2020-17103 silent regression weaponized to SYSTEM on fully patched Windows 11 via cldflt.sys race + WER QueueReporting hijack](days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/) | Chaotic Eclipse / Nightmare-Eclipse | windows |
 | 2026-05-28 | [TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io](days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) | TrapDoor (Socket-tracked) | supply-chain, linux, macos, windows, cloud-multi |

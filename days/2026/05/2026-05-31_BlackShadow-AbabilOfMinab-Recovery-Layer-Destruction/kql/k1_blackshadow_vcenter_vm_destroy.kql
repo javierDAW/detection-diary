@@ -1,0 +1,20 @@
+// Title:       Black Shadow — vCenter VM Destroy / Power-Off burst
+// MITRE:       T1485, T1529
+// Reference:   https://gambit.security/blog-posts/babil-of-minab-iran-mois-destruction-campaign
+// Author:      Jarmi
+// Date:        2026-05-31
+// Tested on:   Microsoft Sentinel (Syslog from vCenter event forwarding)
+// FP notes:    Legitimate VM decommissioning generates Destroy_Task. The malicious
+//              signal is many destroy/power-off tasks from a single principal in a
+//              short window, often outside change control. Tune the threshold and
+//              exclude sanctioned automation accounts <add_known_vcenter_automation>.
+Syslog
+| where TimeGenerated > ago(30d)
+| where SyslogMessage has_any ("Destroy_Task", "PowerOffVM_Task", "Delete from disk")
+| extend Principal = extract(@"user[=: ]+([A-Za-z0-9._@-]+)", 1, SyslogMessage)
+| extend TaskKind = extract(@"(Destroy_Task|PowerOffVM_Task)", 1, SyslogMessage)
+| summarize Tasks = count(), Kinds = make_set(TaskKind, 5),
+            FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated)
+    by Principal, bin(TimeGenerated, 15m)
+| where Tasks > 3
+| order by Tasks desc

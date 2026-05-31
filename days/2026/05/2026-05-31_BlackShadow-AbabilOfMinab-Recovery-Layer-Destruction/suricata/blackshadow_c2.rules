@@ -1,0 +1,22 @@
+# Suricata 7.x rules — Black Shadow / Ababil of Minab (Iran-MOIS) C2 + relay infra
+# Author:    Jarmi
+# Date:      2026-05-31
+# Family:    Black Shadow (customized Go tunneler A.ExE)
+# Reference: https://gambit.security/blog-posts/babil-of-minab-iran-mois-destruction-campaign
+#            https://industrialcyber.co/industrial-cyber-attacks/gambit-links-iran-linked-black-shadow-group-to-destructive-cyber-campaign-targeting-us-middle-east-organizations/
+#
+# Coverage: DNS/TLS to the C2 domain and TCP egress to the tunneler/relay/staging
+# IPs. Value-based; refresh from current intel before enforcement. sids 7206001-7206006.
+# $HOME_NET = internal CIDR.
+
+alert dns $HOME_NET any -> any any (msg:"BLACKSHADOW DNS query for C2 domain members.nefeshhope.com"; dns.query; content:"nefeshhope.com"; nocase; classtype:trojan-activity; sid:7206001; rev:1;)
+
+alert tls $HOME_NET any -> any any (msg:"BLACKSHADOW TLS SNI to C2 domain nefeshhope.com"; tls.sni; content:"nefeshhope.com"; nocase; classtype:trojan-activity; sid:7206002; rev:1;)
+
+alert ip $HOME_NET any -> [46.30.190.173,45.150.108.61] any (msg:"BLACKSHADOW egress to Go tunneler C2/infra IP"; classtype:trojan-activity; sid:7206003; rev:1;)
+
+alert ip $HOME_NET any -> [91.193.19.198] any (msg:"BLACKSHADOW egress to proxied-RDP relay IP (port 8443)"; classtype:trojan-activity; sid:7206004; rev:1;)
+
+alert ip $HOME_NET any -> [31.172.87.20] any (msg:"BLACKSHADOW egress to exfil staging source IP"; classtype:trojan-activity; sid:7206005; rev:1;)
+
+alert tcp $HOME_NET any -> [91.193.19.198] 8443 (msg:"BLACKSHADOW proxied RDP relay connection to 91.193.19.198:8443"; flow:to_server; classtype:trojan-activity; sid:7206006; rev:1;)

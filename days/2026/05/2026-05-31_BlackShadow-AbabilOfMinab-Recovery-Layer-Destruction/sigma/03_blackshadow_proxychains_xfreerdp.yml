@@ -1,0 +1,38 @@
+title: Proxychains Wrapping xfreerdp Multi-Hop RDP Relay
+id: 8510215d-5d1b-4319-8a7d-63ef270e0e5c
+status: experimental
+description: |
+  Detects proxychains wrapping an RDP client (xfreerdp/rdesktop), the proxied
+  multi-hop access pattern Gambit reconstructed from the operator's own screencast
+  in the Black Shadow / Ababil of Minab campaign (SFRTA intrusion, relayed through
+  91.193.19.198:8443). This is an attacker-host / Linux-jump behaviour: a SOCKS
+  proxy chain fronting an interactive RDP session into a victim management host.
+  High fidelity on jump hosts and developer/admin Linux boxes where proxychains is
+  not part of sanctioned tooling.
+references:
+  - https://gambit.security/blog-posts/babil-of-minab-iran-mois-destruction-campaign
+  - https://attack.mitre.org/techniques/T1090/003/
+author: Jarmi
+date: 2026/05/31
+tags:
+  - attack.command-and-control
+  - attack.t1090.003
+  - attack.lateral-movement
+  - attack.t1021.001
+logsource:
+  category: process_creation
+detection:
+  selection_proxychains:
+    CommandLine|contains:
+      - 'proxychains'
+  selection_rdp:
+    CommandLine|contains:
+      - 'xfreerdp'
+      - 'rdesktop'
+      - '/v:'
+  condition: selection_proxychains and selection_rdp
+falsepositives:
+  - Red-team or pentest tooling on sanctioned hosts; baseline by host and operator
+    and exclude approved assessment windows <add_known_redteam_hosts>
+
+level: high

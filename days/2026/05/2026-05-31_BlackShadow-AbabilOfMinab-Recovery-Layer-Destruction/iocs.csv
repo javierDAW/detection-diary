@@ -1,0 +1,16 @@
+type,value,context,confidence,source
+domain,members.nefeshhope[.]com,C2 hostname for the A.ExE customized Go tunneler,high,Gambit
+ipv4,46.30.190.173,C2 IP that members.nefeshhope[.]com resolved to,high,Gambit
+ipv4,45.150.108.61,Served customized Go tunneler samples; Black Shadow infrastructure,high,Gambit
+ipv4,91.193.19.198,Proxied RDP relay (port 8443) into SFRTA,high,Gambit
+ipv4,31.172.87.20,Source server for stolen files staged on operator infrastructure,high,Gambit
+string,A.ExE,Customized public Go tunneler tracked by Gambit,medium,Gambit
+string,Minab,New volume name left in place of deleted partitions (persona signature),medium,Gambit
+string,WipeFile,Secure file-deletion utility used to erase web roots and the SQLBackup directory,medium,Gambit
+string,Ababil of Minab,Pro-Iranian persona claiming the campaign; assessed as Black Shadow / Iran-MOIS,medium,Gambit
+note,Truncated SHA256 prefixes from the report: A.ExE f6db77b; tunneler samples 1c69972 and 38965a6; full hashes not published in the coverage reviewed,,,Gambit
+note,Destruction executed via authenticated vCenter (Power Off + Delete from Disk; Recent Tasks 2026-03-16 11:52:38), SSMS (Take Offline + Drop All Active Connections + Delete Object), Disk Management (Delete Volume/format), and Veeam Backup and Replication (Delete from disk),,,Gambit
+note,Both scripted automation (inventory iteration) and hands-on-keyboard console use; ChatGPT used to refine a Python database-destruction script to spare system databases,,,Gambit
+note,Vyncs intrusion: custom Python scripts enumerated and deleted databases across 58 SQL Server targets while removing backup files,,,Gambit
+note,At least 700 GB exfiltrated from LACMTA; additional unexposed victims (Israeli media and higher education, Turkish insurance brokerage) had exfiltration only,,,Gambit
+note,Black Shadow attributed by Israel INCD to Iran MOIS; related site taken down 2025-08-28; persona-to-cluster link corroborated by ClearSky and Simon Kenin,,,Gambit
