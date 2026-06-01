@@ -4,9 +4,10 @@
 
 # Techniques: T1204.001
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |
 | 2026-05-06 | Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026) | Storm-1747 · Storm-1575 · Tycoon2FA · Dadsec | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747/`](../../days/2026/05/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |

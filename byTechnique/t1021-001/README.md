@@ -4,11 +4,12 @@
 
 # Techniques: T1021.001
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |
 | 2026-05-31 | Black Shadow / Ababil of Minab — Iran-MOIS recovery-layer destruction: vCenter VM deletion, Veeam backup wipe, SSMS database drops to deny recovery | Black Shadow (Ababil of Minab persona) | [`2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/`](../../days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/) |
 | 2026-05-23 | SonicWall Gen6 SSL-VPN MFA Bypass (CVE-2024-12802) — First In-the-Wild Exploitation by Akira-Aligned Affiliate | Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem) | [`2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/`](../../days/2026/05/2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/) |
 | 2026-05-15 | EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion | The Gentlemen RaaS · EtherRAT (DPRK-linked, UNC5342 toolchain overlap) · TukTuk (AI-generated framework) | [`2026-05-15_EtherRAT-TukTuk-Gentlemen/`](../../days/2026/05/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |

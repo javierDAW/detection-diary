@@ -1,0 +1,21 @@
+// Title:       GREYVIBE - C2 / lure domain egress and hardcoded user-agents
+// Id:          k4-greyvibe-c2-egress
+// MITRE:       T1071.001, T1102
+// Reference:   https://labs.withsecure.com/publications/greyvibe
+// Author:      Jarmi
+// Date:        2026-06-01
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes:    Value-based; refresh from current intel before blocking. Overlap
+//              domains (thirdmetrics, obmlink, bithill, redviper) belong to adjacent
+//              cybercrime clusters - confirm context before attributing to GREYVIBE.
+let greyvibe_domains = dynamic([
+    "lapas.live", "frontforce.org", "ukrvarta.online", "ukrguard.org",
+    "fasterscommunications.com", "saidozdemir.com", "thirdmetrics.com",
+    "obmlink.com", "bithill.com", "redviper.com"]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteUrl has_any (greyvibe_domains)
+     or InitiatingProcessCommandLine has_any ("RazerUpdater/3.0", "Chrome/95.4.4476.124")
+| project Timestamp, DeviceName, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, RemoteUrl, RemoteIP, RemotePort
+| order by Timestamp desc

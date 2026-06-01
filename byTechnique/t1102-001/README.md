@@ -4,9 +4,10 @@
 
 # Techniques: T1102.001
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |
 | 2026-05-22 | Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux kworker masquerade) targeting Asian telecoms | Red Lamassu · Calypso APT | [`2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/`](../../days/2026/05/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/) |

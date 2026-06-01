@@ -4,11 +4,12 @@
 
 # Techniques: T1219
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |
 | 2026-05-26 | VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConnect IAB Operation | VENOMOUS#HELPER (Securonix) · STAC6405 (Sophos) | [`2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/`](../../days/2026/05/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/) |
 | 2026-05-25 | UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OYSTERBLUES Targeting Ukrainian Government via Prometheus Lures | UAC-0057 · Ghostwriter · FrostyNeighbor · UNC1151 | [`2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/`](../../days/2026/05/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/) |
 | 2026-05-20 | Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure | Storm-2949 | [`2026-05-20_Storm-2949-Cloud-Identity-SSPR/`](../../days/2026/05/2026-05-20_Storm-2949-Cloud-Identity-SSPR/) |

@@ -1,0 +1,221 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">GREYVIBE Russia-nexus AI-augmented espionage against Ukraine - kill chain</title>
+<desc id="d">Two-lane diagram. Left lane is the victim Windows chain: lure delivery (spear-phish, fake CAPTCHA, fake adult-club sites with Telegram grooming), a .NET/JS/PyInstaller loader launching a decoy while infecting, the PhantomRelay PowerShell fingerprinting stage (XOR plus base64 to C2, history suppression, hardcoded Chrome user-agent), the PhantomRelay or LegionRelay RAT (WebSocket or REST api endpoints, critical), watchdog scheduled-task persistence that re-spawns the RAT every three minutes, privilege escalation via shortcut hijack and fake Windows Update UAC and CMSTP, and collection plus exfiltration of screenshots, browser, Telegram and WhatsApp data with USB propagation (critical). Right lane is GREYVIBE infrastructure and enablers: the newly named Russia-nexus cluster, systematic GenAI tooling (ChatGPT, Gemini, Ideogram), delivery infrastructure on Google Drive and paste sites, compromised-domain C2 on EDIS Global upstream M247, a Telegram dead-drop C2 resolver, and the FallSpy Android spyware plus HUMINT and cybercrime overlap. Detection anchors are conhost headless, the minute-cadence watchdog task, on-disk artifact file names and hardcoded user-agents.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<text class="head" x="20" y="36">GREYVIBE - Russia-nexus AI-augmented espionage vs Ukraine</text>
+<text class="meta" x="20" y="58">Vendor: WithSecure · Date: 2026-05-28 · Cluster: GREYVIBE (Russia-nexus) · Day 35</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="34" y="104">VICTIM CHAIN - Windows (and Android via FallSpy)</text>
+<text class="laneLabelR" x="464" y="104">GREYVIBE - infrastructure and enablers</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="144">Lure delivery</text>
+<text class="sub" x="40" y="168">Spear-phish links (PhantomMail), fake CAPTCHA</text>
+<text class="sub" x="40" y="184">(PhantomClick), fake adult-club sites (PrincessClub)</text>
+<text class="sub" x="40" y="200">Female Telegram personas groom combatants</text>
+<text class="mono" x="40" y="226">T1566.002 Spearphishing Link</text>
+<text class="mono" x="40" y="244">T1656 Impersonation</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="294">Loader + decoy</text>
+<text class="sub" x="40" y="318">.NET / JS / PyInstaller loader launches decoy</text>
+<text class="sub" x="40" y="334">(PDF, error pop-up) while infecting in background</text>
+<text class="sub" x="40" y="350">Obfuscators: LOOKVALJS, DAYLIGHT, TEASOUP</text>
+<text class="mono" x="40" y="376">T1059.007 JavaScript / T1027 Obfuscation</text>
+<text class="mono" x="40" y="394">conhost.exe --headless LOLBIN anchor</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="444">PhantomRelay fingerprint</text>
+<text class="sub" x="40" y="468">PowerShell collects host/user/UUID; XOR+base64</text>
+<text class="sub" x="40" y="484">(slash-&gt;underscore) appended to C2 fetch URL</text>
+<text class="sub" x="40" y="500">History suppressed; hardcoded Chrome/95 UA</text>
+<text class="mono" x="40" y="526">T1082 System Info / T1140 Decode</text>
+<text class="mono" x="40" y="544">T1070.003 Clear Command History</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="594">RAT: PhantomRelay / LegionRelay</text>
+<text class="sub" x="40" y="618">PhantomRelay: WebSocket/HTTP, /maintenance class</text>
+<text class="sub" x="40" y="634">LegionRelay: REST /api/status|register|commands</text>
+<text class="sub" x="40" y="650">Operator PowerShell via Invoke-Expression</text>
+<text class="mono" x="40" y="676">T1059.001 PowerShell / T1071.001 Web C2</text>
+<text class="mono" x="40" y="694">ANCHOR: /api/* + client_config.json</text>
+
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="744">Watchdog persistence</text>
+<text class="sub" x="40" y="768">Scheduled task: 1 min after create, every 3 min</text>
+<text class="sub" x="40" y="784">Re-spawns RAT if no live C2 session</text>
+<text class="sub" x="40" y="800">V2: %LOCALAPPDATA% + razer_update.log</text>
+<text class="mono" x="40" y="826">T1053.005 Scheduled Task</text>
+<text class="mono" x="40" y="844">ANCHOR: /sc minute /mo 3 + .ps1</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="894">Privilege escalation</text>
+<text class="sub" x="40" y="918">Shortcut hijack -&gt; starter.ps1 via conhost</text>
+<text class="sub" x="40" y="934">Fake "Windows Check Updater" UAC prompt</text>
+<text class="sub" x="40" y="950">Experimental CMSTP .INF bypass</text>
+<text class="mono" x="40" y="976">T1548.002 Bypass UAC / T1218.003 CMSTP</text>
+<text class="mono" x="40" y="994">T1547.009 Shortcut Modification</text>
+
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1044">Collection + exfiltration</text>
+<text class="sub" x="40" y="1068">Screenshots; staged archives; browser creds</text>
+<text class="sub" x="40" y="1084">Telegram/WhatsApp Desktop data; ChromElevator</text>
+<text class="sub" x="40" y="1100">Exfil via /api/upload; USB spread WUDFHost.ps1</text>
+<text class="mono" x="40" y="1126">T1113 Screen Capture / T1041 Exfil C2</text>
+<text class="mono" x="40" y="1144">T1555.003 Browser creds / T1091 USB</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="149">GREYVIBE (Russia-nexus)</text>
+<text class="sub" x="470" y="173">Newly named cluster (WithSecure 2026-05-28)</text>
+<text class="sub" x="470" y="189">Russian-speaking; Moscow UTC+3 working hours</text>
+<text class="sub" x="470" y="205">Targets Ukraine: military/gov/civilian/business</text>
+<text class="sub" x="470" y="221">Confirmed combatant victims in Kharkiv</text>
+<text class="mono" x="470" y="251">Aligns with Russian state interests (high)</text>
+<text class="mono" x="470" y="269">Cluster identity confidence: medium</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="319">GenAI tooling</text>
+<text class="sub" x="470" y="343">ChatGPT + Google Gemini + Ideogram AI</text>
+<text class="sub" x="470" y="359">Lure images/sites; obfuscators; LegionRelay</text>
+<text class="sub" x="470" y="375">Post-compromise scripts; full-stack dev</text>
+<text class="sub" x="470" y="391">LLM comment recorded conhost --headless ask</text>
+<text class="mono" x="470" y="421">T1588.007 / T1027 AI-assisted dev</text>
+<text class="mono" x="470" y="439">Rotates artifacts -&gt; weakens clustering</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="489">Delivery infrastructure</text>
+<text class="sub" x="470" y="513">Archives on Google Drive and 4sync</text>
+<text class="sub" x="470" y="529">Paste sites: pastecode.io, pastes.io, dpaste</text>
+<text class="sub" x="470" y="545">Lures: lapas.live, frontforce.org, ukrguard.org</text>
+<text class="sub" x="470" y="561">DroneLink fake-charity + PrincessClub sites</text>
+<text class="mono" x="470" y="591">T1566.002 Link / T1102 Web Service</text>
+<text class="mono" x="470" y="609">T1656 Impersonation of UA entities</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="659">Compromised-domain C2</text>
+<text class="sub" x="470" y="683">Most PhantomRelayLite C2 on EDIS Global VPS</text>
+<text class="sub" x="470" y="699">Upstream M247 Europe SRL (AS 9009)</text>
+<text class="sub" x="470" y="715">Domains pre-compromised: NameCheap + LiteSpeed</text>
+<text class="sub" x="470" y="731">Open cgi-bin last modified 2024-09-03 00:34</text>
+<text class="mono" x="470" y="761">T1584.004 Compromise Server</text>
+<text class="mono" x="470" y="779">thirdmetrics / obmlink = crime overlap</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="829">Telegram dead-drop resolver</text>
+<text class="sub" x="470" y="853">LegionRelay (since Mar 2026) reads encoded C2</text>
+<text class="sub" x="470" y="869">from a hardcoded Telegram channel</text>
+<text class="sub" x="470" y="885">Octet decode: subtract (4 + octet_index)</text>
+<text class="sub" x="470" y="901">Embedded fallback C2 URL</text>
+<text class="mono" x="470" y="931">T1102.001 Dead Drop Resolver</text>
+<text class="mono" x="470" y="949">Complicates infrastructure tracking</text>
+
+<rect class="opK" x="460" y="975" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="999">FallSpy + HUMINT + crime overlap</text>
+<text class="sub" x="470" y="1023">FallSpy Android: contacts, SMS, location, media</text>
+<text class="sub" x="470" y="1039">PrincessClub WebRTC live call = A/V HUMINT</text>
+<text class="sub" x="470" y="1055">PhantomRelayLite shared w/ Teams vishing/KongTuke</text>
+<text class="sub" x="470" y="1071">XMRig on a few LegionRelay hosts (crime tell)</text>
+<text class="mono" x="470" y="1101">Android surveillance + grooming</text>
+<text class="mono" x="470" y="1119">Grey zone: state-aligned x cybercrime</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<path class="arrowX" d="M460,330 L425,360" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,845 L425,800" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">AI-built malware decays the value of hashes and strings - hunt behaviour, not indicators.</text>
+<text class="footerT" x="34" y="1222">Durable anchors: conhost --headless LOLBIN, the every-3-minute watchdog task, on-disk artifact file names, and hardcoded user-agents.</text>
+<text class="footerT" x="34" y="1240">The watchdog re-spawns the RAT every 3 minutes - the exit criterion is the absence of the TASK, not the process. Partial cleanup self-heals.</text>
+<text class="footerT" x="34" y="1258">Shared tooling is not shared identity; PrincessClub grooming and FallSpy put the targeted person and their phone in scope, not just the endpoint.</text>
+</svg>

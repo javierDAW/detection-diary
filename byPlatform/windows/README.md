@@ -4,11 +4,12 @@
 
 # Platforms: windows
 
-25 day(s) covering this platform.
+26 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |
 | 2026-05-31 | Black Shadow / Ababil of Minab — Iran-MOIS recovery-layer destruction: vCenter VM deletion, Veeam backup wipe, SSMS database drops to deny recovery | Black Shadow (Ababil of Minab persona) | [`2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/`](../../days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/) |
 | 2026-05-29 | MiniPlasma — CVE-2020-17103 silent regression weaponized to SYSTEM on fully patched Windows 11 via cldflt.sys race + WER QueueReporting hijack | Chaotic Eclipse / Nightmare-Eclipse | [`2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/`](../../days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/) |
 | 2026-05-28 | TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io | TrapDoor (Socket-tracked) | [`2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/`](../../days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) |

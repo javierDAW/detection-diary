@@ -1,0 +1,29 @@
+type,value,context,confidence,source
+domain,lapas[.]live,PhantomClick fake LAPAS ClickFix CAPTCHA domain (Ukrainian-language run-command lure),high,WithSecure
+domain,frontforce[.]org,DroneLink fake charity domain (AFU FPV-drone fundraising lure) hosting DAYLIGHT-obfuscated LegionRelay,high,WithSecure
+domain,ukrvarta[.]online,DroneLink fake charity domain (AFU support lure),high,WithSecure
+domain,ukrguard[.]org,DroneLink fake charity domain (AFU support lure),high,WithSecure
+domain,fasterscommunications[.]com,PhantomRelayLite fingerprinting C2 base URL (worked example in report; payload appended as XOR+base64 path),medium,WithSecure
+domain,saidozdemir[.]com,PhantomRelayLite download cradle host (service.html piped to powershell -NoProfile),medium,WithSecure
+domain,thirdmetrics[.]com,PhantomRelayLite C2 associated with a Microsoft Teams vishing cluster; overlap not confirmed as GREYVIBE-operated,medium,WithSecure
+domain,obmlink[.]com,PhantomRelayLite C2 associated with a KongTuke ClickFix cluster; overlap not confirmed as GREYVIBE-operated,medium,WithSecure
+domain,bithill[.]com,EDIS Global + compromised-domain pattern serving a PowerShell cradle leading to NetSupport RAT (adjacent ClickFix cluster; not a GREYVIBE C2),low,WithSecure
+domain,redviper[.]com,NetSupport RAT download cradle (cl.php?cpn=) in an adjacent financially-motivated cluster sharing PhantomRelayLite,low,WithSecure
+domain,lapas[.]lv,Legitimate Latvian LAPAS domain abused as decoy redirect target by PhantomClick (not attacker-controlled),low,WithSecure
+string,Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/534.36 (KHTML, like Gecko) Chrome/95.4.4476.124 Safari/537.36,Hardcoded user-agent in PhantomRelay fingerprinting script and PhantomRelayV2 RAT client (non-existent Chrome build 95.4.4476.124),high,WithSecure
+string,RazerUpdater/3.0,Custom user-agent set by the PhantomRelayV2 watchdog when fetching watchdog and initial-stage scripts,high,WithSecure
+string,Set-PSReadlineOption -HistorySaveStyle SaveNothing,PowerShell history suppression in PhantomRelayLite/V1 fingerprinting script (V2 uses Remove-Module PSReadline),medium,WithSecure
+path,%PROGRAMDATA%\Microsoft Windows\WUDFHost.ps1,USB-propagation launcher script dropped by PhantomRelay propagation routine,high,WithSecure
+path,client_config.json,LegionRelay on-disk client configuration file,high,WithSecure
+path,starter.ps1,LegionRelay shortcut-hijack privilege-escalation helper launched via conhost.exe --headless,medium,WithSecure
+path,restore.ps1,LegionRelay helper that restores hijacked taskbar/desktop shortcuts to original config,medium,WithSecure
+path,sync.ps1,USB-propagation test script staged in hidden .conf directory (executed calc.exe as test payload),medium,WithSecure
+path,razer_update.log,PhantomRelayV2 watchdog execution log written to %TEMP%,medium,WithSecure
+regkey,Windows Check Updater,Scheduled-task name registered by fake Windows Update .NET component used for LegionRelay UAC elevation,medium,WithSecure
+string,/api/register,LegionRelay REST C2 endpoint (client registration); paired with /api/status /api/commands /api/result /api/upload,high,WithSecure
+string,/watchdog,PhantomRelayV1 hardcoded C2 path serving the watchdog persistence script (also /maintenance /hoverable /captcha /whereabouts /wherabouts),high,WithSecure
+string,архив с фото.rar,USB-propagation archive (dozens of decoy .lnk + hidden .conf) hosted on PrincessClub sites,medium,WithSecure
+note,EDIS Global VPS / M247 Europe SRL (AS9009),Majority of PhantomRelayLite C2 hosted on EDIS Global VPS upstream M247; many C2 domains previously compromised (NameCheap hosting, LiteSpeed, open cgi-bin last modified 2024-09-03 00:34),medium,WithSecure
+note,Telegram dead-drop resolver,LegionRelay (since Mar 2026) retrieves encoded C2 address from a hardcoded Telegram channel; each octet decoded by subtracting (4 + octet_index); fallback C2 URL embedded,medium,WithSecure
+note,GenAI tradecraft markers,GREYVIBE used ChatGPT / Google Gemini / Ideogram AI for lure images PrincessClub sites obfuscators (LOOKVALJS DAYLIGHT TEASOUP) LegionRelay full-stack dev and post-compromise scripts,high,WithSecure
+note,Full IOC and YARA set,Complete indicator and YARA list published by WithSecure at github.com/WithSecureLabs/iocs/tree/master/GREYVIBE,high,WithSecure

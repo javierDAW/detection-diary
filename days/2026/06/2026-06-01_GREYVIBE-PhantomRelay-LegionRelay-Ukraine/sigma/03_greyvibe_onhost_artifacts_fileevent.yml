@@ -1,0 +1,41 @@
+title: GREYVIBE PhantomRelay / LegionRelay On-Host Artifacts Written to Disk
+id: 86aaadff-18fc-4a9a-ae37-a3de403372aa
+status: experimental
+description: |
+  Detects creation of file names tied to GREYVIBE post-compromise tooling
+  (WithSecure, 2026-05-28). PhantomRelay USB propagation drops WUDFHost.ps1 under
+  %PROGRAMDATA%\Microsoft Windows and test scripts named sync.ps1; the V2 watchdog
+  writes razer_update.log to %TEMP%; LegionRelay persists client_config.json and
+  privilege-escalation helpers starter.ps1 / restore.ps1. Any single hit warrants
+  triage, and two or more on one host is high-confidence. File names are robust
+  anchors here because the actor reuses them across builds while obfuscators and
+  hashes rotate (often regenerated per request and refactored with LLM assistance).
+references:
+  - https://labs.withsecure.com/publications/greyvibe
+  - https://attack.mitre.org/techniques/T1105/
+  - https://attack.mitre.org/techniques/T1547/009/
+author: Jarmi
+date: 2026/06/01
+tags:
+  - attack.execution
+  - attack.t1105
+  - attack.persistence
+  - attack.t1547.009
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_names:
+    TargetFilename|endswith:
+      - '\WUDFHost.ps1'
+      - '\client_config.json'
+      - '\starter.ps1'
+      - '\restore.ps1'
+      - '\sync.ps1'
+      - '\razer_update.log'
+  condition: selection_names
+falsepositives:
+  - client_config.json is a generic name; confirm the writing process and parent path.
+    Baseline known-good owners of these file names per environment <add_known_good_writers>
+
+level: medium
