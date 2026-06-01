@@ -1,0 +1,17 @@
+// Title:       GREYVIBE - conhost.exe --headless launching PowerShell/cmd
+// Id:          k1-greyvibe-conhost-headless
+// MITRE:       T1059.001, T1059.003
+// Reference:   https://labs.withsecure.com/publications/greyvibe
+// Author:      Jarmi
+// Date:        2026-06-01
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    Windows Terminal uses conhost --headless internally; baseline benign
+//              callers. Behavioural, not IOC-based - durable across PhantomRelay rebuilds.
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where FileName =~ "conhost.exe"
+| where ProcessCommandLine has "--headless"
+| where ProcessCommandLine has_any ("powershell", "pwsh", "cmd")
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName,
+          InitiatingProcessParentFileName, ProcessCommandLine
+| order by Timestamp desc

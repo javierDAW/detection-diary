@@ -1,0 +1,16 @@
+// Title:       GREYVIBE - PhantomRelay/LegionRelay on-host artifact filenames
+// Id:          k3-greyvibe-onhost-artifacts
+// MITRE:       T1105, T1547.009
+// Reference:   https://labs.withsecure.com/publications/greyvibe
+// Author:      Jarmi
+// Date:        2026-06-01
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceFileEvents)
+// FP notes:    client_config.json is generic; confirm writer process and path.
+//              Treat two or more distinct hits on one host as high confidence.
+DeviceFileEvents
+| where Timestamp > ago(30d)
+| where FileName in~ ("WUDFHost.ps1", "client_config.json", "starter.ps1",
+                      "restore.ps1", "sync.ps1", "razer_update.log")
+| summarize Hits=count(), Names=make_set(FileName), Paths=make_set(FolderPath)
+          by DeviceName, InitiatingProcessFileName
+| order by Hits desc

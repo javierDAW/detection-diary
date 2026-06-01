@@ -4,9 +4,10 @@
 
 # Platforms: android
 
-1 day(s) covering this platform.
+2 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |
 | 2026-05-09 | Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026) | Albiriox | [`2026-05-09_Albiriox-Android-MaaS-AcVNC/`](../../days/2026/05/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |

@@ -38,6 +38,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [First VPN Service (1vpns.com)](./first-vpn-service-1vpns-com/) | 1 |
 | [FrostyNeighbor](./frostyneighbor/) | 1 |
 | [G1027](./g1027/) | 1 |
+| [GREYVIBE](./greyvibe/) | 1 |
 | [Ghostwriter](./ghostwriter/) | 1 |
 | [Gold Sahara](./gold-sahara/) | 1 |
 | [Howling Scorpius](./howling-scorpius/) | 1 |

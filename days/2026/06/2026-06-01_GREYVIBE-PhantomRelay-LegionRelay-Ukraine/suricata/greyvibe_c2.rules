@@ -1,0 +1,13 @@
+# GREYVIBE PhantomRelay / LegionRelay network detections
+# Author: Jarmi
+# Date:   2026-06-01
+# Reference: https://labs.withsecure.com/publications/greyvibe
+# Notes: HTTP rules use Suricata 7.x sticky buffers. SIDs 4100201-4100205, rev:1.
+#        Path rules (PhantomRelayV1 /watchdog, LegionRelay /api/*) are behavioural and
+#        may need tuning; user-agent rules are high-fidelity. No custom variables used.
+
+alert http any any -> any any (msg:"GREYVIBE PhantomRelayV2 watchdog user-agent RazerUpdater"; flow:established,to_server; http.user_agent; content:"RazerUpdater/3.0"; classtype:trojan-activity; sid:4100201; rev:1;)
+alert http any any -> any any (msg:"GREYVIBE PhantomRelay hardcoded non-existent Chrome build user-agent"; flow:established,to_server; http.user_agent; content:"Chrome/95.4.4476.124"; classtype:trojan-activity; sid:4100202; rev:1;)
+alert http any any -> any any (msg:"GREYVIBE PhantomRelayV1 watchdog C2 path"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/watchdog"; depth:9; classtype:trojan-activity; sid:4100203; rev:1;)
+alert http any any -> any any (msg:"GREYVIBE LegionRelay REST C2 registration endpoint"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/api/register"; classtype:trojan-activity; sid:4100204; rev:1;)
+alert dns any any -> any any (msg:"GREYVIBE DroneLink fake-charity lure domain lookup"; dns.query; content:"frontforce.org"; nocase; classtype:trojan-activity; sid:4100205; rev:1;)

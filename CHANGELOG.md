@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.01 — Day 35 — GREYVIBE Russia-nexus AI-augmented espionage vs Ukraine
+
+### Added
+- `days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/` — WithSecure (2026-05-28) named GREYVIBE, a previously undocumented Russia-nexus cluster running Ukraine-focused intelligence collection since August 2025 via PhantomMail spear-phish, PhantomClick fake CAPTCHA and PrincessClub fake adult-club lures, dropping FallSpy (Android) and the PhantomRelay/LegionRelay PowerShell RATs. Distinctive for systematic GenAI tradecraft (ChatGPT/Gemini/Ideogram across lures, obfuscators, malware and post-compromise scripts).
+- Sigma (3): `01_greyvibe_conhost_headless_powershell.yml` — conhost --headless launching a scripting host; `02_greyvibe_watchdog_schtask_3min.yml` — schtasks minute-cadence (/mo 1-3) PowerShell task; `03_greyvibe_onhost_artifacts_fileevent.yml` — PhantomRelay/LegionRelay artifact file names.
+- KQL (4): `k1` conhost --headless; `k2` watchdog minute-cadence task; `k3` artifact filename sweep per host; `k4` C2/lure domain egress + hardcoded user-agents.
+- YARA (1 file, 3 rules): PhantomRelay fingerprint, LegionRelay REST client, PhantomRelay watchdog.
+- Suricata (1 file, 5 sids): RazerUpdater UA, anomalous Chrome/95 UA, PhantomRelayV1 /watchdog path, LegionRelay /api/register, DroneLink DNS.
+- PEAK hunts (3): H1 conhost --headless LOLBIN; H2 minute-cadence watchdog task; H3 download cradle + Telegram dead-drop resolution.
+- `iocs.csv` (28 entries) — lure/C2 domains, artifact paths, user-agents, REST endpoints, and infra/GenAI tradecraft notes; full hash/YARA set referenced at WithSecure GitHub.
+- `kill_chain.svg` — template A, canonical palette, victim Windows chain vs GREYVIBE infrastructure lanes, IOC anchors.
+
+### Pedagogy
+- AI-built malware decays hashes/strings; hunt behaviour (conhost --headless, every-3-minute task, artifact names, hardcoded UAs).
+- Self-healing persistence: the watchdog re-spawns the RAT every 3 minutes — exit criterion is absence of the task, not the process.
+- Shared tooling (PhantomRelayLite across cybercrime clusters) is not shared identity; state attribution confidence per signal.
+- PrincessClub grooming + FallSpy put the targeted person and their phone in scope, not only the endpoint.
+
+
 ## 2026.05.31 — Maintenance — Repo restructure: year/month sharding + auto-generated Pages gallery
 
 ### Changed
@@ -440,10 +459,4 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 
 ---
 
-## 2026.05.11 — Day 15 — UAT-8302 China-nexus government espionage with shared APT arsenal
-
-### Added
-- `days/2026-05-11_UAT-8302-China-Government-Espionage/` — Cisco Talos disclosure (published 5-May-2026, modified 7-May-2026) of UAT-8302, a China-nexus advanced persistent threat group targeting government entities in South America since late 2024 and in southeastern Europe in 2025. The hallmark of the cluster is the **promiscuous rotation of shared implants** previously linked to other China-nexus clusters: NetDraft (a .NET port of FinalDraft / SquidDoor used by Jewelbug / REF7707 / CL-STA-0049 / LongNosedGoblin), CloudSorcerer v3 (Kaspersky 2024), VSHELL fronted by SNOWLIGHT and the newly observed Rust-based **SNOWRUST** stagers (UNC5174 / UAT-6382 lineage, single-byte XOR key `0x99`), the SNAPPYBEE / DeedRAT + ZingDoor combo (Earth Estries), and the Draculoader shellcode loader. Hardened tradecraft markers include the camouflage path `C:\ProgramData\Microsoft\Microsoft\` with double `Microsoft` segment, scheduled-task persistence under `Microsoft\Windows\Maps\{GUID}` with literal task names `ReconLiteDebug` and `RunWhatPC`, and Microsoft Graph + OneDrive as a covert C2 channel that blends into normal M365 egress. UAT-8302 also deployed the open-source Hades HIDS / HIPS kernel driver as a primitive for selective EDR-event suppression.
-- Sigma (3): DLL side-loading anchors for `mspdb60.dll` or `wininet.dll` loaded from `Temp`, `ProgramData\Microsoft\Microsoft\` or `Users\Public\`; schtasks /create with the UAT-8302 literal task names and fake `Microsoft\Windows\Maps\{GUID}` path; open-source recon and credential-extraction tooling (`gogo`, `httpx`, `naabu`, `dddd`, ADExplorer `-snapshot`, `adconnectdump.py`, `MobaXtermDecryptor`, `SharpGetUserLoginIPRP`).
-- KQL (3): Defender XDR — non-browser, non-Office process beaconing `graph.microsoft.com` or `login.microsoftonline.com` from `ProgramData\Microsoft\Microsoft\` (NetDraft); `mspdb60.dll` or `wininet.dll` image_load events outside System32 / SysWOW64 / WinSxS; GitHub or GameSpot dead-drop fetch followed within 5 minutes by a derived public-IP connection (CloudSorcerer v3 dead-drop resolver).
-- YARA (1, multi-rule): `UAT_8302_NetDraft_FringePorch_2026` (Fody/Costura embedded helper + Graph beacon strings + Plugin.Run); `UAT_8302_CloudSorcerer_v
+## 2026.05.11 — Day 15 — UAT-8302 China-nexus governmen
