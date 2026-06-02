@@ -17,6 +17,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Akira](./akira/) | 1 |
 | [Albiriox](./albiriox/) | 1 |
 | [ArcaneDoor](./arcanedoor/) | 1 |
+| [Aur0ra (unattributed ransomware family)](./aur0ra-unattributed-ransomware-family/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
 | [Black Shadow (Ababil of Minab persona)](./black-shadow-ababil-of-minab-persona/) | 1 |
 | [BlackCat](./blackcat/) | 1 |

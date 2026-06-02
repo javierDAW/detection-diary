@@ -1,0 +1,23 @@
+// Title:       Aur0ra - mass in-place file modification by one process (no rename)
+// Id:          k4-aur0ra-mass-inplace-modify
+// MITRE:       T1486
+// Reference:   https://www.pcrisk.com/removal-guides/35259-aur0ra-ransomware
+// Author:      Jarmi
+// Date:        2026-06-02
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceFileEvents)
+// FP notes:    Backup, sync (OneDrive), indexing and AV agents modify many files.
+//              Baseline known high-volume processes via the exclusion list. The point
+//              of this hunt: an in-place encryptor produces FileModified bursts with
+//              NO matching FileRenamed events - that asymmetry is the signal.
+let window = 10m;
+let excluded = dynamic(["OneDrive.exe","MsMpEng.exe","SearchIndexer.exe","Dropbox.exe","backup.exe"]);
+DeviceFileEvents
+| where Timestamp > ago(7d)
+| where ActionType == "FileModified"
+| where InitiatingProcessFileName !in~ (excluded)
+| where InitiatingProcessFolderPath !startswith "C:\\Windows\\"
+| summarize ModifiedCount = dcount(FolderPath), Files = make_set(FileName, 15),
+            FirstSeen = min(Timestamp), LastSeen = max(Timestamp)
+          by DeviceName, InitiatingProcessFileName, InitiatingProcessSHA256, bin(Timestamp, window)
+| where ModifiedCount > 200
+| order by ModifiedCount desc

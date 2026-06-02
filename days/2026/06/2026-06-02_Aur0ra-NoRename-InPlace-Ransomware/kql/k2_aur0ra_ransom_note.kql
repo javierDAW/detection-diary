@@ -1,0 +1,17 @@
+// Title:       Aur0ra - ransom note write (!!!README!!!DO_NOT_DELETE.txt)
+// Id:          k2-aur0ra-ransom-note
+// MITRE:       T1486
+// Reference:   https://www.pcrisk.com/removal-guides/35259-aur0ra-ransomware
+// Author:      Jarmi
+// Date:        2026-06-02
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceFileEvents)
+// FP notes:    Filename is family-specific; near-zero benign rate. A single host
+//              dropping the note in many directories produces a burst - the count
+//              per DeviceName is the scope signal.
+DeviceFileEvents
+| where Timestamp > ago(30d)
+| where FileName =~ "!!!README!!!DO_NOT_DELETE.txt"
+| summarize NoteCount = count(), FirstSeen = min(Timestamp), LastSeen = max(Timestamp),
+            SampleFolders = make_set(FolderPath, 10)
+          by DeviceName, InitiatingProcessFileName, InitiatingProcessSHA256
+| order by NoteCount desc

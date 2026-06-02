@@ -1,0 +1,16 @@
+// Title:       Aur0ra - Inhibit System Recovery (VSS/wbadmin/bcdedit) pre-encryption
+// Id:          k1-aur0ra-inhibit-recovery
+// MITRE:       T1490
+// Reference:   https://www.cyfirma.com/news/weekly-intelligence-report-22-may-2026/
+// Author:      Jarmi
+// Date:        2026-06-02
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    Backup software / admins may delete shadows during maintenance.
+//              Baseline known maintenance hosts. Highest-fidelity ransomware tell
+//              and it fires BEFORE encryption completes - prioritise as paging alert.
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where ProcessCommandLine has_any ("Delete Shadows", "shadowcopy delete", "wbadmin delete catalog", "recoveryenabled no", "bootstatuspolicy ignoreallfailures")
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName,
+          InitiatingProcessParentFileName, FileName, ProcessCommandLine
+| order by Timestamp desc

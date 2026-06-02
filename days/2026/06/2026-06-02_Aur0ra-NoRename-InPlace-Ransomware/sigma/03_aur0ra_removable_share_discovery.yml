@@ -1,0 +1,43 @@
+title: Removable-Media and Network-Share Enumeration Burst (Aur0ra Pre-Encryption Recon)
+id: 4a44c173-7860-4556-a2d9-537260ef0481
+status: experimental
+description: |
+  Detects discovery commands that an in-place encryptor runs to reach mapped drives,
+  network shares, and removable media before impact. Aur0ra (CYFIRMA, 2026-05-22)
+  enumerates the USB bus (T1120) and network shares (T1135) during execution. This
+  rule looks for the common LOLBIN discovery surface (wmic Win32_USB*/Win32_PnPEntity
+  /Win32_LogicalDisk, 'net view', 'net share', 'net use'). It is medium-fidelity on
+  its own and is intended to be chained (in SIEM) with recovery-inhibition (rule 01)
+  or the note write (rule 02) on the same host within a short window.
+references:
+  - https://www.cyfirma.com/news/weekly-intelligence-report-22-may-2026/
+  - https://attack.mitre.org/techniques/T1135/
+author: Jarmi
+date: 2026/06/02
+tags:
+  - attack.discovery
+  - attack.t1120
+  - attack.t1135
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_wmic_dev:
+    Image|endswith: '\wmic.exe'
+    CommandLine|contains:
+      - 'Win32_USBHub'
+      - 'Win32_PnPEntity'
+      - 'Win32_LogicalDisk'
+  selection_net_share:
+    Image|endswith: '\net.exe'
+    CommandLine|contains:
+      - ' view'
+      - ' share'
+      - ' use'
+  condition: 1 of selection_*
+falsepositives:
+  - Inventory/asset-management agents and administrators routinely enumerate disks
+    and shares; baseline expected sources and chain with impact signals
+    <add_known_inventory_agents>
+
+level: medium
