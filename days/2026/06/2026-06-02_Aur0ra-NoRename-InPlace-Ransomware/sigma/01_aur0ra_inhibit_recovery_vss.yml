@@ -1,0 +1,52 @@
+title: Inhibit System Recovery via VSS/wbadmin/bcdedit (Aur0ra Pre-Encryption Behavior)
+id: ff50ed63-82cb-4331-a9b8-61b3d06e0be1
+status: experimental
+description: |
+  Detects deletion or disabling of Windows recovery features that ransomware runs
+  immediately before encryption. Aur0ra (CYFIRMA, 2026-05-22) executes
+  'vssadmin Delete Shadows /all /quiet' and 'wmic shadowcopy delete /nointeractive'
+  to remove Volume Shadow Copies so victims cannot restore locally. This rule also
+  covers the equivalent wbadmin catalog deletion and bcdedit recovery-disable
+  variants used across commodity ransomware, because Aur0ra leaves no extension or
+  rename signal and recovery inhibition is the earliest reliable tell. The threshold
+  (single host running multiple of these in a short window) should be applied in SIEM
+  aggregation; this rule fires per matching command line.
+references:
+  - https://www.cyfirma.com/news/weekly-intelligence-report-22-may-2026/
+  - https://attack.mitre.org/techniques/T1490/
+author: Jarmi
+date: 2026/06/02
+tags:
+  - attack.impact
+  - attack.t1490
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_vssadmin:
+    Image|endswith: '\vssadmin.exe'
+    CommandLine|contains|all:
+      - 'Delete'
+      - 'Shadows'
+  selection_wmic:
+    Image|endswith: '\wmic.exe'
+    CommandLine|contains|all:
+      - 'shadowcopy'
+      - 'delete'
+  selection_wbadmin:
+    Image|endswith: '\wbadmin.exe'
+    CommandLine|contains|all:
+      - 'delete'
+      - 'catalog'
+  selection_bcdedit:
+    Image|endswith: '\bcdedit.exe'
+    CommandLine|contains:
+      - 'recoveryenabled no'
+      - 'bootstatuspolicy ignoreallfailures'
+  condition: 1 of selection_*
+falsepositives:
+  - Legitimate backup software and administrators occasionally delete shadow copies
+    or backup catalogs during maintenance; baseline known maintenance hosts and
+    service accounts <add_known_backup_admins>
+
+level: high

@@ -1,5 +1,52 @@
 [
  {
+  "date": "2026-06-02",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-02_Aur0ra-NoRename-InPlace-Ransomware",
+  "title": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-extortion via Tor",
+  "clusters": [
+   "Aur0ra (unattributed ransomware family)"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "cross-sector",
+   "enterprise"
+  ],
+  "techniques": [
+   "T1486",
+   "T1490",
+   "T1566.001",
+   "T1091",
+   "T1059",
+   "T1497.001",
+   "T1564.003",
+   "T1027.002",
+   "T1055",
+   "T1134",
+   "T1546.011",
+   "T1548",
+   "T1012",
+   "T1057",
+   "T1082",
+   "T1120",
+   "T1135",
+   "T1560",
+   "T1071",
+   "T1090.003",
+   "T1070.006",
+   "T1202"
+  ],
+  "tech_count": 22,
+  "tldr": "Aur0ra is a newly catalogued Windows (x64) filecoder that CYFIRMA pulled from underground-forum monitoring (Weekly Intelligence Report, 2026-05-22) and that pcrisk independently analysed from a VirusTotal submission (2026-05-07). Its single distinctive behaviour is that it encrypts files **in place** — it does not rename them and does not append any extension, so `1.jpg` stays `1.jpg` but becomes ",
+  "thumb": "thumbs/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware.svg",
+  "case_rel": "../days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/",
+  "q": "aur0ra ransomware — in-place encryption with no rename and no extension, double-extortion via tor aur0ra (unattributed ransomware family) unknown windows cross-sector enterprise t1486 t1490 t1566.001 t1091 t1059 t1497.001 t1564.003 t1027.002 t1055 t1134 t1546.011 t1548 t1012 t1057 t1082 t1120 t1135 t1560 t1071 t1090.003 t1070.006 t1202"
+ },
+ {
   "date": "2026-06-01",
   "year": "2026",
   "month": "2026-06",

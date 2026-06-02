@@ -1,0 +1,16 @@
+// Title:       Aur0ra - removable-media and network-share discovery
+// Id:          k3-aur0ra-discovery-burst
+// MITRE:       T1120, T1135
+// Reference:   https://www.cyfirma.com/news/weekly-intelligence-report-22-may-2026/
+// Author:      Jarmi
+// Date:        2026-06-02
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    Inventory/asset agents enumerate disks and shares legitimately.
+//              Chain with k1 (recovery inhibition) or k2 (note) on the same host.
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where (FileName =~ "wmic.exe" and ProcessCommandLine has_any ("Win32_USBHub", "Win32_PnPEntity", "Win32_LogicalDisk"))
+     or (FileName =~ "net.exe" and ProcessCommandLine has_any (" view", " share", " use"))
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName,
+          FileName, ProcessCommandLine
+| order by Timestamp desc

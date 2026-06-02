@@ -1,0 +1,20 @@
+type,value,context,confidence,source
+note,Aur0ra is an unattributed Windows x64 filecoder; primary IOCs below are Aur0ra unless marked SECONDARY (Remus Stealer),,,CYFIRMA 2026-05-22
+sha256,81ca5fc6b55accdbc44266d66bd72c7c4152a75b215593adc433d51250054333,Aur0ra encryptor sample referenced from VirusTotal,medium,pcrisk/VirusTotal
+path,!!!README!!!DO_NOT_DELETE.txt,Aur0ra ransom note filename dropped per affected directory,high,CYFIRMA/pcrisk
+string,We have downloaded confidential information files.,Ransom note body first line (double-extortion claim),high,pcrisk
+string,Contact us via tor browser at,Ransom note Tor-contact instruction,high,pcrisk
+string,Your access key:,Ransom note per-victim access key field,high,pcrisk
+string,vssadmin Delete Shadows /all /quiet,Pre-encryption Volume Shadow Copy deletion command,high,CYFIRMA
+string,wmic shadowcopy delete /nointeractive,Pre-encryption Volume Shadow Copy deletion command,high,CYFIRMA
+note,Files encrypted in place with no rename and no appended extension (1.jpg stays 1.jpg),Defeats extension-watch and canary-rename detection,high,CYFIRMA/pcrisk
+note,ESET Win64/Filecoder.Aur0ra.A,AV family detection name,high,pcrisk/VirusTotal
+note,Microsoft Ransom:Win32/Genasom!rfn,AV detection name,high,pcrisk/VirusTotal
+note,Kaspersky Trojan-Ransom.Win32.Cryptor.gvm,AV detection name,medium,pcrisk/VirusTotal
+sha256,48385492b6518cb2f3adcfd4a49c065ba960bdc617817068bd5faeb493d3f2db,SECONDARY Remus Stealer sample (same CYFIRMA report; NOT Aur0ra),medium,CYFIRMA
+domain,cheapoca[.]biz,SECONDARY Remus Stealer C2 base host,medium,CYFIRMA
+string,cheapoca.biz:5003,SECONDARY Remus Stealer C2 on non-standard port,medium,CYFIRMA
+string,cheapoca.biz:500,SECONDARY Remus Stealer C2 on non-standard port,medium,CYFIRMA
+ipv4,162.159.36.2,SECONDARY observed UDP/53 from Remus host; Cloudflare resolver range so likely benign DNS - listed for completeness,low,CYFIRMA
+regkey,{4590F811-1D3A-11D0-891F-00AA004B2E24},SECONDARY COM Elevation Moniker CLSID abused by Remus Stealer for UAC-less elevation,medium,CYFIRMA
+note,Remus Stealer abuses WMI (wmiprvse.exe/wmiadap.exe ROOT\CIMV2) for host/sandbox fingerprinting,SECONDARY tradecraft note,medium,CYFIRMA

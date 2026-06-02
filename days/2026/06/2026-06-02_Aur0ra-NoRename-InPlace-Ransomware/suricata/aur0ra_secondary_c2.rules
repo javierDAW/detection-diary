@@ -1,0 +1,17 @@
+# Aur0ra ransomware - network detections
+# Author: Jarmi
+# Date:   2026-06-02
+# Reference: https://www.cyfirma.com/news/weekly-intelligence-report-22-may-2026/
+# Notes: Aur0ra negotiation is Tor (.onion) only and its claimed exfiltration has no
+#        published clearnet domain, so there is no high-fidelity Aur0ra network rule.
+#        SIDs 4100601-4100603, rev:1. SIDs 4100601-4100602 target the SECONDARY Remus
+#        Stealer C2 (cheapoca.biz) from the same CYFIRMA report; 4100603 is a low-prio
+#        policy hint for direct Tor egress from a server segment (tune $HOME_NET).
+#        No custom variables defined; uses default any/any.
+
+# --- SECONDARY: Remus Stealer C2 (not Aur0ra) ---
+alert dns any any -> any any (msg:"REMUS-STEALER DNS lookup C2 cheapoca.biz (CYFIRMA 2026-05-22, secondary to Aur0ra)"; dns.query; content:"cheapoca.biz"; nocase; classtype:trojan-activity; sid:4100601; rev:1;)
+alert tls any any -> any any (msg:"REMUS-STEALER TLS SNI cheapoca.biz (secondary to Aur0ra)"; flow:established,to_server; tls.sni; content:"cheapoca.biz"; nocase; classtype:trojan-activity; sid:4100602; rev:1;)
+
+# --- POLICY HINT: direct Tor egress (Aur0ra negotiation portal is .onion) ---
+alert tls any any -> any any (msg:"POLICY direct-to-Tor TLS handshake from monitored segment - review for ransomware negotiation egress"; flow:established,to_server; tls.cert_subject; content:"CN="; pcre:"/CN=www\.[a-z0-9]{8,20}\.(com|net)/"; classtype:policy-violation; sid:4100603; rev:1;)

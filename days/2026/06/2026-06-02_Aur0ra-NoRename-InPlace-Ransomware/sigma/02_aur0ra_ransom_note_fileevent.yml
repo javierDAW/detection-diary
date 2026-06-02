@@ -1,0 +1,31 @@
+title: Aur0ra Ransom Note Written (!!!README!!!DO_NOT_DELETE.txt)
+id: dcd26082-77c7-4e53-809c-ab7b9997a415
+status: experimental
+description: |
+  Detects creation of the Aur0ra ransom note file '!!!README!!!DO_NOT_DELETE.txt'.
+  Aur0ra (CYFIRMA / pcrisk, 2026-05) encrypts files in place with no rename and no
+  appended extension, so the note write is one of the only reliable on-disk signals
+  that encryption has completed. The leading triple-exclamation filename is highly
+  distinctive and rarely benign. Because the note is dropped in every affected
+  directory, a single host typically generates many of these file_event hits in a
+  short burst; apply count/burst thresholds in SIEM aggregation.
+references:
+  - https://www.pcrisk.com/removal-guides/35259-aur0ra-ransomware
+  - https://attack.mitre.org/techniques/T1486/
+author: Jarmi
+date: 2026/06/02
+tags:
+  - attack.impact
+  - attack.t1486
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection:
+    TargetFilename|endswith: '\!!!README!!!DO_NOT_DELETE.txt'
+  condition: selection
+falsepositives:
+  - Extremely unlikely; the filename is specific to this family. Security tooling or
+    analysts copying a recovered note into a repository could match.
+
+level: high

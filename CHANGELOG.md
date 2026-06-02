@@ -6,6 +6,24 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.02 — Day 36 — Aur0ra ransomware (no-rename in-place filecoder)
+
+### Added
+- `days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/` — CYFIRMA (2026-05-22) and pcrisk (VT-analysed) catalogued Aur0ra, an unattributed Windows x64 filecoder that encrypts files in place with no rename and no appended extension, deletes Volume Shadow Copies, and drops a single note `!!!README!!!DO_NOT_DELETE.txt` pointing to a Tor portal with a per-victim access key. Crime-economy slot #3; the design defeats extension-watch and canary-rename detection.
+- Sigma (3): `01_aur0ra_inhibit_recovery_vss.yml` — VSS/wmic/wbadmin/bcdedit recovery destruction (T1490); `02_aur0ra_ransom_note_fileevent.yml` — ransom-note write (T1486); `03_aur0ra_removable_share_discovery.yml` — USB/share enumeration burst (T1120/T1135).
+- KQL (4): `k1` recovery-destruction command lines; `k2` ransom-note fleet sweep; `k3` peripheral/share discovery; `k4` per-process mass file modification with no rename.
+- YARA (1 file, 3 rules): Aur0ra ransom-note artifact, Aur0ra shadow-delete string heuristic, and the secondary Remus Stealer string rule (re-implemented from CYFIRMA).
+- Suricata (1 file, 3 sids): secondary Remus Stealer C2 (`cheapoca.biz`) DNS + TLS-SNI, plus a low-priority direct-Tor-egress policy hint (Aur0ra negotiation is .onion-only).
+- PEAK hunts (3): H1 recovery inhibition then encryption; H2 in-place no-rename modification burst (canary-aware); H3 removable-media + share recon.
+- `iocs.csv` (19 entries) — Aur0ra note/strings/sample-hash/AV-labels (primary) and clearly-marked Remus Stealer rows (secondary).
+- `kill_chain.svg` — template C single-lane, canonical palette, two critical-stage anchors (VSS deletion, in-place encryption).
+
+### Pedagogy
+- Extension-keyed and canary-rename ransomware detection is blind to no-rename in-place encryptors; detect by recovery inhibition and per-process modification rate.
+- Shadow-copy deletion is the earliest, highest-fidelity, pre-encryption tell — page on it.
+- During IR, scope by the note filename, not by a changed extension (there is none).
+- One VT hash is brittle; behavioural rules survive the next repack.
+
 ## 2026.06.01 — Day 35 — GREYVIBE Russia-nexus AI-augmented espionage vs Ukraine
 
 ### Added
