@@ -6,6 +6,24 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.03 — Day 37 — ip6.arpa Reverse-DNS Phishing (wildcard A on IPv6 reverse zones)
+
+### Added
+- `days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/` — Infoblox (2026-02-26), BleepingComputer (2026-03-08) and CloudSEK (2026-03-25) documented a commodity phishing technique that abuses the `ip6.arpa` reverse-DNS namespace: the operator takes a free IPv6 `/48` from a tunnel broker (Hurricane Electric), delegates the matching reverse zone to a high-reputation CDN nameserver (Cloudflare), and sets a wildcard `A` record so every per-victim random subdomain resolves to a phishing IP, hidden in email as an image link. Identity-and-fraud slot #29 (DNS-as-attack-surface) — the repo's first primary in that slot.
+- Sigma (3): `s1_dns_query_ip6arpa_text_prefix.yml` — Sysmon DNS query with a text label prefixed to an ip6.arpa nibble chain (T1566.002); `s2_proxy_http_to_ip6arpa_host.yml` — proxy request to a `.ip6.arpa` host (T1204.001); `s3_network_connection_ip6arpa.yml` — process connection to a resolved `.ip6.arpa` host.
+- KQL (3): `k1` Defender `DeviceNetworkEvents` `.ip6.arpa` hosts; `k2` Sentinel `DnsEvents` non-PTR answer in ip6.arpa; `k3` Defender `EmailUrlInfo`+`UrlClickEvents` `.ip6.arpa` URLs.
+- YARA (1 file, 2 rules): email/HTML carrying an ip6.arpa image link; known Campaign A/B zones and hosts.
+- Suricata (1 file, 6 sids): DNS DGA-prefix on ip6.arpa, HTTP host + TLS SNI in reverse-DNS namespace, two known-zone lookups, and known phishing IPs (4100301-4100306).
+- PEAK hunts (3): H1 A/AAAA answers in ip6.arpa; H2 staged Cloudflare-NS reverse zones; H3 image-only email links to reverse-DNS strings.
+- `iocs.csv` (24 entries) — active + staged ip6.arpa zones, Cloudflare/IONOS IPs, IPv6 prefixes, `t-w.dev`, `hekeroyot[.]com`, detection regex and the RFC-violation note.
+- `kill_chain.svg` — template A two-lane, canonical palette, two red anchors (wildcard A on ip6.arpa, image-only email link).
+
+### Pedagogy
+- Any `A`/`AAAA` answer from an `ip6.arpa` zone is an RFC violation with ~0% false positives — detect the answer type in the wrong namespace, not rotating hostnames.
+- Wildcard + per-victim randomisation defeats blocklists by construction; the only scalable control is a namespace/answer-type rule (RPZ).
+- CDN-NS delegation on a reverse zone is the pre-attack staging signal — hunting it pre-empts the campaign.
+- Reputation laundering through trusted infra (`.arpa` has no WHOIS; Cloudflare lends trust) is the core evasion; never whitelist "infrastructure" namespaces at the gateway.
+
 ## 2026.06.02 — Day 36 — Aur0ra ransomware (no-rename in-place filecoder)
 
 ### Added

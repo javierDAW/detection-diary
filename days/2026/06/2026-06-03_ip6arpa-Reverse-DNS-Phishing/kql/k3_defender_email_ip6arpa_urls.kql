@@ -1,0 +1,23 @@
+// Title:       ip6.arpa Reverse-DNS Phishing - inbound/clicked email URLs with .ip6.arpa host
+// Id:          k3-ip6arpa-defender-email
+// MITRE:       T1566.002, T1598.003, T1204.001
+// Reference:   https://www.bleepingcomputer.com/news/security/hackers-abuse-arpa-dns-and-ipv6-to-evade-phishing-defenses/
+// Author:      Jarmi
+// Date:        2026-06-03
+// Tested on:   Microsoft Defender XDR advanced hunting (EmailUrlInfo, UrlClickEvents)
+// FP notes:    .ip6.arpa is never a valid web URL host; presence in an email URL is
+//              high-fidelity. Join to UrlClickEvents to prioritise actual clicks.
+let mail =
+    EmailUrlInfo
+    | where Timestamp > ago(30d)
+    | where Url has ".ip6.arpa"
+    | project Timestamp, NetworkMessageId, Url, UrlDomain;
+let clicks =
+    UrlClickEvents
+    | where Timestamp > ago(30d)
+    | where Url has ".ip6.arpa"
+    | project ClickTime = Timestamp, NetworkMessageId, AccountUpn, Url, ActionType, IPAddress;
+mail
+| join kind=leftouter clicks on NetworkMessageId
+| project Timestamp, ClickTime, AccountUpn, Url, UrlDomain, ActionType, IPAddress
+| order by Timestamp desc

@@ -1,0 +1,26 @@
+type,value,context,confidence,source
+domain,d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa,Campaign A active malicious ip6.arpa reverse zone with wildcard A record (Hurricane Electric 2001:470:63d::/48),high,Infoblox/CloudSEK
+domain,*.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa,Campaign A wildcard - any random subdomain prefix resolves to phishing infrastructure,high,CloudSEK
+domain,0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa,Campaign B active malicious ip6.arpa reverse zone (TMW Global Networks 2a0e:b107:27d0::/48) resolving to IONOS Frankfurt,high,CloudSEK
+domain,*.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa,Campaign B wildcard A record,high,CloudSEK
+domain,1.9.5.0.9.1.0.0.7.4.0.1.0.0.2.ip6.arpa,Staged ip6.arpa zone - Cloudflare NS delegated no active A record yet (armed),high,CloudSEK
+domain,8.1.9.5.0.9.1.0.0.7.4.0.1.0.0.2.ip6.arpa,Staged ip6.arpa zone (armed),high,CloudSEK
+domain,9.a.d.0.6.3.0.0.7.4.0.1.0.0.2.ip6.arpa,Staged ip6.arpa zone (armed),high,CloudSEK
+domain,5.2.1.6.3.0.0.7.4.0.1.0.0.2.ip6.arpa,Staged ip6.arpa zone (armed),high,CloudSEK
+ipv4,104.21.3.194,Campaign A Cloudflare edge IP returned by the wildcard A record,medium,CloudSEK
+ipv4,172.67.131.33,Campaign A Cloudflare edge IP returned by the wildcard A record,medium,CloudSEK
+ipv4,172.64.80.1,Campaign A related Cloudflare edge IP,medium,CloudSEK
+ipv4,85.215.34.119,Campaign B IONOS Frankfurt origin server (nginx + Plesk) exposed direct,high,CloudSEK
+ipv6,2a0e:b107:27d0:2::2,Campaign B IPv6 host within the abused /48 prefix,high,CloudSEK
+domain,t-w.dev,Campaign B leaked TLS certificate CN; live mail.t-w.dev and webmail.t-w.dev,high,CloudSEK
+domain,mail.t-w.dev,Campaign B live mail infrastructure host,medium,CloudSEK
+domain,webmail.t-w.dev,Campaign B live webmail host,medium,CloudSEK
+domain,hekeroyot[.]com,Related phishing SLD using Cloudflare NS (blakely/yisroel.ns.cloudflare.com) seen alongside 0.0.7.4.6.0.6.2.ip6.arpa,medium,BleepingComputer
+ipv6,2606:4700:3036::ac43:a40a,AAAA for www.hekeroyot[.]com (Cloudflare),medium,BleepingComputer
+ipv6,2606:4700:3036::6815:4ade,AAAA for www.hekeroyot[.]com (Cloudflare),medium,BleepingComputer
+note,2001:470:63d::/48,Campaign A IPv6 prefix from Hurricane Electric (AS6939) tunnel allocation behind the reverse zone,high,Infoblox/CloudSEK
+note,2a0e:b107:27d0::/48,Campaign B IPv6 prefix from TMW Global Networks (AS215828),high,CloudSEK
+note,leah.ns.cloudflare.com,Cloudflare nameserver delegated onto an ip6.arpa zone - the staging signal for an armed reverse-DNS phishing zone,high,BleepingComputer
+note,micah.ns.cloudflare.com,Cloudflare nameserver delegated onto an ip6.arpa zone (staging signal),high,BleepingComputer
+note,[\w]{6,}\.([\da-f]\.){8,}ip6\.arpa,Detection regex - DGA text label prefixed to an IPv6 nibble chain; legitimate PTR lookups never carry a text prefix,high,CloudSEK
+note,A or AAAA answer from any ip6.arpa zone,RFC violation with no legitimate use case - the durable ~0 percent false-positive indicator for this technique,high,Infoblox/CloudSEK

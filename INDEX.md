@@ -4,7 +4,7 @@
 
 # INDEX
 
-**35 cases** · **94 actors/clusters** · **251 ATT&CK techniques** · **15 platforms** · **58 sectors** · 2026-04-29 -> 2026-06-02
+**36 cases** · **95 actors/clusters** · **254 ATT&CK techniques** · **15 platforms** · **58 sectors** · 2026-04-29 -> 2026-06-03
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/"><img src="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/kill_chain.svg" alt="2026-06-03 kill chain" width="240"></a><br><sub><b>2026-06-03</b><br>Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/"><img src="days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/kill_chain.svg" alt="2026-06-02 kill chain" width="240"></a><br><sub><b>2026-06-02</b><br>Aur0ra (unattributed ransomware family)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/"><img src="days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/kill_chain.svg" alt="2026-06-01 kill chain" width="240"></a><br><sub><b>2026-06-01</b><br>GREYVIBE</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/"><img src="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/kill_chain.svg" alt="2026-05-31 kill chain" width="240"></a><br><sub><b>2026-05-31</b><br>Black Shadow (Ababil of Minab persona)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/"><img src="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/kill_chain.svg" alt="2026-05-31 kill chain" width="240"></a><br><sub><b>2026-05-31</b><br>Black Shadow (Ababil of Minab persona)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/"><img src="days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/kill_chain.svg" alt="2026-05-30 kill chain" width="240"></a><br><sub><b>2026-05-30</b><br>AMOS / Atomic macOS Stealer (MaaS)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/"><img src="days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/kill_chain.svg" alt="2026-05-29 kill chain" width="240"></a><br><sub><b>2026-05-29</b><br>Chaotic Eclipse / Nightmare-Eclipse</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/"><img src="days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/kill_chain.svg" alt="2026-05-28 kill chain" width="240"></a><br><sub><b>2026-05-28</b><br>TrapDoor (Socket-tracked)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/"><img src="days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/kill_chain.svg" alt="2026-05-28 kill chain" width="240"></a><br><sub><b>2026-05-28</b><br>TrapDoor (Socket-tracked)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/"><img src="days/2026/05/2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/kill_chain.svg" alt="2026-05-27 kill chain" width="240"></a><br><sub><b>2026-05-27</b><br>UNC6671 (GTIG / Mandiant) · BlackFile (self-branded DLS) · Cordial Spider (CrowdStrike) · CL-CRI-1116 (Palo Alto Unit 42) · O-UNC-045 (Okta Defensive Cyber Operations)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/"><img src="days/2026/05/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/kill_chain.svg" alt="2026-05-26 kill chain" width="240"></a><br><sub><b>2026-05-26</b><br>VENOMOUS#HELPER (Securonix) · STAC6405 (Sophos)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/"><img src="days/2026/05/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/kill_chain.svg" alt="2026-05-25 kill chain" width="240"></a><br><sub><b>2026-05-25</b><br>UAC-0057 · Ghostwriter · FrostyNeighbor · UNC1151</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/"><img src="days/2026/05/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/kill_chain.svg" alt="2026-05-25 kill chain" width="240"></a><br><sub><b>2026-05-25</b><br>UAC-0057 · Ghostwriter · FrostyNeighbor · UNC1151</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-24_OperationSaffron-FirstVPN-Takedown/"><img src="days/2026/05/2026-05-24_OperationSaffron-FirstVPN-Takedown/kill_chain.svg" alt="2026-05-24 kill chain" width="240"></a><br><sub><b>2026-05-24</b><br>First VPN Service (1vpns.com)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/"><img src="days/2026/05/2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/kill_chain.svg" alt="2026-05-23 kill chain" width="240"></a><br><sub><b>2026-05-23</b><br>Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/"><img src="days/2026/05/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/kill_chain.svg" alt="2026-05-22 kill chain" width="240"></a><br><sub><b>2026-05-22</b><br>Red Lamassu · Calypso APT</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-06</b> — 2 case(s)</summary>
+<details><summary><b>2026-06</b> — 3 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-06-03 | [ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade reputation and blocklists](days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/) | Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked) | network-edge, cloud-multi |
 | 2026-06-02 | [Aur0ra ransomware — in-place encryption with no rename and no extension, double-extortion via Tor](days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/) | Aur0ra (unattributed ransomware family) | windows |
 | 2026-06-01 | [GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware](days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) | GREYVIBE | windows, android, network-edge |
 
