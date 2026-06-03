@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**35 cases** · **94 actors/clusters** · **251 ATT&CK techniques** · **15 platforms** · **58 sectors** · 2026-04-29 -> 2026-06-02
+**36 cases** · **95 actors/clusters** · **254 ATT&CK techniques** · **15 platforms** · **58 sectors** · 2026-04-29 -> 2026-06-03
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/"><img src="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/kill_chain.svg" alt="2026-06-03 kill chain" width="240"></a><br><sub><b>2026-06-03</b><br>Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/"><img src="days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/kill_chain.svg" alt="2026-06-02 kill chain" width="240"></a><br><sub><b>2026-06-02</b><br>Aur0ra (unattributed ransomware family)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/"><img src="days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/kill_chain.svg" alt="2026-06-01 kill chain" width="240"></a><br><sub><b>2026-06-01</b><br>GREYVIBE</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/"><img src="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/kill_chain.svg" alt="2026-05-31 kill chain" width="240"></a><br><sub><b>2026-05-31</b><br>Black Shadow (Ababil of Minab persona)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/"><img src="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/kill_chain.svg" alt="2026-05-31 kill chain" width="240"></a><br><sub><b>2026-05-31</b><br>Black Shadow (Ababil of Minab persona)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/"><img src="days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/kill_chain.svg" alt="2026-05-30 kill chain" width="240"></a><br><sub><b>2026-05-30</b><br>AMOS / Atomic macOS Stealer (MaaS)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/"><img src="days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/kill_chain.svg" alt="2026-05-29 kill chain" width="240"></a><br><sub><b>2026-05-29</b><br>Chaotic Eclipse / Nightmare-Eclipse</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/"><img src="days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/kill_chain.svg" alt="2026-05-28 kill chain" width="240"></a><br><sub><b>2026-05-28</b><br>TrapDoor (Socket-tracked)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

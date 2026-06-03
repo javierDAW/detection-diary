@@ -1,0 +1,33 @@
+title: Outbound Web Request to a Host Ending in ip6.arpa (Reverse-DNS Phishing)
+id: 7d41c2b9-0e6a-4f3c-9a18-2c5b8e1d4067
+status: experimental
+description: |
+  Detects an outbound HTTP/HTTPS request whose destination host ends in
+  '.ip6.arpa'. The ip6.arpa namespace exists only for IPv6 reverse DNS (PTR
+  records) and is never used to host websites; a web request to such a host
+  means an A/AAAA record was set on a reverse zone, which is an RFC violation
+  with no legitimate use case. The Infoblox/CloudSEK ip6.arpa phishing technique
+  (Feb-Mar 2026) abuses delegated ip6.arpa zones with wildcard A records pointed
+  at Cloudflare edge IPs or a direct origin to deliver credential-harvest pages,
+  evading domain-reputation engines because .arpa carries no WHOIS or domain age.
+references:
+  - https://www.bleepingcomputer.com/news/security/hackers-abuse-arpa-dns-and-ipv6-to-evade-phishing-defenses/
+  - https://www.cloudsek.com/blog/ip6-arpa-wildcard-abuse-hunting-phishing-infrastructure-across-ipv6-prefixes
+  - https://attack.mitre.org/techniques/T1204/001/
+author: Jarmi
+date: 2026/06/03
+tags:
+  - attack.initial-access
+  - attack.t1566.002
+  - attack.execution
+  - attack.t1204.001
+logsource:
+  category: proxy
+detection:
+  selection:
+    c-uri-host|endswith: '.ip6.arpa'
+  condition: selection
+falsepositives:
+  - None expected; ip6.arpa is reverse-DNS-only and is never a valid web host
+
+level: high

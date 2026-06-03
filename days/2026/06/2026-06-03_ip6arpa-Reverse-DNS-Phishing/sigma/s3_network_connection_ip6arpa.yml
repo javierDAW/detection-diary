@@ -1,0 +1,32 @@
+title: Process Network Connection to a Resolved ip6.arpa Destination Host
+id: c8e3f0a7-1b94-4d52-8e6f-3a7c9d05b218
+status: experimental
+description: |
+  Detects a process network connection (Sysmon EID 3) whose DestinationHostname
+  ends in '.ip6.arpa'. Endpoints should never connect to a web host in the IPv6
+  reverse-DNS namespace; resolution of such a name to a routable IP implies a
+  wildcard A record on a delegated ip6.arpa zone, the core of the Infoblox/CloudSEK
+  reverse-DNS phishing technique (Feb-Mar 2026). This complements the dns_query
+  and proxy rules by anchoring on the connecting process and its image, which is
+  useful where DNS or proxy logging is incomplete.
+references:
+  - https://www.infoblox.com/blog/threat-intelligence/abusing-arpa-the-tld-that-isnt-supposed-to-host-anything/
+  - https://attack.mitre.org/techniques/T1204/001/
+author: Jarmi
+date: 2026/06/03
+tags:
+  - attack.execution
+  - attack.t1204.001
+  - attack.command-and-control
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    DestinationHostname|endswith: '.ip6.arpa'
+  condition: selection
+falsepositives:
+  - None expected for web/script clients; reverse-DNS hosts are not legitimate
+    connection targets
+
+level: high

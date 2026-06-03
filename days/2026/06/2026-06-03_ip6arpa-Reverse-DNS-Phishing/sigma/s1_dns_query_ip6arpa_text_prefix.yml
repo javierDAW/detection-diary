@@ -1,0 +1,38 @@
+title: DNS Query for an ip6.arpa Name Carrying a Text Label Prefix (Reverse-DNS Phishing Host)
+id: 2b6f1a4e-9c3d-4e87-bb21-7f0c5d2a9e14
+status: experimental
+description: |
+  Detects a host-side DNS query (Sysmon EID 22) for an ip6.arpa name that has a
+  multi-character text label prefixed to the IPv6 nibble chain. A legitimate
+  reverse (PTR) lookup is composed only of single hex-nibble labels followed by
+  ip6.arpa; it never carries a random word-like label such as
+  'xqjerorqxs.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa'. The Infoblox/CloudSEK
+  ip6.arpa phishing technique (Feb-Mar 2026) sets a wildcard A record on a
+  delegated ip6.arpa zone and embeds per-victim random subdomains as image links
+  in phishing email, so the resolved name is a reverse-DNS string with a text
+  prefix. Because the indicator is the malformed query shape rather than a
+  rotating hostname, the rule survives campaign re-staging.
+references:
+  - https://www.infoblox.com/blog/threat-intelligence/abusing-arpa-the-tld-that-isnt-supposed-to-host-anything/
+  - https://www.cloudsek.com/blog/ip6-arpa-wildcard-abuse-hunting-phishing-infrastructure-across-ipv6-prefixes
+  - https://attack.mitre.org/techniques/T1566/002/
+  - https://attack.mitre.org/techniques/T1036/
+author: Jarmi
+date: 2026/06/03
+tags:
+  - attack.initial-access
+  - attack.t1566.002
+  - attack.defense-evasion
+  - attack.t1036
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection:
+    QueryName|re: '(?i)[a-z0-9]{4,}(\.[0-9a-f]){6,}\.ip6\.arpa$'
+  condition: selection
+falsepositives:
+  - Rare diagnostic or research tooling that constructs synthetic ip6.arpa names
+    with text labels; baseline known internal scanners <add_known_dns_scanners>
+
+level: high

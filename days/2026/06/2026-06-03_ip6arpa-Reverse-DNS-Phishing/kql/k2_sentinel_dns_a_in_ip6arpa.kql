@@ -1,0 +1,17 @@
+// Title:       ip6.arpa Reverse-DNS Phishing - non-PTR (A/AAAA) answer in an ip6.arpa zone
+// Id:          k2-ip6arpa-sentinel-dns
+// MITRE:       T1583.002, T1665, T1036
+// Reference:   https://www.infoblox.com/blog/threat-intelligence/abusing-arpa-the-tld-that-isnt-supposed-to-host-anything/
+// Author:      Jarmi
+// Date:        2026-06-03
+// Tested on:   Microsoft Sentinel (DnsEvents - Windows DNS Server connector / DNS analytics)
+// FP notes:    By RFC, ip6.arpa zones return only PTR records. Any A/AAAA answer
+//              is an RFC violation with ~0% false positives. Adjust QueryType field
+//              names to your connector schema if different.
+DnsEvents
+| where TimeGenerated > ago(30d)
+| where Name endswith ".ip6.arpa"
+| where QueryType !in~ ("PTR", "NS", "SOA")
+| where isnotempty(IPAddresses)
+| project TimeGenerated, Computer, ClientIP, Name, QueryType, IPAddresses
+| order by TimeGenerated desc

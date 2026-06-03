@@ -1,5 +1,44 @@
 [
  {
+  "date": "2026-06-03",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-03_ip6arpa-Reverse-DNS-Phishing",
+  "title": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade reputation and blocklists",
+  "clusters": [
+   "Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)"
+  ],
+  "country": "Unattributed; English-language commodity phishing",
+  "platforms": [
+   "network-edge",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "cross-sector",
+   "healthcare",
+   "government",
+   "education",
+   "telecom",
+   "retail"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1583.002",
+   "T1584.001",
+   "T1665",
+   "T1566.002",
+   "T1598.003",
+   "T1204.001",
+   "T1036",
+   "T1027"
+  ],
+  "tech_count": 9,
+  "tldr": "A commodity phishing operator abuses the `ip6.arpa` reverse-DNS namespace — a zone that by RFC design should only ever hold PTR records — to host malicious hyperlinks that email gateways and URL scanners treat as benign infrastructure plumbing. The actor obtains a free IPv6 `/48` from a tunnel broker (Hurricane Electric), is delegated the matching reverse zone, delegates that zone to a high-reputa",
+  "thumb": "thumbs/2026-06-03_ip6arpa-Reverse-DNS-Phishing.svg",
+  "case_rel": "../days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/",
+  "q": "ip6.arpa reverse-dns phishing — wildcard a records on ipv6 reverse zones evade reputation and blocklists unattributed ip6.arpa reverse-dns phishing operator (infoblox-tracked) unattributed; english-language commodity phishing network-edge cloud-multi cross-sector healthcare government education telecom retail t1583.001 t1583.002 t1584.001 t1665 t1566.002 t1598.003 t1204.001 t1036 t1027"
+ },
+ {
   "date": "2026-06-02",
   "year": "2026",
   "month": "2026-06",

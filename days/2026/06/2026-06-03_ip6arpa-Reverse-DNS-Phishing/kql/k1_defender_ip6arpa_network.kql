@@ -1,0 +1,16 @@
+// Title:       ip6.arpa Reverse-DNS Phishing - endpoint network connection to .ip6.arpa host
+// Id:          k1-ip6arpa-defender-network
+// MITRE:       T1566.002, T1204.001, T1036
+// Reference:   https://www.cloudsek.com/blog/ip6-arpa-wildcard-abuse-hunting-phishing-infrastructure-across-ipv6-prefixes
+// Author:      Jarmi
+// Date:        2026-06-03
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes:    A web/endpoint connection to a host ending .ip6.arpa is an RFC
+//              violation - reverse DNS is never a valid web host. Behavioural and
+//              durable across per-victim subdomain rotation.
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteUrl has ".ip6.arpa" or RemoteUrl matches regex @"[a-z0-9]{4,}(\.[0-9a-f]){6,}\.ip6\.arpa"
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessParentFileName,
+          RemoteUrl, RemoteIP, RemotePort
+| order by Timestamp desc
