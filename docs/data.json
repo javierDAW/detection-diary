@@ -1,5 +1,47 @@
 [
  {
+  "date": "2026-06-04",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover",
+  "title": "Kirki CVE-2026-8206 — unauthenticated admin account takeover via password-reset-to-attacker-email on 150K WordPress sites",
+  "clusters": [
+   "Opportunistic WordPress mass-exploitation (unattributed)"
+  ],
+  "country": "Unattributed (commodity web exploitation)",
+  "platforms": [
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "hosting",
+   "retail",
+   "media",
+   "government",
+   "small-business",
+   "technology"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1589.002",
+   "T1087.001",
+   "T1190",
+   "T1098",
+   "T1078",
+   "T1136.001",
+   "T1505.003",
+   "T1059.004",
+   "T1071.001",
+   "T1105",
+   "T1041"
+  ],
+  "tech_count": 12,
+  "tldr": "On 2026-06-02 Wordfence/Defiant disclosed **CVE-2026-8206** (CVSS 9.8, CWE-269 improper privilege management) in the **Kirki — Freeform Page Builder, Website Builder & Customizer** WordPress plugin. The plugin's `handle_forgot_password()` handler in `ComponentLibrary/controller/CompLibFormHandler.php` accepts an **attacker-supplied destination email** for a password-reset request instead of valida",
+  "thumb": "thumbs/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover.svg",
+  "case_rel": "../days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/",
+  "q": "kirki cve-2026-8206 — unauthenticated admin account takeover via password-reset-to-attacker-email on 150k wordpress sites opportunistic wordpress mass-exploitation (unattributed) unattributed (commodity web exploitation) linux network-edge hosting retail media government small-business technology t1595.002 t1589.002 t1087.001 t1190 t1098 t1078 t1136.001 t1505.003 t1059.004 t1071.001 t1105 t1041"
+ },
+ {
   "date": "2026-06-03",
   "year": "2026",
   "month": "2026-06",
