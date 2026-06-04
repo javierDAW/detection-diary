@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.04 — Day 38 — Kirki CVE-2026-8206 (unauthenticated WordPress admin account takeover)
+
+### Added
+- `days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/` — Wordfence/Defiant, Orca and SecurityWeek (2026-06-01/02) disclosed CVE-2026-8206 (CVSS 9.8, CWE-269) in the Kirki WordPress plugin: `CompLibFormHandler::handle_forgot_password` mails the password-reset link to an attacker-supplied email instead of the account's stored address, so one unauthenticated request with a known username + attacker email takes over any account including administrator. Affects Kirki 6.0.0–6.0.6 (fixed 6.0.7, 2026-05-18); ~150K of 500K+ sites vulnerable; early active scanning reported. Repo's first primary in slot #26 (AppSec/web exploitation).
+- Sigma (3): `kirki_forgot_password_rest_abuse.yml` — webserver POST to a forgot-password route with an email= param (T1190); `wordpress_user_enumeration_rest_author.yml` — REST `/wp-json/wp/v2/users` + `?author=` enumeration precursor (T1087.001); `wp_webshell_php_drop_uploads.yml` — file_event PHP under `wp-content/uploads` (T1505.003).
+- KQL (3): `wp_php_webshell_dropped_uploads` Defender `DeviceFileEvents` PHP in uploads; `wp_webservice_account_shell_spawn` `DeviceProcessEvents` web account spawning shell/LOLBin; `wp_host_outbound_rawcode_pull` `DeviceNetworkEvents` web host to raw-code/paste hosts.
+- YARA (1 file, 2 rules): generic PHP eval-over-request-input web shell; injected WordPress admin/auth-bypass backdoor.
+- Suricata (1 file, 3 sids): forgot-password exploit POST, WP REST user enumeration, PHP-under-uploads request (4100401-4100403).
+- PEAK hunts (3): H1 reset-email recipient mismatch (≈0% FP); H2 new/altered admin after disclosure; H3 web-shell foothold on WordPress hosts.
+- `iocs.csv` (15 entries) — CVE, vulnerable handler/source path, version range, behavioural anchors (reset-recipient mismatch, PHP under uploads, web-account shell spawn); no fixed network IOCs (logic bug).
+- `kill_chain.svg` — template C single-lane timeline, canonical palette, two red anchors (reset link to attacker mailbox, PHP web shell under uploads).
+
+### Pedagogy
+- A logic bug has no signature: detect behaviour (reset recipient != stored email, PHP under uploads), not a payload hash.
+- Patch-gap is a window: hunt from the 2026-05-18 patch date, not the 2026-06-02 disclosure date.
+- Self-service reset/SSPR flows are privilege boundaries — bind the destination to the server-side record, never to client input.
+- "No WAF alert" is not "not exploited": verify 9.8/PR:N CMS plugin bugs by artifact (admin diff, uploads scan).
+
+
 ## 2026.06.03 — Day 37 — ip6.arpa Reverse-DNS Phishing (wildcard A on IPv6 reverse zones)
 
 ### Added
