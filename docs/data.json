@@ -1,5 +1,46 @@
 [
  {
+  "date": "2026-06-05",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-05_Netlogon-CVE-2026-41089-DC-RCE",
+  "title": "Netlogon CVE-2026-41089 — unauthenticated 0-click stack-overflow RCE as SYSTEM on Windows domain controllers",
+  "clusters": [
+   "Opportunistic Netlogon mass-exploitation (unattributed)"
+  ],
+  "country": "Unattributed (commodity / mass exploitation)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government",
+   "finance",
+   "healthcare",
+   "education",
+   "technology",
+   "manufacturing"
+  ],
+  "techniques": [
+   "T1046",
+   "T1018",
+   "T1210",
+   "T1068",
+   "T1003.006",
+   "T1003.001",
+   "T1207",
+   "T1558.001",
+   "T1136.001",
+   "T1484.001",
+   "T1021.002",
+   "T1070.001"
+  ],
+  "tech_count": 12,
+  "tldr": "**CVE-2026-41089** is a critical (CVSS 9.8, AV:N/AC:L/PR:N/UI:N/C:H/I:H/A:H) **stack-based buffer overflow in the Windows Netlogon Remote Protocol (MS-NRPC)** packet-handling path on **domain controllers**. An unauthenticated attacker sends one specially crafted Netlogon RPC request to a DC (TCP/135 endpoint mapper → dynamic RPC endpoint, or the `\\PIPE\\netlogon` named pipe over SMB) and obtains **",
+  "thumb": "thumbs/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE.svg",
+  "case_rel": "../days/2026/06/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE/",
+  "q": "netlogon cve-2026-41089 — unauthenticated 0-click stack-overflow rce as system on windows domain controllers opportunistic netlogon mass-exploitation (unattributed) unattributed (commodity / mass exploitation) windows government finance healthcare education technology manufacturing t1046 t1018 t1210 t1068 t1003.006 t1003.001 t1207 t1558.001 t1136.001 t1484.001 t1021.002 t1070.001"
+ },
+ {
   "date": "2026-06-04",
   "year": "2026",
   "month": "2026-06",
