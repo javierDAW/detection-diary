@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.05 — Day 39 — Netlogon CVE-2026-41089 (unauthenticated 0-click RCE as SYSTEM on Windows domain controllers)
+
+### Added
+- `days/2026/06/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE/` — Microsoft (WARP team) patched CVE-2026-41089 in the 2026-05-12 Patch Tuesday; Belgium's CCB confirmed active in-the-wild exploitation against domain controllers on 2026-05-29, with Orca/BleepingComputer/SecurityWeek/Help Net Security following 2026-06-01/02. A stack-based buffer overflow (CWE-121) in the Netlogon RPC (MS-NRPC) packet handler lets an unauthenticated attacker send one crafted request (TCP/135 dynamic RPC or `\PIPE\netlogon` over SMB 445) and execute code as SYSTEM on a DC — a domain-wide compromise. CVSS 9.8; all supported Windows Server incl. 2025; attacker unattributed; not yet in CISA KEV at time of writing. Repo's first primary in slot #12 (DFIR Windows/AD).
+- Sigma (3): `01_netlogon_dc_anomalous_child_process.yml` — core service (lsass/services/svchost) spawning a shell/LOLBin on a DC (T1068); `02_netlogon_service_crash_restart.yml` — SCM 7031/7034 for Netlogon (T1210 overflow attempt); `03_dcsync_replication_nondc.yml` — Security 4662 replication-rights GUID from a non-DC principal (T1003.006).
+- KQL (4): `k1_netlogon_dc_lsass_child` Defender `DeviceProcessEvents`; `k2_dcsync_4662_replication` Sentinel `SecurityEvent`; `k3_netlogon_service_crash` Sentinel `Event`; `k4_dc_inbound_rpc_anomaly` Defender `DeviceNetworkEvents`.
+- YARA (1 file, 2 rules): follow-on (not exploit-specific) DCSync/Mimikatz command strings; Impacket secretsdump/DRSUAPI tool markers.
+- Suricata (1 file, 3 sids): DRSUAPI DsGetNCChanges (DCSync wire), Netlogon RPC interface bind, `\netlogon` named pipe over SMB (4100501-4100503).
+- PEAK hunts (3): H1 SYSTEM shell from a core service on a DC (≈0% FP); H2 DCSync from a non-DC principal since the patch date; H3 Netlogon crash correlated with new SYSTEM activity.
+- `iocs.csv` (20 entries) — CVE, patch/exploitation dates, MS-NRPC + DRSUAPI interface UUIDs, replication property GUIDs, Event IDs (7031/7034, 4662, 1102), ports, behavioural anchors; no fixed network IOCs (memory-corruption RCE, no public sample).
+- `kill_chain.svg` — template A two-lane (victim DC/AD plane vs attacker ops), canonical palette, red anchors on the stack overflow and the krbtgt/NTDS.dit access.
+
+### Pedagogy
+- RCE inside a trusted authentication service is a blast-radius problem: code execution in Netlogon = domain compromise, not host RCE.
+- Detect the forced consequences (DCSync, golden tickets, log clears), not a sub-3-second exploit with no public sample.
+- krbtgt must be double-rotated after any confirmed DC compromise; single rotation leaves forged golden tickets valid.
+- Enhanced logging built for last year's Netlogon bug (Zerologon EID 5827-5831) does not detect a buffer overflow - match telemetry to the bug class.
+
+
 ## 2026.06.04 — Day 38 — Kirki CVE-2026-8206 (unauthenticated WordPress admin account takeover)
 
 ### Added
@@ -486,32 +505,4 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 - Every `days/<slug>/README.md` from Day 1 (TheGentlemen + SystemBC) through Day 15 (UAT-8302 China-nexus espionage) now follows the canonical 15-section standard introduced with Day 13 (Albiriox): YAML frontmatter, `# <Title>`, `## TL;DR`, `## Attribution and confidence`, `## Kill chain — summary table`, `![kill chain SVG]`, `## Stage-by-stage detail`, `## RE notes` (when applicable), `## Detection strategy` with three sub-sections, `## Incident response playbook` with five sub-sections, `## IOCs`, `## Secondary findings`, `## Pedagogical anchors`, `## What's in this folder`, `## Sources`.
 - Days 1-12 were rewritten from their pre-standard, shorter forms. Days 13-15 (already conformant) were left in place.
 - Every day folder now ships a `kill_chain.svg` at the folder root (not in a `diagrams/` subfolder) with the GitHub-friendly `prefers-color-scheme` adaptive palette, accessibility metadata (`role="img"`, `<title>`, `<desc>`), numbered stage badges, MITRE tags, IOC anchors, attacker C2 cluster panel and bottom detection-anchors box.
-- The day folders for `2026-04-29_ShaiHulud-Bitwarden`, `2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`, `2026-05-01_VECT-2.0-RaaS`, `2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`, `2026-05-03_BAUXITE-CyberAvengers-AA26-097A`, `2026-05-04_C0063-Poland-Wiper`, `2026-05-05_Akira-SonicWall-CVE-2024-40766`, `2026-05-06_CodeOfConduct-AiTM-Storm-1747`, `2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada` and `2026-05-07_QLNX-Quasar-Linux-RAT` received a brand new `kill_chain.svg`.
-
-### Rationale
-- The Day 13 structural standard is the published norm; the older write-ups predated it and gave a GitHub reader a fragmented experience. The retrospective brings every day to the same readable, self-contained, defensible level.
-- All Sigma / KQL / YARA / Suricata rule files, hunts and `iocs.csv` files were left untouched — the rule logic was not the deficit; the surrounding write-up was.
-
-### Notes
-- Legacy `days/*/spl/` folders remain physically present in the working tree on the Windows / WSL mount; they were untracked from git on 2026.05.11 (commit `7b2f3d6`) and can be physically removed from PowerShell with `Remove-Item days\*\spl -Recurse -Force` after a fresh `git pull`. Per the 2026-05-11 SPL retirement, the README, CHANGELOG and validators no longer reference SPL.
-
----
-
-## 2026.05.11 — Maintenance — Drop Splunk SPL from the repo scope
-
-### Removed
-- All 15 `days/*/spl/*.spl` files (untracked via `git rm --cached`), covering every case from Day 1 (TheGentlemen + SystemBC) through Day 15 (UAT-8302). Going forward, daily lessons ship Sigma + KQL + YARA + Suricata only; Splunk users can still run the Sigma rules through `sigma convert -t splunk` on their side.
-- SPL validator and dispatch entries from `tools/validate_all.py`.
-- Sigma → Splunk conversion smoke test from `tools/lint_all.sh` and `tools/lint_sigma.sh` (Defender XDR / Microsoft 365 Defender remains the supported conversion target).
-- SPL row from every day's `Detection coverage` table and `What's in this folder` table in `days/*/README.md`.
-- SPL section from `days/2026-05-09_Albiriox-Android-MaaS-AcVNC/hunts/peak_h1_sideload_accessibility_banking.md`.
-- SPL anchor line from `days/2026-05-09_Albiriox-Android-MaaS-AcVNC/kill_chain.svg` and `days/2026-05-10_Mexico-Water-AI-Assisted-OT/kill_chain.svg`.
-- Splunk-over-Nutanix-Pulse SPL query in `days/2026-05-05_Akira-SonicWall-CVE-2024-40766/hunts/peak_h1_h2_h3.md` rewritten as KQL over a Sentinel custom log table.
-- SPL / Splunk badge, layout entries and validation table rows from the repo-root `README.md`.
-
-### Rationale
-- The author cannot test SPL rules end-to-end against a live Splunk instance, so the SPL files were accumulating unverified content that increased maintenance burden without payoff. Sigma + KQL stays the load-bearing detection track; Suricata + YARA keep their network and file roles.
-
----
-
-## 2026.05.11 — Day 15 — UAT-8302 China-nexus governmen
+- The day folders for `2026-04-29_ShaiHulud-Bitwarden`, `2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`, `2026-05-01_VECT-2.0-RaaS`, `2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`, `2026-05-03_BAUXITE-CyberAvengers-AA26-097A`, `2026-05-04_C0063-Poland-Wiper`, `2026-05-05_Akira-SonicWall-CVE-2024-40766`, `2
