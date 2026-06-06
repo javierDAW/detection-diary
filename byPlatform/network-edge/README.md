@@ -4,11 +4,12 @@
 
 # Platforms: network-edge
 
-11 day(s) covering this platform.
+12 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-06 | OCPP EV-Charging Attack Surface - ABB Terra AC Heap Overflow (CVE-2025-5517) and the OCPP WebSocket Missing-Auth Class | Opportunistic OCPP / EV-charging exploitation (unattributed) | [`2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/`](../../days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/) |
 | 2026-06-04 | Kirki CVE-2026-8206 — unauthenticated admin account takeover via password-reset-to-attacker-email on 150K WordPress sites | Opportunistic WordPress mass-exploitation (unattributed) | [`2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/`](../../days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/) |
 | 2026-06-03 | ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade reputation and blocklists | Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked) | [`2026-06-03_ip6arpa-Reverse-DNS-Phishing/`](../../days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/) |
 | 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |

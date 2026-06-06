@@ -1,5 +1,47 @@
 [
  {
+  "date": "2026-06-06",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517",
+  "title": "OCPP EV-Charging Attack Surface - ABB Terra AC Heap Overflow (CVE-2025-5517) and the OCPP WebSocket Missing-Auth Class",
+  "clusters": [
+   "Opportunistic OCPP / EV-charging exploitation (unattributed)"
+  ],
+  "country": "Not attributed",
+  "platforms": [
+   "iot",
+   "ot-ics",
+   "network-edge"
+  ],
+  "sectors": [
+   "energy",
+   "automotive",
+   "transportation",
+   "critical-infrastructure"
+  ],
+  "techniques": [
+   "T1190",
+   "T1133",
+   "T1557.002",
+   "T1040",
+   "T1499.004",
+   "T1565.002",
+   "T1059",
+   "T1078",
+   "T0814",
+   "T0826",
+   "T0855",
+   "T0857",
+   "T0831"
+  ],
+  "tech_count": 13,
+  "tldr": "EV charging is now critical energy infrastructure, and its control plane - the Open Charge Point Protocol (OCPP, JSON over WebSocket) - is dangerously exposed. SaiFlow's reverse engineering of the ABB Terra AC wallbox uncovered CVE-2025-5517: an over-long OCPP `DataTransfer` `messageId` is copied with `sprintf` into a fixed-size buffer, overflowing the heap and crashing the charger into an indefin",
+  "thumb": "thumbs/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517.svg",
+  "case_rel": "../days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/",
+  "q": "ocpp ev-charging attack surface - abb terra ac heap overflow (cve-2025-5517) and the ocpp websocket missing-auth class opportunistic ocpp / ev-charging exploitation (unattributed) not attributed iot ot-ics network-edge energy automotive transportation critical-infrastructure t1190 t1133 t1557.002 t1040 t1499.004 t1565.002 t1059 t1078 t0814 t0826 t0855 t0857 t0831"
+ },
+ {
   "date": "2026-06-05",
   "year": "2026",
   "month": "2026-06",

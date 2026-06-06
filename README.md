@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**38 cases** · **97 actors/clusters** · **257 ATT&CK techniques** · **15 platforms** · **60 sectors** · 2026-04-29 -> 2026-06-05
+**39 cases** · **98 actors/clusters** · **263 ATT&CK techniques** · **15 platforms** · **61 sectors** · 2026-04-29 -> 2026-06-06
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/"><img src="days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/kill_chain.svg" alt="2026-06-06 kill chain" width="240"></a><br><sub><b>2026-06-06</b><br>Opportunistic OCPP / EV-charging exploitation (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE/"><img src="days/2026/06/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE/kill_chain.svg" alt="2026-06-05 kill chain" width="240"></a><br><sub><b>2026-06-05</b><br>Opportunistic Netlogon mass-exploitation (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/"><img src="days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/kill_chain.svg" alt="2026-06-04 kill chain" width="240"></a><br><sub><b>2026-06-04</b><br>Opportunistic WordPress mass-exploitation (unattributed)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/"><img src="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/kill_chain.svg" alt="2026-06-03 kill chain" width="240"></a><br><sub><b>2026-06-03</b><br>Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/"><img src="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/kill_chain.svg" alt="2026-06-03 kill chain" width="240"></a><br><sub><b>2026-06-03</b><br>Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/"><img src="days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/kill_chain.svg" alt="2026-06-02 kill chain" width="240"></a><br><sub><b>2026-06-02</b><br>Aur0ra (unattributed ransomware family)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/"><img src="days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/kill_chain.svg" alt="2026-06-01 kill chain" width="240"></a><br><sub><b>2026-06-01</b><br>GREYVIBE</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/"><img src="days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/kill_chain.svg" alt="2026-05-31 kill chain" width="240"></a><br><sub><b>2026-05-31</b><br>Black Shadow (Ababil of Minab persona)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

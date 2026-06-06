@@ -4,11 +4,12 @@
 
 # Techniques: T1190
 
-12 day(s) covering this technique.
+13 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-06 | OCPP EV-Charging Attack Surface - ABB Terra AC Heap Overflow (CVE-2025-5517) and the OCPP WebSocket Missing-Auth Class | Opportunistic OCPP / EV-charging exploitation (unattributed) | [`2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/`](../../days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/) |
 | 2026-06-04 | Kirki CVE-2026-8206 — unauthenticated admin account takeover via password-reset-to-attacker-email on 150K WordPress sites | Opportunistic WordPress mass-exploitation (unattributed) | [`2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/`](../../days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/) |
 | 2026-05-19 | Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs) | Embargo · ALPHV · BlackCat | [`2026-05-19_Embargo-Rust-SafeMode-BYOVD/`](../../days/2026/05/2026-05-19_Embargo-Rust-SafeMode-BYOVD/) |
 | 2026-05-16 | Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters | UAT-8616 · Talos Cluster 1 (Tas9er Godzilla) · Talos Cluster 2 (Behinder Base64) · Talos Cluster 3 (XenShell + Behinder) · Talos Cluster 4 (Godzilla variant) · Talos Cluster 5 (AdaptixC2 shadowcore) · Talos Cluster 6 (Sliver mTLS) · Talos Cluster 7 (XMRig + Cobalt Strike) · Talos Cluster 8 (NimPlant-variant agent1) · Talos Cluster 9 (gsocket + XMRig) · Talos Cluster 10 (vManage credential extractor) | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/`](../../days/2026/05/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
