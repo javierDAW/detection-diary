@@ -52,6 +52,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Nexus Team](./nexus-team/) | 1 |
 | [O-UNC-045 (Okta Defensive Cyber Operations)](./o-unc-045-okta-defensive-cyber-operations/) | 1 |
 | [Opportunistic Netlogon mass-exploitation (unattributed)](./opportunistic-netlogon-mass-exploitation-unattributed/) | 1 |
+| [Opportunistic OCPP / EV-charging exploitation (unattributed)](./opportunistic-ocpp-ev-charging-exploitation-unattributed/) | 1 |
 | [Opportunistic WordPress mass-exploitation (unattributed)](./opportunistic-wordpress-mass-exploitation-unattributed/) | 1 |
 | [Pheno](./pheno/) | 1 |
 | [Punk Spider](./punk-spider/) | 1 |

@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.06 — Day 40 — OCPP EV-charging attack surface (ABB Terra AC heap overflow CVE-2025-5517 + OCPP WebSocket missing-auth class)
+
+### Added
+- `days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/` — SaiFlow's RE of the ABB Terra AC wallbox found CVE-2025-5517: an over-long OCPP `DataTransfer` `messageId` is `sprintf`-copied into a fixed buffer, overflowing the heap (CWE-122) and crashing the charger into an indefinite Denial-of-Charge (RCE assessed plausible); CISA published the advisory wave ~2026-05-26 (ICSA-26-146-01 / -141-05), the why-today. In parallel a 2026 cluster of CISA OCPP-backend advisories (EV.energy CVE-2026-27772, CVSS 9.4, CWE-306, ICSA-26-057-07; plus CloudCharge/EV2GO/Chargemap/Mobility46) shows the systemic flaw is missing authentication on the OCPP WebSocket — anyone who knows a station ID can impersonate a charger. Unattributed; weekend auto-rescue; repo's first primary in slot #33 (Automotive/EV).
+- Sigma (3): `01_ocpp_cleartext_websocket_exposure.yml` — cleartext OCPP to a CSMS on 80/8080 (T1557 MITM precondition); `02_ocpp_websocket_upgrade_unauthenticated.yml` — OCPP-subprotocol WS upgrade to an OCPP path without Authorization (T1190, CWE-306); `03_csms_backend_shell_spawn.yml` — CSMS/OCPP backend spawning a shell or network tool (T1059).
+- KQL (4): `k1_ocpp_cleartext_exposure` Defender `DeviceNetworkEvents`; `k2_ocpp_station_id_fanout` Sentinel `CommonSecurityLog`; `k3_ocpp_oversized_datatransfer_field` Sentinel `Syslog`; `k4_csms_backend_anomalous_child` Defender `DeviceProcessEvents`.
+- YARA (1 file, 2 rules): oversized OCPP DataTransfer messageId/vendorId frame (BoF attempt, CVE-2025-5517); cleartext OCPP session indicators — both capture/memory heuristics, no public exploit binary exists.
+- Suricata (1 file, 3 sids): cleartext OCPP WS upgrade; oversized OCPP DataTransfer messageId (CVE-2025-5517); OCPP upgrade without Authorization / station impersonation (2606001-2606003).
+- PEAK hunts (3): H1 cleartext OCPP transport inventory; H2 OCPP station impersonation (CWE-306) via station-ID fan-out + unknown IDs; H3 charger crash/DoC correlated with oversized OCPP fields.
+- `iocs.csv` (19 entries) — CVEs, OCPP message types/fields (DataTransfer/BootNotification/messageId), subprotocol markers, ports (80/443/8080), ABB affected/fixed version ranges, firmware header marker, behavioural anchors; no fixed network IOCs (vulnerability-class case, no sample).
+- `kill_chain.svg` — template A two-lane (victim OCPP charger/CSMS plane vs attacker ops), canonical palette, red anchors on the firmware heap overflow and the backend missing-auth impersonation.
+
+### Pedagogy
+- An EV charger is internet-connected critical energy infrastructure; a fleet of them is grid-relevant (MadIoT load-swing class).
+- Cleartext `ws://` is both the vulnerability multiplier (enables MITM injection) and the detection gift (makes every OCPP frame inspectable) — force `wss://`, instrument what is not yet.
+- Embedded RTOS firmware (no ASLR/canaries, `sprintf`) is durable memory-corruption ground; vendor firmware signing caps the blast radius from RCE to DoS.
+- TLS and endpoint authentication are different controls: TLS stops the MITM; it does nothing for an OCPP WebSocket that accepts any station ID (CWE-306). You need both.
+
+
 ## 2026.06.05 — Day 39 — Netlogon CVE-2026-41089 (unauthenticated 0-click RCE as SYSTEM on Windows domain controllers)
 
 ### Added
