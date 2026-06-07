@@ -1,0 +1,20 @@
+// Title:       Boot-config / ESP-mount LOLBin tampering (pre-bootkit setup)
+// Id:          k3-boot-tamper-lolbin
+// MITRE:       T1542.001, T1553.006
+// Reference:   https://media.defense.gov/2023/Jun/22/2003245723/-1/-1/0/CSI_BlackLotus_Mitigation_Guide.PDF
+// Author:      Jarmi
+// Date:        2026-06-07
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    bcdboot during imaging and admins mounting the ESP for repair are benign in isolation.
+//              Treat as high-signal when time-correlated with an ESP boot-component write (k2) or a
+//              later HVCI/BitLocker state change. testsigning is also used by driver developers.
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where FileName in~ ("mountvol.exe", "bcdedit.exe", "bcdboot.exe", "mokutil.exe")
+| where (FileName =~ "mountvol.exe" and ProcessCommandLine has " /S")
+     or (FileName =~ "bcdedit.exe" and ProcessCommandLine has_any ("nointegritychecks", "testsigning", "DISABLE_INTEGRITY_CHECKS", "loadoptions"))
+     or (FileName =~ "bcdboot.exe" and ProcessCommandLine has " /s")
+     or (FileName =~ "mokutil.exe" and ProcessCommandLine has_any ("--import", "--disable-validation"))
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine,
+          InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc

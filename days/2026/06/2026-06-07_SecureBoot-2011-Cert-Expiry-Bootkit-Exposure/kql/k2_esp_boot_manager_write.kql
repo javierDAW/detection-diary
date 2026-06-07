@@ -1,0 +1,19 @@
+// Title:       EFI System Partition boot-component write (bootkit staging)
+// Id:          k2-esp-boot-manager-write
+// MITRE:       T1542.003, T1542.001
+// Reference:   https://media.defense.gov/2023/Jun/22/2003245723/-1/-1/0/CSI_BlackLotus_Mitigation_Guide.PDF
+// Author:      Jarmi
+// Date:        2026-06-07
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceFileEvents)
+// FP notes:    The ESP must be mounted to a drive letter for DeviceFileEvents to see writes.
+//              Subtract Windows servicing (TiWorker/TrustedInstaller/bcdboot/poqexec) and approved
+//              imaging/boot-repair tooling. A write to bootmgfw.efi by an interactive shell is the tell.
+DeviceFileEvents
+| where Timestamp > ago(30d)
+| where FolderPath has @"\EFI\"
+| where FileName in~ ("bootmgfw.efi", "bootx64.efi", "grubx64.efi", "shimx64.efi")
+| where ActionType in~ ("FileCreated", "FileModified", "FileRenamed")
+| where InitiatingProcessFileName !in~ ("TiWorker.exe", "TrustedInstaller.exe", "bcdboot.exe", "poqexec.exe")
+| project Timestamp, DeviceName, FolderPath, FileName, ActionType, SHA256,
+          InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName
+| order by Timestamp desc

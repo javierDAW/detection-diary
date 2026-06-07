@@ -1,0 +1,20 @@
+// Title:       Secure Boot opt-in / state registry change with initiating process
+// Id:          k1-secureboot-registry-change
+// MITRE:       T1553.006, T1112, T1542.001
+// Reference:   https://techcommunity.microsoft.com/blog/windows-itpro-blog/act-now-secure-boot-certificates-expire-in-june-2026/4426856
+// Reference:   https://eclypsium.com/blog/microsoft-secure-boot-certificates-expire-2026/
+// Author:      Jarmi
+// Date:        2026-06-07
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceRegistryEvents)
+// FP notes:    Managed transition via Windows servicing/GPO/Intune/MECM writes MicrosoftUpdateManagedOptIn
+//              during a planned window. Maintain a deployment-window watchlist and a list of
+//              servicing parents (TiWorker.exe/TrustedInstaller.exe) to subtract benign churn.
+DeviceRegistryEvents
+| where Timestamp > ago(30d)
+| where RegistryKey has @"\Control\Secureboot"
+| where RegistryValueName in~ ("MicrosoftUpdateManagedOptIn", "UEFISecureBootEnabled")
+| where ActionType in~ ("RegistryValueSet", "RegistryValueModified", "RegistryKeyCreated")
+| extend ServicingParent = InitiatingProcessFileName in~ ("TiWorker.exe", "TrustedInstaller.exe", "svchost.exe")
+| project Timestamp, DeviceName, RegistryKey, RegistryValueName, RegistryValueData,
+          InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName, ServicingParent
+| order by Timestamp desc

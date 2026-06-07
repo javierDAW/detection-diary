@@ -1,0 +1,48 @@
+title: Secure Boot Opt-In or State Registry Value Modified (UEFI Certificate Transition / Tamper)
+id: f932c749-ad9c-46a4-9ca7-80e0628d1a84
+status: experimental
+description: |
+  Detects modification of the Windows Secure Boot control registry values that govern the
+  2026 certificate transition and the OS-reported Secure Boot state:
+  HKLM\SYSTEM\CurrentControlSet\Control\Secureboot\MicrosoftUpdateManagedOptIn (the DWORD
+  0x5944 opt-in that authorizes the managed KEK/DB rollover to the 2023 certificate family)
+  and UEFISecureBootEnabled. Legitimate writes come from Windows servicing/GPO/Intune during
+  the controlled transition; an out-of-band write, or one by an interactive shell, is a
+  tamper signal in the context of the June 24 2026 KEK CA 2011 expiry. After expiry, a device
+  left on the 2011 KEK can never receive a new DBX revocation, so its boot deny-list is frozen
+  and every revoked-but-signed bootkit component (BlackLotus/CVE-2023-24932, BootHole,
+  CVE-2024-7344) remains exploitable. Scope alerting to writes by non-servicing parents and to
+  unexpected change windows in SIEM aggregation.
+references:
+  - https://techcommunity.microsoft.com/blog/windows-itpro-blog/act-now-secure-boot-certificates-expire-in-june-2026/4426856
+  - https://eclypsium.com/blog/microsoft-secure-boot-certificates-expire-2026/
+  - https://attack.mitre.org/techniques/T1553/006/
+author: Jarmi
+date: 2026/06/07
+tags:
+  - attack.defense-evasion
+  - attack.t1553.006
+  - attack.t1112
+  - attack.t1542.001
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_key:
+    TargetObject|contains: '\Control\Secureboot'
+  selection_values:
+    TargetObject|endswith:
+      - '\MicrosoftUpdateManagedOptIn'
+      - '\UEFISecureBootEnabled'
+  filter_trustedinstaller:
+    Image|endswith:
+      - '\TiWorker.exe'
+      - '\TrustedInstaller.exe'
+  condition: selection_key and selection_values and not filter_trustedinstaller
+falsepositives:
+  - Managed certificate transition deployed via Windows Update servicing, Group Policy, Intune
+    Settings Catalog, or Microsoft Configuration Manager during a planned change window; baseline
+    your deployment tooling and the maintenance windows when the rollover is pushed
+    <add_known_secureboot_deployment_tooling>
+
+level: high

@@ -1,0 +1,54 @@
+title: Boot Configuration / EFI System Partition Tampering via LOLBin (Pre-Bootkit Setup)
+id: b04ecac2-0377-4c51-829f-db83e395e22b
+status: experimental
+description: |
+  Detects command-line use of native boot-management utilities (bcdedit, mountvol, bcdboot,
+  mokutil) in patterns associated with staging a UEFI bootkit or weakening Secure Boot: mounting
+  the EFI System Partition to a drive letter (mountvol /S), disabling integrity checks or test-
+  signing in the boot configuration (bcdedit /set nointegritychecks / testsigning / loadoptions
+  DISABLE_INTEGRITY_CHECKS), rewriting the boot files (bcdboot), or enrolling/managing Machine
+  Owner Keys on Linux (mokutil --import). These precede the BlackLotus-class bypass that a
+  frozen-DBX device (left on the expiring 2011 KEK after June 24 2026) can no longer revoke.
+  Individually some are administrative; together with an ESP write or a later HVCI/BitLocker
+  state change they form a bootkit-staging chain.
+references:
+  - https://media.defense.gov/2023/Jun/22/2003245723/-1/-1/0/CSI_BlackLotus_Mitigation_Guide.PDF
+  - https://lolbas-project.github.io/
+  - https://attack.mitre.org/techniques/T1542/001/
+author: Jarmi
+date: 2026/06/07
+tags:
+  - attack.defense-evasion
+  - attack.persistence
+  - attack.t1542.001
+  - attack.t1553.006
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_mountvol_esp:
+    Image|endswith: '\mountvol.exe'
+    CommandLine|contains: ' /S'
+  selection_bcdedit_integrity:
+    Image|endswith: '\bcdedit.exe'
+    CommandLine|contains:
+      - 'nointegritychecks'
+      - 'testsigning'
+      - 'DISABLE_INTEGRITY_CHECKS'
+      - 'loadoptions'
+  selection_bcdboot:
+    Image|endswith: '\bcdboot.exe'
+    CommandLine|contains: '/s'
+  selection_mokutil:
+    Image|endswith: '\mokutil.exe'
+    CommandLine|contains:
+      - '--import'
+      - '--disable-validation'
+  condition: selection_mountvol_esp or selection_bcdedit_integrity or selection_bcdboot or selection_mokutil
+falsepositives:
+  - Legitimate boot repair, OS deployment (bcdboot during imaging), administrators mounting the
+    ESP for maintenance, or kernel-driver developers using testsigning; correlate with the ESP
+    write rule and subsequent HVCI/BitLocker changes to confirm intent
+    <add_known_boot_admin_activity>
+
+level: medium
