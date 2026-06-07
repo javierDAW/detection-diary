@@ -1,0 +1,48 @@
+title: EFI System Partition Boot Component Written by a Non-Servicing Process (Bootkit Staging)
+id: 6b950cfa-64e6-403c-ada6-b6242a609071
+status: experimental
+description: |
+  Detects creation or overwrite of a pre-OS boot component (bootmgfw.efi, bootx64.efi,
+  grubx64.efi, shimx64.efi) on a mounted EFI System Partition by a process that is not the
+  Windows servicing stack. Staging a signed-but-revoked boot manager on the ESP is the core
+  BlackLotus tradecraft (CVE-2023-24932): on a device whose DBX is frozen because it was left
+  on the expiring 2011 KEK (June 24 2026), the revoked binary is never blocked and executes
+  untrusted code before the OS. The ESP is normally written only by bcdboot/Windows servicing,
+  so a write by cmd/powershell/an unknown binary after a manual mount is high-signal. Requires
+  the ESP to be mounted to a drive letter and file auditing enabled (a raw ESP is invisible to
+  Sysmon EID 11), or a boot-config integrity tool feeding file_event telemetry.
+references:
+  - https://media.defense.gov/2023/Jun/22/2003245723/-1/-1/0/CSI_BlackLotus_Mitigation_Guide.PDF
+  - https://eclypsium.com/blog/microsoft-secure-boot-certificates-expire-2026/
+  - https://attack.mitre.org/techniques/T1542/003/
+author: Jarmi
+date: 2026/06/07
+tags:
+  - attack.persistence
+  - attack.defense-evasion
+  - attack.t1542.003
+  - attack.t1542.001
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_efi_components:
+    TargetFilename|contains: '\EFI\'
+    TargetFilename|endswith:
+      - '\bootmgfw.efi'
+      - '\bootx64.efi'
+      - '\grubx64.efi'
+      - '\shimx64.efi'
+  filter_servicing:
+    Image|endswith:
+      - '\TiWorker.exe'
+      - '\TrustedInstaller.exe'
+      - '\bcdboot.exe'
+      - '\poqexec.exe'
+  condition: selection_efi_components and not filter_servicing
+falsepositives:
+  - Legitimate boot repair, dual-boot setup, or imaging workflows that mount the ESP and write
+    boot components via approved tooling; OEM/firmware management agents; baseline your build
+    and recovery tooling that touches the ESP <add_known_esp_servicing_tools>
+
+level: high

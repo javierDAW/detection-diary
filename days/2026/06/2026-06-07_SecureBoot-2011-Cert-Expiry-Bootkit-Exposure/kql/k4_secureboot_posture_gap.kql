@@ -1,0 +1,18 @@
+// Title:       Fleet Secure Boot posture gap (frozen-KEK exposure proxy)
+// Id:          k4-secureboot-posture-gap
+// MITRE:       T1195.003, T1542.001
+// Reference:   https://eclypsium.com/blog/microsoft-secure-boot-certificates-expire-2026/
+// Author:      Jarmi
+// Date:        2026-06-07
+// Tested on:   Microsoft Defender XDR Threat & Vulnerability Mgmt (DeviceTvmSecureConfigurationAssessment)
+// FP notes:    TVM reports the OS-level Secure Boot posture, NOT the UEFI variable / KEK generation.
+//              This is a coarse proxy: devices that report Secure Boot off or unassessed are the first
+//              candidates for the deeper UEFI-variable audit (Get-SecureBootUEFI). It cannot by itself
+//              tell you which devices still hold the 2011 KEK - pair with a firmware-aware collector.
+DeviceTvmSecureConfigurationAssessment
+| where ConfigurationId in ("scid-2092", "scid-91")  // <add_known_secureboot_config_ids> Secure Boot / firmware posture checks
+| where IsApplicable == 1
+| extend SecureBootOk = (IsCompliant == 1)
+| summarize Devices = dcount(DeviceName),
+            NonCompliant = dcountif(DeviceName, SecureBootOk == false) by ConfigurationId, ConfigurationName
+| order by NonCompliant desc

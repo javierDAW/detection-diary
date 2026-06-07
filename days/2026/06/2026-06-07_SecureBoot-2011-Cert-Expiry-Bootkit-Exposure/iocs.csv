@@ -1,0 +1,25 @@
+type,value,context,confidence,source
+note,Secure Boot 2011 certificate expiry posture case - not a live intrusion; CVEs and certificate names are the primary IOCs and historical bootkit hashes are labeled as class exemplars not fresh artifacts,Read before triaging - frozen-DBX exposure window opens 2026-06-24 (KEK CA 2011 expiry),high,Microsoft/Eclypsium
+note,Microsoft Corporation KEK CA 2011 expires 2026-06-24; Microsoft Corporation UEFI CA 2011 expires 2026-06-27; Microsoft Windows Production PCA 2011 expires 2026-10-19 (Microsoft official table updated 2026-05-18),The forcing event - after KEK expiry a non-migrated device can never receive a new DB/DBX entry,high,Microsoft Act-Now advisory
+string,Microsoft Corporation KEK CA 2011,Expiring Key Exchange Key (June 24 2026) - presence in KEK store after expiry means the revocation channel is frozen,high,Microsoft
+string,Microsoft Corporation UEFI CA 2011,Expiring DB certificate (June 27 2026) - signs Linux shim and third-party option ROMs,high,Microsoft
+string,Microsoft Windows Production PCA 2011,Signs the Windows Boot Manager bootmgfw.efi - expires 2026-10-19,high,Microsoft
+string,Microsoft Corporation KEK 2K CA 2023,Replacement KEK - its presence confirms the device migrated and dbx can still update,high,Microsoft
+string,Microsoft UEFI CA 2023,Replacement DB cert for OS bootloaders (split from monolithic 2011),high,Microsoft
+string,Microsoft Option ROM UEFI CA 2023,Replacement DB cert for hardware option ROMs (split from monolithic 2011),high,Microsoft
+string,Windows UEFI CA 2023,Replacement signer for the Windows Boot Manager,high,Microsoft
+regkey,HKLM\SYSTEM\CurrentControlSet\Control\Secureboot\MicrosoftUpdateManagedOptIn,DWORD 0x5944 opt-in that authorizes Windows Update to perform the managed certificate transition,high,Microsoft
+regkey,HKLM\SYSTEM\CurrentControlSet\Control\SecureBoot\State\UEFISecureBootEnabled,OS-reported Secure Boot enable flag - not ground truth on its own,medium,Microsoft
+path,\EFI\Microsoft\Boot\bootmgfw.efi,Windows Boot Manager on the ESP - BlackLotus replaces it with a signed-but-revoked older version,high,CISA BlackLotus Mitigation Guide
+path,\EFI\Boot\bootx64.efi,Fallback boot path on the ESP - alternate bootkit staging location,high,CISA BlackLotus Mitigation Guide
+path,\EFI\<vendor>\grubx64.efi,GRUB2 bootloader affected by BootHole CVE-2020-10713,high,Eclypsium/NSA
+path,\EFI\<vendor>\shimx64.efi,Linux shim signed by UEFI CA 2011 - stops verifying once 2011 cert removed without a 2023-signed shim,high,Red Hat/fwupd
+path,C:\Windows\Boot\EFI\SecureBootRecovery.efi,Microsoft recovery binary that re-adds the Windows UEFI CA 2023 cert if cert state is wiped,high,Microsoft
+string,gSecurity2,UEFI Security Architectural Protocol pointer - NULLed by the Framework Bombshell signed UEFI shell mm command to disable LoadImage signature checks,medium,Eclypsium
+cve,CVE-2023-24932,BlackLotus Secure Boot bypass in Windows Boot Manager - patched May 2023 but requires manual DBX revocation,high,Microsoft/NVD
+cve,CVE-2020-10713,BootHole - GRUB2 buffer overflow affecting virtually all Secure Boot Linux and Windows trusting third-party UEFI components,high,Eclypsium/NSA
+cve,CVE-2024-7344,Howyar SysReturn reloader.efi - Microsoft-signed loader that runs unsigned payload from a hardcoded path; revoked Jan 2025 Patch Tuesday,high,ESET/NVD
+cve,CVE-2025-3052,Signed BIOS-flashing utility for rugged tablets executes on any Secure Boot platform; 14 dbx signatures added 2025-06-10,high,Binarly/Microsoft
+cve,CVE-2024-8105,PKfail - leaked AMI test Platform Keys marked DO NOT TRUST shipped in 800+ device models,high,Binarly/CERT-CC
+note,Eradication of a confirmed bootkit requires rebuilding the ESP from known-good media AND re-flashing OEM firmware - a standard OS reimage does not remove a below-OS implant,Do not just reimage,high,CISA BlackLotus Mitigation Guide
+note,Apply OEM BIOS firmware update BEFORE the Windows Update certificate change so the 2023 certs are embedded in firmware and survive a CMOS clear or board RMA,Sequencing is the single most important decision in the rollout,high,Eclypsium/Microsoft

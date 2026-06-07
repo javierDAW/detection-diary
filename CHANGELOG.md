@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.07 — Day 41 — Secure Boot 2011 certificate expiry (frozen-DBX bootkit exposure window)
+
+### Added
+- `days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/` — On 2026-06-24 the Microsoft Corporation KEK CA 2011 expires (the Microsoft UEFI CA 2011 DB cert follows 2026-06-27, Windows Production PCA 2011 on 2026-10-19; dates per Microsoft's official table updated 2026-05-18); a device not migrated to the 2023 certificate family keeps its 2011 KEK forever and can never receive a new DB/DBX revocation, so its boot deny-list freezes. Eclypsium's 2026-06-02 operational analysis (alongside Microsoft "act now" guidance and NSA Dec-2025 UEFI guidance) spells out the consequence: every revoked-but-signed bootkit component (BlackLotus/CVE-2023-24932, BootHole/CVE-2020-10713, CVE-2024-7344, CVE-2025-3052, PKfail/CVE-2024-8105) succeeds on a frozen device because a DBX entry is the only field remediation. Posture/exposure case, no live victim; unattributed bootkit ecosystem; weekend auto-rescue; repo's first primary in slot #8 (supply chain HW/firmware).
+- Sigma (3): `01_secureboot_optin_registry_tamper.yml` — Secureboot opt-in/state registry write by non-servicing parent (T1553.006); `02_esp_bootloader_replacement.yml` — EFI boot component write on a mounted ESP by a non-TrustedInstaller process (T1542.001); `03_bcdedit_mountvol_esp_tamper.yml` — bcdedit/mountvol/mokutil/bcdboot boot-policy LOLBin (T1542.003).
+- KQL (4): `k1_secureboot_registry_change` Defender `DeviceRegistryEvents`; `k2_esp_boot_manager_write` `DeviceFileEvents`; `k3_boot_tamper_lolbin` `DeviceProcessEvents`; `k4_secureboot_posture_gap` `DeviceTvmSecureConfigurationAssessment` (frozen-state proxy).
+- YARA (1 file): EFI bootkit / revoked-component string indicators (BlackLotus, CVE-2024-7344 reloader, gSecurity2 NULLing) — illustrative class detection, no fresh sample.
+- Suricata (1 file): network staging of `.efi` payloads / BlackLotus-class self-delete patterns.
+- PEAK hunts (3): H1 Secure Boot opt-in/state gaps; H2 ESP boot-component writes correlated with a mount; H3 boot tamper followed by HVCI/BitLocker going off.
+- `iocs.csv` (24 entries) — expiring certificate names, Secureboot regkeys, ESP/boot paths, enabling CVEs; historical bootkit hashes labeled as class exemplars (not fresh).
+- `kill_chain.svg` — template A two-lane (victim pre-OS trust chain vs attacker/ecosystem op), canonical palette, red anchors on the frozen KEK/DBX and the pre-OS code execution.
+
+### Pedagogy
+- The OS Secure Boot boolean is not integrity — ground truth is in the UEFI variables (PK/KEK/db/dbx) + PCR[7].
+- Revocation (DBX), not patching, is the boot-layer remediation; cut the KEK and you cut the only field-remediation channel for the class.
+- Sequence the migration: OEM firmware update before the OS certificate change, or a CMOS clear can strand the device.
+- Below-the-OS implants invert the trust model: EDR runs above them, reimaging does not remove them — eradication is firmware re-flash.
+
+
 ## 2026.06.06 — Day 40 — OCPP EV-charging attack surface (ABB Terra AC heap overflow CVE-2025-5517 + OCPP WebSocket missing-auth class)
 
 ### Added

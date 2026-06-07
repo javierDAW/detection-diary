@@ -1,0 +1,24 @@
+# Secure Boot / UEFI bootkit staging - network detections
+# Author: Jarmi
+# Date:   2026-06-07
+# Reference: https://media.defense.gov/2023/Jun/22/2003245723/-1/-1/0/CSI_BlackLotus_Mitigation_Guide.PDF
+#            https://eclypsium.com/blog/microsoft-secure-boot-certificates-expire-2026/
+# Notes: This 2026-06-07 entry is a Secure Boot certificate-expiry POSTURE case, not a live
+#        intrusion - there is no published bootkit C2 packet to signature. These rules are
+#        GENERIC and TUNING-DEPENDENT: they target (1/2) the over-the-wire retrieval of EFI
+#        boot payloads to a host that is about to stage the ESP, and (3) the historical
+#        BlackLotus HTTPS C2 / self-delete pattern. Expect benign hits on legitimate firmware/
+#        recovery downloads (vendor update portals, fwupd, WSUS) - allowlist those FQDNs.
+#        SIDs 4100701-4100703, rev:1. No custom variables beyond $HOME_NET/$EXTERNAL_NET.
+
+# 1) HTTP GET of a raw .efi boot payload from an external host to an internal endpoint.
+#    A workstation pulling a bare *.efi over plain HTTP is unusual outside imaging/recovery.
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"UEFI bootkit staging - inbound HTTP download of .efi boot payload"; flow:established,to_client; http.response_line; content:"200"; http.header; content:"application/octet-stream"; nocase; http.request_line; content:".efi"; nocase; classtype:trojan-activity; reference:url,eclypsium.com/blog/microsoft-secure-boot-certificates-expire-2026/; sid:4100701; rev:1;)
+
+# 2) HTTP request whose URI fetches a Windows Boot Manager / shim component by name from outside.
+#    bootmgfw.efi / grubx64.efi / shimx64.efi pulled over the wire = likely bootkit pre-staging.
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"UEFI bootkit staging - outbound HTTP request for boot manager / shim component"; flow:established,to_server; http.method; content:"GET"; http.uri; pcre:"/(bootmgfw|bootx64|grubx64|shimx64)\.efi/i"; classtype:trojan-activity; reference:cve,2023-24932; sid:4100702; rev:1;)
+
+# 3) BlackLotus-class HTTP(S) C2 beacon URI shape (historical) - GUID-like path the loader used
+#    to fetch its second-stage / report in. Generic; correlate with host ESP/boot telemetry.
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"Bootkit BlackLotus-class C2 beacon URI pattern (historical)"; flow:established,to_server; http.method; content:"POST"; http.uri; pcre:"/^\/[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}\/?$/"; classtype:trojan-activity; reference:url,media.defense.gov/2023/Jun/22/2003245723/-1/-1/0/CSI_BlackLotus_Mitigation_Guide.PDF; sid:4100703; rev:1;)
