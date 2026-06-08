@@ -1,0 +1,24 @@
+# OP-512 IIS web shell framework - network detections
+# Author: Jarmi
+# Date:   2026-06-08
+# Reference: https://reliaquest.com/blog/threat-spotlight-reliaquests-agentic-ai-uncovers-new-china-linked-cluster-op-512/
+#            https://gbhackers.com/china-linked-espionage-aspx-ashx-shells/
+# Notes: Suricata 7.x. SIDs 4100801-4100803, rev:1. The OP-512 framework is per-deployment unique
+#        with encrypted .ashx command traffic, so there is no payload signature for the command
+#        channel; these rules target observable network behaviors: (1) the self-report DNS beacon
+#        to the C2 apex, (2) the web shell interaction POST signature, and (3) the Meterpreter
+#        HTTP fallback C2. All are TUNING-DEPENDENT: the C2 apex/IP are deployment-specific and
+#        rotate (a different domain was used 75 days earlier), and the python-requests user agent
+#        alone is not reliable - it is high-signal only combined with POSTs to .aspx upload paths.
+#        No custom variables required beyond $HOME_NET/$EXTERNAL_NET.
+
+# 1) Self-report DNS beacon - query for the OP-512 C2 apex used by the .aspx file manager.
+#    The durable pattern is a long hex-segmented subdomain (a.<hex>.c.hcgos[.]com); match the apex.
+alert dns $HOME_NET any -> any any (msg:"OP-512 IIS web shell self-report DNS beacon to C2 apex hcgos.com"; dns.query; content:"hcgos.com"; nocase; endswith; classtype:trojan-activity; reference:url,reliaquest.com/blog/threat-spotlight-reliaquests-agentic-ai-uncovers-new-china-linked-cluster-op-512; sid:4100801; rev:1;)
+
+# 2) Web shell interaction - automated POST to an .aspx upload path with the observed python-requests UA.
+#    Combination is the signal; treat UA alone as low confidence.
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"OP-512 IIS web shell interaction - python-requests POST to .aspx upload path"; flow:established,to_server; http.method; content:"POST"; http.uri; content:".aspx"; nocase; http.user_agent; content:"python-requests/2.33.0"; classtype:trojan-activity; reference:url,gbhackers.com/china-linked-espionage-aspx-ashx-shells; sid:4100802; rev:1;)
+
+# 3) Meterpreter HTTP fallback C2 - outbound to the observed C2 IP on the non-standard port.
+alert tcp $HOME_NET any -> 43.160.202.246 8053 (msg:"OP-512 IIS web shell HTTP fallback to Meterpreter C2 43.160.202.246:8053"; flow:established,to_server; classtype:trojan-activity; reference:url,reliaquest.com/blog/threat-spotlight-reliaquests-agentic-ai-uncovers-new-china-linked-cluster-op-512; sid:4100803; rev:1;)

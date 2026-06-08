@@ -1,0 +1,22 @@
+// Title:       OP-512 - IIS worker outbound DNS/HTTP self-report beacon (hex subdomain + IOCs)
+// Id:          k2-op512-w3wp-dns-c2-beacon
+// MITRE:       T1071.004, T1071.001, T1132.001
+// Reference:   https://reliaquest.com/blog/threat-spotlight-reliaquests-agentic-ai-uncovers-new-china-linked-cluster-op-512/
+// Author:      Jarmi
+// Date:        2026-06-08
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes:    CDN/analytics services emit long subdomains - baseline normal web-server DNS and
+//              allowlist known domains. The hex-subdomain self-report (a.<hex>.c.hcgos[.]com) and
+//              w3wp.exe reaching out immediately after a web shell write are the durable anchors;
+//              the IOC apexes/IPs below are deployment-specific and may rotate.
+let KnownApex = dynamic(["hcgos.com","lhlsjcb.com"]);
+let KnownC2IP = dynamic(["43.160.202.246","140.206.161.227"]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where InitiatingProcessFileName =~ "w3wp.exe"
+| extend Host = tolower(coalesce(RemoteUrl, ""))
+| where RemoteIP in (KnownC2IP)
+      or Host has_any (KnownApex)
+      or Host matches regex @"\.[0-9a-f]{16,}\."
+| project Timestamp, DeviceName, InitiatingProcessFileName, ActionType, RemoteIP, RemotePort, RemoteUrl
+| order by Timestamp desc

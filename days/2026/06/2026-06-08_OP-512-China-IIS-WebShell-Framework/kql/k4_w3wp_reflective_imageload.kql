@@ -1,0 +1,18 @@
+// Title:       OP-512 - reflective / unsigned module loads into the IIS worker (in-memory priv-esc)
+// Id:          k4-op512-w3wp-reflective-imageload
+// MITRE:       T1620, T1134.001, T1068
+// Reference:   https://reliaquest.com/blog/threat-spotlight-reliaquests-agentic-ai-uncovers-new-china-linked-cluster-op-512/
+// Author:      Jarmi
+// Date:        2026-06-08
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceImageLoadEvents)
+// FP notes:    OP-512 loaded the Potato suite (BadPotato/SweetPotato/EfsPotato) and a tool labeled
+//              "GhostKit" reflectively into w3wp.exe, writing nothing to disk - so the disk-backed
+//              image-load view is a partial proxy. Pair with EDR .NET-runtime reflective-load
+//              telemetry (DeviceEvents) where available. Flag unsigned modules and modules loading
+//              from temp/ASP.NET-temp paths into the worker. Baseline legitimate app dependencies.
+DeviceImageLoadEvents
+| where Timestamp > ago(30d)
+| where InitiatingProcessFileName =~ "w3wp.exe"
+| where FolderPath has_any ("Temporary ASP.NET Files", @"\Temp\", @"\Windows\Temp\", @"\Users\Public\")
+| project Timestamp, DeviceName, InitiatingProcessFileName, FileName, FolderPath, SHA256
+| order by Timestamp desc

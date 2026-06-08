@@ -22,6 +22,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Black Shadow (Ababil of Minab persona)](./black-shadow-ababil-of-minab-persona/) | 1 |
 | [BlackCat](./blackcat/) | 1 |
 | [BlackFile (self-branded DLS)](./blackfile-self-branded-dls/) | 1 |
+| [Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust](./bootkit-ecosystem-blacklotus-bootkitty-pkfail-bombshell-exploiting-frozen-secure-boot-trust/) | 1 |
 | [BreachForums](./breachforums/) | 1 |
 | [C0063](./c0063/) | 1 |
 | [CL-CRI-1116 (Palo Alto Unit 42)](./cl-cri-1116-palo-alto-unit-42/) | 1 |
@@ -51,6 +52,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Nexcorium](./nexcorium/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
 | [O-UNC-045 (Okta Defensive Cyber Operations)](./o-unc-045-okta-defensive-cyber-operations/) | 1 |
+| [OP-512](./op-512/) | 1 |
 | [Opportunistic Netlogon mass-exploitation (unattributed)](./opportunistic-netlogon-mass-exploitation-unattributed/) | 1 |
 | [Opportunistic OCPP / EV-charging exploitation (unattributed)](./opportunistic-ocpp-ev-charging-exploitation-unattributed/) | 1 |
 | [Opportunistic WordPress mass-exploitation (unattributed)](./opportunistic-wordpress-mass-exploitation-unattributed/) | 1 |

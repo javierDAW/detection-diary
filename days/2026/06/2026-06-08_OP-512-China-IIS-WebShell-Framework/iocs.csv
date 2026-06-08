@@ -1,0 +1,18 @@
+type,value,context,confidence,source
+note,OP-512 China-linked espionage cluster disclosed 2026-06-05 by ReliaQuest; custom IIS web shell framework; moderate-high confidence China nexus,Cluster name is a ReliaQuest label not a self-identifier; victim sector/geo align with China intel priorities but not publicly named,high,ReliaQuest
+note,Compromised host: internet-facing Windows Server 2016 with EOL .NET Framework 4.0 in a DMZ; access seen ~75 days before primary intrusion,Initial access path not conclusively determined; long-dwell return pattern of state-aligned espionage,high,ReliaQuest
+domain,hcgos[.]com,DNS C2 apex for the .aspx self-report channel; observed subdomain pattern a.<hex>.c.hcgos[.]com,high,ReliaQuest
+domain,ashx.lhlsjcb[.]com,DNS C2 domain from activity ~75 days before the primary incident; suggests infrastructure rotation between visits,high,ReliaQuest
+ipv4,43.160.202[.]246,Meterpreter C2 server (HTTP fallback for the self-report channel) on non-standard port 8053,medium,ReliaQuest
+ipv4,140.206.161[.]227,Outbound connection from the compromised host (port 443),medium,ReliaQuest
+ipv4,124.156.129[.]151,Source IP for web shell interaction; high-signal combined with python-requests/2.33.0 UA + POST to upload paths containing .aspx and deployment-window timing,medium,ReliaQuest
+string,python-requests/2.33.0,User agent observed on web shell interaction POSTs; not reliable alone - high-signal only in combination,low,ReliaQuest
+string,a.<hex>.c.hcgos[.]com,Self-report DNS subdomain structure (hex-encoded web shell URL); durable structural anchor even as apex rotates,high,ReliaQuest
+note,Web shell framework = three files: one .aspx file manager (self-report C2) + two .ashx cryptographic command handlers,Each .ashx embeds a unique RSA public key; command pipeline is Base64-decode then RC4-decrypt then RSA-verify then execute,high,ReliaQuest
+note,Per-deployment polymorphism: shared builder randomizes variable/method names and injects dead variables and junk comments,Functionally identical files produce different hashes; example dead vars _nkkspqwc=1534 and _nbgrzrak=6392; junk comment // rmluimqjmidu,high,ReliaQuest
+note,In-memory privilege escalation tooling reflectively loaded into w3wp.exe (no disk): BadPotato SweetPotato EfsPotato (Potato Suite) plus EDR-labeled GhostKit,GhostKit has no public documentation; likely a vendor telemetry label,high,ReliaQuest
+note,base64-encoded whoami and whoami /priv matched a Flax Typhoon ArcGIS compromise char-for-char,Indicates shared playbooks/tooling across the China-linked IIS ecosystem; commands ran under a limited service account (escalation not yet succeeded),medium,ReliaQuest
+note,All three shells timestomp to the median last-modified timestamp of neighbouring files (operator may also supply an explicit timestamp),Do not rely on file age for triage,high,ReliaQuest
+note,Four compiled DLLs recovered from the ASP.NET temporary compilation directory; persist after web shell source deletion; quarantined ~19h after creation,IR must hunt and clear Temporary ASP.NET Files separately or leave reactivation points,high,ReliaQuest
+note,Behavioral detection anchors (durable): w3wp.exe long hex-segmented DNS; reflective .NET load in w3wp.exe; new DLLs in ASP.NET temp dir outside deploy windows; encrypted/non-standard .ashx responses,Signature/hash detection does not generalize against the per-deployment framework,high,ReliaQuest
+note,Related China-linked IIS clusters (genealogy): CL-STA-0048 (espionage; shared hex-DNS technique for exfiltration) GhostRedirector (SEO fraud) DragonRank (SEO fraud); OP-512 is the 4th in ~1 year,OP-512 distinguished by per-deployment crypto framework; tracked separately,medium,ReliaQuest

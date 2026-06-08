@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.08 — Day 42 — OP-512 China-linked IIS web shell framework (per-deployment crypto uniqueness)
+
+### Added
+- `days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/` — ReliaQuest disclosed OP-512 on 2026-06-05 (moderate-high confidence China nexus), a custom three-shell IIS framework found on an internet-facing Windows Server 2016 / EOL .NET 4.0 host in a DMZ with a 75-day dwell. A `.aspx` file manager self-reports its own URL via a hex-encoded DNS subdomain (`a.<hex>.c.hcgos[.]com`, HTTP fallback to a Meterpreter C2); two `.ashx` handlers gate command execution behind a Base64->RC4->RSA-verify->execute pipeline with a per-handler RSA key. A shared builder randomizes identifiers and injects junk so identical logic hashes differently — signature detection is defeated by design. Fourth China-linked IIS cluster in a year (vs CL-STA-0048, GhostRedirector, DragonRank); Monday/Espionage, repo's first IIS web shell framework primary (slot #1).
+- Sigma (3): `01_iis_worker_spawns_shell.yml` — `w3wp.exe` spawning cmd/powershell/whoami/LOLBin (T1505.003, T1059.003); `02_w3wp_hex_subdomain_dns.yml` — worker DNS with long hex-segmented subdomain or C2 apex (T1071.004); `03_iis_webshell_and_aspnet_temp_dll.yml` — `.aspx/.ashx` write to webroot or new DLL in ASP.NET temp dir (T1505.003, T1027).
+- KQL (4): `k1_iis_worker_child_process` `DeviceProcessEvents`; `k2_w3wp_dns_c2_beacon` `DeviceNetworkEvents`; `k3_webshell_file_and_temp_dll` `DeviceFileEvents`; `k4_w3wp_reflective_imageload` `DeviceImageLoadEvents`.
+- YARA (1 file, 2 rules): structural `.ashx` crypto-handler (RC4+RSA-verify+IHttpHandler+reflection) and `.aspx` self-report file manager — heuristic, not sample-bound (framework is polymorphic).
+- Suricata (1 file, 3 sids): hex-subdomain DNS to `hcgos.com`; `python-requests` POST to `.aspx` upload path; Meterpreter C2 `43.160.202.246:8053`.
+- PEAK hunts (3): H1 worker hex-DNS self-report; H2 worker shells + reflective .NET loads; H3 web shell write + ASP.NET temp DLL.
+- `iocs.csv` (17 entries) — C2 domains/IPs, web shell interaction UA, plus behavioral/structural anchors and cluster genealogy; deployment-specific IOCs flagged as rotating.
+- `kill_chain.svg` — template A two-lane (victim IIS/ASP.NET runtime vs attacker op), canonical palette, red anchors on the self-report beacon, the per-deployment polymorphism, the RSA-gated handlers and the in-memory escalation.
+
+### Pedagogy
+- A per-deployment-unique web shell defeats hashes by construction — anchor on structure (RC4+RSA-verify+IHttpHandler) and behavior, not bytes.
+- A self-reporting shell turns every visit into a tripwire for the attacker; investigate suspected shells from logs, never browse the URL.
+- Deleting the `.aspx/.ashx` is not eradication — compiled DLLs in `Temporary ASP.NET Files` outlive the source and reactivate.
+- "Prevention fired" != "contained" on IIS: it restarts the worker and reloads memory tooling; isolate the host and fix the entry vector before closing.
+
+
 ## 2026.06.07 — Day 41 — Secure Boot 2011 certificate expiry (frozen-DBX bootkit exposure window)
 
 ### Added

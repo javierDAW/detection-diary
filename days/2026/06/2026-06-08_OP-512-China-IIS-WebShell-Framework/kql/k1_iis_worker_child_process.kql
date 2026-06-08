@@ -1,0 +1,21 @@
+// Title:       OP-512 - IIS worker (w3wp.exe) spawning a shell or LOLBin
+// Id:          k1-op512-iis-worker-child-process
+// MITRE:       T1505.003, T1059.003, T1033
+// Reference:   https://reliaquest.com/blog/threat-spotlight-reliaquests-agentic-ai-uncovers-new-china-linked-cluster-op-512/
+// Author:      Jarmi
+// Date:        2026-06-08
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    Some web apps legitimately shell out (build agents, admin tooling). Maintain a
+//              web/DMZ-server watchlist and baseline benign w3wp child command lines. The OP-512
+//              framework is per-deployment unique, so this behavioral parent/child tell is the
+//              durable signal - not file hashes. base64-encoded whoami /priv was observed.
+let WebServers = dynamic([]);  // <add_known_web_servers> e.g. "WEB01","DMZIIS02"
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where array_length(WebServers) == 0 or DeviceName in~ (WebServers)
+| where InitiatingProcessFileName =~ "w3wp.exe"
+| where FileName in~ ("cmd.exe","powershell.exe","pwsh.exe","whoami.exe","cscript.exe","wscript.exe","rundll32.exe","net.exe","net1.exe")
+| extend SuspiciousEncoding = ProcessCommandLine has_any ("-enc","-EncodedCommand","FromBase64String")
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName, InitiatingProcessId,
+          FileName, ProcessCommandLine, SuspiciousEncoding, InitiatingProcessCommandLine
+| order by Timestamp desc

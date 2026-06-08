@@ -1,0 +1,49 @@
+title: Web Shell Write to Webroot or ASP.NET Temp DLL by IIS Worker (OP-512 Deployment + Persistence)
+id: d776e2fc-867a-4bf0-85ca-a782d3065f9c
+status: experimental
+description: |
+  Detects two file-creation behaviors associated with OP-512 (China-linked IIS
+  cluster, ReliaQuest 2026-06-05): (1) the IIS worker process (w3wp.exe) writing
+  server-side script files (.aspx/.ashx/.asmx) into webroot or upload
+  directories - the act of dropping the three-shell framework; and (2) new .dll
+  files appearing under the ASP.NET temporary compilation directory, which the
+  runtime generates when a new .aspx/.ashx is first accessed and which persist
+  even after the source web shell is deleted. The second behavior is the durable
+  IR anchor: removing the web shell alone leaves the compiled DLL as a
+  reactivation point. Baseline legitimate deployment windows and exclude approved
+  release pipelines; alert on writes outside those windows.
+references:
+  - https://reliaquest.com/blog/threat-spotlight-reliaquests-agentic-ai-uncovers-new-china-linked-cluster-op-512/
+  - https://attack.mitre.org/techniques/T1505/003/
+  - https://attack.mitre.org/techniques/T1027/
+author: Jarmi
+date: 2026/06/08
+tags:
+  - attack.persistence
+  - attack.defense-evasion
+  - attack.t1505.003
+  - attack.t1027
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_webshell:
+    Image|endswith: '\w3wp.exe'
+    TargetFilename|endswith:
+      - '.aspx'
+      - '.ashx'
+      - '.asmx'
+  selection_webroot:
+    TargetFilename|contains:
+      - '\inetpub\'
+      - '\wwwroot\'
+      - '\uploads\'
+      - '\upload\'
+  selection_tempdll:
+    TargetFilename|contains: '\Temporary ASP.NET Files\'
+    TargetFilename|endswith: '.dll'
+  condition: (selection_webshell and selection_webroot) or selection_tempdll
+falsepositives:
+  - Legitimate application deployments and app-pool recycles that compile new pages - scope to non-deployment windows.
+  - Developer/staging hosts with active recompilation - exclude or baseline.
+level: high

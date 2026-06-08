@@ -1,0 +1,22 @@
+// Title:       OP-512 - web shell file write + ASP.NET temporary compilation DLL
+// Id:          k3-op512-webshell-file-and-temp-dll
+// MITRE:       T1505.003, T1027, T1070.006
+// Reference:   https://reliaquest.com/blog/threat-spotlight-reliaquests-agentic-ai-uncovers-new-china-linked-cluster-op-512/
+// Author:      Jarmi
+// Date:        2026-06-08
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceFileEvents)
+// FP notes:    Application deployments and app-pool recycles compile new pages legitimately -
+//              scope to non-deployment windows and exclude release pipelines. The temp-DLL branch
+//              is the IR-critical one: compiled artifacts persist after the source web shell is
+//              deleted and are a reactivation point. Shells timestomp, so do not rely on file age.
+DeviceFileEvents
+| where Timestamp > ago(30d)
+| where ActionType in~ ("FileCreated","FileModified")
+| extend IsServerScript = (FileName endswith ".aspx" or FileName endswith ".ashx" or FileName endswith ".asmx")
+| where (InitiatingProcessFileName =~ "w3wp.exe"
+         and FolderPath has_any (@"\inetpub\", @"\wwwroot\", @"\uploads\", @"\upload\")
+         and IsServerScript)
+     or (FolderPath has "Temporary ASP.NET Files" and FileName endswith ".dll")
+| project Timestamp, DeviceName, ActionType, FolderPath, FileName,
+          InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc
