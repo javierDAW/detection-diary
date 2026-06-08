@@ -1,5 +1,86 @@
 [
  {
+  "date": "2026-06-08",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-08_OP-512-China-IIS-WebShell-Framework",
+  "title": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic uniqueness",
+  "clusters": [
+   "OP-512"
+  ],
+  "country": "China (suspected, moderate-high confidence)",
+  "platforms": [
+   "windows",
+   "network-edge"
+  ],
+  "sectors": [
+   "undisclosed"
+  ],
+  "techniques": [
+   "T1190",
+   "T1505.003",
+   "T1059.003",
+   "T1620",
+   "T1134.001",
+   "T1068",
+   "T1071.004",
+   "T1071.001",
+   "T1132.001",
+   "T1573.001",
+   "T1573.002",
+   "T1070.006",
+   "T1027",
+   "T1140",
+   "T1033"
+  ],
+  "tech_count": 15,
+  "tldr": "On 2026-06-05 ReliaQuest disclosed **OP-512**, a previously unseen China-linked espionage cluster (moderate-high confidence) it surfaced after correlating a burst of low-fidelity events on a customer's internet-facing **Internet Information Services (IIS)** server. The compromised host ran **Windows Server 2016** with end-of-life **.NET Framework 4.0**, sat in a DMZ, and had shown signs of attacke",
+  "thumb": "thumbs/2026-06-08_OP-512-China-IIS-WebShell-Framework.svg",
+  "case_rel": "../days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/",
+  "q": "op-512 — china-linked iis web shell framework with per-deployment cryptographic uniqueness op-512 china (suspected, moderate-high confidence) windows network-edge undisclosed t1190 t1505.003 t1059.003 t1620 t1134.001 t1068 t1071.004 t1071.001 t1132.001 t1573.001 t1573.002 t1070.006 t1027 t1140 t1033"
+ },
+ {
+  "date": "2026-06-07",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure",
+  "title": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window that makes BlackLotus-class bootkits permanently exploitable",
+  "clusters": [
+   "Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust"
+  ],
+  "country": "Cross-vendor firmware supply chain (global)",
+  "platforms": [
+   "windows",
+   "linux",
+   "supply-chain"
+  ],
+  "sectors": [
+   "government",
+   "defense",
+   "finance",
+   "healthcare",
+   "energy",
+   "manufacturing",
+   "technology"
+  ],
+  "techniques": [
+   "T1542.001",
+   "T1542.003",
+   "T1553.006",
+   "T1195.003",
+   "T1562.001",
+   "T1014",
+   "T1112",
+   "T1547.001",
+   "T1070.003"
+  ],
+  "tech_count": 9,
+  "tldr": "On **June 24, 2026** — seventeen days from this entry — the **Microsoft Corporation KEK CA 2011** expires; the **Microsoft Corporation UEFI CA 2011** (DB) follows on **June 27, 2026**, and the **Microsoft Windows Production PCA 2011** on **October 19, 2026** (dates per Microsoft's official table, updated 2026-05-18 to add the day of the month). The KEK (Key Exchange Key) is the credential Windows ",
+  "thumb": "thumbs/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure.svg",
+  "case_rel": "../days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/",
+  "q": "secure boot 2011 certificate expiry (kek june 24, 2026) — the frozen-dbx window that makes blacklotus-class bootkits permanently exploitable bootkit ecosystem (blacklotus / bootkitty / pkfail / bombshell) exploiting frozen secure boot trust cross-vendor firmware supply chain (global) windows linux supply-chain government defense finance healthcare energy manufacturing technology t1542.001 t1542.003 t1553.006 t1195.003 t1562.001 t1014 t1112 t1547.001 t1070.003"
+ },
+ {
   "date": "2026-06-06",
   "year": "2026",
   "month": "2026-06",

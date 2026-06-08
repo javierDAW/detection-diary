@@ -1,0 +1,48 @@
+title: IIS Worker Process Spawning a Shell or LOLBin (OP-512 Web Shell Command Execution)
+id: 42dd9351-ee64-41fe-a472-07d45cd18de0
+status: experimental
+description: |
+  Detects the IIS worker process (w3wp.exe) spawning an interactive command
+  interpreter or a common LOLBin. A web server worker almost never launches
+  cmd/powershell/whoami benignly, so this is a high-signal tell of server-side
+  script (web shell) command execution. In the OP-512 intrusion (China-linked
+  cluster disclosed by ReliaQuest 2026-06-05), .ashx command handlers on a
+  legacy IIS host executed operator commands, and base64-encoded whoami /
+  whoami /priv were observed (matching a Flax Typhoon playbook). Because the
+  web shell framework is per-deployment unique, this behavioral parent/child
+  signal is far more durable than any file hash. Tune to web/DMZ server assets
+  in SIEM aggregation for highest fidelity.
+references:
+  - https://reliaquest.com/blog/threat-spotlight-reliaquests-agentic-ai-uncovers-new-china-linked-cluster-op-512/
+  - https://gbhackers.com/china-linked-espionage-aspx-ashx-shells/
+  - https://attack.mitre.org/techniques/T1505/003/
+author: Jarmi
+date: 2026/06/08
+tags:
+  - attack.persistence
+  - attack.execution
+  - attack.t1505.003
+  - attack.t1059.003
+  - attack.t1033
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_parent:
+    ParentImage|endswith: '\w3wp.exe'
+  selection_child:
+    Image|endswith:
+      - '\cmd.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\whoami.exe'
+      - '\cscript.exe'
+      - '\wscript.exe'
+      - '\rundll32.exe'
+      - '\net.exe'
+      - '\net1.exe'
+  condition: selection_parent and selection_child
+falsepositives:
+  - Web applications that legitimately shell out (build agents, admin consoles, monitoring scripts) - baseline per host and exclude known parent command lines.
+  - Deployment tooling that recycles app pools and runs setup scripts under w3wp.
+level: high

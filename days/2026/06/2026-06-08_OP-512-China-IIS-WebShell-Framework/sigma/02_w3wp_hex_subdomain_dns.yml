@@ -1,0 +1,42 @@
+title: IIS Worker Outbound DNS with Long Hex-Segmented Subdomain (OP-512 Self-Report C2)
+id: dab964be-1600-4cc0-8671-ae63f1e63404
+status: experimental
+description: |
+  Detects the IIS worker process (w3wp.exe) issuing DNS queries that either
+  match the OP-512 self-report apex/pattern or carry abnormally long
+  hex-segmented subdomain labels. OP-512's .aspx file manager (China-linked
+  cluster, ReliaQuest 2026-06-05) encodes its own URL and transmits it as a DNS
+  query (observed pattern a.<hex>.c.hcgos[.]com) whenever the page is loaded,
+  falling back to HTTP to a Meterpreter C2 if DNS fails. Normal web-server DNS
+  does not contain long hexadecimal strings as subdomain labels. The 're'
+  modifier targets a label of 16+ hex characters; baseline first because some
+  CDN/analytics services emit long subdomains. Push any volume threshold to SIEM
+  aggregation. Hunt on w3wp.exe as the querying process specifically.
+references:
+  - https://reliaquest.com/blog/threat-spotlight-reliaquests-agentic-ai-uncovers-new-china-linked-cluster-op-512/
+  - https://gbhackers.com/china-linked-espionage-aspx-ashx-shells/
+  - https://attack.mitre.org/techniques/T1071/004/
+author: Jarmi
+date: 2026/06/08
+tags:
+  - attack.command-and-control
+  - attack.t1071.004
+  - attack.t1071.001
+  - attack.t1132.001
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection_proc:
+    Image|endswith: '\w3wp.exe'
+  selection_known_apex:
+    QueryName|contains:
+      - 'hcgos.com'
+      - 'lhlsjcb.com'
+  selection_hex_label:
+    QueryName|re: '\.[0-9a-f]{16,}\.'
+  condition: selection_proc and (selection_known_apex or selection_hex_label)
+falsepositives:
+  - CDN, telemetry and analytics providers that embed long encoded labels in subdomains - baseline normal web-server DNS and allowlist known domains.
+  - Legitimate applications that perform DNS-based licensing or device attestation from the worker process.
+level: high
