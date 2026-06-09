@@ -1,0 +1,29 @@
+// Title:       Kyber - ESXi esxcli VM kill burst and management-file defacement (Syslog)
+// Id:          k4-kyber-esxi-esxcli-kill-deface
+// MITRE:       T1489, T1491.001, T1021.004
+// Reference:   https://www.rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained/
+// Author:      Jarmi
+// Date:        2026-06-09
+// Tested on:   Microsoft Sentinel (Syslog from ESXi hosts forwarded via shell/hostd logging)
+// FP notes:    Requires ESXi syslog forwarding with shell command logging enabled. A burst of
+//              'esxcli vm process kill type=soft' across many world-ids and writes touching
+//              /etc/motd or the hostd docroot index pages are near-zero-baseline on a healthy
+//              host. Legitimate bulk VM shutdown usually uses vim-cmd or vCenter, not esxcli kill.
+Syslog
+| where TimeGenerated > ago(14d)
+| extend Msg = tolower(SyslogMessage)
+| where Msg has "esxcli vm process kill"
+    or Msg has "vm process kill"
+    or Msg has "/etc/motd"
+    or Msg has "/usr/lib/vmware/hostd/docroot/index.html"
+    or Msg has "/usr/lib/vmware/hostd/docroot/ui/index.html"
+| extend Signal = case(
+    Msg has "vm process kill", "esxcli_vm_kill",
+    Msg has "motd" or Msg has "docroot", "esxi_management_deface",
+    "other")
+| summarize Events = count(), Signals = make_set(Signal, 5),
+            FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated),
+            Samples = make_list(SyslogMessage, 20)
+        by HostName, bin(TimeGenerated, 30m)
+| where Events >= 3 or array_length(Signals) >= 2
+| order by Events desc, LastSeen desc

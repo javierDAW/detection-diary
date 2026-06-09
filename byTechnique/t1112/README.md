@@ -4,11 +4,12 @@
 
 # Techniques: T1112
 
-5 day(s) covering this technique.
+6 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-09 | Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hypervisor recovery | Kyber | [`2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/`](../../days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/) |
 | 2026-06-07 | Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window that makes BlackLotus-class bootkits permanently exploitable | Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust | [`2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/`](../../days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/) |
 | 2026-05-29 | MiniPlasma — CVE-2020-17103 silent regression weaponized to SYSTEM on fully patched Windows 11 via cldflt.sys race + WER QueueReporting hijack | Chaotic Eclipse / Nightmare-Eclipse | [`2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/`](../../days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/) |
 | 2026-05-25 | UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OYSTERBLUES Targeting Ukrainian Government via Prometheus Lures | UAC-0057 · Ghostwriter · FrostyNeighbor · UNC1151 | [`2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/`](../../days/2026/05/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/) |

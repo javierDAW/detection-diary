@@ -1,0 +1,30 @@
+// Title:       Kyber - Windows recovery-inhibition command set (11 anti-recovery commands)
+// Id:          k1-kyber-recovery-inhibition-commands
+// MITRE:       T1490, T1562.001, T1070.001
+// Reference:   https://www.rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained/
+// Author:      Jarmi
+// Date:        2026-06-09
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    Any single command can be benign maintenance; co-occurrence of multiple
+//              distinct anti-recovery actions on one device in a tight window is the signal.
+//              The encryptor is rebuilt per campaign, so this behavioral set is the durable
+//              detection - not a file hash. Tune the DistinctActions threshold to your estate.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| extend Cmd = tolower(ProcessCommandLine)
+| extend Action = case(
+    FileName =~ "vssadmin.exe" and Cmd has "delete" and Cmd has "shadows", "vssadmin_delete_shadows",
+    FileName =~ "wmic.exe" and Cmd has "shadowcopy" and Cmd has "delete", "wmic_shadowcopy_delete",
+    Cmd has "win32_shadowcopy" and Cmd has "delete", "wmi_shadowcopy_delete",
+    FileName =~ "bcdedit.exe" and Cmd has "recoveryenabled" and Cmd has "no", "bcdedit_recovery_off",
+    FileName =~ "bcdedit.exe" and Cmd has "bootstatuspolicy" and Cmd has "ignoreallfailures", "bcdedit_ignore_failures",
+    FileName =~ "wbadmin.exe" and Cmd has "delete" and Cmd has "systemstatebackup", "wbadmin_delete_systemstate",
+    FileName =~ "wevtutil.exe" and Cmd has " cl", "wevtutil_clear_logs",
+    "")
+| where isnotempty(Action)
+| summarize Actions = make_set(Action, 10), DistinctActions = dcount(Action),
+            FirstSeen = min(Timestamp), LastSeen = max(Timestamp),
+            Commands = make_list(ProcessCommandLine, 20)
+        by DeviceName, AccountName, bin(Timestamp, 1h)
+| where DistinctActions >= 2
+| order by DistinctActions desc, LastSeen desc

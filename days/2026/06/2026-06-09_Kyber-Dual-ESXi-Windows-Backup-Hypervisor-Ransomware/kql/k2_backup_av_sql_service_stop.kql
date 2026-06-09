@@ -1,0 +1,26 @@
+// Title:       Kyber - bulk stop of backup / AV / SQL services before encryption
+// Id:          k2-kyber-backup-av-sql-service-stop
+// MITRE:       T1489
+// Reference:   https://www.rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained/
+// Author:      Jarmi
+// Date:        2026-06-09
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    Kyber stops services matching veeam/vss/backup/sql/msexchange via SCM APIs;
+//              those API stops may not surface as process events, so this query catches the
+//              command-line driven stops (net/sc/taskkill/powershell). Pair with the SCM
+//              7036/7040 service-state events for full coverage. Maintenance windows that
+//              stop SQL/backup are the main FP - baseline known admin parents/accounts.
+let StopTools = dynamic(["net.exe","net1.exe","sc.exe","taskkill.exe","powershell.exe","pwsh.exe"]);
+let TargetSvc = dynamic(["veeam","vss","backup","msexchange","sqlserver","mssql","sqlwriter","sqltelemetry"]);
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FileName in~ (StopTools)
+| extend Cmd = tolower(ProcessCommandLine)
+| where Cmd has_any ("stop","stop-service","delete","/f","taskkill")
+| where Cmd has_any (TargetSvc)
+| extend SvcHit = set_intersect(TargetSvc, extract_all(@"([a-z]+)", Cmd))
+| summarize Stops = count(), Targets = make_set(SvcHit, 20),
+            FirstSeen = min(Timestamp), LastSeen = max(Timestamp),
+            Commands = make_list(ProcessCommandLine, 20)
+        by DeviceName, AccountName, bin(Timestamp, 30m)
+| order by Stops desc, LastSeen desc

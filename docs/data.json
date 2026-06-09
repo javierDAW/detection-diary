@@ -1,5 +1,44 @@
 [
  {
+  "date": "2026-06-09",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware",
+  "title": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hypervisor recovery",
+  "clusters": [
+   "Kyber"
+  ],
+  "country": "Unattributed (e-crime / RaaS)",
+  "platforms": [
+   "linux",
+   "windows"
+  ],
+  "sectors": [
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1486",
+   "T1490",
+   "T1489",
+   "T1485",
+   "T1562.001",
+   "T1070.001",
+   "T1021.004",
+   "T1059.001",
+   "T1059.003",
+   "T1222.001",
+   "T1106",
+   "T1112",
+   "T1083",
+   "T1057"
+  ],
+  "tech_count": 14,
+  "tldr": "Kyber is a cross-platform ransomware family that ships **two coordinated encryptors** — an ELF binary for Linux/VMware **ESXi** and a Rust PE for **Windows** — sharing one campaign ID and one Tor negotiation/leak infrastructure. Rapid7 recovered both payloads side by side during a **March 2026** incident-response engagement (one against ESXi datastores, one against Windows file servers) and publis",
+  "thumb": "thumbs/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware.svg",
+  "case_rel": "../days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/",
+  "q": "kyber ransomware — dual esxi + windows encryptor built to blind backup and hypervisor recovery kyber unattributed (e-crime / raas) linux windows cross-sector t1486 t1490 t1489 t1485 t1562.001 t1070.001 t1021.004 t1059.001 t1059.003 t1222.001 t1106 t1112 t1083 t1057"
+ },
+ {
   "date": "2026-06-08",
   "year": "2026",
   "month": "2026-06",

@@ -1,0 +1,21 @@
+# Kyber ransomware - network/SMB lateral-encryption heuristics
+# Author: Jarmi
+# Date:   2026-06-09
+# Reference: https://www.rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained/
+# Notes: Suricata 7.x. SIDs 4100901-4100903, rev:1. Kyber's impact is primarily HOST-side
+#        (esxcli on ESXi; CreateProcessW command set on Windows), and its command/negotiation
+#        channel is Tor - so there is no clean C2 payload signature. These rules target the
+#        OBSERVABLE network side of mass encryption over SMB file shares: the ransom-note
+#        filenames being written to shares, and the per-variant encrypted-file extensions
+#        appearing in SMB CREATE/rename paths. They are TUNING-DEPENDENT and best used as
+#        correlation signals alongside the host Sigma/KQL rules, not as standalone blocks.
+#        Requires SMB app-layer parsing enabled. No custom variables beyond $HOME_NET.
+
+# 1) Ransom note written to an SMB share (READ_ME_NOW.txt Windows / readme.txt ESXi+share writes).
+alert smb any any -> $HOME_NET any (msg:"Kyber ransomware - ransom note READ_ME_NOW.txt written over SMB"; flow:established,to_server; content:"READ_ME_NOW.txt"; nocase; classtype:targeted-activity; reference:url,rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained; sid:4100901; rev:1;)
+
+# 2) Windows encrypted-file extension .#~~~ appearing in SMB file operations (mass rename over a share).
+alert smb any any -> $HOME_NET any (msg:"Kyber ransomware - Windows encrypted extension .#~~~ over SMB (mass file rename)"; flow:established,to_server; content:".#|7e 7e 7e|"; classtype:targeted-activity; reference:url,rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained; sid:4100902; rev:1;)
+
+# 3) ESXi/Linux encrypted-file extension .xhsyw in SMB file operations (datastore export or share write).
+alert smb any any -> $HOME_NET any (msg:"Kyber ransomware - ESXi encrypted extension .xhsyw over SMB"; flow:established,to_server; content:".xhsyw"; nocase; classtype:targeted-activity; reference:url,rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained; sid:4100903; rev:1;)

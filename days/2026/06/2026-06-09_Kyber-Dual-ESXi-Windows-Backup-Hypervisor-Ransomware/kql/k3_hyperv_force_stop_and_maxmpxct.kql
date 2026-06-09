@@ -1,0 +1,28 @@
+// Title:       Kyber - Hyper-V force-stop and MaxMpxCt SMB tamper before encryption
+// Id:          k3-kyber-hyperv-forcestop-maxmpxct
+// MITRE:       T1489, T1112
+// Reference:   https://www.rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained/
+// Author:      Jarmi
+// Date:        2026-06-09
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents, DeviceRegistryEvents)
+// FP notes:    Stop-VM -Force -TurnOff is an abrupt power-off used to release VHDX locks; raising
+//              LanmanServer MaxMpxCt to 65535 widens SMB concurrency for mass file access. Either
+//              alone can be administrative; together, pre-encryption, they are high-signal. Hyper-V
+//              admins legitimately Stop-VM - scope to unexpected hosts/accounts.
+let lookback = 14d;
+let hv = DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | extend Cmd = tolower(ProcessCommandLine)
+    | where Cmd has "stop-vm" and Cmd has "turnoff"
+    | project Timestamp, DeviceName, AccountName, Signal = "hyperv_force_stop", Detail = ProcessCommandLine;
+let mpx = DeviceRegistryEvents
+    | where Timestamp > ago(lookback)
+    | where RegistryKey has @"LanmanServer\Parameters"
+    | where RegistryValueName =~ "MaxMpxCt"
+    | project Timestamp, DeviceName, AccountName = InitiatingProcessAccountName,
+              Signal = "maxmpxct_tamper", Detail = strcat("MaxMpxCt=", RegistryValueData);
+union hv, mpx
+| summarize Signals = make_set(Signal, 5), Events = count(),
+            FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Details = make_list(Detail, 20)
+        by DeviceName, bin(Timestamp, 1h)
+| order by LastSeen desc

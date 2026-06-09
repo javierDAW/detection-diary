@@ -1,0 +1,58 @@
+title: Backup/AV/SQL Service Termination and Mass Event-Log Clear (Kyber)
+id: 3efe7d91-be4e-47ca-85c9-6112f36073d0
+status: experimental
+description: |
+  Detects the service-termination and log-clearing behavior of the Kyber
+  Windows encryptor. Before encryption Kyber stops services whose names
+  match veeam, vss, backup, sql and msexchange (via the Service Control
+  Manager APIs) to release locked backup/database files and remove the
+  services used for restoration, then clears every Windows event-log
+  channel with 'for /F %i in (wevtutil el) do wevtutil cl %i'. This rule
+  matches command-line driven service stops against those keywords and the
+  wevtutil clear pattern. Native service stops via SCM APIs may not appear
+  as a process-creation event; pair with SCM 7036/7040 and Sysmon EID 1 for
+  the wevtutil/taskkill path. Push the multi-service threshold to SIEM
+  aggregation.
+references:
+  - https://www.rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained/
+  - https://attack.mitre.org/techniques/T1489/
+author: Jarmi
+date: 2026/06/09
+tags:
+  - attack.impact
+  - attack.defense-evasion
+  - attack.t1489
+  - attack.t1070.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_service_stop:
+    Image|endswith:
+      - '\net.exe'
+      - '\net1.exe'
+      - '\sc.exe'
+      - '\taskkill.exe'
+      - '\powershell.exe'
+    CommandLine|contains:
+      - 'veeam'
+      - 'vss'
+      - 'backup'
+      - 'msexchange'
+      - 'sqlserver'
+      - 'mssql'
+  selection_stop_verb:
+    CommandLine|contains:
+      - 'stop'
+      - 'Stop-Service'
+      - 'delete'
+      - '/f'
+  selection_logclear:
+    Image|endswith: '\wevtutil.exe'
+    CommandLine|contains: 'cl'
+  condition: (selection_service_stop and selection_stop_verb) or selection_logclear
+falsepositives:
+  - Patching/maintenance scripts that stop SQL or backup services intentionally - baseline scheduled maintenance windows and known admin parents.
+  - Log rotation tooling that uses wevtutil cl - scope to unexpected hosts/accounts.
+
+level: high
