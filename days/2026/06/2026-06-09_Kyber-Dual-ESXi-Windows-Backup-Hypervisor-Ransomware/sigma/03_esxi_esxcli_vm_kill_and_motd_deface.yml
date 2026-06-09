@@ -1,0 +1,43 @@
+title: ESXi VM Termination via esxcli and Management-Interface Defacement (Kyber ELF)
+id: 1dded0ad-c343-4ae3-ae1a-5bce0046662c
+status: experimental
+description: |
+  Detects the ESXi-targeting behavior of the Kyber Linux/ESXi encryptor.
+  Before encrypting /vmfs/volumes the ELF enumerates running VMs with
+  'esxcli vm process list' and force-terminates each with
+  'esxcli vm process kill type=soft world-id <id>', then overwrites the
+  ESXi management entry points (/etc/motd and the hostd docroot index pages)
+  with the ransom note so any SSH or web-UI login shows it. esxcli VM
+  process kill in a burst is near-zero-baseline on a healthy host and is the
+  ESXi ransomware fingerprint. This rule targets ESXi shell process events
+  (esxcli VM kill) and command-lines that write to the defacement paths.
+  Requires ESXi shell command logging shipped as Linux process telemetry to
+  the SIEM. Push the per-host burst count to SIEM aggregation.
+references:
+  - https://www.rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained/
+  - https://attack.mitre.org/techniques/T1489/
+author: Jarmi
+date: 2026/06/09
+tags:
+  - attack.impact
+  - attack.t1489
+  - attack.t1491.001
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection_vmkill:
+    CommandLine|contains|all:
+      - 'esxcli'
+      - 'vm process kill'
+  selection_deface:
+    CommandLine|contains:
+      - '/etc/motd'
+      - '/usr/lib/vmware/hostd/docroot/index.html'
+      - '/usr/lib/vmware/hostd/docroot/ui/index.html'
+  condition: selection_vmkill or selection_deface
+falsepositives:
+  - Legitimate VM lifecycle automation that uses esxcli vm process kill (rare; usually vim-cmd or vCenter is used) - baseline known orchestration accounts.
+  - Administrative customization of /etc/motd during host provisioning.
+
+level: high

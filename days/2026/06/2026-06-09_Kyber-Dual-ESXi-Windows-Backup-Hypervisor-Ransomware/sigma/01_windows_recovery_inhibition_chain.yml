@@ -1,0 +1,59 @@
+title: Ransomware Recovery Inhibition Command Set (Kyber Windows Anti-Recovery)
+id: 7e203045-0b69-4758-a706-49482e2b97fc
+status: experimental
+description: |
+  Detects the recovery-inhibition command set used by the Kyber Windows
+  encryptor (win_encryptor 1.0, Rust) when running with SeDebugPrivilege.
+  Kyber deletes Volume Shadow Copies via three independent methods
+  (Get-WmiObject Win32_ShadowCopy Delete, wmic shadowcopy delete, vssadmin
+  Delete Shadows), disables the Windows Recovery Environment via bcdedit
+  recoveryenabled No / bootstatuspolicy ignoreallfailures, and deletes
+  system-state backups via wbadmin. Any one of these is suspicious on a
+  server; co-occurrence on one host in a short window is high-fidelity
+  ransomware impact. Because the encryptor is rebuilt per campaign, this
+  behavioral command set is far more durable than a file hash. Push the
+  co-occurrence/time-window threshold to SIEM aggregation.
+references:
+  - https://www.rapid7.com/blog/post/tr-kyber-ransomware-double-trouble-windows-esxi-attacks-explained/
+  - https://attack.mitre.org/techniques/T1490/
+author: Jarmi
+date: 2026/06/09
+tags:
+  - attack.impact
+  - attack.defense-evasion
+  - attack.t1490
+  - attack.t1562.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_vss_wmic:
+    Image|endswith: '\wmic.exe'
+    CommandLine|contains|all:
+      - 'shadowcopy'
+      - 'delete'
+  selection_vss_vssadmin:
+    Image|endswith: '\vssadmin.exe'
+    CommandLine|contains|all:
+      - 'Delete'
+      - 'Shadows'
+  selection_vss_wmi_ps:
+    CommandLine|contains|all:
+      - 'Win32_ShadowCopy'
+      - 'Delete'
+  selection_bcdedit:
+    Image|endswith: '\bcdedit.exe'
+    CommandLine|contains:
+      - 'recoveryenabled No'
+      - 'bootstatuspolicy ignoreallfailures'
+  selection_wbadmin:
+    Image|endswith: '\wbadmin.exe'
+    CommandLine|contains|all:
+      - 'DELETE'
+      - 'SYSTEMSTATEBACKUP'
+  condition: 1 of selection_vss_* or selection_bcdedit or selection_wbadmin
+falsepositives:
+  - Legitimate backup or imaging software that prunes shadow copies on a schedule - baseline per host and exclude known maintenance accounts/parents.
+  - Administrative disk cleanup or recovery-environment reconfiguration during maintenance windows.
+
+level: high

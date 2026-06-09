@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.09 — Day 43 — Kyber ransomware (dual ESXi + Windows backup/hypervisor encryptor)
+
+### Added
+- `days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/` — Rapid7 (Anna Sirokova, 2026-04-21) recovered two coordinated Kyber payloads from one March-2026 IR engagement: an ELF for Linux/VMware ESXi and a Rust PE (`win_encryptor 1.0`) for Windows, sharing a campaign ID and Tor infrastructure. The ESXi variant SSHes in, soft-kills VMs with `esxcli vm process kill`, defaces `/etc/motd` + the hostd docroot, and encrypts `/vmfs/volumes` with ChaCha8 + RSA-4096 (its "post-quantum Kyber1024" note is marketing); the Windows variant stops `veeam/vss/backup/sql/msexchange` services, runs an 11-command anti-recovery set (3-method VSS delete, `bcdedit recoveryenabled No`, `wbadmin`, `wevtutil cl`), optionally force-stops Hyper-V, and encrypts with AES-256-CTR + Kyber1024 -> `.#~~~`. Tuesday/Crime-economy; repo's first slot #30 (backup/DR/hypervisor ransomware) primary and first dual-OS encryptor side-by-side. Why-today is the slot gap + the acutely live backup-targeting theme (Veeam KB4852/CVE-2026-32996 2026-05-27; The Gentlemen leaked backup-kill playbook 2026-06-08), not a 24h incident.
+- Sigma (3): `01_windows_recovery_inhibition_chain.yml` — VSS delete (WMI/wmic/vssadmin) + `bcdedit` + `wbadmin` (T1490, T1562.001); `02_windows_backup_service_stop_and_logclear.yml` — stop veeam/vss/backup/sql/msexchange + `wevtutil cl` (T1489, T1070.001); `03_esxi_esxcli_vm_kill_and_motd_deface.yml` — `esxcli vm process kill` + `/etc/motd`/hostd defacement (T1489, T1491.001).
+- KQL (4): `k1_recovery_inhibition_commands` `DeviceProcessEvents` (11-command set, threshold-gated); `k2_backup_av_sql_service_stop` service-stop `DeviceProcessEvents`; `k3_hyperv_force_stop_and_maxmpxct` `Stop-VM -Force -TurnOff` + `MaxMpxCt` registry; `k4_esxi_syslog_esxcli_kill_deface` ESXi `Syslog`.
+- YARA (1 file, 2 rules): ELF (ChaCha8/`esxcli`/`.xhsyw`/KYBER-CDTA-ATDC trailer) and PE (`win_encryptor`/`boomplay` mutex/`.#~~~`/recovery strings); string anchors supplement the behavioral rules.
+- Suricata (1 file, 3 sids): SMB write of `READ_ME_NOW.txt`, `.#~~~` and `.xhsyw` extensions over SMB (lateral-encryption heuristics, tuning-dependent).
+- PEAK hunts (3): H1 recovery-inhibition command burst; H2 backup/AV/SQL service stop pre-encryption; H3 ESXi `esxcli` kill burst + management-file defacement.
+- `iocs.csv` (29 entries) — ELF/PE/old SHA-256, both extensions, ransom-note filenames, trailer markers, ESXi defacement paths, Tor onion addresses, behavioral command sets, `MaxMpxCt` regkey, plus Veeam CVE-2026-32996 and FortiGate CVE-2024-55591 as secondary context.
+- `kill_chain.svg` — template A two-lane (ESXi/Linux encryptor vs Windows encryptor), canonical palette, red anchors on `esxcli` VM kill, ESXi defacement, and the Windows service-stop + recovery-inhibition set.
+
+### Pedagogy
+- The ransom note is marketing, not a spec: the ESXi ELF advertises Kyber1024 but runs ChaCha8 + RSA-4096 — verify crypto by decompilation, not by the criminal's claim.
+- Specialization beats sophistication: native `esxcli`/`vssadmin`/`bcdedit`/`wbadmin`, no zero-day; measure threat by impact and reliability, not code novelty.
+- Backups are the target — immutable/off-host/admin-plane-isolated backups are the control that survives slot #30; killing veeam/vss/backup/sql is the whole game.
+- Detect the actions the attacker cannot avoid: per-build polymorphism beats hashes, but VM kill, 3-method VSS delete, recovery-disable, and log-clear are mandatory.
+
+
 ## 2026.06.08 — Day 42 — OP-512 China-linked IIS web shell framework (per-deployment crypto uniqueness)
 
 ### Added

@@ -1,0 +1,30 @@
+type,value,context,confidence,source
+note,Kyber ransomware dual-platform family (ELF for Linux/ESXi + Rust PE for Windows) analyzed by Rapid7 from a March-2026 IR engagement,Both payloads share one campaign ID and Tor infrastructure; unattributed e-crime/RaaS; per-campaign rebuilds so behavioral detection takes priority,high,Rapid7
+sha256,6ccacb7567b6c0bd2ca8e68ff59d5ef21e8f47fc1af70d4d88a421f1fc5280fc,Linux/ESXi ELF encryptor (C++ GCC 4.4.7; static OpenSSL 1.0.1e-fips; ChaCha8 + RSA-4096),high,Rapid7
+sha256,45bff0df2c408b3f589aed984cc331b617021ecbea57171dac719b5f545f5e8d,Windows Rust encryptor win_encryptor 1.0 (AES-256-CTR + Kyber1024 + X25519),high,Rapid7
+sha256,4ed176edb75ae2114cda8cfb3f83ac2ecdc4476fa1ef30ad8c81a54c0a223a29,Older Windows variant of the same Kyber family/campaign,medium,Rapid7
+string,.xhsyw,Encrypted-file extension dropped by the ESXi/Linux variant,high,Rapid7
+string,.#~~~,Encrypted-file extension dropped by the Windows variant,high,Rapid7
+string,readme.txt,Ransom note filename dropped by the ESXi/Linux variant in every traversed folder,high,Rapid7
+string,READ_ME_NOW.txt,Ransom note filename dropped by the Windows variant per directory,high,Rapid7
+string,win_encryptor,Rust project/version name retained in the unstripped Windows PE,medium,Rapid7
+mutex,boomplay.com/songs/182988982,Wide-string mutex in .rdata of the Windows variant (link to a legitimate music-streaming track),medium,Rapid7
+string,index.crates.io-6f17d22bba15001f,Cargo registry build path retained in the unstripped Rust PE,low,Rapid7
+string,KYBER,Metadata trailer marker in the last 535 bytes of ELF-encrypted files (already-encrypted skip check),high,Rapid7
+string,CDTA,Metadata trailer marker in ELF-encrypted files,high,Rapid7
+string,ATDC,Metadata trailer marker in ELF-encrypted files,high,Rapid7
+string,.cryptdata_backup,Redundant wrapped-key metadata copy written by the ELF variant before encryption,high,Rapid7
+string,.locksignal,Concurrency-guard marker file created by the ELF variant per target,high,Rapid7
+path,/vmfs/volumes,VMFS datastore root named in the ELF binary help text as the intended target path,high,Rapid7
+path,/usr/lib/vmware/hostd/docroot/index.html,ESXi web-UI index page overwritten with the ransom note (defacement),high,Rapid7
+path,/etc/motd,ESXi SSH message-of-the-day overwritten with the ransom note (defacement),high,Rapid7
+domain,Mlnmlnnrdhcaddwll4zqvfd2vyqsgtgj473gjoehwna2v4sizdukheyd.onion,Tor negotiation/chat portal shared by both variants (chat path /chat/5176[REDACTED]),high,Rapid7
+domain,Kyblogtz6k3jtxnjjvluee5ec4g3zcnvyvbgsnq5thumphmqidkt7xid.onion,Tor leak blog shared by both variants,high,Rapid7
+note,esxcli vm process kill type=soft world-id <id>,ESXi VM-termination command run per VM before encryption (durable behavioral anchor),high,Rapid7
+note,Windows anti-recovery command set (11): vssadmin/wmic/WMI shadow delete + bcdedit recoveryenabled No + bcdedit bootstatuspolicy ignoreallfailures + wbadmin DELETE SYSTEMSTATEBACKUP + wevtutil cl + rd /s /q Recycle.Bin,Durable behavioral anchor; runs only with SeDebugPrivilege; bytes change per build but these actions are mandatory,high,Rapid7
+note,Windows service-stop name patterns: msexchange vss backup veeam sql (locale forced en-US),Backup/DR-blinding core; releases locked backup/DB files and removes restoration services,high,Rapid7
+regkey,HKLM\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\MaxMpxCt,Set to 65535 by the Windows variant to widen SMB concurrency for mass file access,medium,Rapid7
+note,Hyper-V termination: Get-VM | select VMId Name | ConvertTo-Json then Stop-VM -Force -TurnOff,Abrupt power-off to release VHDX locks; developer-labeled experimental,medium,Rapid7
+path,C:\fucked_icon\processed_file.icon,Custom icon written and registered for the .#~~~ extension by the Windows variant (elevated),medium,Rapid7
+cve,CVE-2026-32996,Veeam Backup & Replication / Agent LPE patched in KB4852 on 2026-05-27 (CVSS 7.3); backup-server pivot context (secondary not part of the Kyber samples),high,Veeam KB4852
+cve,CVE-2024-55591,FortiGate auth-bypass used by The Gentlemen for initial access per their leaked operations DB; IAB-to-affiliate context (secondary),medium,Infosecurity Magazine
