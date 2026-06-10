@@ -2,12 +2,11 @@
 <!-- Source of truth: YAML frontmatter in each day's README.md -->
 
 
-# Techniques: T1114.002
+# Techniques: T1550.001
 
-2 day(s) covering this technique.
+1 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-06-10 | Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-brand identity operation | Kali365 | [`2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/`](../../days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/) |
-| 2026-05-06 | Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026) | Storm-1747 · Storm-1575 · Tycoon2FA · Dadsec | [`2026-05-06_CodeOfConduct-AiTM-Storm-1747/`](../../days/2026/05/2026-05-06_CodeOfConduct-AiTM-Storm-1747/) |

@@ -4,11 +4,12 @@
 
 # Platforms: windows
 
-31 day(s) covering this platform.
+32 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-10 | Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-brand identity operation | Kali365 | [`2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/`](../../days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/) |
 | 2026-06-09 | Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hypervisor recovery | Kyber | [`2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/`](../../days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/) |
 | 2026-06-08 | OP-512 — China-linked IIS web shell framework with per-deployment cryptographic uniqueness | OP-512 | [`2026-06-08_OP-512-China-IIS-WebShell-Framework/`](../../days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/) |
 | 2026-06-07 | Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window that makes BlackLotus-class bootkits permanently exploitable | Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust | [`2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/`](../../days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/) |

@@ -1,0 +1,40 @@
+title: Endpoint Network Connection to Kali365 C2 and Phishing-Kit Infrastructure
+id: fe3993bd-601c-47cf-b0c3-e3eac90da0f9
+status: experimental
+description: |
+  Detects a workstation making an outbound connection to known Kali365
+  command-and-control or phishing-kit hosts. The C2 panel host
+  panel.securehubcloud.com is polled by every live lure every three seconds,
+  so any connection to it from a user endpoint means that host loaded an
+  active Kali365 phishing page. attachedfile.com is the shared cPanel backing
+  the kit (block as a unit), greatness-marketing.top serves the MAX Messenger
+  takeover page, and tk.mowell.tech is the operator's conversion tracking
+  pixel. These domains rotate, so this rule is the short-lived IOC layer;
+  pair it with the device code protocol anchor and the content hunts, which
+  outlive any single domain.
+references:
+  - https://arcticwolf.com/resources/blog/kali365-expands-into-aws-microsoft-okta-xerox-max-messenger/
+  - https://attack.mitre.org/techniques/T1071/001/
+  - https://attack.mitre.org/techniques/T1566/002/
+author: Jarmi
+date: 2026/06/10
+modified: 2026/06/10
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.initial-access
+  - attack.t1566.002
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    DestinationHostname|endswith:
+      - 'securehubcloud.com'
+      - 'attachedfile.com'
+      - 'greatness-marketing.top'
+      - 'mowell.tech'
+  condition: selection
+falsepositives:
+  - None expected for securehubcloud.com or attachedfile.com. Validate mowell.tech against marketing tooling before blocking tenant-wide.
+level: high

@@ -1,0 +1,27 @@
+type,value,context,confidence,source
+domain,panel.securehubcloud.com,Kali365 C2 panel login (K365 Control) polled by lures every 3 seconds; high-confidence C2 per Arctic Wolf,high,Arctic Wolf Labs 2026-06-02
+domain,api.securehubcloud.com,Kali365 C2 API host serving the pivoting TLS certificate,high,Arctic Wolf Labs 2026-06-02
+domain,boss.securehubcloud.com,Kali365 C2 sibling host (operator tier) sharing the same TLS cert and K365 Control title,high,Arctic Wolf Labs 2026-06-02
+domain,greatness-marketing.top,Kali365 operator MAX Messenger account-takeover prize-claim page (K365 Control banner),high,Arctic Wolf Labs 2026-06-02
+domain,open-box-rpps.jeff-1fd.workers.dev,Live device-code phishing page (Cloudflare Worker) hardcoding SID 2091010,high,Arctic Wolf Labs 2026-06-02
+domain,data-form-o5pu.p-ntz8agp6.workers.dev,Sibling-fetch path observed in the 126-host kit template (Cloudflare Worker),high,Arctic Wolf Labs 2026-06-02
+domain,attachedfile.com,Shared cPanel host backing the kit; 39 observed subdomains; block as a unit,high,Arctic Wolf Labs 2026-06-02
+domain,tk.mowell.tech,Tracking pixel host embedded in the MAX takeover page (affiliate conversion telemetry),medium,Arctic Wolf Labs 2026-06-02
+ipv4,172.67.156.83,Cloudflare-fronted IP (AS13335) hosting securehubcloud C2 subdomains,medium,Arctic Wolf Labs 2026-06-02
+ipv4,104.21.32.229,Cloudflare-fronted IP (AS13335) hosting securehubcloud C2 subdomains,medium,Arctic Wolf Labs 2026-06-02
+ipv4,216.203.20.95,Original Token Bingo Kali365 origin; reverse proxy on TCP/8443 terminating the shared TLS cert,medium,Arctic Wolf Labs 2026-04 Token Bingo
+sha1,6894a51278ec89118276c2dd2dc36e6f9ea2790a,TLS certificate SHA1 fingerprint served on api.securehubcloud.com; pivot to all C2 subdomains,high,Arctic Wolf Labs 2026-06-02
+string,febb622cd9eeb5c8860dcef4cbfd4b74,HTTP response banner hash served by Kali365 phishing pages; pivot to 126-host cluster,high,Arctic Wolf Labs 2026-06-02
+string,K365 Control,Operator internal page-title branding of the C2 panel; passive-HTTP title fingerprint,high,Arctic Wolf Labs 2026-06-02
+string,Preparing your secure document...,Loader string in the common kit HTML template across the 126-host cluster; content hunt fingerprint,high,Arctic Wolf Labs 2026-06-02
+string,2091010,Hardcoded SID/affiliate-session identifier mapping a lure to the operator tenant in the C2,medium,Arctic Wolf Labs 2026-06-02
+string,SHQ748WLY,Example hardcoded OAuth device user_code in a delivered lure (rotates per delivery; illustrative not durable),low,Arctic Wolf Labs 2026-06-02
+string,8535071077:AAFus1ccm-puZ2htZkpKP_UyZfp3FTHFCzg,Telegram bot token hardcoded in MAX takeover page for credential exfiltration,high,Arctic Wolf Labs 2026-06-02
+string,NovosibyrskyMoneyBot,Telegram exfil bot username (display first_name sova_novosibirsk_bot) for MAX OTP/2FA capture,high,Arctic Wolf Labs 2026-06-02
+string,-5035652280,Telegram chat ID receiving captured +7 phone numbers OTPs and 2FA passwords in real time,high,Arctic Wolf Labs 2026-06-02
+url,https://login.microsoftonline.com/common/oauth2/deviceauth,Legitimate Microsoft device-code authorization endpoint abused by the flow (not malicious itself),high,Microsoft Entra device code docs
+url,https://microsoft.com/devicelogin,Legitimate Microsoft device-login page where the victim submits the attacker-seeded user_code,high,Microsoft Entra device code docs
+note,Kali365 (K365) PhaaS first seen April 2026; marketed via Telegram; tiered admin/agent/client reseller model,Operator-economics context; FBI IC3 alert PSA260521 2026-05-21,high,FBI IC3 PSA260521
+note,126-host cluster active 2026-05-06 to 2026-05-27 sharing banner hash febb622cd9eeb5c8860dcef4cbfd4b74,Single kit infrastructure cluster not 126 independent threats; Worker subdomains rotate in days,high,Arctic Wolf Labs 2026-06-02
+note,Refresh tokens issued to the attacker app are valid up to 90 days and survive a victim password reset,Persistence/remediation context; revoke refresh tokens not just reset password,high,Arctic Wolf Labs 2026-06-02 / Microsoft
+cve,none,No CVE; this is abuse of the legitimate OAuth 2.0 device authorization grant (RFC 8628) not a software flaw,high,analysis

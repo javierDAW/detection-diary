@@ -46,6 +46,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Howling Scorpius](./howling-scorpius/) | 1 |
 | [Hydro Kitten](./hydro-kitten/) | 1 |
 | [Jewelbug](./jewelbug/) | 1 |
+| [Kali365](./kali365/) | 1 |
 | [Kyber](./kyber/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
 | [Microsoft Defender Security Research (vulnerability disclosure, no threat actor)](./microsoft-defender-security-research-vulnerability-disclosure-no-threat-actor/) | 1 |

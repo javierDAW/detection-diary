@@ -1,0 +1,25 @@
+// Title:        Kali365 — Entra ID OAuth 2.0 Device Code Sign-In Anchor
+// Id:           8bcdc5f2-1d1c-43a5-a25f-9565055ca102
+// MITRE:        T1528, T1078.004, T1566.002
+// Reference:    https://arcticwolf.com/resources/blog/kali365-expands-into-aws-microsoft-okta-xerox-max-messenger/
+// Reference:    https://www.ic3.gov/PSA/2026/PSA260521
+// Author:       Jarmi
+// Date:         2026-06-10
+// Tested on:    Microsoft Sentinel — SigninLogs (also adaptable to Defender XDR AADSignInEventsBeta)
+// FP notes:     Device code is legitimately used by smart TVs, printers and CLI tools. Baseline the
+//               users/apps that genuinely use it via the summarize block below, then alert on the
+//               long tail of standard users who suddenly complete a device code flow.
+//
+SigninLogs
+| where TimeGenerated > ago(7d)
+| where AuthenticationProtocol == "deviceCode"
+| where ResultType == 0
+| extend asn = tostring(parse_json(tostring(NetworkLocationDetails))[0].networkType)
+| project TimeGenerated, UserPrincipalName, AppDisplayName, ResourceDisplayName,
+          IPAddress, AutonomousSystemNumber, ClientAppUsed,
+          DeviceDetail = tostring(DeviceDetail), Location
+| summarize SignIns = count(), Apps = make_set(AppDisplayName, 10),
+            IPs = make_set(IPAddress, 10), ASNs = make_set(AutonomousSystemNumber, 10),
+            FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated)
+          by UserPrincipalName
+| sort by SignIns asc

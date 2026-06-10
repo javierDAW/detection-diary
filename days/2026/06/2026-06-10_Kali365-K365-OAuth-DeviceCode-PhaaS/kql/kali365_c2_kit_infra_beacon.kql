@@ -1,0 +1,23 @@
+// Title:        Kali365 — Endpoint Beacon to C2 and Phishing-Kit Infrastructure
+// Id:           54d47264-585f-45d4-ae0b-f94601a65c44
+// MITRE:        T1071.001, T1566.002
+// Reference:    https://arcticwolf.com/resources/blog/kali365-expands-into-aws-microsoft-okta-xerox-max-messenger/
+// Author:       Jarmi
+// Date:         2026-06-10
+// Tested on:    Microsoft Defender XDR — DeviceNetworkEvents
+// FP notes:     securehubcloud.com and attachedfile.com have no legitimate use; mowell.tech is a tracking
+//               pixel host, validate before tenant-wide block. Worker subdomains rotate within days, so
+//               treat hits as confirmation, not the only control.
+//
+let kitDomains = dynamic([
+    "securehubcloud.com", "attachedfile.com", "greatness-marketing.top", "mowell.tech"]);
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| extend host = tolower(RemoteUrl)
+| where isnotempty(host)
+| where kitDomains has_any (host) or host endswith "securehubcloud.com"
+    or host endswith "attachedfile.com" or host endswith "greatness-marketing.top"
+    or host endswith "mowell.tech"
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessAccountName,
+          RemoteUrl, RemoteIP, RemotePort, ActionType
+| sort by Timestamp asc

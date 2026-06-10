@@ -1,0 +1,24 @@
+// Title:        Kali365 — Mailbox Collection and Inbox-Rule Abuse After Device Code Sign-In (BEC Follow-On)
+// Id:           b7c9a4e2-4f30-4d8a-9a1e-2c5f8d7b6e10
+// MITRE:        T1114.002, T1564.008, T1078.004
+// Reference:    https://arcticwolf.com/resources/blog/kali365-expands-into-aws-microsoft-okta-xerox-max-messenger/
+// Author:       Jarmi
+// Date:         2026-06-10
+// Tested on:    Microsoft Defender XDR — CloudAppEvents (OfficeActivity equivalent in Sentinel)
+// FP notes:     New inbox rules and large mail reads occur in legitimate migrations and mobile re-sync.
+//               The signal is these actions on a principal that completed a device code sign-in in the
+//               preceding window (join against kali365_device_code_signin_anchor by AccountUpn).
+//
+let lookback = 7d;
+let suspectRuleKeywords = dynamic(["RSS", "rss", "..", "deleteditems", "junk", "archive"]);
+CloudAppEvents
+| where Timestamp > ago(lookback)
+| where Application in ("Microsoft 365", "Office 365", "Microsoft Graph")
+| where ActionType in~ (
+    "New-InboxRule", "Set-InboxRule", "UpdateInboxRules",
+    "MailItemsAccessed", "Send", "SendAs", "SendOnBehalf")
+| extend raw = tostring(RawEventData)
+| where ActionType !in~ ("MailItemsAccessed") or raw has "Sync" == false
+| project Timestamp, AccountDisplayName, AccountObjectId, ActionType,
+          IPAddress, UserAgent, raw
+| sort by Timestamp asc
