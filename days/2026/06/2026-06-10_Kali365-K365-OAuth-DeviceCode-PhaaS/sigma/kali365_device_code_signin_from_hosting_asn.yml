@@ -1,0 +1,44 @@
+title: Device Code Sign-In Originating From Cloudflare or Datacenter ASN (Kali365 Infrastructure)
+id: 61fa1e1f-2caa-48b0-b56d-ccb4bef9b4be
+status: experimental
+description: |
+  Detects a successful Entra ID device code sign-in whose network origin is
+  a hosting or CDN autonomous system rather than a residential or corporate
+  ISP. Kali365 relays victim authorisation and subsequent token use through
+  Cloudflare Worker fronted infrastructure (AS13335) and reverse proxies on
+  rented hosting, so the completed device code authentication and the later
+  token-bearing requests frequently surface from datacenter address space.
+  A standard user completing a device code flow from a Cloudflare or hosting
+  ASN is anomalous and corroborates the protocol anchor. ASN field naming
+  varies by SIEM; tune to your sign-in schema.
+references:
+  - https://arcticwolf.com/resources/blog/kali365-expands-into-aws-microsoft-okta-xerox-max-messenger/
+  - https://arcticwolf.com/resources/blog/token-bingo-dont-let-your-code-be-the-winner/
+  - https://attack.mitre.org/techniques/T1528/
+  - https://attack.mitre.org/techniques/T1078/004/
+author: Jarmi
+date: 2026/06/10
+modified: 2026/06/10
+tags:
+  - attack.credential-access
+  - attack.t1528
+  - attack.defense-evasion
+  - attack.t1078.004
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection:
+    AuthenticationProtocol: deviceCode
+    ResultType: 0
+  selection_asn:
+    AutonomousSystemNumber:
+      - 13335
+      - 16509
+      - 14618
+      - 396982
+  condition: selection and selection_asn
+falsepositives:
+  - Cloud-hosted virtual desktops or CI runners that legitimately authenticate via device code from datacenter address space; baseline and exclude those service identities.
+  - Corporate egress routed through a CDN or cloud proxy that rewrites the apparent source ASN.
+level: high

@@ -1,0 +1,48 @@
+title: Entra ID Sign-In Using OAuth 2.0 Device Code Authentication (Kali365 Anchor)
+id: 76494c6d-9c7e-4307-b4ad-bceb11e5496c
+status: experimental
+description: |
+  Detects an interactive Microsoft Entra ID sign-in completed through the
+  OAuth 2.0 device authorization grant (device code flow). Kali365 abuses
+  this legitimate flow: the operator requests a device code against their
+  own public-client application, embeds the user_code into a OneDrive or
+  SharePoint themed lure, and the victim authorises it at the genuine
+  microsoft.com/devicelogin endpoint. Microsoft then issues access and
+  refresh tokens directly to the attacker application, bypassing MFA. The
+  device code protocol is legitimately used by input-constrained devices
+  (smart TVs, printers, CLI tooling) and is rare for ordinary employees,
+  so a successful device code sign-in by a standard user is the highest
+  fidelity behavioural anchor for this campaign. Correlate with subsequent
+  token use from a different IP/ASN in the companion KQL rules.
+references:
+  - https://arcticwolf.com/resources/blog/kali365-expands-into-aws-microsoft-okta-xerox-max-messenger/
+  - https://www.ic3.gov/PSA/2026/PSA260521
+  - https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code
+  - https://attack.mitre.org/techniques/T1528/
+  - https://attack.mitre.org/techniques/T1078/004/
+author: Jarmi
+date: 2026/06/10
+modified: 2026/06/10
+tags:
+  - attack.credential-access
+  - attack.t1528
+  - attack.defense-evasion
+  - attack.t1078.004
+  - attack.initial-access
+  - attack.t1566.002
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection:
+    AuthenticationProtocol: deviceCode
+    ResultType: 0
+  filter_known_devices:
+    AppDisplayName:
+      - 'Microsoft Authentication Broker'
+      - 'Microsoft Edge'
+  condition: selection and not filter_known_devices
+falsepositives:
+  - Legitimate device code sign-ins from smart TVs, conference room devices, printers and CLI tools (Azure CLI, kubectl). Baseline the principals and apps that genuinely use device code and exclude them.
+  - IT-driven provisioning of shared or kiosk devices.
+level: high

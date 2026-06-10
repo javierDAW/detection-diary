@@ -1,0 +1,34 @@
+// Title:        Kali365 — Device Code Issuance Followed by Token Use From a Different ASN (Token Theft)
+// Id:           a216a282-99d9-4409-ab45-b894de6cf80b
+// MITRE:        T1528, T1550.001, T1078.004
+// Reference:    https://arcticwolf.com/resources/blog/kali365-expands-into-aws-microsoft-okta-xerox-max-messenger/
+// Author:       Jarmi
+// Date:         2026-06-10
+// Tested on:    Microsoft Sentinel — SigninLogs (non-interactive + interactive)
+// FP notes:     Roaming users and VPN egress can shift ASN legitimately. Require a hosting/CDN ASN on the
+//               follow-on token use (Cloudflare 13335, AWS 16509, DigitalOcean 14061, Railway/PaaS) to cut noise.
+//               The signal is one principal whose device code completion and subsequent token-bearing
+//               request originate from two different autonomous systems within a short window.
+//
+let lookback = 7d;
+let window = 60m;
+let hostingAsn = dynamic([13335, 16509, 14061, 14618, 396982, 8075]);
+let devicecode =
+    SigninLogs
+    | where TimeGenerated > ago(lookback)
+    | where AuthenticationProtocol == "deviceCode" and ResultType == 0
+    | project IssueTime = TimeGenerated, UserPrincipalName, IssueIP = IPAddress, IssueAsn = AutonomousSystemNumber;
+let tokenuse =
+    union SigninLogs, (AADNonInteractiveUserSignInLogs)
+    | where TimeGenerated > ago(lookback)
+    | where ResultType == 0
+    | project UseTime = TimeGenerated, UserPrincipalName, UseIP = IPAddress,
+              UseAsn = AutonomousSystemNumber, AppDisplayName, ResourceDisplayName;
+devicecode
+| join kind=inner tokenuse on UserPrincipalName
+| where UseTime between (IssueTime .. (IssueTime + window))
+| where UseAsn != IssueAsn
+| where UseAsn in (hostingAsn)
+| project UserPrincipalName, IssueTime, IssueIP, IssueAsn, UseTime, UseIP, UseAsn,
+          AppDisplayName, ResourceDisplayName
+| sort by UseTime asc

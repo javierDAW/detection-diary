@@ -1,0 +1,20 @@
+# Kali365 (K365) device-code phishing PhaaS - network detections
+# Author: Jarmi
+# Date:   2026-06-10
+# Reference: https://arcticwolf.com/resources/blog/kali365-expands-into-aws-microsoft-okta-xerox-max-messenger/
+# Notes: Suricata 7.x. SIDs 4101001-4101003, rev:1. Kali365 fronts its lures on Cloudflare
+#        Workers and rents disposable hosting, so the durable network signals are the C2 panel
+#        host (TLS SNI), the kit content template loader string in HTTP responses, and DNS for
+#        the shared kit/cPanel zones. The C2 and pixel hosts are served over TLS so payload is
+#        encrypted - SNI and DNS are the available selectors. No custom variables beyond $HOME_NET.
+#        These are correlation signals to pair with the Entra device-code Sigma/KQL anchors.
+
+# 1) TLS SNI to the Kali365 C2 panel / API zone (high confidence - polled by every live lure)
+alert tls $HOME_NET any -> any 443 (msg:"Kali365 C2 panel TLS SNI securehubcloud.com"; flow:established,to_server; tls.sni; content:"securehubcloud.com"; endswith; classtype:command-and-control; sid:4101001; rev:1;)
+
+# 2) DNS query for the shared kit / cPanel and MAX-takeover zones
+alert dns $HOME_NET any -> any any (msg:"Kali365 phishing-kit infrastructure DNS query"; dns.query; content:"attachedfile.com"; endswith; sid:4101002; rev:1;)
+alert dns $HOME_NET any -> any any (msg:"Kali365 MAX takeover host DNS query greatness-marketing.top"; dns.query; content:"greatness-marketing.top"; endswith; sid:4101003; rev:1;)
+
+# 3) HTTP response carrying the Kali365 kit loader template string
+alert http any any -> $HOME_NET any (msg:"Kali365 phishing-kit loader template in HTTP response body"; flow:established,to_client; file.data; content:"Preparing your secure document"; nocase; sid:4101004; rev:1;)

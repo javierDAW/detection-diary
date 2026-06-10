@@ -6,6 +6,23 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.10 — Day 44 — Kali365 (K365) OAuth 2.0 device-code phishing-as-a-service
+
+### Added
+- `days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/` — Arctic Wolf Labs (2026-06-02) tracked the Kali365/K365 PhaaS operator (first seen April 2026; FBI IC3 PSA260521, 2026-05-21) from its "Token Bingo" device-code abuse into a multi-brand operation: a live C2 panel (`panel.securehubcloud.com`, title "K365 Control"), a 126-host kit cluster active 6–27 May, and a MAX Messenger takeover branch. The kit abuses Microsoft's OAuth 2.0 device authorization grant — the operator app requests a device code, embeds the `user_code` in a OneDrive/SharePoint lure, and the victim authorizes it at the genuine `microsoft.com/devicelogin`, handing access+refresh tokens to the attacker and bypassing MFA (refresh valid up to 90 days, survives password reset). Wednesday/Identity-and-fraud; repo's first device-code-phishing and first dedicated PhaaS-infrastructure case. Primary #5 cloud/identity; secondaries #27 BEC, #6 SaaS, #24 CTI tradecraft.
+- Sigma (3): `kali365_entra_device_code_signin_anchor.yml` — successful Entra sign-in via `deviceCode` protocol (T1528, T1078.004); `kali365_device_code_signin_from_hosting_asn.yml` — device-code sign-in from Cloudflare/hosting ASN; `kali365_c2_kit_network_connection.yml` — endpoint to `securehubcloud.com`/`attachedfile.com`/`greatness-marketing.top`/`mowell.tech` (T1071.001).
+- KQL (4): `kali365_device_code_signin_anchor` device-code inventory+baseline; `kali365_device_code_then_token_use_new_asn` cross-ASN token reuse (T1550.001); `kali365_c2_kit_infra_beacon` endpoint beacon; `kali365_graph_mailbox_collection_post_devicecode` inbox-rule/mail-read/send after sign-in (T1114.002, BEC).
+- YARA (1 file, 2 rules): device-code kit HTML template (loader string, C2 host, K365 Control, deviceauth) and MAX takeover page (Telegram exfil config, bot token, Russian prize/OTP strings) — content heuristics for HTML captures, not compiled samples.
+- Suricata (1 file, 4 sids): TLS SNI to `securehubcloud.com` C2; DNS for `attachedfile.com` and `greatness-marketing.top`; kit loader string in HTTP response body.
+- PEAK hunts (3): H1 device-code baseline/anomaly; H2 cross-ASN stolen-token reuse; H3 kit content/cert/banner fingerprint.
+- `iocs.csv` (26 entries) — C2/kit domains, Cloudflare + Token Bingo IPs, TLS cert SHA1, banner/content fingerprints, SID, Telegram exfil bot/chat, abused legitimate Microsoft endpoints; Worker subdomains rotate so cert/banner/content are the durable anchors.
+- `kill_chain.svg` — template A two-lane (victim identity plane vs operator infrastructure), canonical palette, red anchors on the MFA-bypass authorization at the genuine Microsoft endpoint and the 3-second C2 capture poll.
+
+### Pedagogy
+- MFA does not stop device-code phishing: the victim completes the challenge for the attacker; mitigate with Conditional Access on the device-code flow and FIDO2, not "turn on MFA."
+- Revoke refresh tokens BEFORE resetting the password — the 90-day refresh token survives a reset; this is the most common token-theft IR mistake.
+- A legitimate OAuth flow abused has no CVE and no binary; anchor detection on protocol rarity, cross-ASN reuse, and cert/banner/content fingerprints, not on rotating domains.
+
 ## 2026.06.09 — Day 43 — Kyber ransomware (dual ESXi + Windows backup/hypervisor encryptor)
 
 ### Added
