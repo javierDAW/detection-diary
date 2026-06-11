@@ -1,5 +1,40 @@
 [
  {
+  "date": "2026-06-11",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak",
+  "title": "Argo CD ServerSideDiff Kubernetes Secret extraction (CVE-2026-42880) — a read-only GitOps user reads etcd Secrets in plaintext",
+  "clusters": [
+   "Opportunistic Argo CD ServerSideDiff exploitation (unattributed)"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "cloud-multi",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "government",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1190",
+   "T1552.007",
+   "T1528",
+   "T1078",
+   "T1550.001",
+   "T1213",
+   "T1530"
+  ],
+  "tech_count": 7,
+  "tldr": "Argo CD — the most widely deployed GitOps continuous-delivery controller for Kubernetes — masks Kubernetes `Secret` values on every API surface except one: the `ServerSideDiff` gRPC/REST endpoint. **CVE-2026-42880** (GHSA-3v3m-wc6v-x4x3, CVSS 9.6, advisory published 2026-05-01 by maintainer `alexmt`, reported by `hoang-prod`) lets any authenticated user with the default `get` RBAC — including nomi",
+  "thumb": "thumbs/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak.svg",
+  "case_rel": "../days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/",
+  "q": "argo cd serversidediff kubernetes secret extraction (cve-2026-42880) — a read-only gitops user reads etcd secrets in plaintext opportunistic argo cd serversidediff exploitation (unattributed) unattributed cloud-multi supply-chain technology finance government cross-sector t1190 t1552.007 t1528 t1078 t1550.001 t1213 t1530"
+ },
+ {
   "date": "2026-06-10",
   "year": "2026",
   "month": "2026-06",
