@@ -4,11 +4,12 @@
 
 # Techniques: T1528
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-11 | Argo CD ServerSideDiff Kubernetes Secret extraction (CVE-2026-42880) — a read-only GitOps user reads etcd Secrets in plaintext | Opportunistic Argo CD ServerSideDiff exploitation (unattributed) | [`2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/`](../../days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/) |
 | 2026-06-10 | Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-brand identity operation | Kali365 | [`2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/`](../../days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/) |
 | 2026-05-21 | TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Worm, Nx Console VS Code Extension and the GitHub Internal Repo Breach | TeamPCP · UNC6780 · Mini Shai-Hulud | [`2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain/`](../../days/2026/05/2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain/) |
 | 2026-05-14 | Mini Shai-Hulud Mega-Campaign: TeamPCP Poisons 170+ npm/PyPI Packages via GitHub Actions OIDC Hijack and SLSA Provenance Forgery | TeamPCP | [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/`](../../days/2026/05/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |

@@ -6,6 +6,24 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.11 — Day 45 — Argo CD ServerSideDiff Kubernetes Secret extraction (CVE-2026-42880)
+
+### Added
+- `days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/` — Argo CD advisory GHSA-3v3m-wc6v-x4x3 (CVSS 9.6, published 2026-05-01 by `alexmt`, reporter `hoang-prod`; tracked as CVE-2026-42880) describes a missing authorization + data-masking gap: the `ServerSideDiff` gRPC/REST endpoint is the only Argo CD surface that does not call `hideSecretData()`, and when an Application carries `argocd.argoproj.io/compare-options: IncludeMutationWebhook=true` the `removeWebhookMutation()` backstop is skipped, so a user with the default `applications,get` RBAC coerces a server-side-apply dry-run (`argocd-controller` field manager) into returning real `etcd` Secret values — SA tokens, TLS keys, DB creds, API keys — in plaintext. A public Python PoC sweeps every managed Secret. Affected 3.2.0–3.3.8; fixed 3.3.9 / 3.2.11. Thursday/Supply-chain; repo's first GitOps/IaC (#31) primary. Primary #31; secondaries #7 software supply chain, #26 AppSec/web, #5 cloud/identity.
+- Sigma (3): `argocd_serversidediff_secret_read.yml` — `ServerSideDiff` invoked by a non-admin subject (T1552.007, T1528); `argocd_application_includemutationwebhook_annotation.yml` — Application create/patch with the bypass annotation (T1190, K8s audit); `k8s_secret_ssa_dryrun_argocd_controller.yml` — `secrets` SSA dry-run by `argocd-controller` (T1552.007, K8s audit).
+- KQL (4): `argocd_serversidediff_call_anomaly` rare-subject/fan-out baseline; `k8s_secret_dryrun_burst` cross-namespace dry-run burst; `argocd_includemutationwebhook_inventory` exposure inventory; `argocd_repo_creds_endpoint_access` companion CVE-2025-55190 endpoint hunt.
+- YARA (1 file, 2 rules): content heuristics for the public PoC / derivative extractor script on disk (ServerSideDiff path + grpc-web framing; annotation/code-anchor/repo-creds indicators) — not compiled-sample signatures.
+- Suricata (1 file, 4 sids): gRPC-web POST to the `ServerSideDiff` path; `managed-resources` enumeration; companion `/projects/{p}/detailed` repo-creds endpoint (CVE-2025-55190); requires decrypted L7 visibility.
+- PEAK hunts (3): H1 `ServerSideDiff` caller baseline; H2 `IncludeMutationWebhook=true` exposure inventory; H3 K8s-audit `secrets` dry-run fan-out.
+- `iocs.csv` (24 entries) — CVE IDs, advisory IDs, the vulnerable endpoint, the masking-bypass annotation, code anchors (`removeWebhookMutation`/`hideSecretData`), PoC content strings, affected/patched versions; no campaign hashes (exposure/PoC case).
+- `kill_chain.svg` — template A two-lane (Argo CD/Kubernetes target plane vs attacker operations), canonical palette, red anchors on the masking-bypass annotation and the plaintext Secret leak.
+
+### Pedagogy
+- A "read-only" role is only as safe as the leakiest read endpoint it can reach — audit the output of read paths, not just the verb.
+- Security controls toggled by annotations are time bombs; govern security-relevant annotations with admission policy (Kyverno/Gatekeeper), not free-text fields.
+- Patching closes the read but does not un-leak Secrets already returned — rotation is the recovery step, and rotate repo creds too (CVE-2025-55190 shares the values).
+- Detect the invariants the attacker cannot avoid: the `ServerSideDiff` method, the annotation, and the `argocd-controller` `secrets` dry-run in the K8s audit log.
+
 ## 2026.06.10 — Day 44 — Kali365 (K365) OAuth 2.0 device-code phishing-as-a-service
 
 ### Added
