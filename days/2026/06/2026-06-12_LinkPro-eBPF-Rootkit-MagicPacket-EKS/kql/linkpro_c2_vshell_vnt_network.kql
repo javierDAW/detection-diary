@@ -1,0 +1,19 @@
+// Title: LinkPro / vShell / vnt Command-and-Control Network Activity (Linux)
+// Id: 7a44e0c8-91b2-4f37-8d5a-0e3c9b6f1d22
+// MITRE: T1071.001 (Web Protocols), T1071.004 (DNS), T1090 (Proxy), T1205.001 (Port Knocking)
+// Reference: https://www.synacktiv.com/en/publications/linkpro-ebpf-rootkit-analysis
+// Author: Jarmi
+// Date: 2026-06-12
+// Tested on: Microsoft Defender for Endpoint (Linux), DeviceNetworkEvents
+// FP notes: IP/domain IOCs rotate; the durable anchor is the vnt relay port 29872 and the
+//           S3 staging URL. Keep behaviour hunts (XDP listener, port 2233) alongside this.
+let c2_ips = dynamic(["56.155.98.37","216.203.20.95"]);
+let c2_domains = dynamic(["vnt.wherewego.top","fixupcount.s3.dualstack.ap-northeast-1.amazonaws.com"]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteIP in (c2_ips)
+    or RemoteUrl has_any (c2_domains)
+    or RemotePort == 29872
+| project Timestamp, DeviceName, ActionType, RemoteIP, RemotePort, RemoteUrl,
+          InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName
+| sort by Timestamp desc

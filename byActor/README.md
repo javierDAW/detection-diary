@@ -48,6 +48,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Jewelbug](./jewelbug/) | 1 |
 | [Kali365](./kali365/) | 1 |
 | [Kyber](./kyber/) | 1 |
+| [LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)](./linkpro-unattributed-vshell-vnt-toolchain-unc5174-overlap/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
 | [Microsoft Defender Security Research (vulnerability disclosure, no threat actor)](./microsoft-defender-security-research-vulnerability-disclosure-no-threat-actor/) | 1 |
 | [Mini Shai-Hulud](./mini-shai-hulud/) | 1 |

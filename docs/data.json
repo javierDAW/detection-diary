@@ -1,5 +1,44 @@
 [
  {
+  "date": "2026-06-12",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS",
+  "title": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment",
+  "clusters": [
+   "LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)"
+  ],
+  "country": "Unattributed (Chinese-language artifacts; vShell tooling)",
+  "platforms": [
+   "linux",
+   "cloud-multi",
+   "supply-chain"
+  ],
+  "sectors": [
+   "cross-sector",
+   "cloud-hosting"
+  ],
+  "techniques": [
+   "T1190",
+   "T1610",
+   "T1552.001",
+   "T1014",
+   "T1564.001",
+   "T1574.006",
+   "T1205.001",
+   "T1620",
+   "T1071.004",
+   "T1090",
+   "T1070.003",
+   "T1562.001"
+  ],
+  "tech_count": 12,
+  "tldr": "LinkPro is a Golang Linux backdoor discovered by the Synacktiv CSIRT during DFIR on a compromised AWS-hosted environment (publication 2025-10-13). The operator exploited an internet-exposed Jenkins server (CVE-2024-23897), pivoted into several Amazon EKS clusters, and deployed a malicious Docker Hub image (`kvlnt/vv`) that ran a vnt proxy, harvested service-account and cloud credentials from neigh",
+  "thumb": "thumbs/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS.svg",
+  "case_rel": "../days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/",
+  "q": "linkpro — ebpf rootkit with magic-packet activation in a compromised aws eks environment linkpro (unattributed; vshell/vnt toolchain, unc5174 overlap) unattributed (chinese-language artifacts; vshell tooling) linux cloud-multi supply-chain cross-sector cloud-hosting t1190 t1610 t1552.001 t1014 t1564.001 t1574.006 t1205.001 t1620 t1071.004 t1090 t1070.003 t1562.001"
+ },
+ {
   "date": "2026-06-11",
   "year": "2026",
   "month": "2026-06",

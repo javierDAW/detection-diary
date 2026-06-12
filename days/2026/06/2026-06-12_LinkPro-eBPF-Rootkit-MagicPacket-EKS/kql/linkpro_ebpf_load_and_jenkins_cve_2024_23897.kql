@@ -1,0 +1,18 @@
+// Title: eBPF Program Load from Unexpected Binary + Jenkins CVE-2024-23897 Recon (Linux)
+// Id: c0d9a3e5-2b6f-47a1-bb84-9f1e7c0d8e4b
+// MITRE: T1562.001 (Impair Defenses), T1190 (Exploit Public-Facing App), T1014 (Rootkit)
+// Reference: https://www.synacktiv.com/en/publications/linkpro-ebpf-rootkit-analysis
+// Author: Jarmi
+// Date: 2026-06-12
+// Tested on: Microsoft Sentinel Syslog (auditd via rsyslog), AUOMS/auditbeat normalised
+// FP notes: requires an auditd rule on the bpf syscall. Allow-list sanctioned eBPF loaders.
+//           The Jenkins arm keys on the '@' file-read CLI arg abused by CVE-2024-23897.
+let known_loaders = dynamic(["bpftool","cilium-agent","falco","tetragon","systemd-resolved","systemd"]);
+Syslog
+| where TimeGenerated > ago(30d)
+| where Facility == "authpriv" or ProcessName == "audit" or SyslogMessage has "syscall=bpf" or SyslogMessage has "key=ebpf_load"
+| where SyslogMessage has "syscall=bpf" or SyslogMessage has "@/etc/passwd" or SyslogMessage has "@/var/lib/jenkins"
+| extend LoaderHint = extract(@"comm=\""?([^\""\s]+)", 1, SyslogMessage)
+| where isempty(LoaderHint) or LoaderHint !in (known_loaders)
+| project TimeGenerated, Computer, ProcessName, LoaderHint, SyslogMessage
+| sort by TimeGenerated desc

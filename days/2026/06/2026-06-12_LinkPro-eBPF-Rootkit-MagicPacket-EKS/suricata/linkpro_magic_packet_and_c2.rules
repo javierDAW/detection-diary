@@ -1,0 +1,21 @@
+# LinkPro eBPF rootkit — magic packet + C2 / staging network detections
+# Author: Jarmi
+# Date: 2026-06-12
+# Reference: https://www.synacktiv.com/en/publications/linkpro-ebpf-rootkit-analysis
+# Notes:
+#   - SID 2026612001 keys on the LinkPro "Knock" magic packet: a TCP SYN whose TCP
+#     window size equals 54321. The XDP program drops this packet (XDP_DROP), so it
+#     may never reach the host stack — deploy this on a SPAN/tap upstream of the node,
+#     not only on the host. Window 54321 can occur benignly; treat as a hunt lead and
+#     correlate with the activated source IP reaching an unusual destination port.
+#   - SID 2026612002 catches the vnt relay used by the kvlnt/vv image (TCP 29872).
+#   - SID 2026612003/004 catch the vShell C2 IP and the S3 staging URL. IP/host IOCs
+#     rotate; the durable rule is the magic-packet window plus the relay port.
+
+alert tcp any any -> any any (msg:"LinkPro eBPF rootkit Knock magic packet (TCP SYN window 54321)"; flow:to_server; flags:S; window:54321; threshold:type limit, track by_src, count 1, seconds 60; classtype:trojan-activity; sid:2026612001; rev:1;)
+
+alert tcp any any -> any 29872 (msg:"LinkPro infra vnt relay connection (kvlnt/vv proxy, vnt.wherewego.top)"; flow:to_server,established; classtype:trojan-activity; sid:2026612002; rev:1;)
+
+alert ip any any -> 56.155.98.37 any (msg:"LinkPro vShell C2 IP (in-memory vShell 4.9.3 WebSocket)"; classtype:trojan-activity; sid:2026612003; rev:1;)
+
+alert http any any -> any any (msg:"LinkPro vGet S3 staging payload download (rich.png)"; flow:to_server,established; http.method; content:"GET"; http.uri; content:"/wehn/rich.png"; nocase; http.host; content:"fixupcount.s3"; nocase; classtype:trojan-activity; sid:2026612004; rev:1;)

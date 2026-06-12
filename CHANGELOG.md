@@ -6,6 +6,24 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.12 — Day 46 — LinkPro eBPF rootkit with magic-packet activation in a compromised AWS EKS environment
+
+### Added
+- `days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/` — LinkPro is a Golang Linux backdoor found by Synacktiv CSIRT (2025-10-13) during DFIR on a compromised AWS EKS estate: an exposed Jenkins (CVE-2024-23897) led to a malicious Docker Hub image `kvlnt/vv` deployed across clusters, pod credential harvest, a vGet (Rust) downloader running vShell 4.9.3 in memory (UNC5174-linked tooling, unattributed here), and finally LinkPro installing two eBPF modules — a Hide module (Tracepoint/Kretprobe on `getdents`/`sys_bpf` to conceal files/PIDs/BPF objects) and a Knock module (XDP/TC magic packet: TCP SYN window 54321 → internal port 2233) — with an `/etc/ld.so.preload`→`libld.so` userspace fallback. Friday/Deep-dive; repo's first DFIR Linux/containers (#13) primary. Primary #13; secondaries #19 malware-RE, #7 software supply chain, #5 cloud/identity.
+- Sigma (3): `linux_ldso_preload_rootkit_persistence.yml` — write to `/etc/ld.so.preload` or drop of `/etc/*libld.so` (T1574.006); `linux_container_serviceaccount_token_harvest.yml` — pod SA-token/cloud-cred file reads (T1552.001); `linux_ebpf_program_load_from_unexpected_binary.yml` — `bpf()` load from a non-allow-listed binary via auditd (T1562.001).
+- KQL (4): `linkpro_ldpreload_and_hidden_artifacts` preload + hidden artifact file events; `linkpro_eks_pod_credential_harvest` pod token/cred reads; `linkpro_c2_vshell_vnt_network` C2 IP/domain + vnt relay 29872; `linkpro_ebpf_load_and_jenkins_cve_2024_23897` Syslog/auditd bpf load + Jenkins `@`-file-read recon.
+- YARA (1 file, 4 rules): Go orchestrator, Hide eBPF module, Knock eBPF module, libld.so — anchored on durable module/string artifacts (per-intrusion rebuilds defeat hashes).
+- Suricata (1 file, 4 sids): magic packet (TCP SYN window 54321), vnt relay (29872), vShell C2 IP, S3 staging URL `/wehn/rich.png`.
+- PEAK hunts (3): H1 hidden-eBPF inventory discrepancy (bpftool vs auditd vs `prog_idr`); H2 `ld.so.preload` + `ss`-vs-`netstat` port 2233 seam; H3 magic-packet listener / non-CNI XDP-TC / vnt relay.
+- `iocs.csv` (28 entries) — sample SHA-256 (orchestrators, Hide/Knock modules, libld.so, LKM, vGet), C2 IP/domains, S3 URL, Docker image, CVE-2024-23897, ports 2233/29872/window 54321, preload paths and hidden artifact names; behavioural anchors flagged as the durable set.
+- `kill_chain.svg` — template A two-lane (victim AWS EKS estate vs operator infra + eBPF modules), canonical palette, red anchors on the eBPF Hide module load and the Knock magic-packet listener.
+
+### Pedagogy
+- eBPF is dual-use: the thing that watches the kernel can blind it — detect at `bpf()` load time and verify with RAM `prog_idr`, never trust post-infection `bpftool`.
+- Hiding tools leave seams: `ss` (netlink) beats `netstat` (`/proc/net`), and a static-binary listing beats a `getdents` hook.
+- Magic packets decouple firewall logs from reality (knock on 443 → host 2233); capture upstream on a tap because XDP_DROP hides the trigger.
+- Behaviour outlives the build: LinkPro is recompiled per intrusion with per-host keys, so preload writes, hidden-artifact names, the magic-packet window and the eBPF module load are the durable anchors.
+
 ## 2026.06.11 — Day 45 — Argo CD ServerSideDiff Kubernetes Secret extraction (CVE-2026-42880)
 
 ### Added

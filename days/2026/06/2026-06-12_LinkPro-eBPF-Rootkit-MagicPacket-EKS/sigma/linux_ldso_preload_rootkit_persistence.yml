@@ -1,0 +1,48 @@
+title: Linux ld.so.preload Modification or Hidden Preload Library (LinkPro / Userspace Rootkit)
+id: 80dee558-9739-4b07-becc-c769ab8c6934
+status: experimental
+description: |
+  Detects creation or modification of /etc/ld.so.preload, or the drop of a
+  preload shared object such as /etc/libld.so. LinkPro (Synacktiv CSIRT,
+  2025-10) installs a userspace hiding rootkit by extracting an embedded
+  libld.so to /etc/libld.so and rewriting /etc/ld.so.preload to point at it, so
+  the library is injected into every dynamically linked program (T1574.006) and
+  hooks getdents/readdir/fopen/open/kill to hide the backdoor file (.tmp~data),
+  the listening port (2233) and the preload file itself. /etc/ld.so.preload is
+  legitimately rare on production Linux hosts, so writes to it are a high-value
+  anchor for many preload rootkits (Symbiote, HiddenWasp, Azazel), not only
+  LinkPro. Pair with the file_event for the dropped object and with a behavioural
+  ss-vs-netstat port-discrepancy hunt, because once the library loads it will
+  hide its own filesystem trace from subsequent listings.
+references:
+  - https://www.synacktiv.com/en/publications/linkpro-ebpf-rootkit-analysis
+  - https://attack.mitre.org/techniques/T1574/006/
+  - https://attack.mitre.org/techniques/T1014/
+author: Jarmi
+date: 2026/06/12
+tags:
+  - attack.persistence
+  - attack.t1574.006
+  - attack.defense-evasion
+  - attack.t1014
+logsource:
+  product: linux
+  category: file_event
+detection:
+  selection_preload_conf:
+    TargetFilename:
+      - '/etc/ld.so.preload'
+  selection_dropped_lib:
+    TargetFilename|endswith:
+      - '/libld.so'
+    TargetFilename|startswith:
+      - '/etc/'
+  condition: selection_preload_conf or selection_dropped_lib
+falsepositives:
+  - Legitimate global LD_PRELOAD deployments (rare; some commercial AV/EDR, snoopy, libsnoop, certain HPC profilers). Baseline the small set of hosts that legitimately use /etc/ld.so.preload and alert on any new path appended to it.
+fields:
+  - Image
+  - TargetFilename
+  - User
+
+level: high
