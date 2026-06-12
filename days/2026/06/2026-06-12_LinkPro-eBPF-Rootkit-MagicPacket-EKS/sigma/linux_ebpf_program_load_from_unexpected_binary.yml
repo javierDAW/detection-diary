@@ -1,0 +1,54 @@
+title: Linux eBPF Program Load via bpf() Syscall From Unexpected Binary (LinkPro Hide/Knock Modules)
+id: e6bf0b82-1881-4a5e-b0bd-2663546e9f9d
+status: experimental
+description: |
+  Detects use of the bpf() syscall to load eBPF programs (BPF_PROG_LOAD) from a
+  process that is not a known eBPF orchestrator. LinkPro loads two eBPF modules
+  via the ebpf-go library: a Hide module (Tracepoint/Kretprobe on
+  sys_enter_getdents and sys_enter_bpf to conceal files, PIDs and its own BPF
+  objects) and a Knock module (XDP/TC programs that wait for a magic packet).
+  Because the Hide module hooks sys_bpf itself, post-infection inventory tools
+  (bpftool) can be blinded; catching the program LOAD at audit time is therefore
+  the durable signal. This rule expects an auditd rule on the bpf syscall
+  (-a always,exit -F arch=b64 -S bpf -k ebpf_load) mapped into the
+  process_creation/syscall pipeline. Allow-list the legitimate eBPF loaders in
+  your estate (systemd-resolved, cilium-agent, falco, tetragon, bpftool,
+  libbpf-based observability) and alert on everything else, especially shells,
+  Go/Rust binaries in /tmp, and container workloads that should not touch BPF.
+references:
+  - https://www.synacktiv.com/en/publications/linkpro-ebpf-rootkit-analysis
+  - https://andreafortuna.org/2026/05/27/ebpf-rootkits/
+  - https://attack.mitre.org/techniques/T1562/001/
+author: Jarmi
+date: 2026/06/12
+tags:
+  - attack.defense-evasion
+  - attack.t1562.001
+  - attack.t1014
+detection:
+  selection_syscall:
+    syscall:
+      - 'bpf'
+    SyscallName:
+      - 'bpf'
+  filter_known_loaders:
+    Image|endswith:
+      - '/bpftool'
+      - '/cilium-agent'
+      - '/falco'
+      - '/tetragon'
+      - '/systemd-resolved'
+      - '/systemd'
+  condition: selection_syscall and not filter_known_loaders
+falsepositives:
+  - eBPF-based observability/security agents not present in the allow-list above. Extend filter_known_loaders with your sanctioned loaders; the residue should be near-zero on most hosts.
+fields:
+  - Image
+  - CommandLine
+  - User
+  - syscall
+logsource:
+  product: linux
+  service: auditd
+
+level: high

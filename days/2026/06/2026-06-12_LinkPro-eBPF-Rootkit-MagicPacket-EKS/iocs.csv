@@ -1,0 +1,29 @@
+type,value,context,confidence,source
+note,"LinkPro intrusion (Synacktiv CSIRT DFIR, AWS EKS). Sample SHA-256 are the analysed artifacts; LinkPro is rebuilt per intrusion and the config (C2/port/mode) is per-deployment, so the durable IOCs are the behavioural anchors (ld.so.preload, hidden artifact names, magic-packet window 54321, listening port 2233, eBPF Hide/Knock modules), NOT the hashes.",,high,Synacktiv 2025-10-13
+sha256,d5b2202b7308b25bda8e106552dafb8b6e739ca62287ee33ec77abe4016e698b,LinkPro Go orchestrator (passive/reverse mode sample),high,Synacktiv
+sha256,1368f3a8a8254feea14af7dc928af6847cab8fcceec4f21e0166843a75e81964,LinkPro Go orchestrator (active/forward mode sample),high,Synacktiv
+sha256,b8c8f9888a8764df73442ea78393fe12464e160d840c0e7e573f5d9ea226e164,LinkPro Hide eBPF module (getdents/sys_bpf tracepoint hooks),high,Synacktiv
+sha256,364c680f0cab651bb119aa1cd82fefda9384853b1e8f467bcad91c9bdef097d3,LinkPro Knock eBPF module (XDP/TC magic-packet listener),high,Synacktiv
+sha256,b11a1aa2809708101b0e2067bd40549fac4880522f7086eb15b71bfb322ff5e7,LinkPro libld.so userspace hiding library,high,Synacktiv
+sha256,9fc55dd37ec38990bb27ea2bc18dff0bb2d16ad7aa562ab35a6b63453c397075,LinkPro arp_diag.ko LKM (hook_*_seq_show port hiding),high,Synacktiv
+sha256,0da5a7d302ca5bc15341f9350a130ce46e18b7f06ca0ecf4a1c37b4029667dbb,vGet Rust downloader (loads vShell in memory) sample 1,high,Synacktiv
+sha256,caa4e64ff25466e482192d4b437bd397159e4c7e22990751d2a4fc18a6d95ee2,vGet Rust downloader (loads vShell in memory) sample 2,high,Synacktiv
+ipv4,56.155.98.37,vShell 4.9.3 in-memory C2 (WebSocket) in this intrusion; rotates per campaign,medium,Synacktiv
+ipv4,216.203.20.95,Infrastructure IP associated with the intrusion staging,medium,Synacktiv
+domain,vnt.wherewego.top,vnt VPN/proxy community relay used by the kvlnt/vv image (port 29872),high,Synacktiv
+domain,fixupcount.s3.dualstack.ap-northeast-1.amazonaws.com,S3 bucket staging the encrypted vShell payload,high,Synacktiv
+url,https://fixupcount.s3.dualstack.ap-northeast-1.amazonaws.com/wehn/rich.png,vGet downloads encrypted vShell payload (rich.png) from this S3 URL,high,Synacktiv
+string,kvlnt/vv,Malicious Docker Hub image (Kali base + 2 layers) deployed to EKS; removed by Docker support,high,Synacktiv
+cve,CVE-2024-23897,Jenkins arbitrary file read (CVSS 9.8) used as initial access on the exposed Jenkins server,high,Jenkins SECURITY-3314 / Synacktiv
+note,"TCP window 54321 on a SYN packet","LinkPro Knock magic-packet signature (XDP). Behavioural network anchor; survives hash changes.",high,Synacktiv
+note,"TCP port 2233","LinkPro internal listening port (reverse mode). Hidden from /proc/net/tcp by libld.so; visible via ss/netlink.",high,Synacktiv
+note,"TCP port 29872","vnt relay destination port for the kvlnt/vv proxy.",high,Synacktiv
+path,/etc/ld.so.preload,Rewritten to point at /etc/libld.so for userspace hiding (T1574.006),high,Synacktiv
+path,/etc/libld.so,LinkPro userspace hiding library dropped here (chmod 0755),high,Synacktiv
+string,.tmp~data,LinkPro backdoor filename hidden by getdents/readdir hooks,high,Synacktiv
+string,sshids,Hidden cron/artifact name filtered by libld.so listing hooks,high,Synacktiv
+string,.system,Persistence directory hidden by libld.so once persistence is activated,high,Synacktiv
+path,/tmp/.del,Symlink to /dev/null created by vGet; vShell sets HISTFILE here to suppress shell history (T1070.003),high,Synacktiv
+string,link-pro/link-client,Go main module symbol used to name LinkPro,high,Synacktiv
+string,resources/arp_diag.ko,Embedded LKM resource path inside the LinkPro Go binary,medium,Synacktiv
+string,toyincang,Symbol meaning "to conceal" (Mandarin pinyin) flagging the hidden-keyword set in libld.so,medium,Synacktiv

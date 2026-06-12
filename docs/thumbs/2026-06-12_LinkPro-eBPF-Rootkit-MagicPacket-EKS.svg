@@ -1,0 +1,241 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">LinkPro eBPF rootkit kill chain</title>
+<desc id="d">Two lanes. Left, the victim AWS EKS estate: exposed Jenkins exploited via CVE-2024-23897, malicious kvlnt/vv container deployed to EKS, pod credential harvest, vGet downloads in-memory vShell, then LinkPro installs an eBPF Hide module, an ld.so.preload fallback library, and a Knock magic-packet listener. Right, the operator infrastructure: Jenkins CLI file read, Docker Hub image, vnt relay, S3 staging, vShell C2, and the magic packet (TCP SYN window 54321) that activates the internal listener on port 2233. Critical red anchors are the eBPF Hide module load and the Knock listener; both are detectable at load or transit time even though the rootkit hides itself afterward.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<text class="head" x="20" y="36">LinkPro eBPF rootkit kill chain</text>
+<text class="meta" x="20" y="58">Vendor: Synacktiv CSIRT  Date: 2025-10-13  Cluster: LinkPro (unattributed, vShell/vnt)  Day 46</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="32" y="103">VICTIM  AWS EKS estate</text>
+<text class="laneLabelR" x="462" y="103">OPERATOR  infrastructure and eBPF modules</text>
+
+<!-- Left stage 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="146">Initial access: exposed Jenkins</text>
+<text class="sub" x="40" y="168">Arbitrary file read on internet-facing CI</text>
+<text class="sub" x="40" y="184">Leads to pipeline / cluster pivot</text>
+<text class="sub" x="40" y="200">T1190 Exploit Public-Facing App</text>
+<text class="mono" x="40" y="226">CVE-2024-23897  jenkins-cli @file</text>
+<text class="mono" x="40" y="244">help "@/etc/passwd"</text>
+
+<!-- Left stage 2 -->
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="296">Deploy malicious container to EKS</text>
+<text class="sub" x="40" y="318">kvlnt/vv image on several clusters</text>
+<text class="sub" x="40" y="334">entrypoint starts sshd, vGet, vnt</text>
+<text class="sub" x="40" y="350">T1610 Deploy Container</text>
+<text class="mono" x="40" y="376">/app/start.sh -> /app/app /app/link</text>
+<text class="mono" x="40" y="394">Kali base + 2 layers</text>
+
+<!-- Left stage 3 -->
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="446">Pod credential harvest</text>
+<text class="sub" x="40" y="468">cat over SA tokens, API keys, certs</text>
+<text class="sub" x="40" y="484">Host and neighbour-pod material</text>
+<text class="sub" x="40" y="500">T1552.001 Credentials In Files</text>
+<text class="mono" x="40" y="526">serviceaccount/token  .aws/credentials</text>
+<text class="mono" x="40" y="544">.kube/config</text>
+
+<!-- Left stage 4 -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="596">vGet downloads in-memory vShell</text>
+<text class="sub" x="40" y="618">Rust downloader; reflective load</text>
+<text class="sub" x="40" y="634">HISTFILE=/tmp/.del suppresses history</text>
+<text class="sub" x="40" y="650">T1620 Reflective Load  T1070.003</text>
+<text class="mono" x="40" y="676">vShell 4.9.3  ws + DNS tunnel C2</text>
+<text class="mono" x="40" y="694">/tmp/.del -> /dev/null</text>
+
+<!-- Left stage 5 (critical) -->
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="746">LinkPro Hide eBPF module</text>
+<text class="sub" x="40" y="768">Tracepoint/Kretprobe on getdents, bpf</text>
+<text class="sub" x="40" y="784">Hides files, PIDs and own BPF objects</text>
+<text class="sub" x="40" y="800">T1014 Rootkit  T1562.001 Impair Defenses</text>
+<text class="mono" x="40" y="826">sys_enter_getdents  sys_bpf hook</text>
+<text class="mono" x="40" y="844">"HIDING NEXT_ID"  .tmp~data</text>
+
+<!-- Left stage 6 -->
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="896">Fallback: ld.so.preload library</text>
+<text class="sub" x="40" y="918">libld.so hooks fopen/getdents/kill</text>
+<text class="sub" x="40" y="934">Hides port 2233 from /proc/net/tcp</text>
+<text class="sub" x="40" y="950">T1574.006 Dynamic Linker Hijacking</text>
+<text class="mono" x="40" y="976">/etc/ld.so.preload -> /etc/libld.so</text>
+<text class="mono" x="40" y="994">ss beats netstat (netlink)</text>
+
+<!-- Left stage 7 (critical) -->
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1046">Knock magic-packet listener</text>
+<text class="sub" x="40" y="1068">XDP/TC programs; 1h window per src IP</text>
+<text class="sub" x="40" y="1084">Rewrites dst port to internal 2233</text>
+<text class="sub" x="40" y="1100">T1205.001 Traffic Signaling Port Knock</text>
+<text class="mono" x="40" y="1126">SYN window==54321 -> open  XDP_DROP</text>
+<text class="mono" x="40" y="1144">knock on 443 reaches 2233 internally</text>
+
+<!-- Right op 1 -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="151">Jenkins CLI file-read primitive</text>
+<text class="sub" x="470" y="173">args4j @ expansion reads local files</text>
+<text class="sub" x="470" y="189">Secrets disclosure then RCE chain</text>
+<text class="sub" x="470" y="205">Patched 2.442 / LTS 2.426.3</text>
+<text class="sub" x="470" y="221">Remove internet exposure</text>
+<text class="mono" x="470" y="251">CVE-2024-23897  CVSS 9.8</text>
+<text class="mono" x="470" y="269">SECURITY-3314</text>
+
+<!-- Right op 2 -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="321">Docker Hub image kvlnt/vv</text>
+<text class="sub" x="470" y="343">Throwaway public registry image</text>
+<text class="sub" x="470" y="359">Removed by Docker after report</text>
+<text class="sub" x="470" y="375">Admission control would block it</text>
+<text class="sub" x="470" y="391">Supply chain = dependency install</text>
+<text class="mono" x="470" y="421">image: kvlnt/vv</text>
+<text class="mono" x="470" y="439">Kali base + start.sh entrypoint</text>
+
+<!-- Right op 3 -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="491">vnt relay (any-IP inbound + proxy)</text>
+<text class="sub" x="470" y="513">Open-source VPN reached from anywhere</text>
+<text class="sub" x="470" y="529">Proxy to reach other VPC servers</text>
+<text class="sub" x="470" y="545">AES128-GCM clients, RSA+AES transport</text>
+<text class="sub" x="470" y="561">T1090 Proxy</text>
+<text class="mono" x="470" y="591">vnt.wherewego.top:29872</text>
+<text class="mono" x="470" y="609">-w mmm000  -W</text>
+
+<!-- Right op 4 -->
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="661">S3 staging of encrypted payload</text>
+<text class="sub" x="470" y="683">vGet pulls encrypted blob from S3</text>
+<text class="sub" x="470" y="699">Decrypts and runs vShell in memory</text>
+<text class="sub" x="470" y="715">No disk artifact for the payload</text>
+<text class="sub" x="470" y="731">T1105 Ingress Tool Transfer</text>
+<text class="mono" x="470" y="761">fixupcount.s3...amazonaws.com</text>
+<text class="mono" x="470" y="779">/wehn/rich.png</text>
+
+<!-- Right op 5 -->
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="831">vShell 4.9.3 C2</text>
+<text class="sub" x="470" y="853">WebSocket C2 in this intrusion</text>
+<text class="sub" x="470" y="869">Second dropper uses DNS tunneling</text>
+<text class="sub" x="470" y="885">Tooling linked to UNC5174 (shared)</text>
+<text class="sub" x="470" y="901">T1071.001 / T1071.004</text>
+<text class="mono" x="470" y="931">56.155.98.37  (rotates)</text>
+<text class="mono" x="470" y="949">cracked vShell widely available</text>
+
+<!-- Right op 6 (critical) -->
+<rect class="opK" x="460" y="975" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="1001">Magic packet activation</text>
+<text class="sub" x="470" y="1023">Single SYN opens 1-hour window</text>
+<text class="sub" x="470" y="1039">XDP_DROP hides trigger from host pcap</text>
+<text class="sub" x="470" y="1055">Capture upstream on a tap/SPAN</text>
+<text class="sub" x="470" y="1071">T1205.001 Port Knocking</text>
+<text class="mono" x="470" y="1101">tcp.window == 54321  flags:S</text>
+<text class="mono" x="470" y="1119">Suricata sid 2026612001</text>
+
+<!-- Left lane vertical flow arrows -->
+<g color="#2a4a6a">
+<path class="arrow" d="M130,255 L130,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M130,405 L130,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M130,555 L130,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M130,705 L130,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M130,855 L130,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M130,1005 L130,1020" marker-end="url(#ah)"/>
+</g>
+
+<!-- Cross-lane operator -> victim arrows -->
+<g color="#7a3a7a">
+<path class="arrowX" d="M460,160 L425,170" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,330 L425,320" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,1010 L425,1055" marker-end="url(#ah)"/>
+</g>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="32" y="1198">Detection anchors (durable, survive per-intrusion rebuilds)</text>
+<text class="footerT" x="32" y="1218">Load-time: auditd bpf() syscall (key ebpf_load) catches Hide/Knock before they blind bpftool inventory.</text>
+<text class="footerT" x="32" y="1236">Seam: /etc/ld.so.preload write + ss-vs-netstat port 2233 discrepancy; static-binary directory listing.</text>
+<text class="footerT" x="32" y="1254">Transit: TCP SYN window 54321 on a tap; vnt relay 29872; verify eBPF via RAM prog_idr, not userspace.</text>
+</svg>

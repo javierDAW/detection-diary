@@ -1,0 +1,19 @@
+// Title: LinkPro ld.so.preload Rootkit Persistence and Hidden Artifacts (Linux)
+// Id: 9b1d6f2a-7c0e-4a51-bf2c-1a8e5d4c9f10
+// MITRE: T1574.006 (Dynamic Linker Hijacking), T1014 (Rootkit), T1564.001 (Hidden Files)
+// Reference: https://www.synacktiv.com/en/publications/linkpro-ebpf-rootkit-analysis
+// Author: Jarmi
+// Date: 2026-06-12
+// Tested on: Microsoft Defender for Endpoint (Linux), DeviceFileEvents
+// FP notes: /etc/ld.so.preload is rare in prod; baseline the small set of hosts that
+//           legitimately use it. The hidden-artifact names are LinkPro-specific.
+DeviceFileEvents
+| where Timestamp > ago(30d)
+| where FolderPath == "/etc/ld.so.preload"
+    or FileName == "libld.so"
+    or FileName == ".tmp~data"
+    or FileName == "sshids"
+    or FolderPath has "/.system/"
+| project Timestamp, DeviceName, ActionType, FolderPath, FileName,
+          InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName
+| sort by Timestamp desc
