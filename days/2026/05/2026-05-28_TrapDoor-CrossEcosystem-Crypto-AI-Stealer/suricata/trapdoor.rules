@@ -27,10 +27,10 @@ alert dns $HOME_NET any -> any any (msg:"PROF-CIBER TrapDoor: DNS query for ddji
 
 alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"PROF-CIBER TrapDoor: TLS SNI to ddjidd564.github.io"; tls.sni; content:"ddjidd564.github.io"; nocase; classtype:trojan-activity; sid:8260002; rev:1;)
 
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PROF-CIBER TrapDoor: HTTP Host ddjidd564.github.io"; flow:established,to_server; http.host; content:"ddjidd564.github.io"; nocase; classtype:trojan-activity; sid:8260003; rev:1;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PROF-CIBER TrapDoor: HTTP Host ddjidd564.github.io"; flow:established,to_server; http.host; content:"ddjidd564.github.io"; classtype:trojan-activity; sid:8260003; rev:1;)
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PROF-CIBER TrapDoor: HTTP GET defi-security-best-practices payload URI"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/defi-security-best-practices/"; nocase; classtype:trojan-activity; sid:8260004; rev:1;)
 
-alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PROF-CIBER TrapDoor: HTTP request from reqwest UA to gist.githubusercontent.com (Crates build.rs exfil)"; flow:established,to_server; http.host; content:"gist.githubusercontent.com"; nocase; http.user_agent; content:"reqwest"; nocase; classtype:trojan-activity; sid:8260005; rev:1;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PROF-CIBER TrapDoor: HTTP request from reqwest UA to gist.githubusercontent.com (Crates build.rs exfil)"; flow:established,to_server; http.host; content:"gist.githubusercontent.com"; http.user_agent; content:"reqwest"; nocase; classtype:trojan-activity; sid:8260005; rev:1;)
 
 alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PROF-CIBER TrapDoor: HTTP request carrying campaign marker P-2024-001"; flow:established,to_server; http.request_body; content:"P-2024-001"; nocase; classtype:trojan-activity; sid:8260006; rev:1;)

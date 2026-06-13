@@ -1,0 +1,59 @@
+title: Android SMS/OTP Read and Forward by a Recently-Sideloaded Package
+id: 70d01c5c-a4ab-4e09-be3f-a7be68b31984
+status: experimental
+description: |
+  Detects a sideloaded (non-store) Android package that reads inbound SMS and/or is
+  set as default SMS handler shortly after install, consistent with OTP interception.
+  DevilNFC's SmsPermissionManager silently polls incoming SMS in the background and
+  forwards bank OTPs to its C2 and a Telegram channel in real time, defeating the
+  SMS-OTP step on a relayed transaction (T1636.004 / T1582). The combination of a
+  sideloaded installer source, an SMS read/RECEIVE_SMS grant, and SMS access within a
+  short window of installation is the high-signal anchor; benign messaging apps are
+  normally store-installed and user-selected as default. Tune the post-install window
+  and the approved-messaging allow-list to your fleet.
+references:
+  - https://www.cleafy.com/cleafy-labs/nfc-relay-goes-local-how-ai-is-accelerating-a-new-wave-of-independent-malware-developers
+  - https://attack.mitre.org/techniques/T1636/004/
+  - https://attack.mitre.org/techniques/T1582/
+author: Jarmi
+date: 2026/06/13
+logsource:
+  product: mtd
+  category: mobile_event
+detection:
+  selection_sms:
+    EventType:
+      - 'SmsRead'
+      - 'DefaultSmsHandlerChanged'
+      - 'ReceiveSmsPermissionGranted'
+  selection_sideloaded:
+    InstallerPackage|contains:
+      - 'unknown'
+      - 'sideload'
+      - 'filemanager'
+      - 'browser'
+      - 'package_installer'
+  selection_blank_installer:
+    InstallerPackage: null
+  filter_store_messaging:
+    PackageName:
+      - 'com.google.android.apps.messaging'
+      - 'com.samsung.android.messaging'
+      - 'org.thoughtcrime.securesms'
+      - 'com.whatsapp'
+  condition: selection_sms and (selection_sideloaded or selection_blank_installer) and not filter_store_messaging
+falsepositives:
+  - Legitimate sideloaded enterprise messaging or 2FA-management apps; allow-list by PackageName.
+  - User intentionally setting a sideloaded SMS app as default; rare on managed fleets and worth confirming.
+fields:
+  - PackageName
+  - InstallerPackage
+  - EventType
+  - DeviceName
+
+level: high
+tags:
+  - attack.collection
+  - attack.t1636.004
+  - attack.credential-access
+  - attack.t1582

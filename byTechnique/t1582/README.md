@@ -2,12 +2,11 @@
 <!-- Source of truth: YAML frontmatter in each day's README.md -->
 
 
-# Techniques: T1655.001
+# Techniques: T1582
 
-2 day(s) covering this technique.
+1 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-06-13 | DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Brazilian TAs, AI-assisted) | DevilNFC · NFCMultiPay | [`2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/`](../../days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/) |
-| 2026-05-09 | Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026) | Albiriox | [`2026-05-09_Albiriox-Android-MaaS-AcVNC/`](../../days/2026/05/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |

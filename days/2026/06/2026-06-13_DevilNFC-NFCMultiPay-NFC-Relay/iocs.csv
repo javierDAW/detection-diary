@@ -1,0 +1,28 @@
+type,value,context,confidence,source
+note,,"DevilNFC + NFCMultiPay NFC relay (Cleafy TIR, pub 2026-05-18). Network IOCs and APK hashes rotate per build; the durable anchors are behavioural: HCE card-emulation by a non-wallet sideloaded app, Xposed hook on findSelectAid() with a single dummy AID, Kiosk lock + PIN overlay, SMS/OTP forwarding, and the relay transports (raw-TCP/Protobuf, REST /api/nfc/*, MQTT 1883 with a retained card_ready topic).",high,Cleafy
+domain,nfcrackatm[.]com,DevilNFC C2 / relay server,high,Cleafy
+domain,spicynagets[.]shop,DevilNFC C2 / relay server,high,Cleafy
+ipv4,185.203.116[.]18,NFCMultiPay C2 / MQTT broker,high,Cleafy
+ipv4,47.253.167[.]219,NFCMultiPay C2 / MQTT broker,high,Cleafy
+md5,caa5e8cf3275339d251210072ebe88c2,DevilNFC APK sample (dual-role reader),high,Cleafy
+md5,35dd9c3a56e88a39bf6c8fdad46b0398,NFCMultiPay APK sample (REST polling variant),high,Cleafy
+md5,9d19527aeb4cabfb40bbaea6d73b5ff0,NFCMultiPay APK sample (MQTT variant),high,Cleafy
+string,com.devilnfc.reader,DevilNFC APK package name,high,Cleafy
+string,F0010203040506,DevilNFC dummy HCE AID (Google sample) rerouted by findSelectAid() hook,high,Cleafy
+string,2PAY.SYS.DDF01,PPSE AID won by HCE relay families (NFU Pay class) to capture the whole session,medium,Cleafy
+string,325041592E5359532E4444463031,PPSE AID hex (2PAY.SYS.DDF01),medium,Cleafy
+string,libnfcgate.so,NFCGate-derived native relay engine loaded into com.android.nfc (DevilNFC),high,Cleafy
+string,findSelectAid,HostEmulationManager method hooked via Xposed to reroute payment AIDs (DevilNFC),high,Cleafy
+string,KioskActivity,DevilNFC lockTask/Kiosk activity that traps the victim in the fake UI,high,Cleafy
+string,api_pin.php,DevilNFC plaintext PIN/password exfil endpoint,high,Cleafy
+string,nfc/relay/<pin>/card_ready,NFCMultiPay MQTT retained topic carrying PIN + last4 PAN + brand,high,Cleafy
+string,nfc/relay/<pin>/apdu_request,NFCMultiPay MQTT inbound-APDU topic,high,Cleafy
+string,nfc/relay/<pin>/apdu_response,NFCMultiPay MQTT outbound-APDU topic,high,Cleafy
+string,/api/nfc/check-pin,NFCMultiPay REST session-PIN validation endpoint (v1),high,Cleafy
+string,/api/nfc/poll,NFCMultiPay REST relay polling endpoint (v1),high,Cleafy
+string,/api/nfc/publish,NFCMultiPay REST APDU-response publish endpoint (v1),high,Cleafy
+note,MQTT TCP 1883 to a non-corporate broker from a banking-themed app,NFCMultiPay v2 relay transport anchor,medium,Cleafy
+note,OP_SYN / OP_ACK / OP_PSH / OP_FIN Protobuf over raw TCP with TCP_NODELAY,DevilNFC APDU relay state machine,high,Cleafy
+note,android.nfc.cardemulation.host_apdu_service declared by a non-wallet sideloaded app,Behavioural anchor for NFC relay tapper/reader role,high,Cleafy
+cve,,No CVE — this is malware/social-engineering fraud, not a software vulnerability,high,Cleafy
+note,HandyPay trojanized NGate variant (Brazil),Sibling AI-assisted Portuguese(BR) NFC relay campaign,medium,ESET 2026-04-21

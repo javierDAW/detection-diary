@@ -1,0 +1,21 @@
+// Title: NFCMultiPay MQTT / REST Relay Transport Network Activity (Android)
+// Id: a2905687-64b0-46a3-b6e0-53d792d440d9
+// MITRE: T1437.001 (Web Protocols), T1521.001 (Symmetric Cryptography), T1646 (Exfiltration)
+// Reference: https://www.cleafy.com/cleafy-labs/nfc-relay-goes-local-how-ai-is-accelerating-a-new-wave-of-independent-malware-developers
+// Author: Jarmi
+// Date: 2026-06-13
+// Tested on: Microsoft Defender for Endpoint (mobile), DeviceNetworkEvents
+// FP notes: C2 IPs rotate; MQTT (TCP 1883) and the /api/nfc/* REST endpoints are the durable
+//           anchors. MQTT 1883 from a managed phone to a non-corporate broker is unusual and a
+//           strong lead even after the IPs change. Add your corporate IoT/MQTT broker ranges to
+//           the exclusion below.
+let nfcmultipay_c2 = dynamic(["185.203.116.18","47.253.167.219"]);
+let corp_mqtt_brokers = dynamic(["<add_known_corp_mqtt_broker_ip>"]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteIP in (nfcmultipay_c2)
+    or (RemotePort == 1883 and RemoteIP !in (corp_mqtt_brokers))
+    or RemoteUrl has_any ("/api/nfc/check-pin","/api/nfc/poll","/api/nfc/publish")
+| project Timestamp, DeviceName, ActionType, RemoteIP, RemotePort, RemoteUrl,
+          InitiatingProcessFileName, InitiatingProcessAccountName
+| sort by Timestamp desc

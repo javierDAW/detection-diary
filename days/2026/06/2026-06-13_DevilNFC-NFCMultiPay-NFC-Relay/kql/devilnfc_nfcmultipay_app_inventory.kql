@@ -1,0 +1,17 @@
+// Title: DevilNFC / NFCMultiPay Malicious Package and NFC/SMS Permission Inventory (Android)
+// Id: 02583482-923b-4a0b-8dd1-9da4b2b00109
+// MITRE: T1655.001 (Match Legitimate Name), T1636.004 (SMS Messages), T1582 (SMS Control)
+// Reference: https://www.cleafy.com/cleafy-labs/nfc-relay-goes-local-how-ai-is-accelerating-a-new-wave-of-independent-malware-developers
+// Author: Jarmi
+// Date: 2026-06-13
+// Tested on: Microsoft Defender for Endpoint (mobile), DeviceTvmSoftwareInventory + DeviceEvents
+// FP notes: package names rotate per campaign; the durable signal is HCE/card-emulation by a
+//           non-wallet sideloaded app. Treat the explicit package match as high confidence and
+//           the NFC+SMS permission combo on a non-wallet app as a hunt lead.
+let bad_packages = dynamic(["com.devilnfc.reader"]);
+let bad_name_substrings = dynamic(["nfcmultipay","nfcrelay","nfcrack"]);
+DeviceTvmSoftwareInventory
+| where SoftwareName in~ (bad_packages)
+    or SoftwareName has_any (bad_name_substrings)
+| project DeviceName, SoftwareName, SoftwareVersion, SoftwareVendor
+| sort by DeviceName asc

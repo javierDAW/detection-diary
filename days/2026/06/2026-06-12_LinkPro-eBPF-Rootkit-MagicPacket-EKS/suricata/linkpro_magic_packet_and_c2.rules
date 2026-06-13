@@ -18,4 +18,4 @@ alert tcp any any -> any 29872 (msg:"LinkPro infra vnt relay connection (kvlnt/v
 
 alert ip any any -> 56.155.98.37 any (msg:"LinkPro vShell C2 IP (in-memory vShell 4.9.3 WebSocket)"; classtype:trojan-activity; sid:2026612003; rev:1;)
 
-alert http any any -> any any (msg:"LinkPro vGet S3 staging payload download (rich.png)"; flow:to_server,established; http.method; content:"GET"; http.uri; content:"/wehn/rich.png"; nocase; http.host; content:"fixupcount.s3"; nocase; classtype:trojan-activity; sid:2026612004; rev:1;)
+alert http any any -> any any (msg:"LinkPro vGet S3 staging payload download (rich.png)"; flow:to_server,established; http.method; content:"GET"; http.uri; content:"/wehn/rich.png"; nocase; http.host; content:"fixupcount.s3"; classtype:trojan-activity; sid:2026612004; rev:1;)

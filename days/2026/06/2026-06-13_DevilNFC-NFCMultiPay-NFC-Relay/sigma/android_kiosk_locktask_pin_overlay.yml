@@ -1,0 +1,54 @@
+title: Android Kiosk/lockTask Start with Overlay PIN Prompt by Non-MDM Package
+id: df9f30f4-dcef-4813-b8fa-cf151d91c6d6
+status: experimental
+description: |
+  Detects a non-MDM Android package that starts Kiosk Mode / lockTask (screen
+  pinning, system-UI hidden, back button neutralised) and renders an overlay or
+  WebView credential/PIN prompt. DevilNFC's KioskActivity locks the victim inside a
+  C2-served fake banking interface with no exit while the NFC relay completes, then
+  a remote-template pop-up harvests the 4-digit card PIN and the e-banking password
+  (T1417.002). Legitimate kiosk/lockTask is normally driven by the MDM agent or a
+  dedicated single-app kiosk launcher, so lockTask started by an arbitrary sideloaded
+  package combined with an overlay PIN prompt is a strong fraud anchor. Tune the MDM
+  and approved-kiosk allow-list to your fleet.
+references:
+  - https://www.cleafy.com/cleafy-labs/nfc-relay-goes-local-how-ai-is-accelerating-a-new-wave-of-independent-malware-developers
+  - https://developer.android.com/work/dpc/dedicated-devices/lock-task-mode
+  - https://attack.mitre.org/techniques/T1417/002/
+author: Jarmi
+date: 2026/06/13
+logsource:
+  product: mtd
+  category: mobile_event
+detection:
+  selection_kiosk:
+    EventType:
+      - 'LockTaskModeEntered'
+      - 'KioskModeStarted'
+      - 'ScreenPinningEnabled'
+  selection_overlay:
+    EventType:
+      - 'OverlayWindowShown'
+      - 'SystemAlertWindowGranted'
+      - 'WebViewCredentialPrompt'
+  filter_mdm:
+    PackageName:
+      - 'com.microsoft.intune'
+      - 'com.airwatch.androidagent'
+      - 'com.google.android.apps.work.clouddpc'
+      - 'com.miradore.client'
+  condition: (selection_kiosk and selection_overlay) and not filter_mdm
+falsepositives:
+  - Approved single-purpose kiosk launchers (digital signage, POS lockdown) that also render in-app prompts; allow-list those package names.
+  - MDM-driven lockTask deployments; suppressed by the MDM filter above.
+fields:
+  - PackageName
+  - EventType
+  - DeviceName
+
+level: high
+tags:
+  - attack.collection
+  - attack.t1417.002
+  - attack.defense-evasion
+  - attack.t1541

@@ -11,9 +11,11 @@
 #        recovery downloads (vendor update portals, fwupd, WSUS) - allowlist those FQDNs.
 #        SIDs 4100701-4100703, rev:1. No custom variables beyond $HOME_NET/$EXTERNAL_NET.
 
-# 1) HTTP GET of a raw .efi boot payload from an external host to an internal endpoint.
+# 1) HTTP GET whose URI fetches a raw .efi boot payload from an external host.
 #    A workstation pulling a bare *.efi over plain HTTP is unusual outside imaging/recovery.
-alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"UEFI bootkit staging - inbound HTTP download of .efi boot payload"; flow:established,to_client; http.response_line; content:"200"; http.header; content:"application/octet-stream"; nocase; http.request_line; content:".efi"; nocase; classtype:trojan-activity; reference:url,eclypsium.com/blog/microsoft-secure-boot-certificates-expire-2026/; sid:4100701; rev:1;)
+#    (Request-side only: one rule cannot mix http.response_line with http.request_line -
+#    Suricata rejects conflicting directions; the GET for *.efi is the durable anchor.)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"UEFI bootkit staging - HTTP GET for raw .efi boot payload"; flow:established,to_server; http.method; content:"GET"; http.uri; content:".efi"; nocase; endswith; classtype:trojan-activity; reference:url,eclypsium.com/blog/microsoft-secure-boot-certificates-expire-2026/; sid:4100701; rev:1;)
 
 # 2) HTTP request whose URI fetches a Windows Boot Manager / shim component by name from outside.
 #    bootmgfw.efi / grubx64.efi / shimx64.efi pulled over the wire = likely bootkit pre-staging.

@@ -1,0 +1,19 @@
+// Title: DevilNFC C2 / PIN Exfiltration Network Activity (Android)
+// Id: eeb60bc7-5065-426b-909e-fd4cfb2eff28
+// MITRE: T1437.001 (Web Protocols), T1646 (Exfiltration Over C2 Channel)
+// Reference: https://www.cleafy.com/cleafy-labs/nfc-relay-goes-local-how-ai-is-accelerating-a-new-wave-of-independent-malware-developers
+// Author: Jarmi
+// Date: 2026-06-13
+// Tested on: Microsoft Defender for Endpoint (mobile), DeviceNetworkEvents
+// FP notes: C2 domains rotate per build; api.telegram.org is widely legitimate, so the Telegram
+//           leg is only suspicious from an app categorised as banking/finance. Keep the
+//           behavioural hunts (HCE-by-non-wallet, Kiosk+PIN overlay) alongside this.
+let devilnfc_c2 = dynamic(["nfcrackatm.com","spicynagets.shop"]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteUrl has_any (devilnfc_c2)
+    or RemoteUrl has "api_pin.php"
+    or (RemoteUrl has "api.telegram.org" and RemoteUrl has "/bot")
+| project Timestamp, DeviceName, ActionType, RemoteIP, RemotePort, RemoteUrl,
+          InitiatingProcessFileName, InitiatingProcessAccountName
+| sort by Timestamp desc
