@@ -1,5 +1,41 @@
 [
  {
+  "date": "2026-06-13",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay",
+  "title": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Brazilian TAs, AI-assisted)",
+  "clusters": [
+   "DevilNFC",
+   "NFCMultiPay"
+  ],
+  "country": "Spain (DevilNFC) / Brazil (NFCMultiPay) — EU + LATAM nexus",
+  "platforms": [
+   "android"
+  ],
+  "sectors": [
+   "finance",
+   "banking",
+   "retail-payments"
+  ],
+  "techniques": [
+   "T1660",
+   "T1655.001",
+   "T1541",
+   "T1417.002",
+   "T1636.004",
+   "T1582",
+   "T1437.001",
+   "T1521.001",
+   "T1646"
+  ],
+  "tech_count": 9,
+  "tldr": "DevilNFC and NFCMultiPay are two previously-undocumented Android NFC relay malware families analysed by Cleafy's Threat Intelligence and Response (TIR) team (publication 2026-05-18; DevilNFC recovered from a victim device during a Cleafy IR engagement in March 2026). Both perform real-time NFC relay fraud against European and LATAM banking customers — a victim is socially engineered into tapping t",
+  "thumb": "thumbs/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay.svg",
+  "case_rel": "../days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/",
+  "q": "devilnfc and nfcmultipay — locally-built android nfc relay malware (spanish + brazilian tas, ai-assisted) devilnfc nfcmultipay spain (devilnfc) / brazil (nfcmultipay) — eu + latam nexus android finance banking retail-payments t1660 t1655.001 t1541 t1417.002 t1636.004 t1582 t1437.001 t1521.001 t1646"
+ },
+ {
   "date": "2026-06-12",
   "year": "2026",
   "month": "2026-06",

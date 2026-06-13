@@ -1,0 +1,67 @@
+title: Android Host Card Emulation Service Registered by a Sideloaded Non-Store Package
+id: 6fcb1a38-f74d-4471-8b84-159eabdebf3e
+status: experimental
+description: |
+  Detects a sideloaded (non-store, non-system) Android package that registers a
+  HostApduService (android.nfc.cardemulation.host_apdu_service) and/or requests
+  android.permission.NFC. Card emulation by an app that is not a wallet, bank, or
+  transit app is a high-signal anchor for NFC relay malware (DevilNFC, NFCMultiPay,
+  NGate, SuperCard X). DevilNFC ships a single dual-role APK (com.devilnfc.reader)
+  that becomes a Host Card Emulator on a rooted tapper device and declares a single
+  dummy AID (F0010203040506) while an Xposed hook on findSelectAid() reroutes every
+  payment AID into its relay pipeline, so the declared AID list is not reliable —
+  the durable signal is HCE registration by a sideloaded, non-wallet package. Pair
+  with the install-source filter to suppress the legitimate wallet/bank/transit set.
+references:
+  - https://www.cleafy.com/cleafy-labs/nfc-relay-goes-local-how-ai-is-accelerating-a-new-wave-of-independent-malware-developers
+  - https://developer.android.com/develop/connectivity/nfc/hce
+  - https://attack.mitre.org/techniques/T1655/001/
+author: Jarmi
+date: 2026/06/13
+logsource:
+  product: mtd
+  category: mobile_event
+detection:
+  selection_hce:
+    EventType:
+      - 'HostApduServiceRegistered'
+      - 'CardEmulationServiceEnabled'
+      - 'NfcPermissionGranted'
+  selection_sideloaded:
+    InstallerPackage|contains:
+      - 'unknown'
+      - 'sideload'
+      - 'filemanager'
+      - 'browser'
+      - 'package_installer'
+  selection_blank_installer:
+    InstallerPackage: null
+  filter_system:
+    PackageName|startswith:
+      - 'com.android.'
+      - 'com.google.'
+      - 'com.samsung.'
+      - 'com.miui.'
+      - 'com.huawei.'
+  filter_store:
+    InstallerPackage:
+      - 'com.android.vending'
+      - 'com.amazon.venezia'
+      - 'com.sec.android.app.samsungapps'
+      - 'com.huawei.appmarket'
+  condition: selection_hce and (selection_sideloaded or selection_blank_installer) and not (filter_system or filter_store)
+falsepositives:
+  - Legitimate sideloaded wallet, bank, loyalty, or transit apps that use HCE; baseline the small approved set by PackageName and alert on any new HCE registrant.
+  - Developer or test builds installed via adb on developer-managed devices; rare on a corporate fleet.
+fields:
+  - PackageName
+  - InstallerPackage
+  - EventType
+  - DeviceName
+
+level: high
+tags:
+  - attack.defense-evasion
+  - attack.t1655.001
+  - attack.initial-access
+  - attack.t1660

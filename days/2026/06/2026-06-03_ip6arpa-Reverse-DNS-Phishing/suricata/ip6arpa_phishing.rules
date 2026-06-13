@@ -9,7 +9,7 @@
 #        which is an RFC violation. 4100306 lists known Campaign A/B IOC IPs. No custom variables used.
 
 alert dns any any -> any any (msg:"ip6.arpa Phishing - DNS query with DGA text prefix on reverse-DNS nibble chain"; dns.query; content:".ip6.arpa"; nocase; pcre:"/[a-z0-9]{4,}(\.[0-9a-f]){6,}\.ip6\.arpa$/i"; classtype:trojan-activity; sid:4100301; rev:1;)
-alert http any any -> any any (msg:"ip6.arpa Phishing - HTTP request to a host in reverse-DNS namespace"; flow:established,to_server; http.host; content:".ip6.arpa"; endswith; nocase; classtype:trojan-activity; sid:4100302; rev:1;)
+alert http any any -> any any (msg:"ip6.arpa Phishing - HTTP request to a host in reverse-DNS namespace"; flow:established,to_server; http.host; content:".ip6.arpa"; endswith; classtype:trojan-activity; sid:4100302; rev:1;)
 alert tls any any -> any any (msg:"ip6.arpa Phishing - TLS SNI in reverse-DNS namespace"; tls.sni; content:".ip6.arpa"; endswith; nocase; classtype:trojan-activity; sid:4100303; rev:1;)
 alert dns any any -> any any (msg:"ip6.arpa Phishing - Campaign A active reverse zone lookup"; dns.query; content:"d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa"; nocase; classtype:trojan-activity; sid:4100304; rev:1;)
 alert dns any any -> any any (msg:"ip6.arpa Phishing - Campaign B active reverse zone lookup"; dns.query; content:"0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa"; nocase; classtype:trojan-activity; sid:4100305; rev:1;)

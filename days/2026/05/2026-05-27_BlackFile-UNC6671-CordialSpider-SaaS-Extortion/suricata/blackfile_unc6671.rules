@@ -29,5 +29,5 @@ alert ip $HOME_NET any -> [179.43.185.226] any (msg:"BLACKFILE UNC6671 connectio
 # (UNC6671 spoofed ClientAppId="Microsoft Office" but the UserAgent string
 #  still identified the scripting library — this is the high-confidence
 #  network-side anchor that complements the M365 UAL KQL detection.)
-alert http $HOME_NET any -> any any (msg:"BLACKFILE UNC6671 scripting-library User-Agent to SharePoint Online"; http.host; content:".sharepoint.com"; endswith; nocase; http.user_agent; content:"python-requests/2.28.1"; nocase; classtype:trojan-activity; sid:9026005; rev:1;)
-alert http $HOME_NET any -> any any (msg:"BLACKFILE UNC6671 WindowsPowerShell User-Agent to SharePoint Online"; http.host; content:".sharepoint.com"; endswith; nocase; http.user_agent; content:"WindowsPowerShell/5.1"; nocase; classtype:trojan-activity; sid:9026006; rev:1;)
+alert http $HOME_NET any -> any any (msg:"BLACKFILE UNC6671 scripting-library User-Agent to SharePoint Online"; http.host; content:".sharepoint.com"; endswith; http.user_agent; content:"python-requests/2.28.1"; nocase; classtype:trojan-activity; sid:9026005; rev:1;)
+alert http $HOME_NET any -> any any (msg:"BLACKFILE UNC6671 WindowsPowerShell User-Agent to SharePoint Online"; http.host; content:".sharepoint.com"; endswith; http.user_agent; content:"WindowsPowerShell/5.1"; nocase; classtype:trojan-activity; sid:9026006; rev:1;)

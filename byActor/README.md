@@ -33,6 +33,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Cordial Spider (CrowdStrike)](./cordial-spider-crowdstrike/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
 | [Dadsec](./dadsec/) | 1 |
+| [DevilNFC](./devilnfc/) | 1 |
 | [Earth Estries](./earth-estries/) | 1 |
 | [Embargo](./embargo/) | 1 |
 | [Erudite Mogwai](./erudite-mogwai/) | 1 |
@@ -52,6 +53,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
 | [Microsoft Defender Security Research (vulnerability disclosure, no threat actor)](./microsoft-defender-security-research-vulnerability-disclosure-no-threat-actor/) | 1 |
 | [Mini Shai-Hulud](./mini-shai-hulud/) | 1 |
+| [NFCMultiPay](./nfcmultipay/) | 1 |
 | [Nexcorium](./nexcorium/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
 | [O-UNC-045 (Okta Defensive Cyber Operations)](./o-unc-045-okta-defensive-cyber-operations/) | 1 |

@@ -1,0 +1,22 @@
+# DevilNFC / NFCMultiPay NFC relay — C2 and relay-transport detections
+# Author: Jarmi
+# Date: 2026-06-13
+# Reference: https://www.cleafy.com/cleafy-labs/nfc-relay-goes-local-how-ai-is-accelerating-a-new-wave-of-independent-malware-developers
+# Notes:
+#   - SID 2026613001/002 key on the DevilNFC C2 / relay domains via TLS SNI; domains rotate per
+#     build, so pair with the behavioural anchors (HCE-by-non-wallet app, Kiosk+PIN overlay).
+#   - SID 2026613003 catches the DevilNFC plaintext PIN/password exfil endpoint (api_pin.php).
+#   - SID 2026613004 catches the NFCMultiPay REST relay polling endpoint (/api/nfc/poll).
+#   - SID 2026613005 catches NFCMultiPay MQTT relay traffic to the known broker IPs (TCP 1883).
+#     The durable signal is MQTT/1883 from a mobile device to a non-corporate broker; tune the IP
+#     list and consider an mqtt.* sticky-buffer rule if your sensor decodes MQTT.
+
+alert tls any any -> any any (msg:"DevilNFC NFC relay C2 domain in TLS SNI (nfcrackatm.com)"; flow:to_server,established; tls.sni; content:"nfcrackatm.com"; nocase; endswith; classtype:trojan-activity; sid:2026613001; rev:1;)
+
+alert tls any any -> any any (msg:"DevilNFC NFC relay C2 domain in TLS SNI (spicynagets.shop)"; flow:to_server,established; tls.sni; content:"spicynagets.shop"; nocase; endswith; classtype:trojan-activity; sid:2026613002; rev:1;)
+
+alert http any any -> any any (msg:"DevilNFC PIN/password exfil endpoint (api_pin.php)"; flow:to_server,established; http.method; content:"POST"; http.uri; content:"api_pin.php"; nocase; classtype:trojan-activity; sid:2026613003; rev:1;)
+
+alert http any any -> any any (msg:"NFCMultiPay REST NFC relay polling endpoint (/api/nfc/poll)"; flow:to_server,established; http.uri; content:"/api/nfc/poll"; nocase; classtype:trojan-activity; sid:2026613004; rev:1;)
+
+alert tcp any any -> [185.203.116.18,47.253.167.219] 1883 (msg:"NFCMultiPay MQTT relay broker connection (TCP 1883)"; flow:to_server,established; classtype:trojan-activity; sid:2026613005; rev:1;)

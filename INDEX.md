@@ -4,7 +4,7 @@
 
 # INDEX
 
-**45 cases** · **104 actors/clusters** · **273 ATT&CK techniques** · **15 platforms** · **63 sectors** · 2026-04-29 -> 2026-06-12
+**46 cases** · **106 actors/clusters** · **278 ATT&CK techniques** · **15 platforms** · **65 sectors** · 2026-04-29 -> 2026-06-13
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/"><img src="days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/kill_chain.svg" alt="2026-06-13 kill chain" width="240"></a><br><sub><b>2026-06-13</b><br>DevilNFC · NFCMultiPay</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/"><img src="days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/kill_chain.svg" alt="2026-06-12 kill chain" width="240"></a><br><sub><b>2026-06-12</b><br>LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/"><img src="days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/kill_chain.svg" alt="2026-06-11 kill chain" width="240"></a><br><sub><b>2026-06-11</b><br>Opportunistic Argo CD ServerSideDiff exploitation (unattributed)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/"><img src="days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/kill_chain.svg" alt="2026-06-10 kill chain" width="240"></a><br><sub><b>2026-06-10</b><br>Kali365</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/"><img src="days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/kill_chain.svg" alt="2026-06-10 kill chain" width="240"></a><br><sub><b>2026-06-10</b><br>Kali365</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/"><img src="days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/kill_chain.svg" alt="2026-06-09 kill chain" width="240"></a><br><sub><b>2026-06-09</b><br>Kyber</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/"><img src="days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/kill_chain.svg" alt="2026-06-08 kill chain" width="240"></a><br><sub><b>2026-06-08</b><br>OP-512</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/"><img src="days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/kill_chain.svg" alt="2026-06-07 kill chain" width="240"></a><br><sub><b>2026-06-07</b><br>Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/"><img src="days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/kill_chain.svg" alt="2026-06-07 kill chain" width="240"></a><br><sub><b>2026-06-07</b><br>Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/"><img src="days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/kill_chain.svg" alt="2026-06-06 kill chain" width="240"></a><br><sub><b>2026-06-06</b><br>Opportunistic OCPP / EV-charging exploitation (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE/"><img src="days/2026/06/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE/kill_chain.svg" alt="2026-06-05 kill chain" width="240"></a><br><sub><b>2026-06-05</b><br>Opportunistic Netlogon mass-exploitation (unattributed)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/"><img src="days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/kill_chain.svg" alt="2026-06-04 kill chain" width="240"></a><br><sub><b>2026-06-04</b><br>Opportunistic WordPress mass-exploitation (unattributed)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/"><img src="days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/kill_chain.svg" alt="2026-06-04 kill chain" width="240"></a><br><sub><b>2026-06-04</b><br>Opportunistic WordPress mass-exploitation (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/"><img src="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/kill_chain.svg" alt="2026-06-03 kill chain" width="240"></a><br><sub><b>2026-06-03</b><br>Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/"><img src="days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/kill_chain.svg" alt="2026-06-02 kill chain" width="240"></a><br><sub><b>2026-06-02</b><br>Aur0ra (unattributed ransomware family)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/"><img src="days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/kill_chain.svg" alt="2026-06-01 kill chain" width="240"></a><br><sub><b>2026-06-01</b><br>GREYVIBE</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-06</b> — 12 case(s)</summary>
+<details><summary><b>2026-06</b> — 13 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-06-13 | [DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Brazilian TAs, AI-assisted)](days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/) | DevilNFC · NFCMultiPay | android |
 | 2026-06-12 | [LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment](days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/) | LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap) | linux, cloud-multi, supply-chain |
 | 2026-06-11 | [Argo CD ServerSideDiff Kubernetes Secret extraction (CVE-2026-42880) — a read-only GitOps user reads etcd Secrets in plaintext](days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/) | Opportunistic Argo CD ServerSideDiff exploitation (unattributed) | cloud-multi, supply-chain |
 | 2026-06-10 | [Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-brand identity operation](days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/) | Kali365 | cloud-multi, windows |

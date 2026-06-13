@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.13 — Day 47 — DevilNFC and NFCMultiPay locally-built Android NFC relay malware
+
+### Added
+- `days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/` — Two previously-undocumented Android NFC relay families analysed by Cleafy TIR (pub 2026-05-18; DevilNFC recovered during a March-2026 Cleafy IR engagement): a socially-engineered victim taps their card on an infected phone, the contactless APDU stream is relayed live to a tapper at an ATM/POS, and the card PIN is harvested as a core step (extends fraud past contactless limits to chip-and-PIN / ATM). The story is attribution — a technique once monopolised by Chinese-speaking MaaS (SuperCard X) is now independently rebuilt by local actors: DevilNFC (Spanish, single dual-role APK on NFCGate, Xposed `findSelectAid()` AID-reroute, Kiosk lock) and NFCMultiPay (Brazilian, pure-Java reader, REST→MQTT broker with a retained `card_ready` PIN topic), both with AI-assisted-development tells; corroborated by ESET's NGate/HandyPay variant (2026-04-21). Saturday weekend auto-rescue; repo's first Mobile (#11) primary in 47 days. Primary #11; secondaries #18 AI/LLM, #24 CTI tradecraft, #26 AppSec/HCE.
+- Sigma (3): `android_nfc_hce_service_sideloaded_pkg.yml` — HostApduService/NFC permission on a non-store sideloaded package (T1655.001); `android_kiosk_locktask_pin_overlay.yml` — Kiosk/lockTask + overlay PIN prompt by a non-MDM package (T1541/T1417.002); `android_sms_otp_forward_sideloaded_pkg.yml` — SMS/OTP read+forward by a sideloaded package (T1636.004/T1582). All `product: mtd`, `category: mobile_event`.
+- KQL (3): `devilnfc_nfcmultipay_app_inventory` malicious package + NFC/SMS inventory; `devilnfc_c2_pin_exfil_network` DevilNFC C2 domains + `api_pin.php` + Telegram exfil; `nfcmultipay_mqtt_rest_relay` NFCMultiPay IPs + MQTT 1883 + `/api/nfc/*` REST.
+- YARA (1 file, 3 rules): DevilNFC APK (dummy AID `F0010203040506` + `findSelectAid` + `libnfcgate.so` + KioskActivity), NFCMultiPay APK (MQTT `nfc/relay/` + REST `/api/nfc/*`), and a broad NFCGate-derived relay-core hunting rule (PPSE `2PAY.SYS.DDF01` + HCE meta).
+- Suricata (1 file, 5 sids): DevilNFC C2 in TLS SNI (`nfcrackatm.com`, `spicynagets.shop`), `api_pin.php` POST exfil, NFCMultiPay `/api/nfc/poll` REST, MQTT relay to broker IPs (TCP 1883).
+- PEAK hunts (3): H1 HCE-by-non-wallet sideloaded app inventory; H2 Kiosk + PIN-overlay + OTP-forward behavioural chain on one device; H3 relay-transport egress (MQTT 1883 / raw-TCP C2 / Telegram from a banking app).
+- `iocs.csv` (27 entries) — 2 C2 domains, 2 broker IPs, 3 APK MD5s, package name, HCE dummy/PPSE AIDs, `libnfcgate.so`/`findSelectAid`/`KioskActivity`/`api_pin.php`, MQTT topics + REST endpoints, Protobuf relay opcodes; transport flagged as rotating, behaviour as the durable anchor set.
+- `kill_chain.svg` — template A two-lane (victim phone vs operator infra + rooted tapper at POS/ATM), canonical palette, red anchors on the PIN-overlay capture and the HCE `findSelectAid()` AID-reroute.
+
+### Pedagogy
+- PIN harvest is the force-multiplier, not a footnote — it lifts a capped relay to ATM/chip-and-PIN; no legitimate app asks you to re-enter your card PIN to "verify".
+- The manifest lies; the behaviour does not — DevilNFC declares one dummy AID and reroutes via a hook, so hunt on card-emulation by a non-wallet app, not on a static AID list.
+- Transport rotates, primitives persist — raw-TCP/Protobuf vs REST→MQTT/1883 are interchangeable plumbing; anchor on HCE abuse, Kiosk, PIN overlay, OTP forwarding.
+- Open-source (NFCGate) + uncensored local LLM = a new class of independent local malware developers; track capability diffusion, not just named actors. Issuer-side impossible-travel/device-binding is the real backstop.
+
+
 ## 2026.06.12 — Day 46 — LinkPro eBPF rootkit with magic-packet activation in a compromised AWS EKS environment
 
 ### Added
