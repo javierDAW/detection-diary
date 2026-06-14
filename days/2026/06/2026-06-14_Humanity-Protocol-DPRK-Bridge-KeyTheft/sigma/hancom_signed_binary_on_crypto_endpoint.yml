@@ -1,0 +1,37 @@
+title: Binary Signed by a Hancom Certificate Loaded on a Non-Korean-Office Endpoint
+id: c0761085-ec34-4125-9941-19ac5a991300
+status: experimental
+description: |
+  Detects loading or execution of a PE whose Authenticode signer subject
+  contains "Hancom" (a South Korean office-software vendor). In the Humanity
+  Protocol $36M bridge takeover (8 June 2026, Quantstamp), the DPRK-linked
+  remote-access loader was signed with a stolen/forged Hancom code-signing
+  certificate to gain trust and evade reputation checks. A Hancom-signed
+  binary on a crypto-treasury, signer, or developer endpoint that has no
+  Korean-office software installed is anomalous by construction and is the
+  most durable host IOC in this case. Scope by asset group: this is high
+  fidelity on Western/crypto endpoints, noisier where Hancom Office is used.
+references:
+  - https://www.cryptotimes.io/2026/06/13/humanity-protocol-36m-hack-phishing-email-dprk-links-revealed/
+  - https://attack.mitre.org/techniques/T1553/002/
+  - https://attack.mitre.org/techniques/T1588/003/
+author: Jarmi
+date: 2026/06/14
+modified: 2026/06/14
+tags:
+  - attack.defense-evasion
+  - attack.t1553.002
+  - attack.resource-development
+  - attack.t1588.003
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection:
+    Signature|contains: 'Hancom'
+  selection_subject:
+    Subject|contains: 'Hancom'
+  condition: selection or selection_subject
+falsepositives:
+  - Endpoints that legitimately run Hancom Office / Hancom products (common in South Korean enterprises). Restrict this rule to asset groups with no Korean-office footprint, or alert only when the signer status is invalid/expired.
+level: high

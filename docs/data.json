@@ -1,5 +1,44 @@
 [
  {
+  "date": "2026-06-14",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft",
+  "title": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer laptop steals the multisig keys",
+  "clusters": [
+   "DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)"
+  ],
+  "country": "DPRK (suspected)",
+  "platforms": [
+   "windows",
+   "macos",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "cryptocurrency",
+   "defi",
+   "finance"
+  ],
+  "techniques": [
+   "T1566.001",
+   "T1204.002",
+   "T1553.002",
+   "T1588.003",
+   "T1219",
+   "T1562.001",
+   "T1555",
+   "T1552.001",
+   "T1005",
+   "T1078",
+   "T1657"
+  ],
+  "tech_count": 11,
+  "tldr": "On 8 June 2026 attackers drained roughly $36M from Humanity Protocol (the palm-vein \"Chinese Worldcoin\" identity project) by compromising the operational security of one person, not the smart contracts. A spear-phishing email impersonating South Korean exchange Bithumb — with whom a director had genuinely been communicating — carried a malicious attachment that installed remote-access malware; the",
+  "thumb": "thumbs/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft.svg",
+  "case_rel": "../days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/",
+  "q": "humanity protocol $36m bridge takeover — dprk-linked spear-phish to a signer laptop steals the multisig keys dprk-linked intrusion set (quantstamp; lazarus-cluster overlap, not definitively attributed) dprk (suspected) windows macos cloud-multi cryptocurrency defi finance t1566.001 t1204.002 t1553.002 t1588.003 t1219 t1562.001 t1555 t1552.001 t1005 t1078 t1657"
+ },
+ {
   "date": "2026-06-13",
   "year": "2026",
   "month": "2026-06",

@@ -1,0 +1,21 @@
+# Humanity Protocol $36M bridge takeover (Quantstamp, 8 June 2026) — Author: Jarmi
+# Behavioural network heuristics. No public RAT C2 IP/domain was released for this case,
+# so these rules target the delivery pretext (Bithumb-impersonation lure) and generic
+# remote-desktop/RAT command-and-control patterns on a signer endpoint. TUNE before use:
+# remote-access tooling is legitimate in many orgs — scope to crypto/treasury asset VLANs.
+# sid range 2026614xx reserved for this case.
+
+# 1. Bithumb-impersonation lure landing/page reference over HTTP (look-alike host in Host header)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"Humanity Protocol DPRK case - Bithumb look-alike host in HTTP request (phish pretext)"; flow:established,to_server; http.host; content:"bithumb"; nocase; pcre:"/bit[-_.]?humb/i"; classtype:social-engineering; sid:202661401; rev:1;)
+
+# 2. Bithumb-spoof brand string in HTTP response body (credential/landing page)
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"Humanity Protocol DPRK case - Bithumb-branded landing page delivered to signer host"; flow:established,to_client; http.response_body; content:"Bithumb"; nocase; content:"login"; nocase; distance:0; classtype:social-engineering; sid:202661402; rev:1;)
+
+# 3. AnyDesk remote-control client TLS SNI from an internal host (remote-access foothold)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"Humanity Protocol DPRK case - AnyDesk remote-access SNI from crypto signer VLAN"; flow:established,to_server; tls.sni; content:"anydesk.com"; nocase; classtype:policy-violation; sid:202661403; rev:1;)
+
+# 4. RustDesk relay/rendezvous SNI from an internal host
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"Humanity Protocol DPRK case - RustDesk relay SNI from crypto signer VLAN"; flow:established,to_server; tls.sni; content:"rustdesk.com"; nocase; classtype:policy-violation; sid:202661404; rev:1;)
+
+# 5. TeamViewer remote-control SNI from an internal host
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"Humanity Protocol DPRK case - TeamViewer remote-access SNI from crypto signer VLAN"; flow:established,to_server; tls.sni; content:"teamviewer.com"; nocase; classtype:policy-violation; sid:202661405; rev:1;)

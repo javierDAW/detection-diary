@@ -1,0 +1,248 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Humanity Protocol $36M bridge takeover kill chain</title>
+<desc id="d">Two-lane kill chain. Left lane (victim endpoint): a Bithumb-impersonation spear-phishing email with a malicious attachment, user execution, a remote-access loader signed with a stolen Hancom code-signing certificate (critical), full remote-desktop control while evading endpoint security, theft of wallet data and roughly seven Gnosis Safe private keys from one laptop, the stolen keys meeting the multisig threshold as valid signers, and containment by freezing the Ethereum contract via an uncompromised Safe. Right lane (attacker on-chain): signing Gnosis Safe transactions with the stolen keys across Ethereum and BSC, transferring ProxyAdmin ownership to an attacker wallet (critical, point of no return), upgrading the Hyperlane bridge proxy to a malicious implementation with an unlimited-mint and drain backdoor, draining about 141.18 million H on Ethereum, minting over 200 million H on BSC, and laundering through Uniswap, PancakeSwap and Kyber over eight hours for about 36 million dollars. Detection anchors are the Hancom-signed loader on the left and the ProxyAdmin ownership transfer on the right.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<text class="head" x="20" y="36">Humanity Protocol $36M bridge takeover - DPRK key theft</text>
+<text class="meta" x="20" y="58">Vendor: Quantstamp / Humanity · Date: 2026-06-08 · Cluster: DPRK-linked (suspected) · Day 48</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="34" y="104">VICTIM / SIGNER ENDPOINT (defensible)</text>
+<text class="laneLabelR" x="464" y="104">ATTACKER ON-CHAIN (unstoppable once keys stolen)</text>
+
+<!-- LEFT STAGE 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Spearphishing email</text>
+<text class="sub" x="40" y="168">Impersonates Bithumb exchange (real thread)</text>
+<text class="sub" x="40" y="184">Director already in contact - warm pretext</text>
+<text class="sub" x="40" y="200">Malicious attachment delivered</text>
+<text class="mono" x="40" y="226">T1566.001 spearphishing attachment</text>
+<text class="mono" x="40" y="244">to: a named signer / treasury-adjacent</text>
+
+<!-- LEFT STAGE 2 -->
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">User execution</text>
+<text class="sub" x="40" y="318">Director opens the attachment</text>
+<text class="sub" x="40" y="334">Loader runs on the device</text>
+<text class="sub" x="40" y="350">Continued conversation = low suspicion</text>
+<text class="mono" x="40" y="376">T1204.002 user execution: file</text>
+<text class="mono" x="40" y="394">parent: mail / office client</text>
+
+<!-- LEFT STAGE 3 (critical) -->
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">Hancom-signed loader</text>
+<text class="sub" x="40" y="468">Stolen / forged Korean code-sign cert</text>
+<text class="sub" x="40" y="484">Trusted by users and app-control</text>
+<text class="sub" x="40" y="500">DPRK trust-abuse marker (durable IOC)</text>
+<text class="mono" x="40" y="526">T1553.002 / T1588.003</text>
+<text class="mono" x="40" y="544">signer subject contains: Hancom</text>
+
+<!-- LEFT STAGE 4 -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Remote-desktop control</text>
+<text class="sub" x="40" y="618">Full RAT / hands-on-keyboard session</text>
+<text class="sub" x="40" y="634">Evades endpoint security</text>
+<text class="sub" x="40" y="650">Operator drives the signer machine</text>
+<text class="mono" x="40" y="676">T1219 remote access software</text>
+<text class="mono" x="40" y="694">T1562.001 impair defenses</text>
+
+<!-- LEFT STAGE 5 -->
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Key theft from disk</text>
+<text class="sub" x="40" y="768">Wallet data + ~7 private keys copied</text>
+<text class="sub" x="40" y="784">Multiple Gnosis Safe signer keys</text>
+<text class="sub" x="40" y="800">One laptop, no hardware isolation</text>
+<text class="mono" x="40" y="826">T1555 / T1552.001 / T1005</text>
+<text class="mono" x="40" y="844">keystore / UTC-- / wallet.dat / seed</text>
+
+<!-- LEFT STAGE 6 -->
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Threshold met (valid keys)</text>
+<text class="sub" x="40" y="918">3-of-6 on ETH, 3-of-5 on BSC</text>
+<text class="sub" x="40" y="934">Stolen keys = valid signers</text>
+<text class="sub" x="40" y="950">No protocol exploit needed</text>
+<text class="mono" x="40" y="976">T1078 valid accounts</text>
+<text class="mono" x="40" y="994">controls Hyperlane bridge ProxyAdmin</text>
+
+<!-- LEFT STAGE 7 -->
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Containment</text>
+<text class="sub" x="40" y="1068">Freeze ETH $H via uncompromised Safe</text>
+<text class="sub" x="40" y="1084">Abandon BSC deploy (attacker owns it)</text>
+<text class="sub" x="40" y="1100">Revoke approvals; rotate Safe owners</text>
+<text class="mono" x="40" y="1126">remediation = rotate owners</text>
+<text class="mono" x="40" y="1144">not just reset the password</text>
+
+<!-- RIGHT OP 1 -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">Sign Gnosis Safe txns</text>
+<text class="sub" x="470" y="173">Use the stolen private keys</text>
+<text class="sub" x="470" y="189">Meet 3/6 (ETH) and 3/5 (BSC)</text>
+<text class="sub" x="470" y="205">Both chains pre-staged in parallel</text>
+<text class="sub" x="470" y="221">Bridge = Hyperlane upgradeable proxy</text>
+<text class="mono" x="470" y="250">ETH + BSC simultaneous</text>
+<text class="mono" x="470" y="268">cross-chain monitoring blind spot</text>
+
+<!-- RIGHT OP 2 (critical) -->
+<rect class="opK" x="460" y="295" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">ProxyAdmin ownership transfer</text>
+<text class="sub" x="470" y="343">Safe tx -> attacker-controlled wallet</text>
+<text class="sub" x="470" y="359">Attacker now controls all upgrades</text>
+<text class="sub" x="470" y="375">On-chain point of no return</text>
+<text class="sub" x="470" y="391">Detection: alert on transferOwnership</text>
+<text class="mono" x="470" y="420">attacker wallet:</text>
+<text class="mono" x="470" y="438">0xcf5104d094e3864cfcbda43b82e1cefd26a016eb</text>
+
+<!-- RIGHT OP 3 -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">Malicious proxy upgrade</text>
+<text class="sub" x="470" y="513">upgradeTo a malicious implementation</text>
+<text class="sub" x="470" y="529">Adds unlimited-mint backdoor</text>
+<text class="sub" x="470" y="545">Adds direct-drain function</text>
+<text class="sub" x="470" y="561">Clean audit does not help here</text>
+<text class="mono" x="470" y="590">T1657 financial theft</text>
+<text class="mono" x="470" y="608">implementation swapped via ProxyAdmin</text>
+
+<!-- RIGHT OP 4 -->
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">Drain Ethereum</text>
+<text class="sub" x="470" y="683">Drain admin hot wallet</text>
+<text class="sub" x="470" y="699">Withdraw ~141.18M $H from bridge</text>
+<text class="sub" x="470" y="715">Single large movement</text>
+<text class="sub" x="470" y="731">ETH side later frozen via clean Safe</text>
+<text class="mono" x="470" y="760">moved ~141.18M H (ETH)</text>
+<text class="mono" x="470" y="778">abnormal-withdraw monitoring</text>
+
+<!-- RIGHT OP 5 -->
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Mint on BSC</text>
+<text class="sub" x="470" y="853">200M+ unauthorised $H minted</text>
+<text class="sub" x="470" y="869">Attacker retains ProxyAdmin control</text>
+<text class="sub" x="470" y="885">No clean recovery -> abandon chain</text>
+<text class="sub" x="470" y="901">Treat all deployed chains as in scope</text>
+<text class="mono" x="470" y="930">200M+ minted (BSC)</text>
+<text class="mono" x="470" y="948">abnormal-mint monitoring</text>
+
+<!-- RIGHT OP 6 -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">DEX laundering</text>
+<text class="sub" x="470" y="1023">Dump via Uniswap / PancakeSwap / Kyber</text>
+<text class="sub" x="470" y="1039">~8 hours of continuous selling</text>
+<text class="sub" x="470" y="1055">$H falls ~85-90% in ~12 hours</text>
+<text class="sub" x="470" y="1071">Patient DEX/mixer washing (DPRK MO)</text>
+<text class="mono" x="470" y="1100">~$36M total loss</text>
+<text class="mono" x="470" y="1118">flag exploiter addrs + tainted tokens</text>
+
+<!-- LEFT vertical arrows -->
+<g color="#2a4a6a">
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+</g>
+
+<!-- RIGHT vertical arrows -->
+<g color="#8a5520">
+<path class="arrowR" d="M657,280 L657,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,450 L657,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,620 L657,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,790 L657,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,960 L657,975" marker-end="url(#ah)"/>
+</g>
+
+<!-- CROSS-LANE handoff: stolen keys -> on-chain signing -->
+<g color="#7a3a7a">
+<path class="arrowX" d="M425,910 L460,260" marker-end="url(#ah)"/>
+</g>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Why it matters</text>
+<text class="footerT" x="34" y="1222">The only defensible layer was the signer endpoint: Hancom-signed loader, RAT, and keystore access are detectable.</text>
+<text class="footerT" x="34" y="1240">Once 3/6 and 3/5 keys sat on one laptop, the on-chain takeover used valid signatures - no exploit to patch.</text>
+<text class="footerT" x="34" y="1258">Remediation = rotate Safe owners to hardware-isolated signers; resetting the password does not revoke stolen keys.</text>
+</svg>

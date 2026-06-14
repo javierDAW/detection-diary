@@ -1,0 +1,25 @@
+// Title:        Humanity Protocol — Hancom-Signed Binary on an Unexpected Endpoint
+// Id:           98fff5d7-4f1e-4555-9e5c-960b5785853f
+// MITRE:        T1553.002, T1588.003
+// Reference:    https://blockchainreporter.net/quantstamp-investigation-links-humanity-protocol-hack-to-dprk-actors-141m-h-moved/
+// Author:       Jarmi
+// Date:         2026-06-14
+// Tested on:    Microsoft Defender XDR — DeviceImageLoadEvents, DeviceProcessEvents
+// FP notes:     South Korean orgs running Hancom Office will see benign hits; scope to crypto/treasury/dev
+//               asset groups with no Korean-office footprint. Invalid/expired signature raises confidence.
+//
+let cryptoEndpoints = dynamic(["<add_known_signer_treasury_dev_hostnames>"]);
+DeviceImageLoadEvents
+| where Timestamp > ago(30d)
+| where Signer has "Hancom" or CertificateSubject has "Hancom"
+| extend layer = "image_load"
+| project Timestamp, DeviceName, FileName, FolderPath, SHA256, Signer, CertificateSubject, IsTrusted=SignatureType, layer
+| union (
+    DeviceProcessEvents
+    | where Timestamp > ago(30d)
+    | where Signer has "Hancom"
+    | extend layer = "process_create"
+    | project Timestamp, DeviceName, FileName, FolderPath, SHA256, Signer, CertificateSubject=Signer, IsTrusted=tostring(""), layer
+    )
+| extend onCryptoAsset = iff(array_length(cryptoEndpoints) > 0 and DeviceName in (cryptoEndpoints), true, false)
+| order by Timestamp desc

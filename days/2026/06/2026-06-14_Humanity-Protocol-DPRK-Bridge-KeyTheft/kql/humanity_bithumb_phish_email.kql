@@ -1,0 +1,26 @@
+// Title:        Humanity Protocol — Bithumb-Impersonation Spear-Phish With Attachment
+// Id:           fe96657b-e964-47e1-89aa-1a6b8b9e7d5f
+// MITRE:        T1566.001, T1204.002
+// Reference:    https://www.cryptotimes.io/2026/06/13/humanity-protocol-36m-hack-phishing-email-dprk-links-revealed/
+// Author:       Jarmi
+// Date:         2026-06-14
+// Tested on:    Microsoft Defender for Office 365 — EmailEvents + EmailAttachmentInfo
+// FP notes:     Legitimate Bithumb mail comes from authenticated bithumb.com infrastructure; alert on
+//               display-name/look-alike spoofing or non-aligned auth. Tune recipient list to signers/treasury/execs.
+//
+let lookalikeSenders = dynamic(["bithumb","bit-humb","bithumb-","bithumb.","bithumb-listing"]);
+let highValueRecipients = dynamic(["<add_known_signer_or_treasury_upns>"]);
+EmailEvents
+| where Timestamp > ago(30d)
+| where AttachmentCount > 0
+| extend sndDomain = tolower(SenderFromDomain), sndDisplay = tolower(SenderDisplayName)
+| where (sndDisplay has_any (lookalikeSenders) or sndDomain has "bithumb")
+| where not(sndDomain == "bithumb.com" and (SPFCheck =~ "pass" and DKIM =~ "pass" and DMARC =~ "pass"))
+| join kind=leftouter (
+    EmailAttachmentInfo
+    | where Timestamp > ago(30d)
+    | project NetworkMessageId, FileName, FileType, SHA256
+    ) on NetworkMessageId
+| extend isHighValue = iff(array_length(highValueRecipients) > 0 and RecipientEmailAddress in (highValueRecipients), true, false)
+| project Timestamp, SenderFromAddress, SenderDisplayName, sndDomain, RecipientEmailAddress, isHighValue, Subject, FileName, FileType, SHA256, DeliveryAction
+| order by Timestamp desc

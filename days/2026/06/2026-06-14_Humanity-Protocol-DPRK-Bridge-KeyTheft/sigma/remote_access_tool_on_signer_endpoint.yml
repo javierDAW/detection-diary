@@ -1,0 +1,48 @@
+title: Remote Access or RMM Tool Spawned From an Office or Mail Client
+id: bc0cfcc6-d1dd-484d-b0ce-bae81c2ff759
+status: experimental
+description: |
+  Detects a remote-access / remote-desktop / RMM utility starting as (or
+  shortly after) a child of an Office application or mail client — the
+  classic phishing-attachment-to-remote-control sequence. In the Humanity
+  Protocol case a Bithumb-impersonation email attachment installed malware
+  that gave the operator full remote-desktop control of a signer's device.
+  This rule targets the hands-on-keyboard foothold; pair it with the
+  Hancom-cert and keystore-access rules to chain the full sequence.
+references:
+  - https://blockchainreporter.net/quantstamp-investigation-links-humanity-protocol-hack-to-dprk-actors-141m-h-moved/
+  - https://attack.mitre.org/techniques/T1219/
+  - https://attack.mitre.org/techniques/T1204/002/
+author: Jarmi
+date: 2026/06/14
+modified: 2026/06/14
+tags:
+  - attack.command-and-control
+  - attack.t1219
+  - attack.execution
+  - attack.t1204.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_parent:
+    ParentImage|endswith:
+      - '\WINWORD.EXE'
+      - '\EXCEL.EXE'
+      - '\POWERPNT.EXE'
+      - '\OUTLOOK.EXE'
+      - '\HwpApp.exe'
+      - '\Hword.exe'
+  selection_rat:
+    Image|endswith:
+      - '\AnyDesk.exe'
+      - '\TeamViewer.exe'
+      - '\rustdesk.exe'
+      - '\UltraViewer_Desktop.exe'
+      - '\winvnc.exe'
+      - '\mstsc.exe'
+      - '\ScreenConnect.ClientService.exe'
+  condition: selection_parent and selection_rat
+falsepositives:
+  - Legitimate IT support sessions where remote tools are launched from documents. Baseline approved RMM tooling per endpoint group and alert only on non-approved tools or unexpected hosts.
+level: high
