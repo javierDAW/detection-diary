@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.14 — Day 48 — Humanity Protocol $36M DPRK-linked bridge takeover via signer-laptop key theft
+
+### Added
+- `days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/` — Quantstamp's investigation (published via Humanity 12-13 June 2026) into the 8 June 2026 $36M Humanity Protocol ("Chinese Worldcoin") incident: a Bithumb-impersonation spear-phish to a director carried a malicious attachment whose remote-access loader was signed with a stolen/forged Korean Hancom code-signing certificate (a DPRK marker), gave remote-desktop control while evading EDR, and copied wallet data plus ~7 Gnosis Safe signer private keys from one laptop; those keys met the 3-of-6 (ETH) / 3-of-5 (BSC) threshold, so the attacker transferred Hyperlane bridge ProxyAdmin ownership, upgraded the proxy to a malicious unlimited-mint/drain implementation, moved ~141.18M $H on ETH and minted 200M+ on BSC, then dumped via Uniswap/PancakeSwap/Kyber over ~8h. Sunday weekend auto-rescue; repo's first crypto/DeFi (#16) primary and first Gnosis Safe / ProxyAdmin bridge-takeover case. Primary #16; secondaries #1 APT (DPRK), #19 malware-deep-dive (Hancom-signed loader), #24 CTI tradecraft.
+- Sigma (3): `hancom_signed_binary_on_crypto_endpoint.yml` — Hancom-signer binary on a non-Korean-office endpoint (T1553.002/T1588.003, image_load); `wallet_keystore_access_by_nonwallet_process.yml` — keystore/seed access by a non-wallet process (T1552.001/T1555, file_event); `remote_access_tool_on_signer_endpoint.yml` — RAT/RMM spawned from an Office/mail client (T1219/T1204.002, process_creation).
+- KQL (4): `humanity_bithumb_phish_email` Bithumb-impersonation with attachment to signers; `humanity_hancom_signed_loader` Hancom signer on an unexpected host; `humanity_wallet_keystore_access` keystore/seed access by non-wallet process; `humanity_rat_c2_beacon` remote-desktop/RAT egress from a signer endpoint.
+- YARA (1 file, 2 rules): heuristic Hancom-signed loader and wallet/keystore-stealer string heuristics — explicitly behavioural, not a recovered-sample signature (no public hash released).
+- Suricata (1 file, 5 sids): Bithumb look-alike host/landing-page markers and remote-desktop/RAT SNI (AnyDesk/RustDesk/TeamViewer) from a signer VLAN.
+- PEAK hunts (3): H1 Hancom code-signing-cert anomaly on crypto endpoints; H2 keystore access during a remote-access session; H3 cross-domain correlation of a signer-endpoint alert to an on-chain ProxyAdmin/owner change.
+- `iocs.csv` (14 entries) — Hancom cert subject, Bithumb pretext, reported exploiter ETH address (community-sourced), keystore/wallet paths, plus timeline/mechanics/attribution honesty notes; behavioural + on-chain coverage, no malware sample hash.
+- `kill_chain.svg` — template A two-lane (victim/signer endpoint vs attacker on-chain), canonical palette, red anchors on the Hancom-signed loader and the ProxyAdmin ownership transfer.
+
+### Pedagogy
+- When the loss happens through valid signatures, there is no on-chain exploit to patch — defence lives on the signer endpoint and in key custody.
+- A stolen code-signing certificate (Hancom on a crypto endpoint) is a durable, high-value IOC; signer subject is often the best field for catching DPRK loaders.
+- Stolen private keys survive password resets — remediation is rotating Safe owners to hardware-isolated signers, not resetting the account.
+- "Multiple keys on one laptop" turns a 3-of-6 multisig into a single point of failure; separation of duties is a technical control, not a slogan.
+
+
 ## 2026.06.13 — Day 47 — DevilNFC and NFCMultiPay locally-built Android NFC relay malware
 
 ### Added

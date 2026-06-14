@@ -1,0 +1,15 @@
+type,value,context,confidence,source
+string,Hancom,Code-signing certificate subject on the malicious loader (stolen/forged Korean office-suite cert); DPRK tradecraft marker and the most durable host IOC,high,Quantstamp via Humanity 2026-06-13
+string,bithumb,Impersonated South Korean exchange brand in the spear-phishing pretext (sender/display-name spoof to a director),high,Quantstamp via Humanity 2026-06-13
+string,0xcf5104d094e3864cfcbda43b82e1cefd26a016eb,Reported attacker/exploiter Ethereum wallet that received and dumped stolen H; community on-chain trackers not Quantstamp public report,medium,coinpedia / on-chain trackers 2026-06-10
+path,%APPDATA%\\Ethereum\\keystore,Geth-style keystore directory holding UTC-- private key files targeted for theft on signer endpoints,medium,analysis (keystore convention)
+path,UTC--,Geth keystore filename prefix for encrypted private keys; access by a non-wallet process is suspicious,medium,analysis (keystore convention)
+path,wallet.dat,Wallet key database filename; access by a non-wallet/remote-session process is suspicious,medium,analysis (wallet convention)
+string,MetaMask,Browser-extension wallet vault directory name; targeted for seed/key extraction,medium,analysis (wallet convention)
+note,Attack date 2026-06-08; disclosure 2026-06-09; Quantstamp report published via Humanity 2026-06-12/13,Timeline context for the Humanity Protocol H token incident,high,Humanity Protocol incident updates
+note,Initial access = spear-phishing email impersonating Bithumb with a malicious attachment installing remote-access malware,Endpoint is the only defensible layer; loader signed with a Hancom certificate and evaded EDR,high,Quantstamp via Humanity 2026-06-13
+note,Stolen 3-of-6 Gnosis Safe keys on Ethereum and 3-of-5 on BSC from one device (reportedly 7 private keys),Threshold met -> ProxyAdmin ownership transfer -> malicious Hyperlane bridge proxy upgrade,high,CCN 2026-06-10 / Humanity
+note,Monetisation = ~141.18M H moved on Ethereum + 200M+ minted on BSC; dumped via Uniswap/PancakeSwap/Kyber over ~8h (~$36M),Token fell ~85-90 percent; ETH contract frozen via uncompromised Safe; BSC deployment abandoned,high,CCN / The Crypto Times 2026-06-10/13
+note,No public malware sample hash released; on-chain wallet addresses are community-sourced not from Quantstamp public findings,Data-honesty note: behavioural anchors (Hancom cert / keystore access / RAT) are the durable detection layer,high,BlockchainReporter 2026-06-13
+note,Attribution DPRK-linked is medium-confidence (tooling + certificate-signing behaviour); not definitively attributed,Overlaps Lazarus/TraderTraitor crypto-targeting lineage; competing staged-exit narrative from ZachXBT logged,medium,Quantstamp via Humanity / ZachXBT 2026-06-09
+cve,none,No CVE; this is an operational-security/key-custody compromise not a smart-contract or software vulnerability,high,analysis

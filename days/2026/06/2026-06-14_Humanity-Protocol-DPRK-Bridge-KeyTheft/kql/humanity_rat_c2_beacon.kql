@@ -1,0 +1,21 @@
+// Title:        Humanity Protocol — Remote-Desktop / RAT Egress From a Signer Endpoint
+// Id:           53f734f6-3083-4c6e-8327-64aa8ce58def
+// MITRE:        T1219, T1562.001
+// Reference:    https://www.cryptotimes.io/2026/06/13/humanity-protocol-36m-hack-phishing-email-dprk-links-revealed/
+// Author:       Jarmi
+// Date:         2026-06-14
+// Tested on:    Microsoft Defender XDR — DeviceNetworkEvents, DeviceProcessEvents
+// FP notes:     No public RAT C2 IP was released for this case, so this is a behavioural rule: remote-access
+//               tooling making external connections from a crypto signer/treasury host. Baseline approved
+//               RMM per asset group; alert on non-approved tools or unexpected destinations.
+//
+let signerEndpoints = dynamic(["<add_known_signer_treasury_dev_hostnames>"]);
+let ratProcesses = dynamic(["anydesk.exe","teamviewer.exe","rustdesk.exe","ultraviewer_desktop.exe","winvnc.exe","screenconnect.clientservice.exe","mstsc.exe"]);
+DeviceNetworkEvents
+| where Timestamp > ago(14d)
+| where RemoteIPType == "Public"
+| where tolower(InitiatingProcessFileName) in (ratProcesses)
+| extend onSignerAsset = iff(array_length(signerEndpoints) > 0 and DeviceName in (signerEndpoints), true, false)
+| summarize conns=count(), dests=make_set(RemoteUrl, 30), ips=make_set(RemoteIP, 30), firstSeen=min(Timestamp), lastSeen=max(Timestamp)
+    by DeviceName, InitiatingProcessFileName, onSignerAsset
+| order by onSignerAsset desc, conns desc
