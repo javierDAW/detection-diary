@@ -1,0 +1,41 @@
+title: SPECTRALVIPER Loader DLL Side-Loaded From a User-Writable Path
+id: c9506fdf-67a8-4162-92c3-a9ebd9fef8b8
+status: experimental
+description: |
+  Detects the image load of a SPECTRALVIPER loader/backdoor DLL used by
+  OceanLotus (APT32) in the June 2026 ESET-reported campaigns. DtlCrashCatch.dll
+  is the SPECTRALVIPER loader side-loaded by the renamed signed dtlupdate.exe
+  (IntelAudioService.exe), and SetupUi.dll is a SPECTRALVIPER backdoor DLL. A
+  load of either DLL from a user-writable directory (AppData, user profile,
+  ProgramData, Temp, Public) is the durable side-loading anchor. The DLL names
+  are case-specific; pair this with the side-loading-host process rule for
+  high-fidelity correlation.
+references:
+  - https://www.welivesecurity.com/en/eset-research/oceanlotus-external-espionage-domestic-targeting/
+  - https://attack.mitre.org/techniques/T1574/002/
+author: Jarmi
+date: 2026/06/15
+modified: 2026/06/15
+tags:
+  - attack.defense-evasion
+  - attack.t1574.002
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection_dll:
+    ImageLoaded|endswith:
+      - '\DtlCrashCatch.dll'
+      - '\SetupUi.dll'
+  selection_userpath:
+    ImageLoaded|contains:
+      - '\Users\'
+      - '\AppData\'
+      - '\ProgramData\'
+      - '\Temp\'
+      - '\Public\'
+  condition: selection_dll and selection_userpath
+falsepositives:
+  - Unlikely for these specific DLL names from user-writable paths. A third-party application that legitimately ships a DLL named SetupUi.dll under a user profile would generate noise; verify the loading process signer and the DLL signature.
+
+level: high

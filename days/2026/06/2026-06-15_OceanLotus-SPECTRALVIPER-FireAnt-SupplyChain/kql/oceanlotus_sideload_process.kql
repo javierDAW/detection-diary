@@ -1,0 +1,23 @@
+// Title:        OceanLotus SPECTRALVIPER - Renamed Signed Side-Loader Process
+// Id:           c1a8e733-2f56-4b0d-8e92-9d4f7a6c0b18
+// MITRE:        T1574.002, T1036
+// Reference:    https://www.welivesecurity.com/en/eset-research/oceanlotus-external-espionage-domestic-targeting/
+// Author:       Jarmi
+// Date:         2026-06-15
+// Tested on:    Microsoft Defender XDR - DeviceProcessEvents
+// FP notes:     Genuine dtlupdate.exe / Toolbox.exe from their installed Program Files paths are benign;
+//               the query excludes Program Files for the Toolbox copies. Tune to your environment.
+//
+let intelAudio = DeviceProcessEvents
+    | where Timestamp > ago(45d)
+    | where FileName =~ "IntelAudioService.exe"
+    | where ProcessCommandLine has_all ("/appmodel","/StateRepository","/Service");
+let toolboxCopies = DeviceProcessEvents
+    | where Timestamp > ago(45d)
+    | where FileName in~ ("Genuine.exe","Updater.exe","AutoCAD242.exe")
+    | where ProcessCommandLine has "-uiDll"
+    | where FolderPath !startswith @"C:\Program Files";
+union intelAudio, toolboxCopies
+| project Timestamp, DeviceName, FileName, FolderPath, ProcessCommandLine,
+          InitiatingProcessFileName, SHA1, SHA256
+| order by Timestamp desc

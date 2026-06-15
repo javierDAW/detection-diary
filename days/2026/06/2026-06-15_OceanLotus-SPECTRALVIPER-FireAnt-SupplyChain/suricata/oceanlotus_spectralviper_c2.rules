@@ -1,0 +1,23 @@
+# OceanLotus (APT32) SPECTRALVIPER - network detection (ESET, 11 June 2026) - Author: Jarmi
+# Covers per-campaign C2 domains (TLS SNI + DNS), the hardcoded beacon URL path, the
+# distinctive Cookie host-profiling prefix, the FireAnt MetaKit update/download API, and the
+# staging-server IPs. C2 domains are case-specific (high fidelity); the remote-access/update
+# rules may need tuning. sid range 2026615xx reserved for this case.
+
+# 1. TLS SNI to a SPECTRALVIPER C2 domain
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"OceanLotus SPECTRALVIPER - C2 domain in TLS SNI"; flow:established,to_server; tls.sni; pcre:"/^(financemachinelearning|gatewayrvcenter|coachcybersecurity|mxprodesign|power-sync-services|leadingfilipinoteams)\.com$/i"; classtype:trojan-activity; sid:202661501; rev:1;)
+
+# 2. DNS query for a SPECTRALVIPER C2 domain
+alert dns $HOME_NET any -> any any (msg:"OceanLotus SPECTRALVIPER - C2 domain in DNS query"; dns.query; pcre:"/(financemachinelearning|gatewayrvcenter|coachcybersecurity|mxprodesign|power-sync-services|leadingfilipinoteams)\.com$/i"; classtype:trojan-activity; sid:202661502; rev:1;)
+
+# 3. Hardcoded SPECTRALVIPER beacon URL path (visible where TLS is inspected or over HTTP)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"OceanLotus SPECTRALVIPER - hardcoded beacon URL path"; flow:established,to_server; http.uri; content:"/apparatus/wind/twig/statement.html"; nocase; classtype:trojan-activity; sid:202661503; rev:1;)
+
+# 4. SPECTRALVIPER Cookie host-profiling prefix in request header
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"OceanLotus SPECTRALVIPER - Cookie host-profiling prefix (zd_cs_pm/euconsent-v2)"; flow:established,to_server; http.cookie; pcre:"/(zd_cs_pm|euconsent-v2)=/"; classtype:trojan-activity; sid:202661504; rev:1;)
+
+# 5. FireAnt MetaKit malicious update fetch / next-stage download API
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"OceanLotus - FireAnt MetaKit update/download API fetch (supply-chain)"; flow:established,to_server; http.uri; pcre:"/(\/Software\/setup\.exe|\/Software\/version\.xml|V1\/Update\/GetUpdate)/i"; http.host; content:"metakit.fireant.vn"; nocase; classtype:trojan-activity; sid:202661505; rev:1;)
+
+# 6. Connection to a SPECTRALVIPER staging/hosting server IP
+alert ip $HOME_NET any -> [139.162.11.152,142.91.98.77,194.68.26.241,139.99.33.239,139.180.128.42,166.88.77.186,103.119.47.104,38.60.245.37] any (msg:"OceanLotus SPECTRALVIPER - connection to known C2/staging server IP"; classtype:trojan-activity; sid:202661506; rev:1;)

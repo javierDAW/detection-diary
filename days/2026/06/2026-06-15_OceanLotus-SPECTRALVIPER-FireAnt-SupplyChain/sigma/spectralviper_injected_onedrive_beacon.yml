@@ -1,0 +1,54 @@
+title: Injected OneDrive Sync Service Beaconing To Non-Microsoft Infrastructure
+id: 160422bf-61db-486d-8ba3-59d74107d474
+status: experimental
+description: |
+  Detects OneDrive.Sync.Service.exe initiating outbound network connections to
+  hosts that are not Microsoft-owned. In the June 2026 OceanLotus (APT32)
+  campaigns reported by ESET, the SPECTRALVIPER loader DtlCrashCatch.dll injects
+  the backdoor into OneDrive.Sync.Service.exe, which then beacons over HTTPS to
+  attacker C2 (e.g. financemachinelearning[.]com, gatewayrvcenter[.]com),
+  hiding encrypted host-profiling data in an HTTP Cookie header. The durable
+  tell is the destination: a benign Microsoft binary connecting to
+  non-Microsoft infrastructure. Allow-list legitimate OneDrive/Microsoft
+  endpoints in your environment; alert on the remainder.
+references:
+  - https://www.welivesecurity.com/en/eset-research/oceanlotus-external-espionage-domestic-targeting/
+  - https://attack.mitre.org/techniques/T1055/
+  - https://attack.mitre.org/techniques/T1071/001/
+author: Jarmi
+date: 2026/06/15
+modified: 2026/06/15
+tags:
+  - attack.defense-evasion
+  - attack.t1055
+  - attack.command-and-control
+  - attack.t1071.001
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Image|endswith: '\OneDrive.Sync.Service.exe'
+    Initiated: 'true'
+  filter_known_c2:
+    DestinationHostname:
+      - 'financemachinelearning.com'
+      - 'gatewayrvcenter.com'
+      - 'coachcybersecurity.com'
+      - 'mxprodesign.com'
+      - 'power-sync-services.com'
+      - 'leadingfilipinoteams.com'
+  filter_microsoft:
+    DestinationHostname|contains:
+      - 'microsoft.com'
+      - 'onedrive.com'
+      - 'live.com'
+      - 'msftncsi.com'
+      - 'windows.net'
+      - 'office.com'
+      - 'sharepoint.com'
+  condition: (selection and filter_known_c2) or (selection and not filter_microsoft)
+falsepositives:
+  - OneDrive connecting to CDNs or telemetry endpoints not covered by the Microsoft allow-list. Extend the filter_microsoft list with the Microsoft/OneDrive domains seen in your environment to reduce noise; the filter_known_c2 branch is high fidelity.
+
+level: high

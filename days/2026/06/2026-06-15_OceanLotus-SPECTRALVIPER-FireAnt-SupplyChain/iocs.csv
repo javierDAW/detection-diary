@@ -1,0 +1,53 @@
+type,value,context,confidence,source
+sha1,865A1739337D3303B3AB02C5E694C22B79C42B7D,SPECTRALVIPER backdoor (system.config.xml); ESET Win64/Agent.GFV,high,ESET 2026-06-11
+sha1,B0FEA981D02F6F76DE81EBAEFCB68B7D205D6194,SPECTRALVIPER backdoor (NotificationConfig.json); ESET Win64/Agent.HRA,high,ESET 2026-06-11
+sha1,48FEBB91A10D1462461A012FAFC0918BB028E947,SPECTRALVIPER backdoor loader (DtlCrashCatch.dll) side-loaded by IntelAudioService.exe,high,ESET 2026-06-11
+sha1,150764A71DEEF498DE6F8C95ECCCB4455C1B601F,SPECTRALVIPER backdoor (SetupUi.dll),high,ESET 2026-06-11
+sha1,511B77459673EC42163F19E300FF1D233B6C39FB,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,59A8553A4F8130F576AB234E0B220BE4D4DA0E98,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,9CA1A5C7F79882DB913534C1E62B26BCDCB9F6DD,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,A8E2BBBFCB86500322D2367744FA12755AB0C165,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,F74F1FEB62B662CDA489FDB2453727824E55ACB9,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,F8F8209987CA7F139DE6A62F9E6EE21BD2AE93A9,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,19A69F856EFA811C376F68E4FEB0997B4724F8BD,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,490194E9BB5128ECA8693AD9E610891C2ED185AF,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,51176139B0B2220B802C1578A4994DF68DF5BCD1,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,91F042F59BE4BDCB6E5EA21B91DECD731C175B54,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,A177ED0BFFEB1EFE1D9D31D72A82EF2625AE646D,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,B7B2D2DB544F9EEA74453CDF2B8BEEA58CF07C48,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,4AD36AD6C165B5174967020CB1A3358F78D7A283,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,57352B3CEEE32216E5AA20BAA848483D7AB5A6FB,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+sha1,9BC06DF9F932746A05EE728C8B103BD3BA6BF395,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,ESET 2026-06-11
+domain,financemachinelearning.com,SPECTRALVIPER C2 domain crafted for the FireAnt stock-investor campaign; beacon host,high,ESET 2026-06-11
+domain,coachcybersecurity.com,SPECTRALVIPER C2 domain (corporate construction-firm intrusion),high,ESET 2026-06-11
+domain,gatewayrvcenter.com,SPECTRALVIPER C2 domain (corporate construction-firm intrusion),high,ESET 2026-06-11
+domain,mxprodesign.com,SPECTRALVIPER C2 domain (corporate construction-firm intrusion),high,ESET 2026-06-11
+domain,power-sync-services.com,SPECTRALVIPER C2 domain (corporate construction-firm intrusion),high,ESET 2026-06-11
+domain,leadingfilipinoteams.com,SPECTRALVIPER C2 domain,high,ESET 2026-06-11
+domain,metakit.fireant.vn,Legitimate FireAnt MetaKit update server that was compromised to serve malicious setup.exe; no TLS and no integrity validation,high,ESET 2026-06-11
+ipv4,194.68.26.241,SPECTRALVIPER C2 server hosting financemachinelearning.com (M247 Europe SRL),high,ESET 2026-06-11
+ipv4,139.99.33.239,SPECTRALVIPER C2 server hosting coachcybersecurity.com (OVH Singapore),high,ESET 2026-06-11
+ipv4,139.180.128.42,SPECTRALVIPER C2 server hosting gatewayrvcenter.com,high,ESET 2026-06-11
+ipv4,166.88.77.186,SPECTRALVIPER C2 server hosting mxprodesign.com (Evoxt),high,ESET 2026-06-11
+ipv4,103.119.47.104,SPECTRALVIPER C2 server hosting power-sync-services.com,high,ESET 2026-06-11
+ipv4,38.60.245.37,SPECTRALVIPER C2 server hosting leadingfilipinoteams.com (Kaopu Cloud HK),high,ESET 2026-06-11
+ipv4,139.162.11.152,SPECTRALVIPER staging/hosting server (Akamai Connected Cloud); early FireAnt campaign,high,ESET 2026-06-11
+ipv4,142.91.98.77,SPECTRALVIPER staging/hosting server (Leaseweb Singapore); later FireAnt campaign,high,ESET 2026-06-11
+url,http://metakit.fireant.vn/Software/setup.exe,Malicious MetaKit update payload URL (legitimate update path abused for supply-chain delivery),high,ESET 2026-06-11
+url,http://metakit.fireant.vn/Software/version.xml,FireAnt MetaKit update manifest with no integrity validation and no TLS (root-cause weakness),high,ESET 2026-06-11
+url,https://financemachinelearning.com/apparatus/wind/twig/statement.html,Hardcoded SPECTRALVIPER beacon URL (FireAnt campaign),high,ESET 2026-06-11
+string,V1/Update/GetUpdate,Next-stage download API path used by the SPECTRALVIPER downloader across all samples,high,ESET 2026-06-11
+string,zd_cs_pm=,New HTTP Cookie prefix wrapping encrypted host-profiling data in SPECTRALVIPER beacons (first observed this campaign),high,ESET 2026-06-11
+string,euconsent-v2=,Historical HTTP Cookie prefix wrapping encrypted host-profiling data in SPECTRALVIPER beacons,high,ESET 2026-06-11
+string,XGU::Pivot::StartLink,SPECTRALVIPER RTTI class/method (named-pipe orchestration); recovered from an OPSEC-lapse sample,high,ESET 2026-06-11
+string,XGU::Pivot::Internal::WaitNew_RemotePipe,SPECTRALVIPER RTTI method for orchestrator-to-instance named-pipe channel,high,ESET 2026-06-11
+string,ProcessReflector,SPECTRALVIPER RTTI class implementing process injection,high,ESET 2026-06-11
+string,ProcessManager,SPECTRALVIPER RTTI class implementing process manipulation/injection,high,ESET 2026-06-11
+path,DtlCrashCatch.dll,SPECTRALVIPER loader DLL side-loaded by the renamed legitimate dtlupdate.exe (IntelAudioService.exe),high,ESET 2026-06-11
+path,SetupUi.dll,SPECTRALVIPER backdoor DLL,high,ESET 2026-06-11
+path,IntelAudioService.exe,Renamed copy of the legitimate signed dtlupdate.exe used as a side-loading host,high,ESET 2026-06-11
+string,IntelAudioService.exe /appmodel /StateRepository /Service,Distinctive command line launching the side-loading host in the FireAnt campaign,high,ESET 2026-06-11
+string,-uiDll,Required command-line parameter for the renamed Toolbox.exe side-loaders (Genuine.exe/Updater.exe/AutoCAD242.exe) in the corporate intrusion,high,ESET 2026-06-11
+path,OneDrive.Sync.Service.exe,Legitimate process injected by DtlCrashCatch.dll to run SPECTRALVIPER in backdoor mode,medium,ESET 2026-06-11
+note,OceanLotus supply-chain attack on FireAnt MetaKit ran ~2025-10-02 to 2026-03-09; corporate construction-firm intrusion ~2024-11 to 2026-02,high,ESET 2026-06-11
+cve,none,No CVE; supply-chain compromise of an update server plus DLL side-loading and suspected MSSQL RCE for the corporate intrusion,high,analysis

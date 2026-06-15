@@ -1,0 +1,51 @@
+title: SPECTRALVIPER Side-Loading Host Launched With OceanLotus Command Line
+id: 3c83ce1f-1255-44bc-a4f0-545fd6620b3c
+status: experimental
+description: |
+  Detects execution of a renamed, legitimately-signed binary used by OceanLotus
+  (APT32) as a DLL side-loading host for the SPECTRALVIPER backdoor. In the
+  June 2026 ESET-reported campaigns, the host was a copy of the signed
+  dtlupdate.exe renamed IntelAudioService.exe and launched with the distinctive
+  command line "/appmodel /StateRepository /Service", and in the corporate
+  intrusion copies of the signed Toolbox.exe (Genuine.exe, Updater.exe,
+  AutoCAD242.exe) were launched with the required "-uiDll" parameter. Either the
+  IntelAudio service path/command line or a -uiDll-driven side-load from a
+  user-writable directory is anomalous and should be triaged for a paired
+  unsigned loader DLL (DtlCrashCatch.dll / SetupUi.dll).
+references:
+  - https://www.welivesecurity.com/en/eset-research/oceanlotus-external-espionage-domestic-targeting/
+  - https://attack.mitre.org/techniques/T1574/002/
+  - https://attack.mitre.org/techniques/T1036/
+author: Jarmi
+date: 2026/06/15
+modified: 2026/06/15
+tags:
+  - attack.defense-evasion
+  - attack.t1574.002
+  - attack.t1036
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_intelaudio:
+    Image|endswith: '\IntelAudioService.exe'
+    CommandLine|contains|all:
+      - '/appmodel'
+      - '/StateRepository'
+      - '/Service'
+  selection_toolbox_img:
+    Image|endswith:
+      - '\Genuine.exe'
+      - '\Updater.exe'
+      - '\AutoCAD242.exe'
+  selection_toolbox_param:
+    CommandLine|contains: '-uiDll'
+  filter_program_files:
+    Image|startswith:
+      - 'C:\Program Files\'
+      - 'C:\Program Files (x86)\'
+  condition: selection_intelaudio or (selection_toolbox_img and selection_toolbox_param and not filter_program_files)
+falsepositives:
+  - Genuine deployments of the original dtlupdate.exe / Toolbox.exe from their installed Program Files locations. The rule excludes Program Files paths for the Toolbox copies; tune the IntelAudio selection to your environment if a legitimate IntelAudioService.exe exists.
+
+level: high

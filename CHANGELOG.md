@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.15 — Day 49 — OceanLotus (APT32) SPECTRALVIPER via a FireAnt MetaKit supply-chain attack
+
+### Added
+- `days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/` — ESET's 11 June 2026 report on two 2024-2026 OceanLotus (APT32) campaigns deploying the SPECTRALVIPER backdoor and showing a shift toward domestic Vietnamese espionage: a supply-chain attack that compromised the FireAnt MetaKit update server (serving a malicious `setup.exe` over cleartext HTTP with no integrity validation, ~2025-10-02 to 2026-03-09) targeting stock investors, and a ~2024-11 to 2026-02 intrusion into a Vietnamese infrastructure/transport construction corporation (suspected MSSQL RCE). Both use DLL side-loading via a renamed signed binary (`IntelAudioService.exe`=`dtlupdate.exe`; `Toolbox.exe` copies) loading a SPECTRALVIPER loader DLL that injects into `OneDrive.Sync.Service.exe`, then an HTTPS beacon hiding encrypted host data in an HTTP Cookie header (`zd_cs_pm=`/`euconsent-v2=`). An OPSEC lapse exposed SPECTRALVIPER's internal `XGU` framework via RTTI. Monday espionage; repo's first OceanLotus/APT32 primary. Primary #1 APT state-nation; secondaries #7 supply chain, #19 malware-deep-dive (RE), #24 CTI tradecraft.
+- Sigma (3): `spectralviper_signed_binary_sideload_launch.yml` — renamed signed side-loading host with the `/appmodel /StateRepository /Service` or `-uiDll` command line (T1574.002/T1036, process_creation); `spectralviper_loader_dll_sideload.yml` — `DtlCrashCatch.dll`/`SetupUi.dll` loaded from a user path (T1574.002, image_load); `spectralviper_injected_onedrive_beacon.yml` — `OneDrive.Sync.Service.exe` egress to non-Microsoft hosts (T1055/T1071.001, network_connection).
+- KQL (4): `oceanlotus_spectralviper_c2` beacon to C2 domains/IPs and beacon URL; `oceanlotus_dll_sideload` loader DLL side-loaded from a user path; `oceanlotus_sideload_process` renamed signed side-loaders with distinctive command lines; `oceanlotus_fireant_supplychain` MetaKit update fetch from `metakit.fireant.vn` + child spawn.
+- YARA (1 file, 3 rules): SPECTRALVIPER RTTI/framework strings (XGU::Pivot, ProcessReflector/Manager), Cookie-beacon shape (`zd_cs_pm=`/`euconsent-v2=` + beacon URL), and FireAnt downloader API (`V1/Update/GetUpdate`) — anchored on ESET-reported durable strings.
+- Suricata (1 file, 6 sids): C2 domain TLS SNI + DNS, hardcoded beacon URL path, `Cookie: zd_cs_pm=`/`euconsent-v2=` prefix, FireAnt MetaKit update/download API, and staging/C2 server IPs.
+- PEAK hunts (3): H1 renamed signed binary side-loading an unsigned loader DLL; H2 injected Microsoft process beaconing to non-Microsoft infrastructure; H3 third-party software updaters fetching insecure (cleartext/unsigned) updates.
+- `iocs.csv` (52 entries) — 19 SHA-1 sample hashes, 6 C2 domains + compromised update host, 8 C2/staging IPs, beacon URL + update URLs, Cookie/RTTI/API string anchors, side-loading paths; ESET-sourced.
+- `kill_chain.svg` — template A two-lane (victim/endpoint vs OceanLotus infrastructure), canonical palette, red anchors on the malicious update server and the signed-binary side-load.
+
+### Pedagogy
+- A legitimately-signed binary is an execution primitive: OceanLotus renames signed hosts and side-loads the malware — hunt the pairing (signed host + unsigned DLL from a user path), not signatures alone.
+- Injecting into `OneDrive.Sync.Service.exe` buys cover; the durable tell is a benign Microsoft binary talking to non-Microsoft infrastructure.
+- Beacons hide in plain sight: encrypted host data rode inside an HTTP Cookie header and the format survived across campaigns even as domains rotated.
+- Update integrity is a supply-chain control: no signature validation + cleartext HTTP turned a market-data updater into a malware delivery channel.
+
+
 ## 2026.06.14 — Day 48 — Humanity Protocol $36M DPRK-linked bridge takeover via signer-laptop key theft
 
 ### Added
