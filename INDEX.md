@@ -4,7 +4,7 @@
 
 # INDEX
 
-**47 cases** · **107 actors/clusters** · **280 ATT&CK techniques** · **15 platforms** · **65 sectors** · 2026-04-29 -> 2026-06-14
+**48 cases** · **108 actors/clusters** · **282 ATT&CK techniques** · **15 platforms** · **65 sectors** · 2026-04-29 -> 2026-06-15
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/"><img src="days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/kill_chain.svg" alt="2026-06-15 kill chain" width="240"></a><br><sub><b>2026-06-15</b><br>OceanLotus (APT32)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/"><img src="days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/kill_chain.svg" alt="2026-06-14 kill chain" width="240"></a><br><sub><b>2026-06-14</b><br>DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/"><img src="days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/kill_chain.svg" alt="2026-06-13 kill chain" width="240"></a><br><sub><b>2026-06-13</b><br>DevilNFC · NFCMultiPay</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/"><img src="days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/kill_chain.svg" alt="2026-06-12 kill chain" width="240"></a><br><sub><b>2026-06-12</b><br>LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/"><img src="days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/kill_chain.svg" alt="2026-06-12 kill chain" width="240"></a><br><sub><b>2026-06-12</b><br>LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/"><img src="days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/kill_chain.svg" alt="2026-06-11 kill chain" width="240"></a><br><sub><b>2026-06-11</b><br>Opportunistic Argo CD ServerSideDiff exploitation (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/"><img src="days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/kill_chain.svg" alt="2026-06-10 kill chain" width="240"></a><br><sub><b>2026-06-10</b><br>Kali365</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/"><img src="days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/kill_chain.svg" alt="2026-06-09 kill chain" width="240"></a><br><sub><b>2026-06-09</b><br>Kyber</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/"><img src="days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/kill_chain.svg" alt="2026-06-09 kill chain" width="240"></a><br><sub><b>2026-06-09</b><br>Kyber</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/"><img src="days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/kill_chain.svg" alt="2026-06-08 kill chain" width="240"></a><br><sub><b>2026-06-08</b><br>OP-512</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/"><img src="days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/kill_chain.svg" alt="2026-06-07 kill chain" width="240"></a><br><sub><b>2026-06-07</b><br>Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/"><img src="days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/kill_chain.svg" alt="2026-06-06 kill chain" width="240"></a><br><sub><b>2026-06-06</b><br>Opportunistic OCPP / EV-charging exploitation (unattributed)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/"><img src="days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/kill_chain.svg" alt="2026-06-06 kill chain" width="240"></a><br><sub><b>2026-06-06</b><br>Opportunistic OCPP / EV-charging exploitation (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE/"><img src="days/2026/06/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE/kill_chain.svg" alt="2026-06-05 kill chain" width="240"></a><br><sub><b>2026-06-05</b><br>Opportunistic Netlogon mass-exploitation (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/"><img src="days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/kill_chain.svg" alt="2026-06-04 kill chain" width="240"></a><br><sub><b>2026-06-04</b><br>Opportunistic WordPress mass-exploitation (unattributed)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/"><img src="days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/kill_chain.svg" alt="2026-06-03 kill chain" width="240"></a><br><sub><b>2026-06-03</b><br>Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-06</b> — 14 case(s)</summary>
+<details><summary><b>2026-06</b> — 15 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-06-15 | [OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-chain attack and a multi-year construction-firm intrusion](days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/) | OceanLotus (APT32) | windows |
 | 2026-06-14 | [Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer laptop steals the multisig keys](days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/) | DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed) | windows, macos, cloud-multi |
 | 2026-06-13 | [DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Brazilian TAs, AI-assisted)](days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/) | DevilNFC · NFCMultiPay | android |
 | 2026-06-12 | [LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment](days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/) | LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap) | linux, cloud-multi, supply-chain |

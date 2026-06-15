@@ -1,0 +1,253 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">OceanLotus SPECTRALVIPER FireAnt supply-chain kill chain</title>
+<desc id="d">Two-lane kill chain. Left lane (victim endpoint): FireAnt MetaKit pulls an update over cleartext HTTP with no integrity check; a malicious setup.exe served from the compromised update server runs as a trusted update (critical) and delivers an obfuscated SPECTRALVIPER downloader that profiles the host and pulls the next stage via the V1/Update/GetUpdate API; a renamed signed binary (IntelAudioService.exe, a copy of dtlupdate.exe) side-loads the SPECTRALVIPER loader DtlCrashCatch.dll (critical); the loader injects the backdoor into OneDrive.Sync.Service.exe; the implant beacons over HTTPS to a hardcoded URL hiding encrypted host data in an HTTP Cookie header prefixed zd_cs_pm or euconsent-v2; and one instance orchestrates peers over named pipes and exfiltrates over C2. Right lane (OceanLotus infrastructure and SPECTRALVIPER): the compromised FireAnt update server is the supply-chain delivery point (critical), staging servers migrate from Akamai to Leaseweb Singapore, per-campaign C2 domains are crafted to blend with victim traffic, the SPECTRALVIPER XGU framework provides loader plus backdoor with RTTI exposed by an OPSEC lapse, named-pipe orchestration enables lateral movement, and exfiltration reflects a strategic shift to domestic Vietnamese espionage. Detection anchors are the malicious update on the right and the signed-binary side-load on the left.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<text class="head" x="20" y="36">OceanLotus SPECTRALVIPER - FireAnt supply-chain (APT32)</text>
+<text class="meta" x="20" y="58">Vendor: ESET · Date: 2026-06-11 · Cluster: OceanLotus (APT32) · Day 49</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="34" y="104">VICTIM / ENDPOINT (defensible)</text>
+<text class="laneLabelR" x="464" y="104">OCEANLOTUS INFRASTRUCTURE and SPECTRALVIPER</text>
+
+<!-- LEFT STAGE 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">MetaKit update fetch</text>
+<text class="sub" x="40" y="168">FireAnt MetaKit pulls update over HTTP</text>
+<text class="sub" x="40" y="184">No TLS, no integrity check on version.xml</text>
+<text class="sub" x="40" y="200">Metakit.exe trusts the update server</text>
+<text class="mono" x="40" y="226">http://metakit.fireant.vn/Software/</text>
+<text class="mono" x="40" y="244">T1195.002 supply-chain compromise</text>
+
+<!-- LEFT STAGE 2 (critical) -->
+<rect class="stageK" x="30" y="270" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">Malicious setup.exe runs</text>
+<text class="sub" x="40" y="318">Attacker-replaced update executed</text>
+<text class="sub" x="40" y="334">No signature validation = trusted</text>
+<text class="sub" x="40" y="350">Delivers SPECTRALVIPER downloader</text>
+<text class="mono" x="40" y="376">test 2025-10-02 / stable 2025-10-17</text>
+<text class="mono" x="40" y="394">T1204 / T1105 exec + ingress</text>
+
+<!-- LEFT STAGE 3 -->
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">Obfuscated downloader</text>
+<text class="sub" x="40" y="468">Profiles host, POSTs to staging server</text>
+<text class="sub" x="40" y="484">Pulls next stage via the update API</text>
+<text class="sub" x="40" y="500">Heavily obfuscated (stable build)</text>
+<text class="mono" x="40" y="526">V1/Update/GetUpdate</text>
+<text class="mono" x="40" y="544">T1027 / T1082 discovery</text>
+
+<!-- LEFT STAGE 4 (critical) -->
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">DLL side-loading</text>
+<text class="sub" x="40" y="618">Renamed legitimately-signed host binary</text>
+<text class="sub" x="40" y="634">IntelAudioService.exe = dtlupdate.exe</text>
+<text class="sub" x="40" y="650">Side-loads SPECTRALVIPER loader DLL</text>
+<text class="mono" x="40" y="676">DtlCrashCatch.dll (-uiDll / Toolbox)</text>
+<text class="mono" x="40" y="694">T1574.002 / T1036 masquerading</text>
+
+<!-- LEFT STAGE 5 -->
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Process injection</text>
+<text class="sub" x="40" y="768">Loader injects into a Microsoft process</text>
+<text class="sub" x="40" y="784">OneDrive.Sync.Service.exe = backdoor</text>
+<text class="sub" x="40" y="800">Benign parent hides the implant</text>
+<text class="mono" x="40" y="826">inject -> OneDrive.Sync.Service.exe</text>
+<text class="mono" x="40" y="844">T1055 process injection</text>
+
+<!-- LEFT STAGE 6 -->
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">HTTPS Cookie beacon</text>
+<text class="sub" x="40" y="918">Beacon to a hardcoded C2 URL</text>
+<text class="sub" x="40" y="934">Encrypted host data in Cookie header</text>
+<text class="sub" x="40" y="950">Prefix zd_cs_pm= (new) / euconsent-v2=</text>
+<text class="mono" x="40" y="976">/apparatus/wind/twig/statement.html</text>
+<text class="mono" x="40" y="994">T1071.001 / T1573 encrypted C2</text>
+
+<!-- LEFT STAGE 7 -->
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Orchestration + exfil</text>
+<text class="sub" x="40" y="1068">One instance acts as the orchestrator</text>
+<text class="sub" x="40" y="1084">Commands over named pipes to peers</text>
+<text class="sub" x="40" y="1100">Data exfiltrated over the C2 channel</text>
+<text class="mono" x="40" y="1126">XGU::Pivot named-pipe link</text>
+<text class="mono" x="40" y="1144">T1570 / T1021 / T1041</text>
+
+<!-- RIGHT OP A (critical) -->
+<rect class="opK" x="460" y="125" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">Compromised update server</text>
+<text class="sub" x="470" y="173">FireAnt MetaKit update host</text>
+<text class="sub" x="470" y="189">Legit IP, attacker-controlled payload</text>
+<text class="sub" x="470" y="205">setup.exe swapped on the server</text>
+<text class="sub" x="470" y="221">Vendor unresponsive to notice</text>
+<text class="mono" x="470" y="250">metakit.fireant.vn</text>
+<text class="mono" x="470" y="268">supply-chain delivery point</text>
+
+<!-- RIGHT OP B -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">Staging / hosting servers</text>
+<text class="sub" x="470" y="343">Receive host profile, serve next stage</text>
+<text class="sub" x="470" y="359">Infrastructure migrated mid-campaign</text>
+<text class="sub" x="470" y="375">Distinct from the named C2 domains</text>
+<text class="sub" x="470" y="391">Akamai then Leaseweb Singapore</text>
+<text class="mono" x="470" y="420">139.162.11.152 -> 142.91.98.77</text>
+<text class="mono" x="470" y="438">next-stage delivery</text>
+
+<!-- RIGHT OP C -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">Per-campaign C2 domains</text>
+<text class="sub" x="470" y="513">Crafted to blend with victim traffic</text>
+<text class="sub" x="470" y="529">Finance theme for stock investors</text>
+<text class="sub" x="470" y="545">Separate domain per operation</text>
+<text class="sub" x="470" y="561">Rotates; behaviour is the anchor</text>
+<text class="mono" x="470" y="590">financemachinelearning.com</text>
+<text class="mono" x="470" y="608">gatewayrvcenter.com (corp)</text>
+
+<!-- RIGHT OP D -->
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">SPECTRALVIPER framework</text>
+<text class="sub" x="470" y="683">Internal XGU class hierarchy</text>
+<text class="sub" x="470" y="699">RTTI left in via an OPSEC lapse</text>
+<text class="sub" x="470" y="715">Feature class = remote control</text>
+<text class="sub" x="470" y="731">ProcessReflector/Manager = inject</text>
+<text class="mono" x="470" y="760">XGU::Pivot / Feature</text>
+<text class="mono" x="470" y="778">loader + backdoor in one</text>
+
+<!-- RIGHT OP E -->
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Named-pipe orchestration</text>
+<text class="sub" x="470" y="853">Orchestrator instance talks to C2</text>
+<text class="sub" x="470" y="869">Distributes commands to peers</text>
+<text class="sub" x="470" y="885">Lateral spread without new C2</text>
+<text class="sub" x="470" y="901">Hunt peers in the same segment</text>
+<text class="mono" x="470" y="930">WaitNew_RemotePipe</text>
+<text class="mono" x="470" y="948">T1570 / T1021</text>
+
+<!-- RIGHT OP F -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">Exfiltration + strategic shift</text>
+<text class="sub" x="470" y="1023">Data exfiltrated over the C2 channel</text>
+<text class="sub" x="470" y="1039">Targets: investors + construction firm</text>
+<text class="sub" x="470" y="1055">Apparent shift to domestic espionage</text>
+<text class="sub" x="470" y="1071">Aligns with anti-corruption drive</text>
+<text class="mono" x="470" y="1100">T1041 exfil over C2</text>
+<text class="mono" x="470" y="1118">Vietnam-aligned (APT32)</text>
+
+<!-- LEFT vertical arrows -->
+<g color="#2a4a6a">
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+</g>
+
+<!-- RIGHT vertical arrows -->
+<g color="#8a5520">
+<path class="arrowR" d="M657,280 L657,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,450 L657,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,620 L657,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,790 L657,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,960 L657,975" marker-end="url(#ah)"/>
+</g>
+
+<!-- CROSS-LANE: supply-chain delivery (update server -> malicious update on endpoint) -->
+<g color="#7a3a7a">
+<path class="arrowX" d="M460,230 L425,330" marker-end="url(#ah)"/>
+</g>
+
+<!-- CROSS-LANE: beacon/exfil handoff (endpoint -> C2 infrastructure) -->
+<g color="#7a3a7a">
+<path class="arrowX" d="M425,945 L460,1020" marker-end="url(#ah)"/>
+</g>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Why it matters</text>
+<text class="footerT" x="34" y="1222">OceanLotus needs no stolen cert: it renames genuinely-signed binaries and lets them side-load the malware.</text>
+<text class="footerT" x="34" y="1240">Durable tells are behavioural - signed host + unsigned DLL, OneDrive egress to non-Microsoft hosts, the Cookie beacon.</text>
+<text class="footerT" x="34" y="1258">Update integrity is a supply-chain control: no signature + cleartext HTTP turned a market-data updater into delivery.</text>
+</svg>

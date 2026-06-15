@@ -1,0 +1,24 @@
+// Title:        OceanLotus SPECTRALVIPER - C2 Beacon to Known Domains/IPs
+// Id:           a7e1d2c4-3b6f-4a90-8c11-2f5d9e0a1b22
+// MITRE:        T1071.001, T1573
+// Reference:    https://www.welivesecurity.com/en/eset-research/oceanlotus-external-espionage-domestic-targeting/
+// Author:       Jarmi
+// Date:         2026-06-15
+// Tested on:    Microsoft Defender XDR - DeviceNetworkEvents
+// FP notes:     The domain/IP list is case-specific OceanLotus C2 (ESET, June 2026). Any hit is high
+//               fidelity. Refresh the indicator lists as infrastructure rotates.
+//
+let c2Domains = dynamic([
+    "financemachinelearning.com","gatewayrvcenter.com","coachcybersecurity.com",
+    "mxprodesign.com","power-sync-services.com","leadingfilipinoteams.com"]);
+let c2Ips = dynamic([
+    "194.68.26.241","139.99.33.239","139.180.128.42","166.88.77.186",
+    "103.119.47.104","38.60.245.37","139.162.11.152","142.91.98.77"]);
+DeviceNetworkEvents
+| where Timestamp > ago(45d)
+| where RemoteIP in (c2Ips)
+    or RemoteUrl has_any (c2Domains)
+    or RemoteUrl has "apparatus/wind/twig/statement.html"
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath,
+          RemoteUrl, RemoteIP, RemotePort, ActionType
+| order by Timestamp desc

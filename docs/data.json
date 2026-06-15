@@ -1,5 +1,48 @@
 [
  {
+  "date": "2026-06-15",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain",
+  "title": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-chain attack and a multi-year construction-firm intrusion",
+  "clusters": [
+   "OceanLotus (APT32)"
+  ],
+  "country": "Vietnam-aligned",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "finance",
+   "construction",
+   "government",
+   "transportation"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1190",
+   "T1059",
+   "T1204",
+   "T1574.002",
+   "T1055",
+   "T1036",
+   "T1027",
+   "T1553.002",
+   "T1082",
+   "T1570",
+   "T1021",
+   "T1071.001",
+   "T1573",
+   "T1105",
+   "T1041"
+  ],
+  "tech_count": 16,
+  "tldr": "ESET published (11 June 2026) two 2024–2026 OceanLotus (APT32) campaigns that both deploy the group's signature Windows backdoor, **SPECTRALVIPER**, but reveal a strategic shift from external espionage toward **domestic** Vietnamese targets. In the first, OceanLotus compromised the update server of **FireAnt MetaKit** — a market-data component widely used by Vietnamese stock investors — and replac",
+  "thumb": "thumbs/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain.svg",
+  "case_rel": "../days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/",
+  "q": "oceanlotus (apt32) turns inward — spectralviper via a fireant metakit supply-chain attack and a multi-year construction-firm intrusion oceanlotus (apt32) vietnam-aligned windows finance construction government transportation t1195.002 t1190 t1059 t1204 t1574.002 t1055 t1036 t1027 t1553.002 t1082 t1570 t1021 t1071.001 t1573 t1105 t1041"
+ },
+ {
   "date": "2026-06-14",
   "year": "2026",
   "month": "2026-06",

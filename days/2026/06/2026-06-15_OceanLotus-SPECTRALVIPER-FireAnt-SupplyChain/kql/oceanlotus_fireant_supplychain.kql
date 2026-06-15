@@ -1,0 +1,29 @@
+// Title:        OceanLotus - FireAnt MetaKit Update Fetch and Child Process Spawn
+// Id:           d9f4b1a6-5c83-4e27-8b1f-0a7c2e6d9f31
+// MITRE:        T1195.002, T1105
+// Reference:    https://www.welivesecurity.com/en/eset-research/oceanlotus-external-espionage-domestic-targeting/
+// Author:       Jarmi
+// Date:         2026-06-15
+// Tested on:    Microsoft Defender XDR - DeviceNetworkEvents, DeviceProcessEvents
+// FP notes:     Legitimate MetaKit updates also fetch from metakit.fireant.vn. Scope to the campaign
+//               window (2025-10-02 to 2026-03-09) and correlate with a child process spawn from
+//               Metakit.exe / setup.exe to surface the malicious update.
+//
+let updaters = DeviceNetworkEvents
+    | where Timestamp > ago(120d)
+    | where RemoteUrl has "metakit.fireant.vn"
+    | where RemoteUrl has_any ("/Software/setup.exe","/Software/version.xml","V1/Update/GetUpdate")
+    | project NetTime=Timestamp, DeviceName, RemoteUrl, RemoteIP,
+              InitiatingProcessFileName, InitiatingProcessFolderPath;
+updaters
+| join kind=leftouter (
+    DeviceProcessEvents
+    | where Timestamp > ago(120d)
+    | where InitiatingProcessFileName in~ ("Metakit.exe","setup.exe")
+    | project ProcTime=Timestamp, DeviceName, FileName, FolderPath, ProcessCommandLine,
+              InitiatingProcessFileName
+    ) on DeviceName
+| where isempty(ProcTime) or (ProcTime between (NetTime .. (NetTime + 10m)))
+| project NetTime, DeviceName, RemoteUrl, RemoteIP, InitiatingProcessFileName,
+          ChildFileName=FileName, ChildCommandLine=ProcessCommandLine, ProcTime
+| order by NetTime desc

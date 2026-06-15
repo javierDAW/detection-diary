@@ -1,0 +1,17 @@
+// Title:        OceanLotus SPECTRALVIPER - Loader DLL Side-Loaded From a User Path
+// Id:           b5c2f099-7d41-4e8a-9a3c-6e0b1d7c4a55
+// MITRE:        T1574.002
+// Reference:    https://www.welivesecurity.com/en/eset-research/oceanlotus-external-espionage-domestic-targeting/
+// Author:       Jarmi
+// Date:         2026-06-15
+// Tested on:    Microsoft Defender XDR - DeviceImageLoadEvents
+// FP notes:     The DLL names are case-specific. A SetupUi.dll shipped legitimately by a third-party
+//               app from a user path would be noise; check the loading process signer and DLL signature.
+//
+DeviceImageLoadEvents
+| where Timestamp > ago(45d)
+| where FileName in~ ("DtlCrashCatch.dll","SetupUi.dll")
+| where FolderPath has_any (@"\Users\", @"\AppData\", @"\ProgramData\", @"\Temp\", @"\Public\")
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath,
+          FileName, FolderPath, SHA1, SHA256
+| order by Timestamp desc
