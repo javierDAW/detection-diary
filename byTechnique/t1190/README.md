@@ -4,11 +4,12 @@
 
 # Techniques: T1190
 
-17 day(s) covering this technique.
+18 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-16 | Qilin affiliate weaponises Check Point IKEv1 VPN auth-bypass (CVE-2026-50751) as ransomware initial access | Qilin ransomware affiliate (Check Point CPR, medium confidence) | [`2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/`](../../days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/) |
 | 2026-06-15 | OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-chain attack and a multi-year construction-firm intrusion | OceanLotus (APT32) | [`2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/`](../../days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/) |
 | 2026-06-12 | LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment | LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap) | [`2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/`](../../days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/) |
 | 2026-06-11 | Argo CD ServerSideDiff Kubernetes Secret extraction (CVE-2026-42880) — a read-only GitOps user reads etcd Secrets in plaintext | Opportunistic Argo CD ServerSideDiff exploitation (unattributed) | [`2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/`](../../days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/) |

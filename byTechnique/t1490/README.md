@@ -4,11 +4,12 @@
 
 # Techniques: T1490
 
-10 day(s) covering this technique.
+11 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-16 | Qilin affiliate weaponises Check Point IKEv1 VPN auth-bypass (CVE-2026-50751) as ransomware initial access | Qilin ransomware affiliate (Check Point CPR, medium confidence) | [`2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/`](../../days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/) |
 | 2026-06-09 | Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hypervisor recovery | Kyber | [`2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/`](../../days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/) |
 | 2026-06-02 | Aur0ra ransomware — in-place encryption with no rename and no extension, double-extortion via Tor | Aur0ra (unattributed ransomware family) | [`2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/`](../../days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/) |
 | 2026-05-31 | Black Shadow / Ababil of Minab — Iran-MOIS recovery-layer destruction: vCenter VM deletion, Veeam backup wipe, SSMS database drops to deny recovery | Black Shadow (Ababil of Minab persona) | [`2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/`](../../days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/) |

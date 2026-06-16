@@ -1,5 +1,46 @@
 [
  {
+  "date": "2026-06-16",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751",
+  "title": "Qilin affiliate weaponises Check Point IKEv1 VPN auth-bypass (CVE-2026-50751) as ransomware initial access",
+  "clusters": [
+   "Qilin ransomware affiliate (Check Point CPR, medium confidence)"
+  ],
+  "country": "e-crime / RaaS (financially motivated; Qilin RaaS, Russia-nexus ecosystem)",
+  "platforms": [
+   "network-edge",
+   "linux",
+   "windows"
+  ],
+  "sectors": [
+   "multi-sector",
+   "government",
+   "finance",
+   "manufacturing",
+   "technology"
+  ],
+  "techniques": [
+   "T1190",
+   "T1133",
+   "T1078",
+   "T1211",
+   "T1588.006",
+   "T1583.003",
+   "T1105",
+   "T1486",
+   "T1490",
+   "T1041",
+   "T1071.001"
+  ],
+  "tech_count": 11,
+  "tldr": "A financially-motivated operator — assessed by Check Point Research with **medium confidence** to be a **Qilin ransomware affiliate** — has been exploiting **CVE-2026-50751**, a critical (CVSS 9.3) authentication-bypass in the **deprecated IKEv1** code of Check Point Remote Access VPN / Mobile Access / Spark Firewall, to obtain unauthenticated remote-access VPN sessions as the **initial-access pri",
+  "thumb": "thumbs/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751.svg",
+  "case_rel": "../days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/",
+  "q": "qilin affiliate weaponises check point ikev1 vpn auth-bypass (cve-2026-50751) as ransomware initial access qilin ransomware affiliate (check point cpr, medium confidence) e-crime / raas (financially motivated; qilin raas, russia-nexus ecosystem) network-edge linux windows multi-sector government finance manufacturing technology t1190 t1133 t1078 t1211 t1588.006 t1583.003 t1105 t1486 t1490 t1041 t1071.001"
+ },
+ {
   "date": "2026-06-15",
   "year": "2026",
   "month": "2026-06",

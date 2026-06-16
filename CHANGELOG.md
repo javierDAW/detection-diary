@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.16 — Day 50 — Qilin affiliate weaponises Check Point IKEv1 VPN auth-bypass (CVE-2026-50751)
+
+### Added
+- `days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/` — a financially-motivated operator assessed by Check Point Research (medium confidence) to be a Qilin (Agenda) ransomware affiliate has exploited CVE-2026-50751, a CVSS 9.3 authentication bypass in the deprecated IKEv1 code of Check Point Remote Access VPN / Mobile Access / Spark Firewall, as the initial-access primitive for ransomware. In the wild since 2026-05-07; Check Point hotfixed (sk185033) and disclosed 2026-06-08, CISA KEV 2026-06-09, watchTowr published the root cause + a working bypass 2026-06-12. The flaw is client-controlled auth: a 4-byte bitmask parsed from the attacker's `VPNExtFeatures` IKE Vendor ID (magic `3cf187b2...eaf289f5`) is written to `state+0x4bc4` and bit `0x4` short-circuits `verify_peer_auth`, so a self-signed cert + a random signature is accepted; the attacker only needs a valid username and the ICA `O=` string (readable from the gateway's public TLS cert). Tuesday crime-economy; filed as Initial Access / ransomware-affiliate. Primary #4 IAB; secondaries #3 Qilin RaaS, #15 edge appliance, #24 CTI.
+- Sigma (3): `qilin_recovery_inhibition.yml` — vssadmin/wmic/wbadmin/bcdedit recovery destruction (T1490, process_creation); `qilin_actor_vps_beacon.yml` — internal egress to the nine actor VPS IPs (T1071.001, network_connection); `qilin_linux_elf_staging.yml` — Linux exec of a freshly chmod'd ELF from a world-writable path (T1105, process_creation/linux).
+- KQL (4): `checkpoint_vpn_bypass_logon_anomaly` Syslog audit for VID magic / `not a Check Point peer` -> `User saved` / actor IPs from 2026-05-07; `qilin_actor_vps_beacon` Defender XDR egress to actor IPs; `qilin_recovery_inhibition` recovery-destruction process events; `vpn_signin_from_actor_infra` Entra SigninLogs from actor IPs.
+- YARA (1 file, 2 rules): `VPNExtFeatures` VID 16-byte magic for pcap/memory scanning; files embedding any of the nine actor C2 IPs — both flagged as heuristics (no public sample deep-dive yet).
+- Suricata (1 file, 6 sids): VID magic over IKE UDP 500/4500 and TCP 443 Visitor Mode (TCPT), egress to and inbound IKE from the actor VPS IP set, and an ELF-fetch rule.
+- PEAK hunts (3): H1 Check Point IKE log retro-hunt from 2026-05-07; H2 post-foothold Qilin staging/impact; H3 IKEv1 exposure + configuration hunt.
+- `iocs.csv` (21 entries) — 2 CVEs, the VID magic + gateway log-string anchors, 9 actor VPS IPs, 2 published MD5 payload hashes, infra/comms notes.
+- `kill_chain.svg` — template A two-lane (gateway/internal vs VPS/IKE bypass), canonical palette, red anchors on the auth bypass and the Qilin delivery.
+
+### Pedagogy
+- Never let the client decide how hard the client is checked: CVE-2026-50751 is CWE-1337 "mark your own homework"; a removed function parameter in the patch is the tell.
+- A patch is not incident response: the bypass leaves a live VPN session and leaks the gateway internal IP + certificate — rotate creds and the ICA cert.
+- Hunt the primitive, not the campaign: the `VPNExtFeatures` VID magic and the `not a Check Point peer` -> `User saved` log adjacency survive payload/infra rotation.
+- "Deprecated" is a synonym for "still exploitable"; legacy IKEv1 moved to a new daemon (`iked`) but kept its flawed logic, and an edge VPN bug is a ransomware affiliate's cheapest valid account.
+
+
 ## 2026.06.15 — Day 49 — OceanLotus (APT32) SPECTRALVIPER via a FireAnt MetaKit supply-chain attack
 
 ### Added

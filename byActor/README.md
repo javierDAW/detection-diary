@@ -68,6 +68,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Punk Spider](./punk-spider/) | 1 |
 | [QLNX](./qlnx/) | 1 |
 | [Qilin](./qilin/) | 1 |
+| [Qilin ransomware affiliate (Check Point CPR, medium confidence)](./qilin-ransomware-affiliate-check-point-cpr-medium-confidence/) | 1 |
 | [Quasar Linux](./quasar-linux/) | 1 |
 | [REF7707](./ref7707/) | 1 |
 | [Red Lamassu](./red-lamassu/) | 1 |

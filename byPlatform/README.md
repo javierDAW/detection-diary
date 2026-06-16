@@ -16,13 +16,13 @@ Source of truth: each day's `README.md` frontmatter.
 | [cloud-multi](./cloud-multi/) | 15 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 2 |
-| [linux](./linux/) | 19 |
+| [linux](./linux/) | 20 |
 | [macos](./macos/) | 6 |
 | [microsoft-365](./microsoft-365/) | 1 |
-| [network-edge](./network-edge/) | 13 |
+| [network-edge](./network-edge/) | 14 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 3 |
 | [saas](./saas/) | 1 |
 | [supply-chain](./supply-chain/) | 10 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
-| [windows](./windows/) | 34 |
+| [windows](./windows/) | 35 |
