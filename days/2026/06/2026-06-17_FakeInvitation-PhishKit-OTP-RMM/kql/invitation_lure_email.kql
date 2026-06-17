@@ -1,0 +1,24 @@
+// Title:    Inbound fake event-invitation lure emails with links to .de hosts
+// Id:       1e8c5b40-7a92-43d6-9f0e-58b2cd71a4f9
+// MITRE:    T1566.002, T1656
+// Reference: https://any.run/cybersecurity-blog/us-fake-invitation-phishing/
+// Author:   Jarmi
+// Date:     2026-06-17
+// Tested on: Microsoft Defender XDR (EmailEvents + EmailUrlInfo)
+// FP notes: Event/invitation subjects + links to .de event-themed hosts. Legitimate German (.de)
+//           business mail exists; rank by the combination of invitation lexicon + delivered .de URL
+//           + the recipient never having corresponded with that domain.
+let lureSubjects = dynamic(["invitation","invite","you are invited","rsvp","celebration","party","event"]);
+let mails =
+    EmailEvents
+    | where Timestamp > ago(14d)
+    | where EmailDirection == "Inbound"
+    | where DeliveryAction != "Blocked"
+    | where Subject has_any (lureSubjects);
+mails
+| join kind=inner (
+    EmailUrlInfo
+    | where Url has ".de/" or Url has_any ("/blocked.html","/Image/")
+) on NetworkMessageId
+| project Timestamp, SenderFromAddress, RecipientEmailAddress, Subject, Url, DeliveryAction
+| order by Timestamp asc

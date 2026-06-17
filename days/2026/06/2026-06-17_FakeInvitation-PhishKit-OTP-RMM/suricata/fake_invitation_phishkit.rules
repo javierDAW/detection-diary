@@ -1,0 +1,28 @@
+# Fake event-invitation phish kit - credential + OTP harvesting and RMM delivery - Author: Jarmi
+# Highest-fidelity anchors are the fixed backend endpoints and the request chain (blocked.html +
+# /Image/*.png), which survive the continuous .de domain rotation. process.php is generic and is
+# scoped to POST to reduce noise. sid range 2026617xx reserved for this case.
+# References:
+#   https://any.run/cybersecurity-blog/us-fake-invitation-phishing/
+#   https://gbhackers.com/fake-invitation-phishing-campaign/
+
+# 1. Non-Google flow: credential POST to /processmail.php
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"Fake-invitation phish kit credential POST (processmail.php)"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/processmail.php"; nocase; classtype:credential-theft; reference:url,any.run/cybersecurity-blog/us-fake-invitation-phishing/; sid:202661701; rev:1;)
+
+# 2. Non-Google flow: OTP POST to /process.php (scoped to POST to cut FPs)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"Fake-invitation phish kit OTP POST (process.php) - tuning"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/process.php"; nocase; classtype:credential-theft; reference:url,any.run/cybersecurity-blog/us-fake-invitation-phishing/; sid:202661702; rev:1;)
+
+# 3. Google flow: login/password POST to /pass.php or /mlog.php
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"Fake-invitation phish kit Google-flow credential POST (pass.php/mlog.php)"; flow:established,to_server; http.method; content:"POST"; http.uri; pcre:"/\/(pass|mlog)\.php/i"; classtype:credential-theft; reference:url,any.run/cybersecurity-blog/us-fake-invitation-phishing/; sid:202661703; rev:1;)
+
+# 4. Google flow: Telegram relay beacon to /check_telegram_updates.php (kit-specific)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"Fake-invitation phish kit Telegram relay beacon (check_telegram_updates.php)"; flow:established,to_server; http.uri; content:"/check_telegram_updates.php"; nocase; classtype:trojan-activity; reference:url,any.run/cybersecurity-blog/us-fake-invitation-phishing/; sid:202661704; rev:1;)
+
+# 5. Kit fingerprint: GET /blocked.html (part of the fixed request chain)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"Fake-invitation phish kit fingerprint (GET /blocked.html)"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/blocked.html"; nocase; classtype:trojan-activity; reference:url,gbhackers.com/fake-invitation-phishing-campaign/; sid:202661705; rev:1;)
+
+# 6. Kit fingerprint: brand-icon path /Image/office360.png (static kit asset)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"Fake-invitation phish kit icon path (/Image/office360.png)"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/Image/office360.png"; nocase; classtype:trojan-activity; reference:url,gbhackers.com/fake-invitation-phishing-campaign/; sid:202661706; rev:1;)
+
+# 7. Known lure domains via TLS SNI
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"Fake-invitation phish kit known lure domain (TLS SNI)"; tls.sni; pcre:"/(festiveparty\.us|getceptionparty\.de|celebratieinvitiee\.de)$/i"; classtype:credential-theft; reference:url,any.run/cybersecurity-blog/us-fake-invitation-phishing/; sid:202661707; rev:1;)

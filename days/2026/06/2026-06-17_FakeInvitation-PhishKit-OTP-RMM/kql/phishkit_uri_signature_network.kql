@@ -1,0 +1,19 @@
+// Title:    Fake-invitation phish-kit URI signature in endpoint network telemetry
+// Id:       4b71e2a9-0c5d-46f8-bb13-2e9a7c4d8f56
+// MITRE:    T1566.002, T1111, T1598.003
+// Reference: https://any.run/cybersecurity-blog/us-fake-invitation-phishing/
+// Author:   Jarmi
+// Date:     2026-06-17
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: The backend endpoints and the /blocked.html + /Image/office360.png fingerprint are
+//           specific to this kit and survive domain rotation. process.php is generic; the high
+//           confidence comes from the other endpoints and the icon path. Tune if an internal app
+//           legitimately uses identical paths (rare).
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteUrl has_any (
+    "/processmail.php","/pass.php","/mlog.php","/check_telegram_updates.php",
+    "/blocked.html","/Image/office360.png","/Image/aol.png","/process.php")
+| summarize Hits=count(), Endpoints=make_set(RemoteUrl, 20), FirstSeen=min(Timestamp), LastSeen=max(Timestamp)
+    by DeviceName, RemoteIP, InitiatingProcessFileName
+| order by LastSeen asc

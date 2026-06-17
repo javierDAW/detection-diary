@@ -1,0 +1,51 @@
+title: Remote-Support Applet (LogMeIn Rescue / ITarian / Datto) Spawned By A Browser From A Download Path
+id: b3db006b-8289-4ae4-a8b5-3dd42cec8575
+status: experimental
+description: >
+  Detects a one-time remote-support / RMM agent (LogMeIn Rescue, ITarian, Datto RMM, generic
+  remote helper) launched directly by a web browser from a Downloads or Temp directory. In the
+  fake event-invitation phishing campaign, lure pages auto-download or one-click-deliver a
+  legitimate signed remote-management tool as a foothold. A browser parent process spawning a
+  remote-support binary from a user-writable path is the foothold signature; sanctioned remote
+  support normally arrives via a managed deployment, not a browser download. Maintain an allowlist
+  of approved remote-support tooling for the FP set.
+references:
+  - https://any.run/cybersecurity-blog/us-fake-invitation-phishing/
+  - https://gbhackers.com/fake-invitation-phishing-campaign/
+  - https://attack.mitre.org/techniques/T1219/
+author: Jarmi
+date: 2026/06/17
+tags:
+  - attack.command-and-control
+  - attack.t1219
+  - attack.execution
+  - attack.t1204.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  rmm_image:
+    Image|endswith:
+      - '\Support-LogMeInRescue.exe'
+      - '\LMI_Rescue.exe'
+      - '\LMIR0001.exe'
+      - '\ITSMAgent.exe'
+      - '\RmmService.exe'
+      - '\AEMAgent.exe'
+      - '\Datto.RMM.exe'
+  browser_parent:
+    ParentImage|endswith:
+      - '\chrome.exe'
+      - '\msedge.exe'
+      - '\firefox.exe'
+      - '\brave.exe'
+  user_path:
+    Image|contains:
+      - '\Downloads\'
+      - '\AppData\Local\Temp\'
+  condition: rmm_image and (browser_parent or user_path)
+falsepositives:
+  - Approved help-desk sessions using LogMeIn Rescue / ITarian / Datto from a sanctioned workflow
+  - User-initiated legitimate support after contacting the real IT department
+
+level: high

@@ -1,0 +1,20 @@
+// Title:    RMM remote-support agent executed from a user-writable path (phishing-to-RMM foothold)
+// Id:       2a9d6c14-7f03-4b58-9e21-8c5b1f0a6d77
+// MITRE:    T1219, T1204.002
+// Reference: https://any.run/cybersecurity-blog/us-fake-invitation-phishing/
+// Author:   Jarmi
+// Date:     2026-06-17
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: Sanctioned RMM normally installs under Program Files via a managed deployment. This
+//           catches the phishing-delivery pattern: a signed RMM agent launching from Downloads/Temp,
+//           often with a browser parent. Allowlist your approved remote-support tooling + relays.
+let rmmNames = dynamic([
+    "screenconnect.clientservice.exe","screenconnect.windowsclient.exe","connectwisecontrol.clientservice.exe",
+    "support-logmeinrescue.exe","lmi_rescue.exe","itsmagent.exe","rmmservice.exe","aemagent.exe","datto.rmm.exe"]);
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where tolower(FileName) in (rmmNames)
+| where FolderPath has_any ("\\Downloads\\","\\AppData\\Local\\Temp\\","\\Users\\Public\\")
+    or InitiatingProcessFileName in~ ("chrome.exe","msedge.exe","firefox.exe","brave.exe")
+| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName
+| order by Timestamp asc
