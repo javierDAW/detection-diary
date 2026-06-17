@@ -1,0 +1,27 @@
+type,value,context,confidence,source
+sha256,887bc414bdb32b83dcfccdd3c688e90d9a87a0033e3756a840f9bdd2d65c5c74,Phish-kit brand icon office360.png served from /Image/ on every lure host; static kit asset,high,ANY.RUN 2026-05-05
+sha256,6eaa0a448f1306bcf4159783eeafe5d37243bd8ca2728db7d90de1929241dd29,Phish-kit brand icon office.png served from /Image/; static kit asset,high,ANY.RUN 2026-05-05
+sha256,4c373bc25cb71dbb75e73b61dff25aa184be8d327053a97202a6b1a5919cab0d,Phish-kit brand icon yahoo.png served from /Image/; static kit asset,high,ANY.RUN 2026-05-05
+sha256,a838f99537d35e48e479a34086297f76db5d3363b0456f23d10d308f0d30ed82,Phish-kit brand icon google.png served from /Image/; static kit asset,high,ANY.RUN 2026-05-05
+sha256,8e94c18bbcad0644c4b04de4356fe37da9996fdf1c99bc984ba819862a9b1889,Phish-kit brand icon aol.png served from /Image/; static kit asset,high,ANY.RUN 2026-05-05
+sha256,9a53e032a6e3e79861d28568c3b6ffc97f4f3c1d3af65a703ec12966420503d9,Phish-kit brand icon email.png served from /Image/; static kit asset,high,ANY.RUN 2026-05-05
+domain,festiveparty[.]us,Fake event-invitation lure host observed in ANY.RUN sandbox sessions,medium,ANY.RUN 2026-05-05
+domain,getceptionparty[.]de,Fake event-invitation lure host (.de TLD) observed in ANY.RUN sessions,medium,ANY.RUN 2026-05-05
+domain,celebratieinvitiee[.]de,Fake event-invitation lure host (.de TLD) observed in ANY.RUN sessions,medium,ANY.RUN 2026-05-05
+path,/blocked.html,Kit fingerprint; requested in fixed chain after GET / and /favicon.ico,high,ANY.RUN 2026-05-05
+path,/<url-pattern>/processmail.php,Non-Google flow: POST endpoint that receives harvested email + password,high,ANY.RUN 2026-05-05
+path,/<url-pattern>/process.php,Non-Google flow: POST endpoint that receives the intercepted OTP code,high,ANY.RUN 2026-05-05
+path,/<url-pattern>/pass.php,Google flow: POST endpoint that receives the login/email,high,ANY.RUN 2026-05-05
+path,/<url-pattern>/mlog.php,Google flow: POST endpoint that receives the password,high,ANY.RUN 2026-05-05
+path,/<url-pattern>/check_telegram_updates.php,Google flow: POST endpoint carrying visitor ID; backend relays stolen data to a Telegram bot,high,ANY.RUN 2026-05-05
+path,/<url-pattern>/Image/office360.png,Kit icon path; office360.png aol.png yahoo.png google.png email.png email.png loaded from a fixed /Image/ directory,high,ANY.RUN 2026-05-05
+url,hxxps://<phish_site>/<url-pattern>/processmail.php,Defanged credential-submit URL pattern,high,ANY.RUN 2026-05-05
+url,hxxps://<phish_site>/<url-pattern>/check_telegram_updates.php,Defanged Telegram-relay URL pattern (Google flow),high,ANY.RUN 2026-05-05
+note,Repeatable phish kit: ~80 phishing domains and ~160 links tracked by ANY.RUN as of 2026-04-27; most registered under .de TLD starting December 2025,Campaign scale/infra; domains rotate so the durable anchors are the URI chain and the static icon SHA-256s,high,ANY.RUN 2026-05-05
+note,Entry is a Cloudflare CAPTCHA / Turnstile gate followed by a fake event-invitation page,CAPTCHA gate filters sandboxes and analyst tooling; treat as evasion not benign,high,ANY.RUN 2026-05-05
+note,Fixed request chain on visit: GET / then GET /favicon.ico then GET /blocked.html then GET /<url-pattern>/Image/*.png,Highest-fidelity network hunt signature; survives domain rotation,high,ANY.RUN 2026-05-05
+note,Non-Google flow shows a fake Incorrect Password error after the first attempt to capture a clean second credential entry,Behavioural tell; two POSTs to /processmail.php for one victim,high,ANY.RUN 2026-05-05
+note,RMM-delivery branch drops legitimate remote-management tools as a foothold: ScreenConnect ITarian Datto RMM ConnectWise LogMeIn Rescue,Legit signed RMM agents evade AV; hunt for agents outside the sanctioned RMM baseline,high,ANY.RUN 2026-05-05
+note,Some lure pages auto-start the RMM download with no click; kit code contains operator edit instructions and signs of AI-assisted generation,Mass-production tradecraft; attack surface rotates fast but backend structure is fixed,medium,ANY.RUN 2026-05-05
+note,ANY.RUN TI Lookup hunt query: url:"/blocked.html" AND url:"/favicon.ico" AND url:"/Image/*.png",Use to retrieve the live rotating domain list,high,ANY.RUN 2026-05-05
+note,Most-targeted sectors: Education Banking Government Technology Healthcare; submissions predominantly United States,Victimology,medium,ANY.RUN 2026-05-05

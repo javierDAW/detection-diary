@@ -1,0 +1,16 @@
+// Title:    Endpoint contact with known fake-invitation lure domains
+// Id:       9c3f0a72-5d18-4e64-a7b9-6f21c8d4b03e
+// MITRE:    T1566.002, T1656
+// Reference: https://gbhackers.com/fake-invitation-phishing-campaign/
+// Author:   Jarmi
+// Date:     2026-06-17
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: Static seed list of lure domains; the operator rotates infrastructure so refresh from
+//           the ANY.RUN TI query. Pair with the URI-signature query for higher confidence.
+let lureDomains = dynamic(["festiveparty.us","getceptionparty.de","celebratieinvitiee.de"]);
+DeviceNetworkEvents
+| where Timestamp > ago(45d)
+| where RemoteUrl has_any (lureDomains) or RemoteUrl has ".de/"
+| where RemoteUrl has_any (lureDomains)
+| project Timestamp, DeviceName, AccountName=InitiatingProcessAccountName, InitiatingProcessFileName, RemoteUrl, RemoteIP
+| order by Timestamp asc

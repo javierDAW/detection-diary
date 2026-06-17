@@ -1,0 +1,33 @@
+title: DNS Query To Known Fake Event-Invitation Phishing Lure Domains
+id: 7cfa722e-61c1-4c99-98aa-6773a2d9e0e8
+status: experimental
+description: >
+  Detects DNS lookups to the fake event-invitation phishing lure domains observed by ANY.RUN in
+  the credential + OTP harvesting and RMM-delivery campaign. The operator rotates domains
+  continuously (around 80 tracked, mostly under the .de TLD, registered from December 2025), so
+  this static list ages quickly. Treat it as a seed: pivot in the SIEM to newly-registered .de
+  hosts with event/party/invitation keywords that also serve the kit URI chain. The durable
+  signals live in the network and process detections; this rule is the cheap DNS tripwire.
+references:
+  - https://any.run/cybersecurity-blog/us-fake-invitation-phishing/
+  - https://gbhackers.com/fake-invitation-phishing-campaign/
+author: Jarmi
+date: 2026/06/17
+tags:
+  - attack.command-and-control
+  - attack.t1566.002
+  - attack.initial-access
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  known_domains:
+    QueryName|endswith:
+      - 'festiveparty.us'
+      - 'getceptionparty.de'
+      - 'celebratieinvitiee.de'
+  condition: known_domains
+falsepositives:
+  - Unlikely; these are dedicated phishing hosts with no legitimate use
+
+level: high

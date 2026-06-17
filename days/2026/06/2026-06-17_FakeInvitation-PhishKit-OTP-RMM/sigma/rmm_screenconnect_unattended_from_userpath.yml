@@ -1,0 +1,47 @@
+title: ScreenConnect / ConnectWise Control Unattended Client Launched From User-Writable Path
+id: e456fd56-0706-41ed-a10c-97ec5fe16f77
+status: experimental
+description: >
+  Detects a ScreenConnect (ConnectWise Control) client executing from a user-writable or
+  temporary path with embedded relay/instance parameters in the command line. In the fake
+  event-invitation phishing campaign tracked by ANY.RUN, a lure page silently delivers a
+  legitimate, signed RMM agent as a remote-access foothold. Sanctioned ScreenConnect deployments
+  normally install under Program Files via a managed installer, not from Downloads/Temp with an
+  ad-hoc relay string. Tune the FP list to the organization's approved ScreenConnect instances.
+references:
+  - https://any.run/cybersecurity-blog/us-fake-invitation-phishing/
+  - https://gbhackers.com/fake-invitation-phishing-campaign/
+  - https://attack.mitre.org/techniques/T1219/
+author: Jarmi
+date: 2026/06/17
+tags:
+  - attack.command-and-control
+  - attack.t1219
+  - attack.initial-access
+  - attack.t1566.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  sc_image:
+    Image|endswith:
+      - '\ScreenConnect.ClientService.exe'
+      - '\ScreenConnect.WindowsClient.exe'
+      - '\ConnectWiseControl.ClientService.exe'
+  user_path:
+    Image|contains:
+      - '\Users\'
+      - '\AppData\Local\Temp\'
+      - '\Downloads\'
+  relay_params:
+    CommandLine|contains:
+      - 'e=Access'
+      - '&y=Guest'
+      - 'h=instance-'
+      - '&p='
+  condition: sc_image and (user_path or relay_params)
+falsepositives:
+  - Sanctioned ScreenConnect/ConnectWise Control deployments using a managed installer
+  - MSP onboarding that legitimately runs the client from a temporary path
+
+level: high

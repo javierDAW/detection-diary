@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.17 — Day 51 — Fake event-invitation phish kit: credential + OTP harvesting and RMM delivery
+
+### Added
+- `days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/` — a high-volume, repeatable phishing kit (tracked by ANY.RUN, reported 2026-05-05; corroborated by GBHackers 2026-05-21) targeting US organizations with fake event invitations. One CAPTCHA-gated lure branches into (a) real-time harvesting of webmail credentials and the follow-up OTP, and (b) silent delivery of legitimate RMM tools (ScreenConnect, ITarian, Datto RMM, ConnectWise, LogMeIn Rescue) as a remote-access foothold. ~80 domains / ~160 links tracked (mostly `.de`, registered from Dec 2025); two backend flows — non-Google (`processmail.php` -> `process.php`) and Google (`pass.php`/`mlog.php` + Telegram relay `check_telegram_updates.php`). Wednesday identity & fraud; repo's first primary in slot #27 (BEC / email fraud). Secondaries #5 cloud/identity (OTP interception), #4 IAB (phishing-to-RMM foothold), #18 AI-assisted lure generation.
+- Sigma (3): `rmm_screenconnect_unattended_from_userpath.yml` — ScreenConnect/ConnectWise client from a user/temp path with relay params (T1219, process_creation); `rmm_remote_support_applet_from_browser.yml` — LogMeIn/ITarian/Datto applet spawned by a browser from Downloads/Temp (T1219/T1204.002, process_creation); `dns_fake_invitation_phish_domains.yml` — DNS to the known lure domains (T1566.002, dns_query).
+- KQL (4): `rmm_foothold_user_path_execution` RMM agent from a user-writable path; `phishkit_uri_signature_network` kit URI signature in `RemoteUrl`; `phishkit_lure_domain_contact` device contact with lure domains; `invitation_lure_email` inbound event-invitation lures with `.de` links (EmailEvents + EmailUrlInfo).
+- YARA (1 file, 3 rules): saved kit pages — non-Google flow (`processmail.php`/`process.php`/`Incorrect Password`), Google flow (`pass.php`/`mlog.php`/`check_telegram_updates.php`), and the fixed `/Image/` brand-icon set — all flagged as page heuristics.
+- Suricata (1 file, 7 sids): POSTs to `processmail.php`/`process.php`/`pass.php`/`mlog.php`, the `check_telegram_updates.php` beacon, the `/blocked.html` + `/Image/office360.png` fingerprint, and TLS SNI for the three known lure domains.
+- PEAK hunts (3): H1 kit URI signature across the estate; H2 RMM agents outside the sanctioned baseline; H3 post-harvest account takeover + Telegram relay.
+- `iocs.csv` (26 entries) — 6 static icon SHA-256s, 3 lure domains, the URI-endpoint set, and behavioural notes (request chain, CAPTCHA gate, RMM tools, re-prompt trick, TI hunt query).
+- `kill_chain.svg` — template A two-lane (victim path vs operator/infrastructure), canonical palette, red anchors on OTP interception and the RMM foothold.
+
+### Pedagogy
+- Hunt the structure, not the domain: rotating `.de` domains are weak IOCs; the fixed request chain (`/favicon.ico` -> `/blocked.html` -> `/Image/*.png`), the icon SHA-256s and the PHP endpoints are durable across the campaign.
+- A signed, sanctioned RMM tool is still a foothold when you did not install it — baseline approved remote-support tooling and alert on everything else (provenance over signature).
+- Password reset != containment after OTP theft: revoke sessions/tokens and re-MFA, then move users to FIDO2 / passkeys.
+- A CAPTCHA in front of a credential form is evasion (it filters sandboxes/crawlers), not assurance; the "Incorrect Password" re-prompt is a harvesting tell.
+
+
 ## 2026.06.16 — Day 50 — Qilin affiliate weaponises Check Point IKEv1 VPN auth-bypass (CVE-2026-50751)
 
 ### Added
