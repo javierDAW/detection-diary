@@ -1,5 +1,84 @@
 [
  {
+  "date": "2026-06-18",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE",
+  "title": "JCE CVE-2026-48907 — unauthenticated pre-auth RCE in the Joomla Content Editor via the profile-import endpoint, now sprayed by a botnet",
+  "clusters": [
+   "Opportunistic CMS mass-exploitation (unattributed botnet)"
+  ],
+  "country": "Unattributed (commodity web exploitation)",
+  "platforms": [
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "hosting",
+   "government",
+   "education",
+   "media",
+   "small-business",
+   "technology"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1588.005",
+   "T1190",
+   "T1105",
+   "T1505.003",
+   "T1059.004",
+   "T1071.001",
+   "T1033",
+   "T1083"
+  ],
+  "tech_count": 9,
+  "tldr": "**CVE-2026-48907** (CVSS v4 **10.0**, improper access control) is a pre-auth remote code execution flaw in **JCE (Joomla Content Editor)** by Widget Factory, the single most installed Joomla editor extension. The profile-import endpoint `/index.php?option=com_jce&task=profiles.import` is reachable by an unauthenticated caller (its only gate was a CSRF token that Joomla embeds in every public page)",
+  "thumb": "thumbs/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE.svg",
+  "case_rel": "../days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/",
+  "q": "jce cve-2026-48907 — unauthenticated pre-auth rce in the joomla content editor via the profile-import endpoint, now sprayed by a botnet opportunistic cms mass-exploitation (unattributed botnet) unattributed (commodity web exploitation) linux network-edge hosting government education media small-business technology t1595.002 t1588.005 t1190 t1105 t1505.003 t1059.004 t1071.001 t1033 t1083"
+ },
+ {
+  "date": "2026-06-17",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-17_FakeInvitation-PhishKit-OTP-RMM",
+  "title": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delivery against US organizations",
+  "clusters": [
+   "Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)"
+  ],
+  "country": "Unattributed (e-crime)",
+  "platforms": [
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "education",
+   "finance",
+   "government",
+   "technology",
+   "healthcare"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1656",
+   "T1598.003",
+   "T1204.001",
+   "T1204.002",
+   "T1111",
+   "T1219",
+   "T1583.001",
+   "T1567",
+   "T1497.001",
+   "T1078"
+  ],
+  "tech_count": 11,
+  "tldr": "A high-volume, repeatable phishing kit is targeting US organizations with fake **event invitations** that branch into two outcomes from one CAPTCHA-gated lure: (a) real-time harvesting of webmail credentials **and** the follow-up OTP, and (b) silent delivery of legitimate **RMM** tools (ScreenConnect, ITarian, Datto RMM, ConnectWise, LogMeIn Rescue) as a remote-access foothold. ANY.RUN tracked rou",
+  "thumb": "thumbs/2026-06-17_FakeInvitation-PhishKit-OTP-RMM.svg",
+  "case_rel": "../days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/",
+  "q": "fake event-invitation phish kit: mass credential + otp harvesting and rmm delivery against us organizations unattributed fake-invitation phish-kit operator (any.run-tracked) unattributed (e-crime) windows cloud-multi education finance government technology healthcare t1566.002 t1656 t1598.003 t1204.001 t1204.002 t1111 t1219 t1583.001 t1567 t1497.001 t1078"
+ },
+ {
   "date": "2026-06-16",
   "year": "2026",
   "month": "2026-06",

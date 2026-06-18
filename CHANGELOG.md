@@ -6,6 +6,25 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.18 — Day 52 — Joomla JCE CVE-2026-48907: unauthenticated profile-import RCE sprayed by a botnet
+
+### Added
+- `days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/` — pre-auth RCE (CVSS 10.0, improper access control) in JCE (Joomla Content Editor) by Widget Factory, the most installed Joomla editor. The `com_jce&task=profiles.import` endpoint is reachable unauthenticated and accepts any file/extension into the web-readable `tmp/` (`File::upload(..., $allow_unsafe=true)`), yielding a `*.xml.php` web shell in three requests. YesWeHack published root-cause + PoC 2026-06-12; exploit on GitHub 2026-06-09; CISA KEV 2026-06-16 (FCEB due 2026-06-19). Live botnet exploitation: a `profiles.import` POST then a `plugin.rpc&...&method=upload` POST dropping a shell (`m.php`) into `images/`/`media/`/`tmp/`. Fixed in 2.9.99.5 (2026-06-03), hardened 2.9.99.6 (2026-06-06). Thursday supply chain; primary #26 (AppSec/web exploitation). Secondaries #7 (parallel WordPress plugin supply-chain wave), #15 (LiteSpeed cPanel symlink-to-root CVE-2026-54420), #24 (PoC publication as mass-exploitation inflection point).
+- Sigma (3): `jce_profiles_import_unauth.yml` — unauthenticated `profiles.import` POST (webserver); `jce_pluginrpc_upload_rce_marker.yml` — `plugin.rpc` upload carrying the `id=RCE` toolkit marker (webserver); `jce_php_dropped_under_webroot.yml` — `.php`/`.phtml`/`.php5` written under `tmp/`/`images/`/`media/` (file_event).
+- KQL (4): `jce_php_dropped_webroot` executable PHP under Joomla media/tmp; `jce_webservice_shell_spawn` web account spawning shell/LOLBin; `jce_host_beacon_attacker_ips` traffic to/from known scanning IPs; `jce_import_chain_in_syslog` import->upload chain in forwarded web logs (Sentinel Syslog).
+- YARA (1 file, 3 rules): rogue JCE profile XML (php/txt filetypes / `Pwned`), generic PHP request-sink web shell, and the `id=RCE` upload marker — all flagged as heuristics (no recovered hashed sample).
+- Suricata (1 file, 7 sids): unauthenticated `profiles.import` POST, `plugin.rpc` upload with `id=RCE` marker, the broader file-browser upload, `.xml.php` body upload, web-shell access under media/tmp with `cmd=`, `python-requests` scanner UA, and the known-IP block (sample set).
+- PEAK hunts (3): H1 unauthenticated profile import; H2 file-browser RPC upload chain + `id=RCE` marker; H3 PHP foothold under media/tmp + web-account shell.
+- `iocs.csv` (25 entries) — CVE, the two endpoint URIs, the `id=RCE` marker (+ observed values), `.xml.php`, `m.php`/`/images/m.php`, rogue-profile `Pwned`, three scanning IPs, version-triage and timeline notes.
+- `kill_chain.svg` — template A two-lane (victim Joomla host vs attacker/botnet infra), canonical palette, red anchors on the unauthenticated import, the file-browser upload and the web-shell drop.
+
+### Pedagogy
+- Three small weaknesses (missing authz, no extension check, `$allow_unsafe=true`) chain into one CVSS-10 pre-auth RCE; removing any one breaks the chain.
+- A CSRF token is not authorization — public-page tokens are trivially harvested; authorization must be an explicit `authorise()` check.
+- Web-writable directories must never execute code: deny PHP under `tmp/`/`images/`/`media/` and hunt for PHP where only media should live.
+- Patching is not incident response — the update closes the entry point but leaves the shell, the rogue profile and any added admin; one vulnerable site means audit the whole portfolio.
+
+
 ## 2026.06.17 — Day 51 — Fake event-invitation phish kit: credential + OTP harvesting and RMM delivery
 
 ### Added
