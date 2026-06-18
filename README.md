@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**49 cases** · **109 actors/clusters** · **284 ATT&CK techniques** · **15 platforms** · **66 sectors** · 2026-04-29 -> 2026-06-16
+**51 cases** · **111 actors/clusters** · **284 ATT&CK techniques** · **15 platforms** · **66 sectors** · 2026-04-29 -> 2026-06-18
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/"><img src="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/kill_chain.svg" alt="2026-06-18 kill chain" width="240"></a><br><sub><b>2026-06-18</b><br>Opportunistic CMS mass-exploitation (unattributed botnet)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/"><img src="days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/kill_chain.svg" alt="2026-06-17 kill chain" width="240"></a><br><sub><b>2026-06-17</b><br>Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/"><img src="days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/kill_chain.svg" alt="2026-06-16 kill chain" width="240"></a><br><sub><b>2026-06-16</b><br>Qilin ransomware affiliate (Check Point CPR, medium confidence)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/"><img src="days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/kill_chain.svg" alt="2026-06-15 kill chain" width="240"></a><br><sub><b>2026-06-15</b><br>OceanLotus (APT32)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/"><img src="days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/kill_chain.svg" alt="2026-06-14 kill chain" width="240"></a><br><sub><b>2026-06-14</b><br>DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/"><img src="days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/kill_chain.svg" alt="2026-06-15 kill chain" width="240"></a><br><sub><b>2026-06-15</b><br>OceanLotus (APT32)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/"><img src="days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/kill_chain.svg" alt="2026-06-14 kill chain" width="240"></a><br><sub><b>2026-06-14</b><br>DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/"><img src="days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/kill_chain.svg" alt="2026-06-13 kill chain" width="240"></a><br><sub><b>2026-06-13</b><br>DevilNFC · NFCMultiPay</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/"><img src="days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/kill_chain.svg" alt="2026-06-12 kill chain" width="240"></a><br><sub><b>2026-06-12</b><br>LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/"><img src="days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/kill_chain.svg" alt="2026-06-11 kill chain" width="240"></a><br><sub><b>2026-06-11</b><br>Opportunistic Argo CD ServerSideDiff exploitation (unattributed)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

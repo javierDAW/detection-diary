@@ -61,6 +61,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [OP-512](./op-512/) | 1 |
 | [OceanLotus (APT32)](./oceanlotus-apt32/) | 1 |
 | [Opportunistic Argo CD ServerSideDiff exploitation (unattributed)](./opportunistic-argo-cd-serversidediff-exploitation-unattributed/) | 1 |
+| [Opportunistic CMS mass-exploitation (unattributed botnet)](./opportunistic-cms-mass-exploitation-unattributed-botnet/) | 1 |
 | [Opportunistic Netlogon mass-exploitation (unattributed)](./opportunistic-netlogon-mass-exploitation-unattributed/) | 1 |
 | [Opportunistic OCPP / EV-charging exploitation (unattributed)](./opportunistic-ocpp-ev-charging-exploitation-unattributed/) | 1 |
 | [Opportunistic WordPress mass-exploitation (unattributed)](./opportunistic-wordpress-mass-exploitation-unattributed/) | 1 |
@@ -112,6 +113,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UNC6671 (GTIG / Mandiant)](./unc6671-gtig-mandiant/) | 1 |
 | [UNC6780](./unc6780/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
+| [Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)](./unattributed-fake-invitation-phish-kit-operator-any-run-tracked/) | 1 |
 | [Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)](./unattributed-ip6-arpa-reverse-dns-phishing-operator-infoblox-tracked/) | 1 |
 | [Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)](./unattributed-ransomware-aligned-iab-ttp-overlap-with-akira-storm-1567-affiliate-ecosystem/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
