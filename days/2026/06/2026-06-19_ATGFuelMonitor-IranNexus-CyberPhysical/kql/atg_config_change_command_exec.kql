@@ -1,0 +1,50 @@
+// Title: ATG Management Interface Command Execution and Config Change Indicators
+// Id: atg-kql-002
+// MITRE: T1059.004, T1565.001, T1562.001, T0836, T0831
+// Reference: https://www.ic3.gov/CSA/2026/260602.pdf
+// Author: Jarmi
+// Date: 2026-06-19
+// Tested on: Microsoft Sentinel (Syslog, CommonSecurityLog)
+// FP notes: ATG vendor firmware updates via documented change window — correlate with change management
+
+// Detect shell command execution in syslog from OT/ATG subnet hosts
+// Assumes auditd or syslog forwarded from ATG Linux OS to Sentinel via syslog forwarder
+Syslog
+| where TimeGenerated > ago(24h)
+| where Computer has_any ("<add_known_atg_hostnames>")
+    or Computer startswith "atg-"
+    or Computer startswith "tls4"
+    or Computer startswith "vr-"
+| where SyslogMessage has_any (
+    "execve",
+    "/bin/sh",
+    "/bin/bash",
+    "wget",
+    "curl",
+    "chmod 777",
+    "chmod +x",
+    "nc -e",
+    "ncat",
+    "python -c",
+    "python3 -c",
+    "base64 -d",
+    "id;",
+    "whoami",
+    "/etc/passwd",
+    "useradd",
+    "usermod",
+    "crontab"
+    )
+| project TimeGenerated, Computer, SyslogMessage, ProcessName, HostIP
+| extend Alert = "ATG_SUSPICIOUS_SHELL_CMD"
+| order by TimeGenerated desc
+
+// --- ATG configuration modification via SCADA/HMI historian ---
+// Adapt if your historian forwards events to Sentinel
+// SecurityEvent
+// | where TimeGenerated > ago(24h)
+// | where EventID == 4688
+// | where NewProcessName has_any ("sh","bash","python","perl","curl","wget")
+// | where ParentProcessName has_any ("httpd","nginx","atg","tls4b","tankmanager")
+// | project TimeGenerated, Computer, Account, NewProcessName, ParentProcessName, CommandLine
+// | extend Alert = "ATG_WEB_TO_SHELL_EXECUTION"

@@ -6,6 +6,24 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.19 — Day 53 — Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles
+
+### Added
+- `days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/` — Iran-nexus threat actors exploited authentication bypass, hardcoded default credentials (8-zero PIN), CVE-2025-58428 OS command injection (CVSS 9.4), and SQL injection on internet-exposed Veeder-Root TLD-350/TLS-450/TLS4B automatic tank gauge consoles (port 10001/tcp); CISA/FBI/NSA/DoE/EPA/DOT/TSA/USDA joint advisory IC3-260602 (June 2 2026); 1,061+ IPs globally exposed per Shadowserver (June 5 2026); physical-consequence: alarm suppression hides real fuel leaks, reading manipulation causes incorrect delivery operations. First primary of #22 (OT physical/cyber-physical).
+- Sigma (3): `atg_port10001_external_inbound.yml` — inbound port 10001 from internet; `atg_os_command_injection_web.yml` — OS command injection in ATG web management proxy logs; `atg_unexpected_outbound_from_ot_host.yml` — outbound internet TCP from OT ATG subnet.
+- KQL (3): `atg_port10001_internet_exposure.kql` — Defender XDR/Sentinel inbound port 10001 from external; `atg_config_change_command_exec.kql` — Syslog shell commands from ATG hosts; `atg_alert_suppression_hunt.kql` — CommonSecurityLog alarm disable/config change (Claroty/Nozomi CEF).
+- YARA (1 file, 2 rules): `atg_exploit_patterns.yar` — ATG TLS protocol auth bypass probe and OS command injection payload strings; heuristic (no confirmed binary sample with public hash).
+- Suricata (1 file, 5 sids): `atg_fuel_monitor_campaign.rules` — SID 2400001 port-10001 inbound; SID 2400002 default credential probe; SID 2400003 CGI OS cmdinj; SID 2400004 SQL injection; SID 2400005 OT device outbound C2/exfil.
+- PEAK hunts (3): H1 internet exposure inventory; H2 auth anomaly and post-login config change; H3 physical consequence assessment (alarm suppression, dip-stick reconciliation, audit log gap).
+- `iocs.csv` (15 entries): CVE-2025-58428, IC3-260602 advisory ref, port 10001/tcp, device models, EMA advisory, Shadowserver count, default credential strings, attack vectors, physical consequence notes, attribution, sectors, regulatory implications.
+- `kill_chain.svg` — template A, canonical palette, 7 victim stages + 6 attacker ops; two critical red stages (alarm suppression, reading manipulation); cross-lane arrows; verifier ×2 PASS (880×1280).
+
+### Pedagogy
+- Network segmentation (no internet exposure on port 10001) eliminates auth bypass + hardcoded creds + cmdinj simultaneously — it is a stronger control than patching any single CVE.
+- OT IR requires physical-site verification: after digital recovery, manual dip-stick must reconcile with ATG readings and all alarms must be tested against a simulated event before declaring safe.
+- The "sensor lie" pattern (Stuxnet → FrostyGoop → ATG campaign) is the OT-specific attack class: attacker does not cause the physical event, only removes the operator's visibility into it.
+- Default credential persistence across thousands of field-deployed ATG units is an installation-practice failure, not a zero-day — lifecycle credential management must extend to set-and-forget OT appliances.
+
 ## 2026.06.18 — Day 52 — Joomla JCE CVE-2026-48907: unauthenticated profile-import RCE sprayed by a botnet
 
 ### Added

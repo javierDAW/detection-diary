@@ -1,5 +1,47 @@
 [
  {
+  "date": "2026-06-19",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical",
+  "title": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles",
+  "clusters": [
+   "Iran-nexus (unattributed)"
+  ],
+  "country": "Iran (suspected; not formally attributed by US government)",
+  "platforms": [
+   "ot-ics",
+   "network-edge",
+   "linux"
+  ],
+  "sectors": [
+   "energy",
+   "chemical",
+   "food-agriculture",
+   "transportation"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1190",
+   "T1078",
+   "T1059.004",
+   "T1068",
+   "T1562.001",
+   "T1565.001",
+   "T1041",
+   "T1071.001",
+   "T0836",
+   "T0831",
+   "T0816",
+   "T0859"
+  ],
+  "tech_count": 13,
+  "tldr": "Iran-nexus threat actors targeted internet-exposed Automatic Tank Gauge (ATG) systems — Veeder-Root TLD-350, TLS-450 Plus, and TLS4B consoles — by exploiting authentication bypass, hardcoded credentials (default 8-zero PIN), OS command injection (CVE-2025-58428, CVSS 9.4), SQL injection, and privilege escalation on the underlying Linux OS. On June 2, 2026, CISA, the FBI, NSA, Department of Energy,",
+  "thumb": "thumbs/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical.svg",
+  "case_rel": "../days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/",
+  "q": "iran-nexus atg cyber-physical campaign: fuel monitor manipulation via internet-exposed veeder-root consoles iran-nexus (unattributed) iran (suspected; not formally attributed by us government) ot-ics network-edge linux energy chemical food-agriculture transportation t1595.002 t1190 t1078 t1059.004 t1068 t1562.001 t1565.001 t1041 t1071.001 t0836 t0831 t0816 t0859"
+ },
+ {
   "date": "2026-06-18",
   "year": "2026",
   "month": "2026-06",

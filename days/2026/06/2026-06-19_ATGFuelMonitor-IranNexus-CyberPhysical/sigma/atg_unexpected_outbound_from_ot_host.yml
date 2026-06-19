@@ -1,0 +1,53 @@
+title: Unexpected Outbound Internet Connection from OT ATG Device Subnet
+id: 97b5c249-870e-4b72-baaf-7abca01b51dd
+status: experimental
+description: >
+  Detects outbound connections to internet-routable addresses initiated by hosts
+  in known OT/ATG monitoring subnets. Legitimate ATG systems should never initiate
+  outbound internet connections; any such traffic indicates either command-and-control
+  activity post-exploitation, data exfiltration of operational tank telemetry,
+  or compromised device firmware that beacons to attacker infrastructure.
+  Populate OT_ATG_SUBNETS with your actual ATG network ranges before deployment.
+  Also alerts on ATG hosts resolving external DNS, which precedes C2 beaconing.
+author: Jarmi
+date: 2026/06/19
+references:
+  - https://www.ic3.gov/CSA/2026/260602.pdf
+  - https://www.cisa.gov/resources-tools/resources/cisa-and-partners-urge-hardening-automatic-tank-gauge-systems
+  - https://industrialcyber.co/cisa/cisa-and-partners-urge-operators-to-secure-automatic-tank-gauge-systems-against-ongoing-cyber-threats/
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.exfiltration
+  - attack.t1041
+logsource:
+  category: network_connection
+  product: linux
+detection:
+  selection_ot_src:
+    SourceIp|cidr:
+      - '<add_known_atg_subnet_1>'
+      - '<add_known_atg_subnet_2>'
+    Initiated: 'true'
+  filter_rfc1918_dst:
+    DestinationIp|cidr:
+      - '10.0.0.0/8'
+      - '172.16.0.0/12'
+      - '192.168.0.0/16'
+      - '127.0.0.0/8'
+  filter_vendor_ntp:
+    DestinationPort:
+      - 123
+    DestinationIp:
+      - '<add_known_ntp_server>'
+  condition: selection_ot_src and not filter_rfc1918_dst and not filter_vendor_ntp
+falsepositives:
+  - ATG vendor cloud telemetry services on documented IPs — allowlist explicitly
+  - Firmware update servers — allowlist and document in change management
+fields:
+  - SourceIp
+  - DestinationIp
+  - DestinationPort
+  - Protocol
+
+level: medium

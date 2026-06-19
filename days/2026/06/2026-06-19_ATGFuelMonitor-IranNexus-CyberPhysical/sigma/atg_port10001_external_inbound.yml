@@ -1,0 +1,47 @@
+title: Inbound Connection to ATG TLS Management Port 10001 from External Source
+id: 06280eac-cd8f-4c4e-9f3d-b9d7f43e4362
+status: experimental
+description: >
+  Detects inbound TCP connections to port 10001, the default Veeder-Root TLS/TLS4B
+  automatic tank gauge management protocol port, originating from non-RFC1918 addresses.
+  Internet-exposed ATG systems are the primary attack surface in the Iran-nexus
+  ATG campaign (CISA/FBI/NSA/DoE joint advisory IC3-260602, June 2 2026).
+  Operators should have zero legitimate inbound internet traffic on this port;
+  any such connection warrants immediate investigation.
+  Threshold logic: aggregate by src_ip; alert if >5 connections in 60 min
+  from a single external IP — push to SIEM aggregation.
+author: Jarmi
+date: 2026/06/19
+references:
+  - https://www.ic3.gov/CSA/2026/260602.pdf
+  - https://www.cisa.gov/resources-tools/resources/cisa-and-partners-urge-hardening-automatic-tank-gauge-systems
+  - https://www.cybersecuritydive.com/news/cisa-fbi-hackers-targeting-systems-monitor-industrial-fluits/821873/
+tags:
+  - attack.initial-access
+  - attack.t1190
+  - attack.reconnaissance
+  - attack.t1595.002
+logsource:
+  category: network_connection
+  product: linux
+detection:
+  selection:
+    DestinationPort: 10001
+    Initiated: 'false'
+  filter_rfc1918:
+    SourceIp|cidr:
+      - '10.0.0.0/8'
+      - '172.16.0.0/12'
+      - '192.168.0.0/16'
+      - '127.0.0.0/8'
+  condition: selection and not filter_rfc1918
+falsepositives:
+  - Legitimate third-party ATG monitoring services with static IPs — allowlist known vendor IPs
+  - Internal jump servers with routable addresses — document and suppress
+fields:
+  - SourceIp
+  - DestinationIp
+  - DestinationPort
+  - Initiated
+
+level: high
