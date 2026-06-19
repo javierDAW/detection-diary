@@ -4,11 +4,12 @@
 
 # Techniques: T1595.002
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-19 | Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles | Iran-nexus (unattributed) | [`2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/`](../../days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/) |
 | 2026-06-18 | JCE CVE-2026-48907 — unauthenticated pre-auth RCE in the Joomla Content Editor via the profile-import endpoint, now sprayed by a botnet | Opportunistic CMS mass-exploitation (unattributed botnet) | [`2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/`](../../days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/) |
 | 2026-06-04 | Kirki CVE-2026-8206 — unauthenticated admin account takeover via password-reset-to-attacker-email on 150K WordPress sites | Opportunistic WordPress mass-exploitation (unattributed) | [`2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/`](../../days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/) |
 | 2026-05-23 | SonicWall Gen6 SSL-VPN MFA Bypass (CVE-2024-12802) — First In-the-Wild Exploitation by Akira-Aligned Affiliate | Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem) | [`2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/`](../../days/2026/05/2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/) |

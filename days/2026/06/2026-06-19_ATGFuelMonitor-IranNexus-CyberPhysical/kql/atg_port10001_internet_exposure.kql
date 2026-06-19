@@ -1,0 +1,41 @@
+// Title: ATG TLS Port 10001 Inbound from Internet
+// Id: atg-kql-001
+// MITRE: T1190, T1595.002
+// Reference: https://www.ic3.gov/CSA/2026/260602.pdf
+// Author: Jarmi
+// Date: 2026-06-19
+// Tested on: Microsoft Defender XDR / Sentinel (DeviceNetworkEvents + CommonSecurityLog)
+// FP notes: Suppress known ATG vendor monitoring IPs; threshold at >5 connections/hour per src
+
+// --- Defender XDR variant ---
+DeviceNetworkEvents
+| where Timestamp > ago(24h)
+| where RemotePort == 10001
+| where ActionType == "InboundConnectionAccepted"
+| where not(ipv4_is_private(RemoteIP))
+| summarize
+    ConnectionCount = count(),
+    FirstSeen = min(Timestamp),
+    LastSeen = max(Timestamp),
+    RemoteIPs = make_set(RemoteIP, 50)
+    by DeviceName, LocalIP, RemotePort
+| where ConnectionCount > 1
+| extend Alert = "ATG_PORT10001_INTERNET_INBOUND"
+| project Alert, DeviceName, LocalIP, RemotePort, ConnectionCount, FirstSeen, LastSeen, RemoteIPs
+| order by ConnectionCount desc
+
+// --- Sentinel / CommonSecurityLog (firewall) variant ---
+// CommonSecurityLog
+// | where TimeGenerated > ago(24h)
+// | where DestinationPort == 10001
+// | where DeviceAction !in ("deny","drop","block")
+// | where not(ipv4_is_private(SourceIP))
+// | summarize
+//     ConnectionCount = count(),
+//     SourceIPs = make_set(SourceIP, 50),
+//     FirstSeen = min(TimeGenerated),
+//     LastSeen = max(TimeGenerated)
+//     by DestinationIP, DestinationPort
+// | where ConnectionCount > 1
+// | extend Alert = "ATG_PORT10001_INTERNET_INBOUND_FW"
+// | order by ConnectionCount desc

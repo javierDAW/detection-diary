@@ -4,11 +4,12 @@
 
 # Platforms: ot-ics
 
-3 day(s) covering this platform.
+4 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-19 | Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles | Iran-nexus (unattributed) | [`2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/`](../../days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/) |
 | 2026-06-06 | OCPP EV-Charging Attack Surface - ABB Terra AC Heap Overflow (CVE-2025-5517) and the OCPP WebSocket Missing-Auth Class | Opportunistic OCPP / EV-charging exploitation (unattributed) | [`2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/`](../../days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/) |
 | 2026-05-10 | AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security) | Unattributed-LLM-assisted-operator | [`2026-05-10_Mexico-Water-AI-Assisted-OT/`](../../days/2026/05/2026-05-10_Mexico-Water-AI-Assisted-OT/) |
 | 2026-05-03 | BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026) | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026/05/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |

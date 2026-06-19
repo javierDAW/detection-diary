@@ -1,0 +1,73 @@
+# Suricata 7.x rules — Iran-nexus ATG cyber-physical campaign
+# Reference: CISA/FBI/NSA/DoE joint advisory IC3-260602 (June 2, 2026)
+# CVE: CVE-2025-58428 (Veeder-Root TLS4B, CVSS 9.4)
+# Author: Jarmi
+# Date: 2026-06-19
+# Protocol port: 10001/tcp (Veeder-Root TLS management protocol)
+#
+# Custom variables — define in suricata.yaml before deploying:
+#   $OT_ATG_NET  : CIDR block(s) containing ATG devices
+#   $OT_MGMT_NET : CIDR block(s) for legitimate OT management hosts
+#
+# Deployment note: mirror the port 10001 segment at your OT network edge.
+# Apply rules 2400001-2400003 on ingress from EXTERNAL_NET to OT_ATG_NET.
+# Apply rules 2400004-2400005 on egress from OT_ATG_NET to ANY.
+
+# --- Rule 1: External scan of ATG TLS management port ---
+alert tcp $EXTERNAL_NET any -> $OT_ATG_NET 10001 \
+    (msg:"PROFCIBER ATG TLS port 10001 inbound from internet — possible recon/exploit"; \
+    flow:to_server,established; \
+    threshold:type threshold, track by_src, count 3, seconds 60; \
+    classtype:attempted-recon; \
+    sid:2400001; rev:1; \
+    metadata:author Jarmi, date 2026-06-19, cve CVE-2025-58428, \
+              confidence high, reference IC3-260602;)
+
+# --- Rule 2: Veeder-Root TLS binary protocol default credential probe ---
+# TLS-4 binary frame: SOH (0x01) + length bytes + function code
+# Default password field of 8 zero bytes seen in auth bypass probes
+alert tcp $EXTERNAL_NET any -> $OT_ATG_NET 10001 \
+    (msg:"PROFCIBER ATG Veeder-Root TLS default credential probe — 8-zero password field"; \
+    flow:to_server,established; \
+    content:"|01|"; depth:1; \
+    content:"00000000"; distance:0; within:20; \
+    classtype:attempted-user; \
+    sid:2400002; rev:1; \
+    metadata:author Jarmi, date 2026-06-19, cve CVE-2025-58428, \
+              confidence medium, reference IC3-260602;)
+
+# --- Rule 3: ATG web management OS command injection ---
+alert http $EXTERNAL_NET any -> $OT_ATG_NET any \
+    (msg:"PROFCIBER ATG web management OS command injection attempt"; \
+    flow:to_server,established; \
+    http.method; content:"POST"; \
+    http.uri; content:"/cgi-bin"; nocase; \
+    http.request_body; \
+    pcre:"/[;&|`$\(]{1}(id|whoami|cat\s+\/etc\/passwd|uname|wget|curl|chmod|nc\s+-e)/i"; \
+    classtype:web-application-attack; \
+    sid:2400003; rev:1; \
+    metadata:author Jarmi, date 2026-06-19, cve CVE-2025-58428, \
+              confidence high, reference IC3-260602;)
+
+# --- Rule 4: SQL injection in ATG management interface parameters ---
+alert http $EXTERNAL_NET any -> $OT_ATG_NET any \
+    (msg:"PROFCIBER ATG management interface SQL injection attempt"; \
+    flow:to_server,established; \
+    http.method; content:"GET"; \
+    http.uri; \
+    pcre:"/(UNION\s+SELECT|OR\s+1=1|DROP\s+TABLE|INSERT\s+INTO|SLEEP\s*\(|BENCHMARK\s*\(|'--|%27--)/i"; \
+    classtype:web-application-attack; \
+    sid:2400004; rev:1; \
+    metadata:author Jarmi, date 2026-06-19, confidence medium, \
+              reference IC3-260602;)
+
+# --- Rule 5: ATG device unexpected outbound connection (C2 / data exfil) ---
+# Flag any TCP connection initiated FROM an ATG device to external internet
+alert tcp $OT_ATG_NET any -> $EXTERNAL_NET !53 \
+    (msg:"PROFCIBER ATG OT device initiating outbound external TCP connection — possible C2 or exfil"; \
+    flow:to_server,established; \
+    threshold:type limit, track by_src, count 1, seconds 300; \
+    classtype:trojan-activity; \
+    sid:2400005; rev:1; \
+    metadata:author Jarmi, date 2026-06-19, confidence high, \
+              reference IC3-260602;)

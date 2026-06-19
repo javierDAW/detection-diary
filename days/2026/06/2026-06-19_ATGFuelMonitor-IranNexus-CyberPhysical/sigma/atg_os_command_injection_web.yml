@@ -1,0 +1,68 @@
+title: ATG Management Interface OS Command Injection Pattern
+id: 86bc14b4-e719-4d53-8d18-f5b7d1e08b59
+status: experimental
+description: >
+  Detects OS command injection attempts against Veeder-Root ATG web management
+  interfaces. Adversaries exploiting the Iran-nexus ATG campaign use OS command
+  execution (CISA advisory IC3-260602) to gain shell access on the underlying
+  Linux OS of TLS-450/TLS4B units. Patterns target common shell metacharacter
+  injection and backtick/dollar-paren command substitution seen in web-based
+  OT exploit kits. Apply to web proxy / WAF / reverse proxy logs fronting any
+  ATG management VLAN.
+  Note: the ATG web interface is HTTP-based; adapt DestinationPort if custom
+  port is used.
+author: Jarmi
+date: 2026/06/19
+references:
+  - https://www.ic3.gov/CSA/2026/260602.pdf
+  - https://gbhackers.com/cisa-alerts-on-critical-veeder-root-vulnerabilities/
+  - https://www.cisa.gov/news-events/ics-advisories/icsa-25-296-03
+tags:
+  - attack.initial-access
+  - attack.t1190
+  - attack.execution
+  - attack.t1059.004
+logsource:
+  category: proxy
+detection:
+  selection_methods:
+    cs-method:
+      - 'GET'
+      - 'POST'
+  selection_uri_injection:
+    cs-uri-query|contains:
+      - ';id;'
+      - '|id|'
+      - '`id`'
+      - '$(`'
+      - ';whoami'
+      - '|whoami'
+      - ';cat%20/etc/passwd'
+      - '|cat%20/etc/passwd'
+      - '%3Bid%3B'
+      - '%7Cid%7C'
+      - ';ls%20-la'
+      - '%60id%60'
+  selection_host_atg:
+    cs-host|contains:
+      - 'tls'
+      - 'atg'
+      - 'tank'
+  filter_legit:
+    sc-status:
+      - 400
+      - 403
+      - 404
+      - 405
+  condition: selection_methods and selection_uri_injection and not filter_legit
+falsepositives:
+  - Security scanners (Nessus, Qualys, BurpSuite) performing authorized ATG pen-tests
+  - WAF test traffic from vendor professional services
+fields:
+  - c-ip
+  - cs-host
+  - cs-uri-stem
+  - cs-uri-query
+  - sc-status
+
+level: high
