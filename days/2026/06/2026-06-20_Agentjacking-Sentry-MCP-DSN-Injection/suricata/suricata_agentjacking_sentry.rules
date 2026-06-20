@@ -1,0 +1,41 @@
+# Suricata 7.x rules — Agentjacking via Sentry MCP DSN Injection
+# Case: Tenet Security Agentjacking disclosure, June 2026
+# Reference: https://tenetsecurity.ai/blog/agentjacking-coding-agents-with-fake-sentry-errors/
+# Author: Jarmi
+# Date: 2026-06-20
+# Variables: $DEV_NETS (developer subnets), $HTTP_PORTS (80,8080)
+
+alert http $DEV_NETS any -> any $HTTP_PORTS ( \
+  msg:"AGENTJACKING Sentry Ingest POST from Developer Subnet — DSN Abuse"; \
+  flow:established,to_server; \
+  http.method; content:"POST"; \
+  http.host; content:"ingest.sentry.io"; endswith; \
+  http.uri; content:"/store/"; \
+  http.header_names; content:"X-Sentry-Auth"; \
+  classtype:policy-violation; \
+  sid:9010001; rev:1;)
+
+alert http $DEV_NETS any -> any 443 ( \
+  msg:"AGENTJACKING Sentry Ingest POST with Resolution and npx Injection Pattern"; \
+  flow:established,to_server; \
+  http.method; content:"POST"; \
+  http.host; content:"ingest.sentry.io"; endswith; \
+  http.request_body; content:"Resolution"; nocase; \
+  http.request_body; content:"npx"; nocase; \
+  classtype:trojan-activity; \
+  sid:9010002; rev:1;)
+
+alert dns $DEV_NETS any -> any 53 ( \
+  msg:"AGENTJACKING PoC Beacon DNS advisory-tracker.com from Developer Host"; \
+  dns.query; content:"advisory-tracker.com"; endswith; nocase; \
+  classtype:trojan-activity; \
+  sid:9010003; rev:1;)
+
+alert http $DEV_NETS any -> any 443 ( \
+  msg:"AGENTJACKING Node.js POST to Non-Registry Endpoint After npm Fetch"; \
+  flow:established,to_server; \
+  http.method; content:"POST"; \
+  http.user_agent; content:"node/"; startswith; \
+  http.request_body; content:"aws"; nocase; \
+  classtype:trojan-activity; \
+  sid:9010004; rev:1;)

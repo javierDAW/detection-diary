@@ -1,0 +1,25 @@
+type,value,context,confidence,source
+domain,advisory-tracker.com,Tenet Security PoC beacon server used in responsible-disclosure testing; real attacker will use different domain,medium,Tenet Security blog 2026-06-17
+url,https://o*.ingest.sentry.io/api/*/store/,Sentry ingest endpoint pattern abused for forged event injection via public write-only DSN,high,Tenet Security blog 2026-06-17
+string,## Resolution,Markdown heading injected in Sentry event extra/message fields to trigger AI agent action on attacker instructions,high,Tenet Security / Pinggy analysis 2026-06-15
+string,npx --yes,npx with auto-accept installing novel scoped package; seen in agent execution logs across 100+ orgs,high,Tenet Security blog 2026-06-17
+string,npx -y ,npx short-form auto-accept flag; equivalent indicator to npx --yes,high,Tenet Security / Pinggy analysis
+string,X-Sentry-Auth: Sentry sentry_key=,HTTP header pattern for Sentry DSN write authentication; presence in outbound HTTP indicates Sentry ingest POST,high,Sentry API documentation / Pinggy blog
+string,https://[a-f0-9]{32}@o[0-9]+\.ingest\.sentry\.io,Sentry DSN regex pattern; presence in public JS/env files marks the org as injectable target,high,Pinggy blog 2026-06-15
+path,~/.npm/_npx/,Directory where npm caches one-off npx packages; contains attack payload after Agentjacking execution,medium,Tenet Security blog 2026-06-17
+path,~/.aws/config,AWS credential file probed by Agentjacking payload during collection stage,high,Tenet Security evidence captures 2026-06-17
+path,~/.aws/credentials,AWS key pair file probed by Agentjacking payload,high,Tenet Security evidence captures 2026-06-17
+path,~/.npmrc,npm auth token file probed by Agentjacking payload,high,Tenet Security evidence captures 2026-06-17
+path,~/.docker/config.json,Docker registry credentials probed by Agentjacking payload,high,Tenet Security evidence captures 2026-06-17
+path,~/.ssh/id_rsa,SSH private key probed by Agentjacking payload; SSH agent socket also confirmed accessible,high,Tenet Security evidence captures 2026-06-17
+path,~/.config/gh/hosts.yml,GitHub CLI credentials probed by Agentjacking payload,medium,Tenet Security evidence captures 2026-06-17
+url,https://github.com/tenet-security/agent-jackstop,Tenet open-source mitigation tool: hardened MCP configs for Cursor and Claude Code (released 2026-06-18),high,Tenet Security blog 2026-06-17
+string,@tenet-controlled-validation-package,PoC npm package name used in Tenet's responsible-disclosure testing; not weaponized; attacker version will differ,low,Tenet Security blog 2026-06-17
+note,No CVE assigned,Sentry classified the issue as an architectural design characteristic not amenable to a targeted patch; no CVE expected,high,Sentry vendor response 2026-06-03
+note,2388 orgs exposed with injectable DSNs,Organizations with publicly discoverable Sentry DSNs identified by Tenet via Censys and GitHub passive recon,high,Tenet Security blog 2026-06-17
+note,85 pct success rate,Agent execution rate across 100+ organizations in controlled testing (Claude Code Cursor Codex) — 85% ran attacker npx payload,high,Tenet Security blog 2026-06-17
+note,71 Tranco top-1M,Number of exposed organizations in Tranco top-1 million by web traffic confirming enterprise scale exposure,medium,Tenet Security blog 2026-06-17
+note,Authorized Intent Chain,Attack generates no unauthorized actions; EDR/WAF/IAM/VPN/Cloudflare all silent by design,high,Tenet Security blog 2026-06-17
+note,Claude Code 2-1-161,Specific AI agent version confirmed vulnerable in PoC captures dated June 2 2026 (most-recent shipping version at time of testing),high,Tenet Security evidence captures 2026-06-17
+note,Secondary: SmartLoader/Oura MCP,Trojanized Oura Ring MCP server delivering StealC via fake GitHub registry listings (Straiker Feb 2026) — parallel MCP supply chain vector,medium,The Hacker News 2026-02-17
+note,Secondary: CVE-2025-54136,Cursor IDE MCP tool poisoning via staged-then-replaced repository config; 2025 generation of the same trust-boundary problem class,medium,TruFoundry / TheHackerNews 2026-04

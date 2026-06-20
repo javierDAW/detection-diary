@@ -6,6 +6,26 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
 
+## 2026.06.20 — Day 54 — Agentjacking via Sentry MCP DSN Injection
+
+### Added
+- `days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/` — Tenet Security disclosed a novel attack class (2026-06-17) in which an attacker posts forged error events to any Sentry project whose public write-only DSN is discoverable via Censys or GitHub; AI coding agents (Claude Code, Cursor, Codex) with Sentry MCP integration fetch the event as trusted tool output, execute attacker-controlled `npx --yes @attacker/pkg`, harvest credentials (~/.aws, ~/.npmrc, ~/.docker/config.json, ~/.ssh/id_rsa, ~/.config/gh/hosts.yml), and exfiltrate via HTTPS — 85% agent execution rate across 100+ orgs; 2,388 exposed organizations identified; no CVE (Sentry classifies as architectural). First primary of slot #18 (AI/LLM threats); Saturday auto-rescue.
+- Sigma (3): `sigma_npx_spawn_ai_agent_parent.yml` — npx/node spawned by AI agent processes with --yes/-y flags (process_creation, high); `sigma_cred_file_access_agent.yml` — node.exe reading credential files with AI agent parent (file_event, high); `sigma_sentry_dsn_public_exposure.yml` — Sentry DSN written to build output or env files (file_event, DLP/DFIR, low).
+- KQL (2): `kql_npx_agent_spawn_xdr.kql` — Defender XDR DeviceProcessEvents + DeviceNetworkEvents, 7d lookback, 5-min beacon window post-npx; `kql_credential_file_read_agent.kql` — DeviceFileEvents correlating node credential reads with AI agent ancestor.
+- YARA (1 file, 3 rules): `yara_agentjacking_npm_payload.yar` — rule 1: npm package with Resolution injection + npx auto-accept; rule 2: credential-path probe + HTTPS beacon in npm code; rule 3: Sentry ingest POST body with shell command in resolution field.
+- Suricata (1 file, 4 sids): SID 9010001 Sentry ingest POST from developer subnet; SID 9010002 Resolution+npx pattern in ingest body; SID 9010003 advisory-tracker.com PoC beacon DNS; SID 9010004 node.js POST to non-registry endpoint.
+- PEAK hunts (3): H1 npx agent beacon — execution hypothesis, DeviceProcessEvents+DeviceNetworkEvents; H2 credential file access — collection hypothesis, DeviceFileEvents; H3 Sentry DSN abuse — initial access hypothesis, Sentry Audit Log API + proxy/NGFW logs.
+- `iocs.csv` (22 entries): advisory-tracker.com PoC beacon, Sentry ingest URL pattern, ## Resolution injection string, npx --yes/npx -y execution strings, X-Sentry-Auth header, DSN regex, credential paths, Agentjackstop mitigation tool, no-CVE note, 2388-orgs exposure count, 85% success rate, 71 Tranco-top-1M orgs, Authorized Intent Chain note, Claude Code version, secondary MCP supply chain references.
+- `kill_chain.svg` — template A, canonical palette, 7 victim stages (DSN exposure → MCP fetch → prompt injection → npx execution [red] → credential harvest [red] → authorized intent chain → detection opportunity) + 6 attacker ops; verifier ×2 PASS (880×1280).
+
+### Pedagogy
+- Authorized Intent Chain: each step is individually legitimate; composite chain is a full credential-theft attack; traditional perimeter controls are blind to it.
+- MCP trust model is the attack surface: tool output is treated as authoritative instruction; Sentry MCP has no output sanitization layer.
+- Public write-only DSNs are injection points, not just privacy risks; rotate any DSN reachable from public repos or frontend bundles.
+- Detection requires process-ancestry correlation (AI agent → node → npx → outbound HTTPS) not single-event alerting.
+
+
+
 ## 2026.06.19 — Day 53 — Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles
 
 ### Added
@@ -747,23 +767,4 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 - KQL (3): Defender XDR — non-system-path `msimg32.dll` image_load joined with `rwdrv.sys` / `hlpdrv.sys` file drop within 30 minutes; Defender XDR — suspicious driver load followed by EDR telemetry quiescence (`DeviceProcessEvents` count drop) within 15 minutes; Defender XDR — `FoxitPDFReader.exe` running from non-install paths and loading `msimg32.dll`.
 - YARA (1 file, 2 rules): `Qilin_EDR_Killer_msimg32_Heuristic_2026` (forwarder strings + Halo's Gate Nt* and `LdrProtectMrdata` anchors + VEH `NtOpenSection` / `NtMapViewOfSection` / `LdrpMinimalMapModule` anchors + provocative `hasherezade` string + PE/MZ magic + filesize cap), and `Qilin_EDR_Killer_Known_Hashes_2026` (high-confidence SHA-256 anchors from Talos for `msimg32.dll`, `rwdrv.sys`, `hlpdrv.sys` and the Stage 4 EDR killer PE).
 - Suricata (1, 3 sids 8120001-8120003): file-name anchors for `rwdrv.sys`, `hlpdrv.sys` and `msimg32.dll` delivered over plain HTTP into the home network.
-- PEAK hunts (3): H1 — Foxit PDF Reader as a side-load vehicle for the loader; H2 — retroactive sweep for hosts with a kernel driver load followed by EDR telemetry gap; H3 — kernel callback baseline drift detection (ELAM-style ground truth).
-- `iocs.csv` — 12 file hashes (SHA-256, SHA-1, MD5) for the four artefacts, plus `IOCTL 0x2222008`, the `hasherezade` string anchor, transient drop paths, kernel driver service registry anchors, and operator notes.
-- `kill_chain.svg` — adaptive light/dark palette diagram with 8 numbered stages on the victim host (Initial Access through `hlpdrv.sys` IOCTL terminate-protected-process), an attacker C2 / ransomware panel on the right (Qilin operator playbook, recent victims, driver IOC anchors, post-loader chain), and a bottom detection anchors box mapping each stage to the rules in `sigma/`, `kql/`, `yara/`, `suricata/` and the three PEAK hunts.
-
-### Pedagogy
-- *EDR telemetry gap is the highest-confidence signal you have.* When the agent goes silent, the SIEM has to fire — design out-of-band heartbeats and correlate gaps with kernel-driver events.
-- *BYOVD has a familiar shape: a legitimate-signed driver plus a purpose-built helper driver.* The helper is often the cleaner anchor because it lacks any legitimate use case (`hlpdrv.sys` here, `nseckrnl.sys` in Warlock, `truesight.sys` in Akira and DragonForce).
-- *DLL side-loading via signed userland apps remains a recurring pattern* (Foxit, ScreenConnect, Yandex, VMtools, Communicator). Lock down portable executables and force managed MSI installs.
-- *Halo's Gate-style user-mode-hook bypass means EDR user-mode hooks alone are insufficient.* Defenders need ETW-TI plus kernel callback baselining; the bypass works precisely because the kernel only checks `eax` for the syscall ID, not which exported stub initiated the call.
-- *Re-image, never clean.* Once a host has had its kernel callbacks unhooked and its EDR killed, there is no ground truth about what else the operator dropped.
-
----
-
-## 2026.05.11 — Maintenance — Full README and kill_chain.svg rebuild across all 15 days
-
-### Changed
-- Every `days/<slug>/README.md` from Day 1 (TheGentlemen + SystemBC) through Day 15 (UAT-8302 China-nexus espionage) now follows the canonical 15-section standard introduced with Day 13 (Albiriox): YAML frontmatter, `# <Title>`, `## TL;DR`, `## Attribution and confidence`, `## Kill chain — summary table`, `![kill chain SVG]`, `## Stage-by-stage detail`, `## RE notes` (when applicable), `## Detection strategy` with three sub-sections, `## Incident response playbook` with five sub-sections, `## IOCs`, `## Secondary findings`, `## Pedagogical anchors`, `## What's in this folder`, `## Sources`.
-- Days 1-12 were rewritten from their pre-standard, shorter forms. Days 13-15 (already conformant) were left in place.
-- Every day folder now ships a `kill_chain.svg` at the folder root (not in a `diagrams/` subfolder) with the GitHub-friendly `prefers-color-scheme` adaptive palette, accessibility metadata (`role="img"`, `<title>`, `<desc>`), numbered stage badges, MITRE tags, IOC anchors, attacker C2 cluster panel and bottom detection-anchors box.
-- The day folders for `2026-04-29_ShaiHulud-Bitwarden`, `2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356`, `2026-05-01_VECT-2.0-RaaS`, `2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721`, `2026-05-03_BAUXITE-CyberAvengers-AA26-097A`, `2026-05-04_C0063-Poland-Wiper`, `2026-05-05_Akira-SonicWall-CVE-2024-40766`, `2
+- PEAK hunts (3): H1 — Foxit PDF Reader as a side-load vehicle for the loader; H2 — retroactive sweep for hosts with a kernel driver load followed by EDR telemetry gap; H3 — kernel callback baseline drift detection (ELAM-style 

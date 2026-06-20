@@ -1,0 +1,59 @@
+title: npx Execution Spawned by AI Coding Agent Process (Agentjacking)
+id: e8b17004-4365-412c-b070-aabe0614d8ab
+status: experimental
+description: >
+  Detects npx or node processes spawned directly by known AI coding agent binaries
+  (Claude Code, Cursor, Codex, Windsurf) where the command line includes --yes or -y
+  flags, indicating automatic package installation without user confirmation.
+  This is the primary forensic seam in the Agentjacking attack chain (Tenet Security,
+  June 2026): attacker-injected npm package execution is the only conventional indicator
+  generated in an otherwise fully-authorized kill chain. Threshold-based aggregation
+  recommended: alert when same device generates 2+ such events within 10 minutes,
+  or when the npx target package was first seen on npmjs.com within 30 days.
+references:
+  - https://tenetsecurity.ai/blog/agentjacking-coding-agents-with-fake-sentry-errors/
+  - https://pinggy.io/blog/agentjacking_ai_coding_agents_sentry_mcp/
+  - https://thehackernews.com/2026/06/agentjacking-attack-tricks-ai-coding.html
+author: Jarmi
+date: 2026/06/20
+tags:
+  - attack.execution
+  - attack.t1059.007
+  - attack.initial-access
+  - attack.t1195
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_parent_agent:
+    ParentImage|endswith:
+      - '\claude.exe'
+      - '\cursor.exe'
+      - '\windsurf.exe'
+      - '\codex.exe'
+      - '\continue.exe'
+    ParentCommandLine|contains:
+      - 'claude'
+      - 'cursor'
+      - 'codex'
+      - 'windsurf'
+  selection_npx_autoflag:
+    Image|endswith:
+      - '\npx.cmd'
+      - '\npx'
+      - '\node.exe'
+      - '\node'
+    CommandLine|contains:
+      - 'npx'
+  selection_autoflag:
+    CommandLine|contains:
+      - '--yes'
+      - ' -y '
+  condition: (selection_parent_agent and selection_npx_autoflag and selection_autoflag)
+falsepositives:
+  - Legitimate developer workflows where an AI agent is asked to install a well-known,
+    previously-approved npm package. Tune by adding known-safe package names to an
+    exclusion list. Packages containing scoped namespaces (@org/pkg) not previously
+    seen in the environment deserve higher scrutiny.
+
+level: high

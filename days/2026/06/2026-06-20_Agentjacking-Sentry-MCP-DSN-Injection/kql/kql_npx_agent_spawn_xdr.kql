@@ -1,0 +1,67 @@
+// Title: npx Spawned by AI Coding Agent — Agentjacking Detection (XDR)
+// Id: 7549215a-1419-4dde-8d1f-2f322c636f49
+// MITRE: T1059.007 (Execution), T1195 (Supply Chain Compromise)
+// Reference: https://tenetsecurity.ai/blog/agentjacking-coding-agents-with-fake-sentry-errors/
+// Author: Jarmi
+// Date: 2026-06-20
+// Tested on: Defender XDR (DeviceProcessEvents)
+// FP notes: Legitimate AI-assisted npm workflows will match. Tune by adding a
+//   package age check via TI enrichment (packages first seen > 30 days ago are
+//   lower risk). High-fidelity when --yes flag is present AND the package scope
+//   (@org/package) has no prior history in the DeviceNetworkEvents for that host.
+//
+// Logic: Find npx or node processes spawned (directly or one-level indirect) by
+// AI coding agent binaries in the last 7 days where the command line includes
+// auto-accept flags. Join to network events to surface outbound beacon connections
+// from the same process within 5 minutes of execution.
+
+let AIAgentProcesses = dynamic([
+    "claude.exe", "cursor.exe", "windsurf.exe", "codex.exe", "continue.exe",
+    "claude", "cursor", "windsurf", "codex"
+]);
+let LookbackWindow = 7d;
+let BeaconWindow = 5min;
+// Step 1: Find npx executions parented by AI agents
+let NpxByAgent = DeviceProcessEvents
+| where Timestamp > ago(LookbackWindow)
+| where InitiatingProcessFileName in~ (AIAgentProcesses)
+    or InitiatingProcessParentFileName in~ (AIAgentProcesses)
+| where FileName in~ ("npx.cmd", "npx", "node.exe", "node")
+| where ProcessCommandLine has_any ("--yes", " -y ", "npx ")
+| project
+    Timestamp,
+    DeviceId,
+    DeviceName,
+    AccountName,
+    AgentParent = InitiatingProcessFileName,
+    NpxCommand = ProcessCommandLine,
+    NpxPID = ProcessId,
+    NpxInitPID = InitiatingProcessId;
+// Step 2: Join to network events to find outbound beacon connections
+let NetworkAfterNpx = DeviceNetworkEvents
+| where Timestamp > ago(LookbackWindow)
+| where InitiatingProcessFileName in~ ("node.exe", "node", "npx", "npx.cmd")
+| where RemotePort in (443, 80, 8080, 8000)
+| project
+    NetTimestamp = Timestamp,
+    DeviceId,
+    NodePID = InitiatingProcessId,
+    RemoteUrl,
+    RemoteIP = RemoteIPAddress,
+    RemotePort;
+// Step 3: Correlate — network event within BeaconWindow after npx spawn
+NpxByAgent
+| join kind=leftouter (NetworkAfterNpx) on DeviceId
+| where NetTimestamp between (Timestamp .. (Timestamp + BeaconWindow))
+| where NodePID == NpxPID or NodePID == NpxInitPID
+| project
+    Timestamp,
+    DeviceName,
+    AccountName,
+    AgentParent,
+    NpxCommand,
+    BeaconTimestamp = NetTimestamp,
+    RemoteUrl,
+    RemoteIP,
+    RemotePort
+| order by Timestamp desc

@@ -14,6 +14,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [ALPHV](./alphv/) | 1 |
 | [AMOS / Atomic macOS Stealer (MaaS)](./amos-atomic-macos-stealer-maas/) | 1 |
 | [Agenda](./agenda/) | 1 |
+| [Agentjacking-unattributed (Tenet Threat Labs tracking)](./agentjacking-unattributed-tenet-threat-labs-tracking/) | 1 |
 | [Akira](./akira/) | 1 |
 | [Albiriox](./albiriox/) | 1 |
 | [ArcaneDoor](./arcanedoor/) | 1 |
