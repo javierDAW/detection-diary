@@ -1,5 +1,43 @@
 [
  {
+  "date": "2026-06-20",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection",
+  "title": "Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Credential Exfiltration",
+  "clusters": [
+   "Agentjacking-unattributed (Tenet Threat Labs tracking)"
+  ],
+  "country": "Unknown — opportunistic, global targeting",
+  "platforms": [
+   "windows",
+   "linux",
+   "macos",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "healthcare",
+   "government",
+   "education",
+   "critical-infrastructure"
+  ],
+  "techniques": [
+   "T1195",
+   "T1059.007",
+   "T1552.001",
+   "T1048",
+   "T1078",
+   "T1190"
+  ],
+  "tech_count": 6,
+  "tldr": "Tenet Security's Threat Labs publicly disclosed on June 12, 2026 a new attack class called **Agentjacking**: an attacker POST-injects a forged error event into any Sentry project whose write-only Data Source Name (DSN) is discoverable in public JavaScript or GitHub repositories — zero authentication required. When a developer asks their AI coding agent (Claude Code, Cursor, Codex) to investigate o",
+  "thumb": "thumbs/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection.svg",
+  "case_rel": "../days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/",
+  "q": "agentjacking via sentry mcp — forged dsn events hijack ai coding agents for credential exfiltration agentjacking-unattributed (tenet threat labs tracking) unknown — opportunistic, global targeting windows linux macos supply-chain technology finance healthcare government education critical-infrastructure t1195 t1059.007 t1552.001 t1048 t1078 t1190"
+ },
+ {
   "date": "2026-06-19",
   "year": "2026",
   "month": "2026-06",

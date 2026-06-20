@@ -1,0 +1,57 @@
+title: Sentry DSN Pattern Written to Disk in JS or Environment Files
+id: 48a70d1b-43c1-44d0-828f-ddefc5e35b28
+status: experimental
+description: >
+  Detects when a file containing a Sentry DSN pattern is written to disk in common
+  frontend build output directories, environment files, or configuration files.
+  A Sentry DSN (Data Source Name) follows the pattern
+  https://<32-hex>@o<digits>.ingest.sentry.io and is intentionally public-facing
+  by design. However, DSNs committed to public repositories or embedded in frontend
+  bundles are discoverable by attackers via GitHub search or Censys and can be abused
+  to inject forged events (Agentjacking attack class, Tenet Security, June 2026).
+  This rule is oriented toward DFIR / DLP use: identifying developer workstations or
+  build pipelines that produce publicly discoverable DSNs before they are exploited.
+  Trigger: file_event on build output or .env file containing the ingest.sentry.io
+  domain with a 32-hex key prefix.
+references:
+  - https://tenetsecurity.ai/blog/agentjacking-coding-agents-with-fake-sentry-errors/
+  - https://pinggy.io/blog/agentjacking_ai_coding_agents_sentry_mcp/
+author: Jarmi
+date: 2026/06/20
+tags:
+  - attack.resource-development
+  - attack.t1190
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_build_paths:
+    TargetFilename|contains:
+      - '\dist\'
+      - '\build\'
+      - '\public\'
+      - '\.env'
+      - '\webpack'
+      - '\bundle'
+    TargetFilename|endswith:
+      - '.js'
+      - '.env'
+      - '.env.production'
+      - '.env.local'
+      - '.yaml'
+      - '.toml'
+  filter_test_env:
+    TargetFilename|contains:
+      - '\node_modules\'
+      - '\__tests__\'
+      - '\test\'
+      - '\spec\'
+  condition: selection_build_paths and not filter_test_env
+falsepositives:
+  - All legitimate frontend builds containing Sentry integration will trigger this rule.
+    Use as an asset-discovery and DLP signal, not as a real-time attack indicator.
+    Combine with a check for public repository pushes (GitHub webhook events) to identify
+    which builds result in externally-exposed DSNs. Alert only when the containing
+    repository visibility is set to public.
+
+level: low

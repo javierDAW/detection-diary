@@ -1,0 +1,54 @@
+title: Credential File Access by Node Process in AI Agent Lineage (Agentjacking)
+id: eb0ad62f-84f4-4353-a30c-6c292b5fb1e3
+status: experimental
+description: >
+  Detects file access events where a node or npx process reads common developer
+  credential files (AWS credentials, npm auth tokens, Docker config, SSH keys)
+  and that process's parent or grandparent is a known AI coding agent binary.
+  In the Agentjacking attack chain, the attacker-controlled npm package probes
+  these files to confirm exploitable credential material before exfiltrating.
+  False-positive rate is moderate in environments where legitimate agent workflows
+  read config files; correlate with prior npx --yes execution (see companion rule)
+  to increase precision. SIEM correlation: join this with the npx spawn rule on
+  (DeviceId, SessionId, 60-second window) for high-confidence alerting.
+references:
+  - https://tenetsecurity.ai/blog/agentjacking-coding-agents-with-fake-sentry-errors/
+  - https://pinggy.io/blog/agentjacking_ai_coding_agents_sentry_mcp/
+author: Jarmi
+date: 2026/06/20
+tags:
+  - attack.collection
+  - attack.t1552.001
+  - attack.credential-access
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_agent_parent:
+    Image|endswith:
+      - '\node.exe'
+      - '\npx.cmd'
+    ParentImage|endswith:
+      - '\claude.exe'
+      - '\cursor.exe'
+      - '\windsurf.exe'
+      - '\codex.exe'
+      - '\npm.cmd'
+  selection_cred_paths:
+    TargetFilename|contains:
+      - '\.aws\config'
+      - '\.aws\credentials'
+      - '\.npmrc'
+      - '\.docker\config.json'
+      - '\.ssh\id_rsa'
+      - '\.ssh\id_ed25519'
+      - '\.config\gh\hosts.yml'
+      - '\.kube\config'
+  condition: selection_agent_parent and selection_cred_paths
+falsepositives:
+  - Legitimate agent-driven dependency installation that reads .npmrc for auth tokens.
+    Tune by excluding known CI/CD service accounts and by requiring the npx --yes
+    parent event (e8b17004-4365-412c-b070-aabe0614d8ab) to have fired first within
+    60 seconds on the same host.
+
+level: high
