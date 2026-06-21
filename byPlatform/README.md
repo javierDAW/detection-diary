@@ -13,7 +13,7 @@ Source of truth: each day's `README.md` frontmatter.
 |---|---|
 | [active-directory](./active-directory/) | 2 |
 | [android](./android/) | 3 |
-| [cloud-multi](./cloud-multi/) | 16 |
+| [cloud-multi](./cloud-multi/) | 17 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 2 |
 | [linux](./linux/) | 23 |

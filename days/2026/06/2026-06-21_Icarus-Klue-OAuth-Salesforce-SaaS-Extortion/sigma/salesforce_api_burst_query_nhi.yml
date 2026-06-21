@@ -1,0 +1,46 @@
+title: Salesforce REST API Burst Query Pattern from Non-Human Identity Account
+id: 5896f242-8d72-4fe6-9b2a-b8e64638acc5
+status: experimental
+description: >
+  Detects a rapid succession of Salesforce REST API /query endpoint requests from an
+  integration service account within a short time window, consistent with automated
+  bulk CRM exfiltration. During the Icarus/Klue OAuth campaign (June 2026), attackers
+  sent approximately 1,000 queries to /services/data/v*/query within a 15-minute window
+  in at least one victim environment, preceded by a slow enumeration phase.
+  Legitimate SaaS integrations (Klue, HubSpot, Gong) issue 10-50 queries per sync cycle;
+  burst rates exceeding 100 queries in 15 minutes from an NHI account warrant investigation.
+  This rule relies on aggregation in the SIEM; the condition cannot use count() directly in Sigma.
+  Push to SIEM as a time-windowed aggregation alert: count(EventType='RestApiRequest' AND
+  Uri contains '/query') by SourceIp, Username where count > 100 within 15 minutes.
+references:
+  - https://reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft
+  - https://www.bleepingcomputer.com/news/security/klue-oauth-breach-linked-to-icarus-salesforce-data-theft-attacks/
+author: Jarmi
+date: 2026/06/21
+tags:
+  - attack.collection
+  - attack.t1530
+  - attack.exfiltration
+  - attack.t1567.002
+logsource:
+  product: salesforce
+  service: event_monitoring
+detection:
+  selection:
+    EventType: 'RestApiRequest'
+    RequestUri|contains: '/services/data/v'
+    RequestUri|contains|all:
+      - '/query'
+  filter_browser_ua:
+    UserAgent|contains:
+      - 'Mozilla'
+      - 'Chrome'
+      - 'Safari'
+      - 'Firefox'
+  condition: selection and not filter_browser_ua
+falsepositives:
+  - ETL pipelines and reporting tools that legitimately perform bulk Salesforce queries
+  - Data warehouse sync jobs (Snowflake Connector, Tableau Salesforce connector)
+  - Development environments running bulk data migration scripts
+
+level: medium

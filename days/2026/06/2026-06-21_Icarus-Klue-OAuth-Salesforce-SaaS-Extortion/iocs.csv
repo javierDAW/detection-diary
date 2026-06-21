@@ -1,0 +1,16 @@
+type,value,context,confidence,source
+ipv4,138.226.246.94,Icarus exfiltration C2 IP — VPS data-center hosting,high,ReliaQuest Threat Spotlight 2026-06-17 / Huntress 2026-06-18
+ipv4,212.86.125.24,Icarus exfiltration C2 IP — VPS data-center hosting,high,ReliaQuest Threat Spotlight 2026-06-17 / Huntress 2026-06-18
+ipv4,213.111.148.90,Icarus exfiltration C2 IP — VPS data-center hosting,high,ReliaQuest Threat Spotlight 2026-06-17 / Huntress 2026-06-18
+ipv4,94.154.32.160,Icarus exfiltration C2 IP — VPS data-center hosting,high,ReliaQuest Threat Spotlight 2026-06-17 / Huntress 2026-06-18
+string,python-urllib,Python urllib user-agent string used by Icarus automation scripts querying Salesforce REST API,medium,ReliaQuest Threat Spotlight 2026-06-17
+url,/services/data/v59.0/sobjects,Salesforce REST API endpoint for object catalog enumeration — Icarus recon phase; v59.0 observed but attacker may use other API versions,high,ReliaQuest Threat Spotlight 2026-06-17
+url,/services/data/v59.0/query,Salesforce REST API endpoint for bulk SOQL query — Icarus exfiltration phase; ~1000 queries per 15-minute burst observed,high,ReliaQuest Threat Spotlight 2026-06-17
+string,mr bean,Icarus extortion alias used in extortion emails sent to victims after CRM data theft,high,BleepingComputer 2026-06-18 / Huntress 2026-06-18
+domain,globalretailbrands.com.au,Compromised Australian appliance retailer mail server used as sending infrastructure for Icarus extortion emails,medium,Huntress 2026-06-18
+string,QueryMore,Salesforce REST API cursor-based pagination mechanism abused by Icarus for sustained extraction across large CRM datasets,medium,ReliaQuest Threat Spotlight 2026-06-17
+note,Session Messenger (decentralized encrypted messaging) used by Icarus for extortion negotiations; Session ID listed on Icarus data leak site matches ID in extortion emails,Infrastructure indicator,high,Huntress 2026-06-18
+note,Klue disabled integrations with Salesforce HubSpot SharePoint Zoom Gong Chorus Clari Google Drive Slack on 2026-06-17 as part of incident response,Remediation scope indicator — affected SaaS platforms,high,Huntress 2026-06-18
+note,Icarus data leak site post Get Ready — big corps getting listed. be ready. — pre-announcement of ongoing victim expansion,Dark web indicator,high,BleepingComputer 2026-06-18
+note,Prior Salesforce OAuth-abuse campaigns same kill chain: UNC6395 via Salesloft Drift OAuth token theft (Aug 2025); ShinyHunters voice-phish Salesforce campaigns (Jun 2025); Gainsight integration abuse (2025-2026),Same attack class — distinct actors,high,ReliaQuest Threat Spotlight 2026-06-17
+note,Icarus active since April 28 2026; claimed two victims pre-Klue campaign; one victim removed from leak site during negotiation period suggesting active ransom discussion,Actor maturity and business model indicators,medium,BleepingComputer 2026-06-18

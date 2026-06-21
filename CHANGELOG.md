@@ -5,6 +5,24 @@ All notable additions to detection-diary.
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
+## 2026.06.21 — Day 55 — Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft
+
+### Added
+- `days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/` — Financially motivated extortion actor Icarus exploited a credential breach at Klue (competitive-intelligence SaaS) to steal OAuth refresh tokens, then replayed them against Salesforce REST API as NHI service accounts, bulk-exfiltrating CRM data from enterprise clients across technology, finance, healthcare, government, and education sectors; ReliaQuest 2026-06-17 / Huntress 2026-06-18 / BleepingComputer 2026-06-18; first primary for taxonomy slot #6 (SaaS abuse).
+- Sigma (3): `salesforce_bulk_sobjects_enum_integration.yml` — proxy-layer detection of python-urllib UA hitting /sobjects enumeration endpoint; `saas_integration_oauth_refresh_anomaly.yml` — Salesforce Event Monitoring OauthToken refresh from non-vendor IP (high); `salesforce_api_burst_query_nhi.yml` — RestApiRequest /query burst from non-browser UA (push threshold to SIEM aggregation).
+- KQL (4): `salesforce_api_exfiltration_hunt.kql` — DeviceNetworkEvents join on 4 Icarus C2 IPs + python-urllib pattern; `saas_integration_oauth_anomaly.kql` — CloudAppEvents NHI OAuth refresh volume anomaly; `icarus_extortion_email_session_id.kql` — EmailEvents for globalretailbrands.com.au sender + Session Messenger keywords; `cloudapp_bulk_api_query_nhi.kql` — Salesforce /query rate >200 per 30-min window.
+- YARA (2 files, 3 rules): `icarus_extortion_note.yar` — extortion note detector (Session invite + alias + deadline + victim-class keywords); `salesforce_python_exfil_script.yar` — Python exfil automation fingerprint (python-urllib UA + sobjects + QueryMore pagination, three OR clusters).
+- Suricata (1 file, 7 sids 9010005–9010011): C2 IP egress/ingress (×2); TLS SNI *.salesforce.com with JA4 placeholder; HTTP /sobjects + python-urllib UA; HTTP /query + python-urllib UA; QueryMore cursor pagination; SMTP extortion mail from globalretailbrands.com.au.
+- PEAK hunts (3): `peak_h1_oauth_token_sprawl.md` — NHI accounts with >200 Salesforce /query per 30 min (SOQL + KQL); `peak_h2_salesforce_api_baseline_deviation.md` — OAuth refresh_token grant from IP outside vendor allowlist (SOQL EventLogFile + AADServicePrincipalSignInLogs); `peak_h3_saas_integration_inventory.md` — stale NHI OAuth grants >90 days scoped to high-value objects (Tooling API + ConnectedApplication SOQL).
+- `iocs.csv` (15 entries) — 4 C2 IPs (high), python-urllib UA (medium), 2 Salesforce REST API endpoints (high), extortion alias "mr bean" (high), sender domain globalretailbrands.com.au (medium), QueryMore cursor string (medium), 5 contextual notes (Session Messenger infra, Klue IR scope, leak site post, prior OAuth-abuse actor lineage, Icarus maturity indicators).
+- `kill_chain.svg` — Template A (880×1280), canonical CSS palette, 7 left stages / 6 right ops; stages 4 (sobjects enum) and 5 (bulk exfil) in stageK red; Op D (C2 IPs) in opK red; 3 cross-lane arrowX; SVG verifier ×2 PASS.
+
+### Pedagogy
+- OAuth refresh tokens issued to SaaS integrations are first-class credentials: they carry the same access as the authorizing user, persist indefinitely without rotation, and do not appear in human authentication logs.
+- NHI (Non-Human Identity) lifecycle hygiene — inventory, scope audit, 90-day rotation — is the structural control; revocation after an incident is remediation, not prevention.
+- The attack class (integration vendor breach → token theft → CRM exfil) has been executed by at least four distinct actors in 12 months (Icarus, UNC6395/Drift, ShinyHunters, Gainsight-class); the kill chain is durable, not actor-specific.
+- Session Messenger as extortion C2 infrastructure mirrors ALPHV/BlackCat Signal usage: decentralized, no central abuse reporting path, complicates evidence preservation and takedown coordination.
+
 
 ## 2026.06.20 — Day 54 — Agentjacking via Sentry MCP DSN Injection
 

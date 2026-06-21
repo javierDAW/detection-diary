@@ -1,0 +1,28 @@
+// Title: SaaS Integration OAuth Token Refresh Volume Anomaly for NHI Accounts
+// Id: icarus-klue-kql-002
+// MITRE: T1528, T1550.001
+// Reference: https://www.huntress.com/blog/klue-breach-investigation
+// Author: Jarmi
+// Date: 2026-06-21
+// Tested on: Defender XDR — CloudAppEvents
+// FP notes: Reduce noise by scoping to NHI / service account naming conventions.
+//           Legitimate integration vendors will appear — build an allowlist of known vendor IP ranges.
+//           Alert on: first occurrence of token refresh from a new IP for any NHI account.
+
+CloudAppEvents
+| where Timestamp > ago(30d)
+| where ActionType in ("OAuthTokenRefresh", "OAuthTokenGenerated", "AppTokenGranted")
+| where AccountType == "ServiceAccount"
+    or AccountDisplayName has_any ("integration", "service", "bot", "api", "connector", "klue", "hubspot", "gong")
+| extend SourceIP = tostring(RawEventData.SourceIpAddress)
+| extend AppName = tostring(RawEventData.ConnectedAppName)
+| summarize
+    RefreshCount = count(),
+    UniqueIPs = dcount(SourceIP),
+    IPList = make_set(SourceIP, 10),
+    FirstSeen = min(Timestamp),
+    LastSeen = max(Timestamp)
+    by AccountDisplayName, AppName, bin(Timestamp, 1h)
+| where RefreshCount > 5 or UniqueIPs > 2
+| extend Alert = "NHI account issued multiple OAuth token refreshes; possible token replay from stolen refresh token"
+| sort by LastSeen desc

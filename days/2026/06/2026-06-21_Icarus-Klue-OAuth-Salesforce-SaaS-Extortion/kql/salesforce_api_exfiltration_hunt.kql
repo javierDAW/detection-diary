@@ -1,0 +1,28 @@
+// Title: Salesforce REST API Access from Known Icarus C2 IPs
+// Id: icarus-klue-kql-001
+// MITRE: T1530, T1567.002, T1550.001
+// Reference: https://reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft
+// Author: Jarmi
+// Date: 2026-06-21
+// Tested on: Defender XDR — DeviceNetworkEvents
+// FP notes: Unlikely; C2 IPs are VPS data-center hosts with no legitimate reason
+//           to contact Salesforce on behalf of any enterprise workload.
+//           Alert on any match — treat as confirmed suspicious until investigated.
+
+let icarus_ips = dynamic(["138.226.246.94", "212.86.125.24", "213.111.148.90", "94.154.32.160"]);
+let salesforce_domains = dynamic([".salesforce.com", ".force.com", ".cloudforce.com"]);
+
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteIP in (icarus_ips)
+    or (RemoteUrl has_any (salesforce_domains)
+        and InitiatingProcessCommandLine has "python-urllib")
+| extend SuspicionReason = case(
+    RemoteIP in (icarus_ips), "Known Icarus C2 IP",
+    InitiatingProcessCommandLine has "python-urllib", "python-urllib UA to Salesforce",
+    "Unknown"
+)
+| project Timestamp, DeviceName, RemoteIP, RemoteUrl, RemotePort,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          InitiatingProcessAccountName, SuspicionReason
+| sort by Timestamp desc

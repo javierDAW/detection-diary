@@ -4,11 +4,12 @@
 
 # Techniques: T1583.001
 
-5 day(s) covering this technique.
+6 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-21 | Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft Across Enterprise Clients | Icarus | [`2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/`](../../days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/) |
 | 2026-06-17 | Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delivery against US organizations | Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked) | [`2026-06-17_FakeInvitation-PhishKit-OTP-RMM/`](../../days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/) |
 | 2026-06-03 | ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade reputation and blocklists | Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked) | [`2026-06-03_ip6arpa-Reverse-DNS-Phishing/`](../../days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/) |
 | 2026-05-07 | EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026) | namikazesarada010206 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026/05/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |

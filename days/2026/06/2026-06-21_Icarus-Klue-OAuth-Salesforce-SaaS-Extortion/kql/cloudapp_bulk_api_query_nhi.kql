@@ -1,0 +1,39 @@
+// Title: CloudApp Bulk Salesforce API Query Rate Threshold Breach from NHI Account
+// Id: icarus-klue-kql-004
+// MITRE: T1530, T1567.002
+// Reference: https://reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft
+// Author: Jarmi
+// Date: 2026-06-21
+// Tested on: Defender XDR — CloudAppEvents
+// FP notes: ETL pipelines and data warehouse sync jobs may generate high query rates.
+//           Tune threshold based on observed baseline for each integration in your environment.
+//           Legitimate integrations typically issue 10-50 queries per sync cycle.
+//           Icarus observed sending ~1000 queries in 15 minutes — threshold of 200/30min is conservative.
+
+CloudAppEvents
+| where Timestamp > ago(30d)
+| where Application == "Salesforce"
+| where ActionType in ("ApiRequest", "RestApiRequest", "Query", "SoqlQuery")
+| where Url has "/services/data/v"
+| where Url has "/query"
+| extend ServiceAccount = iff(
+    AccountType == "ServiceAccount"
+        or AccountDisplayName has_any ("integration", "service", "bot", "api", "connector", "klue", "hubspot", "gong", "chorus", "clari", "sprout"),
+    AccountDisplayName,
+    ""
+)
+| where isnotempty(ServiceAccount)
+| summarize
+    QueryCount = count(),
+    UniqueEndpoints = dcount(Url),
+    SampleUrls = make_set(Url, 5),
+    SourceIPs = make_set(IPAddress, 5),
+    WindowStart = min(Timestamp),
+    WindowEnd = max(Timestamp)
+    by ServiceAccount, bin(Timestamp, 30m)
+| where QueryCount > 200
+| extend
+    DurationMin = datetime_diff('minute', WindowEnd, WindowStart),
+    QueriesPerMin = QueryCount / max_of(datetime_diff('minute', WindowEnd, WindowStart), 1),
+    Alert = "Salesforce API query burst from NHI account exceeds baseline — possible bulk CRM exfiltration"
+| sort by QueryCount desc

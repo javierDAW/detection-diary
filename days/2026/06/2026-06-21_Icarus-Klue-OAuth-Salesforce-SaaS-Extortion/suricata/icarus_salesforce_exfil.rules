@@ -1,0 +1,77 @@
+# Suricata 7.x rules — Icarus / Klue OAuth / Salesforce CRM Exfiltration
+# Author: Jarmi
+# Date: 2026-06-21
+# Reference: https://reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft
+#            https://www.huntress.com/blog/klue-breach-investigation
+#            https://www.bleepingcomputer.com/news/security/klue-oauth-breach-linked-to-icarus-salesforce-data-theft-attacks/
+#
+# Custom variables required (define in suricata.yaml):
+#   $SALESFORCE_NETS — IP ranges used by Salesforce (*.salesforce.com backends)
+#   $HOME_NET        — internal enterprise networks
+#
+# SIDs 9010005 - 9010011 reserved for this case.
+
+# Rule 1: Outbound connection to known Icarus C2 IPs
+alert ip $HOME_NET any -> [138.226.246.94,212.86.125.24,213.111.148.90,94.154.32.160] any (
+  msg:"ICARUS Known C2 IP — Salesforce Exfiltration Campaign June 2026";
+  flow:established,to_server;
+  classtype:trojan-activity;
+  reference:url,reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft;
+  sid:9010005; rev:1;)
+
+# Rule 2: Inbound connection FROM known Icarus C2 IPs
+alert ip [138.226.246.94,212.86.125.24,213.111.148.90,94.154.32.160] any -> $HOME_NET any (
+  msg:"ICARUS Known C2 IP inbound — Salesforce OAuth campaign June 2026";
+  flow:established,to_client;
+  classtype:trojan-activity;
+  reference:url,reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft;
+  sid:9010006; rev:1;)
+
+# Rule 3: python-urllib user-agent in HTTPS traffic to Salesforce (plaintext SNI / JA4)
+alert tls $HOME_NET any -> any 443 (
+  msg:"ICARUS python-urllib user-agent to Salesforce REST API — possible exfiltration script";
+  flow:established,to_server;
+  tls.sni; content:".salesforce.com"; endswith;
+  ja4.hash; content:"<add_known_icarus_ja4_hash>"; nocase;
+  classtype:policy-violation;
+  reference:url,reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft;
+  sid:9010007; rev:1;)
+
+# Rule 4: HTTP request to Salesforce sobjects endpoint (object enumeration)
+alert http $HOME_NET any -> any 443 (
+  msg:"ICARUS Salesforce sobjects enumeration via REST API — recon phase";
+  flow:established,to_server;
+  http.user_agent; content:"python-urllib"; nocase;
+  http.uri; content:"/services/data/v"; content:"/sobjects"; within:60;
+  classtype:attempted-recon;
+  reference:url,reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft;
+  sid:9010008; rev:1;)
+
+# Rule 5: HTTP request to Salesforce query endpoint with python-urllib UA
+alert http $HOME_NET any -> any 443 (
+  msg:"ICARUS Salesforce bulk SOQL query via python-urllib — possible CRM exfiltration";
+  flow:established,to_server;
+  http.user_agent; content:"python-urllib"; nocase;
+  http.uri; content:"/services/data/v"; content:"/query"; within:40;
+  classtype:policy-violation;
+  reference:url,reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft;
+  sid:9010009; rev:1;)
+
+# Rule 6: QueryMore cursor pagination to Salesforce (bulk exfiltration pagination pattern)
+alert http $HOME_NET any -> any 443 (
+  msg:"ICARUS Salesforce QueryMore cursor — sustained bulk CRM exfiltration pagination";
+  flow:established,to_server;
+  http.user_agent; content:"python-urllib"; nocase;
+  http.uri; content:"/services/data/v"; content:"/query/0"; within:40;
+  classtype:policy-violation;
+  reference:url,reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft;
+  sid:9010010; rev:1;)
+
+# Rule 7: Extortion email delivery from compromised Global Retail Brands domain
+alert smtp any any -> $HOME_NET 25 (
+  msg:"ICARUS Extortion Email from Compromised Global Retail Brands Mail Server";
+  flow:established,to_server;
+  content:"globalretailbrands.com.au"; nocase;
+  classtype:social-engineering;
+  reference:url,www.huntress.com/blog/klue-breach-investigation;
+  sid:9010011; rev:1;)

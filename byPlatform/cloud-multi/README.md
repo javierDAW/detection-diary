@@ -4,11 +4,12 @@
 
 # Platforms: cloud-multi
 
-16 day(s) covering this platform.
+17 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-21 | Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft Across Enterprise Clients | Icarus | [`2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/`](../../days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/) |
 | 2026-06-17 | Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delivery against US organizations | Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked) | [`2026-06-17_FakeInvitation-PhishKit-OTP-RMM/`](../../days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/) |
 | 2026-06-14 | Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer laptop steals the multisig keys | DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed) | [`2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/`](../../days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/) |
 | 2026-06-12 | LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment | LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap) | [`2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/`](../../days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/) |
