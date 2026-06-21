@@ -4,11 +4,12 @@
 
 # Techniques: T1078
 
-16 day(s) covering this technique.
+17 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-21 | Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft Across Enterprise Clients | Icarus | [`2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/`](../../days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/) |
 | 2026-06-20 | Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Credential Exfiltration | Agentjacking-unattributed (Tenet Threat Labs tracking) | [`2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/`](../../days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/) |
 | 2026-06-19 | Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles | Iran-nexus (unattributed) | [`2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/`](../../days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/) |
 | 2026-06-17 | Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delivery against US organizations | Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked) | [`2026-06-17_FakeInvitation-PhishKit-OTP-RMM/`](../../days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/) |

@@ -1,0 +1,43 @@
+title: OAuth Refresh Token Exchange from Cloud Data-Center IP by NHI Account
+id: 9ecf183f-f236-45d2-992a-7059764d7a3e
+status: experimental
+description: >
+  Detects OAuth 2.0 refresh token exchange requests to Salesforce (or other SaaS platforms)
+  originating from cloud data-center IP address ranges when the requesting account is a
+  non-human identity (NHI) such as a service account or integration account.
+  In the Icarus/Klue OAuth campaign (June 2026), stolen refresh tokens were exercised from
+  four VPS data-center IPs to generate fresh access tokens for victim Salesforce orgs.
+  Legitimate SaaS integration vendors operate from known, stable IP ranges; a refresh
+  token exchange from an unexpected data-center ASN is a high-fidelity indicator of
+  token theft and replay. Apply threshold: alert on first occurrence per source IP per service account.
+  Enrich with ASN lookup; suppress known vendor IP ranges (allowlist Klue, HubSpot, Gong infrastructure
+  during normal operations; all were revoked during the incident).
+references:
+  - https://reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft
+  - https://www.huntress.com/blog/klue-breach-investigation
+author: Jarmi
+date: 2026/06/21
+tags:
+  - attack.credential-access
+  - attack.t1528
+  - attack.defense-evasion
+  - attack.t1550.001
+logsource:
+  product: salesforce
+  service: event_monitoring
+detection:
+  selection_event:
+    EventType: 'OauthToken'
+    GrantType: 'refresh_token'
+  selection_source:
+    SourceIp|cidr:
+      - '0.0.0.0/0'
+  filter_known_vendor_ips:
+    SourceIp|cidr:
+      - '<add_known_vendor_saas_cidr_ranges>'
+  condition: selection_event and selection_source and not filter_known_vendor_ips
+falsepositives:
+  - SaaS integration vendors that legitimately rotate infrastructure IPs (requires allowlist maintenance)
+  - Developer workstations in cloud environments running integration tests against production org
+
+level: high

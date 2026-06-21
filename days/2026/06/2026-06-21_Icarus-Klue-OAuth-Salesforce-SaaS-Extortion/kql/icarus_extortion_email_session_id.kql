@@ -1,0 +1,32 @@
+// Title: Icarus Extortion Email — Compromised Sender Domain and Session Messenger ID
+// Id: icarus-klue-kql-003
+// MITRE: T1657, T1583.001
+// Reference: https://www.huntress.com/blog/klue-breach-investigation
+//            https://www.bleepingcomputer.com/news/security/klue-oauth-breach-linked-to-icarus-salesforce-data-theft-attacks/
+// Author: Jarmi
+// Date: 2026-06-21
+// Tested on: Microsoft Sentinel — EmailEvents (Defender for Office 365)
+// FP notes: globalretailbrands.com.au is a compromised legitimate domain — block rather than allowlist.
+//           Session Messenger IDs are 66-char hex strings; pattern below may need tuning per environment.
+//           Alert on any match; treat as extortion attempt until investigated.
+
+EmailEvents
+| where Timestamp > ago(60d)
+| where SenderFromDomain has "globalretailbrands.com.au"
+    or EmailSubject has_any ("mr bean", "Session", "top secret", "we advice you to write")
+    or EmailBody has_any (
+        "Session Messenger",
+        "python-urllib",
+        "we advice you to write to us on Session",
+        "do the right decision",
+        "48 hours",
+        "mr bean"
+    )
+| extend SuspicionIndicators = bag_pack(
+    "SenderDomain", SenderFromDomain,
+    "Subject", EmailSubject,
+    "RecipientCount", RecipientEmailAddress
+)
+| project Timestamp, SenderFromAddress, SenderFromDomain, RecipientEmailAddress,
+          EmailSubject, DeliveryAction, ThreatTypes, SuspicionIndicators
+| sort by Timestamp desc

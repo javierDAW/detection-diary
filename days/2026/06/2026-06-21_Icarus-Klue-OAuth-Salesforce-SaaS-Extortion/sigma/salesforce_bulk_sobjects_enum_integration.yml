@@ -1,0 +1,38 @@
+title: Salesforce Object Catalog Enumeration via Integration Service Account
+id: 518f7a7e-b34c-4a71-ae48-48ebd43ec9d1
+status: experimental
+description: >
+  Detects access to the Salesforce REST API /sobjects endpoint (object catalog enumeration)
+  from a service account user-agent consistent with Python urllib automation.
+  During the Icarus/Klue OAuth campaign (June 2026), attackers used GET /services/data/v*/sobjects
+  as the reconnaissance phase before bulk CRM exfiltration. The python-urllib user-agent is not
+  used by any legitimate Salesforce client library (which typically identifies as Salesforce-CLI,
+  python-requests, or a vendor-specific string) and is a high-fidelity indicator of scripted abuse.
+  Threshold-based deduplication recommended: alert on more than 5 sobjects requests per hour from
+  the same source IP or service account, not on every single request.
+references:
+  - https://reliaquest.com/blog/threat-spotlight-integration-abused-in-crm-data-theft
+  - https://www.huntress.com/blog/klue-breach-investigation
+  - https://www.bleepingcomputer.com/news/security/klue-oauth-breach-linked-to-icarus-salesforce-data-theft-attacks/
+author: Jarmi
+date: 2026/06/21
+tags:
+  - attack.discovery
+  - attack.t1580
+  - attack.collection
+  - attack.t1530
+logsource:
+  category: proxy
+detection:
+  selection_url:
+    c-uri|contains:
+      - '/services/data/v'
+      - '/sobjects'
+  selection_ua:
+    cs-user-agent|startswith: 'python-urllib'
+  condition: selection_url and selection_ua
+falsepositives:
+  - Internal automation scripts that use urllib and legitimately query Salesforce object schema
+  - Developer tooling during integration testing (scope to production environments)
+
+level: medium

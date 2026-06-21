@@ -1,5 +1,42 @@
 [
  {
+  "date": "2026-06-21",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion",
+  "title": "Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft Across Enterprise Clients",
+  "clusters": [
+   "Icarus"
+  ],
+  "country": "Unknown — e-crime (extortion), financially motivated",
+  "platforms": [
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "healthcare",
+   "government",
+   "education"
+  ],
+  "techniques": [
+   "T1195.003",
+   "T1528",
+   "T1550.001",
+   "T1580",
+   "T1530",
+   "T1567.002",
+   "T1657",
+   "T1078",
+   "T1583.001"
+  ],
+  "tech_count": 9,
+  "tldr": "A new extortion group tracking as \"Icarus\" (active since April 28, 2026) compromised the backend of Klue, a competitive-intelligence SaaS platform, and exfiltrated OAuth refresh tokens used by Klue's Battlecards integration with Salesforce. Attackers authenticated as legitimate Klue integration service accounts and ran automated Python scripts against Salesforce's REST API for up to 24 hours per v",
+  "thumb": "thumbs/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion.svg",
+  "case_rel": "../days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/",
+  "q": "icarus saas extortion via klue oauth: salesforce crm data theft across enterprise clients icarus unknown — e-crime (extortion), financially motivated cloud-multi technology finance healthcare government education t1195.003 t1528 t1550.001 t1580 t1530 t1567.002 t1657 t1078 t1583.001"
+ },
+ {
   "date": "2026-06-20",
   "year": "2026",
   "month": "2026-06",
