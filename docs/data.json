@@ -1,5 +1,45 @@
 [
  {
+  "date": "2026-06-22",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-22_prospy-bitter-mena",
+  "title": "ProSpy/BITTER: Hack-for-Hire Android Spyware Targeting MENA Civil Society Journalists",
+  "clusters": [
+   "BITTER",
+   "T-APT-17"
+  ],
+  "country": "South Asia (suspected India nexus); client unknown — Egypt assessed likely",
+  "platforms": [
+   "android",
+   "mobile",
+   "network-edge"
+  ],
+  "sectors": [
+   "media",
+   "government",
+   "civil-society",
+   "ngo"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1204.002",
+   "T1583.001",
+   "T1585.001",
+   "T1071.001",
+   "T1041",
+   "T1005",
+   "T1560.001",
+   "T1056.001",
+   "T1091"
+  ],
+  "tech_count": 10,
+  "tldr": "A hack-for-hire operation with assessed ties to South Asian threat group BITTER (T-APT-17) has been running an active espionage campaign against journalists, opposition politicians, and civil society members across Egypt, Lebanon, Bahrain, UAE, and Saudi Arabia since at least 2022. The attacker chain opens with sockpuppet LinkedIn / iMessage personas that spearphish targets: iOS users are pushed t",
+  "thumb": "thumbs/2026-06-22_prospy-bitter-mena.svg",
+  "case_rel": "../days/2026/06/2026-06-22_prospy-bitter-mena/",
+  "q": "prospy/bitter: hack-for-hire android spyware targeting mena civil society journalists bitter t-apt-17 south asia (suspected india nexus); client unknown — egypt assessed likely android mobile network-edge media government civil-society ngo t1566.002 t1204.002 t1583.001 t1585.001 t1071.001 t1041 t1005 t1560.001 t1056.001 t1091"
+ },
+ {
   "date": "2026-06-21",
   "year": "2026",
   "month": "2026-06",

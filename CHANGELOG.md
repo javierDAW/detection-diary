@@ -5,6 +5,24 @@ All notable additions to detection-diary.
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
+## 2026.06.22 — Day 56 — ProSpy/BITTER: Hack-for-Hire Android Spyware Targeting MENA Civil Society Journalists
+
+### Added
+- `days/2026/06/2026-06-22_prospy-bitter-mena/` — First primary for slot #2 hack-for-hire/mercenaries. A BITTER APT-linked (T-APT-17, suspected India nexus) hack-for-hire operation has been running Android spyware ProSpy against Egyptian journalists, opposition politicians, and civil society in Egypt, Lebanon, Bahrain, UAE, and Saudi Arabia since at least 2022. Joint disclosure: Lookout + Access Now Digital Security Helpline, 2026-04-08; ESET ToSpy variant, 2025-10.
+- Sigma (3): `prospy_c2_uri_pattern.yml` — HTTP POST to /v3/ C2 endpoint pattern; `prospy_c2_domain_lookup.yml` — DNS resolution of 7 known ProSpy C2 domains; `bitter_phishing_domain_pattern.yml` — BITTER digraph-pattern phishing infra detection.
+- KQL (2): `prospy_c2_network.kql` — Defender XDR network events for known C2 domains and /v3/ URI; `prospy_staging_download.kql` — APK download from non-Play staging domains.
+- YARA (1 file, 4 rules): `prospy_android.yar` — C2 endpoint strings, malicious package names, Kotlin worker class naming, C2 domain embeds.
+- Suricata (1 file, 10 sids): TLS SNI match on 6 C2 domains; HTTP POST /v3/getType poll; /v3/ exfil endpoint pattern; botim-app.pro APK download; *.ai-ae.io staging pattern.
+- PEAK hunts (3): H1 JARM+ASN 44901 pivot for proactive BITTER infrastructure discovery; H2 WorkManager periodic beacon detection in network flows; H3 CT log subdomain registration monitoring for BITTER domain pattern.
+- `iocs.csv` (36 entries) — 7 C2 domains, 5 staging/distribution domains, 14 ProSpy SHA1 hashes, C2 URI strings, Kotlin worker class names, JARM fingerprint, ASN 44901 note.
+- `kill_chain.svg` — Template A (880x1280), canonical palette, two-lane: victim path (spearphishing → APK delivery → WorkManager → collection → C2 beacon → exfil) + attacker infra (sockpuppets, phishing fleet, staging sites, C2 fleet, attribution chain, victimology). Verifier ×2 PASS.
+
+### Pedagogy
+- Hack-for-hire decouples operator from client: BITTER infrastructure is the technical fingerprint; who paid for the civil society targeting is not determinable from malware alone.
+- iOS is not safe from resource-constrained targeted actors: iCloud AiTM + Signal QR device-link phishing succeeds where zero-click is unavailable; Apple Lockdown Mode does not block credential phishing.
+- Infrastructure fingerprint (ASN + JARM) outlasts malware families: Dracarys→ProSpy evolution across 4+ years, same ASN 44901, same JARM — hunt the infra, not just the hash.
+- Joint civil society + commercial research is the most effective mobile threat intel model: Access Now Helpline victim casework + Lookout RE + SMEX corroboration produced attribution impossible through any single channel.
+
 ## 2026.06.21 — Day 55 — Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft
 
 ### Added

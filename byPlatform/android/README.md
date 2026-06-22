@@ -4,11 +4,12 @@
 
 # Platforms: android
 
-3 day(s) covering this platform.
+4 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-22 | ProSpy/BITTER: Hack-for-Hire Android Spyware Targeting MENA Civil Society Journalists | BITTER · T-APT-17 | [`2026-06-22_prospy-bitter-mena/`](../../days/2026/06/2026-06-22_prospy-bitter-mena/) |
 | 2026-06-13 | DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Brazilian TAs, AI-assisted) | DevilNFC · NFCMultiPay | [`2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/`](../../days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/) |
 | 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |
 | 2026-05-09 | Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026) | Albiriox | [`2026-05-09_Albiriox-Android-MaaS-AcVNC/`](../../days/2026/05/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |

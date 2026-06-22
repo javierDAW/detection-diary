@@ -1,0 +1,38 @@
+type,value,context,confidence,source
+domain,sgnlapp[.]info,ProSpy C2 server — /v3/ exfil endpoint host,high,Lookout 2026-04-08
+domain,treasuresland[.]cc,ProSpy C2 server — /v3/ exfil endpoint host,high,Lookout 2026-04-08
+domain,relaxmode[.]org,ProSpy C2 server — /v3/ exfil endpoint host,high,Lookout 2026-04-08
+domain,track-portal[.]co,ProSpy C2 server — /v3/ exfil endpoint host,high,Lookout 2026-04-08
+domain,totokapp[.]info,ProSpy C2 server — /v3/ exfil endpoint host,high,Lookout 2026-04-08
+domain,totok-pro[.]io,ProSpy C2 server and distribution host (ToTok lure),high,Lookout 2026-04-08
+domain,regularsports[.]org,ProSpy C2 server — /v3/ exfil endpoint host,high,Lookout 2026-04-08
+domain,botim-app[.]pro,ProSpy staging/distribution — auto-downloads Botim lure APK (EN+AR page),high,Lookout 2026-04-08
+domain,totok-pro[.]ai-ae[.]io,ProSpy staging — randomized PHP redirect to APK; ToTok lure,high,Lookout 2026-04-08
+domain,totok-pro[.]ae,ProSpy distribution host — ToTok lure,high,Lookout 2026-04-08
+domain,encryption-plug-in-signal[.]com-ae[.]net,ProSpy staging — Signal lure; BITTER infrastructure pivot via com-ae.net domain,high,Lookout 2026-04-08
+domain,join-secure-call[.]ai-ae[.]io,Delivery lure URL — fake video call join page; redirects to APK staging,high,Lookout 2026-04-08
+domain,com-ae[.]net,BITTER infrastructure FLD — attributed via FOFA JARM pivot to Dracarys C2 youtubepremiumapp.com,high,Lookout 2026-04-08 / Maltrail
+sha1,92dd37a709cbc7379e2804fe63d61a7d9846f934,ProSpy — Botim Pro (com.chatbot.botim) 2026-03-15 — newest Lookout sample,high,Lookout 2026-04-08
+sha1,bebd8af44329037c34c1d5812ada26bc2230f50d,ProSpy — ToTok Pro (com.chat.connect) 2026-02-19,high,Lookout 2026-04-08
+sha1,af7ab9213eaa20a6b1a4fb5be6e6b2e56160c746,ProSpy — Botim Pro (the.messenger.bot) 2026-02-05,high,Lookout 2026-04-08
+sha1,8152b06537853e90103ed956653e446453e80293,ProSpy — ToTok Pro (al.totok.chat) 2025-11-17; ttkmbackup exfil present,high,Lookout 2026-04-08
+sha1,50c7cab6221b24636f0d053679b843a194d8f4a1,ProSpy — Signal Encryption Plugin (org.thoghtcrime.securesms) 2025-10-02,high,Lookout 2026-04-08
+sha1,38174544c6d6e127bbfee0bab031c2370e0a1bec,ProSpy — Signal Encryption Plugin (org.thoghtcrime.securesms) 2025-09-28,high,Lookout 2026-04-08
+sha1,ae60794c6f1d4893a20009437ebf96d790985a7c,ProSpy — ToTok Pro (al.totok.chat) 2025-08-26,high,Lookout 2026-04-08
+sha1,02ee423f1cd1a123169ef1e4e7d40dbb2139d86b,ProSpy — Botim Pro (im.thebot.mesenger) 2025-08-17,high,Lookout 2026-04-08
+sha1,6339add91eb118831571e30801a28a40b2c304a0,ProSpy — ToTok Pro (al.totok.chat) 2025-08-14,high,Lookout 2026-04-08
+sha1,154d67f871ffa19dce1a7646d5ae4ff00c509ee4,ProSpy — Signal Encryption Plugin (org.thoghtcrime.securesms) 2025-06-16,high,Lookout 2026-04-08
+sha1,26fa78ccf9dbe970a4bc2911592ec99db809ffe5,ProSpy — Signal Encryption Plugin (org.thoghtcrime.securesms) 2025-05-06,high,Lookout 2026-04-08
+sha1,43f4dc193503947cb9449fe1cca8d3feb413a52d,ProSpy — ToTok Pro (ae.totok.chat) 2024-12-28,high,Lookout 2026-04-08
+sha1,ffaac2fdd9b6f5340d4202227b0b13e09f6ed031,ProSpy — ToTok Pro (ae.totok.chat) 2024-08-07,high,Lookout 2026-04-08
+sha1,579f9e5db2befccb61c833b355733c24524457ab,ProSpy — ToTok Pro (ae.totok.chat) 2024-08-07 — duplicate date; distinct hash,high,Lookout 2026-04-08
+string,/v3/getType,ProSpy C2 command-polling endpoint URI prefix — Retrofit HTTPS POST,high,Lookout 2026-04-08
+string,/v3/setEvent,ProSpy error/debug reporting endpoint,high,Lookout 2026-04-08
+string,/v3/setStatus,ProSpy operational status endpoint,high,Lookout 2026-04-08
+string,ContactsWorker,ProSpy Kotlin worker class name for contacts exfiltration,high,Lookout 2026-04-08
+string,NewFilesWorker,ProSpy Kotlin worker class for delta file exfiltration (recently modified files),high,Lookout 2026-04-08
+string,ttkmbackup,File extension targeted by ProSpy BackupWorker — ToTok app backup format,high,Lookout 2026-04-08
+string,org.thoghtcrime.securesms,ProSpy malicious package name for Signal Encryption Plugin lure,high,Lookout 2026-04-08
+string,com.chatbot.botim,ProSpy malicious package name for Botim Pro lure,high,Lookout 2026-04-08
+note,JARM:15d3fd16d29d29d00042d43d0000001ae0802418786940cae38f1d9eed5b9b,BITTER infrastructure JARM fingerprint on ASN 44901 — use for Shodan/FOFA hunting (H1),medium,Hunt.io @volrant136 / Lookout 2026-04-08
+note,ASN44901,BITTER C2 and staging infrastructure ASN; combine with JARM for high-confidence pivot,medium,Lookout 2026-04-08

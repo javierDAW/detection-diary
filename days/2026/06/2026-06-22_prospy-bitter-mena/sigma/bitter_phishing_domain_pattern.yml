@@ -1,0 +1,45 @@
+title: BITTER Hack-for-Hire Phishing Infrastructure Pattern
+id: d569d1cb-64dc-47fc-bf95-95079dabcb21
+status: experimental
+description: >
+  Detects DNS queries or proxy requests to BITTER-linked phishing infrastructure
+  serving the MENA civil society hack-for-hire campaign. The threat actor constructs
+  phishing FLDs using a digraph-region pattern: <service-lure>.<digraph>.<TLD>,
+  where digraph pairs encode potential region/language hints (e.g., 'eg-uk', 'com-ae',
+  'ai-ae'). Known distribution and staging domains for ProSpy Android spyware are
+  also included. Access Now / Lookout, 2026-04-08.
+author: Jarmi
+date: 2026/06/22
+references:
+  - https://www.lookout.com/threat-intelligence/article/bitter-hack-for-hire
+  - https://www.accessnow.org/mena-phishing-2026/
+tags:
+  - attack.resource-development
+  - attack.initial-access
+  - attack.t1583.001
+  - attack.t1566.002
+logsource:
+  category: dns
+detection:
+  selection_staging:
+    query|contains:
+      - 'botim-app.pro'
+      - 'totok-pro.ai-ae.io'
+      - 'totok-pro.ae'
+      - 'encryption-plug-in-signal.com-ae.net'
+      - 'join-secure-call.ai-ae.io'
+      - 'com-ae.net'
+  selection_pattern_aiaeio:
+    query|endswith: '.ai-ae.io'
+  selection_pattern_comae:
+    query|endswith: '.com-ae.net'
+  condition: selection_staging or selection_pattern_aiaeio or selection_pattern_comae
+fields:
+  - query
+  - answer
+  - src_ip
+falsepositives:
+  - Possible coincidental TLD/subdomain matches; validate against known BITTER IOC list
+  - Legitimate SaaS subdomains ending in similar patterns (rare; assess with threat context)
+
+level: high
