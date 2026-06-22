@@ -1,0 +1,40 @@
+title: ProSpy C2 Domain DNS Lookup — BITTER Hack-for-Hire
+id: cd0ab3e5-64ff-4358-8969-abb32baab96e
+status: experimental
+description: >
+  Detects DNS resolution of known ProSpy Android spyware C2 domains.
+  These domains host /v3/ exfiltration and command endpoints used by
+  ProSpy samples attributed to a BITTER APT-linked hack-for-hire operation
+  targeting civil society in MENA. Lookout / Access Now, 2026-04-08.
+  Also covers ToSpy variant (ESET October 2025 reporting).
+author: Jarmi
+date: 2026/06/22
+references:
+  - https://www.lookout.com/threat-intelligence/article/bitter-hack-for-hire
+  - https://www.welivesecurity.com/en/eset-research/new-spyware-campaigns-target-privacy-conscious-android-users-uae/
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.t1041
+logsource:
+  category: dns
+detection:
+  selection:
+    query|contains:
+      - 'sgnlapp.info'
+      - 'treasuresland.cc'
+      - 'relaxmode.org'
+      - 'track-portal.co'
+      - 'totokapp.info'
+      - 'totok-pro.io'
+      - 'regularsports.org'
+  condition: selection
+fields:
+  - query
+  - record_type
+  - answer
+  - src_ip
+falsepositives:
+  - None expected; these domains have no known legitimate purpose
+
+level: critical

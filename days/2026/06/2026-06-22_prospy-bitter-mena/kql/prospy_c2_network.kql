@@ -1,0 +1,52 @@
+// Title: ProSpy C2 Network Activity — BITTER Hack-for-Hire Android Spyware
+// Id: prospy-c2-network-kql-56
+// MITRE: T1071.001 (Application Layer Protocol: Web), T1041 (Exfiltration Over C2 Channel)
+// Reference: https://www.lookout.com/threat-intelligence/article/bitter-hack-for-hire
+// Author: Jarmi
+// Date: 2026-06-22
+// Tested on: Defender XDR (DeviceNetworkEvents)
+// FP notes: Assess RemoteUrl against known C2 domain list; /v3/ URI alone has false-positive potential
+//           from legitimate versioned REST APIs. Combine both conditions for highest fidelity.
+
+let ProSpyC2Domains = dynamic([
+    "sgnlapp.info",
+    "treasuresland.cc",
+    "relaxmode.org",
+    "track-portal.co",
+    "totokapp.info",
+    "totok-pro.io",
+    "regularsports.org"
+]);
+
+let ProSpyStagingDomains = dynamic([
+    "botim-app.pro",
+    "totok-pro.ae",
+    "com-ae.net",
+    "ai-ae.io"
+]);
+
+let ProSpyV3Pattern = @"/v3/(getType|setEvent|setStatus|images|videos|contacts|sms|docs|backup|others|audios)";
+
+DeviceNetworkEvents
+| where ActionType in ("ConnectionSuccess", "HttpConnectionInspected")
+| where (RemoteUrl has_any (ProSpyC2Domains))
+    or (RemoteUrl has_any (ProSpyStagingDomains))
+    or (RequestUri matches regex ProSpyV3Pattern)
+| extend MatchReason = case(
+    RemoteUrl has_any (ProSpyC2Domains), "KnownC2Domain",
+    RemoteUrl has_any (ProSpyStagingDomains), "StagingDomain",
+    RequestUri matches regex ProSpyV3Pattern, "V3URIPattern",
+    "Other"
+)
+| project
+    Timestamp,
+    DeviceName,
+    DeviceId,
+    InitiatingProcessFileName,
+    InitiatingProcessCommandLine,
+    RemoteUrl,
+    RequestUri,
+    RemoteIP,
+    RemotePort,
+    MatchReason
+| sort by Timestamp desc

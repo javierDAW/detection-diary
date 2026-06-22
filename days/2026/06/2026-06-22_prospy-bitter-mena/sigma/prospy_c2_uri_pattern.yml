@@ -1,0 +1,49 @@
+title: ProSpy C2 URI Pattern — BITTER Hack-for-Hire Android Spyware
+id: c7c50e26-9697-455f-b263-d7bad58b3de3
+status: experimental
+description: >
+  Detects HTTP POST requests to ProSpy Android spyware C2 endpoints.
+  ProSpy (Kotlin; BITTER APT-linked hack-for-hire) uses Retrofit to POST
+  collected data to /v3/<type> endpoints. Matches command-polling (/v3/getType),
+  status reporting (/v3/setEvent, /v3/setStatus), and exfiltration endpoints.
+  Lookout / Access Now, 2026-04-08.
+author: Jarmi
+date: 2026/06/22
+references:
+  - https://www.lookout.com/threat-intelligence/article/bitter-hack-for-hire
+  - https://www.accessnow.org/mena-phishing-2026/
+tags:
+  - attack.collection
+  - attack.exfiltration
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.t1041
+  - attack.t1005
+logsource:
+  category: proxy
+detection:
+  selection:
+    cs-method: POST
+    cs-uri-stem|contains:
+      - '/v3/getType'
+      - '/v3/setEvent'
+      - '/v3/setStatus'
+      - '/v3/images'
+      - '/v3/videos'
+      - '/v3/contacts'
+      - '/v3/sms'
+      - '/v3/docs'
+      - '/v3/backup'
+      - '/v3/others'
+      - '/v3/audios'
+  condition: selection
+fields:
+  - cs-host
+  - cs-uri-stem
+  - c-ip
+  - cs-user-agent
+falsepositives:
+  - Legitimate mobile applications using /v3/ URI structure (assess cs-host against known C2 domains)
+  - REST API services with versioned endpoints; narrow by combining with C2 domain list
+
+level: high

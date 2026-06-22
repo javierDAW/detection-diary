@@ -20,6 +20,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [ArcaneDoor](./arcanedoor/) | 1 |
 | [Aur0ra (unattributed ransomware family)](./aur0ra-unattributed-ransomware-family/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
+| [BITTER](./bitter/) | 1 |
 | [Black Shadow (Ababil of Minab persona)](./black-shadow-ababil-of-minab-persona/) | 1 |
 | [BlackCat](./blackcat/) | 1 |
 | [BlackFile (self-branded DLS)](./blackfile-self-branded-dls/) | 1 |
@@ -89,6 +90,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Storm-1849](./storm-1849/) | 1 |
 | [Storm-2949](./storm-2949/) | 1 |
 | [SwimSnake](./swimsnake/) | 1 |
+| [T-APT-17](./t-apt-17/) | 1 |
 | [TEMP.Veles](./temp-veles/) | 1 |
 | [Talos Cluster 1 (Tas9er Godzilla)](./talos-cluster-1-tas9er-godzilla/) | 1 |
 | [Talos Cluster 10 (vManage credential extractor)](./talos-cluster-10-vmanage-credential-extractor/) | 1 |

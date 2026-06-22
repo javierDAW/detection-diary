@@ -1,0 +1,41 @@
+# Suricata 7.x rules for ProSpy Android spyware / BITTER hack-for-hire MENA campaign
+# Author: Jarmi
+# Date: 2026-06-22
+# Reference: https://www.lookout.com/threat-intelligence/article/bitter-hack-for-hire
+# Reference: https://www.accessnow.org/mena-phishing-2026/
+#
+# Custom variables (define in suricata.yaml or local.rules header):
+#   $HOME_NET — your monitored network range
+#   $HTTP_PORTS — HTTP inspection ports (default: 80)
+#
+# SID range: 9056001 - 9056010
+
+# SID 9056001 — TLS SNI: ProSpy C2 sgnlapp.info
+alert tls $HOME_NET any -> $EXTERNAL_NET 443 (msg:"ProSpy BITTER C2 TLS SNI sgnlapp.info"; flow:established,to_server; tls.sni; content:"sgnlapp.info"; nocase; endswith; classtype:trojan-activity; reference:url,lookout.com/threat-intelligence/article/bitter-hack-for-hire; sid:9056001; rev:1;)
+
+# SID 9056002 — TLS SNI: ProSpy C2 treasuresland.cc
+alert tls $HOME_NET any -> $EXTERNAL_NET 443 (msg:"ProSpy BITTER C2 TLS SNI treasuresland.cc"; flow:established,to_server; tls.sni; content:"treasuresland.cc"; nocase; endswith; classtype:trojan-activity; reference:url,lookout.com/threat-intelligence/article/bitter-hack-for-hire; sid:9056002; rev:1;)
+
+# SID 9056003 — TLS SNI: ProSpy C2 relaxmode.org
+alert tls $HOME_NET any -> $EXTERNAL_NET 443 (msg:"ProSpy BITTER C2 TLS SNI relaxmode.org"; flow:established,to_server; tls.sni; content:"relaxmode.org"; nocase; endswith; classtype:trojan-activity; reference:url,lookout.com/threat-intelligence/article/bitter-hack-for-hire; sid:9056003; rev:1;)
+
+# SID 9056004 — TLS SNI: ProSpy C2 track-portal.co
+alert tls $HOME_NET any -> $EXTERNAL_NET 443 (msg:"ProSpy BITTER C2 TLS SNI track-portal.co"; flow:established,to_server; tls.sni; content:"track-portal.co"; nocase; endswith; classtype:trojan-activity; reference:url,lookout.com/threat-intelligence/article/bitter-hack-for-hire; sid:9056004; rev:1;)
+
+# SID 9056005 — TLS SNI: ProSpy C2 totok-pro.io
+alert tls $HOME_NET any -> $EXTERNAL_NET 443 (msg:"ProSpy BITTER C2 TLS SNI totok-pro.io"; flow:established,to_server; tls.sni; content:"totok-pro.io"; nocase; endswith; classtype:trojan-activity; reference:url,lookout.com/threat-intelligence/article/bitter-hack-for-hire; sid:9056005; rev:1;)
+
+# SID 9056006 — TLS SNI: ProSpy C2 regularsports.org
+alert tls $HOME_NET any -> $EXTERNAL_NET 443 (msg:"ProSpy BITTER C2 TLS SNI regularsports.org"; flow:established,to_server; tls.sni; content:"regularsports.org"; nocase; endswith; classtype:trojan-activity; reference:url,lookout.com/threat-intelligence/article/bitter-hack-for-hire; sid:9056006; rev:1;)
+
+# SID 9056007 — HTTP POST to /v3/ C2 command-polling endpoint
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ProSpy BITTER C2 HTTP POST /v3/getType Command Poll"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/v3/getType"; startswith; classtype:trojan-activity; reference:url,lookout.com/threat-intelligence/article/bitter-hack-for-hire; sid:9056007; rev:1;)
+
+# SID 9056008 — HTTP POST to /v3/ exfiltration endpoint (contacts, sms, images, videos, docs)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ProSpy BITTER C2 HTTP POST /v3/ Exfil Endpoint"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/v3/"; startswith; pcre:"/\/v3\/(images|videos|contacts|sms|docs|backup|others|audios|setEvent|setStatus)/"; classtype:trojan-activity; reference:url,lookout.com/threat-intelligence/article/bitter-hack-for-hire; sid:9056008; rev:1;)
+
+# SID 9056009 — HTTP: ProSpy APK download from botim-app.pro staging site
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"ProSpy BITTER Staging APK Download botim-app.pro"; flow:established,to_client; http.host; content:"botim-app.pro"; nocase; http.uri; content:".apk"; endswith; classtype:trojan-activity; reference:url,lookout.com/threat-intelligence/article/bitter-hack-for-hire; sid:9056009; rev:1;)
+
+# SID 9056010 — TLS SNI: BITTER staging subdomain pattern *.ai-ae.io
+alert tls $HOME_NET any -> $EXTERNAL_NET 443 (msg:"ProSpy BITTER Staging TLS SNI *.ai-ae.io Pattern"; flow:established,to_server; tls.sni; content:".ai-ae.io"; endswith; nocase; classtype:trojan-activity; reference:url,lookout.com/threat-intelligence/article/bitter-hack-for-hire; sid:9056010; rev:1;)

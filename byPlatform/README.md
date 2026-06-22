@@ -12,14 +12,15 @@ Source of truth: each day's `README.md` frontmatter.
 | Group | Days |
 |---|---|
 | [active-directory](./active-directory/) | 2 |
-| [android](./android/) | 3 |
+| [android](./android/) | 4 |
 | [cloud-multi](./cloud-multi/) | 17 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 2 |
 | [linux](./linux/) | 23 |
 | [macos](./macos/) | 7 |
 | [microsoft-365](./microsoft-365/) | 1 |
-| [network-edge](./network-edge/) | 16 |
+| [mobile](./mobile/) | 1 |
+| [network-edge](./network-edge/) | 17 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 4 |
 | [saas](./saas/) | 1 |

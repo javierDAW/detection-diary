@@ -1,0 +1,44 @@
+// Title: ProSpy APK Staging Download — BITTER Hack-for-Hire
+// Id: prospy-staging-download-kql-56
+// MITRE: T1204.002 (User Execution: Malicious File), T1566.002 (Phishing: Spearphishing Link)
+// Reference: https://www.lookout.com/threat-intelligence/article/bitter-hack-for-hire
+// Author: Jarmi
+// Date: 2026-06-22
+// Tested on: Defender XDR (DeviceNetworkEvents, DeviceFileEvents)
+// FP notes: APK downloads from non-Play-Store domains are inherently suspicious for managed devices.
+//           Adjust StagingPatterns if testing against unmanaged BYOD fleets.
+
+let StagingPatterns = dynamic([
+    "botim-app.pro",
+    "totok-pro.ai-ae.io",
+    "totok-pro.ae",
+    "totok-pro.io",
+    "encryption-plug-in-signal.com-ae.net",
+    "com-ae.net",
+    "ai-ae.io"
+]);
+
+// Known malicious APK filenames (partial match)
+let KnownAPKFilenames = dynamic([
+    "botim_s_v3",
+    "totok-release",
+    "totok_v",
+    "signal_enc"
+]);
+
+// Network event: APK download from staging domain
+DeviceNetworkEvents
+| where ActionType in ("ConnectionSuccess", "HttpConnectionInspected")
+| where RemoteUrl has_any (StagingPatterns)
+    or RequestUri endswith ".apk"
+| where RemoteUrl has_any (StagingPatterns)
+| extend MatchReason = "ProSpyStagingAPKDownload"
+| project
+    Timestamp,
+    DeviceName,
+    InitiatingProcessFileName,
+    RemoteUrl,
+    RequestUri,
+    RemoteIP,
+    MatchReason
+| sort by Timestamp desc
