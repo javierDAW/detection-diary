@@ -1,0 +1,42 @@
+// Title: AiTM Session Token Replay — Impossible Travel or IP Change Post-MFA
+// Id: 10e39ec5-492f-43b8-a96a-2d0c23151257
+// MITRE: T1539 Steal Web Session Cookie, T1078.004 Cloud Accounts, T1621 MFA Request Generation
+// Reference: https://www.helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/
+// Author: Jarmi
+// Date: 2026-06-23
+// Tested on: Microsoft Sentinel — SigninLogs table
+// FP notes: VPN endpoints presenting external IPs; legitimate travel (correlate with HR/travel data)
+// Description: Flags when the same UPN authenticates from a second distinct IP within 5 minutes
+//              of a successful MFA event where the new IP is outside known corporate CIDRs.
+//              Characteristic of AiTM proxy kits (Evilginx-class, Okta/Google Workspace kits)
+//              that capture and immediately replay session cookies.
+
+let known_corporate_cidrs = dynamic(["<add_known_corporate_cidr_1>", "<add_known_corporate_cidr_2>"]);
+let look_back = 5m;
+
+SigninLogs
+| where TimeGenerated >= ago(1d)
+| where ResultType == 0
+| where AuthenticationRequirement == "multiFactorAuthentication"
+| where ConditionalAccessStatus == "success"
+| where not(ipv4_is_in_any_range(IPAddress, known_corporate_cidrs))
+| project TimeGenerated, UserPrincipalName, IPAddress, AppDisplayName,
+          Location, DeviceDetail, AuthenticationDetails
+| join kind=inner (
+    SigninLogs
+    | where TimeGenerated >= ago(1d)
+    | where ResultType == 0
+    | project TimeGenerated2=TimeGenerated, UserPrincipalName, IPAddress2=IPAddress
+) on UserPrincipalName
+| where abs(datetime_diff('second', TimeGenerated, TimeGenerated2)) <= 300
+| where IPAddress != IPAddress2
+| project
+    TimeGenerated,
+    UserPrincipalName,
+    FirstIP = IPAddress,
+    SecondIP = IPAddress2,
+    AppDisplayName,
+    Location,
+    TimeDeltaSeconds = abs(datetime_diff('second', TimeGenerated, TimeGenerated2))
+| distinct UserPrincipalName, FirstIP, SecondIP, AppDisplayName, TimeDeltaSeconds
+| sort by TimeDeltaSeconds asc

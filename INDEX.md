@@ -4,7 +4,7 @@
 
 # INDEX
 
-**55 cases** · **116 actors/clusters** · **290 ATT&CK techniques** · **16 platforms** · **70 sectors** · 2026-04-29 -> 2026-06-22
+**56 cases** · **117 actors/clusters** · **291 ATT&CK techniques** · **16 platforms** · **70 sectors** · 2026-04-29 -> 2026-06-23
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/"><img src="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/kill_chain.svg" alt="2026-06-23 kill chain" width="240"></a><br><sub><b>2026-06-23</b><br>Cloud-Insider-Recruitment-unattributed</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-22_prospy-bitter-mena/"><img src="days/2026/06/2026-06-22_prospy-bitter-mena/kill_chain.svg" alt="2026-06-22 kill chain" width="240"></a><br><sub><b>2026-06-22</b><br>BITTER · T-APT-17</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/"><img src="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/kill_chain.svg" alt="2026-06-21 kill chain" width="240"></a><br><sub><b>2026-06-21</b><br>Icarus</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/"><img src="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/kill_chain.svg" alt="2026-06-20 kill chain" width="240"></a><br><sub><b>2026-06-20</b><br>Agentjacking-unattributed (Tenet Threat Labs tracking)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/"><img src="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/kill_chain.svg" alt="2026-06-20 kill chain" width="240"></a><br><sub><b>2026-06-20</b><br>Agentjacking-unattributed (Tenet Threat Labs tracking)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/"><img src="days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/kill_chain.svg" alt="2026-06-19 kill chain" width="240"></a><br><sub><b>2026-06-19</b><br>Iran-nexus (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/"><img src="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/kill_chain.svg" alt="2026-06-18 kill chain" width="240"></a><br><sub><b>2026-06-18</b><br>Opportunistic CMS mass-exploitation (unattributed botnet)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/"><img src="days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/kill_chain.svg" alt="2026-06-17 kill chain" width="240"></a><br><sub><b>2026-06-17</b><br>Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/"><img src="days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/kill_chain.svg" alt="2026-06-17 kill chain" width="240"></a><br><sub><b>2026-06-17</b><br>Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/"><img src="days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/kill_chain.svg" alt="2026-06-16 kill chain" width="240"></a><br><sub><b>2026-06-16</b><br>Qilin ransomware affiliate (Check Point CPR, medium confidence)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/"><img src="days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/kill_chain.svg" alt="2026-06-15 kill chain" width="240"></a><br><sub><b>2026-06-15</b><br>OceanLotus (APT32)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/"><img src="days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/kill_chain.svg" alt="2026-06-14 kill chain" width="240"></a><br><sub><b>2026-06-14</b><br>DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/"><img src="days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/kill_chain.svg" alt="2026-06-14 kill chain" width="240"></a><br><sub><b>2026-06-14</b><br>DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/"><img src="days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/kill_chain.svg" alt="2026-06-13 kill chain" width="240"></a><br><sub><b>2026-06-13</b><br>DevilNFC · NFCMultiPay</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/"><img src="days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/kill_chain.svg" alt="2026-06-12 kill chain" width="240"></a><br><sub><b>2026-06-12</b><br>LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/"><img src="days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/kill_chain.svg" alt="2026-06-11 kill chain" width="240"></a><br><sub><b>2026-06-11</b><br>Opportunistic Argo CD ServerSideDiff exploitation (unattributed)</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-06</b> — 22 case(s)</summary>
+<details><summary><b>2026-06</b> — 23 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-06-23 | [Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access](days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) | Cloud-Insider-Recruitment-unattributed | cloud-multi, windows, linux, macos |
 | 2026-06-22 | [ProSpy/BITTER: Hack-for-Hire Android Spyware Targeting MENA Civil Society Journalists](days/2026/06/2026-06-22_prospy-bitter-mena/) | BITTER · T-APT-17 | android, mobile, network-edge |
 | 2026-06-21 | [Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft Across Enterprise Clients](days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/) | Icarus | cloud-multi |
 | 2026-06-20 | [Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Credential Exfiltration](days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/) | Agentjacking-unattributed (Tenet Threat Labs tracking) | windows, linux, macos, supply-chain |

@@ -1,0 +1,50 @@
+// Title: SaaS Permissions Creep — Accounts with Unused Privileged Roles >= 30 Days
+// Id: af421fa5-2feb-4621-b4a5-efe73c3c9eaa
+// MITRE: T1078.004 Cloud Accounts, T1538 Cloud Service Dashboard, T1087.004 Cloud Account
+// Reference: https://www.helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/
+// Author: Jarmi
+// Date: 2026-06-23
+// Tested on: Microsoft Sentinel — AuditLogs (Entra ID)
+// FP notes: Service accounts may have privileged roles never used interactively — tag those
+// Description: Identifies user accounts holding privileged Entra roles (Global Admin,
+//              Privileged Role Admin, Exchange Admin, Security Admin) that have not performed
+//              any role-relevant operation in >= 30 days. Intel 471 identifies permissions creep
+//              as the structural enabler of insider and manipulated-insider attacks — access
+//              accumulates without review, creating a large blast radius per credential.
+
+AuditLogs
+| where TimeGenerated >= ago(90d)
+| where Category == "RoleManagement"
+| where OperationName in (
+    "Add member to role",
+    "Add eligible member to role"
+  )
+| where Result == "success"
+| extend TargetUser = tostring(TargetResources[0].userPrincipalName)
+| extend RoleDisplayName = tostring(TargetResources[0].displayName)
+| where RoleDisplayName in (
+    "Global Administrator",
+    "Privileged Role Administrator",
+    "Exchange Administrator",
+    "Security Administrator",
+    "SharePoint Administrator",
+    "User Administrator"
+  )
+| project RoleAssignTime=TimeGenerated, TargetUser, RoleDisplayName
+| join kind=leftouter (
+    AuditLogs
+    | where TimeGenerated >= ago(30d)
+    | extend Actor = tostring(InitiatedBy.user.userPrincipalName)
+    | where isnotempty(Actor)
+    | summarize LastActivity = max(TimeGenerated) by Actor
+) on $left.TargetUser == $right.Actor
+| where isnull(LastActivity) or LastActivity < ago(30d)
+| extend DaysSinceLastActivity = iif(isnull(LastActivity), 90, datetime_diff('day', now(), LastActivity))
+| project
+    TargetUser,
+    RoleDisplayName,
+    RoleAssignTime,
+    LastActivity,
+    DaysSinceLastActivity
+| where DaysSinceLastActivity >= 30
+| sort by DaysSinceLastActivity desc

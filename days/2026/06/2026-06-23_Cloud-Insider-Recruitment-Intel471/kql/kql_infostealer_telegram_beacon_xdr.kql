@@ -1,0 +1,58 @@
+// Title: Infostealer Telegram C2 Beacon — Non-Browser Process Connecting to Telegram API
+// Id: d6662962-fb4c-46bb-9f38-b575867b516e
+// MITRE: T1071.001 Application Layer Protocol: Web Protocols, T1552.001 Credentials in Files, T1048
+// Reference: https://www.trendmicro.com/en_us/research/25/j/how-vidar-stealer-2-upgrades-infostealer-capabilities.html
+// Author: Jarmi
+// Date: 2026-06-23
+// Tested on: Microsoft Defender XDR — DeviceNetworkEvents + DeviceFileEvents
+// FP notes: Legitimate Telegram Desktop client; bots in CI pipelines — filter by InitiatingProcessFolderPath
+// Description: Detects non-browser processes beaconing api.telegram.org or mastodon social
+//              domains shortly (within 5 min) after writing a compressed archive to TEMP/AppData.
+//              Vidar v2.0 (top stealer May 2026 per Intel 471) retrieves C2 address from Telegram
+//              channel description before exfiltrating credential archives.
+
+let stealer_c2_domains = dynamic([
+    "api.telegram.org",
+    "mastodon.social",
+    "infosec.exchange",
+    "fosstodon.org"
+]);
+
+let legitimate_browsers = dynamic([
+    "chrome.exe", "firefox.exe", "msedge.exe", "iexplore.exe",
+    "opera.exe", "brave.exe", "safari.exe"
+]);
+
+let archive_events =
+DeviceFileEvents
+| where TimeGenerated >= ago(1d)
+| where ActionType in ("FileCreated", "FileModified")
+| where FolderPath has_any (@"\AppData\Local\Temp\", @"\AppData\Roaming\")
+| where FileName endswith ".zip" or FileName endswith ".7z" or FileName endswith ".rar"
+| project DeviceId, DeviceName, ArchiveTime=TimeGenerated,
+          ArchivePath=FolderPath, ArchiveFile=FileName,
+          InitiatingProcessFileName;
+
+DeviceNetworkEvents
+| where TimeGenerated >= ago(1d)
+| where RemoteUrl has_any (stealer_c2_domains) or RemoteHostname has_any (stealer_c2_domains)
+| where not(InitiatingProcessFileName in~ (legitimate_browsers))
+| where RemotePort == 443
+| project DeviceId, DeviceName, NetworkTime=TimeGenerated,
+          RemoteHostname, RemoteUrl, RemoteIP,
+          ProcessName=InitiatingProcessFileName,
+          ProcessPath=InitiatingProcessFolderPath
+| join kind=inner archive_events on DeviceId
+| where abs(datetime_diff('minute', NetworkTime, ArchiveTime)) <= 5
+| project
+    DeviceName,
+    NetworkTime,
+    ArchiveTime,
+    TimeDeltaMinutes = abs(datetime_diff('minute', NetworkTime, ArchiveTime)),
+    ProcessName,
+    ProcessPath,
+    RemoteHostname,
+    RemoteIP,
+    ArchiveFile,
+    ArchivePath
+| sort by TimeDeltaMinutes asc

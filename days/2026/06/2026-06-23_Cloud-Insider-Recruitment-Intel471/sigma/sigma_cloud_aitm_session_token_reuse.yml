@@ -1,0 +1,41 @@
+title: AiTM Phishing — Session Token Reuse from Anomalous IP After MFA Completion
+id: 59903042-ae73-4649-98d1-99d64da5b859
+status: experimental
+description: >
+  Detects re-use of an Entra ID / Azure AD session token from a new IP address within
+  a short window after successful MFA — a signal of AiTM proxy (Evilginx-class) credential
+  relay. In cloud insider-threat operations, adversaries sell kits that sit between the
+  victim and the real IdP, capturing the post-MFA session cookie and immediately replaying
+  it from attacker infrastructure. Threshold logic: flag when the same UserPrincipalName
+  authenticates from >= 2 distinct IPs within 5 minutes of a successful MFA event where
+  the second IP is not in the known-corporate CIDR. Push count-threshold to SIEM
+  aggregation rather than Sigma condition.
+author: Jarmi
+date: 2026/06/23
+references:
+  - https://www.helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/
+  - https://www.intel471.com/lp/atr-2026
+tags:
+  - attack.credential-access
+  - attack.initial-access
+  - attack.t1539
+  - attack.t1078.004
+  - attack.t1621
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection_mfa_success:
+    AuthenticationRequirement: 'multiFactorAuthentication'
+    ResultType: '0'
+    ConditionalAccessStatus: 'success'
+  selection_new_ip:
+    IPAddress|cidr:
+      - '<add_known_corporate_cidr_here>'
+  condition: selection_mfa_success and not selection_new_ip
+falsepositives:
+  - Corporate VPN endpoints presenting external IPs
+  - Legitimate travel scenarios — correlate with HR travel data
+  - Split-tunnel VPN configurations
+
+level: high
