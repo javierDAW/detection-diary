@@ -1,0 +1,28 @@
+# Suricata 7.x rules -- Cloud Insider Threat / Infostealer C2 / AiTM Phish Kit
+# Author: Jarmi
+# Date: 2026-06-23
+# Reference: https://www.helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/
+#            https://www.trendmicro.com/en_us/research/25/j/how-vidar-stealer-2-upgrades-infostealer-capabilities.html
+# Confidence: HEURISTIC -- rules target durable behavioral patterns, not sample-specific bytes
+# SID range: 9570100-9570106
+
+# SID 9570100 -- Infostealer Telegram C2 resolve (Vidar v2.0 / Stealc-class SNI)
+alert tls $HOME_NET any -> $EXTERNAL_NET 443 (msg:"INSIDER-THREAT Infostealer Telegram C2 Resolve api.telegram.org TLS SNI"; flow:established,to_server; tls.sni; content:"api.telegram.org"; nocase; endswith; threshold:type limit,track by_src,seconds 60,count 3; classtype:trojan-activity; reference:url,helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/; sid:9570100; rev:1;)
+
+# SID 9570101 -- Infostealer Mastodon C2 lookup (Vidar v2.0 alternative C2 channel)
+alert tls $HOME_NET any -> $EXTERNAL_NET 443 (msg:"INSIDER-THREAT Infostealer Mastodon C2 Lookup TLS SNI"; flow:established,to_server; tls.sni; content:"mastodon"; nocase; threshold:type limit,track by_src,seconds 60,count 3; classtype:trojan-activity; reference:url,trendmicro.com/en_us/research/25/j/how-vidar-stealer-2-upgrades-infostealer-capabilities.html; sid:9570101; rev:1;)
+
+# SID 9570102 -- AiTM credential relay POST to Telegram bot (Gold-class kit)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"INSIDER-THREAT AiTM Kit Credential Relay to Telegram Bot POST"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/bot"; content:"sendMessage"; within:60; http.host; content:"api.telegram.org"; classtype:policy-violation; reference:url,helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/; sid:9570102; rev:1;)
+
+# SID 9570103 -- AiTM phish kit Okta credential harvest POST from web server
+alert http $EXTERNAL_NET any -> $HTTP_SERVERS any (msg:"INSIDER-THREAT AiTM Phish Kit Okta Credential Harvest POST"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"okta"; nocase; http.request_body; content:"username="; content:"password="; within:200; threshold:type limit,track by_dst,seconds 60,count 5; classtype:policy-violation; reference:url,helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/; sid:9570103; rev:1;)
+
+# SID 9570104 -- Infostealer ZIP credential archive POST non-browser UA (stealer exfil)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"INSIDER-THREAT Infostealer Credential Archive POST ZIP non-browser UA"; flow:established,to_server; http.method; content:"POST"; http.header; content:"Content-Type: multipart/form-data"; http.user_agent; content:!"Mozilla"; http.request_body; content:"filename="; content:".zip"; within:40; threshold:type limit,track by_src,seconds 300,count 1; classtype:trojan-activity; reference:url,helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/; sid:9570104; rev:1;)
+
+# SID 9570105 -- Bulk cloud storage API download large response to internal host
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"INSIDER-THREAT Bulk Cloud Storage API Download Large Response Attachment"; flow:established,to_client; http.stat_code; content:"200"; http.header; content:"Content-Disposition: attachment"; dsize:>5000000; classtype:policy-violation; reference:url,helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/; sid:9570105; rev:1;)
+
+# SID 9570106 -- AiTM reverse-proxy header manipulation on Okta requests
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"INSIDER-THREAT AiTM Reverse-Proxy X-Forwarded-For Manipulation on Okta"; flow:established,to_server; http.host; content:"okta.com"; http.header; content:"X-Forwarded-For"; content:"X-Real-IP"; classtype:policy-violation; reference:url,helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/; sid:9570106; rev:1;)

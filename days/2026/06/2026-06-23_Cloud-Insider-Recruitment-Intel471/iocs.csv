@@ -1,0 +1,17 @@
+type,value,context,confidence,source
+note,INSIDER-THREAT-CLOUD-RECRUITMENT-2026,Intel 471 systematic tracking of underground cloud insider recruitment activity — 41 forum posts in 2025 continuing into 2026,high,Intel 471 / Help Net Security 2026-06-11
+string,samsepi0l,Underground actor who auctioned 24/7 insider-backed master admin + Slack + Okta access on April 4 2026,high,Intel 471 / Help Net Security 2026-06-11
+string,betway,Underground actor who claimed on Sept 28 2025 to have bribed an Indian company employee for Salesforce access to 2.3M customer records,high,Intel 471 / Help Net Security 2026-06-11
+string,Finduser,Underground actor who on Oct 31 2025 advertised insider access to ~100k restaurant POS machines plus internal network / email / Slack,high,Intel 471 / Help Net Security 2026-06-11
+string,Gold,Underground actor who in Oct 2025 sold phishing projects using custom reverse-proxy against Gmail and Okta; stolen cookies / credentials / 2FA routed to Telegram bot,high,Intel 471 / Help Net Security 2026-06-11
+string,Advanced Phishing Kit Targeting Okta and Google Workspace,AiTM kit advertised in underground forums in September 2025; collects usernames / passwords / session tokens,medium,Intel 471 / Help Net Security 2026-06-11
+string,Vidar,Top infostealer by infected host volume in May 2026 (#1); v2.0 released by developer Loadbaks on Oct 6 2025; targets browser creds / cookies / crypto wallets; uses Telegram and Mastodon for C2,high,Intel 471 May-2026 top-stealers list; Trend Micro 2025-10
+string,Stealc_v2,Second-ranked infostealer by volume in May 2026; targets saved credentials and session cookies for cloud services,high,Intel 471 May-2026 top-stealers list
+string,ACR,Third-ranked infostealer (also known as Acreed) by volume in May 2026; targets cloud service credentials,high,Intel 471 May-2026 top-stealers list
+string,Loadbaks,Developer alias of Vidar v2.0 — announced release on underground forum Oct 6 2025,medium,Trend Micro 2025-10
+note,TARGETED-SERVICES,High-demand credential types in underground stealer-log markets: GoDaddy / Google Workspace / Microsoft 365 / Office 365 / Outlook Web Access / Slack,high,Intel 471 / Help Net Security 2026-06-11
+note,STEALER-LOG-PIPELINE,Infostealer harvests creds -> logs packaged and sold to IABs -> IABs validate and resell cloud access to ransomware affiliates; DeepStrike: 54%+ of ransomware victims appeared in stealer logs before attack,high,Intel 471 2026; DeepStrike 2025
+note,PERMISSIONS-CREEP,Access accumulated over employee tenure without review; third-party SaaS app connections grant persistent reach into company data with minimal audit trail,high,Intel 471 Cloud Insider Threat Report 2026
+note,OFFBOARDING-GAP,Intel 471 recommends immediate access removal at offboarding; delayed revocation of SaaS tokens is a primary vector for post-termination insider incidents,high,Intel 471 / Help Net Security 2026-06-11
+note,MFA-FATIGUE-AITM,AiTM toolkits sold / maintained in underground markets; sit between victim and real login page capturing credentials and session tokens in real time during MFA completion,high,Intel 471 / Help Net Security 2026-06-11
+note,RECRUITMENT-VOLUME,In 2025: 19 posts seeking an insider; 14 claimed to have one; 3 claimed insider access; 3 claimed insider data; 2 claimed to be insiders — total 41 posts tracked by Intel 471,high,Intel 471 / Help Net Security 2026-06-11

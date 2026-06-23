@@ -4,11 +4,12 @@
 
 # Platforms: cloud-multi
 
-17 day(s) covering this platform.
+18 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |
 | 2026-06-21 | Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft Across Enterprise Clients | Icarus | [`2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/`](../../days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/) |
 | 2026-06-17 | Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delivery against US organizations | Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked) | [`2026-06-17_FakeInvitation-PhishKit-OTP-RMM/`](../../days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/) |
 | 2026-06-14 | Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer laptop steals the multisig keys | DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed) | [`2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/`](../../days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/) |

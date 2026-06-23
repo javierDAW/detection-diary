@@ -4,10 +4,11 @@
 
 # Techniques: T1078.003
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |
 | 2026-05-23 | SonicWall Gen6 SSL-VPN MFA Bypass (CVE-2024-12802) — First In-the-Wild Exploitation by Akira-Aligned Affiliate | Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem) | [`2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/`](../../days/2026/05/2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/) |
 | 2026-05-16 | Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters | UAT-8616 · Talos Cluster 1 (Tas9er Godzilla) · Talos Cluster 2 (Behinder Base64) · Talos Cluster 3 (XenShell + Behinder) · Talos Cluster 4 (Godzilla variant) · Talos Cluster 5 (AdaptixC2 shadowcore) · Talos Cluster 6 (Sliver mTLS) · Talos Cluster 7 (XMRig + Cobalt Strike) · Talos Cluster 8 (NimPlant-variant agent1) · Talos Cluster 9 (gsocket + XMRig) · Talos Cluster 10 (vManage credential extractor) | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/`](../../days/2026/05/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |

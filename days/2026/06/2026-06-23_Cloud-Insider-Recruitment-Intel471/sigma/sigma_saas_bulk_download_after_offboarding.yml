@@ -1,0 +1,45 @@
+title: SaaS Bulk Download by User with Pending or Completed Offboarding Status
+id: 4aaf4692-2a49-4b6e-9f83-80d8f87ddf42
+status: experimental
+description: >
+  Detects high-volume file download or data-export events from cloud storage or SaaS
+  repositories (Microsoft 365 SharePoint/OneDrive, Google Drive, Slack exports) by a
+  user account whose HR status is flagged as offboarding or recently terminated. Intel 471
+  documents that 771 of 1002 insider data-theft incidents in their dataset occurred while
+  the insider was still employed; immediate access revocation at offboarding is the primary
+  mitigating control. This rule targets the failure mode where access was not revoked in
+  time. Threshold for "bulk": >= 100 distinct file download events in a 60-minute window
+  — push count to SIEM aggregation (Azure Sentinel or XDR), not Sigma condition.
+author: Jarmi
+date: 2026/06/23
+references:
+  - https://www.helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/
+  - https://www.intel471.com/lp/atr-2026
+tags:
+  - attack.collection
+  - attack.exfiltration
+  - attack.t1530
+  - attack.t1567.002
+  - attack.t1078
+logsource:
+  product: m365
+  service: audit
+detection:
+  selection_bulk_download:
+    Operation|contains:
+      - 'FileDownloaded'
+      - 'FileSyncDownloadedFull'
+      - 'FileAccessed'
+      - 'SearchQueryPerformed'
+    ObjectId|contains:
+      - 'SharePoint'
+      - 'OneDrive'
+  selection_offboarding_indicator:
+    UserId|contains:
+      - '<add_known_offboarding_users_here>'
+  condition: selection_bulk_download and selection_offboarding_indicator
+falsepositives:
+  - Legitimate bulk migration or backup by authorised IT staff
+  - Data portability requests under GDPR — validate with HR/Legal before actioning
+
+level: high

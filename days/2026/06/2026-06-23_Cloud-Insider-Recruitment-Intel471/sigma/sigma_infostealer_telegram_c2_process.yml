@@ -1,0 +1,52 @@
+title: Infostealer Telegram C2 Process — Vidar-Class Stealer Network Beacon
+id: 3ec8fbe6-ef54-458a-9b99-f9521db97b40
+status: experimental
+description: >
+  Detects process execution patterns consistent with Vidar v2.0 and Stealc-class
+  infostealers using Telegram and Mastodon as C2 channels. Vidar v2.0 (released Oct 2025
+  by developer 'Loadbaks') is the top infostealer by infected host volume in May 2026
+  per Intel 471. The malware spawns a short-lived helper process that beacons Telegram
+  API endpoints to retrieve the C2 address embedded in a channel description, then exfils
+  credential archives. Detection anchors on: a non-browser process making HTTPS connections
+  to api.telegram.org or mastodon social hosts shortly after writing a ZIP archive to
+  %TEMP% or %APPDATA%. Combine with network_connection rule for coverage across logsource.
+author: Jarmi
+date: 2026/06/23
+references:
+  - https://www.helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/
+  - https://www.trendmicro.com/en_us/research/25/j/how-vidar-stealer-2-upgrades-infostealer-capabilities.html
+tags:
+  - attack.command-and-control
+  - attack.credential-access
+  - attack.exfiltration
+  - attack.t1552.001
+  - attack.t1071.001
+  - attack.t1048
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_stealer_child:
+    ParentImage|endswith:
+      - '\explorer.exe'
+      - '\winlogon.exe'
+      - '\svchost.exe'
+    Image|endswith:
+      - '.exe'
+    CommandLine|contains|all:
+      - 'api.telegram'
+  selection_temp_archive:
+    TargetFilename|contains:
+      - '\AppData\Local\Temp\'
+      - '\AppData\Roaming\'
+    TargetFilename|endswith:
+      - '.zip'
+      - '.7z'
+      - '.rar'
+  condition: selection_stealer_child or selection_temp_archive
+falsepositives:
+  - Legitimate Telegram desktop client process interactions
+  - Developer tools packaging build artifacts to temp — filter by known CI paths
+  - Security tooling archiving collected evidence
+
+level: high

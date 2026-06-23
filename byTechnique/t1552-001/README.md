@@ -4,11 +4,12 @@
 
 # Techniques: T1552.001
 
-14 day(s) covering this technique.
+15 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |
 | 2026-06-20 | Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Credential Exfiltration | Agentjacking-unattributed (Tenet Threat Labs tracking) | [`2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/`](../../days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/) |
 | 2026-06-14 | Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer laptop steals the multisig keys | DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed) | [`2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/`](../../days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/) |
 | 2026-06-12 | LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment | LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap) | [`2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/`](../../days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/) |

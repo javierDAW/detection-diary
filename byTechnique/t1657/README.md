@@ -4,11 +4,12 @@
 
 # Techniques: T1657
 
-5 day(s) covering this technique.
+6 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |
 | 2026-06-21 | Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft Across Enterprise Clients | Icarus | [`2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/`](../../days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/) |
 | 2026-06-14 | Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer laptop steals the multisig keys | DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed) | [`2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/`](../../days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/) |
 | 2026-05-27 | BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsoft 365 and Okta with programmatic SharePoint exfiltration | UNC6671 (GTIG / Mandiant) · BlackFile (self-branded DLS) · Cordial Spider (CrowdStrike) · CL-CRI-1116 (Palo Alto Unit 42) · O-UNC-045 (Okta Defensive Cyber Operations) | [`2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/`](../../days/2026/05/2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/) |

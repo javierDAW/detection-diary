@@ -1,5 +1,49 @@
 [
  {
+  "date": "2026-06-23",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-23_Cloud-Insider-Recruitment-Intel471",
+  "title": "Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access",
+  "clusters": [
+   "Cloud-Insider-Recruitment-unattributed"
+  ],
+  "country": "Multiple — underground forums, international e-crime",
+  "platforms": [
+   "cloud-multi",
+   "windows",
+   "linux",
+   "macos"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "government",
+   "healthcare",
+   "education",
+   "retail"
+  ],
+  "techniques": [
+   "T1078.004",
+   "T1078.003",
+   "T1552.001",
+   "T1539",
+   "T1530",
+   "T1213",
+   "T1048",
+   "T1567.002",
+   "T1657",
+   "T1621",
+   "T1587.001",
+   "T1556.006"
+  ],
+  "tech_count": 12,
+  "tldr": "Intel 471 published a systematic analysis on June 11, 2026 documenting how cybercrime underground actors recruit, dupe, and coerce employees with cloud access, creating a structured market for insider-backed entry into corporate SaaS and cloud platforms. In 2025, Intel 471 tracked 41 insider-related underground posts; by April 4, 2026, actor **samsepi0l** ran an open auction for 24/7 insider-backe",
+  "thumb": "thumbs/2026-06-23_Cloud-Insider-Recruitment-Intel471.svg",
+  "case_rel": "../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/",
+  "q": "cloud insider recruitment: underground market for saas and cloud platform access cloud-insider-recruitment-unattributed multiple — underground forums, international e-crime cloud-multi windows linux macos technology finance government healthcare education retail t1078.004 t1078.003 t1552.001 t1539 t1530 t1213 t1048 t1567.002 t1657 t1621 t1587.001 t1556.006"
+ },
+ {
   "date": "2026-06-22",
   "year": "2026",
   "month": "2026-06",

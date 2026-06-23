@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**55 cases** · **116 actors/clusters** · **290 ATT&CK techniques** · **16 platforms** · **70 sectors** · 2026-04-29 -> 2026-06-22
+**56 cases** · **117 actors/clusters** · **291 ATT&CK techniques** · **16 platforms** · **70 sectors** · 2026-04-29 -> 2026-06-23
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/"><img src="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/kill_chain.svg" alt="2026-06-23 kill chain" width="240"></a><br><sub><b>2026-06-23</b><br>Cloud-Insider-Recruitment-unattributed</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-22_prospy-bitter-mena/"><img src="days/2026/06/2026-06-22_prospy-bitter-mena/kill_chain.svg" alt="2026-06-22 kill chain" width="240"></a><br><sub><b>2026-06-22</b><br>BITTER · T-APT-17</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/"><img src="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/kill_chain.svg" alt="2026-06-21 kill chain" width="240"></a><br><sub><b>2026-06-21</b><br>Icarus</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/"><img src="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/kill_chain.svg" alt="2026-06-20 kill chain" width="240"></a><br><sub><b>2026-06-20</b><br>Agentjacking-unattributed (Tenet Threat Labs tracking)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/"><img src="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/kill_chain.svg" alt="2026-06-20 kill chain" width="240"></a><br><sub><b>2026-06-20</b><br>Agentjacking-unattributed (Tenet Threat Labs tracking)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/"><img src="days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/kill_chain.svg" alt="2026-06-19 kill chain" width="240"></a><br><sub><b>2026-06-19</b><br>Iran-nexus (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/"><img src="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/kill_chain.svg" alt="2026-06-18 kill chain" width="240"></a><br><sub><b>2026-06-18</b><br>Opportunistic CMS mass-exploitation (unattributed botnet)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/"><img src="days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/kill_chain.svg" alt="2026-06-17 kill chain" width="240"></a><br><sub><b>2026-06-17</b><br>Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

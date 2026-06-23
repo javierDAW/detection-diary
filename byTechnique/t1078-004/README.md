@@ -4,11 +4,12 @@
 
 # Techniques: T1078.004
 
-9 day(s) covering this technique.
+10 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |
 | 2026-06-10 | Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-brand identity operation | Kali365 | [`2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/`](../../days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/) |
 | 2026-05-27 | BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsoft 365 and Okta with programmatic SharePoint exfiltration | UNC6671 (GTIG / Mandiant) · BlackFile (self-branded DLS) · Cordial Spider (CrowdStrike) · CL-CRI-1116 (Palo Alto Unit 42) · O-UNC-045 (Okta Defensive Cyber Operations) | [`2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/`](../../days/2026/05/2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/) |
 | 2026-05-25 | UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OYSTERBLUES Targeting Ukrainian Government via Prometheus Lures | UAC-0057 · Ghostwriter · FrostyNeighbor · UNC1151 | [`2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/`](../../days/2026/05/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/) |

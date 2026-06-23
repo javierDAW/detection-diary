@@ -5,6 +5,23 @@ All notable additions to detection-diary.
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar version.
 
+## 2026.06.23 — Day 57 — Cloud Insider Recruitment: Underground SaaS Access Market
+
+### Added
+- `days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/` — First primary for slot #20 insider threat. Intel 471 Cloud Insider Threat Report (Help Net Security 2026-06-11) documents three insider archetypes: negligent (stealer-harvested corporate credentials — Vidar #1 / Stealc_v2 #2 / ACR #3 in May-2026 top stealers), manipulated (AiTM Gold kit capturing post-MFA session tokens via Okta/Gmail proxy relayed to Telegram bot), and malicious (samsepi0l April 4 2026 auction of master-admin+Slack+Okta access; betway Salesforce bribe; Finduser POS access; 19/41 underground posts in 2025 actively recruiting). DeepStrike stat: 54%+ of ransomware victims found in stealer logs before the ransomware event.
+- Sigma (3): `sigma_cloud_aitm_session_token_reuse.yml` — Azure SigninLogs successful MFA from non-corporate CIDR indicating AiTM token replay; `sigma_saas_bulk_download_after_offboarding.yml` — M365 Audit FileDownloaded/FileSyncDownloadedFull by offboarding-watchlist UPN; `sigma_infostealer_telegram_c2_process.yml` — Windows process_creation non-browser child spawning Telegram API beacon with ZIP creation in APPDATA/TEMP.
+- KQL (4): `kql_aitm_token_replay_sentinel.kql` — Sentinel SigninLogs same UPN from 2 IPs within 300s of MFA success; `kql_bulk_saas_exfil_offboarding_xdr.kql` — XDR CloudAppEvents >=100 downloads in 60 min by flagged user; `kql_infostealer_telegram_beacon_xdr.kql` — XDR join non-browser Telegram HTTPS + ZIP creation within 5 min; `kql_permissions_creep_privileged_saas_access.kql` — Sentinel AuditLogs privileged Entra role with no activity >=30d.
+- YARA (1 file, 3 rules): `yara_insider_threat_cloud.yar` — `VidarClass_Telegram_C2_Resolve` (PE with api.telegram.org + getUpdates/sendDocument + credential-dir strings); `AiTM_PhishKit_Okta_Google_Token_Harvest` (PHP kit targeting Okta/Google relaying tokens to Telegram); `CloudInsider_Stealer_Log_Archive_Pattern` (ZIP directory structure matching Vidar/Stealc harvest archives).
+- Suricata (1 file, 7 sids 9570100-9570106): TLS SNI Telegram C2 (9570100); Mastodon C2 alternative channel (9570101); AiTM Telegram bot credential relay POST (9570102); Okta credential harvest POST (9570103); ZIP credential archive POST non-browser UA (9570104); bulk cloud storage large-response attachment (9570105); AiTM reverse-proxy X-Forwarded-For on Okta (9570106).
+- PEAK hunts (3): H1 SaaS permission-creep inventory via Graph API + KQL (stale privileged Entra roles); H2 infostealer log corporate credential exposure (Intel 471/SpyCloud API + Sentinel watchlist join for exposed UPNs); H3 malicious insider recruitment correlation (HR watchlist + DeviceFileEvents/DeviceNetworkEvents data-staging indicators).
+- `iocs.csv` (16 entries) — actor handles (samsepi0l, betway-insider, Finduser, Gold, Loadbaks), stealer families (Vidar, Stealc_v2, ACR/Acreed), targeted services, pipeline and structural notes.
+- `kill_chain.svg` — Template A (880x1280), canonical palette, two-lane: victim path (credential harvest/AiTM phish → stealer log upload/token capture → underground IAB listing → recruited/manipulated insider → SaaS access + privilege escalation → bulk exfil → stager/ransomware handoff) + attacker infra (stealer dev Loadbaks, Telegram/Mastodon C2, underground markets, AiTM Gold kit server, IAB-to-affiliate pipeline). Verifier x2 PASS.
+
+### Pedagogy
+- Stealers are the ransomware early-warning signal, not just credential theft: DeepStrike's 54%+ pre-attack exposure in stealer logs means monitoring leaked corporate credentials in threat intel feeds is now a first-order ransomware prevention control.
+- AiTM session token theft is invisible to the IdP: MFA registers as successful; detection requires cross-IP correlation on the same UPN within a tight time window post-MFA — not the authentication event itself.
+- The insider threat triangle is stealer + recruiter + AiTM: defending one vertex without the others leaves the attack surface open; all three require separate detection hypotheses and different data sources.
+
 ## 2026.06.22 — Day 56 — ProSpy/BITTER: Hack-for-Hire Android Spyware Targeting MENA Civil Society Journalists
 
 ### Added

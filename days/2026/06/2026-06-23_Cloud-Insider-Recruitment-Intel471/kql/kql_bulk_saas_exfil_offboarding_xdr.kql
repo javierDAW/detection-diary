@@ -1,0 +1,52 @@
+// Title: Bulk SaaS Data Exfiltration by Offboarding or Recently Terminated User
+// Id: 60d2bc03-ef42-4e8e-903a-1bccd58a5d90
+// MITRE: T1530 Data from Cloud Storage, T1567.002 Exfiltration to Cloud Storage, T1078
+// Reference: https://www.helpnetsecurity.com/2026/06/11/report-cloud-insider-threats/
+// Author: Jarmi
+// Date: 2026-06-23
+// Tested on: Microsoft Defender XDR — CloudAppEvents; OfficeActivity (Sentinel)
+// FP notes: Authorised IT bulk migrations; legal data-portability requests
+// Description: Identifies high-volume download activity (>= 100 file events in 60 min) by
+//              users flagged as offboarding or recently terminated. Intel 471 data shows
+//              771/1002 insider theft incidents occur while the insider is still employed.
+//              Integrate with HR system watchlist for offboarding_users.
+
+let offboarding_users = dynamic(["<add_known_offboarding_upn_1>", "<add_known_offboarding_upn_2>"]);
+let threshold_count = 100;
+let window = 1h;
+
+CloudAppEvents
+| where TimeGenerated >= ago(7d)
+| where AccountObjectId in~ (offboarding_users) or AccountUpn in~ (offboarding_users)
+| where ActionType in (
+    "FileDownloaded",
+    "FileSyncDownloadedFull",
+    "FileAccessed",
+    "FileRead",
+    "AnonymousLinkUsed",
+    "AddedToSecureLink"
+  )
+| summarize
+    EventCount = count(),
+    DistinctFiles = dcount(ObjectName),
+    FirstEvent = min(TimeGenerated),
+    LastEvent = max(TimeGenerated),
+    Applications = make_set(Application),
+    SampleFiles = make_set(ObjectName, 10)
+    by AccountUpn, bin(TimeGenerated, window)
+| where EventCount >= threshold_count
+| extend RiskScore = case(
+    EventCount >= 500, "Critical",
+    EventCount >= 200, "High",
+    EventCount >= 100, "Medium",
+    "Low"
+  )
+| project
+    WindowStart = TimeGenerated,
+    AccountUpn,
+    EventCount,
+    DistinctFiles,
+    Applications,
+    RiskScore,
+    SampleFiles
+| sort by EventCount desc

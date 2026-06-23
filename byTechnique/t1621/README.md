@@ -2,12 +2,11 @@
 <!-- Source of truth: YAML frontmatter in each day's README.md -->
 
 
-# Techniques: T1048
+# Techniques: T1621
 
-2 day(s) covering this technique.
+1 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |
-| 2026-06-20 | Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Credential Exfiltration | Agentjacking-unattributed (Tenet Threat Labs tracking) | [`2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/`](../../days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/) |
