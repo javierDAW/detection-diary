@@ -1,0 +1,59 @@
+title: SRG/Luna Moth - RMM Tool Spawned by Office or Browser Process
+id: e89464e1-c789-47a8-a80a-9c67456c3c0c
+status: experimental
+description: >
+  Detects a remote access / RMM tool being launched by a Microsoft Office application or
+  web browser process, indicative of Silent Ransom Group (SRG / Luna Moth) vishing-to-RMM
+  initial access. SRG convinces victims via phone to install ScreenConnect, Zoho Assist,
+  ITarian, or AnyDesk by posing as IT support. The child process from a browser/Office
+  parent in a user-writable path is the durable detection anchor.
+  NOTE: threshold tuning required; legitimate IT deployments may trigger this rule.
+  Flag and investigate rather than auto-block unless baseline of sanctioned RMM is maintained.
+references:
+  - https://www.ic3.gov/CSA/2026/260526.pdf
+  - https://www.resecurity.com/blog/article/silent-ransom-group-srg-uncovering-dns-fast-flux-infrastructure
+  - https://www.securityweek.com/silent-ransom-group-uses-dns-fast-flux-in-attacks/
+author: Jarmi
+date: 2026/06/24
+tags:
+  - attack.initial-access
+  - attack.execution
+  - attack.t1219
+  - attack.t1598.003
+  - attack.t1204.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_parent:
+    ParentImage|endswith:
+      - '\WINWORD.EXE'
+      - '\EXCEL.EXE'
+      - '\OUTLOOK.EXE'
+      - '\POWERPNT.EXE'
+      - '\chrome.exe'
+      - '\msedge.exe'
+      - '\firefox.exe'
+      - '\iexplore.exe'
+      - '\MicrosoftEdge.exe'
+  selection_child:
+    Image|endswith:
+      - '\ScreenConnect.WindowsClient.exe'
+      - '\ScreenConnect.ClientService.exe'
+      - '\zohoassist.exe'
+      - '\ITSPlatform.exe'
+      - '\itarian.exe'
+      - '\AnyDesk.exe'
+  selection_path:
+    Image|contains:
+      - '\Downloads\'
+      - '\AppData\Local\Temp\'
+      - '\Users\Public\'
+      - '\Desktop\'
+  condition: selection_parent and (selection_child or selection_path)
+falsepositives:
+  - Legitimate IT support deployments where RMM is pushed via an email link
+  - Automated software deployment testing in lab environments
+  - Maintain a baseline allowlist of sanctioned RMM tools; alert on any RMM binary not in the allowlist regardless of parent
+
+level: high

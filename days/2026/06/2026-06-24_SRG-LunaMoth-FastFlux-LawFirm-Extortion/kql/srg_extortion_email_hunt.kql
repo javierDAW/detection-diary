@@ -1,0 +1,26 @@
+// Title: SRG/Luna Moth - Extortion Email Delivery via Known Leak Domain
+// MITRE: T1657 (Financial Theft), T1598.003 (Spearphishing Voice)
+// Reference: https://www.ic3.gov/CSA/2026/260526.pdf
+// Author: Jarmi
+// Date: 2026-06-24
+// Tested on: Defender XDR (EmailEvents), Microsoft Sentinel (EmailEvents)
+// FP notes: The domain business-data-leaks[.]com has no legitimate use; any email referencing it warrants triage.
+//           Subject/body keyword matching on extortion terms may produce false positives in legal/insurance industries.
+
+// --- Inbound extortion email from known SRG domain ---
+EmailEvents
+| where Timestamp > ago(30d)
+| where SenderFromDomain has_any ("business-data-leaks", "ep6pheij")
+    or SenderMailFromDomain has_any ("business-data-leaks", "ep6pheij")
+    or UrlDomain has_any ("business-data-leaks", "ep6pheij")
+| project Timestamp, RecipientEmailAddress, SenderFromAddress,
+    SenderFromDomain, Subject, DeliveryAction, UrlDomain
+| order by Timestamp desc
+
+// --- Outbound email referencing SRG leak domains (victim contacting SRG or inadvertently forwarding) ---
+// EmailEvents
+// | where Timestamp > ago(30d)
+// | where EmailDirection == "Outbound"
+// | where Subject has_any ("business-data-leaks", "ep6pheij", "silent ransom")
+//    or UrlDomain has_any ("business-data-leaks", "ep6pheij")
+// | project Timestamp, SenderFromAddress, RecipientEmailAddress, Subject

@@ -1,0 +1,26 @@
+# Suricata 7.x Rules — SRG / Luna Moth Fast Flux DNS Infrastructure
+# Author: Jarmi
+# Date: 2026-06-24
+# References:
+#   https://www.resecurity.com/blog/article/silent-ransom-group-srg-uncovering-dns-fast-flux-infrastructure
+#   https://www.ic3.gov/CSA/2026/260526.pdf
+#   https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-093a
+# Note: Known SRG IOC domains have no legitimate use. Fast flux behavioral rules (TTL rotation)
+#       require SIEM-layer aggregation; these rules fire on domain name presence in DNS/HTTP traffic.
+# SID allocation: 9005800-9005807
+
+alert dns any any -> any 53 (msg:"SRG-LUNAMOTH DNS Query Fast Flux C2 ep6pheij.com"; dns.query; content:"ep6pheij"; nocase; classtype:trojan-activity; reference:url,resecurity.com/blog/article/silent-ransom-group-srg-uncovering-dns-fast-flux-infrastructure; sid:9005800; rev:1;)
+
+alert dns any any -> any 53 (msg:"SRG-LUNAMOTH DNS Query Extortion Leak Site business-data-leaks.com"; dns.query; content:"business-data-leaks"; nocase; classtype:trojan-activity; reference:url,www.ic3.gov/CSA/2026/260526.pdf; sid:9005801; rev:1;)
+
+alert http any any -> any any (msg:"SRG-LUNAMOTH HTTP Request Fast Flux C2 ep6pheij.com"; flow:established,to_server; http.host; content:"ep6pheij"; nocase; classtype:trojan-activity; reference:url,resecurity.com/blog/article/silent-ransom-group-srg-uncovering-dns-fast-flux-infrastructure; sid:9005802; rev:1;)
+
+alert http any any -> any any (msg:"SRG-LUNAMOTH HTTP Request Extortion Leak Site business-data-leaks.com"; flow:established,to_server; http.host; content:"business-data-leaks"; nocase; classtype:trojan-activity; reference:url,www.ic3.gov/CSA/2026/260526.pdf; sid:9005803; rev:1;)
+
+alert dns any 53 -> any any (msg:"SRG-LUNAMOTH DNS Response Fast Flux Domain ep6pheij.com Low TTL"; dns.answer; content:"ep6pheij"; nocase; classtype:policy-violation; reference:url,www.cisa.gov/news-events/cybersecurity-advisories/aa25-093a; sid:9005804; rev:1;)
+
+alert tls any any -> any 443 (msg:"SRG-LUNAMOTH TLS SNI Fast Flux C2 ep6pheij.com"; flow:established,to_server; tls.sni; content:"ep6pheij"; nocase; classtype:trojan-activity; reference:url,resecurity.com/blog/article/silent-ransom-group-srg-uncovering-dns-fast-flux-infrastructure; sid:9005805; rev:1;)
+
+alert tls any any -> any 443 (msg:"SRG-LUNAMOTH TLS SNI Extortion Leak Site business-data-leaks.com"; flow:established,to_server; tls.sni; content:"business-data-leaks"; nocase; classtype:trojan-activity; reference:url,www.ic3.gov/CSA/2026/260526.pdf; sid:9005806; rev:1;)
+
+alert dns any any -> any 53 (msg:"SRG-LUNAMOTH DNS Query Possible Infra Provider Spy Corporate"; dns.query; content:"spy-corporate"; nocase; classtype:policy-violation; reference:url,resecurity.com/blog/article/silent-ransom-group-srg-uncovering-dns-fast-flux-infrastructure; sid:9005807; rev:1;)

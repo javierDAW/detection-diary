@@ -2,12 +2,11 @@
 <!-- Source of truth: YAML frontmatter in each day's README.md -->
 
 
-# Techniques: T1074.001
+# Actors: Luna Moth
 
-2 day(s) covering this technique.
+1 day(s) covering this actor.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-06-24 | SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US Law Firms | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 | [`2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/`](../../days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/) |
-| 2026-05-30 | AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers AI agents and users into installing a multi-key-XOR universal Mach-O wallet and Keychain stealer | AMOS / Atomic macOS Stealer (MaaS) | [`2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/`](../../days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/) |

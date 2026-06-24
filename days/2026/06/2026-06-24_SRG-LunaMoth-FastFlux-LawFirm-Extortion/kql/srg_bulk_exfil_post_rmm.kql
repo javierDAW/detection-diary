@@ -1,0 +1,33 @@
+// Title: SRG/Luna Moth - Bulk Exfiltration Within 30 Minutes of RMM Session Start
+// MITRE: T1048 (Exfiltration Over Alternative Protocol), T1567.002 (Exfil to Cloud Storage), T1219
+// Reference: https://www.ic3.gov/CSA/2026/260526.pdf
+// Author: Jarmi
+// Date: 2026-06-24
+// Tested on: Defender XDR (DeviceProcessEvents + DeviceNetworkEvents)
+// FP notes: Legitimate RMM sessions (authorized IT support) may trigger. Suppress known-good
+//           sessions by authorized user/device pairs. 100 MB threshold is conservative for law firm data;
+//           tune per environment.
+
+let rmm_processes = dynamic([
+    "ScreenConnect.WindowsClient.exe","ScreenConnect.ClientService.exe",
+    "zohoassist.exe","ITSPlatform.exe","itarian.exe","AnyDesk.exe"
+]);
+let RmmInstalls = DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName in~ (rmm_processes)
+| project DeviceId, DeviceName, AccountName, RmmStart=Timestamp, RmmFile=FileName;
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteIPType == "Public"
+| where InitiatingProcessFileName in~ (rmm_processes)
+| summarize TotalSentBytes=sum(SentBytes), ConnCount=count(),
+    ExfilDest=make_set(RemoteIP, 10)
+    by DeviceId, DeviceName, InitiatingProcessFileName,
+       bin(Timestamp, 1m)
+| where TotalSentBytes > 104857600  // 100 MB threshold
+| join kind=inner RmmInstalls on DeviceId
+| where Timestamp between (RmmStart .. (RmmStart + 30m))
+| project DeviceId, DeviceName, AccountName, RmmStart, RmmFile,
+    ExfilTimestamp=Timestamp, InitiatingProcessFileName,
+    TotalSentBytes, ConnCount, ExfilDest
+| order by TotalSentBytes desc
