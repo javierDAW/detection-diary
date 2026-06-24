@@ -1,0 +1,35 @@
+// Title: SRG/Luna Moth - RMM Binary Spawned by Browser or Office Process
+// Id: e89464e1-c789-47a8-a80a-9c67456c3c0c
+// MITRE: T1219 (Remote Access Software), T1598.003 (Spearphishing Voice), T1204.002 (User Execution)
+// Reference: https://www.ic3.gov/CSA/2026/260526.pdf
+// Author: Jarmi
+// Date: 2026-06-24
+// Tested on: Defender XDR (DeviceProcessEvents)
+// FP notes: Legitimate IT deployments may install RMM via browser link; maintain a sanctioned-RMM allowlist
+//           and suppress known-good InstallPaths. Any RMM from a user download/temp path warrants triage.
+
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where InitiatingProcessFileName in~ (
+    "WINWORD.EXE", "EXCEL.EXE", "OUTLOOK.EXE", "POWERPNT.EXE",
+    "chrome.exe", "msedge.exe", "firefox.exe", "iexplore.exe"
+  )
+| where FileName in~ (
+    "ScreenConnect.WindowsClient.exe",
+    "ScreenConnect.ClientService.exe",
+    "zohoassist.exe",
+    "ITSPlatform.exe",
+    "itarian.exe",
+    "AnyDesk.exe"
+  )
+  or FolderPath has_any (@"Downloads", @"AppData\Local\Temp", @"Users\Public")
+     and FileName in~ (
+         "ScreenConnect.WindowsClient.exe",
+         "zohoassist.exe",
+         "ITSPlatform.exe",
+         "AnyDesk.exe"
+     )
+| project Timestamp, DeviceName, AccountName,
+    InitiatingProcessFileName, InitiatingProcessFolderPath,
+    FileName, FolderPath, ProcessCommandLine
+| order by Timestamp desc

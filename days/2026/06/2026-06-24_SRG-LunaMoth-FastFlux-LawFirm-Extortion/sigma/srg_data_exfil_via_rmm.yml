@@ -1,0 +1,46 @@
+title: SRG/Luna Moth - High-Volume Network Outbound from RMM Process
+id: 3b162fad-ebc6-42ff-a517-a562f91fe8fe
+status: experimental
+description: >
+  Detects unusually high-volume outbound network connections from known SRG RMM tools
+  (ScreenConnect, Zoho Assist, ITarian, AnyDesk). SRG completes bulk data exfiltration
+  within 30 minutes of establishing remote access. This Sysmon network_connection rule
+  surfaces RMM processes making external connections; volume thresholds must be applied
+  at the SIEM aggregation layer (count connections or bytes per process per interval).
+  Recommended: alert when aggregate outbound bytes from any of these processes exceeds
+  100 MB within a 30-minute window to a non-corporate external IP.
+references:
+  - https://www.ic3.gov/CSA/2026/260526.pdf
+  - https://www.resecurity.com/blog/article/silent-ransom-group-srg-uncovering-dns-fast-flux-infrastructure
+author: Jarmi
+date: 2026/06/24
+tags:
+  - attack.exfiltration
+  - attack.t1048
+  - attack.t1567.002
+  - attack.t1219
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection_rmm_process:
+    Image|endswith:
+      - '\ScreenConnect.WindowsClient.exe'
+      - '\ScreenConnect.ClientService.exe'
+      - '\zohoassist.exe'
+      - '\ITSPlatform.exe'
+      - '\itarian.exe'
+      - '\AnyDesk.exe'
+  filter_private:
+    DestinationIp|cidr:
+      - '10.0.0.0/8'
+      - '172.16.0.0/12'
+      - '192.168.0.0/16'
+      - '127.0.0.0/8'
+  condition: selection_rmm_process and not filter_private
+falsepositives:
+  - Legitimate IT remote support sessions with authorized RMM tooling
+  - Apply to non-baseline RMM tools; suppress for sanctioned tools with approved destinations
+  - Threshold aggregation at SIEM required; single connection events are low signal without volume context
+
+level: medium

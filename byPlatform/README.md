@@ -20,10 +20,10 @@ Source of truth: each day's `README.md` frontmatter.
 | [macos](./macos/) | 8 |
 | [microsoft-365](./microsoft-365/) | 1 |
 | [mobile](./mobile/) | 1 |
-| [network-edge](./network-edge/) | 17 |
+| [network-edge](./network-edge/) | 18 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 4 |
 | [saas](./saas/) | 1 |
 | [supply-chain](./supply-chain/) | 11 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
-| [windows](./windows/) | 38 |
+| [windows](./windows/) | 39 |

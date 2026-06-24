@@ -1,0 +1,16 @@
+type,value,context,confidence,source
+domain,ep6pheij[.]com,SRG fast flux C2 domain; A records rotate < 60s TTL across 22 ISPs,high,Resecurity 2026-06-08
+domain,business-data-leaks[.]com,SRG public extortion / data leak site; served via fast flux infrastructure,high,Resecurity 2026-06-08; SecurityWeek 2026-06-08
+string,ScreenConnect.WindowsClient.exe,RMM tool used by SRG for remote access post-vishing; T1219,medium,FBI IC3 Flash 260526
+string,zohoassist.exe,Zoho Assist RMM agent; used by SRG for remote access post-vishing; T1219,medium,FBI IC3 Flash 260526
+string,ITSPlatform.exe,ITarian RMM agent; used by SRG for remote access; T1219,medium,FBI IC3 Flash 260526
+string,AnyDesk.exe,AnyDesk remote desktop; used by SRG for remote access post-vishing; T1219,medium,FBI IC3 Flash 260526
+string,itarian.exe,ITarian alternate executable name; T1219,low,FBI IC3 Flash 260526
+note,fast_flux_botnet_geo,Fast flux nodes in 22 ISPs across 18 countries: Brazil Mexico Bulgaria Egypt South Korea Colombia Bolivia Costa Rica Peru Panama Uzbekistan Croatia Argentina Ecuador Jamaica Dominican Republic Kyrgyzstan Tunisia Saudi Arabia; specific IPs not publicly disclosed,medium,Resecurity 2026-06-08
+note,physical_usb_variant,SRG operative inserts USB drive in person at victim office; cover story of device imaging or backup; active since Spring 2026,high,FBI IC3 Flash 260526
+note,exfil_timeline,Bulk data exfil typically completes within 30 minutes of RMM session establishment,high,FBI IC3 Flash 260526
+note,leak_site_impact,38+ US law firms had data posted to business-data-leaks[.]com after declining to pay as of May 2026; estimated 100+ total attacks,high,FBI IC3 Flash 260526; SecurityWeek 2026-06-08
+note,unc2686_overlap,Partial operational overlap with UNC2686 (BazarCall / TrickBot / BazarLoader lineage) per Google GTIG,low,Google GTIG 2026
+string,Spy Corporate,Underground project emerging May 2026; assessed as potentially linked to SRG infra provisioning,low,Resecurity 2026-06-08
+note,q1_2026_legal_sector,Law firms were 4th most targeted industry Q1 2026 with ~25% of ransomware-related incidents tracked,high,Resecurity 2026-06-08
+note,dns_fast_flux_behavior,Fast flux TTL typically <= 60 seconds; 5+ unique A records per domain per 24h window; high IP geographic diversity across ISPs,high,CISA AA25-093a 2025-04-03; Resecurity 2026-06-08

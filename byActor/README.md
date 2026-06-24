@@ -31,6 +31,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [CL-STA-0049](./cl-sta-0049/) | 1 |
 | [Calypso APT](./calypso-apt/) | 1 |
 | [Chaotic Eclipse / Nightmare-Eclipse](./chaotic-eclipse-nightmare-eclipse/) | 1 |
+| [Chatty Spider](./chatty-spider/) | 1 |
 | [Cloud-Insider-Recruitment-unattributed](./cloud-insider-recruitment-unattributed/) | 1 |
 | [CloudZ](./cloudz/) | 1 |
 | [Cordial Spider (CrowdStrike)](./cordial-spider-crowdstrike/) | 1 |
@@ -57,6 +58,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Kyber](./kyber/) | 1 |
 | [LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)](./linkpro-unattributed-vshell-vnt-toolchain-unc5174-overlap/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
+| [Luna Moth](./luna-moth/) | 1 |
 | [Microsoft Defender Security Research (vulnerability disclosure, no threat actor)](./microsoft-defender-security-research-vulnerability-disclosure-no-threat-actor/) | 1 |
 | [Mini Shai-Hulud](./mini-shai-hulud/) | 1 |
 | [NFCMultiPay](./nfcmultipay/) | 1 |
@@ -82,6 +84,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Sandworm overlap](./sandworm-overlap/) | 1 |
 | [Shahid Kaveh Group](./shahid-kaveh-group/) | 1 |
 | [Shai-Hulud](./shai-hulud/) | 1 |
+| [Silent Ransom Group (SRG)](./silent-ransom-group-srg/) | 1 |
 | [Silver Fox](./silver-fox/) | 1 |
 | [Static Tundra](./static-tundra/) | 1 |
 | [Storm-0784](./storm-0784/) | 1 |
@@ -114,6 +117,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UAT-8302](./uat-8302/) | 1 |
 | [UAT-8616](./uat-8616/) | 1 |
 | [UNC1151](./unc1151/) | 1 |
+| [UNC3753](./unc3753/) | 1 |
 | [UNC5174](./unc5174/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
 | [UNC6671 (GTIG / Mandiant)](./unc6671-gtig-mandiant/) | 1 |

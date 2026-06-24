@@ -1,0 +1,25 @@
+// Title: SRG/Luna Moth - DNS Lookup for Known Fast Flux Domains
+// Id: 58c83a3f-878a-44d8-8bfb-21e6ab05f856
+// MITRE: T1583.001 (Acquire Infrastructure: Domains), T1568.002, T1071.001
+// Reference: https://www.resecurity.com/blog/article/silent-ransom-group-srg-uncovering-dns-fast-flux-infrastructure
+// Author: Jarmi
+// Date: 2026-06-24
+// Tested on: Defender XDR (DeviceNetworkEvents), Microsoft Sentinel (DnsEvents)
+// FP notes: No legitimate use for ep6pheij[.]com or business-data-leaks[.]com — all matches warrant investigation.
+
+// --- Defender XDR: DeviceNetworkEvents ---
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteUrl has_any ("ep6pheij", "business-data-leaks")
+   or RemoteIPType == "Public"
+      and (RemoteUrl contains "ep6pheij" or RemoteUrl contains "business-data-leaks")
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName,
+    RemoteUrl, RemoteIP, RemotePort, LocalIP
+| order by Timestamp desc
+
+// --- Sentinel: DnsEvents (Windows DNS Server / Azure DNS) ---
+// DnsEvents
+// | where TimeGenerated > ago(7d)
+// | where Name has_any ("ep6pheij", "business-data-leaks")
+// | project TimeGenerated, Computer, ClientIP, Name, QueryType, ResultCode
+// | order by TimeGenerated desc

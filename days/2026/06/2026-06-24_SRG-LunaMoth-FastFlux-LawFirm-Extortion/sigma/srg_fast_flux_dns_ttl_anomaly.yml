@@ -1,0 +1,36 @@
+title: SRG/Luna Moth - DNS Fast Flux Behavior (Low TTL + High IP Rotation)
+id: 58c83a3f-878a-44d8-8bfb-21e6ab05f856
+status: experimental
+description: >
+  Detects DNS queries to the known SRG fast flux domains ep6pheij[.]com and
+  business-data-leaks[.]com via Sysmon EID 22 (DNS query) or Windows DNS Server logs.
+  The canonical fast flux behavioral signature is a TTL <= 60 seconds with multiple
+  distinct A records returned within a short observation window. Sysmon EID 22 does not
+  capture TTL directly; this rule fires on the domain name match alone. For behavioral
+  fast flux detection (TTL + rotation ratio), correlate via proxy/DNS resolver analytics
+  or use the KQL hunt srg_fast_flux_domain_lookup.kql with DeviceNetworkEvents.
+references:
+  - https://www.resecurity.com/blog/article/silent-ransom-group-srg-uncovering-dns-fast-flux-infrastructure
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-093a
+author: Jarmi
+date: 2026/06/24
+tags:
+  - attack.command-and-control
+  - attack.resource-development
+  - attack.t1583.001
+  - attack.t1568.002
+  - attack.t1071.001
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection_srg_domains:
+    QueryName|contains:
+      - 'ep6pheij'
+      - 'business-data-leaks'
+  condition: selection_srg_domains
+falsepositives:
+  - Unlikely — these domains have no legitimate use
+  - Investigate any match immediately and check for RMM software on the querying host
+
+level: high
