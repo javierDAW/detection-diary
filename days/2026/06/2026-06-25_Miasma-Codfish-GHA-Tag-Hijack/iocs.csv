@@ -1,0 +1,16 @@
+type,value,context,confidence,source
+sha256,9f93d77d32833a515bc406c46da477142bb1ac2babeecb6aa42f98669a6db015,Miasma index.js payload in both malicious codfish/semantic-release-action commits (byte-identical),high,Aikido Security 2026-06-24
+string,5792aba0e2180b9b80b77644370a6889d5817456,Malicious orphan commit 1 — carries tags v2.2.1 v3 v3.0.0 through v3.5.0 v4 v4.0.0 v4.0.1 v5 v5.0.0,high,Aikido Security 2026-06-24
+string,bcb6b1d409144318e8fad2171d6fe06d02299d1a,Malicious orphan commit 2 — carries tag v2; child of commit 1,high,Aikido Security 2026-06-24
+string,thebeautifulsnadsoftime,Miasma dead-drop marker string embedded in index.js (near-match of TheBeautifulSandsOfTime); queried via GitHub commit search API for JavaScript payload delivery,high,Aikido Security 2026-06-24
+string,DontRevokeOrItGoesBoom,Miasma dead-drop marker for PAT exfiltration module; queried via GitHub commit search API,high,Miasma toolkit leak analysis / SafeDep 2026-06
+string,firedalazer,Miasma Hades Python variant dead-drop marker for Python RCE backdoor delivery,high,Phoenix Security 2026-06
+string,Miasma: The Spreading Blight,GitHub repository description string used by worm to name credential staging repos under victim accounts,high,Microsoft Security Blog 2026-06-02
+url,https://api.github.com/search/commits?q=thebeautifulsnadsoftime,Dead-drop C2 polling endpoint — Miasma JS variant,high,Aikido Security 2026-06-24
+string,oven-sh/setup-bun@0c5077e51419868618aeaa5fe8019c62421857d6,Third-party GitHub Action used to install Bun runtime in malicious composite; this specific SHA is the version used in the attack,high,Aikido Security 2026-06-24
+note,codfish/semantic-release-action@v2 v2.2.1 v3 v3.x.x v4 v4.x.x v5 v5.0.0,16 affected floating tags pointing to malicious commits as of 2026-06-24; pin to clean SHA instead,high,Aikido Security 2026-06-24
+note,codfish/semantic-release-action v1.0.0-v1.10.0 and v2.0.0,Confirmed clean versions — not repointed by attacker as of disclosure date,high,Aikido Security 2026-06-24
+string,8f9a58f2acdc190c356f79159b5de2548cdb63cd,Clean codfish/semantic-release-action commit SHA used in the malicious composite for functional cover (first step still calls this legitimate commit),high,Aikido Security 2026-06-24
+note,easy-day-js,Typosquat of dayjs date library used in Mastra AI framework supply chain attack (June 17 2026); adds postinstall credential dropper; secondary finding,high,Aikido Security 2026-06-17
+note,Miasma-Hades,Python variant of Miasma toolkit using firedalazer marker; hit PyPI ecosystem with Hades wave delivering 37 malicious Python wheels,high,Phoenix Security 2026-06
+note,Miasma-Open-Source-Release,GitHub repository name used to leak Miasma toolkit source code on 2026-06-10; repository was removed but copies circulated,high,BleepingComputer 2026-06

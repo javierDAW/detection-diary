@@ -1,0 +1,44 @@
+title: Composite GitHub Action with setup-bun and if-always Bun Run Step
+id: aa37b5b8-dd31-4054-951a-1463c0d3b6e0
+status: experimental
+description: >
+    Detects a GitHub Actions action.yml file that follows the Miasma malicious composite
+    pattern: (1) a step using oven-sh/setup-bun to install the Bun JavaScript runtime,
+    (2) a subsequent step with "if: always()" that runs a JS file via "bun run", and
+    (3) the bun run target is from $GITHUB_ACTION_PATH. This structure — calling the
+    legitimate action first, then running an obfuscated payload with if-always — was
+    used in the codfish/semantic-release-action tag hijack (2026-06-24) and is the
+    signature composite delivery pattern for the Miasma toolkit. The if-always bypass
+    ensures payload execution even when the legitimate step fails.
+author: Jarmi
+date: 2026/06/25
+references:
+    - https://www.aikido.dev/blog/compromised-github-action-codfish-steals-secrets
+tags:
+    - attack.supply-chain
+    - attack.initial-access
+    - attack.defense-evasion
+    - attack.t1195.003
+    - attack.t1059.007
+logsource:
+    category: file_event
+    product: linux
+detection:
+    selection_file:
+        TargetFilename|endswith: '/action.yml'
+    selection_content_bun:
+        # Detect the composite pattern in action.yml content written to runner disk
+        # These strings co-occur in malicious composites; benign action.yml files
+        # would not typically combine oven-sh/setup-bun with if-always bun run
+        Contents|contains|all:
+            - 'oven-sh/setup-bun'
+            - 'if: always()'
+            - 'bun run'
+            - 'GITHUB_ACTION_PATH'
+    condition: selection_file and selection_content_bun
+falsepositives:
+    - Legitimate projects that intentionally use Bun as a runtime inside a composite
+      action and also have error-handling steps with if-always; review full action.yml
+      to confirm no obfuscated payload file alongside normal project files
+
+level: high

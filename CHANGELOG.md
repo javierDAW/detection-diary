@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.06.25 — Day 59 — Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack
+
+### Added
+- `days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/` — Miasma toolkit operator (unattributed) force-pushed two orphan commits to `codfish/semantic-release-action` on 2026-06-24, repointing 16 floating tags (v2–v5) to a 781 KB obfuscated JS payload that polls the GitHub public commit search API for dead-drop marker `thebeautifulsnadsoftime` and `eval()`s returned command payloads — no traditional C2 infrastructure required. Primary sources: Aikido Security 2026-06-24; Microsoft Security Blog 2026-06-02 (Red Hat campaign). Slot #7 supply chain software (35-day gap, longest Thursday slot); connected to Miasma toolkit leaked Jun 10 2026 (Shai-Hulud/TeamPCP lineage).
+- Sigma (3): `gha_bun_cleanup_action_exec.yml` — process_creation: Bun spawned from Actions runner parent with GITHUB_ACTION_PATH (high); `gha_composite_always_bun_run.yml` — file_event: composite action.yml with setup-bun + if-always + bun run GITHUB_ACTION_PATH co-occurrence (high); `github_api_commit_search_from_runner.yml` — network_connection: Bun/Node to api.github.com /search/commits (high).
+- KQL (4): `defender_bun_runner_secret_dump.kql` — DeviceProcessEvents: Bun child of runner joined to credential env reads within 60s; `defender_gha_commit_search_api_c2.kql` — DeviceNetworkEvents: outbound to api.github.com/search/commits from Bun/Node with Miasma marker extraction; `sentinel_github_audit_tag_force_push.kql` — AuditLogs: force-push on refs/tags/ with floating major-version tag detection; `sentinel_npm_token_env_exfil.kql` — Syslog: 3+ distinct credential-class env reads in 60s from runner process.
+- YARA (2 files, 5 rules): `miasma_dead_drop_js_marker.yar` — three rules for dead-drop markers (thebeautifulsnadsoftime, DontRevokeOrItGoesBoom, firedalazer/Hades); `miasma_composite_action_bun_pattern.yar` — two rules for malicious composite action.yml pattern and large obfuscated JS in action repo.
+- Suricata (1 file, 6 sids 9000590–9000595): GitHub commit search API poll, TheBeautifulSandsOfTime marker, DontRevokeOrItGoesBoom marker, firedalazer Hades marker, oven-sh/setup-bun download, Miasma credential staging repo POST.
+- PEAK hunts (3): `peak_h1_gha_tag_sha_mismatch.md` — tag-SHA ancestry check across all org workflows (scoping); `peak_h2_bun_outbound_ci_runner.md` — Bun process outbound from self-hosted runner (execution); `peak_h3_ci_credential_env_burst.md` — 3+ credential env var reads in 60s in runner context (credential access).
+- `iocs.csv` (15 entries) — payload SHA256, 2 malicious commit SHAs, 3 dead-drop marker strings, dead-drop API URL, Bun action SHA, Miasma staging repo description, clean/affected tag notes.
+- `kill_chain.svg` — template A (880×1280), canonical CSS-class palette, 6 victim stages + 6 attacker ops, bidirectional arrowX for dead-drop C2 channel; verifier ×2 PASS.
+
+### Pedagogy
+- Floating GitHub Actions tags (`@v2`, `@v3`) are mutable refs — pin to full 40-char commit SHA to make tag repoints ineffective.
+- `if: always()` is a CI gating bypass: malicious composite steps with this condition run even when the legitimate step fails, ensuring payload execution regardless of CI outcome.
+- Dead-drop C2 via legitimate APIs (GitHub commit search) bypasses all IP/domain egress blocklists; the only detection handle is behavioral — Bun/Node polling `/search/commits` from a runner process tree.
+- Post-toolkit-leak, all downstream operators share the same marker strings — YARA/Sigma rules catch every Miasma variant regardless of operator identity.
+
 ## 2026.06.24 — Day 58 — SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US Law Firms
 
 ### Added

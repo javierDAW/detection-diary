@@ -1,0 +1,44 @@
+title: GitHub Actions Bun Runtime Execution from GITHUB_ACTION_PATH (Miasma Composite)
+id: de1efd35-38a7-47d4-8573-54d0d6c9fadc
+status: experimental
+description: >
+    Detects execution of the Bun JavaScript runtime from a GitHub Actions runner process
+    where the command line references GITHUB_ACTION_PATH. This pattern is characteristic
+    of a malicious composite GitHub Action that installs Bun via oven-sh/setup-bun and
+    then executes an obfuscated JS payload (e.g., Miasma codfish/semantic-release-action
+    tag hijack, 2026-06-24). Legitimate workflows do not run Bun from GITHUB_ACTION_PATH
+    unless Bun is an explicit project dependency declared in the workflow file.
+author: Jarmi
+date: 2026/06/25
+references:
+    - https://www.aikido.dev/blog/compromised-github-action-codfish-steals-secrets
+    - https://www.microsoft.com/en-us/security/blog/2026/06/02/preinstall-persistence-inside-red-hat-npm-miasma-credential-stealing-campaign/
+tags:
+    - attack.supply-chain
+    - attack.initial-access
+    - attack.execution
+    - attack.t1195.003
+    - attack.t1059.007
+logsource:
+    category: process_creation
+    product: linux
+detection:
+    selection_bun:
+        Image|endswith:
+            - '/bun'
+            - '/bun.js'
+        CommandLine|contains:
+            - 'GITHUB_ACTION_PATH'
+    selection_runner_parent:
+        ParentImage|contains:
+            - 'Runner.Worker'
+            - 'runner.worker'
+            - 'actions/runner'
+            - 'runsvc'
+    condition: selection_bun and selection_runner_parent
+falsepositives:
+    - Workflows that explicitly declare Bun as a runtime and use it to run scripts
+      from GITHUB_ACTION_PATH with a legitimate purpose; verify action.yml structure
+      for if-always pattern and setup-bun usage without declared project need
+
+level: high

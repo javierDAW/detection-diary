@@ -1,0 +1,50 @@
+title: GitHub Commit Search API Accessed from CI Runner Process (Miasma Dead-Drop C2)
+id: 4d10a462-bcb6-44ce-a27e-25e9b2074bad
+status: experimental
+description: >
+    Detects outbound network connections from a Bun or Node.js process to the GitHub
+    commit search API endpoint (api.github.com path /search/commits). This is the
+    dead-drop command-and-control mechanism used by the Miasma credential-stealing
+    toolkit: the payload periodically queries the GitHub public commit search API for
+    a specific marker string (e.g., thebeautifulsnadsoftime) and eval()s the attached
+    command payload from the matching commit message. No traditional C2 server is
+    required. Legitimate CI workflows do not poll api.github.com/search/commits from
+    Bun or Node processes. Note: GitHub's API is on 140.82.112.0/20 (AS36459), so
+    the destination hostname detection is more reliable than IP-based blocking.
+    This rule fires on the network connection event; push threshold logic (N queries
+    per run window) should be applied in SIEM aggregation.
+author: Jarmi
+date: 2026/06/25
+references:
+    - https://www.aikido.dev/blog/compromised-github-action-codfish-steals-secrets
+    - https://safedep.io/inside-the-miasma-supply-chain-attack-toolkit/
+tags:
+    - attack.command-and-control
+    - attack.exfiltration
+    - attack.t1071.001
+logsource:
+    category: network_connection
+    product: linux
+detection:
+    selection_process:
+        Image|endswith:
+            - '/bun'
+            - '/node'
+            - '/node.js'
+    selection_destination:
+        DestinationHostname|contains: 'api.github.com'
+        DestinationPort: 443
+    filter_legitimate_gh_calls:
+        # Legitimate GitHub API calls from CI are typically to /repos/, /pulls/, /issues/
+        # The /search/commits path is not used by standard release tooling
+        # Add known-legitimate patterns here if needed
+        DestinationHostname: '<add_known_legitimate_github_api_hosts>'
+    condition: selection_process and selection_destination and not filter_legitimate_gh_calls
+falsepositives:
+    - Workflows that intentionally search the GitHub commit API as part of release
+      validation (e.g., changelog generation tools); verify the URI path contains
+      /search/commits and the query parameter matches the Miasma marker strings
+    - GitHub CLI (gh) invocations that happen to use the search endpoint from a
+      Node-based wrapper
+
+level: high

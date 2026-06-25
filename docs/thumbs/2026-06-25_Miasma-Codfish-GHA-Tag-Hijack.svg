@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+  <title id="t">Miasma codfish/semantic-release-action tag hijack kill chain</title>
+  <desc id="d">Two-lane kill chain. Left lane shows the victim CI/CD pipeline: workflow references floating tag, composite action executes Bun, dead-drop C2 polls GitHub API, credentials harvested from runner environment. Right lane shows attacker infrastructure: leaked Miasma toolkit, forged orphan commits repointing 16 tags, Bun runtime from oven-sh/setup-bun, GitHub commit search API as dead-drop, npm publish for worm propagation. Red badges mark critical detection anchors at the Bun execution and dead-drop C2 stages.</desc>
+  <defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+  <rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <!-- Header -->
+  <text class="head" x="20" y="36">Miasma: codfish/semantic-release-action Tag Hijack</text>
+  <text class="meta" x="20" y="58">Vendor: Aikido Security · Date: 2026-06-24 · Cluster: Miasma-unattributed · Day 59</text>
+  <!-- Left lane -->
+  <rect class="laneL" x="20" y="85" width="410" height="1080"/>
+  <text class="laneLabelL" x="215" y="108" text-anchor="middle">Victim: CI/CD Pipeline</text>
+  <!-- Right lane -->
+  <rect class="laneR" x="450" y="85" width="410" height="1080"/>
+  <text class="laneLabelR" x="655" y="108" text-anchor="middle">Attacker: Miasma Infrastructure</text>
+
+  <!-- Stage 1 Left: Workflow references floating tag -->
+  <rect class="stage" x="30" y="120" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="140" r="14"/>
+  <text class="badgeText" x="50" y="145">1</text>
+  <text class="label" x="75" y="144">Workflow References Floating Tag</text>
+  <text class="sub" x="50" y="168">Org workflow: uses: codfish/semantic-release-action@v4</text>
+  <text class="sub" x="50" y="184">GitHub resolves tag ref at run time — no integrity check</text>
+  <text class="sub" x="50" y="200">Release jobs hold GITHUB_TOKEN + NPM_TOKEN in env</text>
+  <text class="mono" x="50" y="226">T1195.003 — Supply Chain Compromise</text>
+
+  <!-- Op 1 Right: Toolkit + tag hijack -->
+  <rect class="op" x="460" y="125" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="145" r="14"/>
+  <text class="badgeText" x="480" y="150">A</text>
+  <text class="label" x="505" y="149">Miasma Toolkit + Tag Hijack (Jun 24)</text>
+  <text class="sub" x="480" y="173">Miasma source leaked Jun 10; operator adapts JS variant</text>
+  <text class="sub" x="480" y="189">Force-push 2 orphan commits; 16 tags repointed (v2-v5)</text>
+  <text class="sub" x="480" y="205">Forged author: codfish@users.noreply / date: Nov 2023</text>
+  <text class="sub" x="480" y="221">T1588.001 Obtain Capabilities / T1070.006 Timestomp</text>
+  <text class="mono" x="480" y="261">SHA1: 5792aba0 / SHA2: bcb6b1d4</text>
+  <text class="mono" x="480" y="279">T1195.003 Supply Chain Compromise</text>
+
+  <!-- Arrow: Stage1 -> Stage2 -->
+  <line class="arrow" x1="227" y1="255" x2="227" y2="270" marker-end="url(#ah)"/>
+
+  <!-- Stage 2 Left: Composite action swap -->
+  <rect class="stage" x="30" y="270" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="290" r="14"/>
+  <text class="badgeText" x="50" y="295">2</text>
+  <text class="label" x="75" y="294">Composite Action Executes</text>
+  <text class="sub" x="50" y="318">Legitimate step 1: codfish@8f9a58f2 (clean; cover fire)</text>
+  <text class="sub" x="50" y="334">Step 2: oven-sh/setup-bun (if: always()) installs Bun</text>
+  <text class="sub" x="50" y="350">Step 3: bun run $GITHUB_ACTION_PATH/index.js (if: always())</text>
+  <text class="mono" x="50" y="376">index.js SHA256: 9f93d77d...6db015</text>
+  <text class="mono" x="50" y="394">T1059.007 JavaScript / T1027 Obfuscation</text>
+
+  <!-- Op 2 Right: Bun + obfuscated payload -->
+  <rect class="opK" x="460" y="295" width="395" height="155"/>
+  <circle class="badgeK" cx="480" cy="315" r="14"/>
+  <text class="badgeText" x="480" y="320">B</text>
+  <text class="label" x="505" y="319">781 KB Obfuscated JS Payload</text>
+  <text class="sub" x="480" y="343">Commercial JS obfuscator (_0x hex string-array style)</text>
+  <text class="sub" x="480" y="359">Dead-drop polling loop embedded in obfuscated body</text>
+  <text class="sub" x="480" y="375">Marker: thebeautifulsnadsoftime (near: TheBeautifulSandsOfTime)</text>
+  <text class="sub" x="480" y="391">if:always() ensures execution on runner failure/cancel</text>
+  <text class="mono" x="480" y="431">DETECT: bun proc from Runner.Worker parent</text>
+  <text class="mono" x="480" y="449">YARA: miasma_composite_action_bun_pattern.yar</text>
+
+  <!-- Cross-lane arrow: Op B fires payload on runner -->
+  <line class="arrowX" x1="460" y1="372" x2="425" y2="372" marker-end="url(#ah)"/>
+
+  <!-- Arrow: Stage2 -> Stage3 -->
+  <line class="arrow" x1="227" y1="405" x2="227" y2="420" marker-end="url(#ah)"/>
+
+  <!-- Stage 3 Left: Dead-drop C2 poll -->
+  <rect class="stageK" x="30" y="420" width="395" height="135"/>
+  <circle class="badgeK" cx="50" cy="440" r="14"/>
+  <text class="badgeText" x="50" y="445">3</text>
+  <text class="label" x="75" y="444">Dead-Drop C2 via GitHub API</text>
+  <text class="sub" x="50" y="468">Payload polls api.github.com/search/commits?q=thebeauti...</text>
+  <text class="sub" x="50" y="484">On match: eval() of commit message (remote code exec)</text>
+  <text class="sub" x="50" y="500">No C2 server; GitHub API always allowed by egress policy</text>
+  <text class="mono" x="50" y="526">DETECT: bun->api.github.com /search/commits (Sigma/KQL)</text>
+  <text class="mono" x="50" y="544">T1071.001 App Layer Protocol</text>
+
+  <!-- Op 3 Right: GitHub API dead-drop channel -->
+  <rect class="op" x="460" y="465" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="485" r="14"/>
+  <text class="badgeText" x="480" y="490">C</text>
+  <text class="label" x="505" y="489">GitHub Commit Search API (Dead Drop)</text>
+  <text class="sub" x="480" y="513">Operator commits command payload with marker string</text>
+  <text class="sub" x="480" y="529">Payload GET: /search/commits?q=thebeautifulsnadsoftime</text>
+  <text class="sub" x="480" y="545">Response: items[0].commit.message -> eval(cmd)</text>
+  <text class="sub" x="480" y="561">No infrastructure to burn; just a GitHub search query</text>
+  <text class="mono" x="480" y="601">Suricata sid:9000590/9000591 detect the query</text>
+  <text class="mono" x="480" y="619">T1071.001 / T1583 No infra needed</text>
+
+  <!-- Cross-lane arrow: Stage 3 <-> Op C (bidirectional) -->
+  <line class="arrowX" x1="425" y1="488" x2="460" y2="488" marker-end="url(#ah)"/>
+  <line class="arrowX" x1="460" y1="500" x2="425" y2="500" marker-end="url(#ah)"/>
+
+  <!-- Arrow: Stage3 -> Stage4 -->
+  <line class="arrow" x1="227" y1="555" x2="227" y2="570" marker-end="url(#ah)"/>
+
+  <!-- Stage 4 Left: Credential harvest -->
+  <rect class="stageK" x="30" y="570" width="395" height="135"/>
+  <circle class="badgeK" cx="50" cy="590" r="14"/>
+  <text class="badgeText" x="50" y="595">4</text>
+  <text class="label" x="75" y="594">Credential Harvest from Runner Env</text>
+  <text class="sub" x="50" y="618">Reads GITHUB_TOKEN, NPM_TOKEN, AWS/Azure/GCP keys</text>
+  <text class="sub" x="50" y="634">Reads ~/.npmrc, ~/.git-credentials, ~/.aws/credentials</text>
+  <text class="sub" x="50" y="650">Finds *.pem, id_rsa, *.key on runner filesystem</text>
+  <text class="mono" x="50" y="676">DETECT: 3+ cred env reads in 60s (KQL sentinel hunt H3)</text>
+  <text class="mono" x="50" y="694">T1552.001 Credentials In Files</text>
+
+  <!-- Op 4 Right: Exfil + propagation -->
+  <rect class="op" x="460" y="635" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="655" r="14"/>
+  <text class="badgeText" x="480" y="660">D</text>
+  <text class="label" x="505" y="659">Exfiltration + npm Worm Propagation</text>
+  <text class="sub" x="480" y="683">Credentials staged to victim-owned GitHub repo</text>
+  <text class="sub" x="480" y="699">Repo named: "Miasma: The Spreading Blight"</text>
+  <text class="sub" x="480" y="715">NPM_TOKEN: bump patch, inject preinstall hook, publish</text>
+  <text class="sub" x="480" y="731">Worm propagates to all packages victim can publish</text>
+  <text class="mono" x="480" y="771">T1567.001 Exfil via Web Svc / T1195.003 worm</text>
+  <text class="mono" x="480" y="789">Hunt H3: npm publish log audit</text>
+
+  <!-- Cross-lane arrow: Stage4 -> Op D exfil -->
+  <line class="arrowX" x1="425" y1="638" x2="460" y2="638" marker-end="url(#ah)"/>
+
+  <!-- Arrow: Stage4 -> Stage5 -->
+  <line class="arrow" x1="227" y1="705" x2="227" y2="720" marker-end="url(#ah)"/>
+
+  <!-- Stage 5 Left: Timestomping / cover -->
+  <rect class="stage" x="30" y="720" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="740" r="14"/>
+  <text class="badgeText" x="50" y="745">5</text>
+  <text class="label" x="75" y="744">Evasion: Timestomping + Functional Cover</text>
+  <text class="sub" x="50" y="768">Orphan commits spoof real author + 2023 timestamp</text>
+  <text class="sub" x="50" y="784">First composite step calls legitimate action (green CI)</text>
+  <text class="sub" x="50" y="800">Workflow run succeeds; maintainer sees no failure</text>
+  <text class="mono" x="50" y="826">DETECT: tag SHA not ancestor of main (Hunt H1)</text>
+  <text class="mono" x="50" y="844">T1070.006 Timestomp / T1195.003 cover</text>
+
+  <!-- Op 5 Right: Downstream impact -->
+  <rect class="op" x="460" y="805" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="825" r="14"/>
+  <text class="badgeText" x="480" y="830">E</text>
+  <text class="label" x="505" y="829">Downstream: GITHUB_TOKEN + npm Abuse</text>
+  <text class="sub" x="480" y="853">GITHUB_TOKEN: write access to triggering repo and org</text>
+  <text class="sub" x="480" y="869">NPM_TOKEN: publish malicious patch to victim packages</text>
+  <text class="sub" x="480" y="885">Downstream consumers of victim packages now infected</text>
+  <text class="sub" x="480" y="901">Miasma worm cascade: same pattern as Shai-Hulud/TeamPCP</text>
+  <text class="mono" x="480" y="941">T1195.003 cascading supply chain / T1567 exfil</text>
+  <text class="mono" x="480" y="959">npm audit: check unexpected publish timestamps</text>
+
+  <!-- Arrow: Stage5 -> Stage6 (final) -->
+  <line class="arrow" x1="227" y1="855" x2="227" y2="870" marker-end="url(#ah)"/>
+
+  <!-- Stage 6 Left: IR / containment -->
+  <rect class="stage" x="30" y="870" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="890" r="14"/>
+  <text class="badgeText" x="50" y="895">6</text>
+  <text class="label" x="75" y="894">IR: Pin Actions to SHA, Rotate Secrets</text>
+  <text class="sub" x="50" y="918">Pin all uses: refs to 40-char SHA (not floating tags)</text>
+  <text class="sub" x="50" y="934">Revoke NPM_TOKEN, rotate GITHUB_TOKEN permissions</text>
+  <text class="sub" x="50" y="950">Enable GitHub Protected Tags on refs/tags/v*</text>
+  <text class="mono" x="50" y="976">Enable OIDC for cloud; minimum-scope workflow perms</text>
+  <text class="mono" x="50" y="994">D3FEND: Software Bill of Materials / Dependency Pinning</text>
+
+  <!-- Op 6 Right: Prevention -->
+  <rect class="op" x="460" y="975" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="995" r="14"/>
+  <text class="badgeText" x="480" y="1000">F</text>
+  <text class="label" x="505" y="999">Prevention: SHA-Pin + Protected Tags</text>
+  <text class="sub" x="480" y="1023">SHA-pinned actions: attacker tag move has no effect</text>
+  <text class="sub" x="480" y="1039">Protected Tags: force-push on refs/tags/* blocked</text>
+  <text class="sub" x="480" y="1055">OIDC short-lived tokens: NPM_TOKEN not in env at all</text>
+  <text class="sub" x="480" y="1071">Egress allowlist: block api.github.com/search/commits</text>
+  <text class="mono" x="480" y="1111">step-security/harden-runner for hosted runner egress</text>
+  <text class="mono" x="480" y="1129">sigma: gha_bun_cleanup_action_exec.yml</text>
+
+  <!-- Footer -->
+  <rect class="footer" x="20" y="1175" width="840" height="95"/>
+  <text class="footerH" x="40" y="1198">IOCs (key)</text>
+  <text class="footerT" x="40" y="1216">index.js SHA256: 9f93d77d...6db015 | Commit1: 5792aba0 | Commit2: bcb6b1d4</text>
+  <text class="footerT" x="40" y="1232">Dead-drop marker: thebeautifulsnadsoftime | C2: api.github.com/search/commits</text>
+  <text class="footerT" x="40" y="1248">Affected tags: v2-v5 (16 total) | Source: Aikido Security 2026-06-24 | Slot #7 Supply Chain</text>
+</svg>
