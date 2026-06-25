@@ -1,0 +1,87 @@
+# Suricata 7.x rules — Miasma Dead-Drop C2 and codfish/semantic-release-action tag hijack
+# Author: Jarmi
+# Date: 2026-06-25
+# Reference: https://www.aikido.dev/blog/compromised-github-action-codfish-steals-secrets
+# Reference: https://safedep.io/inside-the-miasma-supply-chain-attack-toolkit/
+# Note: GitHub API uses TLS; JA4 fingerprint or SNI matching is required for HTTP-level
+#       detection. Rules 1-3 match via TLS SNI + URI in HTTP/1.1 clear-text scenarios
+#       (self-hosted runners with TLS inspection). Rules 4-6 detect Bun runtime download
+#       and dead-drop marker strings in unencrypted traffic or after TLS decryption.
+#
+# Custom variable — define in suricata.yaml or override here:
+# $CI_RUNNER_NET = [10.0.0.0/8, 172.16.0.0/12, 192.168.0.0/16]
+
+# SID range: 9000590-9000595
+
+# Rule 1: GitHub Commit Search API request (dead-drop polling)
+alert http $CI_RUNNER_NET any -> $EXTERNAL_NET 443 (
+    msg:"MIASMA GHA Dead-Drop: GitHub commit search API polled from CI runner";
+    flow:established,to_server;
+    http.method; content:"GET";
+    http.host; content:"api.github.com";
+    http.uri; content:"/search/commits";
+    http.uri; content:"q=";
+    classtype:trojan-activity;
+    sid:9000590;
+    rev:1;
+    metadata:affected_product GitHub_Actions, attack_target CI_CD_Pipeline, created_at 2026_06_25, deployment_setting Perimeter, signature_severity Major, updated_at 2026_06_25;
+)
+
+# Rule 2: Miasma TheBeautifulSandsOfTime dead-drop marker in HTTP request
+alert http $CI_RUNNER_NET any -> $EXTERNAL_NET any (
+    msg:"MIASMA GHA Dead-Drop: TheBeautifulSandsOfTime marker string in outbound HTTP";
+    flow:established,to_server;
+    http.uri; content:"thebeautifulsnadsoftime"; nocase;
+    classtype:trojan-activity;
+    sid:9000591;
+    rev:1;
+    metadata:affected_product GitHub_Actions, attack_target CI_CD_Pipeline, created_at 2026_06_25, signature_severity Critical, updated_at 2026_06_25;
+)
+
+# Rule 3: Miasma DontRevokeOrItGoesBoom PAT exfiltration marker
+alert http $CI_RUNNER_NET any -> $EXTERNAL_NET any (
+    msg:"MIASMA Dead-Drop: DontRevokeOrItGoesBoom PAT exfiltration marker in HTTP";
+    flow:established,to_server;
+    http.uri; content:"DontRevokeOrItGoesBoom"; nocase;
+    classtype:trojan-activity;
+    sid:9000592;
+    rev:1;
+    metadata:affected_product GitHub_Actions, attack_target CI_CD_Pipeline, created_at 2026_06_25, signature_severity Critical, updated_at 2026_06_25;
+)
+
+# Rule 4: Miasma Hades Python firedalazer marker
+alert http $CI_RUNNER_NET any -> $EXTERNAL_NET any (
+    msg:"MIASMA Hades Dead-Drop: firedalazer Python RCE marker in outbound HTTP";
+    flow:established,to_server;
+    http.uri; content:"firedalazer"; nocase;
+    classtype:trojan-activity;
+    sid:9000593;
+    rev:1;
+    metadata:affected_product Python_PyPI, attack_target Developer_Workstation, created_at 2026_06_25, signature_severity Critical, updated_at 2026_06_25;
+)
+
+# Rule 5: oven-sh/setup-bun action download from CI runner (suspicious if unexpected)
+alert http $CI_RUNNER_NET any -> $EXTERNAL_NET 443 (
+    msg:"MIASMA GHA: oven-sh/setup-bun action download from CI runner (verify if declared)";
+    flow:established,to_server;
+    http.host; content:"github.com";
+    http.uri; content:"/oven-sh/setup-bun";
+    classtype:policy-violation;
+    sid:9000594;
+    rev:1;
+    metadata:affected_product GitHub_Actions, attack_target CI_CD_Pipeline, created_at 2026_06_25, signature_severity Informational, updated_at 2026_06_25;
+)
+
+# Rule 6: Miasma-style credential staging repo creation (victim repo named with Miasma marker)
+alert http $CI_RUNNER_NET any -> $EXTERNAL_NET 443 (
+    msg:"MIASMA Credential Staging: POST to GitHub API with Miasma Spreading Blight marker";
+    flow:established,to_server;
+    http.method; content:"POST";
+    http.host; content:"api.github.com";
+    http.request_body; content:"Miasma"; nocase;
+    http.request_body; content:"Spreading Blight"; nocase;
+    classtype:trojan-activity;
+    sid:9000595;
+    rev:1;
+    metadata:affected_product GitHub_API, attack_target Developer_Account, created_at 2026_06_25, signature_severity Critical, updated_at 2026_06_25;
+)

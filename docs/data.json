@@ -1,5 +1,42 @@
 [
  {
+  "date": "2026-06-25",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-25_Miasma-Codfish-GHA-Tag-Hijack",
+  "title": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack",
+  "clusters": [
+   "Miasma-unattributed"
+  ],
+  "country": "Unknown — e-crime, financially motivated, Miasma toolkit operator",
+  "platforms": [
+   "supply-chain",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "healthcare",
+   "government",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1195.003",
+   "T1059.007",
+   "T1552.001",
+   "T1071.001",
+   "T1027",
+   "T1070.006",
+   "T1588.001",
+   "T1567.001"
+  ],
+  "tech_count": 8,
+  "tldr": "On June 24, 2026, an unattributed operator leveraging the leaked Miasma credential-stealing toolkit force-pushed two orphan commits into the `codfish/semantic-release-action` GitHub repository and repointed sixteen release tags (v2 through v5) to a 781 KB obfuscated JavaScript payload. Any CI/CD workflow that references the action by a floating tag and runs after the compromise silently executes t",
+  "thumb": "thumbs/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack.svg",
+  "case_rel": "../days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/",
+  "q": "miasma dead-drop c2 via github api: codfish/semantic-release-action tag hijack miasma-unattributed unknown — e-crime, financially motivated, miasma toolkit operator supply-chain cloud-multi technology finance healthcare government cross-sector t1195.003 t1059.007 t1552.001 t1071.001 t1027 t1070.006 t1588.001 t1567.001"
+ },
+ {
   "date": "2026-06-24",
   "year": "2026",
   "month": "2026-06",

@@ -1,0 +1,41 @@
+// Title: GitHub Audit Log — Force-Push on Tag Refs (Actions Tag Hijack Detection)
+// Id: 4f784f00-337b-401b-a0ef-2a0db0a13591
+// MITRE: T1195.003, T1070.006
+// Reference: https://www.aikido.dev/blog/compromised-github-action-codfish-steals-secrets
+// Author: Jarmi
+// Date: 2026-06-25
+// Tested on: Microsoft Sentinel — AuditLogs (GitHub Enterprise audit log via webhook connector)
+//            or custom GitHub audit log table ingested via Azure Event Hub
+// FP notes: Legitimate maintainers occasionally force-push to fix a bad release tag.
+//           High-severity alert when: (1) more than 3 tags repointed in a single push,
+//           (2) the new commit SHA is not an ancestor of the default branch,
+//           (3) the tag is a floating major-version tag (v1, v2, v3...).
+
+// Adjust table name to match your GitHub audit log ingestion method
+// (GithubAuditLog, CommonSecurityLog, or custom_CL)
+AuditLogs
+| where TimeGenerated > ago(30d)
+| where OperationName == "git.push"
+    or (Properties has "git.push" and Properties has "forced")
+| extend
+    forced = tostring(parse_json(tostring(Properties)).forced),
+    ref = tostring(parse_json(tostring(Properties)).ref),
+    actor = tostring(parse_json(tostring(Properties)).actor),
+    repo = tostring(parse_json(tostring(Properties)).repo),
+    before_sha = tostring(parse_json(tostring(Properties)).before),
+    after_sha = tostring(parse_json(tostring(Properties)).after)
+| where forced == "true"
+    and ref startswith "refs/tags/"
+| extend
+    TagName = extract(@"refs/tags/(.+)", 1, ref),
+    IsFloatingMajor = iff(TagName matches regex @"^v\d+$", "YES", "no")
+| project
+    TimeGenerated,
+    repo,
+    actor,
+    TagName,
+    IsFloatingMajor,
+    before_sha,
+    after_sha,
+    forced
+| order by TimeGenerated desc

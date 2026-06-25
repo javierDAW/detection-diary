@@ -1,0 +1,50 @@
+// Title: CI Runner Environment Credential Dump Pattern (Miasma Credential Harvest)
+// Id: e7292a27-3f82-4a01-b5f7-8f73e2e17a52
+// MITRE: T1552.001, T1567.001
+// Reference: https://www.aikido.dev/blog/compromised-github-action-codfish-steals-secrets
+// Author: Jarmi
+// Date: 2026-06-25
+// Tested on: Microsoft Sentinel — Syslog (self-hosted GitHub Actions runner on Linux)
+// FP notes: Legitimate release workflows read at most 1-2 credential variables.
+//           Alert when 3+ distinct credential-class env vars are read within the same
+//           process tree and within 60 seconds.
+
+Syslog
+| where TimeGenerated > ago(7d)
+| where SyslogMessage contains_any (
+    "GITHUB_TOKEN",
+    "NPM_TOKEN",
+    "NODE_AUTH_TOKEN",
+    "AWS_ACCESS_KEY_ID",
+    "AWS_SECRET_ACCESS_KEY",
+    "AZURE_CLIENT_SECRET",
+    "GOOGLE_APPLICATION_CREDENTIALS",
+    "GCP_SA_KEY"
+)
+| where ProcessName in~ ("bun", "node", "sh", "bash")
+| extend
+    CredType = case(
+        SyslogMessage contains "GITHUB_TOKEN", "GITHUB_TOKEN",
+        SyslogMessage contains "NPM_TOKEN" or SyslogMessage contains "NODE_AUTH_TOKEN", "NPM_TOKEN",
+        SyslogMessage contains "AWS_", "AWS_CREDENTIAL",
+        SyslogMessage contains "AZURE_", "AZURE_CREDENTIAL",
+        SyslogMessage contains "GCP_" or SyslogMessage contains "GOOGLE_", "GCP_CREDENTIAL",
+        "OTHER"
+    )
+| summarize
+    CredTypesRead = make_set(CredType),
+    CredCount = dcount(CredType),
+    FirstSeen = min(TimeGenerated),
+    LastSeen = max(TimeGenerated),
+    ProcessNames = make_set(ProcessName)
+    by Computer, bin(TimeGenerated, 1m)
+| where CredCount >= 3
+| extend DwellSeconds = datetime_diff("second", LastSeen, FirstSeen)
+| project
+    TimeGenerated,
+    Computer,
+    CredCount,
+    CredTypesRead,
+    DwellSeconds,
+    ProcessNames
+| order by TimeGenerated desc

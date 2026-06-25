@@ -1,0 +1,38 @@
+// Title: Outbound GitHub Commit Search API Request from CI Runner (Miasma Dead-Drop C2)
+// Id: 622281be-c372-452c-90a8-2c6a60a35f2e
+// MITRE: T1071.001, T1195.003
+// Reference: https://www.aikido.dev/blog/compromised-github-action-codfish-steals-secrets
+// Author: Jarmi
+// Date: 2026-06-25
+// Tested on: Defender XDR DeviceNetworkEvents
+// FP notes: Extremely rare; legitimate CI tooling does not poll api.github.com/search/commits.
+//           The /search/commits endpoint requires the preview Accept header and is not used
+//           by standard semantic-release, release-drafter, or changelog-generation tools.
+
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteUrl contains "api.github.com"
+    and RemoteUrl contains "/search/commits"
+| where InitiatingProcessFileName in~ ("bun", "bun.exe", "node", "node.exe")
+| project
+    Timestamp,
+    DeviceName,
+    AccountName,
+    RemoteUrl,
+    RemoteIP,
+    RemotePort,
+    InitiatingProcessFileName,
+    InitiatingProcessCommandLine,
+    InitiatingProcessParentFileName
+| extend
+    DeadDropQuery = extract(@"q=([^&]+)", 1, RemoteUrl),
+    IsMiasmaMarker = iff(
+        RemoteUrl has_any (
+            "thebeautifulsnadsoftime",
+            "DontRevokeOrItGoesBoom",
+            "firedalazer"
+        ),
+        "YES — known Miasma marker",
+        "check manually"
+    )
+| order by Timestamp desc
