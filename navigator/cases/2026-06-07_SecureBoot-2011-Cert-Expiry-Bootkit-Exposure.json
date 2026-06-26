@@ -1,7 +1,7 @@
 {
   "name": "2026-06-07 — 2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure",
   "versions": {
-    "attack": "16",
+    "attack": "19",
     "navigator": "5.1.0",
     "layer": "4.5"
   },
