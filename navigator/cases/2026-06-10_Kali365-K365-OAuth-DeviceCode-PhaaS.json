@@ -1,7 +1,7 @@
 {
   "name": "2026-06-10 — 2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS",
   "versions": {
-    "attack": "16",
+    "attack": "19",
     "navigator": "5.1.0",
     "layer": "4.5"
   },

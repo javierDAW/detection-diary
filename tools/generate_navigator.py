@@ -34,7 +34,7 @@ OUT = ROOT / "navigator"
 CASES_OUT = OUT / "cases"
 
 # Navigator / ATT&CK versions. Bump when you upgrade Navigator or the matrix.
-VERSIONS = {"attack": "16", "navigator": "5.1.0", "layer": "4.5"}
+VERSIONS = {"attack": "19", "navigator": "5.1.0", "layer": "4.5"}
 GRADIENT = ["#f3f7fb", "#5a7da6", "#b03030"]  # matches repo palette: pale -> blue -> crit
 
 

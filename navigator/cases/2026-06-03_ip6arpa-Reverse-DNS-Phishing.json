@@ -1,7 +1,7 @@
 {
   "name": "2026-06-03 — 2026-06-03_ip6arpa-Reverse-DNS-Phishing",
   "versions": {
-    "attack": "16",
+    "attack": "19",
     "navigator": "5.1.0",
     "layer": "4.5"
   },

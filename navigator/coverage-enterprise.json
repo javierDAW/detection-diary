@@ -1,7 +1,7 @@
 {
   "name": "detection-diary — Enterprise coverage",
   "versions": {
-    "attack": "16",
+    "attack": "19",
     "navigator": "5.1.0",
     "layer": "4.5"
   },

@@ -1,7 +1,7 @@
 {
   "name": "2026-06-21 — 2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion",
   "versions": {
-    "attack": "16",
+    "attack": "19",
     "navigator": "5.1.0",
     "layer": "4.5"
   },
