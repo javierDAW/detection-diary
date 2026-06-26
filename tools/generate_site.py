@@ -3,22 +3,19 @@
 tools/generate_site.py — build the static GitHub Pages gallery under docs/.
 
 Reads the YAML frontmatter + TL;DR of every day's README.md (recursing under
-days/, any layout) and emits a self-contained, build-free site:
+days/), copies each kill_chain.svg as a thumbnail, folds in the CISA KEV overlay
+(feeds/kev_overlay.csv), and emits a self-contained, build-free site:
 
     docs/index.html      single-file gallery (inline CSS + JS), adaptive light/dark
-    docs/data.json       one record per case (driven by frontmatter)
-    docs/thumbs/<slug>.svg   a copy of each case's kill_chain.svg (served asset)
-    docs/.nojekyll       tells GitHub Pages to serve files as-is (no Jekyll build)
+    docs/data.json       one record per case (driven by frontmatter + KEV overlay)
+    docs/thumbs/<slug>.svg
+    docs/.nojekyll
 
-Enable Pages: repo Settings -> Pages -> Source: "Deploy from a branch",
-branch main, folder /docs.
-
-Run from anywhere:
-    python3 tools/generate_site.py
+Run from anywhere:  python3 tools/generate_site.py
 """
 
 from __future__ import annotations
-import sys, re, json, shutil
+import sys, re, json, csv, shutil
 from pathlib import Path
 
 try:
@@ -30,6 +27,7 @@ ROOT = Path(__file__).resolve().parent.parent
 DAYS_DIR = ROOT / "days"
 DOCS = ROOT / "docs"
 THUMBS = DOCS / "thumbs"
+KEV_OVERLAY = ROOT / "feeds" / "kev_overlay.csv"
 
 
 def read_frontmatter(text: str):
@@ -50,20 +48,33 @@ def extract_tldr(text: str) -> str:
     return body[:400]
 
 
-# Category accent — one colour per case family. Hues kept distinct and aligned
-# with the repo palette. A case may override detection by setting `category:` in
-# its frontmatter (one of the keys below); otherwise it is derived heuristically.
+def load_kev_overlay():
+    """Return {case_name: {cve_count, kev_count, kev_cves:[{cve,due,ransom}]}}."""
+    out = {}
+    if not KEV_OVERLAY.is_file():
+        return out
+    for r in csv.DictReader(KEV_OVERLAY.open(encoding="utf-8")):
+        case = r.get("case", "")
+        d = out.setdefault(case, {"cve_count": 0, "kev_count": 0, "kev_cves": []})
+        d["cve_count"] += 1
+        if (r.get("in_kev") or "").lower() == "yes":
+            d["kev_count"] += 1
+            d["kev_cves"].append({
+                "cve": r.get("cve", ""),
+                "due": r.get("kev_due_date", ""),
+                "ransom": (r.get("known_ransomware_use", "") or "").lower() == "known",
+            })
+    for d in out.values():
+        d["kev_cves"].sort(key=lambda x: (x["due"] or "9999"))
+    return out
+
+
+# Category accent — one colour per case family, aligned with the repo palette.
+# A case may override via `category:` in frontmatter; else it is derived.
 CATEGORY_COLORS = {
-    "ransomware":     "#b03030",  # crit red
-    "espionage":      "#2a4a6a",  # deep blue
-    "supply-chain":   "#b07a3a",  # amber
-    "identity-cloud": "#6a4ca6",  # purple
-    "ot-ics":         "#2f8f4e",  # green
-    "edge-network":   "#1d7a8c",  # cyan
-    "mobile":         "#c2569a",  # magenta
-    "crypto-defi":    "#d08a1f",  # gold
-    "malware-re":     "#556070",  # slate
-    "other":          "#6a6a6a",  # gray
+    "ransomware": "#b03030", "espionage": "#2a4a6a", "supply-chain": "#b07a3a",
+    "identity-cloud": "#6a4ca6", "ot-ics": "#2f8f4e", "edge-network": "#1d7a8c",
+    "mobile": "#c2569a", "crypto-defi": "#d08a1f", "malware-re": "#556070", "other": "#6a6a6a",
 }
 CATEGORY_LABELS = {
     "ransomware": "Ransomware / e-crime", "espionage": "Espionage / APT",
@@ -104,6 +115,7 @@ def derive_category(fm, techs) -> str:
 
 
 def collect():
+    kev = load_kev_overlay()
     cases = []
     for readme in sorted(DAYS_DIR.rglob("README.md")):
         text = readme.read_text(encoding="utf-8")
@@ -115,17 +127,13 @@ def collect():
         slug = folder.name
         techs = (fm.get("techniques_enterprise") or []) + (fm.get("techniques_ics") or [])
         rec = {
-            "date": date,
-            "year": date[:4],
-            "month": date[:7],
-            "slug": slug,
+            "date": date, "year": date[:4], "month": date[:7], "slug": slug,
             "title": fm.get("title", "—"),
             "clusters": fm.get("clusters") or [],
             "country": fm.get("cluster_country", ""),
             "platforms": fm.get("platforms") or [],
             "sectors": fm.get("sectors") or [],
-            "techniques": techs,
-            "tech_count": len(techs),
+            "techniques": techs, "tech_count": len(techs),
             "tldr": extract_tldr(text),
             "thumb": f"thumbs/{slug}.svg",
             "case_rel": "../" + folder.relative_to(ROOT).as_posix() + "/",
@@ -134,12 +142,15 @@ def collect():
         rec["cat_label"] = CATEGORY_LABELS[rec["category"]]
         rec["cat_color"] = CATEGORY_COLORS[rec["category"]]
         rec["actor"] = (rec["clusters"][0] if rec["clusters"] else "")
+        k = kev.get(slug, {"cve_count": 0, "kev_count": 0, "kev_cves": []})
+        rec["cve_count"] = k["cve_count"]
+        rec["kev_count"] = k["kev_count"]
+        rec["kev_cves"] = k["kev_cves"]
         rec["q"] = " ".join([
             rec["title"], " ".join(rec["clusters"]), rec["country"],
             " ".join(rec["platforms"]), " ".join(rec["sectors"]), " ".join(rec["techniques"]),
-            rec["cat_label"],
+            rec["cat_label"], " ".join(c["cve"] for c in rec["kev_cves"]),
         ]).lower()
-        # copy thumbnail
         svg = folder / "kill_chain.svg"
         if svg.is_file():
             THUMBS.mkdir(parents=True, exist_ok=True)
@@ -155,7 +166,7 @@ INDEX_HTML = r"""<!DOCTYPE html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>detection-diary — kill-chain gallery</title>
-<meta name="description" content="A daily detection-engineering journal: one real-world threat-intel case per day turned into deployable Sigma, KQL, YARA and Suricata, MITRE ATT&CK mapped, with a kill-chain diagram.">
+<meta name="description" content="A daily detection-engineering journal: one real-world threat-intel case per day turned into deployable Sigma, KQL, YARA and Suricata, MITRE ATT&CK mapped, with a kill-chain diagram and CISA KEV cross-reference.">
 <style>
 :root{
   --bg:#ffffff; --panel:#f6f6f4; --card:#ffffff; --line:#e2e2e0;
@@ -207,6 +218,9 @@ select{padding:9px 10px;border:1px solid var(--line);border-radius:9px;
 .cattag{position:absolute;top:8px;left:8px;z-index:2;font:600 10.5px sans-serif;
   color:#fff;background:var(--cat,#6a6a6a);padding:2px 8px;border-radius:999px;
   letter-spacing:.02em;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.kevtag{position:absolute;top:8px;right:8px;z-index:2;font:700 10.5px sans-serif;
+  color:#fff;background:#b03030;padding:2px 8px;border-radius:999px;letter-spacing:.02em;
+  box-shadow:0 1px 3px rgba(0,0,0,.3)}
 .actortag{position:absolute;bottom:8px;left:8px;right:8px;z-index:2;font:600 12.5px sans-serif;
   color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.9);
   overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -220,7 +234,13 @@ select{padding:9px 10px;border:1px solid var(--line);border-radius:9px;
 .chip.plat{border-color:var(--blueln);color:var(--blue);background:var(--bluebg)}
 .chip.tech{border-color:var(--amberln);color:var(--amber);background:var(--amberbg)}
 .cluster{color:var(--muted);font-size:12.5px;margin-top:2px}
-/* lightbox */
+.kevbox{margin:14px 0;padding:12px 14px;border:1px solid var(--crit);border-radius:10px;
+  background:rgba(176,48,48,.07)}
+.kevbox h3{margin:0 0 8px;font-size:13.5px;color:var(--crit)}
+.kevbox table{width:100%;border-collapse:collapse;font-size:12.5px}
+.kevbox td,.kevbox th{text-align:left;padding:3px 8px 3px 0;border-bottom:1px solid var(--line)}
+.kevbox .due{font-variant-numeric:tabular-nums;color:var(--muted)}
+.kevbox .ransom{color:var(--crit);font-weight:600}
 .lb{position:fixed;inset:0;background:rgba(0,0,0,.72);display:none;z-index:50;
   padding:24px;overflow:auto}
 .lb.open{display:block}
@@ -239,20 +259,21 @@ footer{margin-top:46px;color:var(--soft);font-size:12.5px;border-top:1px solid v
 <div class="wrap">
 <header>
   <h1>detection-diary</h1>
-  <p class="tag">A daily detection-engineering journal. Each entry takes one real-world,
-  sourced threat-intel case and turns it into deployable <b>Sigma</b>, <b>KQL</b>,
-  <b>YARA</b> and <b>Suricata</b> — MITRE ATT&amp;CK mapped, with a kill-chain diagram,
-  an incident-response playbook and PEAK hunting hypotheses.</p>
+  <p class="tag">A daily detection-engineering journal. Each entry turns one real-world,
+  sourced threat-intel case into deployable <b>Sigma</b>, <b>KQL</b>, <b>YARA</b> and
+  <b>Suricata</b> — MITRE ATT&amp;CK mapped, with a kill-chain diagram, an IR playbook,
+  PEAK hunting hypotheses and a <b>CISA KEV</b> cross-reference.</p>
   <div class="counters" id="counters"></div>
 </header>
 
 <div class="toolbar">
   <div class="row">
-    <input id="search" type="search" placeholder="Search title, actor, technique, platform, sector…" autocomplete="off">
+    <input id="search" type="search" placeholder="Search title, actor, technique, platform, sector, CVE…" autocomplete="off">
     <select id="fCat"><option value="">All categories</option></select>
     <select id="fYear"><option value="">All years</option></select>
     <select id="fPlatform"><option value="">All platforms</option></select>
     <select id="fSector"><option value="">All sectors</option></select>
+    <select id="fKev"><option value="">KEV: any</option><option value="kev">KEV-listed only</option></select>
     <select id="fSort">
       <option value="new">Newest first</option>
       <option value="old">Oldest first</option>
@@ -265,8 +286,9 @@ footer{margin-top:46px;color:var(--soft);font-size:12.5px;border-top:1px solid v
 <div class="empty" id="empty" style="display:none">No cases match your filters.</div>
 
 <footer>
-  Auto-generated by <code>tools/generate_site.py</code> from each case's frontmatter.
-  Defensive / educational content. Validate every indicator before production use.
+  Auto-generated by <code>tools/generate_site.py</code> from each case's frontmatter
+  and <code>feeds/kev_overlay.csv</code>. Defensive / educational content.
+  Validate every indicator before production use.
 </footer>
 </div>
 
@@ -282,6 +304,7 @@ footer{margin-top:46px;color:var(--soft);font-size:12.5px;border-top:1px solid v
     </div>
     <img id="lbImg" alt="kill chain">
     <p class="tldr" id="lbTldr"></p>
+    <div id="lbKev"></div>
     <div class="chips" id="lbChips"></div>
     <p style="margin-top:14px"><a id="lbLink" href="#">Open the full case folder →</a></p>
   </div>
@@ -295,24 +318,23 @@ function uniq(a){return [...new Set(a)].sort();}
 fetch('data.json').then(r=>r.json()).then(d=>{DATA=d;init();});
 
 function init(){
-  // counters
   const clusters=uniq(DATA.flatMap(c=>c.clusters));
   const techs=uniq(DATA.flatMap(c=>c.techniques));
   const plats=uniq(DATA.flatMap(c=>c.platforms));
   const sectors=uniq(DATA.flatMap(c=>c.sectors));
+  const kevCases=DATA.filter(c=>c.kev_count>0).length;
   const dates=DATA.map(c=>c.date).filter(Boolean).sort();
   const span=dates.length?`${dates[0]} → ${dates[dates.length-1]}`:'—';
   el('counters').innerHTML=[
     ['Cases',DATA.length],['Actors',clusters.length],['Techniques',techs.length],
-    ['Platforms',plats.length],['Sectors',sectors.length]
+    ['Platforms',plats.length],['KEV cases',kevCases]
   ].map(([k,v])=>`<div class="counter"><b>${v}</b><span>${k}</span></div>`).join('')
    +`<div class="counter"><b style="font-size:14px;padding-top:4px">${span}</b><span>Span</span></div>`;
-  // filters
   uniq(DATA.map(c=>c.cat_label)).forEach(c=>el('fCat').add(new Option(c,c)));
   uniq(DATA.map(c=>c.year)).reverse().forEach(y=>el('fYear').add(new Option(y,y)));
   plats.forEach(p=>el('fPlatform').add(new Option(p,p)));
   sectors.forEach(s=>el('fSector').add(new Option(s,s)));
-  ['search','fCat','fYear','fPlatform','fSector','fSort'].forEach(id=>el(id).addEventListener('input',render));
+  ['search','fCat','fYear','fPlatform','fSector','fKev','fSort'].forEach(id=>el(id).addEventListener('input',render));
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
   el('lb').addEventListener('click',e=>{if(e.target===el('lb'))closeLb();});
   render();
@@ -321,22 +343,24 @@ function init(){
 function render(){
   const q=el('search').value.trim().toLowerCase();
   const y=el('fYear').value, p=el('fPlatform').value, sort=el('fSort').value;
-  const cat=el('fCat').value, sec=el('fSector').value;
+  const cat=el('fCat').value, sec=el('fSector').value, kev=el('fKev').value;
   let rows=DATA.filter(c=>
     (!q||c.q.includes(q)) && (!y||c.year===y) && (!p||c.platforms.includes(p))
-    && (!cat||c.cat_label===cat) && (!sec||c.sectors.includes(sec)));
+    && (!cat||c.cat_label===cat) && (!sec||c.sectors.includes(sec))
+    && (!kev||c.kev_count>0));
   rows.sort((a,b)=> sort==='old' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
   el('countLine').textContent=`${rows.length} of ${DATA.length} cases`;
   el('empty').style.display=rows.length?'none':'block';
-  el('grid').innerHTML=rows.map((c,i)=>card(c,DATA.indexOf(c))).join('');
+  el('grid').innerHTML=rows.map(c=>card(c,DATA.indexOf(c))).join('');
 }
 
 function card(c,idx){
   const plats=c.platforms.map(p=>`<span class="chip plat">${p}</span>`).join('');
   const actor=c.actor?`<div class="actortag">${esc(c.actor)}</div>`:'';
+  const kev=c.kev_count>0?`<span class="kevtag" title="${c.kev_count} CVE(s) on the CISA KEV list">KEV ×${c.kev_count}</span>`:'';
   return `<div class="card" style="--cat:${c.cat_color}" onclick="openLb(${idx})">
     <div class="thumb">
-      <span class="cattag">${esc(c.cat_label)}</span>${actor}
+      <span class="cattag">${esc(c.cat_label)}</span>${kev}${actor}
       <img loading="lazy" src="${c.thumb}" alt="${c.date} kill chain"></div>
     <div class="meta">
       <div class="date">${c.date} · ${c.tech_count} techniques</div>
@@ -346,6 +370,16 @@ function card(c,idx){
     </div></div>`;
 }
 
+function kevBox(c){
+  if(!c.kev_cves||!c.kev_cves.length) return '';
+  const rows=c.kev_cves.map(k=>`<tr>
+    <td><b>${esc(k.cve)}</b></td>
+    <td class="due">due ${k.due||'—'}</td>
+    <td>${k.ransom?'<span class="ransom">ransomware</span>':''}</td></tr>`).join('');
+  return `<div class="kevbox"><h3>On CISA KEV — exploited in the wild (${c.kev_count} of ${c.cve_count} CVEs)</h3>
+    <table><tr><th>CVE</th><th>Remediation due</th><th></th></tr>${rows}</table></div>`;
+}
+
 function openLb(idx){
   const c=DATA[idx];
   el('lbDate').textContent=`${c.date} · ${c.tech_count} ATT&CK techniques · ${c.sectors.join(', ')}`;
@@ -353,6 +387,7 @@ function openLb(idx){
   el('lbCluster').textContent=c.clusters.join(' · ')+(c.country?`  —  ${c.country}`:'');
   el('lbImg').src=c.thumb;
   el('lbTldr').textContent=c.tldr;
+  el('lbKev').innerHTML=kevBox(c);
   el('lbChips').innerHTML=`<span class="chip" style="border-color:${c.cat_color};color:#fff;background:${c.cat_color}">${esc(c.cat_label)}</span>`
     +c.platforms.map(p=>`<span class="chip plat">${p}</span>`).join('')
     +c.techniques.map(t=>`<span class="chip tech">${t}</span>`).join('');
@@ -377,7 +412,9 @@ def main():
     (DOCS / "data.json").write_text(json.dumps(cases, ensure_ascii=False, indent=1), encoding="utf-8")
     (DOCS / "index.html").write_text(INDEX_HTML, encoding="utf-8")
     (DOCS / ".nojekyll").write_text("", encoding="utf-8")
+    kev_cases = sum(1 for c in cases if c["kev_count"] > 0)
     print(f"Built docs/ site: {len(cases)} case(s), {len(list(THUMBS.glob('*.svg')))} thumbnail(s).")
+    print(f"  KEV surfaced on {kev_cases} case(s) (badge + lightbox + filter).")
     print("  wrote docs/index.html, docs/data.json, docs/thumbs/*.svg, docs/.nojekyll")
     return 0
 

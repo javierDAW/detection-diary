@@ -1,4 +1,87 @@
 case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerability_name,vendor_project,product
+2026-04-29_ShaiHulud-Bitwarden,2026-04-29,CVE-2026-32201,yes,2026-04-14,2026-04-28,Unknown,Microsoft SharePoint Server Improper Input Validation Vulnerability,Microsoft,SharePoint Server
+2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356,2026-04-30,CVE-2025-20333,yes,2025-09-25,2025-09-26,Unknown,Cisco Secure Firewall Adaptive Security Appliance (ASA) and Secure Firewall Threat Defense (FTD) Buffer Overflow Vulnerability,Cisco,Secure Firewall Adaptive Security Appliance and Secure Firewall Threat Defense
+2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356,2026-04-30,CVE-2025-20362,yes,2025-09-25,2025-09-26,Unknown,Cisco Secure Firewall Adaptive Security (ASA) Appliance and Secure Firewall Threat Defense (FTD) Missing Authorization Vulnerability,Cisco,Secure Firewall Adaptive Security Appliance and Secure Firewall Threat Defense
+2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356,2026-04-30,CVE-2026-20122,yes,2026-04-20,2026-04-23,Unknown,Cisco Catalyst SD-WAN Manager Incorrect Use of Privileged APIs Vulnerability,Cisco,Catalyst SD-WAN Manger
+2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356,2026-04-30,CVE-2026-20128,yes,2026-04-20,2026-04-23,Unknown,Cisco Catalyst SD-WAN Manager Storing Passwords in a Recoverable Format Vulnerability,Cisco,Catalyst SD-WAN Manager
+2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356,2026-04-30,CVE-2026-20133,yes,2026-04-20,2026-04-23,Unknown,Cisco Catalyst SD-WAN Manager Exposure of Sensitive Information to an Unauthorized Actor Vulnerability,Cisco,Catalyst SD-WAN Manager
+2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356,2026-04-30,CVE-2026-21510,yes,2026-02-10,2026-03-03,Unknown,Microsoft Windows Shell Protection Mechanism Failure Vulnerability,Microsoft,Windows
+2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356,2026-04-30,CVE-2026-32202,yes,2026-04-28,2026-05-12,Unknown,Microsoft Windows Protection Mechanism Failure Vulnerability,Microsoft,Windows
+2026-05-01_VECT-2.0-RaaS,2026-05-01,CVE-2026-33825,yes,2026-04-22,2026-05-06,Unknown,Microsoft Defender Insufficient Granularity of Access Control Vulnerability,Microsoft,Defender
+2026-05-01_VECT-2.0-RaaS,2026-05-01,CVE-2026-41940,yes,2026-04-30,2026-05-03,Known,WebPros cPanel & WHM and WP2 (WordPress Squared) Missing Authentication for Critical Function Vulnerability,WebPros,cPanel & WHM and WP2 (WordPress Squared)
+2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721,2026-05-02,CVE-2017-17215,no,,,,,,
+2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721,2026-05-02,CVE-2024-3721,no,,,,,,
+2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721,2026-05-02,CVE-2024-57726,yes,2026-04-24,2026-05-08,Known,SimpleHelp Missing Authorization Vulnerability,SimpleHelp ,SimpleHelp
+2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721,2026-05-02,CVE-2024-57728,yes,2026-04-24,2026-05-08,Known,SimpleHelp Path Traversal Vulnerability,SimpleHelp ,SimpleHelp
+2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721,2026-05-02,CVE-2024-7399,yes,2026-04-24,2026-05-08,Unknown,Samsung MagicINFO 9 Server Path Traversal Vulnerability,Samsung,MagicINFO 9 Server
+2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721,2026-05-02,CVE-2025-29635,yes,2026-04-24,2026-05-08,Unknown,D-Link DIR-823X Command Injection Vulnerability,D-Link,DIR-823X
+2026-05-03_BAUXITE-CyberAvengers-AA26-097A,2026-05-03,CVE-2025-13777,no,,,,,,
+2026-05-03_BAUXITE-CyberAvengers-AA26-097A,2026-05-03,CVE-2025-13778,no,,,,,,
+2026-05-03_BAUXITE-CyberAvengers-AA26-097A,2026-05-03,CVE-2025-13779,no,,,,,,
+2026-05-04_C0063-Poland-Wiper,2026-05-04,CVE-2024-57726,yes,2026-04-24,2026-05-08,Known,SimpleHelp Missing Authorization Vulnerability,SimpleHelp ,SimpleHelp
+2026-05-04_C0063-Poland-Wiper,2026-05-04,CVE-2026-20122,yes,2026-04-20,2026-04-23,Unknown,Cisco Catalyst SD-WAN Manager Incorrect Use of Privileged APIs Vulnerability,Cisco,Catalyst SD-WAN Manger
+2026-05-05_Akira-SonicWall-CVE-2024-40766,2026-05-05,CVE-2024-40766,yes,2024-09-09,2024-09-30,Known,SonicWall SonicOS Improper Access Control Vulnerability,SonicWall,SonicOS
+2026-05-05_Akira-SonicWall-CVE-2024-40766,2026-05-05,CVE-2024-57726,yes,2026-04-24,2026-05-08,Known,SimpleHelp Missing Authorization Vulnerability,SimpleHelp ,SimpleHelp
+2026-05-05_Akira-SonicWall-CVE-2024-40766,2026-05-05,CVE-2025-10035,yes,2025-09-29,2025-10-20,Known,Fortra GoAnywhere MFT Deserialization of Untrusted Data Vulnerability,Fortra,GoAnywhere MFT
+2026-05-05_Akira-SonicWall-CVE-2024-40766,2026-05-05,CVE-2026-23760,yes,2026-01-26,2026-02-16,Known,SmarterTools SmarterMail Authentication Bypass Using an Alternate Path or Channel Vulnerability,SmarterTools,SmarterMail
+2026-05-06_CodeOfConduct-AiTM-Storm-1747,2026-05-06,CVE-2026-31431,yes,2026-05-01,2026-05-15,Unknown,Linux Kernel Incorrect Resource Transfer Between Spheres Vulnerability,Linux,Kernel
+2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada,2026-05-07,CVE-2026-0300,yes,2026-05-06,2026-05-09,Unknown,Palo Alto Networks PAN-OS Out-of-bounds Write Vulnerability,Palo Alto Networks,PAN-OS
+2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada,2026-05-07,CVE-2026-31431,yes,2026-05-01,2026-05-15,Unknown,Linux Kernel Incorrect Resource Transfer Between Spheres Vulnerability,Linux,Kernel
+2026-05-07_QLNX-Quasar-Linux-RAT,2026-05-07,CVE-2026-0300,yes,2026-05-06,2026-05-09,Unknown,Palo Alto Networks PAN-OS Out-of-bounds Write Vulnerability,Palo Alto Networks,PAN-OS
+2026-05-07_QLNX-Quasar-Linux-RAT,2026-05-07,CVE-2026-31431,yes,2026-05-01,2026-05-15,Unknown,Linux Kernel Incorrect Resource Transfer Between Spheres Vulnerability,Linux,Kernel
+2026-05-08_CloudZ-RAT-Pheno-PhoneLink,2026-05-08,CVE-2026-6973,yes,2026-05-07,2026-05-10,Unknown,Ivanti Endpoint Manager Mobile (EPMM) Improper Input Validation Vulnerability,Ivanti,Endpoint Manager Mobile (EPMM)
+2026-05-09_Albiriox-Android-MaaS-AcVNC,2026-05-09,CVE-2026-23918,no,,,,,,
+2026-05-11_UAT-8302-China-Government-Espionage,2026-05-11,CVE-2025-0994,yes,2025-02-07,2025-02-28,Unknown,Trimble Cityworks Deserialization Vulnerability,Trimble,Cityworks
+2026-05-11_UAT-8302-China-Government-Espionage,2026-05-11,CVE-2025-31324,yes,2025-04-29,2025-05-20,Known,SAP NetWeaver Unrestricted File Upload Vulnerability,SAP,NetWeaver
+2026-05-11_UAT-8302-China-Government-Espionage,2026-05-11,CVE-2026-0300,yes,2026-05-06,2026-05-09,Unknown,Palo Alto Networks PAN-OS Out-of-bounds Write Vulnerability,Palo Alto Networks,PAN-OS
+2026-05-11_UAT-8302-China-Government-Espionage,2026-05-11,CVE-2026-31431,yes,2026-05-01,2026-05-15,Unknown,Linux Kernel Incorrect Resource Transfer Between Spheres Vulnerability,Linux,Kernel
+2026-05-11_UAT-8302-China-Government-Espionage,2026-05-11,CVE-2026-6973,yes,2026-05-07,2026-05-10,Unknown,Ivanti Endpoint Manager Mobile (EPMM) Improper Input Validation Vulnerability,Ivanti,Endpoint Manager Mobile (EPMM)
+2026-05-12_Qilin-EDR-Killer-msimg32,2026-05-12,CVE-2024-40766,yes,2024-09-09,2024-09-30,Known,SonicWall SonicOS Improper Access Control Vulnerability,SonicWall,SonicOS
+2026-05-12_Qilin-EDR-Killer-msimg32,2026-05-12,CVE-2026-23918,no,,,,,,
+2026-05-12_Qilin-EDR-Killer-msimg32,2026-05-12,CVE-2026-41940,yes,2026-04-30,2026-05-03,Known,WebPros cPanel & WHM and WP2 (WordPress Squared) Missing Authentication for Critical Function Vulnerability,WebPros,cPanel & WHM and WP2 (WordPress Squared)
+2026-05-13_SemanticKernel-Prompt2RCE,2026-05-13,CVE-2026-2275,no,,,,,,
+2026-05-13_SemanticKernel-Prompt2RCE,2026-05-13,CVE-2026-2285,no,,,,,,
+2026-05-13_SemanticKernel-Prompt2RCE,2026-05-13,CVE-2026-2286,no,,,,,,
+2026-05-13_SemanticKernel-Prompt2RCE,2026-05-13,CVE-2026-2287,no,,,,,,
+2026-05-13_SemanticKernel-Prompt2RCE,2026-05-13,CVE-2026-25592,no,,,,,,
+2026-05-13_SemanticKernel-Prompt2RCE,2026-05-13,CVE-2026-26030,no,,,,,,
+2026-05-13_SemanticKernel-Prompt2RCE,2026-05-13,CVE-2026-30615,no,,,,,,
+2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign,2026-05-14,CVE-2026-45321,yes,2026-05-27,2026-06-10,Known,TanStack Unspecified Vulnerability,TanStack,TanStack
+2026-05-15_EtherRAT-TukTuk-Gentlemen,2026-05-15,CVE-2025-55182,yes,2025-12-05,2025-12-12,Known,Meta React Server Components Remote Code Execution Vulnerability,Meta,React Server Components
+2026-05-15_EtherRAT-TukTuk-Gentlemen,2026-05-15,CVE-2026-20182,yes,2026-05-14,2026-05-17,Unknown,Cisco Catalyst SD-WAN Controller Authentication Bypass Vulnerability,Cisco,Catalyst SD-WAN
+2026-05-15_EtherRAT-TukTuk-Gentlemen,2026-05-15,CVE-2026-42945,no,,,,,,
+2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,2026-05-16,CVE-2022-20775,yes,2026-02-25,2026-02-27,Unknown,Cisco SD-WAN Path Traversal Vulnerability,Cisco,SD-WAN
+2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,2026-05-16,CVE-2024-40766,yes,2024-09-09,2024-09-30,Known,SonicWall SonicOS Improper Access Control Vulnerability,SonicWall,SonicOS
+2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,2026-05-16,CVE-2026-20122,yes,2026-04-20,2026-04-23,Unknown,Cisco Catalyst SD-WAN Manager Incorrect Use of Privileged APIs Vulnerability,Cisco,Catalyst SD-WAN Manger
+2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,2026-05-16,CVE-2026-20127,yes,2026-02-25,2026-02-27,Unknown,Cisco Catalyst SD-WAN Controller and Manager Authentication Bypass Vulnerability,Cisco,Catalyst SD-WAN Controller and Manager
+2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,2026-05-16,CVE-2026-20128,yes,2026-04-20,2026-04-23,Unknown,Cisco Catalyst SD-WAN Manager Storing Passwords in a Recoverable Format Vulnerability,Cisco,Catalyst SD-WAN Manager
+2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,2026-05-16,CVE-2026-20133,yes,2026-04-20,2026-04-23,Unknown,Cisco Catalyst SD-WAN Manager Exposure of Sensitive Information to an Unauthorized Actor Vulnerability,Cisco,Catalyst SD-WAN Manager
+2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,2026-05-16,CVE-2026-20182,yes,2026-05-14,2026-05-17,Unknown,Cisco Catalyst SD-WAN Controller Authentication Bypass Vulnerability,Cisco,Catalyst SD-WAN
+2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,2026-05-16,CVE-2026-42897,yes,2026-05-15,2026-05-29,Unknown,Microsoft Exchange Server Cross-Site Scripting Vulnerability,Microsoft,Microsoft
+2026-05-18_SilverFox-ABCDoor-Tax-Phishing,2026-05-18,CVE-2023-50224,yes,2025-09-03,2025-09-24,Unknown,TP-Link TL-WR841N Authentication Bypass by Spoofing Vulnerability,TP-Link,TL-WR841N
+2026-05-19_Embargo-Rust-SafeMode-BYOVD,2026-05-19,CVE-2024-57726,yes,2026-04-24,2026-05-08,Known,SimpleHelp Missing Authorization Vulnerability,SimpleHelp ,SimpleHelp
+2026-05-19_Embargo-Rust-SafeMode-BYOVD,2026-05-19,CVE-2024-57728,yes,2026-04-24,2026-05-08,Known,SimpleHelp Path Traversal Vulnerability,SimpleHelp ,SimpleHelp
+2026-05-20_Storm-2949-Cloud-Identity-SSPR,2026-05-20,CVE-2026-20182,yes,2026-05-14,2026-05-17,Unknown,Cisco Catalyst SD-WAN Controller Authentication Bypass Vulnerability,Cisco,Catalyst SD-WAN
+2026-05-20_Storm-2949-Cloud-Identity-SSPR,2026-05-20,CVE-2026-26030,no,,,,,,
+2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,2026-05-21,CVE-2026-42945,no,,,,,,
+2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,2026-05-21,CVE-2026-45585,no,,,,,,
+2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,2026-05-22,CVE-2024-12802,no,,,,,,
+2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,2026-05-22,CVE-2026-9082,yes,2026-05-22,2026-05-27,Unknown,Drupal Core SQL Injection Vulnerability,Drupal,Core
+2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802,2026-05-23,CVE-2024-12802,no,,,,,,
+2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802,2026-05-23,CVE-2024-40766,yes,2024-09-09,2024-09-30,Known,SonicWall SonicOS Improper Access Control Vulnerability,SonicWall,SonicOS
+2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802,2026-05-23,CVE-2026-9082,yes,2026-05-22,2026-05-27,Unknown,Drupal Core SQL Injection Vulnerability,Drupal,Core
+2026-05-24_OperationSaffron-FirstVPN-Takedown,2026-05-24,CVE-2026-20182,yes,2026-05-14,2026-05-17,Unknown,Cisco Catalyst SD-WAN Controller Authentication Bypass Vulnerability,Cisco,Catalyst SD-WAN
+2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine,2026-05-25,CVE-2024-42009,yes,2025-06-09,2025-06-30,Unknown,RoundCube Webmail Cross-Site Scripting Vulnerability,Roundcube,Webmail
+2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine,2026-05-25,CVE-2025-8088,yes,2025-08-12,2025-09-02,Unknown,RARLAB WinRAR Path Traversal Vulnerability,RARLAB,WinRAR
+2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion,2026-05-27,CVE-2026-25592,no,,,,,,
+2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion,2026-05-27,CVE-2026-26030,no,,,,,,
+2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,2026-05-28,CVE-2026-27771,no,,,,,,
+2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse,2026-05-29,CVE-2020-17103,no,,,,,,
+2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse,2026-05-29,CVE-2024-12802,no,,,,,,
+2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse,2026-05-29,CVE-2026-33825,yes,2026-04-22,2026-05-06,Unknown,Microsoft Defender Insufficient Granularity of Access Control Vulnerability,Microsoft,Defender
+2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse,2026-05-29,CVE-2026-41091,yes,2026-05-20,2026-06-03,Unknown,Microsoft Defender Link Following Vulnerability,Microsoft,Defender
+2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse,2026-05-29,CVE-2026-45498,yes,2026-05-20,2026-06-03,Unknown,Microsoft Defender Denial of Service Vulnerability,Microsoft,Defender
+2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse,2026-05-29,CVE-2026-45585,no,,,,,,
 2026-06-02_Aur0ra-NoRename-InPlace-Ransomware,2026-06-02,CVE-2024-40766,yes,2024-09-09,2024-09-30,Known,SonicWall SonicOS Improper Access Control Vulnerability,SonicWall,SonicOS
 2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover,2026-06-04,CVE-2026-41089,no,,,,,,
 2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover,2026-06-04,CVE-2026-8206,no,,,,,,
