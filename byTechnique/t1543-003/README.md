@@ -4,11 +4,12 @@
 
 # Techniques: T1543.003
 
-5 day(s) covering this technique.
+6 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-26 | GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Maintained EDR Killers | The Gentlemen RaaS (GentleKiller operator) | [`2026-06-26_GentleKiller-BYOVD-Detection-Engineering/`](../../days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/) |
 | 2026-05-26 | VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConnect IAB Operation | VENOMOUS#HELPER (Securonix) · STAC6405 (Sophos) | [`2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/`](../../days/2026/05/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/) |
 | 2026-05-20 | Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure | Storm-2949 | [`2026-05-20_Storm-2949-Cloud-Identity-SSPR/`](../../days/2026/05/2026-05-20_Storm-2949-Cloud-Identity-SSPR/) |
 | 2026-05-15 | EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion | The Gentlemen RaaS · EtherRAT (DPRK-linked, UNC5342 toolchain overlap) · TukTuk (AI-generated framework) | [`2026-05-15_EtherRAT-TukTuk-Gentlemen/`](../../days/2026/05/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |

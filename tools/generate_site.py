@@ -50,6 +50,59 @@ def extract_tldr(text: str) -> str:
     return body[:400]
 
 
+# Category accent — one colour per case family. Hues kept distinct and aligned
+# with the repo palette. A case may override detection by setting `category:` in
+# its frontmatter (one of the keys below); otherwise it is derived heuristically.
+CATEGORY_COLORS = {
+    "ransomware":     "#b03030",  # crit red
+    "espionage":      "#2a4a6a",  # deep blue
+    "supply-chain":   "#b07a3a",  # amber
+    "identity-cloud": "#6a4ca6",  # purple
+    "ot-ics":         "#2f8f4e",  # green
+    "edge-network":   "#1d7a8c",  # cyan
+    "mobile":         "#c2569a",  # magenta
+    "crypto-defi":    "#d08a1f",  # gold
+    "malware-re":     "#556070",  # slate
+    "other":          "#6a6a6a",  # gray
+}
+CATEGORY_LABELS = {
+    "ransomware": "Ransomware / e-crime", "espionage": "Espionage / APT",
+    "supply-chain": "Supply chain", "identity-cloud": "Identity / Cloud / SaaS",
+    "ot-ics": "OT / ICS", "edge-network": "Edge / Network", "mobile": "Mobile",
+    "crypto-defi": "Crypto / DeFi", "malware-re": "Malware / RE", "other": "Other",
+}
+
+
+def derive_category(fm, techs) -> str:
+    cat = (fm.get("category") or "").strip().lower()
+    if cat in CATEGORY_COLORS:
+        return cat
+    plats = set(p.lower() for p in (fm.get("platforms") or []))
+    title = (fm.get("title") or "").lower()
+    clusters = " ".join(fm.get("clusters") or []).lower()
+    t = set(techs)
+    blob = title + " " + clusters
+    if plats & {"ot-ics", "iot"}:
+        return "ot-ics"
+    if "cryptocurrency" in plats or any(k in blob for k in ("defi", "bridge", "wallet", "blockchain", "smart contract", "crypto")):
+        return "crypto-defi"
+    if plats & {"android", "mobile"}:
+        return "mobile"
+    if any(k in blob for k in ("ransom", "extortion", "wiper", "raas")) or t & {"T1486", "T1490", "T1491", "T1485"}:
+        return "ransomware"
+    if "supply-chain" in plats or any(k in blob for k in ("npm", "pypi", "typosquat", "supply chain", "github action", "dependency", "shai-hulud")):
+        return "supply-chain"
+    if "network-edge" in plats:
+        return "edge-network"
+    if (plats & {"cloud-multi", "saas", "microsoft-365", "active-directory"}) or any(k in blob for k in ("oauth", "aitm", "identity", "entra", "saml", "token")):
+        return "identity-cloud"
+    if "macos" in plats or any(k in blob for k in ("loader", "rootkit", "byovd", "ebpf", "packer", "stealer", "rat ", "backdoor")):
+        return "malware-re"
+    if any(k in blob for k in ("apt", "typhoon", "lazarus", "kimsuky", "sandworm", "espionage", "panda", "bear", "oceanlotus", "bitter")):
+        return "espionage"
+    return "other"
+
+
 def collect():
     cases = []
     for readme in sorted(DAYS_DIR.rglob("README.md")):
@@ -77,9 +130,14 @@ def collect():
             "thumb": f"thumbs/{slug}.svg",
             "case_rel": "../" + folder.relative_to(ROOT).as_posix() + "/",
         }
+        rec["category"] = derive_category(fm, techs)
+        rec["cat_label"] = CATEGORY_LABELS[rec["category"]]
+        rec["cat_color"] = CATEGORY_COLORS[rec["category"]]
+        rec["actor"] = (rec["clusters"][0] if rec["clusters"] else "")
         rec["q"] = " ".join([
             rec["title"], " ".join(rec["clusters"]), rec["country"],
             " ".join(rec["platforms"]), " ".join(rec["sectors"]), " ".join(rec["techniques"]),
+            rec["cat_label"],
         ]).lower()
         # copy thumbnail
         svg = folder / "kill_chain.svg"
@@ -138,13 +196,20 @@ select{padding:9px 10px;border:1px solid var(--line);border-radius:9px;
 .count-line{color:var(--soft);font-size:13px;margin:8px 2px 0}
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:18px;margin-top:18px}
 .card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden;
-  cursor:pointer;display:flex;flex-direction:column;transition:transform .12s ease,border-color .12s ease}
+  cursor:pointer;display:flex;flex-direction:column;transition:transform .12s ease,border-color .12s ease;
+  border-top:4px solid var(--cat,#6a6a6a)}
 .card:hover{transform:translateY(-3px);border-color:var(--accent)}
 .thumb{position:relative;height:300px;overflow:hidden;background:var(--bluebg);
   border-bottom:1px solid var(--line)}
 .thumb img{width:100%;display:block}
 .thumb::after{content:"";position:absolute;left:0;right:0;bottom:0;height:80px;
   background:linear-gradient(to bottom,transparent,var(--card))}
+.cattag{position:absolute;top:8px;left:8px;z-index:2;font:600 10.5px sans-serif;
+  color:#fff;background:var(--cat,#6a6a6a);padding:2px 8px;border-radius:999px;
+  letter-spacing:.02em;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.actortag{position:absolute;bottom:8px;left:8px;right:8px;z-index:2;font:600 12.5px sans-serif;
+  color:#fff;text-shadow:0 1px 4px rgba(0,0,0,.85),0 0 2px rgba(0,0,0,.9);
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .meta{padding:12px 14px 15px}
 .date{color:var(--soft);font-size:12px;letter-spacing:.03em}
 .title{font-weight:600;margin:3px 0 8px;font-size:14.5px;line-height:1.35;
@@ -184,8 +249,10 @@ footer{margin-top:46px;color:var(--soft);font-size:12.5px;border-top:1px solid v
 <div class="toolbar">
   <div class="row">
     <input id="search" type="search" placeholder="Search title, actor, technique, platform, sector…" autocomplete="off">
+    <select id="fCat"><option value="">All categories</option></select>
     <select id="fYear"><option value="">All years</option></select>
     <select id="fPlatform"><option value="">All platforms</option></select>
+    <select id="fSector"><option value="">All sectors</option></select>
     <select id="fSort">
       <option value="new">Newest first</option>
       <option value="old">Oldest first</option>
@@ -241,9 +308,11 @@ function init(){
   ].map(([k,v])=>`<div class="counter"><b>${v}</b><span>${k}</span></div>`).join('')
    +`<div class="counter"><b style="font-size:14px;padding-top:4px">${span}</b><span>Span</span></div>`;
   // filters
+  uniq(DATA.map(c=>c.cat_label)).forEach(c=>el('fCat').add(new Option(c,c)));
   uniq(DATA.map(c=>c.year)).reverse().forEach(y=>el('fYear').add(new Option(y,y)));
   plats.forEach(p=>el('fPlatform').add(new Option(p,p)));
-  ['search','fYear','fPlatform','fSort'].forEach(id=>el(id).addEventListener('input',render));
+  sectors.forEach(s=>el('fSector').add(new Option(s,s)));
+  ['search','fCat','fYear','fPlatform','fSector','fSort'].forEach(id=>el(id).addEventListener('input',render));
   document.addEventListener('keydown',e=>{if(e.key==='Escape')closeLb();});
   el('lb').addEventListener('click',e=>{if(e.target===el('lb'))closeLb();});
   render();
@@ -252,8 +321,10 @@ function init(){
 function render(){
   const q=el('search').value.trim().toLowerCase();
   const y=el('fYear').value, p=el('fPlatform').value, sort=el('fSort').value;
+  const cat=el('fCat').value, sec=el('fSector').value;
   let rows=DATA.filter(c=>
-    (!q||c.q.includes(q)) && (!y||c.year===y) && (!p||c.platforms.includes(p)));
+    (!q||c.q.includes(q)) && (!y||c.year===y) && (!p||c.platforms.includes(p))
+    && (!cat||c.cat_label===cat) && (!sec||c.sectors.includes(sec)));
   rows.sort((a,b)=> sort==='old' ? a.date.localeCompare(b.date) : b.date.localeCompare(a.date));
   el('countLine').textContent=`${rows.length} of ${DATA.length} cases`;
   el('empty').style.display=rows.length?'none':'block';
@@ -262,8 +333,11 @@ function render(){
 
 function card(c,idx){
   const plats=c.platforms.map(p=>`<span class="chip plat">${p}</span>`).join('');
-  return `<div class="card" onclick="openLb(${idx})">
-    <div class="thumb"><img loading="lazy" src="${c.thumb}" alt="${c.date} kill chain"></div>
+  const actor=c.actor?`<div class="actortag">${esc(c.actor)}</div>`:'';
+  return `<div class="card" style="--cat:${c.cat_color}" onclick="openLb(${idx})">
+    <div class="thumb">
+      <span class="cattag">${esc(c.cat_label)}</span>${actor}
+      <img loading="lazy" src="${c.thumb}" alt="${c.date} kill chain"></div>
     <div class="meta">
       <div class="date">${c.date} · ${c.tech_count} techniques</div>
       <div class="title">${esc(c.title)}</div>
@@ -279,7 +353,8 @@ function openLb(idx){
   el('lbCluster').textContent=c.clusters.join(' · ')+(c.country?`  —  ${c.country}`:'');
   el('lbImg').src=c.thumb;
   el('lbTldr').textContent=c.tldr;
-  el('lbChips').innerHTML=c.platforms.map(p=>`<span class="chip plat">${p}</span>`).join('')
+  el('lbChips').innerHTML=`<span class="chip" style="border-color:${c.cat_color};color:#fff;background:${c.cat_color}">${esc(c.cat_label)}</span>`
+    +c.platforms.map(p=>`<span class="chip plat">${p}</span>`).join('')
     +c.techniques.map(t=>`<span class="chip tech">${t}</span>`).join('');
   el('lbLink').href=c.case_rel;
   el('lb').classList.add('open');

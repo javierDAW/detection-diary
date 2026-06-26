@@ -1,0 +1,188 @@
+{
+  "name": "2026-05-28 — 2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io — clusters: TrapDoor (Socket-tracked)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1059.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1546",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1547.013",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1037",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1053.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1098.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1027.013",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1554",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1554.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1102",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1567.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1552.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1552.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1555.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1057",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

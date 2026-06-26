@@ -1,0 +1,90 @@
+{
+  "name": "2026-06-03 — 2026-06-03_ip6arpa-Reverse-DNS-Phishing",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade reputation and blocklists — clusters: Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade r"
+    },
+    {
+      "techniqueID": "T1583.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade r"
+    },
+    {
+      "techniqueID": "T1584.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade r"
+    },
+    {
+      "techniqueID": "T1665",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade r"
+    },
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade r"
+    },
+    {
+      "techniqueID": "T1598.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade r"
+    },
+    {
+      "techniqueID": "T1204.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade r"
+    },
+    {
+      "techniqueID": "T1036",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade r"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade r"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

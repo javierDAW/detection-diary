@@ -1,0 +1,132 @@
+{
+  "name": "2026-05-10 — 2026-05-10_Mexico-Water-AI-Assisted-OT",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security) — clusters: Unattributed-LLM-assisted-operator",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1059.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1090.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1018",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1087",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1110.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1552.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1213",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1567",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    },
+    {
+      "techniqueID": "T1569.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT acc"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

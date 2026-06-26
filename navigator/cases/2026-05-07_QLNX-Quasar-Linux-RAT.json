@@ -1,0 +1,174 @@
+{
+  "name": "2026-05-07 — 2026-05-07_QLNX-Quasar-Linux-RAT",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026) — clusters: QLNX, Quasar Linux",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1027.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1059.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1546.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1547.013",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1053.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1556.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1574.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1014",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1480",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1555.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1614",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1573.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1070.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1564.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1195.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    },
+    {
+      "techniqueID": "T1195.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backd"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

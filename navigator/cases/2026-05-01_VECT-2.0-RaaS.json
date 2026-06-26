@@ -1,0 +1,202 @@
+{
+  "name": "2026-05-01 — 2026-05-01_VECT-2.0-RaaS",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026) — clusters: VECT, TeamPCP, BreachForums",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1059.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1129",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1562.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1562.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1497",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1070.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1003.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1518",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1057",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1614.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1021.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1134.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1485",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1561.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    },
+    {
+      "techniqueID": "T1529",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, A"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

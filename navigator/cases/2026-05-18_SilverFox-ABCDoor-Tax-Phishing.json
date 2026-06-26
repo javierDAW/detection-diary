@@ -1,0 +1,160 @@
+{
+  "name": "2026-05-18 — 2026-05-18_SilverFox-ABCDoor-Tax-Phishing",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist) — clusters: Silver Fox, SwimSnake, Void Arachne, UTG-Q-1000",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1027.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1480",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1574",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1059.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1055",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1102",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1113",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1115",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1056.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    },
+    {
+      "techniqueID": "T1218",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

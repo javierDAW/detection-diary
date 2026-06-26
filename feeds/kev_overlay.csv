@@ -1,0 +1,38 @@
+case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerability_name,vendor_project,product
+2026-06-02_Aur0ra-NoRename-InPlace-Ransomware,2026-06-02,CVE-2024-40766,yes,2024-09-09,2024-09-30,Known,SonicWall SonicOS Improper Access Control Vulnerability,SonicWall,SonicOS
+2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover,2026-06-04,CVE-2026-41089,no,,,,,,
+2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover,2026-06-04,CVE-2026-8206,no,,,,,,
+2026-06-05_Netlogon-CVE-2026-41089-DC-RCE,2026-06-05,CVE-2020-1472,yes,2021-11-03,2022-05-03,Known,Microsoft Netlogon Privilege Escalation Vulnerability,Microsoft,Netlogon
+2026-06-05_Netlogon-CVE-2026-41089-DC-RCE,2026-06-05,CVE-2026-41089,no,,,,,,
+2026-06-05_Netlogon-CVE-2026-41089-DC-RCE,2026-06-05,CVE-2026-8206,no,,,,,,
+2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517,2026-06-06,CVE-2020-17103,no,,,,,,
+2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517,2026-06-06,CVE-2025-5517,no,,,,,,
+2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517,2026-06-06,CVE-2026-27772,no,,,,,,
+2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517,2026-06-06,CVE-2026-41089,no,,,,,,
+2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure,2026-06-07,CVE-2020-10713,no,,,,,,
+2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure,2026-06-07,CVE-2023-24932,no,,,,,,
+2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure,2026-06-07,CVE-2024-7344,no,,,,,,
+2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure,2026-06-07,CVE-2024-8105,no,,,,,,
+2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure,2026-06-07,CVE-2025-3052,no,,,,,,
+2026-06-08_OP-512-China-IIS-WebShell-Framework,2026-06-08,CVE-2026-41089,no,,,,,,
+2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware,2026-06-09,CVE-2024-55591,yes,2025-01-14,2025-01-21,Known,Fortinet FortiOS and FortiProxy Authentication Bypass Vulnerability,Fortinet,FortiOS and FortiProxy
+2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware,2026-06-09,CVE-2026-32996,no,,,,,,
+2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware,2026-06-09,CVE-2026-41089,no,,,,,,
+2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak,2026-06-11,CVE-2024-52284,no,,,,,,
+2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak,2026-06-11,CVE-2025-55190,no,,,,,,
+2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak,2026-06-11,CVE-2026-41089,no,,,,,,
+2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak,2026-06-11,CVE-2026-42880,no,,,,,,
+2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak,2026-06-11,CVE-2026-4342,no,,,,,,
+2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS,2026-06-12,CVE-2024-23897,yes,2024-08-19,2024-09-09,Known,Jenkins Command Line Interface (CLI) Path Traversal Vulnerability,Jenkins,Jenkins Command Line Interface (CLI)
+2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751,2026-06-16,CVE-2024-12802,no,,,,,,
+2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751,2026-06-16,CVE-2024-40766,yes,2024-09-09,2024-09-30,Known,SonicWall SonicOS Improper Access Control Vulnerability,SonicWall,SonicOS
+2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751,2026-06-16,CVE-2026-50751,yes,2026-06-08,2026-06-11,Known,Check Point Security Gateway Improper Authentication Vulnerability,Check Point,Security Gateway
+2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751,2026-06-16,CVE-2026-50752,no,,,,,,
+2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE,2026-06-18,CVE-2026-48907,yes,2026-06-16,2026-06-19,Unknown,Widget Factory Joomla Content Editor Improper Access Control Vulnerability,Widget Factory,Joomla Content Editor 
+2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE,2026-06-18,CVE-2026-54420,yes,2026-06-15,2026-06-18,Unknown,LiteSpeed cPanel Plugin UNIX Symbolic Link (Symlink) Following Vulnerability,LiteSpeed,cPanel Plugin
+2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE,2026-06-18,CVE-2026-8206,no,,,,,,
+2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical,2026-06-19,CVE-2025-58428,no,,,,,,
+2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection,2026-06-20,CVE-2025-49596,no,,,,,,
+2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection,2026-06-20,CVE-2025-54136,no,,,,,,
+2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection,2026-06-20,CVE-2025-54994,no,,,,,,
+2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection,2026-06-20,CVE-2025-6514,no,,,,,,

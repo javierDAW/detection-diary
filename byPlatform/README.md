@@ -26,4 +26,4 @@ Source of truth: each day's `README.md` frontmatter.
 | [saas](./saas/) | 1 |
 | [supply-chain](./supply-chain/) | 12 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
-| [windows](./windows/) | 39 |
+| [windows](./windows/) | 40 |

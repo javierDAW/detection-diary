@@ -1,0 +1,111 @@
+{
+  "name": "2026-06-12 — 2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment — clusters: LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1610",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1014",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1564.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1574.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1205.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1620",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1071.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1090",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1070.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS env"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -1,0 +1,97 @@
+{
+  "name": "2026-06-26 — 2026-06-26_GentleKiller-BYOVD-Detection-Engineering",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Maintained EDR Killers — clusters: The Gentlemen RaaS (GentleKiller operator)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Main"
+    },
+    {
+      "techniqueID": "T1106",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Main"
+    },
+    {
+      "techniqueID": "T1036",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Main"
+    },
+    {
+      "techniqueID": "T1036.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Main"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Main"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Main"
+    },
+    {
+      "techniqueID": "T1685",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Main"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Main"
+    },
+    {
+      "techniqueID": "T1059.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Main"
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Main"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

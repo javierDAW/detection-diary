@@ -1,0 +1,139 @@
+{
+  "name": "2026-06-24 — 2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US Law Firms — clusters: Silent Ransom Group (SRG), Luna Moth, Chatty Spider, UNC3753",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1598.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1566.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1584.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1568.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1021.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1074.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1048",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    },
+    {
+      "techniqueID": "T1200",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US La"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

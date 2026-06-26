@@ -1,0 +1,279 @@
+{
+  "name": "2026-05-15 — 2026-05-15_EtherRAT-TukTuk-Gentlemen",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion — clusters: The Gentlemen RaaS, EtherRAT (DPRK-linked, UNC5342 toolchain overlap), TukTuk (AI-generated framework)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1106",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1218.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1574.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1078.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1003.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1003.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1558.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1555",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1087.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1018",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1482",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1057",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1518.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1021.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1021.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1021.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1570",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1102.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1572",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1568.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1070.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    },
+    {
+      "techniqueID": "T1484.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

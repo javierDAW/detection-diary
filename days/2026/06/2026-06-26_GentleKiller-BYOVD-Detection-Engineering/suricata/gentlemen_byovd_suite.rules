@@ -1,0 +1,42 @@
+# Suricata 7.x rules — GentleKiller BYOVD suite + OxideHarvest / Gentlemen RaaS
+# Author:    Jarmi
+# Date:      2026-06-26
+# Reference: https://www.welivesecurity.com/en/eset-research/killing-me-gently-inside-gentlemens-edr-killer-framework/
+#
+# Variables used (add to suricata.yaml if not present):
+#   HOME_NET  — your internal network range
+#   HTTP_PORTS — standard HTTP ports
+#
+# SIDs 9260001–9260006 reserved for this case (Day 60)
+
+# Rule 1: OxideHarvest multi-threaded credential exfiltration over SMB
+# OxideHarvest uses -t threads to log into hosts via supplied credentials and exfiltrate
+# browser credential stores. High thread count SMB logins from a single source in burst
+# is detectable as a lateral movement / harvesting pattern.
+alert tcp $HOME_NET any -> $HOME_NET 445 (msg:"PROFCIBER Gentlemen OxideHarvest burst SMB login credential harvest"; flow:to_server,established; threshold:type both, track by_src, count 10, seconds 30; sid:9260001; rev:1; classtype:credential-theft; metadata:affected_product Windows, attack_target Credential_Store, confidence High, created_at 2026_06_26, signature_severity Major;)
+
+# Rule 2: OxideHarvest HTTP exfiltration of harvested credential output file
+# OxideHarvest writes credentials to -o output file; operator then exfiltrates.
+# Detect large POST of a flat credential file (newline-delimited key:value structure).
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PROFCIBER Gentlemen OxideHarvest credential dump HTTP exfil"; flow:to_server,established; http.method; content:"POST"; http.request_body; content:"password"; nocase; content:"username"; nocase; content:"chrome"; nocase; threshold:type limit, track by_src, count 1, seconds 60; sid:9260002; rev:1; classtype:data-loss; metadata:affected_product Windows_Browser, confidence Medium, created_at 2026_06_26, signature_severity Major;)
+
+# Rule 3: GentleKiller driver drop — .sys file with no TLS SNI (direct IP) download
+# GentleKiller drops vulnerable drivers to %TEMP% or %PROGRAMDATA%; in some intrusions
+# the driver is fetched from an operator-controlled server over plain HTTP (no SNI).
+alert http $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:"PROFCIBER Gentlemen BYOVD driver download — .sys file via HTTP"; flow:to_server,established; http.uri; content:".sys"; endswith; nocase; threshold:type limit, track by_src, count 1, seconds 300; sid:9260003; rev:1; classtype:trojan-activity; metadata:affected_product Windows_Kernel, confidence Medium, created_at 2026_06_26, signature_severity Critical;)
+
+# Rule 4: Gentlemen FortiGate reconnaissance — HTTP HEAD/OPTIONS on management paths
+# ESET + Check Point confirmed Gentlemen selects victims by FortiGate misconfiguration.
+# Pre-intrusion recon commonly includes HTTP probing of /remote/login and /api/v2 paths.
+alert http $EXTERNAL_NET any -> $HOME_NET $HTTP_PORTS (msg:"PROFCIBER Gentlemen FortiGate management path recon"; flow:to_server,established; http.uri; content:"/remote/login"; nocase; threshold:type both, track by_src, count 3, seconds 60; sid:9260004; rev:1; classtype:web-application-attack; metadata:affected_product Fortinet_FortiGate, confidence Medium, created_at 2026_06_26, signature_severity Major;)
+
+# Rule 5: SystemBC SOCKS5 proxy beacon — Gentlemen botnet (1570+ hosts)
+# The Gentlemen use a SystemBC proxy botnet for C2 relay. SystemBC uses a binary
+# protocol over TCP with a fixed 4-byte XOR key and characteristic initial handshake.
+# Reference: BleepingComputer 2026-06-18 (Gentlemen + SystemBC botnet).
+alert tcp $HOME_NET any -> $EXTERNAL_NET !80 (msg:"PROFCIBER Gentlemen SystemBC SOCKS5 proxy beacon non-standard port"; flow:to_server,established; dsize:20<>50; threshold:type both, track by_src, count 5, seconds 60; sid:9260005; rev:1; classtype:trojan-activity; metadata:affected_product Windows, confidence Low, created_at 2026_06_26, signature_severity Major;)
+
+# Rule 6: OxideHarvest Rust binary download — filename pattern over HTTP
+# OxideHarvest samples are named buildx641.exe or buildx64.exe; staging via HTTP GET
+# from an operator-controlled server is a pre-execution artifact.
+alert http $HOME_NET any -> $EXTERNAL_NET $HTTP_PORTS (msg:"PROFCIBER Gentlemen OxideHarvest Rust stealer download by filename"; flow:to_server,established; http.uri; content:"buildx64"; nocase; threshold:type limit, track by_src, count 1, seconds 300; sid:9260006; rev:1; classtype:trojan-activity; metadata:affected_product Windows, confidence High, created_at 2026_06_26, signature_severity Critical;)

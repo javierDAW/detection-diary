@@ -1,0 +1,35 @@
+type,value,context,confidence,source
+note,GentleKiller BYOVD EDR-killer suite — Gentlemen RaaS — Day 60 2026-06-26,Case anchor note,high,ESET Research 2026-06-18
+sha1,8AE6BD18B129061F63642531F1B684CF0383C75D,GentleKiller Kaspersky variant (Kasps.exe) — Win64/KillAV.EA,high,ESET Research 2026-06-18
+sha1,BA914FE77B177B45799403B16DD14765C510A074,eb.sys custom rootkit used by Kaspersky variant — Win64/Agent.ITG,high,ESET Research 2026-06-18
+sha1,D605994FC72A2BB59B5CFB1624A1B9170ECA73A2,GentleKiller FACEIT Anti-Cheat variant (FaceIT1.exe) Enigma-protected — Win64/KillAV.EA,high,ESET Research 2026-06-18
+sha1,B0B912A3FD1C05D72080848EC4C92880004021A1,nseckrnl.sys NSecsoft NSecKrnl driver abused by FACEIT variant — Win64/VulnDriver.NSecsoft.A,high,ESET Research 2026-06-18
+sha1,5AA3124E5C4921E5EDFC60133B5D71DA21B07DA3,GentleKiller Valorant variant (Valorant2.exe) Themida-protected — Win64/KillAV.EA,high,ESET Research 2026-06-18
+sha1,7556AE58C215B8245A43F764F0676C7A8F0FDD1A,vgk.sys Tower of Fantasy AntiCheat driver abused by Valorant variant — Win64/VulnDriver.PerfectWorld.A,high,ESET Research 2026-06-18
+sha1,331879F5EEC8892BBD896F90BDBB1BAD0BF63BD6,GentleKiller Javelin variant EASolo2Light.exe (Safetica newer driver),high,ESET Research 2026-06-18
+sha1,711EF221526997039E804A18DB9647C91680BBE2,stpm_old.sys Safetica Process Monitor Driver older — Win64/VulnDriver.Safetica.A,high,ESET Research 2026-06-18
+sha1,68FEC379F2AE76C3D2CE913F7BE650CEA1D06990,stpm_new.sys Safetica Process Monitor Driver newer — Win64/VulnDriver.Safetica.H,high,ESET Research 2026-06-18
+sha1,A11EE9CDC59E5CAA59AEFD27B30D104F3AD68E62,GentleKiller WatchDog variant BitD1.exe Themida-protected — Win64/KillAV.EA,high,ESET Research 2026-06-18
+sha1,96F0DBF52AED0AFD43E44500116B04B674F7358E,dmx.sys Zemana WatchDog Antimalware Driver — Win64/VulnDriver.WatchDogDev.C,high,ESET Research 2026-06-18
+sha1,2F86898528C6CAB3540C486A9BFAA0C029B73950,GentleKiller Network Blocker variant MB2.exe Themida-protected — Win64/KillAV.EA,high,ESET Research 2026-06-18
+sha1,9AD51AD97C01E97AB59214116740785E0F6320A8,360netmon_wfp.sys Qihoo 360 driver — Win64/VulnDriver.Qihoo360.A,high,ESET Research 2026-06-18
+sha1,A19117175DBC9BA4D23B5DCE8415E299A2E32192,GentleKiller Cleaner variant Deletor.exe — Win64/KillAV.EA,high,ESET Research 2026-06-18
+sha1,12500F6C87CE62712A0ED6652C57468D15C14223,IMFForceDelete IObit filter driver — Win64/VulnDriver.IObit.D.gen,high,ESET Research 2026-06-18
+sha1,D29670E684E40DDC89B47010C37CBC96737035B6,GentleKiller G11 variant Symantec.exe — Win64/KillAV.EA,high,ESET Research 2026-06-18
+sha1,56BEE9DF5833A637F5C54D5911DF98B0812FE643,G11.sys PoisonX rootkit used by G11 variant — Win64/Agent.IYQ,high,ESET Research 2026-06-18
+sha1,CF4D74DF17A91B4A36A2911B22AFEC5D8FA93A01,HexKiller (Avast.exe) integrated into Gentlemen suite — Win32/KillAV.NVL,high,ESET Research 2026-06-18
+sha1,EC296F9501AD71E430810CB5CDC38D954D4BA536,googleApiUtil64.sys Baidu BdApi driver abused by HexKiller — Win64/VulnDriver.Baidu.B,high,ESET Research 2026-06-18
+sha1,7131B377E96016DC1911020C9F95B1B4D042D7B4,ThrottleBlood (Sent.exe) integrated into Gentlemen suite — Win64/KillAV.AT,high,ESET Research 2026-06-18
+sha1,82ED942A52CDCF120A8919730E00BA37619661A3,ThrottleBlood.sys TechPowerUp LLC driver (ThrottleStop.sys) — Win64/VulnDriver.GPUZ.B,high,ESET Research 2026-06-18
+sha1,F0537CBB773AE12100B36731E7C39F5A9D852B14,HavocKiller (Sophos.exe) integrated into Gentlemen suite — Win64/KillAV.DE,high,ESET Research 2026-06-18
+sha1,1FA071303FB846308571E64727501FB98B1C2BE6,havoc.sys Huawei Audio vulnerable driver abused by HavocKiller — Win64/VulnDriver.Huawei.D,high,ESET Research 2026-06-18
+sha1,A5CF917EC4A7DFBDFA43621398604805D860C718,OxideHarvest (buildx641.exe) Rust credential stealer — Win64/Spy.Agent.AGC,high,ESET Research 2026-06-18
+sha1,D4B19141102015D436321E6F26976E98183CFD27,OxideHarvest (buildx64.exe) Rust credential stealer — Win64/Spy.Agent.AGC,high,ESET Research 2026-06-18
+path,GentlemenCollection,Staging directory name used across all Gentlemen affiliate intrusions for EDR killer packages,high,ESET Research 2026-06-18
+string,GentlemenCollection,Staging directory string artifact present in all observed Gentlemen deployments,high,ESET Research 2026-06-18
+note,GentleKiller abused drivers: eb.sys / nseckrnl.sys / vgk.sys / stpm_old.sys / stpm_new.sys / dmx.sys / 360netmon_wfp.sys / IMFForceDelete — dropped to %TEMP% or %PROGRAMDATA% and installed as kernel service,high,ESET Research 2026-06-18
+note,Enigma-protected variants have filename suffix 1 (e.g. Kasps1.exe FaceIT1.exe); Themida-protected have suffix 2; Light = no packer with fake cert; Clear = no packer no cert,high,ESET Research 2026-06-18
+note,OxideHarvest config targets Chromium-based browsers (Chrome/Edge/Brave/Opera/Vivaldi) and Gecko-based (Firefox/Waterfox/PaleMoon); uses -i -u -p -t -o CLI args for multi-threaded credential harvest,high,ESET Research 2026-06-18
+note,Gentlemen RaaS victimology is globally distributed with notable focus on Southeast Asia / South America / Western Europe — atypically non-US compared to peer groups; targets chosen by FortiGate misconfiguration not geography,medium,ESET Research 2026-06-18
+note,Internal Rocket backend database leaked May 2026 (16.22 GB) — 9 accounts exposed including zeta88 alias hastalamuerte; 332 published victims first 5 months of 2026 — 2nd most active RaaS,high,Check Point Research 2026-05-04
+note,Repo genealogy: prior Gentlemen cases — Day 1 (2026-04-28_TheGentlemen-SystemBC) and Day 19 (2026-05-15_EtherRAT-TukTuk-Gentlemen). GentleKiller EDR-killer suite not previously covered in repo,high,Internal repo cross-check 2026-06-26

@@ -1,0 +1,52 @@
+title: Security Product Process Termination via Taskkill or API — Possible EDR Kill
+id: e53e31b1-cfd1-4f71-8916-b61e5558c402
+status: experimental
+description: |
+  Detects attempts to terminate well-known security product processes using taskkill or
+  similar utilities. GentleKiller loops through a list of 400+ target processes across
+  48 vendors (Microsoft Defender, CrowdStrike, SentinelOne, Sophos, Palo Alto, ESET,
+  Kaspersky, Bitdefender, McAfee/Trellix, CarbonBlack, Cybereason, SentinelOne, Tanium,
+  ThreatLocker, Wazuh, etc.) and kills them periodically in a loop using kernel-level
+  TerminateProcess after BYOVD driver privilege escalation. This Sigma rule fires on
+  user-mode taskkill targeting named security processes as an earlier pre-kill signal.
+  Push a threshold aggregation in the SIEM: >3 distinct security process kills within 60s
+  from the same host is high-confidence EDR kill activity.
+references:
+  - https://www.welivesecurity.com/en/eset-research/killing-me-gently-inside-gentlemens-edr-killer-framework/
+  - https://www.bleepingcomputer.com/news/security/gentlemen-ransomware-uses-multiple-edr-killers-to-disable-defenses/
+author: Jarmi
+date: 2026/06/26
+tags:
+  - attack.defense-evasion
+  - attack.t1562.001
+  - attack.t1685
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_taskkill:
+    Image|endswith: '\taskkill.exe'
+    CommandLine|contains:
+      - 'MsMpEng.exe'
+      - 'MsSense.exe'
+      - 'CSFalconService.exe'
+      - 'SentinelAgent.exe'
+      - 'SentinelServiceHost.exe'
+      - 'SophosHealth.exe'
+      - 'ekrn.exe'
+      - 'bdagent.exe'
+      - 'HuntressAgent.exe'
+      - 'CylanceSvc.exe'
+      - 'CybereasonActiveProbe.exe'
+      - 'RepMgr.exe'
+      - 'TaniumClient.exe'
+      - 'Sentinel.exe'
+      - 'wazuh-agent.exe'
+      - 'ThreatLockerConsent.exe'
+  condition: selection_taskkill
+falsepositives:
+  - IT administrators stopping security agents for legitimate maintenance via command line
+  - Automated deployment scripts that restart agent services
+  - Tune by requiring /f flag or multiple matches within 60s at SIEM aggregation layer
+
+level: high

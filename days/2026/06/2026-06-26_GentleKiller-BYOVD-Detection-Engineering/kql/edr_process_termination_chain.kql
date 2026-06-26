@@ -1,0 +1,51 @@
+// Title:      Security Product Process Mass Termination Chain — EDR Kill Signal
+// Id:         day60-kql-003
+// MITRE:      T1562.001 Impair Defenses / T1685 Disable or Modify Tools
+// Reference:  https://www.welivesecurity.com/en/eset-research/killing-me-gently-inside-gentlemens-edr-killer-framework/
+// Author:     Jarmi
+// Date:       2026-06-26
+// Tested on:  Defender XDR / DeviceProcessEvents
+// FP notes:   Single kills may be legitimate agent restart; tune threshold to 3+ in 60s
+
+let EDRProcesses = dynamic([
+    "MsMpEng.exe", "MsSense.exe", "SecurityHealthService.exe", "windefend.exe",
+    "CSFalconService.exe", "CSFalconUI.exe", "ARWSRVC.EXE",
+    "SentinelAgent.exe", "SentinelAgentWorker.exe", "SentinelServiceHost.exe",
+    "SentinelUI.exe", "SentinelCtl.exe",
+    "SAVService.exe", "SophosHealth.exe", "SophosUI.exe", "McsAgent.exe",
+    "ekrn.exe", "egui.exe", "ERAAgent.exe",
+    "bdagent.exe", "BDFsTray.exe",
+    "avp.exe", "klnagent.exe",
+    "HuntressAgent.exe", "HuntressRMM.exe",
+    "CylanceSvc.exe",
+    "CybereasonActiveProbe.exe",
+    "cortexService.exe", "trapsagent.exe",
+    "cb.exe", "cbcomms.exe", "RepMgr.exe",
+    "TaniumClient.exe",
+    "ThreatLockerConsent.exe", "threatlockerservice.exe",
+    "wazuh-agent.exe", "ossec-agent.exe",
+    "AGMService.exe", "masvc.exe", "mfeann.exe",
+    "fortiedr.exe", "firesvc.exe",
+    "Sysmon.exe", "Sysmon64.exe"
+]);
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where ActionType == "ProcessTerminated"
+| where FileName in~ (EDRProcesses)
+| summarize
+    TerminatedEDRCount = count(),
+    TerminatedProcesses = make_set(FileName, 20),
+    FirstKill = min(Timestamp),
+    LastKill = max(Timestamp)
+    by DeviceName, bin(Timestamp, 1m)
+| where TerminatedEDRCount >= 3
+| extend KillWindowSeconds = datetime_diff('second', LastKill, FirstKill)
+| project
+    DeviceName,
+    WindowStart = Timestamp,
+    TerminatedEDRCount,
+    KillWindowSeconds,
+    TerminatedProcesses,
+    FirstKill,
+    LastKill
+| order by TerminatedEDRCount desc
