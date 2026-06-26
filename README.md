@@ -1,6 +1,6 @@
 # detection-diary
 
-> Daily detection content — Sigma, KQL and YARA — derived from real-world threat intel write-ups. One case per day, MITRE ATT&CK mapped, sources cited.
+> Daily detection content — Sigma, KQL, YARA and Suricata — derived from real-world threat intel write-ups. One case per day, MITRE ATT&CK mapped and CISA KEV cross-referenced, with an aggregated IOC feed (CSV + STIX 2.1) and ATT&CK Navigator coverage layers. Sources cited.
 
 [![Sigma](https://img.shields.io/badge/Sigma-rules-blue)](https://github.com/SigmaHQ/sigma)
 [![KQL](https://img.shields.io/badge/KQL-Sentinel%20%7C%20Defender%20XDR-0078D4)](https://learn.microsoft.com/en-us/azure/data-explorer/kusto/query/)
@@ -43,6 +43,8 @@ This repository is my personal **detection journal**. Every day I pick one high-
 - **Suricata / Snort** signatures — when network surface is relevant.
 - **PEAK / TaHiTI hunting hypotheses** — with baselines and discriminating signals.
 
+Across all cases the tooling also rolls up three repo-wide artifacts: an **aggregated IOC feed** (`feeds/` — deduped CSV, STIX 2.1 bundle, plaintext blocklists), **MITRE ATT&CK Navigator coverage layers** (`navigator/`), and a **CISA KEV cross-reference** (`kev.md` per case + `feeds/kev_overlay.csv`) flagging which CVEs are exploited in the wild.
+
 Each entry is grounded on a published, sourced case, so it stays defensible and reproducible.
 
 ---
@@ -76,12 +78,24 @@ detection-diary/
 │               ├── yara/*.yar
 │               ├── suricata/*.rules
 │               ├── hunts/*.md
-│               └── iocs.csv
+│               ├── iocs.csv
+│               └── kev.md          ← CISA KEV cross-reference (only when the case has CVEs)
 │
 ├── docs/                   ← AUTO-GENERATED GitHub Pages gallery (Settings -> Pages -> /docs)
 │   ├── index.html          ← self-contained filterable gallery, light/dark
-│   ├── data.json           ← one record per case (from frontmatter)
+│   ├── data.json           ← one record per case (frontmatter + KEV overlay)
 │   └── thumbs/*.svg         ← kill-chain thumbnails
+│
+├── feeds/                  ← AUTO-GENERATED aggregated threat-intel feed
+│   ├── iocs_all.csv         ← every IOC deduped, with first_seen / last_seen
+│   ├── kev_overlay.csv      ← CVE <-> CISA KEV cross-reference (exploited-in-the-wild + due dates)
+│   ├── stix/*.json          ← STIX 2.1 bundle (OpenCTI / MISP / any TIP)
+│   └── blocklists/*.txt      ← one indicator per line (firewall / proxy / DNS / EDR)
+│
+├── navigator/              ← AUTO-GENERATED MITRE ATT&CK Navigator layers
+│   ├── coverage-enterprise.json  ← cumulative coverage heatmap (Enterprise)
+│   ├── coverage-ics.json    ← cumulative coverage heatmap (ICS)
+│   └── cases/*.json          ← one layer per case
 │
 ├── byActor/                ← AUTO-GENERATED view: one folder per cluster / alias
 ├── byTechnique/            ← AUTO-GENERATED view: one folder per MITRE ATT&CK ID
@@ -93,7 +107,12 @@ detection-diary/
     ├── lint_sigma.sh       ← Sigma wrapper
     ├── lint_all.sh         ← full chain wrapper
     ├── generate_index.py   ← rebuilds INDEX.md (+ README gallery block) + byActor/ + byTechnique/ + byPlatform/
-    └── generate_site.py    ← rebuilds the docs/ Pages gallery
+    ├── generate_site.py    ← rebuilds the docs/ Pages gallery (category accent + KEV badges)
+    ├── generate_kev_overlay.py  ← CVE <-> CISA KEV cross-reference (current month by default)
+    ├── generate_ioc_feed.py     ← aggregates all iocs.csv -> feeds/ (CSV + STIX + blocklists)
+    ├── generate_navigator.py    ← builds navigator/ ATT&CK coverage layers
+    ├── kev_cache/           ← local cache of the CISA KEV catalog (offline fallback)
+    └── RUNBOOK.md           ← canonical daily run order (scoped vs cumulative)
 ```
 
 > The day folders are **sharded by year/month** so the tree stays browsable and the
@@ -104,9 +123,13 @@ detection-diary/
 > frontmatter at the top of each day's `README.md`. To rebuild after adding or editing a day:
 >
 > ```bash
-> python3 tools/generate_index.py   # INDEX.md + README gallery + by* facet views
-> python3 tools/generate_site.py    # docs/ Pages gallery (index.html + data.json + thumbs)
+> python3 tools/generate_kev_overlay.py   # CISA KEV cross-ref — current month only (--all to backfill)
+> python3 tools/generate_index.py         # INDEX.md + README gallery + by* facet views
+> python3 tools/generate_site.py          # docs/ Pages gallery (index.html + data.json + thumbs)
+> python3 tools/generate_ioc_feed.py      # feeds/ aggregated IOC feed (CSV + STIX + blocklists)
+> python3 tools/generate_navigator.py     # navigator/ ATT&CK coverage layers
 > ```
+> See `tools/RUNBOOK.md` for which tools are month-scoped vs cumulative.
 >
 > Do not edit the generated files by hand — your changes will be wiped on the next regen.
 
@@ -292,4 +315,4 @@ See [`INDEX.md`](INDEX.md) for the chronological + thematic index of all cases.
 
 ## Contributing
 
-This is primarily a personal notebook, but PRs that fix typos, broken links, FP-surface notes or that tighten a r
+This is primarily a personal notebook, but PRs that fix typos, broken links, FP-surface notes or that tighten a rule's false-positive surface are welcome. Upstream-quality detections belong in [SigmaHQ](https://github.com/SigmaHQ/sigma) via PR; this repo is the lab notebook that precedes that step.
