@@ -1,0 +1,90 @@
+{
+  "name": "2026-06-07 — 2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window that makes BlackLotus-class bootkits permanently exploitable — clusters: Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1542.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window "
+    },
+    {
+      "techniqueID": "T1542.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window "
+    },
+    {
+      "techniqueID": "T1553.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window "
+    },
+    {
+      "techniqueID": "T1195.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window "
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window "
+    },
+    {
+      "techniqueID": "T1014",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window "
+    },
+    {
+      "techniqueID": "T1112",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window "
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window "
+    },
+    {
+      "techniqueID": "T1070.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

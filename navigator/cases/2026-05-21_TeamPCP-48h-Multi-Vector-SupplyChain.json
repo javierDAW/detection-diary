@@ -1,0 +1,188 @@
+{
+  "name": "2026-05-21 — 2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Worm, Nx Console VS Code Extension and the GitHub Internal Repo Breach — clusters: TeamPCP, UNC6780, Mini Shai-Hulud",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1199",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1528",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1552.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1552.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1552.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1059.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1480",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1102",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1614.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1485",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1531",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1611",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1136.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    },
+    {
+      "techniqueID": "T1098.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Wor"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

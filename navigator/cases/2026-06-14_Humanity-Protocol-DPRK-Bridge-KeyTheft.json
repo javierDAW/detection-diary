@@ -1,0 +1,104 @@
+{
+  "name": "2026-06-14 — 2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer laptop steals the multisig keys — clusters: DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    },
+    {
+      "techniqueID": "T1553.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    },
+    {
+      "techniqueID": "T1588.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    },
+    {
+      "techniqueID": "T1555",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer lap"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

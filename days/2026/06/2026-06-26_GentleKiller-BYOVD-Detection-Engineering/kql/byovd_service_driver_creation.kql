@@ -1,0 +1,36 @@
+// Title:      BYOVD Kernel Driver Service Creation from Non-Standard Path
+// Id:         day60-kql-002
+// MITRE:      T1543.003 Create or Modify System Process: Windows Service / T1562.001
+// Reference:  https://www.welivesecurity.com/en/eset-research/killing-me-gently-inside-gentlemens-edr-killer-framework/
+// Author:     Jarmi
+// Date:       2026-06-26
+// Tested on:  Defender XDR / DeviceRegistryEvents + DeviceProcessEvents
+// FP notes:   Legitimate security tooling may install drivers; baseline by publisher and path
+
+// Registry-based: Service ImagePath pointing to .sys in user-writable paths
+DeviceRegistryEvents
+| where Timestamp > ago(7d)
+| where ActionType == "RegistryValueSet"
+| where RegistryKey has @"HKLM\SYSTEM\CurrentControlSet\Services"
+| where RegistryValueName == "ImagePath"
+| where RegistryValueData endswith ".sys"
+| where RegistryValueData has_any (
+    @"\Temp\",
+    @"\AppData\",
+    @"\Users\Public\",
+    @"\ProgramData\",
+    @"\Downloads\",
+    @"\Desktop\"
+)
+| extend DriverPath = RegistryValueData
+| project
+    Timestamp,
+    DeviceName,
+    ActionType,
+    RegistryKey,
+    DriverPath,
+    InitiatingProcessFileName,
+    InitiatingProcessCommandLine,
+    InitiatingProcessAccountName,
+    ReportId
+| order by Timestamp desc

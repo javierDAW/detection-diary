@@ -1,0 +1,104 @@
+{
+  "name": "2026-06-17 — 2026-06-17_FakeInvitation-PhishKit-OTP-RMM",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delivery against US organizations — clusters: Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    },
+    {
+      "techniqueID": "T1656",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    },
+    {
+      "techniqueID": "T1598.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    },
+    {
+      "techniqueID": "T1204.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    },
+    {
+      "techniqueID": "T1111",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    },
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    },
+    {
+      "techniqueID": "T1567",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    },
+    {
+      "techniqueID": "T1497.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delive"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -1,0 +1,146 @@
+{
+  "name": "2026-05-19 — 2026-05-19_Embargo-Rust-SafeMode-BYOVD",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs) — clusters: Embargo, ALPHV, BlackCat",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1587.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1569.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1136.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1562.009",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1070.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1112",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1027.013",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1135",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    },
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

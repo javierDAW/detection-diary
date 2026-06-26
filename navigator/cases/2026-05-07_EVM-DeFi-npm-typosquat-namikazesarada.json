@@ -1,0 +1,174 @@
+{
+  "name": "2026-05-07 — 2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026) — clusters: namikazesarada010206",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1583.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1587.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1608.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1195.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1129",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1480",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1518",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1552.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1555.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1573.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

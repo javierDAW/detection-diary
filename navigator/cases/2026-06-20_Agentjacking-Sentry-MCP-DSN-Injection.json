@@ -1,0 +1,69 @@
+{
+  "name": "2026-06-20 — 2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Credential Exfiltration — clusters: Agentjacking-unattributed (Tenet Threat Labs tracking)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Cred"
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Cred"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Cred"
+    },
+    {
+      "techniqueID": "T1048",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Cred"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Cred"
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Cred"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

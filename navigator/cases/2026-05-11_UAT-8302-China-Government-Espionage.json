@@ -1,0 +1,195 @@
+{
+  "name": "2026-05-11 — 2026-05-11_UAT-8302-China-Government-Espionage",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "UAT-8302 — China-nexus government espionage with shared APT arsenal — clusters: UAT-8302, Jewelbug, REF7707, CL-STA-0049, LongNosedGoblin, UNC5174, UAT-6382, Earth Estries, Erudite Mogwai",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1059.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1047",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1574.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1055.012",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1003.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1555.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1018",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1069.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1087.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1135",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1482",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1021.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1102.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1568.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1090.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1090.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1572",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-8302 — China-nexus government espionage with shared APT arsenal"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

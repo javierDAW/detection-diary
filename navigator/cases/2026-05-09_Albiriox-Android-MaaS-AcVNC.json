@@ -1,0 +1,132 @@
+{
+  "name": "2026-05-09 — 2026-05-09_Albiriox-Android-MaaS-AcVNC",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026) — clusters: Albiriox",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1660",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1623.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1655.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1633",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1541",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1624.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1626.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1411",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1417",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1513",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1517",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1437.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1521.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1641",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    },
+    {
+      "techniqueID": "T1430",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy La"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

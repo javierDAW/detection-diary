@@ -1,0 +1,167 @@
+{
+  "name": "2026-04-30 — 2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356",
+  "versions": {
+    "attack": "16",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A) — clusters: UAT-4356, Storm-1849, ArcaneDoor",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1059.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1106",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1542.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1037",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1014",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1620",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1574.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1082",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1573.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1213",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1056.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1040",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1110.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1018",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    },
+    {
+      "techniqueID": "T1090.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Sec"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

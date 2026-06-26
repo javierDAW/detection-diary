@@ -1,0 +1,24 @@
+// Title:      Gentlemen RaaS GentlemenCollection Staging Directory
+// Id:         day60-kql-001
+// MITRE:      T1562.001 Impair Defenses: Disable or Modify Tools / T1036 Masquerading
+// Reference:  https://www.welivesecurity.com/en/eset-research/killing-me-gently-inside-gentlemens-edr-killer-framework/
+// Author:     Jarmi
+// Date:       2026-06-26
+// Tested on:  Defender XDR / DeviceFileEvents
+// FP notes:   None expected — "GentlemenCollection" has no legitimate software footprint
+
+DeviceFileEvents
+| where Timestamp > ago(7d)
+| where FolderPath has "GentlemenCollection"
+    or FileName has "GentlemenCollection"
+| project
+    Timestamp,
+    DeviceName,
+    ActionType,
+    FolderPath,
+    FileName,
+    InitiatingProcessFileName,
+    InitiatingProcessCommandLine,
+    InitiatingProcessAccountName,
+    ReportId
+| order by Timestamp desc

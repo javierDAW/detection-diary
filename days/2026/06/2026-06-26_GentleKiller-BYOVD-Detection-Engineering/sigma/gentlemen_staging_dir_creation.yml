@@ -1,0 +1,30 @@
+title: Gentlemen Ransomware GentlemenCollection Staging Directory Creation
+id: cc880f23-4ac3-4782-aa41-96b2d8aa32c1
+status: experimental
+description: |
+  Detects creation of the GentlemenCollection staging directory used by The Gentlemen RaaS
+  to pre-position EDR-killer packages (GentleKiller variants plus HexKiller, ThrottleBlood,
+  HavocKiller) before BYOVD execution. ESET Research (2026-06-18) confirmed this staging
+  pattern across all observed Gentlemen affiliate intrusions. The directory name is a durable
+  behavioral anchor that survives driver rotation across GentleKiller variants.
+  Threshold note: a single match on this rule is sufficient for investigation; no aggregation needed.
+references:
+  - https://www.welivesecurity.com/en/eset-research/killing-me-gently-inside-gentlemens-edr-killer-framework/
+  - https://www.bleepingcomputer.com/news/security/gentlemen-ransomware-uses-multiple-edr-killers-to-disable-defenses/
+author: Jarmi
+date: 2026/06/26
+tags:
+  - attack.defense-evasion
+  - attack.t1562.001
+  - attack.t1036
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection:
+    TargetFilename|contains: 'GentlemenCollection'
+  condition: selection
+falsepositives:
+  - None known; the string GentlemenCollection has no legitimate software use case
+
+level: high

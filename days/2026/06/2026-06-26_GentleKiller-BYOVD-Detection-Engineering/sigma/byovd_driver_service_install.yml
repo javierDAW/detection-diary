@@ -1,0 +1,43 @@
+title: BYOVD Vulnerable Driver Installed as Kernel Service from Suspicious Path
+id: db9e2159-847b-4c64-b53e-09943b295bd7
+status: experimental
+description: |
+  Detects the creation of a Windows service pointing to a kernel driver (.sys) dropped in
+  user-writable or temporary locations — the canonical BYOVD installation pattern used by
+  GentleKiller and associated EDR killers (HexKiller, ThrottleBlood, HavocKiller).
+  GentleKiller installs each variant's abused driver (eb.sys, nseckrnl.sys, vgk.sys,
+  stpm_old/new.sys, dmx.sys, 360netmon_wfp.sys, IMFForceDelete, G11.sys/PoisonX) as a
+  Windows service via the Service Control Manager before using DeviceIoControl to reach
+  the kernel. Detection must fire BEFORE the kill sequence begins — the only reliable
+  window when EDR telemetry is still intact. Noisy on sysadmin tools that legitimately load
+  drivers to %TEMP%; tune by adding known-good driver name exclusions.
+references:
+  - https://www.welivesecurity.com/en/eset-research/killing-me-gently-inside-gentlemens-edr-killer-framework/
+  - https://github.com/BlackSnufkin/BYOVD
+author: Jarmi
+date: 2026/06/26
+tags:
+  - attack.privilege-escalation
+  - attack.defense-evasion
+  - attack.t1543.003
+  - attack.t1562.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_sc:
+    Image|endswith: '\sc.exe'
+    CommandLine|contains|all:
+      - 'create'
+      - 'type= kernel'
+  filter_legit_path:
+    CommandLine|contains:
+      - '\Windows\System32\drivers\'
+      - '\Windows\SysWOW64\drivers\'
+  condition: selection_sc and not filter_legit_path
+falsepositives:
+  - Legitimate kernel driver installers placing a driver in a non-standard path during setup
+  - Security tooling that loads signed drivers for forensic purposes
+  - Tune by adding known driver names and publisher baselines
+
+level: high
