@@ -4,7 +4,7 @@
 
 # INDEX
 
-**59 cases** · **123 actors/clusters** · **295 ATT&CK techniques** · **16 platforms** · **71 sectors** · 2026-04-29 -> 2026-06-26
+**60 cases** · **124 actors/clusters** · **300 ATT&CK techniques** · **16 platforms** · **72 sectors** · 2026-04-29 -> 2026-06-27
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/"><img src="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/kill_chain.svg" alt="2026-06-27 kill chain" width="240"></a><br><sub><b>2026-06-27</b><br>Unattributed — CVE-2025-67038 exploitation</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/"><img src="days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/kill_chain.svg" alt="2026-06-26 kill chain" width="240"></a><br><sub><b>2026-06-26</b><br>The Gentlemen RaaS (GentleKiller operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/"><img src="days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/kill_chain.svg" alt="2026-06-25 kill chain" width="240"></a><br><sub><b>2026-06-25</b><br>Miasma-unattributed</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/"><img src="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/kill_chain.svg" alt="2026-06-24 kill chain" width="240"></a><br><sub><b>2026-06-24</b><br>Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/"><img src="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/kill_chain.svg" alt="2026-06-24 kill chain" width="240"></a><br><sub><b>2026-06-24</b><br>Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/"><img src="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/kill_chain.svg" alt="2026-06-23 kill chain" width="240"></a><br><sub><b>2026-06-23</b><br>Cloud-Insider-Recruitment-unattributed</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-22_prospy-bitter-mena/"><img src="days/2026/06/2026-06-22_prospy-bitter-mena/kill_chain.svg" alt="2026-06-22 kill chain" width="240"></a><br><sub><b>2026-06-22</b><br>BITTER · T-APT-17</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/"><img src="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/kill_chain.svg" alt="2026-06-21 kill chain" width="240"></a><br><sub><b>2026-06-21</b><br>Icarus</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/"><img src="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/kill_chain.svg" alt="2026-06-21 kill chain" width="240"></a><br><sub><b>2026-06-21</b><br>Icarus</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/"><img src="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/kill_chain.svg" alt="2026-06-20 kill chain" width="240"></a><br><sub><b>2026-06-20</b><br>Agentjacking-unattributed (Tenet Threat Labs tracking)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/"><img src="days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/kill_chain.svg" alt="2026-06-19 kill chain" width="240"></a><br><sub><b>2026-06-19</b><br>Iran-nexus (unattributed)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/"><img src="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/kill_chain.svg" alt="2026-06-18 kill chain" width="240"></a><br><sub><b>2026-06-18</b><br>Opportunistic CMS mass-exploitation (unattributed botnet)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/"><img src="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/kill_chain.svg" alt="2026-06-18 kill chain" width="240"></a><br><sub><b>2026-06-18</b><br>Opportunistic CMS mass-exploitation (unattributed botnet)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/"><img src="days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/kill_chain.svg" alt="2026-06-17 kill chain" width="240"></a><br><sub><b>2026-06-17</b><br>Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/"><img src="days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/kill_chain.svg" alt="2026-06-16 kill chain" width="240"></a><br><sub><b>2026-06-16</b><br>Qilin ransomware affiliate (Check Point CPR, medium confidence)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/"><img src="days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/kill_chain.svg" alt="2026-06-15 kill chain" width="240"></a><br><sub><b>2026-06-15</b><br>OceanLotus (APT32)</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-06</b> — 26 case(s)</summary>
+<details><summary><b>2026-06</b> — 27 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-06-27 | [Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038)](days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/) | Unattributed — CVE-2025-67038 exploitation | ot-ics, network-edge, iot |
 | 2026-06-26 | [GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Maintained EDR Killers](days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/) | The Gentlemen RaaS (GentleKiller operator) | windows |
 | 2026-06-25 | [Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack](days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/) | Miasma-unattributed | supply-chain, cloud-multi |
 | 2026-06-24 | [SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US Law Firms](days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/) | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 | windows, network-edge |

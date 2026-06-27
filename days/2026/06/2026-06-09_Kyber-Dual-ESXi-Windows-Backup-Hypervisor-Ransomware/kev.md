@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.06.25)). Generated 2026-06-26._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.06.25)). Generated 2026-06-27._
 
 **1 of 3 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 
