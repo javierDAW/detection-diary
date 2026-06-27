@@ -4,6 +4,25 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.06.27 — Day 61 — Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038)
+
+### Added
+- `days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/` — CISA added CVE-2025-67038 (CVSS 9.8) to KEV on 2026-06-23 (FCEB due 2026-06-26) after Forescout-honeypot exploitation on 2026-04-05; unauthenticated OS command injection in the EDS5000 HTTP RPC failed-auth logging path (username concatenated into a shell command, runs as root). Weekend auto-rescue → longest-gap primary slot #10 (OT-IT bridge / energy — repo first). Secondaries: #15 edge appliances, #22 cyber-physical.
+- Sigma (3): `eds5000_username_command_injection.yml` — webserver `username=`/`user=` query with shell metacharacters; `serial_device_server_anomalous_egress.yml` — firewall outbound from device-server net to non-internal dst; `eds5000_syslog_shell_after_authfail.yml` — syslog shell/downloader marker co-occurring with auth-failure.
+- KQL (4): `eds5000_username_injection_proxy.kql`, `eds5000_shell_after_authfail_syslog.kql`, `eds5000_anomalous_egress.kql`, `serial_device_management_recon.kql` — Sentinel CommonSecurityLog/Syslog detection of injection, on-device shell, anomalous egress, and external recon.
+- YARA (1 file, 2 rules): `eds5000_bridgebreak_exploit.yar` — captured-payload/PoC/honeypot text detectors for the injection signature and the BRIDGE:BREAK toolset.
+- Suricata (1 file, 6 sids): `eds5000_bridgebreak.rules` (9610001-9610006) — URI + POST-body injection, root-shell output egress, second-stage fetch, Lantronix recon, Ubiquiti UniFi OS chain probe.
+- PEAK hunts (3): exposure + exploitation attempts (H1), device-as-pivot egress (H2), cyber-physical sensor concealment (H3).
+- `iocs.csv` (16 entries) — CVEs, exploitation markers, firmware baselines, behavioral anchors (no public C2 IP/hash; CVE/version/behavior-based).
+- `kev.md` — 4/4 CVEs on CISA KEV (CVE-2025-67038 + Ubiquiti UniFi OS chain CVE-2026-34908/34909/34910), added 2026-06-23, due 2026-06-26.
+- `kill_chain.svg` — template A, canonical palette, victim OT estate vs attacker operations, ICS (T08xx) impact lane, verifier x2 PASS.
+
+### Pedagogy
+- The IT/OT serial bridge is a man-in-the-middle on the sensor wire — root on it means lying to the historian about the physical world.
+- With no host EDR on embedded Linux, syslog + network-behavior baselining are the telemetry; any device-server egress is high-signal.
+- Concealment defeats log-based detection — only independent process-integrity reference catches manipulated sensor readings.
+- A patch is a disclosure event: capable actors diff fixes and exploit before the write-up; reduce exposure first, then patch.
+
 ## 2026.06.26 — Day 60 — GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Maintained EDR Killers
 
 ### Added

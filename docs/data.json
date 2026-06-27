@@ -1,5 +1,80 @@
 [
  {
+  "date": "2026-06-27",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge",
+  "title": "Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038)",
+  "clusters": [
+   "Unattributed — CVE-2025-67038 exploitation"
+  ],
+  "country": "Unknown — targeted, non-botnet activity",
+  "platforms": [
+   "ot-ics",
+   "network-edge",
+   "iot"
+  ],
+  "sectors": [
+   "energy",
+   "manufacturing",
+   "healthcare",
+   "transportation",
+   "utilities",
+   "government"
+  ],
+  "techniques": [
+   "T1190",
+   "T1059.004",
+   "T1133",
+   "T1210",
+   "T1090",
+   "T1041",
+   "T1571",
+   "T1601",
+   "T1595.002",
+   "T0883",
+   "T0822",
+   "T0855",
+   "T0856",
+   "T0832",
+   "T0814",
+   "T0880"
+  ],
+  "tech_count": 16,
+  "tldr": "On 2026-06-23 CISA added CVE-2025-67038 to its Known Exploited Vulnerabilities catalog and gave U.S. federal agencies until 2026-06-26 to remediate. The flaw is an unauthenticated OS command injection (CVSS 9.8) in the Lantronix EDS5000 serial-to-IP device server: the HTTP RPC module shells out to write a log when authentication fails, and the client-supplied `username` is concatenated into that c",
+  "thumb": "thumbs/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge.svg",
+  "case_rel": "../days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Unattributed — CVE-2025-67038 exploitation",
+  "cve_count": 4,
+  "kev_count": 4,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-67038",
+    "due": "2026-06-26",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-34908",
+    "due": "2026-06-26",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-34909",
+    "due": "2026-06-26",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-34910",
+    "due": "2026-06-26",
+    "ransom": false
+   }
+  ],
+  "q": "lantronix eds5000 bridge:break: root command injection in a serial-to-ip ot bridge (cve-2025-67038) unattributed — cve-2025-67038 exploitation unknown — targeted, non-botnet activity ot-ics network-edge iot energy manufacturing healthcare transportation utilities government t1190 t1059.004 t1133 t1210 t1090 t1041 t1571 t1601 t1595.002 t0883 t0822 t0855 t0856 t0832 t0814 t0880 ot / ics cve-2025-67038 cve-2026-34908 cve-2026-34909 cve-2026-34910"
+ },
+ {
   "date": "2026-06-26",
   "year": "2026",
   "month": "2026-06",
