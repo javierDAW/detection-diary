@@ -53,7 +53,19 @@
         .fhead   { fill: #b8e0b8; }
         .fsub    { fill: #cce4cc; }
       }
-    </style>
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+</style>
     <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" fill="#4a5566"/>
     </marker>
@@ -243,4 +255,6 @@
   <text x="32" y="1154" class="fsub">KQL ×3:    wscript+js + .icu POST correlation (stages 3-8)  ·  Run-key Edge masquerade hunt (stage 5)  ·  .icu DNS + POST correlation (stage 8)</text>
   <text x="32" y="1170" class="fsub">YARA ×1 (uac0057_oysterfresh_js_loader, stage 3)  ·  Suricata 1 file 5 sids (.icu DNS/SNI/host/POST/UA, stages 3+8)  ·  PEAK hunts ×3 (H1 stage 3, H2 stage 5, H3 stage 8)</text>
   <text x="32" y="1184" class="fsub">IOCs (iocs.csv): family-name strings, persistence regkeys, persistence paths, .icu TLD anchor, decoder primitives, CVE-2024-42009 feeder, prior-campaign references</text>
+
+  <rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
 </svg>

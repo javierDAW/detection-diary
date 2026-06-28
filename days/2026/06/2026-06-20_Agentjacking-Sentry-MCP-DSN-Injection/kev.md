@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.06.25)). Generated 2026-06-27._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.06.25)). Generated 2026-06-28._
 
 **0 of 4 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 

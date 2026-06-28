@@ -1,0 +1,36 @@
+title: Neunative Residential-Proxy SDK Director Registration
+id: 3607cf26-5f78-4d3a-80fd-e97b77c81f9e
+status: experimental
+description: |
+  Detects the Neunative residential-proxy SDK enrolling with its director / load balancer.
+  The SDK (bundled inside the RoboVPN free VPN and other consumer apps) sends an HTTP GET to
+  lb.gmslb[.]net over TLS with the path /regdev and query parameters that include sdkv=8.0.36
+  and inst=<uuid>, using the literal User-Agent string "SDK" while otherwise copying a
+  Chrome Accept header. The director then returns a relay catalog. This is the enrollment
+  step that turns the host into a proxy exit node. Tune the proxy/web logsource to your
+  forward-proxy or TLS-inspection telemetry.
+references:
+  - https://github.com/deepfield/public-research/blob/main/reports/2026-06-18-robovpn-neunative.md
+  - https://blog.xlab.qianxin.com/long-live-the-vo1d_botnet/
+author: Jarmi
+date: 2026/06/28
+tags:
+  - attack.command-and-control
+  - attack.resource-development
+  - attack.t1071.001
+  - attack.t1496.002
+logsource:
+  category: proxy
+detection:
+  selection_path:
+    cs-uri-stem|contains: '/regdev'
+    cs-uri-query|contains: 'sdkv='
+  selection_ua:
+    cs-user-agent: 'SDK'
+  selection_host:
+    cs-host|contains: 'gmslb'
+  condition: selection_path and (selection_ua or selection_host)
+falsepositives:
+  - Internal tooling that legitimately sets the User-Agent to the literal string "SDK" and
+    requests a /regdev endpoint. Extremely unlikely in enterprise web telemetry.
+level: high

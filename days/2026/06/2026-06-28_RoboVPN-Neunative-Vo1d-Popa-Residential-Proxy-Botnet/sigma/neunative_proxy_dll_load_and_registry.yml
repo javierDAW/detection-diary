@@ -1,0 +1,33 @@
+title: Neunative Proxy SDK DLL Load or Registry Enrollment
+id: c88eec8a-4284-4085-ae80-c5ef0de514eb
+status: experimental
+description: |
+  Detects the on-host footprint of the Neunative residential-proxy SDK: the native proxy DLL
+  (NeunativeWin.dll) or its .NET P/Invoke shim (NeunativeNG.dll) being loaded by any process,
+  or the SDK persisting its per-install UUID under the registry key HKCU\Software\Neunative.
+  Either event indicates a proxyware/exit-node SDK present on a managed endpoint. The relay
+  activates while the host's VPN is idle or disconnected, so absence of active relay traffic
+  during triage does not rule out enrollment. Two atomic Sysmon sources (image_load,
+  registry_set) are combined here because both are durable host anchors for the same SDK.
+references:
+  - https://github.com/deepfield/public-research/blob/main/reports/2026-06-18-robovpn-neunative.md
+author: Jarmi
+date: 2026/06/28
+tags:
+  - attack.resource-development
+  - attack.persistence
+  - attack.t1496.002
+  - attack.t1574
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection_imageload:
+    ImageLoaded|endswith:
+      - '\NeunativeWin.dll'
+      - '\NeunativeNG.dll'
+  condition: selection_imageload
+falsepositives:
+  - Authorized, user-consented bandwidth-sharing software on a non-managed personal device.
+    On managed endpoints this SDK should not be present.
+level: high

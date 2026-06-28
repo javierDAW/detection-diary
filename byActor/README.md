@@ -36,6 +36,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [CloudZ](./cloudz/) | 1 |
 | [Cordial Spider (CrowdStrike)](./cordial-spider-crowdstrike/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
+| [Cyberkick Ltd. (RoboVPN)](./cyberkick-ltd-robovpn/) | 1 |
 | [DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)](./dprk-linked-intrusion-set-quantstamp-lazarus-cluster-overlap-not-definitively-attributed/) | 1 |
 | [Dadsec](./dadsec/) | 1 |
 | [DevilNFC](./devilnfc/) | 1 |
@@ -132,6 +133,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |
 | [VENOMOUS#HELPER (Securonix)](./venomous-helper-securonix/) | 1 |
+| [Vo1d/Popa proxy operator](./vo1d-popa-proxy-operator/) | 1 |
 | [Void Arachne](./void-arachne/) | 1 |
 | [Warlock](./warlock/) | 1 |
 | [namikazesarada010206](./namikazesarada010206/) | 1 |

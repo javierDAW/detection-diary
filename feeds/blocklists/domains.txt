@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-06-27 06:54 UTC
+# generated 2026-06-28 09:58 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -22,6 +22,7 @@ advisory-tracker.com
 api.anthropic.com
 api.openai.com
 api.securehubcloud.com
+api.vpns.robovpn.com
 arweave.net
 ashx.lhlsjcb.com
 attachedfile.com
@@ -44,6 +45,7 @@ cumm.info
 d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
 data-form-o5pu.p-ntz8agp6.workers.dev
 ddjidd564.github.io
+download.robovpn.com
 drivelivelime.com
 en.cumm.info
 encryption-plug-in-signal.com-ae.net
@@ -61,6 +63,7 @@ getceptionparty.de
 getsession.org
 git-tanstack.com
 globalretailbrands.com.au
+gmslb.net
 goldsky.arweave.net
 greatness-marketing.top
 gruta.com.mx
@@ -73,6 +76,7 @@ k135neflez.westus3.azure.clickhouse.cloud
 kaztelecom.shop
 lapas.live
 lapas.lv
+lb.gmslb.net
 leadingfilipinoteams.com
 mail.t-w.dev
 mcagov.cc
@@ -97,6 +101,8 @@ redviper.com
 regularsports.org
 relaxmode.org
 replit.dev
+robovpn-windows-default-rtdb.firebaseio.com
+robovpn.com
 roldco.com
 round-cherry-4418.hellohiall.workers.dev
 saidozdemir.com
@@ -107,6 +113,7 @@ singtelcom.site
 socifiapp.com
 spicynagets.shop
 sslzeromail.run.place
+star-layer.com
 sudsmama.com
 t-w.dev
 t.m-kosche.com
@@ -124,6 +131,7 @@ ukrguard.org
 ukrvarta.online
 update-kaspersky.workers.dev
 vefbdzzuaadnascpeqcn.supabase.co
+viki-play.com
 vnc.kcii2.com
 vngz3ntdrb.us-east1.gcp.clickhouse.cloud
 vnt.wherewego.top

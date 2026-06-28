@@ -51,7 +51,19 @@
         .detect-line  { fill: #c9d1d9; }
         .anchor-mono  { fill: #8b949e; }
       }
-    </style>
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+</style>
     <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
     </marker>
@@ -230,4 +242,6 @@
   <text x="80" y="1224" class="detect-line">Sigma: node_headless_appdata.yml · tuktuk_sideload_signed_apps.yml · lsass_dump_comsvcs_ordinal.yml</text>
   <text x="80" y="1242" class="detect-line">KQL: etherrat_staging_chain.kql · tuktuk_saas_exotics_burst.kql · gotoresolve_install_dc_plus_gpo_drop.kql</text>
   <text x="80" y="1260" class="detect-line">YARA: tuktuk_sideload_log4net_2026.yar  ·  Suricata: etherrat_tuktuk_c2_anchors.rules  ·  Hunts: H1, H2, H3</text>
+
+  <rect class="acc-crypto-defi" x="0" y="0" width="880" height="8"/>
 </svg>

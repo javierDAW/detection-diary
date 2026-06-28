@@ -4,6 +4,27 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.06.28 — Day 62 — RoboVPN / Neunative: A Free VPN That Ships a Residential-Proxy Botnet SDK (Vo1d/Popa backend)
+
+### Added
+- `days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/` — Nokia Deepfield ERT (2026-06-18) reverse-engineered the free Windows VPN RoboVPN (Cyberkick Ltd.) and found a bundled residential-proxy SDK, Neunative, that turns the host into an exit node; the relay activates while the VPN is idle/disconnected and is stopped on connect, so traffic exits through the user's real residential IP. Same director (`gmslb[.]net`) and TLV protocol as the Vo1d/Popa Android-TV proxy botnet (XLab ~1.6M devices); proxy network publicly linked (Qurium/Synthient/Krebs) to NetNut / Alarum Technologies. Weekend auto-rescue → longest-gap primary slot #21 (DDoS / infra abuse — residential proxy networks; repo first). Secondaries: #7 supply chain (SDK shipped as a NuGet dependency), #19 malware RE (static RE of the native + .NET SDK).
+- Sigma (3): `neunative_director_registration_useragent.yml` — director `/regdev` GET with UA `SDK` + `sdkv=`; `neunative_proxy_dll_load_and_registry.yml` — load of NeunativeWin/NG.dll; `proxyware_nonstandard_port6000_beacon.yml` — process beacon to non-standard TCP 6000 (non-X11).
+- KQL (4): `neunative_director_registration.kql`, `neunative_dll_image_load.kql`, `proxyware_port6000_relay_beacon.kql`, `adb_loopback_5555_exposure.kql` — Defender XDR detection of enrollment, SDK DLL load, port-6000 relay fan-out, and ADB `0.0.0.0`/loopback:5555 exposure.
+- YARA (1 file, 3 rules): `neunative_proxy_sdk.yar` — native SDK exports + director/registry markers, .NET shim DllImports, and host-artifact text detector.
+- Suricata (1 file, 6 sids): `neunative_proxy.rules` (9620001-9620006) — director registration GET, UA `SDK`, relay TLS to known fronts on 6000, behavioral port-6000 threshold, director DNS, ADB 5555 reach.
+- PEAK hunts (3): register-then-relay (H1), relay-active-while-VPN-idle (H2), ADB 5555 exit-node foothold (H3).
+- `iocs.csv` (28 entries) — 5 SHA256, director `gmslb[.]net`, relay fronts `viki-play[.]com`/`star-layer[.]com`, port 6000/5555, registry/log/service host indicators, app infra, 3 decaying downstream loader IPs. No CVE (design/abuse + supply-chain case) → no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette + `acc-malware-re` accent, user-host vs operator-infrastructure lanes, verifier x2 PASS.
+
+### Maintenance
+- v11 SVG accent backfill committed (`tools/svg_accent.py` over ~62 existing `kill_chain.svg`); June `kev.md` set refreshed by the month-scoped KEV overlay; indexes/site/feeds/navigator regenerated cumulatively.
+
+### Pedagogy
+- A residential proxy network and a botnet differ only by consent — and the backend never checks it (same relay list for EULA- or malware-enrolled devices).
+- Durable anchors are OS-independent behavior: director domain + relay on fixed non-standard port 6000; the ~360-host relay fleet rotates and IP blocklists age out.
+- Inverted proxyware: "the VPN is off" is the relay's ON state — verify activation logic before declaring a sample clean, and run the sandbox past the 30-90 minute delay.
+- Denylist destination filters fail by omission: `0.0.0.0/8` and port 5555 left open turn each exit node into an ADB-reachable foothold.
+
 ## 2026.06.27 — Day 61 — Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038)
 
 ### Added
