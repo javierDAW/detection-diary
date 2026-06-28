@@ -1,0 +1,30 @@
+# Suricata 7.x rules — Neunative residential-proxy SDK (RoboVPN / Vo1d-Popa backend)
+# Author:    Jarmi
+# Date:      2026-06-28
+# Reference: https://github.com/deepfield/public-research/blob/main/reports/2026-06-18-robovpn-neunative.md
+#
+# Variables used (add to suricata.yaml if not present):
+#   HOME_NET     - your internal network range
+#   EXTERNAL_NET - !$HOME_NET
+#
+# SIDs 9620001-9620006 reserved for this case (Day 62)
+# Indicators decay: the ~360-host relay fleet rotates; anchor on the director, the /regdev
+# registration, the UA "SDK", and the port-6000 relay behavior rather than on relay IPs.
+
+# Rule 1: SDK director registration GET (path + sdkv query) to gmslb.net
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PROFCIBER Neunative proxy SDK director registration (/regdev)"; flow:to_server,established; http.method; content:"GET"; http.uri; content:"/regdev"; nocase; content:"sdkv="; http.host; content:"gmslb.net"; nocase; classtype:trojan-activity; reference:url,github.com/deepfield/public-research; sid:9620001; rev:1; metadata:attack_target Client, confidence High, created_at 2026_06_28, signature_severity Major;)
+
+# Rule 2: SDK registration distinctive User-Agent "SDK"
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PROFCIBER Neunative proxy SDK registration User-Agent SDK"; flow:to_server,established; http.uri; content:"/regdev"; nocase; http.user_agent; content:"SDK"; depth:3; isdataat:!1,relative; classtype:trojan-activity; sid:9620002; rev:1; metadata:attack_target Client, confidence High, created_at 2026_06_28, signature_severity Major;)
+
+# Rule 3: TLS connection to a relay front domain on the relay port
+alert tls $HOME_NET any -> $EXTERNAL_NET 6000 (msg:"PROFCIBER Neunative proxy relay TLS to known front domain port 6000"; flow:to_server,established; tls.sni; pcre:"/(viki-play|star-layer)\.com$/i"; classtype:trojan-activity; sid:9620003; rev:1; metadata:attack_target Client, confidence Medium, created_at 2026_06_28, signature_severity Major;)
+
+# Rule 4: Any outbound TLS to non-standard port 6000 (lower-confidence behavioral)
+alert tls $HOME_NET any -> $EXTERNAL_NET 6000 (msg:"PROFCIBER Possible proxyware relay - outbound TLS to non-standard port 6000"; flow:to_server,established; threshold:type both, track by_src, count 5, seconds 600; classtype:trojan-activity; sid:9620004; rev:1; metadata:attack_target Client, confidence Low, created_at 2026_06_28, signature_severity Minor;)
+
+# Rule 5: DNS query for the director apex gmslb.net
+alert dns $HOME_NET any -> any any (msg:"PROFCIBER Neunative proxy SDK director DNS query (gmslb.net)"; dns.query; content:"gmslb.net"; nocase; classtype:trojan-activity; sid:9620005; rev:1; metadata:attack_target Client, confidence High, created_at 2026_06_28, signature_severity Major;)
+
+# Rule 6: ADB reach on port 5555 toward 0.0.0.0/loopback (exit-node foothold gap)
+alert tcp $HOME_NET any -> [0.0.0.0/8,127.0.0.0/8] 5555 (msg:"PROFCIBER Proxy exit-node ADB foothold reach (0.0.0.0/loopback:5555)"; flow:to_server; classtype:attempted-admin; reference:url,synthient.com/blog/a-broken-system-fueling-botnets; sid:9620006; rev:1; metadata:attack_target Client, confidence Medium, created_at 2026_06_28, signature_severity Major;)

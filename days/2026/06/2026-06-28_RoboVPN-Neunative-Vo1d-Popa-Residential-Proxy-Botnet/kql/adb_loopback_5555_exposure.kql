@@ -1,0 +1,14 @@
+// Title:      ADB 0.0.0.0 / Loopback Port 5555 Exposure on Proxy Exit Node
+// Id:         day62-kql-004
+// MITRE:      T1133 External Remote Services / T1584.005 Compromise Infrastructure: Botnet
+// Reference:  https://synthient.com/blog/a-broken-system-fueling-botnets
+// Author:     Jarmi
+// Date:       2026-06-28
+// Tested on:  Microsoft Defender XDR (DeviceNetworkEvents) — for IoT/edge add network sensor feed
+// FP notes:   Legitimate local ADB debugging by developers; scope to non-dev device groups.
+DeviceNetworkEvents
+| where Timestamp > ago(14d)
+| where RemotePort == 5555
+| where RemoteIP in ("0.0.0.0", "127.0.0.1") or RemoteIPType == "Loopback"
+| project Timestamp, DeviceName, InitiatingProcessFileName, RemoteIP, RemotePort, ActionType
+| sort by Timestamp asc

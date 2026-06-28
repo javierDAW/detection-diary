@@ -48,7 +48,19 @@
         .anchor-foot{fill:#8b949e}
         .arrow{stroke:#8b949e}
       }
-    </style>
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+</style>
     <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#444"/></marker>
     <marker id="arrc2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="#d0a200"/></marker>
   </defs>
@@ -212,4 +224,6 @@
   <text class="anchor-line" x="610" y="1190">- Real Linux kworker is kernel-space -- any user-space match is masquerading</text>
 
   <text class="anchor-foot" x="50" y="1218">PwC TI + Lumen Black Lotus Labs (2026-05-21) - 3 Sigma + 3 KQL + 1 YARA (3 rules) + 1 Suricata (10 sids) + 3 PEAK hunts - ground truth: this folder.</text>
+
+  <rect class="acc-edge-network" x="0" y="0" width="880" height="8"/>
 </svg>

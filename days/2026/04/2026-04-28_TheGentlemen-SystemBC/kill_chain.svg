@@ -37,7 +37,19 @@
         .det-title  { fill: #79c0ff; }
         .det-line   { fill: #c9d1d9; }
       }
-    </style>
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+</style>
     <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
     </marker>
@@ -150,4 +162,6 @@
   <text x="56" y="1008" class="det-line">• Watch for &quot;rundll32 comsvcs.dll, MiniDump&quot; on Windows Security 4688 / Sysmon 1</text>
   <text x="56" y="1028" class="det-line">• DC Security 5136 / 5137 GPO attribute changes outside documented GPO-admin windows</text>
   <text x="56" y="1048" class="det-line">• &quot;bcdedit /set recoveryenabled No&quot; and &quot;vssadmin delete shadows /all /quiet&quot; on Sysmon EID 1</text>
+
+  <rect class="acc-other" x="0" y="0" width="880" height="8"/>
 </svg>

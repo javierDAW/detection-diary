@@ -4,11 +4,12 @@
 
 # Techniques: T1090.002
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-28 | RoboVPN / Neunative: A Free VPN That Ships a Residential-Proxy Botnet SDK on the Vo1d/Popa Backend | Vo1d/Popa proxy operator · Cyberkick Ltd. (RoboVPN) | [`2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/`](../../days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/) |
 | 2026-05-16 | Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters | UAT-8616 · Talos Cluster 1 (Tas9er Godzilla) · Talos Cluster 2 (Behinder Base64) · Talos Cluster 3 (XenShell + Behinder) · Talos Cluster 4 (Godzilla variant) · Talos Cluster 5 (AdaptixC2 shadowcore) · Talos Cluster 6 (Sliver mTLS) · Talos Cluster 7 (XMRig + Cobalt Strike) · Talos Cluster 8 (NimPlant-variant agent1) · Talos Cluster 9 (gsocket + XMRig) · Talos Cluster 10 (vManage credential extractor) | [`2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/`](../../days/2026/05/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/) |
 | 2026-05-11 | UAT-8302 — China-nexus government espionage with shared APT arsenal | UAT-8302 · Jewelbug · REF7707 · CL-STA-0049 · LongNosedGoblin · UNC5174 · UAT-6382 · Earth Estries · Erudite Mogwai | [`2026-05-11_UAT-8302-China-Government-Espionage/`](../../days/2026/05/2026-05-11_UAT-8302-China-Government-Espionage/) |
 | 2026-05-04 | Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026) | Sandworm overlap · Static Tundra · TEMP.Veles · C0063 | [`2026-05-04_C0063-Poland-Wiper/`](../../days/2026/05/2026-05-04_C0063-Poland-Wiper/) |

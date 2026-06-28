@@ -4,11 +4,12 @@
 
 # Techniques: T1573.002
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-28 | RoboVPN / Neunative: A Free VPN That Ships a Residential-Proxy Botnet SDK on the Vo1d/Popa Backend | Vo1d/Popa proxy operator · Cyberkick Ltd. (RoboVPN) | [`2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/`](../../days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/) |
 | 2026-06-08 | OP-512 — China-linked IIS web shell framework with per-deployment cryptographic uniqueness | OP-512 | [`2026-06-08_OP-512-China-IIS-WebShell-Framework/`](../../days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/) |
 | 2026-05-08 | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026) | CloudZ · Pheno | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink/`](../../days/2026/05/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026) | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026/05/2026-05-07_QLNX-Quasar-Linux-RAT/) |

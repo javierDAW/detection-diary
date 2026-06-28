@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**60 cases** · **124 actors/clusters** · **300 ATT&CK techniques** · **16 platforms** · **72 sectors** · 2026-04-29 -> 2026-06-27
+**61 cases** · **126 actors/clusters** · **302 ATT&CK techniques** · **16 platforms** · **72 sectors** · 2026-04-29 -> 2026-06-28
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/"><img src="days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/kill_chain.svg" alt="2026-06-28 kill chain" width="240"></a><br><sub><b>2026-06-28</b><br>Vo1d/Popa proxy operator · Cyberkick Ltd. (RoboVPN)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/"><img src="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/kill_chain.svg" alt="2026-06-27 kill chain" width="240"></a><br><sub><b>2026-06-27</b><br>Unattributed — CVE-2025-67038 exploitation</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/"><img src="days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/kill_chain.svg" alt="2026-06-26 kill chain" width="240"></a><br><sub><b>2026-06-26</b><br>The Gentlemen RaaS (GentleKiller operator)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/"><img src="days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/kill_chain.svg" alt="2026-06-25 kill chain" width="240"></a><br><sub><b>2026-06-25</b><br>Miasma-unattributed</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/"><img src="days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/kill_chain.svg" alt="2026-06-25 kill chain" width="240"></a><br><sub><b>2026-06-25</b><br>Miasma-unattributed</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/"><img src="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/kill_chain.svg" alt="2026-06-24 kill chain" width="240"></a><br><sub><b>2026-06-24</b><br>Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/"><img src="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/kill_chain.svg" alt="2026-06-23 kill chain" width="240"></a><br><sub><b>2026-06-23</b><br>Cloud-Insider-Recruitment-unattributed</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-22_prospy-bitter-mena/"><img src="days/2026/06/2026-06-22_prospy-bitter-mena/kill_chain.svg" alt="2026-06-22 kill chain" width="240"></a><br><sub><b>2026-06-22</b><br>BITTER · T-APT-17</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

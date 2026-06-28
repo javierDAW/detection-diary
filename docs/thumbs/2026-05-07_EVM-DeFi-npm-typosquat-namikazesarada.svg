@@ -37,7 +37,19 @@
         .anchor-sub { fill: #8b949e; }
         .anchor-bg  { fill: #0c2d6b; stroke: #1f6feb; }
       }
-    </style>
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+</style>
     <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
     </marker>
@@ -191,4 +203,6 @@
   <text x="60" y="1102" class="anchor-sub">--ignore-scripts is NOT a defence in 2026. On-require activation bypasses it.</text>
   <text x="60" y="1122" class="anchor-sub">If MNEMONIC / DEPLOYER_KEY exfiltrated, move funds on-chain FIRST, clean host SECOND.</text>
   <text x="60" y="1142" class="anchor-sub">QLNX-class developer-host implants are the upstream cause of this typosquat class. Detect both ends.</text>
+
+  <rect class="acc-crypto-defi" x="0" y="0" width="880" height="8"/>
 </svg>

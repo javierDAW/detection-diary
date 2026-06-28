@@ -1,0 +1,37 @@
+title: Proxyware Relay Beacon to Non-Standard Port 6000
+id: b441bd17-3569-46dd-bf82-3c26cf269bdf
+status: experimental
+description: |
+  Detects a process initiating an outbound connection to remote TCP port 6000 from a binary
+  that is not an X11 client. The Neunative residential-proxy SDK relays third-party traffic to
+  its fleet of ~360 datacenter relays (sN.<front>.com) on TCP 6000 using a proprietary TLV
+  protocol over TLS. Port 6000 is otherwise associated with X11; outside of X11 forwarding it
+  is an uncommon enterprise destination and, combined with rotating remote hosts, indicates a
+  proxyware relay. This rule pushes any rate/host-cardinality thresholding to the SIEM (alert
+  on repeated connections to many distinct port-6000 hosts from one process); explain there.
+  Allowlist legitimate X11/forwarding hosts before deployment.
+references:
+  - https://github.com/deepfield/public-research/blob/main/reports/2026-06-18-robovpn-neunative.md
+author: Jarmi
+date: 2026/06/28
+tags:
+  - attack.command-and-control
+  - attack.t1571
+  - attack.t1090.002
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Initiated: 'true'
+    DestinationPort: 6000
+  filter_x11:
+    Image|endswith:
+      - '\vcxsrv.exe'
+      - '\Xming.exe'
+      - '\ssh.exe'
+  condition: selection and not filter_x11
+falsepositives:
+  - X11 servers / forwarding not covered by the filter list. Add your X11 clients to filter_x11.
+  - Legacy applications that genuinely use TCP 6000.
+level: medium

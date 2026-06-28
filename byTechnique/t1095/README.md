@@ -4,10 +4,11 @@
 
 # Techniques: T1095
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-28 | RoboVPN / Neunative: A Free VPN That Ships a Residential-Proxy Botnet SDK on the Vo1d/Popa Backend | Vo1d/Popa proxy operator · Cyberkick Ltd. (RoboVPN) | [`2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/`](../../days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/) |
 | 2026-05-03 | BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026) | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026/05/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |
 | 2026-05-02 | Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026) | Nexcorium · Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026/05/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |

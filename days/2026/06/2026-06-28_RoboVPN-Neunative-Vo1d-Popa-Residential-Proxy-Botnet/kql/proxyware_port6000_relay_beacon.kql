@@ -1,0 +1,18 @@
+// Title:      Proxyware Relay Beacon to Non-Standard Port 6000
+// Id:         day62-kql-003
+// MITRE:      T1571 Non-Standard Port / T1090.002 Proxy: External Proxy
+// Reference:  https://github.com/deepfield/public-research/blob/main/reports/2026-06-18-robovpn-neunative.md
+// Author:     Jarmi
+// Date:       2026-06-28
+// Tested on:  Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes:   Allowlist X11 / forwarding hosts in KnownX11Procs before alerting.
+let KnownX11Procs = dynamic(["vcxsrv.exe", "Xming.exe", "ssh.exe"]);
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemotePort == 6000 and ActionType == "ConnectionSuccess"
+| where InitiatingProcessFileName !in~ (KnownX11Procs)
+| summarize Connections = count(), DistinctHosts = dcount(RemoteIP),
+            Hosts = make_set(RemoteIP, 30), FrontDomains = make_set(RemoteUrl, 30)
+        by DeviceName, InitiatingProcessFileName
+| where DistinctHosts >= 3
+| sort by DistinctHosts desc

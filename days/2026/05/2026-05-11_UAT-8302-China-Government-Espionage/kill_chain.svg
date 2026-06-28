@@ -37,7 +37,19 @@
         .det-title  { fill: #79c0ff; }
         .det-line   { fill: #c9d1d9; }
       }
-    </style>
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+</style>
     <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
     </marker>
@@ -177,4 +189,6 @@
   <text x="56" y="1108" class="det-line">• kql/uat8302_netdraft_graph_egress.kql — non-browser process beaconing graph.microsoft.com from ProgramData\Microsoft\Microsoft</text>
   <text x="56" y="1128" class="det-line">• kql/uat8302_deaddrop_resolver_chain.kql — GitHub or GameSpot pull followed within 5 min by a derived public IP</text>
   <text x="56" y="1148" class="det-line">• suricata/uat8302_c2_domains_subnet.rules — TLS SNI + HTTP host anchors + bulletproof subnet egress (sids 8110001-8110005)</text>
+
+  <rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
 </svg>

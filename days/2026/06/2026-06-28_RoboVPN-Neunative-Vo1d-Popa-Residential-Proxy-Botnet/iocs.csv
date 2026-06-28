@@ -1,0 +1,31 @@
+type,value,context,confidence,source
+note,RoboVPN/Neunative residential-proxy SDK on the Vo1d/Popa backend — Day 62 2026-06-28,Case anchor note,high,Nokia Deepfield ERT 2026-06-18
+sha256,ea40641a086bfa4e077b066e2f2e92e6c5d777153aea2bb5405382b8b513ae0d,RoboVPN.msi installer (Cyberkick Ltd.; WiX 3.14; built 2024-03-31),high,Nokia Deepfield ERT 2026-06-18
+sha256,6f686ba628de3bf1ebfb8504e2e966334b02505c546bb9d2ad020f5f5d1d01b7,NeunativeWin.dll native x64 proxy SDK (registration + tunnel relay; 598 functions),high,Nokia Deepfield ERT 2026-06-18
+sha256,74beab8ae664958742f6c5d33c1a50bd06d4137147e42c0b94b7be2f8ec98ebb,NeunativeNG.dll .NET P/Invoke shim (NuGet NeunativeNG 8.0.36),high,Nokia Deepfield ERT 2026-06-18
+sha256,4098f6a407b7dd8ddb3a30b225255ba9e9035136e6eabfde208242d73c88ecb5,RoboVPN.Connector.Core.dll (contains ProxyService OpenPeer/ClosePeer),high,Nokia Deepfield ERT 2026-06-18
+sha256,d7d37ce6f7bdaf6e7ddd6e3a89ff930b79672f30378367121fcee6cc61f2334c,RoboVPN.dll main WPF application,high,Nokia Deepfield ERT 2026-06-18
+domain,lb.gmslb.net,Director / load balancer for SDK registration (TLS 443); shared with Vo1d/Popa,high,Nokia Deepfield ERT 2026-06-18
+domain,gmslb.net,Director apex; hardcoded Vo1d/Popa C2 domain (Android TV fleet),high,XLab 2025-03 / Nokia Deepfield ERT
+domain,viki-play.com,Relay fleet front domain (sN.viki-play.com:6000),high,Nokia Deepfield ERT 2026-06-18
+domain,star-layer.com,Relay fleet front domain (sN.star-layer.com:6000),high,Nokia Deepfield ERT 2026-06-18
+url,/regdev?usr=&userid=&dev_ip=&sdkv=8.0.36&inst=,SDK registration request path to the director,high,Nokia Deepfield ERT 2026-06-18
+string,User-Agent: SDK,Registration HTTP user-agent (Chrome-perfect Accept header but UA is literally SDK),high,Nokia Deepfield ERT 2026-06-18
+string,sN.<front>.com:6000,Relay hostname pattern — ~360 datacenter relays across ~30 front domains on TCP 6000,high,Nokia Deepfield ERT 2026-06-18
+note,Relay protocol: proprietary TLV over TLS on TCP 6000; opcodes 0x5060 Register / 0xa070 OpenTunnel / 0xc000 TunnelMessage / 0xcccc CloseTunnel,Network behavior anchor,high,Nokia Deepfield ERT 2026-06-18
+regkey,HKCU\Software\Neunative,SDK UUID persistence (_uuid generated with UuidCreate),high,Nokia Deepfield ERT 2026-06-18
+path,%AppData%\NeuNative.log,Neunative SDK log file,high,Nokia Deepfield ERT 2026-06-18
+path,%AppData%\logNeunative.txt,Neunative SDK log file,high,Nokia Deepfield ERT 2026-06-18
+string,RoboVPN_WG0,WireGuard service name used as the advertised VPN front (also RoboVPN_WG),medium,Nokia Deepfield ERT 2026-06-18
+string,NeunativeNG 8.0.36,NuGet package id+version of the proxy SDK shim,high,Nokia Deepfield ERT 2026-06-18
+string,android-native-sdk,PDB path root of the native SDK (cross-platform proxy SDK build tree),medium,Nokia Deepfield ERT 2026-06-18
+note,ADB foothold: destination filter omits 0.0.0.0/8 and port 5555 — OpenTunnel(0.0.0.0:5555) reaches the exit device ADB daemon,Lateral/foothold anchor,high,Synthient 2026-01 / Nokia Deepfield ERT
+domain,robovpn.com,RoboVPN distribution site (app infrastructure; not the proxy SDK),medium,Nokia Deepfield ERT 2026-06-18
+domain,download.robovpn.com,RoboVPN MSI distribution host (app infrastructure),medium,Nokia Deepfield ERT 2026-06-18
+domain,api.vpns.robovpn.com,RoboVPN country/server list API (app infrastructure),low,Nokia Deepfield ERT 2026-06-18
+domain,robovpn-windows-default-rtdb.firebaseio.com,RoboVPN Firebase remote config (app infrastructure),low,Nokia Deepfield ERT 2026-06-18
+ipv4,117.55.203.189,Potassium botnet loader host pushed via Popa LAN exploitation (decaying; re-validate before blocking),medium,Synthient + Infoblox 2026-06
+ipv4,195.178.110.204,Gafgyt/NeTiS loader host (/adb) reached via Popa nodes (decaying),medium,Synthient + Infoblox 2026-06
+ipv4,83.168.110.191,IranBot loader host (iran.*) reached via Popa nodes (decaying),medium,Synthient + Infoblox 2026-06
+note,Attribution: proxy network publicly linked to NetNut (owned by Alarum Technologies NASDAQ ALAR) — medium confidence multi-source company-disputed,Attribution note,medium,Qurium / Synthient / KrebsOnSecurity 2026-06
+note,No CVE associated — design/abuse and supply-chain case; ADB 0.0.0.0:5555 foothold is a filter gap not a CVE,IOC note,high,Nokia Deepfield ERT 2026-06-18

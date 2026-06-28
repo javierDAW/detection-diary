@@ -1,5 +1,56 @@
 [
  {
+  "date": "2026-06-28",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet",
+  "title": "RoboVPN / Neunative: A Free VPN That Ships a Residential-Proxy Botnet SDK on the Vo1d/Popa Backend",
+  "clusters": [
+   "Vo1d/Popa proxy operator",
+   "Cyberkick Ltd. (RoboVPN)"
+  ],
+  "country": "Unattributed operator; proxy network publicly linked to NetNut / Alarum Technologies (NASDAQ)",
+  "platforms": [
+   "windows",
+   "iot",
+   "supply-chain"
+  ],
+  "sectors": [
+   "consumer",
+   "telecom",
+   "media",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1583.005",
+   "T1584.005",
+   "T1496.002",
+   "T1090.002",
+   "T1090.003",
+   "T1071.001",
+   "T1095",
+   "T1571",
+   "T1573.002",
+   "T1036.005",
+   "T1027.009",
+   "T1133",
+   "T1498"
+  ],
+  "tech_count": 14,
+  "tldr": "RoboVPN is a functional, free Windows VPN published by Cyberkick Ltd. Bundled in the same installer as a NuGet dependency, and listed in `RoboVPN.deps.json` next to Newtonsoft.Json and the AWS SDK as if it were routine plumbing, is **Neunative** — a residential-proxy SDK that turns the user's machine into an exit node for arbitrary third-party traffic. The wiring is inverted on purpose: the relay ",
+  "thumb": "thumbs/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet.svg",
+  "case_rel": "../days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "Vo1d/Popa proxy operator",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "robovpn / neunative: a free vpn that ships a residential-proxy botnet sdk on the vo1d/popa backend vo1d/popa proxy operator cyberkick ltd. (robovpn) unattributed operator; proxy network publicly linked to netnut / alarum technologies (nasdaq) windows iot supply-chain consumer telecom media cross-sector t1195.002 t1583.005 t1584.005 t1496.002 t1090.002 t1090.003 t1071.001 t1095 t1571 t1573.002 t1036.005 t1027.009 t1133 t1498 malware / re "
+ },
+ {
   "date": "2026-06-27",
   "year": "2026",
   "month": "2026-06",

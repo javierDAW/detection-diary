@@ -1,0 +1,16 @@
+// Title:      Neunative Proxy SDK Director Registration
+// Id:         day62-kql-001
+// MITRE:      T1071.001 Application Layer Protocol: Web / T1496.002 Resource Hijacking: Bandwidth
+// Reference:  https://github.com/deepfield/public-research/blob/main/reports/2026-06-18-robovpn-neunative.md
+// Author:     Jarmi
+// Date:       2026-06-28
+// Tested on:  Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes:   The director domain gmslb.net and /regdev path are highly specific to this SDK.
+let DirectorDomains = dynamic(["gmslb.net", "lb.gmslb.net"]);
+DeviceNetworkEvents
+| where Timestamp > ago(14d)
+| where RemoteUrl has_any (DirectorDomains)
+    or (RemoteUrl has "/regdev" and RemoteUrl has "sdkv=")
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessAccountName,
+          RemoteUrl, RemoteIP, RemotePort
+| sort by Timestamp asc
