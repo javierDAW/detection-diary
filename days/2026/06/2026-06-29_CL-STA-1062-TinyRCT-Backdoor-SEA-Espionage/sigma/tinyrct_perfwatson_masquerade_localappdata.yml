@@ -1,0 +1,38 @@
+title: PerfWatson2.exe Masquerade Executing From AppData (TinyRCT Backdoor)
+id: 5038e690-e528-4048-9650-1b06af6d1400
+status: experimental
+description: |
+  Detects the CL-STA-1062 TinyRCT backdoor running under the filename PerfWatson2.exe from a
+  user-writable AppData location. The genuine PerfWatson2.exe is a Visual Studio telemetry
+  component that executes from under Program Files; the backdoor copies the name but enforces
+  an execution-location guard requiring %LOCALAPPDATA%, so the process image path is the
+  reliable discriminator. This is a name-collision masquerade anchored on path, not on hash,
+  so it survives recompilation of the implant.
+references:
+  - https://unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/
+  - https://attack.mitre.org/techniques/T1036/005/
+author: Jarmi
+date: 2026/06/29
+tags:
+  - attack.defense-evasion
+  - attack.t1036.005
+  - attack.t1036
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_name:
+    Image|endswith: '\PerfWatson2.exe'
+  selection_path:
+    Image|contains:
+      - '\AppData\Local\'
+      - '\AppData\Roaming\'
+  filter_legit:
+    Image|contains:
+      - '\Program Files\'
+      - '\Program Files (x86)\'
+  condition: selection_name and selection_path and not filter_legit
+falsepositives:
+  - None expected. The genuine Visual Studio PerfWatson2 telemetry host runs from Program Files,
+    not from AppData.
+level: high

@@ -4,11 +4,12 @@
 
 # Techniques: T1070.004
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-29 | CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy | CL-STA-1062 | [`2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/`](../../days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/) |
 | 2026-05-19 | Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs) | Embargo · ALPHV · BlackCat | [`2026-05-19_Embargo-Rust-SafeMode-BYOVD/`](../../days/2026/05/2026-05-19_Embargo-Rust-SafeMode-BYOVD/) |
 | 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026) | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026/05/2026-05-07_QLNX-Quasar-Linux-RAT/) |
 | 2026-05-02 | Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026) | Nexcorium · Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026/05/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |

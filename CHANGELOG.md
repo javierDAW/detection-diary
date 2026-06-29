@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.06.29 — Day 63 — CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy
+
+### Added
+- `days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/` — Palo Alto Networks Unit 42 (2026-06-26) detailed CL-STA-1062, a Chinese-speaking espionage cluster (overlaps Cisco Talos UAT-7237) active across East Asia since March 2022 that from mid-2025 targeted Southeast Asian government and state-owned energy, breaching >=10 orgs Oct-Dec 2025. The operator lives off open-source tooling (SoftEther VPN, VNT, Yuze, Mimikatz, JuicyPotato, fscan — renamed vmtools.exe/vmwared.exe/XDRAgent.exe) and adds a bespoke .NET backdoor, TinyRCT (`PerfWatson2.exe`), delivered via AppDomainManager injection. Monday Espionage rotation → primary slot #1 (APT state-nation, China). Secondaries: #19 malware RE (TinyRCT static behavior), #24 CTI tradecraft (UAT-7237 genealogy / living-off-open-source attribution cover).
+- Sigma (3): `tinyrct_appdomainmanager_injection.yml` — `*AppDomainManager.dll` loaded from a user-writable path into a non-VS/non-Program-Files process; `tinyrct_perfwatson_masquerade_localappdata.yml` — `PerfWatson2.exe` executing from AppData; `tinyrct_choice_selfdelete.yml` — choice.exe timer chained with `del *.exe`.
+- KQL (4): `tinyrct_appdomainmanager_dll_load.kql`, `tinyrct_perfwatson_appdata_exec.kql`, `tinyrct_choice_selfdelete.kql`, `tinyrct_persistence_and_c2.kql` — Defender XDR coverage of the sideload, the AppData masquerade, the self-delete chain, and the GoogleUpdaterTaskSystem persistence + staging/C2 beacon.
+- YARA (1 file, 3 rules): `tinyrct_cl_sta_1062.yar` — TinyRCT backdoor (AES key + masquerade name), the AppDomainManager loader DLL, and the malicious .NET app-config.
+- Suricata (1 file, 6 sids): `tinyrct_cl_sta_1062.rules` (2026630001-2026630006) — C2/staging IP contact, TinyRCT GET poll / POST exfil, PerfWatson2.exe + chrome_setup.zip retrieval.
+- PEAK hunts (3): AppDomainManager sideload (H1), PerfWatson2.exe from the wrong location (H2), renamed tunnelers disguised as VMware/XDR (H3).
+- `iocs.csv` (24 entries) — 6 SHA256 (backdoor, loader, dropper, SoftEther, VNT, fscan), C2 `45.32.113[.]172`, staging `139.180.134[.]221`, AES key, persistence task, masquerade names. No published CVE (ASPX web-shell initial access) → no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette + `acc-espionage` accent, victim Windows estate vs attacker infrastructure lanes, IOC anchors, verifier x2 PASS.
+
+### Pedagogy
+- Path beats hash for masquerade: genuine PerfWatson2 runs from Program Files, the backdoor from %LOCALAPPDATA% — anchor on execution location.
+- A signed parent is not a safe parent: AppDomainManager injection runs attacker code inside a legitimately signed launcher.
+- Environmental guards ("won't run outside Downloads/AppData") are both evasion and a high-fidelity hunt signature.
+- No CVE is not no-risk: web-shell-first intrusions need web-app hardening + web-shell hunting, not a KEV entry to act.
+
 ## 2026.06.28 — Day 62 — RoboVPN / Neunative: A Free VPN That Ships a Residential-Proxy Botnet SDK (Vo1d/Popa backend)
 
 ### Added

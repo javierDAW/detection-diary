@@ -4,11 +4,12 @@
 
 # Techniques: T1059.003
 
-9 day(s) covering this technique.
+10 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-29 | CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy | CL-STA-1062 | [`2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/`](../../days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/) |
 | 2026-06-26 | GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Maintained EDR Killers | The Gentlemen RaaS (GentleKiller operator) | [`2026-06-26_GentleKiller-BYOVD-Detection-Engineering/`](../../days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/) |
 | 2026-06-09 | Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hypervisor recovery | Kyber | [`2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/`](../../days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/) |
 | 2026-06-08 | OP-512 — China-linked IIS web shell framework with per-deployment cryptographic uniqueness | OP-512 | [`2026-06-08_OP-512-China-IIS-WebShell-Framework/`](../../days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/) |

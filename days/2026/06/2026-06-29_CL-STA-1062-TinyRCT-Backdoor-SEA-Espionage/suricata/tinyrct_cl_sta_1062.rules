@@ -1,0 +1,20 @@
+# CL-STA-1062 / TinyRCT network detection
+# Author: Jarmi
+# Reference: https://unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/
+# Notes: TinyRCT C2 is plain HTTP with AES-128-CBC payloads (GET poll / POST exfil) to the
+#        published nodes; the IP-anchored rules decay as infrastructure rotates and should be
+#        paired with the behavioral GET-poll / chunked-POST rules below. No custom flowvars.
+
+# --- Infrastructure (decaying; re-validate before blocking) ---
+alert ip $HOME_NET any -> [45.32.113.172] any (msg:"CL-STA-1062 TinyRCT C2 IP contact (45.32.113.172)"; flow:to_server; reference:url,unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/; classtype:trojan-activity; sid:2026630001; rev:1;)
+alert ip $HOME_NET any -> [139.180.134.221] any (msg:"CL-STA-1062 TinyRCT staging/downloader IP contact (139.180.134.221)"; flow:to_server; reference:url,unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/; classtype:trojan-activity; sid:2026630002; rev:1;)
+
+# --- TinyRCT HTTP C2 behavior ---
+alert http $HOME_NET any -> [45.32.113.172] any (msg:"CL-STA-1062 TinyRCT GET poll to C2"; flow:established,to_server; http.method; content:"GET"; http.host; content:"45.32.113.172"; reference:url,unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/; classtype:trojan-activity; sid:2026630003; rev:1;)
+alert http $HOME_NET any -> [45.32.113.172] any (msg:"CL-STA-1062 TinyRCT POST exfil chunk to C2"; flow:established,to_server; http.method; content:"POST"; http.host; content:"45.32.113.172"; reference:url,unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/; classtype:trojan-activity; sid:2026630004; rev:1;)
+
+# --- TinyRCT payload retrieval ---
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"CL-STA-1062 TinyRCT downloader fetch of PerfWatson2.exe"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"PerfWatson2.exe"; nocase; reference:url,unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/; classtype:trojan-activity; sid:2026630005; rev:1;)
+
+# --- Disguised tooling staging archive ---
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"CL-STA-1062 chrome_setup.zip dropper retrieval"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"chrome_setup.zip"; nocase; reference:url,unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/; classtype:trojan-activity; sid:2026630006; rev:1;)

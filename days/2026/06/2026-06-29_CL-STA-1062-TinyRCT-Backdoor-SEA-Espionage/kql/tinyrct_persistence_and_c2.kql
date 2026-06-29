@@ -1,0 +1,23 @@
+// Title: TinyRCT persistence task + low-jitter HTTP beacon (CL-STA-1062)
+// Id: d9f0a1b2-3c4d-5e6f-7081-92a3b4c5d6e7
+// MITRE: T1053.005 (Scheduled Task), T1071.001 (Web C2), T1573.001 (Symmetric Crypto)
+// Reference: https://unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/
+// Author: Jarmi
+// Date: 2026-06-29
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents, DeviceNetworkEvents)
+// FP notes: Replace <add_known_good_updater_tasks> with sanctioned GoogleUpdater task names.
+//           The beacon arm keys on the published C2; pivot to per-host periodicity for hunting.
+let persistence =
+    DeviceProcessEvents
+    | where FileName in~ ("schtasks.exe", "powershell.exe", "cmd.exe")
+    | where ProcessCommandLine has_any ("GoogleUpdaterTaskSystem", "/create", "Register-ScheduledTask")
+    | where ProcessCommandLine has "GoogleUpdaterTaskSystem"
+    // exclude sanctioned updater task names: | where ProcessCommandLine !has "<add_known_good_updater_tasks>"
+    | project Timestamp, DeviceName, AccountName, ProcessCommandLine, InitiatingProcessFileName;
+let beacon =
+    DeviceNetworkEvents
+    | where RemoteIP in ("45.32.113.172", "139.180.134.221")
+    | where RemotePort in (80, 443)
+    | project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, RemoteIP, RemotePort, RemoteUrl;
+union persistence, beacon
+| sort by Timestamp desc

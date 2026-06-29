@@ -4,11 +4,12 @@
 
 # Techniques: T1083
 
-12 day(s) covering this technique.
+13 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-29 | CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy | CL-STA-1062 | [`2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/`](../../days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/) |
 | 2026-06-18 | JCE CVE-2026-48907 — unauthenticated pre-auth RCE in the Joomla Content Editor via the profile-import endpoint, now sprayed by a botnet | Opportunistic CMS mass-exploitation (unattributed botnet) | [`2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/`](../../days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/) |
 | 2026-06-09 | Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hypervisor recovery | Kyber | [`2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/`](../../days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/) |
 | 2026-05-28 | TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io | TrapDoor (Socket-tracked) | [`2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/`](../../days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) |

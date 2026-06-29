@@ -1,0 +1,46 @@
+title: AppDomainManager Injection via Sideloaded Manager DLL (TinyRCT Loader)
+id: 16f415bb-af7c-4897-b856-27ea6a56c72a
+status: experimental
+description: |
+  Detects the .NET AppDomainManager-injection primitive used by the CL-STA-1062 TinyRCT
+  loader. A legitimately signed launcher (observed as chrome_setup.exe) is shipped alongside
+  a malicious application config (chrome_setup.exe.config) that points the CLR at a rogue
+  AppDomainManager assembly (observed as MyAppDomainManager.dll), so attacker code executes
+  inside the trusted process at startup. This rule fires on a user-mode process loading a DLL
+  whose name ends in AppDomainManager.dll from a user-writable directory (Downloads, AppData,
+  Temp, ProgramData, Public). Push the per-process baselining of legitimate *AppDomainManager
+  assemblies (Visual Studio, some game launchers) to your SIEM allowlist.
+references:
+  - https://unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/
+  - https://attack.mitre.org/techniques/T1574/014/
+author: Jarmi
+date: 2026/06/29
+tags:
+  - attack.defense-evasion
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1574.014
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection_dll:
+    ImageLoaded|endswith: 'AppDomainManager.dll'
+  selection_path:
+    ImageLoaded|contains:
+      - '\Downloads\'
+      - '\AppData\Local\'
+      - '\AppData\Roaming\'
+      - '\Temp\'
+      - '\ProgramData\'
+      - '\Users\Public\'
+  filter_known:
+    ImageLoaded|contains:
+      - '\Microsoft Visual Studio\'
+      - '\Program Files\'
+      - '\Program Files (x86)\'
+  condition: selection_dll and selection_path and not filter_known
+falsepositives:
+  - Developer machines running .NET applications that ship a custom *AppDomainManager assembly
+    from a user profile path. Rare on servers and standard endpoints; allowlist by signer.
+level: high

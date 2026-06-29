@@ -4,11 +4,12 @@
 
 # Techniques: T1505.003
 
-5 day(s) covering this technique.
+6 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-29 | CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy | CL-STA-1062 | [`2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/`](../../days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/) |
 | 2026-06-18 | JCE CVE-2026-48907 — unauthenticated pre-auth RCE in the Joomla Content Editor via the profile-import endpoint, now sprayed by a botnet | Opportunistic CMS mass-exploitation (unattributed botnet) | [`2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/`](../../days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/) |
 | 2026-06-08 | OP-512 — China-linked IIS web shell framework with per-deployment cryptographic uniqueness | OP-512 | [`2026-06-08_OP-512-China-IIS-WebShell-Framework/`](../../days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/) |
 | 2026-06-04 | Kirki CVE-2026-8206 — unauthenticated admin account takeover via password-reset-to-attacker-email on 150K WordPress sites | Opportunistic WordPress mass-exploitation (unattributed) | [`2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/`](../../days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/) |
