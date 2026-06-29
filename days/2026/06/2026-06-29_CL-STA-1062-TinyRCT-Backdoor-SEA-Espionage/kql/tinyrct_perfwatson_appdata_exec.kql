@@ -1,0 +1,14 @@
+// Title: PerfWatson2.exe executing from AppData (TinyRCT masquerade)
+// Id: 8b1f2c43-5d6a-4e90-9a7b-1c2d3e4f5061
+// MITRE: T1036.005 (Masquerading: Match Legitimate Name or Location)
+// Reference: https://unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/
+// Author: Jarmi
+// Date: 2026-06-29
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: None expected. Genuine Visual Studio PerfWatson2 runs from Program Files.
+DeviceProcessEvents
+| where FileName =~ "PerfWatson2.exe"
+| where FolderPath has_any (@"\AppData\Local\", @"\AppData\Roaming\")
+| where not(FolderPath has_any (@"\Program Files\", @"\Program Files (x86)\"))
+| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName, SHA256
+| sort by Timestamp desc

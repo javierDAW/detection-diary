@@ -4,11 +4,12 @@
 
 # Techniques: T1090
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-29 | CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy | CL-STA-1062 | [`2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/`](../../days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/) |
 | 2026-06-27 | Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038) | Unattributed — CVE-2025-67038 exploitation | [`2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/`](../../days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/) |
 | 2026-06-12 | LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment | LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap) | [`2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/`](../../days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/) |
 | 2026-05-24 | Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, France, Netherlands and FBI | First VPN Service (1vpns.com) | [`2026-05-24_OperationSaffron-FirstVPN-Takedown/`](../../days/2026/05/2026-05-24_OperationSaffron-FirstVPN-Takedown/) |

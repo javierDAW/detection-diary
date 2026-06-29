@@ -4,11 +4,12 @@
 
 # Techniques: T1036.005
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-29 | CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy | CL-STA-1062 | [`2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/`](../../days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/) |
 | 2026-06-28 | RoboVPN / Neunative: A Free VPN That Ships a Residential-Proxy Botnet SDK on the Vo1d/Popa Backend | Vo1d/Popa proxy operator · Cyberkick Ltd. (RoboVPN) | [`2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/`](../../days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/) |
 | 2026-05-22 | Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux kworker masquerade) targeting Asian telecoms | Red Lamassu · Calypso APT | [`2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/`](../../days/2026/05/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/) |
 | 2026-05-08 | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026) | CloudZ · Pheno | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink/`](../../days/2026/05/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |

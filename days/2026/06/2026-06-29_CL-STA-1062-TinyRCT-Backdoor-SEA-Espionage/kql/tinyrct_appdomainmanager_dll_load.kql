@@ -1,0 +1,15 @@
+// Title: AppDomainManager DLL sideload from user-writable path (TinyRCT loader)
+// Id: 2a9d6f10-7c4e-4a8b-bd21-0f4c9a51e7d2
+// MITRE: T1574.014 (Hijack Execution Flow: AppDomainManager)
+// Reference: https://unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/
+// Author: Jarmi
+// Date: 2026-06-29
+// Tested on: Microsoft Defender XDR (DeviceImageLoadEvents)
+// FP notes: Developer endpoints loading a custom *AppDomainManager assembly from a profile
+//           path; allowlist by signer/publisher. Rare on servers and standard workstations.
+DeviceImageLoadEvents
+| where FileName endswith "AppDomainManager.dll"
+| where FolderPath has_any (@"\Downloads\", @"\AppData\Local\", @"\AppData\Roaming\", @"\Temp\", @"\ProgramData\", @"\Users\Public\")
+| where not(FolderPath has_any (@"\Program Files\", @"\Program Files (x86)\", @"\Microsoft Visual Studio\"))
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, FileName, FolderPath, InitiatingProcessSHA256
+| sort by Timestamp desc

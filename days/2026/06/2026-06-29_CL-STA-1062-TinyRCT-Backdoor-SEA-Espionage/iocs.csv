@@ -1,0 +1,25 @@
+type,value,context,confidence,source
+note,CL-STA-1062 (overlaps UAT-7237) TinyRCT espionage vs SE Asia government + state-owned energy — Day 63 2026-06-29,Case anchor note,high,Unit 42 2026-06-26
+sha256,00e09754526d0fe836ba27e3144ae161b0ecd3774abec5560504a16a67f0087c,chrome_setup.zip dropper archive (signed exe + .config + rogue MyAppDomainManager.dll),high,Unit 42 2026-06-26
+sha256,cbfe8de6ffadbb1d396f61e63eb18e8b11c29527c1528641e3223d4c516cf7c3,TinyRCT downloader (MyAppDomainManager.dll AppDomainManager-injection loader),high,Unit 42 2026-06-26
+sha256,4e1f8888d020decd09799ec946f1bf677cac6612b24582ddbf4d8ede425d8384,TinyRCT backdoor (PerfWatson2.exe .NET RAT; AES-128-CBC HTTP C2),high,Unit 42 2026-06-26
+sha256,dce5df29bddff5a4ddaea5c4fec14da91f7b69063a6e1c45ed61e5da4fc6c87b,SoftEther VPN component used for tunneling (often renamed vmtools.exe/vmwared.exe),high,Unit 42 2026-06-26
+sha256,9b481b69cd91b09fa7bae7428f646dd89473a4c03393e43da81fe756cde1c472,VNT (vnt-dev) VPN/SOCKS tunneling utility,high,Unit 42 2026-06-26
+sha256,f34bd1d485de437fe18360d1e850c3fd64415e49d691e610711d8d232071a0b1,fscan internal network scanner,high,Unit 42 2026-06-26
+ipv4,45.32.113.172,TinyRCT C2 (plain HTTP; AES-128-CBC; 10s default beacon),high,Unit 42 2026-06-26
+ipv4,139.180.134.221,TinyRCT staging/downloader server (serves PerfWatson2.exe),high,Unit 42 2026-06-26
+string,ThisIsASecretKey87654321,Hardcoded AES-128-CBC key inside TinyRCT,high,Unit 42 2026-06-26
+path,%LOCALAPPDATA%\PerfWatson2.exe,TinyRCT install path + execution-location guard,high,Unit 42 2026-06-26
+string,PerfWatson2.exe,Masquerade as Visual Studio telemetry binary (true PerfWatson lives under Program Files),high,Unit 42 2026-06-26
+string,MyAppDomainManager.dll,Rogue AppDomainManager DLL loaded via chrome_setup.exe.config,high,Unit 42 2026-06-26
+string,chrome_setup.exe.config,Malicious .NET config that registers the AppDomainManager,high,Unit 42 2026-06-26
+string,GoogleUpdaterTaskSystem140.0.7272.0,Scheduled task name created for highest-privilege persistence,high,Unit 42 2026-06-26
+string,XDRAgent.exe,Disguise name applied to open-source tooling on host,medium,Unit 42 2026-06-26
+string,vmtools.exe,Disguise name applied to SoftEther/tunneling tooling,medium,Unit 42 2026-06-26
+string,vmwared.exe,Disguise name applied to tunneling tooling,medium,Unit 42 2026-06-26
+note,Initial access via ASPX web shells dropped on vulnerable public web applications; no single CVE published,Initial access vector,high,Unit 42 2026-06-26
+note,Privilege escalation via JuicyPotato (SeImpersonate abuse); credential access via Mimikatz,Hands-on-keyboard tooling,high,Unit 42 2026-06-26
+note,Simplified-Chinese string present in the TinyRCT C2-response parsing function,Language/attribution signal,medium,Unit 42 2026-06-26
+note,choice.exe used to add a ~3s delay before self-deletion of PerfWatson2.exe,Anti-forensics self-destruct,high,Unit 42 2026-06-26
+note,Exfil staged as password-protected RAR archives; TinyRCT exfil in 40KB gzip+AES chunks via HTTP POST,Collection/exfiltration,high,Unit 42 2026-06-26
+note,Activity since at least March 2022 in East Asia; >=10 SE Asia orgs breached Oct-Dec 2025; energy+government focus mid-2025 onward,Campaign scope/timeline,high,Unit 42 2026-06-26

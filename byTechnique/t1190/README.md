@@ -4,11 +4,12 @@
 
 # Techniques: T1190
 
-22 day(s) covering this technique.
+23 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-06-29 | CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy | CL-STA-1062 | [`2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/`](../../days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/) |
 | 2026-06-27 | Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038) | Unattributed — CVE-2025-67038 exploitation | [`2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/`](../../days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/) |
 | 2026-06-20 | Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Credential Exfiltration | Agentjacking-unattributed (Tenet Threat Labs tracking) | [`2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/`](../../days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/) |
 | 2026-06-19 | Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles | Iran-nexus (unattributed) | [`2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/`](../../days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/) |

@@ -1,0 +1,14 @@
+// Title: Delayed self-delete via choice.exe timer (TinyRCT anti-forensics)
+// Id: c5e7a9b1-2f3d-4c6e-8a0b-7d9e1f2a3b4c
+// MITRE: T1070.004 (Indicator Removal: File Deletion)
+// Reference: https://unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/
+// Author: Jarmi
+// Date: 2026-06-29
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: Legacy batch scripts using choice.exe as a sleep before deleting a temp binary.
+DeviceProcessEvents
+| where FileName =~ "choice.exe" or InitiatingProcessFileName =~ "choice.exe"
+| where ProcessCommandLine has_any ("/t ", "/T ") or InitiatingProcessCommandLine has_any ("/t ", "/T ")
+| where ProcessCommandLine has "del " and ProcessCommandLine has ".exe"
+| project Timestamp, DeviceName, AccountName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, FolderPath
+| sort by Timestamp desc

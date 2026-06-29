@@ -1,0 +1,36 @@
+title: Delayed Self-Delete via choice.exe Timer (TinyRCT Anti-Forensics)
+id: a007fb11-38ae-49b4-945e-90ea09b2ee78
+status: experimental
+description: |
+  Detects the self-destruct routine used by the CL-STA-1062 TinyRCT backdoor. On the wipe
+  command it spawns choice.exe with a short timeout to introduce a delay (so the implant
+  process can fully exit and release its file handle) and then deletes its own primary
+  executable. The durable behavioral anchor is a command line that chains a choice.exe timer
+  with a del of an executable; this LOLBIN-as-sleep pattern is rare in benign automation.
+references:
+  - https://unit42.paloaltonetworks.com/cl-sta-1062-tinyrct-backdoor/
+  - https://lolbas-project.github.io/lolbas/Binaries/Choice/
+author: Jarmi
+date: 2026/06/29
+tags:
+  - attack.defense-evasion
+  - attack.t1070.004
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_choice:
+    Image|endswith: '\choice.exe'
+  selection_timer:
+    CommandLine|contains:
+      - '/t '
+      - '/T '
+  selection_chain:
+    CommandLine|contains|all:
+      - 'del '
+      - '.exe'
+  condition: (selection_choice and selection_timer) and selection_chain
+falsepositives:
+  - Legacy batch scripts that use choice.exe as a sleep substitute before deleting a temporary
+    executable. Uncommon on modern endpoints; corroborate with the parent process.
+level: medium
