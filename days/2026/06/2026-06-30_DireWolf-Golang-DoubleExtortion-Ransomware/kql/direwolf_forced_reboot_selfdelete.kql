@@ -1,0 +1,24 @@
+// Title: Dire Wolf - Forced Reboot and Self-Delete Finale
+// Id: a3f0d8b2-2d44-4f9a-9b21-6f1e0c7c44aa
+// MITRE: T1529 (System Shutdown/Reboot), T1070.004 (File Deletion)
+// Reference: https://asec.ahnlab.com/en/89944/ ; https://www.cyfirma.com/news/weekly-intelligence-report-26-jun-2026/
+// Author: Jarmi
+// Date: 2026-06-30
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: shutdown -r -f is used by patch reboots; the sleep-then-del of an .exe alongside it is the distinguishing signal.
+let reboot =
+    DeviceProcessEvents
+    | where Timestamp > ago(14d)
+    | where FileName =~ "shutdown.exe" and ProcessCommandLine has "-r" and ProcessCommandLine has "-f"
+    | project DeviceName, RebootTime=Timestamp, RebootCmd=ProcessCommandLine;
+let selfdel =
+    DeviceProcessEvents
+    | where Timestamp > ago(14d)
+    | where (InitiatingProcessFileName in~ ("timeout.exe","ping.exe") or FileName in~ ("timeout.exe","ping.exe"))
+          or (FileName =~ "cmd.exe" and ProcessCommandLine has "del" and ProcessCommandLine has_any ("timeout","ping"))
+    | project DeviceName, DelTime=Timestamp, DelCmd=ProcessCommandLine;
+reboot
+| join kind=inner selfdel on DeviceName
+| where abs(datetime_diff('second', RebootTime, DelTime)) <= 120
+| project DeviceName, RebootTime, RebootCmd, DelTime, DelCmd
+| order by RebootTime desc

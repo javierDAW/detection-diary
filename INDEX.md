@@ -4,7 +4,7 @@
 
 # INDEX
 
-**62 cases** · **127 actors/clusters** · **303 ATT&CK techniques** · **16 platforms** · **72 sectors** · 2026-04-29 -> 2026-06-29
+**63 cases** · **128 actors/clusters** · **303 ATT&CK techniques** · **16 platforms** · **73 sectors** · 2026-04-29 -> 2026-06-30
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/"><img src="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/kill_chain.svg" alt="2026-06-30 kill chain" width="240"></a><br><sub><b>2026-06-30</b><br>Dire Wolf (DireWolf) ransomware group</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/"><img src="days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/kill_chain.svg" alt="2026-06-29 kill chain" width="240"></a><br><sub><b>2026-06-29</b><br>CL-STA-1062</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/"><img src="days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/kill_chain.svg" alt="2026-06-28 kill chain" width="240"></a><br><sub><b>2026-06-28</b><br>Vo1d/Popa proxy operator · Cyberkick Ltd. (RoboVPN)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/"><img src="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/kill_chain.svg" alt="2026-06-27 kill chain" width="240"></a><br><sub><b>2026-06-27</b><br>Unattributed — CVE-2025-67038 exploitation</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/"><img src="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/kill_chain.svg" alt="2026-06-27 kill chain" width="240"></a><br><sub><b>2026-06-27</b><br>Unattributed — CVE-2025-67038 exploitation</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/"><img src="days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/kill_chain.svg" alt="2026-06-26 kill chain" width="240"></a><br><sub><b>2026-06-26</b><br>The Gentlemen RaaS (GentleKiller operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/"><img src="days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/kill_chain.svg" alt="2026-06-25 kill chain" width="240"></a><br><sub><b>2026-06-25</b><br>Miasma-unattributed</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/"><img src="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/kill_chain.svg" alt="2026-06-24 kill chain" width="240"></a><br><sub><b>2026-06-24</b><br>Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/"><img src="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/kill_chain.svg" alt="2026-06-24 kill chain" width="240"></a><br><sub><b>2026-06-24</b><br>Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/"><img src="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/kill_chain.svg" alt="2026-06-23 kill chain" width="240"></a><br><sub><b>2026-06-23</b><br>Cloud-Insider-Recruitment-unattributed</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-22_prospy-bitter-mena/"><img src="days/2026/06/2026-06-22_prospy-bitter-mena/kill_chain.svg" alt="2026-06-22 kill chain" width="240"></a><br><sub><b>2026-06-22</b><br>BITTER · T-APT-17</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/"><img src="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/kill_chain.svg" alt="2026-06-21 kill chain" width="240"></a><br><sub><b>2026-06-21</b><br>Icarus</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/"><img src="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/kill_chain.svg" alt="2026-06-21 kill chain" width="240"></a><br><sub><b>2026-06-21</b><br>Icarus</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/"><img src="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/kill_chain.svg" alt="2026-06-20 kill chain" width="240"></a><br><sub><b>2026-06-20</b><br>Agentjacking-unattributed (Tenet Threat Labs tracking)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/"><img src="days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/kill_chain.svg" alt="2026-06-19 kill chain" width="240"></a><br><sub><b>2026-06-19</b><br>Iran-nexus (unattributed)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/"><img src="days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/kill_chain.svg" alt="2026-06-18 kill chain" width="240"></a><br><sub><b>2026-06-18</b><br>Opportunistic CMS mass-exploitation (unattributed botnet)</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-06</b> — 29 case(s)</summary>
+<details><summary><b>2026-06</b> — 30 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-06-30 | [Dire Wolf: a Golang double-extortion ransomware that kills the recovery story before it encrypts](days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/) | Dire Wolf (DireWolf) ransomware group | windows |
 | 2026-06-29 | [CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy](days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/) | CL-STA-1062 | windows |
 | 2026-06-28 | [RoboVPN / Neunative: A Free VPN That Ships a Residential-Proxy Botnet SDK on the Vo1d/Popa Backend](days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/) | Vo1d/Popa proxy operator · Cyberkick Ltd. (RoboVPN) | windows, iot, supply-chain |
 | 2026-06-27 | [Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038)](days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/) | Unattributed — CVE-2025-67038 exploitation | ot-ics, network-edge, iot |

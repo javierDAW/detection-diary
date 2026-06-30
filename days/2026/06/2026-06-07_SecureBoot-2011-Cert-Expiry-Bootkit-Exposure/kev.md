@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.06.25)). Generated 2026-06-29._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.06.29)). Generated 2026-06-30._
 
 **0 of 5 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 

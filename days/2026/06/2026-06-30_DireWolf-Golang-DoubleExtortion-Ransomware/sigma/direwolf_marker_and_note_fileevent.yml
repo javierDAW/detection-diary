@@ -1,0 +1,31 @@
+title: Dire Wolf Completion Marker and Ransom Note File Creation
+id: 89a328b0-65cc-4c62-b60e-4aed75e5280a
+status: experimental
+description: >
+  Detects creation of the Dire Wolf completion marker C:\runfinish.exe and the
+  ransom note HowToRecoveryFiles.txt. The marker is an empty file written at the
+  drive root after encryption; the note is written into every traversed folder.
+  Either is high-fidelity for this family. Push "many note writes in N seconds"
+  thresholding to the SIEM.
+author: Jarmi
+date: 2026/06/30
+references:
+  - https://asec.ahnlab.com/en/89944/
+tags:
+  - attack.impact
+  - attack.t1486
+logsource:
+  category: file_event
+  product: windows
+detection:
+  marker:
+    TargetFilename|endswith: '\runfinish.exe'
+    TargetFilename|startswith: 'C:\'
+  note:
+    TargetFilename|endswith: '\HowToRecoveryFiles.txt'
+  encrypted_ext:
+    TargetFilename|endswith: '.direwolf'
+  condition: marker or note or encrypted_ext
+falsepositives:
+  - None expected for the marker path and note filename. A legitimate file literally named HowToRecoveryFiles.txt would be unusual.
+level: high

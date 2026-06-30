@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-06-29 09:43 UTC
+# generated 2026-06-30 10:09 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -45,6 +45,7 @@ cumm.info
 d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
 data-form-o5pu.p-ntz8agp6.workers.dev
 ddjidd564.github.io
+direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion
 download.robovpn.com
 drivelivelime.com
 en.cumm.info
@@ -110,6 +111,8 @@ server.cubatiendaalimentos.com.mx
 setupsso.com
 sgnlapp.info
 singtelcom.site
+sitemap.tor-browser.io
+sitemaps.tor-browser.io
 socifiapp.com
 spicynagets.shop
 sslzeromail.run.place
@@ -120,6 +123,7 @@ t.m-kosche.com
 telecom.webredirect.org
 thirdmetrics.com
 tk.mowell.tech
+tor-browser.io
 totok-pro.ae
 totok-pro.ai-ae.io
 totok-pro.io
@@ -136,4 +140,5 @@ vnc.kcii2.com
 vngz3ntdrb.us-east1.gcp.clickhouse.cloud
 vnt.wherewego.top
 webmail.t-w.dev
+www.tor-browser.io
 xcent.online
