@@ -1,0 +1,16 @@
+// Title: Dire Wolf - Completion Marker, Note and .direwolf Extension
+// Id: 89a328b0-65cc-4c62-b60e-4aed75e5280a
+// MITRE: T1486 (Data Encrypted for Impact)
+// Reference: https://asec.ahnlab.com/en/89944/
+// Author: Jarmi
+// Date: 2026-06-30
+// Tested on: Microsoft Defender XDR (DeviceFileEvents)
+// FP notes: None expected for runfinish.exe at drive root or the note filename.
+DeviceFileEvents
+| where Timestamp > ago(14d)
+| where (FolderPath endswith "\\runfinish.exe" and FolderPath startswith "C:\\")
+     or FileName =~ "HowToRecoveryFiles.txt"
+     or FileName endswith ".direwolf"
+| summarize Hits=count(), Files=make_set(FolderPath, 20), FirstSeen=min(Timestamp), LastSeen=max(Timestamp)
+    by DeviceName, ActionType, bin(Timestamp, 5m)
+| order by LastSeen desc

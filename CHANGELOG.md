@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.06.30 — Day 64 — Dire Wolf: Golang Double-Extortion Ransomware
+
+### Added
+- `days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/` — Dire Wolf (DireWolf) double-extortion ransomware, a Go/UPX filecoder active since May 2025 and still posting victims in 2026 (Did Asia, automotive parts, Thailand, 2026-06-12); re-profiled by CYFIRMA on 2026-06-26. Technical analysis from Trustwave SpiderLabs, AhnLab ASEC and Protos Labs; Curve25519 + ChaCha20, intermittent encryption, `.direwolf` extension.
+- Sigma (3): `direwolf_inhibit_recovery_burst.yml` — vssadmin/wbadmin/bcdedit recovery-denial; `direwolf_eventlog_kill_and_clear.yml` — WMI/taskkill eventlog loop + wevtutil cl; `direwolf_marker_and_note_fileevent.yml` — runfinish.exe marker + HowToRecoveryFiles.txt write.
+- KQL (4): `direwolf_inhibit_recovery.kql`; `direwolf_eventlog_kill_loop.kql`; `direwolf_forced_reboot_selfdelete.kql`; `direwolf_marker_note_fileevents.kql`.
+- YARA (1 file, 3 rules): `direwolf.yar` — host markers (mutex/marker/note/ext), recovery-command strings, ransom-note template.
+- Suricata (1 file, 6 sids): `direwolf.rules` — tor-browser[.]io DNS/TLS/HTTP + onion-address string (infra-decay; durable detection is host-behavioral).
+- PEAK hunts (3): recovery-inhibition burst; eventlog-kill loop; note/marker/forced-reboot co-occurrence.
+- `iocs.csv` (27 entries) — 3 SHA256 + 5 MD5 (AhnLab + CYFIRMA), mutex, marker path, note, extension, onion + tor-browser[.]io infra, command/TTP notes. No CVE — no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, ransomware accent; victim lane (guardrail -> kill services -> inhibit recovery -> log destruction -> encryption -> reboot/self-delete) and operator lane (build, kill lists, command set, extortion, infra, attribution).
+
+### Pedagogy
+- Recovery inhibition (vssadmin/wbadmin/bcdedit from one parent) fires before the `.direwolf` rename — the earliest reliable behavioral tell.
+- A WMI-driven eventlog-kill loop can suppress 1102/104; scope from SIEM-forwarded command lines, not host logs.
+- Forced reboot + sleep-then-`del` self-delete erases the sample post-encryption; preserve memory and the marker/notes on any host caught pre-reboot.
+- Sound crypto makes recovery a backups problem — and the backups must survive the Veeam/Veritas kill-list and shadow-copy deletion (offline/immutable).
+
 ## 2026.06.29 — Day 63 — CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy
 
 ### Added

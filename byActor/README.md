@@ -41,6 +41,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)](./dprk-linked-intrusion-set-quantstamp-lazarus-cluster-overlap-not-definitively-attributed/) | 1 |
 | [Dadsec](./dadsec/) | 1 |
 | [DevilNFC](./devilnfc/) | 1 |
+| [Dire Wolf (DireWolf) ransomware group](./dire-wolf-direwolf-ransomware-group/) | 1 |
 | [Earth Estries](./earth-estries/) | 1 |
 | [Embargo](./embargo/) | 1 |
 | [Erudite Mogwai](./erudite-mogwai/) | 1 |

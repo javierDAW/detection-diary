@@ -1,0 +1,44 @@
+title: Dire Wolf Recovery Inhibition Command Burst
+id: c8412e64-8316-44a4-835d-78225f203754
+status: experimental
+description: >
+  Detects the pre-encryption recovery-denial commands used by the Dire Wolf
+  ransomware family (and most modern Windows filecoders): deletion of volume
+  shadow copies, deletion of wbadmin backups, and disabling of the Windows
+  Recovery Environment via bcdedit. Dire Wolf runs these before any file rename,
+  so this is the earliest reliable behavioral tell. Push the "two or more of
+  these from one parent within N minutes" threshold to the SIEM.
+author: Jarmi
+date: 2026/06/30
+references:
+  - https://asec.ahnlab.com/en/89944/
+  - https://www.trustwave.com/en-us/resources/blogs/spiderlabs-blog/dire-wolf-strikes-new-ransomware-group-targeting-global-sectors/
+tags:
+  - attack.impact
+  - attack.t1490
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  vssadmin:
+    Image|endswith:
+      - '\vssadmin.exe'
+      - '\wmic.exe'
+    CommandLine|contains|all:
+      - 'delete'
+      - 'shadow'
+  wbadmin:
+    Image|endswith: '\wbadmin.exe'
+    CommandLine|contains:
+      - 'delete backup'
+      - 'delete systemstatebackup'
+      - 'delete catalog'
+  bcdedit:
+    Image|endswith: '\bcdedit.exe'
+    CommandLine|contains:
+      - 'recoveryenabled No'
+      - 'bootstatuspolicy ignoreallfailures'
+  condition: vssadmin or wbadmin or bcdedit
+falsepositives:
+  - Legitimate backup administration or imaging software that prunes shadow copies or backup catalogs. Baseline known maintenance hosts and schedules.
+level: high

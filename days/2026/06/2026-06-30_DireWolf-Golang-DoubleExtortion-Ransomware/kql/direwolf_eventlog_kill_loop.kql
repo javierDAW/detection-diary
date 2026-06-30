@@ -1,0 +1,17 @@
+// Title: Dire Wolf - Event Log Service Kill Loop and Clear
+// Id: 702c1427-0d0d-4725-b6b7-6b506d0ad9ab
+// MITRE: T1070.001 (Clear Windows Event Logs), T1047 (WMI)
+// Reference: https://asec.ahnlab.com/en/89944/
+// Author: Jarmi
+// Date: 2026-06-30
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: Repeated eventlog-service termination is rare; full four-channel wevtutil cl is not expected on production.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where (FileName =~ "taskkill.exe" and ProcessCommandLine has "eventlog")
+     or (FileName =~ "wmic.exe" and ProcessCommandLine has "service" and ProcessCommandLine has "eventlog")
+     or (FileName =~ "wevtutil.exe" and ProcessCommandLine has_any (" cl ","clear-log"))
+| summarize Events=count(), Cmds=make_set(ProcessCommandLine, 16), FirstSeen=min(Timestamp), LastSeen=max(Timestamp)
+    by DeviceName, InitiatingProcessFileName, bin(Timestamp, 5m)
+| where Events >= 2
+| order by LastSeen desc

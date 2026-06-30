@@ -1,0 +1,28 @@
+type,value,context,confidence,source
+sha256,27d90611f005db3a25a4211cf8f69fb46097c6c374905d7207b30e87d296e1b3,Go/UPX Dire Wolf filecoder confirmed sample,high,Protos Labs 2025-08-28; Trustwave SpiderLabs
+sha256,8fdee53152ec985ffeeeda3d7a85852eb5c9902d2d480449421b4939b1904aad,Dire Wolf filecoder binary,high,Protos Labs 2025-08-28
+sha256,00065b7aeaa41e3aa52cf94be0f63afdd92e04799935d612f2451bcf4b1fb704,Dire Wolf sample detected by 66 AV engines,high,Protos Labs 2025-08-28
+md5,333fd9dd9d84b58c4eef84a8d07670dd,Dire Wolf family hash,medium,AhnLab ASEC 2025-09-01
+md5,44da29144b151062bce633e9ce62de85,Dire Wolf family hash,medium,AhnLab ASEC 2025-09-01
+md5,aa62b3905be9b49551a07bc16eaad2ff,Dire Wolf family hash,medium,AhnLab ASEC 2025-09-01
+md5,bc6912c853be5907438b4978f6c49e43,Dire Wolf family hash,medium,AhnLab ASEC 2025-09-01
+md5,4924b945cfdc5bfece03f5140a546384,Dire Wolf 2026 sample,medium,CYFIRMA 2026-06-26
+mutex,Global\direwolfAppMutex,Single-instance execution guard,high,AhnLab ASEC 2025-09-01
+path,C:\runfinish.exe,Empty completion marker written post-encryption,high,AhnLab ASEC 2025-09-01
+path,HowToRecoveryFiles.txt,Ransom note written per traversed folder,high,AhnLab ASEC 2025-09-01
+string,.direwolf,Encrypted-file extension appended by the filecoder,high,AhnLab ASEC 2025-09-01
+domain,direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion,Tor leak and negotiation site,high,Protos Labs 2025-08-28
+domain,tor-browser[.]io,Malicious social-engineering / C2 infrastructure,medium,Protos Labs 2025-08-28
+domain,www.tor-browser[.]io,Dire Wolf related subdomain,medium,Protos Labs 2025-08-28
+domain,sitemap.tor-browser[.]io,Dire Wolf related subdomain,medium,Protos Labs 2025-08-28
+domain,sitemaps.tor-browser[.]io,Dire Wolf related subdomain,medium,Protos Labs 2025-08-28
+note,Curve25519 key exchange + ChaCha20 cipher with SHA-256 derived key/nonce; intermittent encryption (>1MB encrypts first 1MB only),Encryption scheme,high,AhnLab ASEC 2025-09-01
+note,vssadmin delete shadows /all /quiet,Inhibit recovery command T1490,high,AhnLab ASEC 2025-09-01
+note,wbadmin delete backup -keepVersions:0 -quiet,Inhibit recovery command T1490,high,AhnLab ASEC 2025-09-01
+note,bcdedit /set {default} recoveryenabled No,Disable WinRE T1490,high,AhnLab ASEC 2025-09-01
+note,bcdedit /set {default} bootstatuspolicy ignoreallfailures,Prevent recovery on boot failure T1490,high,AhnLab ASEC 2025-09-01
+note,wevtutil cl Application/System/Security/Setup,Clear core event logs T1070.001,high,AhnLab ASEC 2025-09-01
+note,cmd /c start shutdown -r -f -t 10,Forced reboot finale T1529,high,AhnLab ASEC 2025-09-01
+note,timeout /T 3 then del (ping-based delay variant per CYFIRMA),Self-delete chain T1070.004,high,AhnLab ASEC 2025-09-01; CYFIRMA 2026-06-26
+note,Get-WmiObject win32_service name=eventlog then taskkill looped,Event log service kill loop T1070.001 T1047,high,AhnLab ASEC 2025-09-01
+note,qTox / Tox messenger negotiation; ransom ~USD 500000; double extortion,Extortion tradecraft T1657,high,Protos Labs 2025-08-28; AhnLab ASEC 2025-09-01

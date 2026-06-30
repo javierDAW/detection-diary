@@ -1,0 +1,38 @@
+title: Dire Wolf Event Log Service Kill and Clear
+id: 702c1427-0d0d-4725-b6b7-6b506d0ad9ab
+status: experimental
+description: >
+  Detects Dire Wolf indicator-removal behavior: forced termination of the
+  Windows eventlog service (resolved by WMI then killed with taskkill, repeated
+  in a loop) and clearing of the core event log channels with wevtutil cl.
+  Terminating the eventlog service is rare in benign operations and is a strong
+  signal when paired with log clearing.
+author: Jarmi
+date: 2026/06/30
+references:
+  - https://asec.ahnlab.com/en/89944/
+tags:
+  - attack.defense-evasion
+  - attack.t1070.001
+  - attack.t1047
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  taskkill_eventlog:
+    Image|endswith: '\taskkill.exe'
+    CommandLine|contains: 'eventlog'
+  wmic_eventlog:
+    Image|endswith: '\wmic.exe'
+    CommandLine|contains|all:
+      - 'service'
+      - 'eventlog'
+  wevtutil_clear:
+    Image|endswith: '\wevtutil.exe'
+    CommandLine|contains:
+      - ' cl '
+      - 'clear-log'
+  condition: taskkill_eventlog or wmic_eventlog or wevtutil_clear
+falsepositives:
+  - Rare administrative troubleshooting of the event log service. Clearing all four core channels in sequence is not expected on production hosts.
+level: high

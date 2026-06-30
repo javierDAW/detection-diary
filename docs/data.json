@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-06-30",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware",
+  "title": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story before it encrypts",
+  "clusters": [
+   "Dire Wolf (DireWolf) ransomware group"
+  ],
+  "country": "Unattributed e-crime; financially motivated; victim concentration in SE Asia + APAC",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "manufacturing",
+   "technology",
+   "finance",
+   "healthcare",
+   "logistics",
+   "automotive"
+  ],
+  "techniques": [
+   "T1486",
+   "T1490",
+   "T1489",
+   "T1562.001",
+   "T1070.001",
+   "T1070.004",
+   "T1047",
+   "T1059.003",
+   "T1027.002",
+   "T1529",
+   "T1480",
+   "T1657",
+   "T1083",
+   "T1003.001"
+  ],
+  "tech_count": 14,
+  "tldr": "Dire Wolf is a financially motivated double-extortion ransomware crew that surfaced in May 2025 and is still actively posting victims through mid-2026 (Did Asia, an automotive-parts firm in Thailand, on 2026-06-12; CYFIRMA re-profiled the family in its 2026-06-26 weekly intelligence report, which is the reason it lands today). The payload is a Go binary, UPX-packed, that takes a `-d <dir>` target ",
+  "thumb": "thumbs/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware.svg",
+  "case_rel": "../days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Dire Wolf (DireWolf) ransomware group",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "dire wolf: a golang double-extortion ransomware that kills the recovery story before it encrypts dire wolf (direwolf) ransomware group unattributed e-crime; financially motivated; victim concentration in se asia + apac windows manufacturing technology finance healthcare logistics automotive t1486 t1490 t1489 t1562.001 t1070.001 t1070.004 t1047 t1059.003 t1027.002 t1529 t1480 t1657 t1083 t1003.001 ransomware / e-crime "
+ },
+ {
   "date": "2026-06-29",
   "year": "2026",
   "month": "2026-06",

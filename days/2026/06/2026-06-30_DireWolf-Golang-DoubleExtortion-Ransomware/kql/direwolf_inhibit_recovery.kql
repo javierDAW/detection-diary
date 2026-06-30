@@ -1,0 +1,17 @@
+// Title: Dire Wolf - Recovery Inhibition Command Chain
+// Id: c8412e64-8316-44a4-835d-78225f203754
+// MITRE: T1490 (Inhibit System Recovery)
+// Reference: https://asec.ahnlab.com/en/89944/
+// Author: Jarmi
+// Date: 2026-06-30
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: Backup/imaging admin tools may delete shadows or backup catalogs; baseline maintenance hosts.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where (FileName =~ "vssadmin.exe" and ProcessCommandLine has "delete" and ProcessCommandLine has "shadow")
+     or (FileName =~ "wbadmin.exe" and ProcessCommandLine has_any ("delete backup","delete systemstatebackup","delete catalog"))
+     or (FileName =~ "bcdedit.exe" and ProcessCommandLine has_any ("recoveryenabled No","bootstatuspolicy ignoreallfailures"))
+| summarize Commands=make_set(ProcessCommandLine, 16), DistinctCmds=dcount(ProcessCommandLine), FirstSeen=min(Timestamp), LastSeen=max(Timestamp)
+    by DeviceName, InitiatingProcessFileName, bin(Timestamp, 10m)
+| where DistinctCmds >= 2
+| order by LastSeen desc

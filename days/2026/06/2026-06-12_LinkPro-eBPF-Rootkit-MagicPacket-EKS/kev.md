@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.06.25)). Generated 2026-06-29._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.06.29)). Generated 2026-06-30._
 
 **1 of 1 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 

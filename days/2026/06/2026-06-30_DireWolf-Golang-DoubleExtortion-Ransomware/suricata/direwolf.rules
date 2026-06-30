@@ -1,0 +1,13 @@
+# Dire Wolf ransomware - network infrastructure indicators (INFRA-DECAY).
+# Author: Jarmi
+# Date: 2026-06-30
+# Reference: https://www.protoslabs.io/resources/deep-dive-analysis-into-dire-wolf-ransomware-ttps-and-iocs
+# Note: These are social-engineering / Tor infra indicators that rotate and decay.
+#       The durable detection is host-behavioral (see sigma/, kql/, yara/). Re-validate
+#       domains before enforcing. No custom variables used.
+alert dns any any -> any any (msg:"DIREWOLF Dire Wolf social-eng domain tor-browser.io DNS query"; dns.query; content:"tor-browser.io"; nocase; isdataat:!1,relative; classtype:domain-c2; sid:9640001; rev:1;)
+alert dns any any -> any any (msg:"DIREWOLF Dire Wolf tor-browser.io subdomain DNS query"; dns.query; content:".tor-browser.io"; nocase; classtype:domain-c2; sid:9640002; rev:1;)
+alert tls any any -> any any (msg:"DIREWOLF Dire Wolf tor-browser.io TLS SNI"; tls.sni; content:"tor-browser.io"; nocase; classtype:domain-c2; sid:9640003; rev:1;)
+alert http any any -> any any (msg:"DIREWOLF Dire Wolf tor-browser.io HTTP Host header"; http.host; content:"tor-browser.io"; nocase; classtype:domain-c2; sid:9640004; rev:1;)
+alert http any any -> any any (msg:"DIREWOLF Dire Wolf leak-site onion address in HTTP payload"; flow:established; http.response_body; content:"direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd"; nocase; classtype:trojan-activity; sid:9640005; rev:1;)
+alert tcp any any -> any any (msg:"DIREWOLF Dire Wolf leak-site onion address string observed"; flow:established; content:"direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd"; nocase; classtype:trojan-activity; sid:9640006; rev:1;)
