@@ -1,0 +1,49 @@
+title: AWS Console AiTM Kit Endpoints and input_24 Parameter (proxy)
+id: 90089d6e-e0bc-4411-91e6-2da9b1c0d929
+status: experimental
+description: |
+  Detects outbound web traffic bearing the fingerprint of the input_24 AiTM
+  phishing kit: a request carrying the input_24 query parameter (encrypted
+  target-email blob), or a POST to the kit's relay endpoints (/api/check,
+  /api/me, /api/login, /api/auth) toward one of the known phishing hosts.
+  The kit is a React SPA; the API paths are the credential/MFA relay backend.
+  Because the encrypted-email gate suppresses rendering for non-targets, the
+  request itself is a higher-fidelity anchor than any page content. Push
+  co-occurrence with the DNS rule and CloudTrail ConsoleLogin to SIEM
+  correlation.
+references:
+  - https://securitylabs.datadoghq.com/articles/behind-the-console-aws-aitm-phishing-kit-and-beyond/
+  - https://attack.mitre.org/techniques/T1557/
+  - https://attack.mitre.org/techniques/T1111/
+author: Jarmi
+date: 2026/07/01
+tags:
+  - attack.credential-access
+  - attack.t1557
+  - attack.t1111
+  - attack.t1539
+logsource:
+  category: proxy
+detection:
+  selection_host:
+    c-uri|contains:
+      - 'us-west-login.com'
+      - 'us-east-prod.com'
+      - 'loginportal-aws.com'
+      - 'switch-sglogin.com'
+      - 'uslogin-prodsg.com'
+      - 'us-west-prod.com'
+  selection_fingerprint:
+    c-uri|contains:
+      - 'input_24='
+      - '/api/check'
+      - '/api/me'
+      - '/api/login'
+      - '/api/auth'
+  condition: selection_host and selection_fingerprint
+falsepositives:
+  - Security researchers or takedown services replaying the kit for analysis.
+  - Legitimate applications using an unrelated input_24 parameter name are
+    excluded here because the host list scopes the match to phishing domains.
+
+level: high

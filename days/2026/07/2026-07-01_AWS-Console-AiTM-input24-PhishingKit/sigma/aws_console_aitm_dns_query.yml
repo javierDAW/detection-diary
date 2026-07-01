@@ -1,0 +1,51 @@
+title: AWS Console AiTM Phishing Domain Resolution (input_24 kit)
+id: ffde4073-258f-4dcd-9ca6-cfc8d4c9d8bc
+status: experimental
+description: |
+  Detects DNS resolution of the AWS-console adversary-in-the-middle phishing
+  domains reported by Datadog Security Labs (June 2026 input_24 kit) and the
+  concurrent SendGrid-impersonation domains. These are Cloudflare-fronted,
+  NICENIC-registered look-alikes that clone the AWS console sign-in page and
+  relay MFA in real time. Refresh the value list from the day's iocs.csv; the
+  durable pivot is a resolution of one of these hosts by a corporate endpoint,
+  followed by a successful AWS ConsoleLogin in CloudTrail.
+references:
+  - https://securitylabs.datadoghq.com/articles/behind-the-console-aws-aitm-phishing-kit-and-beyond/
+  - https://attack.mitre.org/techniques/T1557/
+  - https://attack.mitre.org/techniques/T1566/002/
+author: Jarmi
+date: 2026/07/01
+tags:
+  - attack.initial-access
+  - attack.t1566.002
+  - attack.credential-access
+  - attack.t1557
+logsource:
+  category: dns_query
+detection:
+  selection_domain:
+    QueryName:
+      - 'us-west-login.com'
+      - 'aws.us-west-login.com'
+      - 'aws-central.us-west-login.com'
+      - 'us-east-prod.com'
+      - 'aws.us-east-prod.com'
+      - 'loginportal-aws.com'
+      - 'switch-sglogin.com'
+      - 'uslogin-prodsg.com'
+      - 'sendgrid.uslogin-prodsg.com'
+      - 'us-west-prod.com'
+      - 'sendgrid.us-west-prod.com'
+      - 'dashboard-salesforce.com'
+  selection_suffix:
+    QueryName|endswith:
+      - '.us-west-login.com'
+      - '.us-east-prod.com'
+      - '.uslogin-prodsg.com'
+      - '.us-west-prod.com'
+  condition: selection_domain or selection_suffix
+falsepositives:
+  - None expected; these are dedicated phishing domains with no legitimate use.
+    Retire entries as infrastructure decays and validate before blocking.
+
+level: high

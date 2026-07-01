@@ -1,0 +1,21 @@
+// Title: Inbound AWS-support lure with links to AiTM phishing domains
+// Id: 295ef250-9216-4b5b-8245-c6a8f7112f4f
+// MITRE: T1566.002 (Spearphishing Link), T1656 (Impersonation)
+// Reference: https://securitylabs.datadoghq.com/articles/behind-the-console-aws-aitm-phishing-kit-and-beyond/
+// Author: Jarmi
+// Date: 2026-07-01
+// Tested on: Microsoft Defender XDR (EmailEvents + EmailUrlInfo)
+// FP notes: Legitimate AWS/SendGrid mail uses first-party domains; scope by URL host list.
+let phishHosts = dynamic([
+    "us-west-login.com","us-east-prod.com","loginportal-aws.com",
+    "switch-sglogin.com","uslogin-prodsg.com","us-west-prod.com"]);
+let urls =
+    EmailUrlInfo
+    | where Url has_any (phishHosts) or Url contains "input_24="
+    | project NetworkMessageId, Url;
+EmailEvents
+| where Timestamp > ago(30d)
+| where SenderMailFromDomain has_any ("sendgrid.net","nimbu") or DeliveryAction == "Delivered"
+| join kind=inner urls on NetworkMessageId
+| project Timestamp, RecipientEmailAddress, SenderFromAddress, SenderMailFromDomain, Subject, Url
+| order by Timestamp desc

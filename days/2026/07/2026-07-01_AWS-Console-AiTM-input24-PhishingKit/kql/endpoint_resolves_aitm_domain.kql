@@ -1,0 +1,18 @@
+// Title: Endpoint connection to AWS-console AiTM phishing domains (input_24 kit)
+// Id: 6eca2fea-f4a1-4630-8415-8b5258ad85e2
+// MITRE: T1557 (Adversary-in-the-Middle), T1566.002 (Spearphishing Link)
+// Reference: https://securitylabs.datadoghq.com/articles/behind-the-console-aws-aitm-phishing-kit-and-beyond/
+// Author: Jarmi
+// Date: 2026-07-01
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: Dedicated phishing infrastructure; no legitimate use expected.
+let phish = dynamic([
+    "us-west-login.com","aws.us-west-login.com","aws-central.us-west-login.com",
+    "us-east-prod.com","aws.us-east-prod.com","loginportal-aws.com",
+    "switch-sglogin.com","uslogin-prodsg.com","sendgrid.uslogin-prodsg.com",
+    "us-west-prod.com","sendgrid.us-west-prod.com","dashboard-salesforce.com"]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteUrl has_any (phish) or tostring(parse_url(RemoteUrl).Host) in (phish)
+| project Timestamp, DeviceName, InitiatingProcessAccountUpn, RemoteUrl, RemoteIP, InitiatingProcessFileName
+| order by Timestamp desc

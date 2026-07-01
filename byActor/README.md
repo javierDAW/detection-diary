@@ -138,4 +138,5 @@ Source of truth: each day's `README.md` frontmatter.
 | [Vo1d/Popa proxy operator](./vo1d-popa-proxy-operator/) | 1 |
 | [Void Arachne](./void-arachne/) | 1 |
 | [Warlock](./warlock/) | 1 |
+| [input_24 phishing kit operator (PoisonSeeds-adjacent)](./input-24-phishing-kit-operator-poisonseeds-adjacent/) | 1 |
 | [namikazesarada010206](./namikazesarada010206/) | 1 |

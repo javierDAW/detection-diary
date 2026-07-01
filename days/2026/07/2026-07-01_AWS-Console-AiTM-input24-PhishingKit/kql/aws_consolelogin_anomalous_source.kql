@@ -1,0 +1,18 @@
+// Title: AWS ConsoleLogin success from source outside identity baseline (AiTM replay)
+// Id: e54488a1-a443-422b-93e4-14d9b99f08db
+// MITRE: T1078.004 (Valid Accounts: Cloud), T1550.004 (Web Session Cookie), T1111 (MFA Interception)
+// Reference: https://securitylabs.datadoghq.com/articles/behind-the-console-aws-aitm-phishing-kit-and-beyond/
+// Author: Jarmi
+// Date: 2026-07-01
+// Tested on: Microsoft Sentinel (AWSCloudTrail connector table)
+// FP notes: Correlation primitive; pair with the DNS/proxy hit and per-user ASN history.
+let knownASNs = dynamic([<add_known_corp_asn_list>]);
+AWSCloudTrail
+| where TimeGenerated > ago(30d)
+| where EventSource == "signin.amazonaws.com" and EventName == "ConsoleLogin"
+| extend Result = tostring(parse_json(ResponseElements).ConsoleLogin)
+| where Result == "Success"
+| extend Asn = tostring(parse_json(AdditionalEventData).ASN)
+| where isnotempty(Asn) and Asn !in (knownASNs)
+| project TimeGenerated, UserIdentityArn, SourceIpAddress, Asn, AWSRegion, UserAgent
+| order by TimeGenerated desc

@@ -1,0 +1,14 @@
+# AWS console AiTM phishing kit (input_24) - network indicators (INFRA-DECAY).
+# Author: Jarmi
+# Date: 2026-07-01
+# Reference: https://securitylabs.datadoghq.com/articles/behind-the-console-aws-aitm-phishing-kit-and-beyond/
+# Note: NICENIC-registered, Cloudflare-fronted phishing domains registered 2026-06-16..18.
+#       Domains rotate and decay - re-validate before enforcing. The input_24 URL
+#       parameter and the /api/check|/api/auth relay paths are the durable kit
+#       fingerprints and survive domain rotation. No custom variables used.
+alert dns any any -> any any (msg:"AITM-input24 AWS console phishing domain us-west-login.com DNS query"; dns.query; content:"us-west-login.com"; nocase; classtype:domain-c2; sid:9650001; rev:1;)
+alert dns any any -> any any (msg:"AITM-input24 AWS console phishing domain us-east-prod.com DNS query"; dns.query; content:"us-east-prod.com"; nocase; classtype:domain-c2; sid:9650002; rev:1;)
+alert tls any any -> any any (msg:"AITM-input24 AWS console phishing TLS SNI (login/prod look-alike)"; tls.sni; pcre:"/(us-west-login\.com|us-east-prod\.com|loginportal-aws\.com|switch-sglogin\.com|uslogin-prodsg\.com|us-west-prod\.com)$/i"; classtype:domain-c2; sid:9650003; rev:1;)
+alert http any any -> any any (msg:"AITM-input24 phishing kit gating request with input_24 parameter"; flow:established,to_server; http.uri; content:"input_24="; nocase; classtype:credential-theft; sid:9650004; rev:1;)
+alert http any any -> any any (msg:"AITM-input24 phishing kit credential-check endpoint POST /api/check"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/api/check"; nocase; classtype:credential-theft; sid:9650005; rev:1;)
+alert http any any -> any any (msg:"AITM-input24 phishing kit MFA relay endpoint POST /api/auth"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/api/auth"; nocase; classtype:credential-theft; sid:9650006; rev:1;)

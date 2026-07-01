@@ -1,0 +1,15 @@
+// Title: AWS post-compromise burst — access-key / user creation after suspicious login
+// Id: e54488a1-a443-422b-93e4-14d9b99f08db-2
+// MITRE: T1098.001 (Additional Cloud Credentials), T1136.003 (Create Account: Cloud)
+// Reference: https://securitylabs.datadoghq.com/articles/behind-the-console-aws-aitm-phishing-kit-and-beyond/
+// Author: Jarmi
+// Date: 2026-07-01
+// Tested on: Microsoft Sentinel (AWSCloudTrail connector table)
+// FP notes: Legitimate IAM administration; scope to identities that hit a phishing domain.
+AWSCloudTrail
+| where TimeGenerated > ago(7d)
+| where EventName in ("CreateAccessKey","CreateUser","CreateLoginProfile","AttachUserPolicy","UpdateLoginProfile")
+| summarize Actions = make_set(EventName), Count = count(), FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated)
+    by UserIdentityArn, SourceIpAddress, bin(TimeGenerated, 1h)
+| where Count >= 2
+| order by LastSeen desc
