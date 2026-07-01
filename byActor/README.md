@@ -111,7 +111,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Talos Cluster 8 (NimPlant-variant agent1)](./talos-cluster-8-nimplant-variant-agent1/) | 1 |
 | [Talos Cluster 9 (gsocket + XMRig)](./talos-cluster-9-gsocket-xmrig/) | 1 |
 | [TeamPCP](./teampcp/) | 4 |
-| [The Gentlemen RaaS](./the-gentlemen-raas/) | 1 |
+| [The Gentlemen RaaS](./the-gentlemen-raas/) | 2 |
 | [The Gentlemen RaaS (GentleKiller operator)](./the-gentlemen-raas-gentlekiller-operator/) | 1 |
 | [TrapDoor (Socket-tracked)](./trapdoor-socket-tracked/) | 1 |
 | [TukTuk (AI-generated framework)](./tuktuk-ai-generated-framework/) | 1 |
