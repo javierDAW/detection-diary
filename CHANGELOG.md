@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.01 — Day 65 — Behind the console: AWS-console AiTM phishing kit (input_24)
+
+### Added
+- `days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/` — targeted adversary-in-the-middle campaign (Datadog Security Labs, 2026-06-24) that cloned the AWS Management Console sign-in page and relayed MFA in real time; six NICENIC-registered, Cloudflare-fronted look-alikes (three AWS, three SendGrid) delivered via SendGrid/Nimbu to <50 US-based engineers. Kit gates rendering on a per-recipient encrypted `input_24` email blob; lineage ties to July-2025 crypto-wallet phishing and the PoisonSeeds kit (NVISO, Aug 2025).
+- Sigma (3): `aws_console_aitm_dns_query.yml` — look-alike domain resolution; `aws_console_aitm_kit_endpoints_proxy.yml` — `input_24=`/`/api/*` request fingerprint; `aws_cloudtrail_consolelogin_after_aitm.yml` — ConsoleLogin Success correlation primitive.
+- KQL (4): `endpoint_resolves_aitm_domain.kql` (Defender DeviceNetworkEvents); `inbound_lure_from_sendgrid_nimbu.kql` (EmailEvents+EmailUrlInfo); `aws_consolelogin_anomalous_source.kql` (Sentinel AWSCloudTrail, off-baseline ASN); `aws_post_login_key_and_user_creation.kql` (IAM persistence burst).
+- YARA (1 file, 3 rules): input_24 kit JS, attacker validation `.bat`, PoisonSeeds SendGrid SPA.
+- Suricata (1 file, 6 sids): DNS + TLS SNI + HTTP (`input_24=`, `/api/check`, `/api/auth`) — sids 9650001-9650006.
+- PEAK hunts (3): H1 domain-hit -> ConsoleLogin correlation; H2 SendGrid/Nimbu lure with look-alike link; H3 post-login IAM persistence.
+- `iocs.csv` (24 entries) — six phishing domains + kit endpoints/fingerprints + notes; coverage 2026-06-16..24. No CVE — no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, identity-cloud accent; victim + operator lanes with DNS/`input_24`/ConsoleLogin detection anchors.
+
+### Pedagogy
+- MFA is not a login-legitimacy oracle: AiTM relays the live factor, so the signal is the session source (ASN/geo) and its provenance (a preceding look-alike-domain hit), not that MFA fired. FIDO2/passkeys break the class.
+- Sender authentication is deliverability, not trust: SendGrid/Nimbu abuse passes SPF/DKIM/DMARC — gate on the URL destination host, not the envelope sender.
+- Target-gated kits move detection off the page and onto the network: when the payload refuses to render for non-victims, DNS/proxy resolution and the `input_24`/`/api/*` fingerprint are the earliest reliable artifacts.
+- Track the kit, not the domain: the input_24 gating flow persisted across wallet, Salesforce and AWS campaigns for a year while domains rotated behind Cloudflare.
+
 ## 2026.07.01 — Maintenance — Reconstruct missing Day 1 README (The Gentlemen RaaS + SystemBC)
 
 ### Fixed

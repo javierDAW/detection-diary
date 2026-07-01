@@ -1,10 +1,11 @@
 # detection-diary blocklist — domain
-# generated 2026-07-01 06:26 UTC
+# generated 2026-07-01 07:20 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
 0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 1.9.5.0.9.1.0.0.7.4.0.1.0.0.2.ip6.arpa
+15hourolddomain-bypass-ed-google-workspaceprotection-fuckgoogle.com
 1jabber.com
 1rpc.io
 1vpns.com
@@ -27,6 +28,9 @@ arweave.net
 ashx.lhlsjcb.com
 attachedfile.com
 audit.checkmarx.cx
+aws-central.us-west-login.com
+aws.us-east-prod.com
+aws.us-west-login.com
 bithill.com
 borjumaniya.store
 boss.securehubcloud.com
@@ -43,6 +47,7 @@ com-ae.net
 compliance-protectionoutlook.de
 cumm.info
 d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
+dashboard-salesforce.com
 data-form-o5pu.p-ntz8agp6.workers.dev
 ddjidd564.github.io
 direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion
@@ -79,6 +84,7 @@ lapas.live
 lapas.lv
 lb.gmslb.net
 leadingfilipinoteams.com
+loginportal-aws.com
 mail.t-w.dev
 mcagov.cc
 members.nefeshhope.com
@@ -107,6 +113,8 @@ robovpn.com
 roldco.com
 round-cherry-4418.hellohiall.workers.dev
 saidozdemir.com
+sendgrid.us-west-prod.com
+sendgrid.uslogin-prodsg.com
 server.cubatiendaalimentos.com.mx
 setupsso.com
 sgnlapp.info
@@ -118,6 +126,7 @@ spicynagets.shop
 sslzeromail.run.place
 star-layer.com
 sudsmama.com
+switch-sglogin.com
 t-w.dev
 t.m-kosche.com
 telecom.webredirect.org
@@ -134,6 +143,10 @@ treasuresland.cc
 ukrguard.org
 ukrvarta.online
 update-kaspersky.workers.dev
+us-east-prod.com
+us-west-login.com
+us-west-prod.com
+uslogin-prodsg.com
 vefbdzzuaadnascpeqcn.supabase.co
 viki-play.com
 vnc.kcii2.com

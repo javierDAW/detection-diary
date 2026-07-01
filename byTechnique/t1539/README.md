@@ -4,11 +4,12 @@
 
 # Techniques: T1539
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-01 | Behind the console: an AiTM phishing kit that clones the AWS sign-in page and relays MFA in real time (input_24 kit) | input_24 phishing kit operator (PoisonSeeds-adjacent) | [`2026-07-01_AWS-Console-AiTM-input24-PhishingKit/`](../../days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/) |
 | 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |
 | 2026-05-30 | AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers AI agents and users into installing a multi-key-XOR universal Mach-O wallet and Keychain stealer | AMOS / Atomic macOS Stealer (MaaS) | [`2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/`](../../days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/) |
 | 2026-05-28 | TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io | TrapDoor (Socket-tracked) | [`2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/`](../../days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) |

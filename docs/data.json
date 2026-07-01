@@ -1,5 +1,52 @@
 [
  {
+  "date": "2026-07-01",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-01_AWS-Console-AiTM-input24-PhishingKit",
+  "title": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and relays MFA in real time (input_24 kit)",
+  "clusters": [
+   "input_24 phishing kit operator (PoisonSeeds-adjacent)"
+  ],
+  "country": "Unattributed e-crime; financially motivated; targeting US-based engineers",
+  "platforms": [
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "cryptocurrency"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1583.006",
+   "T1585.002",
+   "T1566.002",
+   "T1598.003",
+   "T1204.001",
+   "T1656",
+   "T1557",
+   "T1111",
+   "T1539",
+   "T1550.004",
+   "T1078.004",
+   "T1480",
+   "T1027"
+  ],
+  "tech_count": 14,
+  "tldr": "Between 2026-06-16 and 2026-06-19, Datadog Security Labs (report published 2026-06-24) observed a targeted adversary-in-the-middle (AiTM) campaign that cloned the **AWS Management Console** sign-in page to harvest console credentials and relay the second factor in real time. The kit is a React single-page app whose credential-harvesting logic lives in one JavaScript file; it gates rendering on a p",
+  "thumb": "thumbs/2026-07-01_AWS-Console-AiTM-input24-PhishingKit.svg",
+  "case_rel": "../days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "input_24 phishing kit operator (PoisonSeeds-adjacent)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "behind the console: an aitm phishing kit that clones the aws sign-in page and relays mfa in real time (input_24 kit) input_24 phishing kit operator (poisonseeds-adjacent) unattributed e-crime; financially motivated; targeting us-based engineers cloud-multi technology finance cryptocurrency t1583.001 t1583.006 t1585.002 t1566.002 t1598.003 t1204.001 t1656 t1557 t1111 t1539 t1550.004 t1078.004 t1480 t1027 identity / cloud / saas "
+ },
+ {
   "date": "2026-06-30",
   "year": "2026",
   "month": "2026-06",

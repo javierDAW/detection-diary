@@ -1,0 +1,42 @@
+title: AWS ConsoleLogin Success Consistent with AiTM Session Replay
+id: 0f664479-78b6-4e67-8601-f5ddf7e8f08b
+status: experimental
+description: |
+  Detects successful AWS Management Console logins (CloudTrail ConsoleLogin,
+  responseElements.ConsoleLogin = Success) that should be correlated with a
+  preceding DNS/proxy hit to the input_24 AiTM phishing domains from the same
+  user or endpoint. An AiTM kit captures username, password and the live MFA
+  code, then replays them against the real console, so the resulting login is
+  a normal-looking Success from an attacker-controlled source IP/ASN. This
+  rule is intentionally broad; scope it in SIEM to logins whose sourceIPAddress
+  ASN/geo deviates from the identity baseline within a short window of a
+  phishing-domain resolution. Alerting standalone will be noisy by design.
+references:
+  - https://securitylabs.datadoghq.com/articles/behind-the-console-aws-aitm-phishing-kit-and-beyond/
+  - https://attack.mitre.org/techniques/T1078/004/
+  - https://attack.mitre.org/techniques/T1550/004/
+author: Jarmi
+date: 2026/07/01
+tags:
+  - attack.defense-evasion
+  - attack.t1078.004
+  - attack.credential-access
+  - attack.t1550.004
+logsource:
+  product: aws
+  service: cloudtrail
+detection:
+  selection_event:
+    eventSource: 'signin.amazonaws.com'
+    eventName: 'ConsoleLogin'
+  selection_success:
+    responseElements.ConsoleLogin: 'Success'
+  filter_saml:
+    additionalEventData.MFAUsed: 'Yes'
+  condition: selection_event and selection_success and not filter_saml
+falsepositives:
+  - Any legitimate console login without MFA; this rule is a correlation
+    primitive, not a standalone alert. Combine with the DNS/proxy rules and an
+    identity-based source-ASN baseline before escalating.
+
+level: medium

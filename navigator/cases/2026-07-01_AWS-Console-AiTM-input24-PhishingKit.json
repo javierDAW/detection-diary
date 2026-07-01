@@ -1,0 +1,125 @@
+{
+  "name": "2026-07-01 — 2026-07-01_AWS-Console-AiTM-input24-PhishingKit",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and relays MFA in real time (input_24 kit) — clusters: input_24 phishing kit operator (PoisonSeeds-adjacent)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1583.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1585.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1598.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1204.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1656",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1557",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1111",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1550.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1480",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and re"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

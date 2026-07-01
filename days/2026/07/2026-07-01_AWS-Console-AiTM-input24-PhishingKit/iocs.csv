@@ -1,0 +1,25 @@
+type,value,context,confidence,source
+domain,us-west-login.com,AWS console AiTM phishing parent domain; NICENIC registrar Cloudflare-fronted,high,Datadog Security Labs 2026-06-24
+domain,aws.us-west-login.com,AWS console phishing subdomain served by input_24 kit,high,Datadog Security Labs 2026-06-24
+domain,aws-central.us-west-login.com,AWS console phishing subdomain served by input_24 kit,high,Datadog Security Labs 2026-06-24
+domain,us-east-prod.com,AWS console AiTM phishing parent domain; NICENIC registrar Cloudflare-fronted,high,Datadog Security Labs 2026-06-24
+domain,aws.us-east-prod.com,AWS console phishing subdomain served by input_24 kit,high,Datadog Security Labs 2026-06-24
+domain,loginportal-aws.com,AWS console phishing domain; not observed carrying the input_24 parameter,high,Datadog Security Labs 2026-06-24
+domain,switch-sglogin.com,SendGrid-impersonation phishing domain (PoisonSeeds kit) registered 2026-06-19,high,Datadog Security Labs 2026-06-24
+domain,uslogin-prodsg.com,SendGrid-impersonation phishing domain registered 2026-06-17,high,Datadog Security Labs 2026-06-24
+domain,sendgrid.uslogin-prodsg.com,SendGrid-impersonation phishing subdomain,high,Datadog Security Labs 2026-06-24
+domain,us-west-prod.com,SendGrid-impersonation phishing domain registered 2026-06-18; naming twins the AWS us-east-prod.com,high,Datadog Security Labs 2026-06-24
+domain,sendgrid.us-west-prod.com,SendGrid-impersonation phishing subdomain,high,Datadog Security Labs 2026-06-24
+domain,dashboard-salesforce.com,Salesforce-login impersonation using the same input_24 gating (Aug 2025); ties the kit lineage,medium,Datadog Security Labs 2026-06-24; NVISO 2025-08-12
+domain,15hourolddomain-bypass-ed-google-workspaceprotection-fuckgoogle.com,Non-resolving domain pinged by the attacker validation batch file uploaded to VirusTotal 2026-06-19,medium,Datadog Security Labs 2026-06-24
+url,/api/check,input_24 kit endpoint: POST decrypts the base64 email blob and sets the validEmail cookie,high,Datadog Security Labs 2026-06-24
+url,/api/me,input_24 kit endpoint: reads the cookie and returns the victim email (renders page only if valid),high,Datadog Security Labs 2026-06-24
+url,/api/login,input_24 kit endpoint: root/IAM credential submission; response type field picks the MFA route,high,Datadog Security Labs 2026-06-24
+url,/api/auth,input_24 kit endpoint: relays the captured MFA code (email/sms/gauth) to the real AWS console,high,Datadog Security Labs 2026-06-24
+string,input_24,URL query parameter carrying the encrypted base64 target-email blob; kit fingerprint since 2025-07,high,Datadog Security Labs 2026-06-24
+string,validEmail,Plaintext-email cookie set by the gating server after /api/check,high,Datadog Security Labs 2026-06-24
+note,All six phishing domains were registered through NICENIC INTERNATIONAL GROUP CO. LIMITED within the 2026-06-16 to 2026-06-18 window and fronted by Cloudflare,high,Datadog Security Labs 2026-06-24
+note,Lures were delivered through the legitimate email platforms SendGrid and Nimbu to pass SPF/DKIM/DMARC and improve deliverability,high,Datadog Security Labs 2026-06-24
+note,Targeting was a curated list of fewer than 50 recipients primarily US-based software engineers and engineering leadership (per-recipient input_24 blob),high,Datadog Security Labs 2026-06-24
+note,No CVE is involved; this is a resource-development + AiTM-kit social-engineering case not a vulnerability exploit,high,Datadog Security Labs 2026-06-24
+note,Concurrent SendGrid kit is a React SPA using an email URL param and /2fa/(email|sms|ga)/:twoFactorId routes; matches NVISO PoisonSeeds,high,Datadog Security Labs 2026-06-24; NVISO 2025-08-12

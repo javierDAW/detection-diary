@@ -4,11 +4,12 @@
 
 # Techniques: T1566.002
 
-9 day(s) covering this technique.
+10 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-01 | Behind the console: an AiTM phishing kit that clones the AWS sign-in page and relays MFA in real time (input_24 kit) | input_24 phishing kit operator (PoisonSeeds-adjacent) | [`2026-07-01_AWS-Console-AiTM-input24-PhishingKit/`](../../days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/) |
 | 2026-06-22 | ProSpy/BITTER: Hack-for-Hire Android Spyware Targeting MENA Civil Society Journalists | BITTER · T-APT-17 | [`2026-06-22_prospy-bitter-mena/`](../../days/2026/06/2026-06-22_prospy-bitter-mena/) |
 | 2026-06-17 | Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delivery against US organizations | Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked) | [`2026-06-17_FakeInvitation-PhishKit-OTP-RMM/`](../../days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/) |
 | 2026-06-10 | Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-brand identity operation | Kali365 | [`2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/`](../../days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/) |
