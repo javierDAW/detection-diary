@@ -4,7 +4,7 @@
 
 # Techniques: T1053.005
 
-8 day(s) covering this technique.
+9 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
@@ -17,3 +17,4 @@
 | 2026-05-18 | Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist) | Silver Fox · SwimSnake · Void Arachne · UTG-Q-1000 | [`2026-05-18_SilverFox-ABCDoor-Tax-Phishing/`](../../days/2026/05/2026-05-18_SilverFox-ABCDoor-Tax-Phishing/) |
 | 2026-05-11 | UAT-8302 — China-nexus government espionage with shared APT arsenal | UAT-8302 · Jewelbug · REF7707 · CL-STA-0049 · LongNosedGoblin · UNC5174 · UAT-6382 · Earth Estries · Erudite Mogwai | [`2026-05-11_UAT-8302-China-Government-Espionage/`](../../days/2026/05/2026-05-11_UAT-8302-China-Government-Espionage/) |
 | 2026-05-08 | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026) | CloudZ · Pheno | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink/`](../../days/2026/05/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
+| 2026-04-28 | The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an RC4 SOCKS5 tunnel | The Gentlemen RaaS | [`2026-04-28_TheGentlemen-SystemBC/`](../../days/2026/04/2026-04-28_TheGentlemen-SystemBC/) |

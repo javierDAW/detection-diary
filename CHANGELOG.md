@@ -4,6 +4,13 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.01 — Maintenance — Reconstruct missing Day 1 README (The Gentlemen RaaS + SystemBC)
+
+### Fixed
+- `days/2026/04/2026-04-28_TheGentlemen-SystemBC/README.md` — the folder's README was never committed, so `generate_index.py` and the Pages gallery silently skipped the case (orphan). Reconstructed a faithful 15-section README from the committed `kill_chain.svg`, `iocs.csv` and detection rules (Check Point Research, April 2026; SystemBC RC4 SOCKS5 + GPO weaponization). Passes the structural + language gates.
+- Re-ran `generate_index.py` / `generate_site.py` / `generate_ioc_feed.py` / `generate_navigator.py`: case count 63 -> 64 across INDEX.md, gallery, and navigator per-case layers.
+- Audit result: all 64 day folders now contain a README; the legacy `spl/` tombstone in this folder is retained intentionally (SPL retired 2026-05-11).
+
 ## 2026.06.30 — Day 64 — Dire Wolf: Golang Double-Extortion Ransomware
 
 ### Added

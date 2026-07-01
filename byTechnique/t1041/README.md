@@ -4,7 +4,7 @@
 
 # Techniques: T1041
 
-20 day(s) covering this technique.
+21 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
@@ -29,3 +29,4 @@
 | 2026-05-08 | CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026) | CloudZ · Pheno | [`2026-05-08_CloudZ-RAT-Pheno-PhoneLink/`](../../days/2026/05/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/) |
 | 2026-05-07 | EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026) | namikazesarada010206 | [`2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/`](../../days/2026/05/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/) |
 | 2026-05-07 | QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026) | QLNX · Quasar Linux | [`2026-05-07_QLNX-Quasar-Linux-RAT/`](../../days/2026/05/2026-05-07_QLNX-Quasar-Linux-RAT/) |
+| 2026-04-28 | The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an RC4 SOCKS5 tunnel | The Gentlemen RaaS | [`2026-04-28_TheGentlemen-SystemBC/`](../../days/2026/04/2026-04-28_TheGentlemen-SystemBC/) |

@@ -1,0 +1,174 @@
+{
+  "name": "2026-04-28 — 2026-04-28_TheGentlemen-SystemBC",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an RC4 SOCKS5 tunnel — clusters: The Gentlemen RaaS",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1562.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1562.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1484.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1003.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1482",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1021.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1021.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1021.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1090.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1573.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an R"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

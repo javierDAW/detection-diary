@@ -13,7 +13,7 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**63 cases** · **128 actors/clusters** · **303 ATT&CK techniques** · **16 platforms** · **73 sectors** · 2026-04-29 -> 2026-06-30
+**64 cases** · **128 actors/clusters** · **303 ATT&CK techniques** · **16 platforms** · **73 sectors** · 2026-04-28 -> 2026-06-30
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 

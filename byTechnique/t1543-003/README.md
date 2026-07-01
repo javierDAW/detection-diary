@@ -4,7 +4,7 @@
 
 # Techniques: T1543.003
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
@@ -15,3 +15,4 @@
 | 2026-05-15 | EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion | The Gentlemen RaaS · EtherRAT (DPRK-linked, UNC5342 toolchain overlap) · TukTuk (AI-generated framework) | [`2026-05-15_EtherRAT-TukTuk-Gentlemen/`](../../days/2026/05/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | 2026-05-12 | Qilin EDR Killer — msimg32.dll four-stage loader and BYOVD chain | Qilin · Agenda · Warlock | [`2026-05-12_Qilin-EDR-Killer-msimg32/`](../../days/2026/05/2026-05-12_Qilin-EDR-Killer-msimg32/) |
 | 2026-05-01 | VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026) | VECT · TeamPCP · BreachForums | [`2026-05-01_VECT-2.0-RaaS/`](../../days/2026/05/2026-05-01_VECT-2.0-RaaS/) |
+| 2026-04-28 | The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an RC4 SOCKS5 tunnel | The Gentlemen RaaS | [`2026-04-28_TheGentlemen-SystemBC/`](../../days/2026/04/2026-04-28_TheGentlemen-SystemBC/) |

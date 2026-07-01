@@ -3653,5 +3653,61 @@
    }
   ],
   "q": "shai-hulud: the third coming — bitwarden cli 2026.4.0 trojanised npm worm teampcp shai-hulud e-crime / supply-chain worm (financially motivated, no nation-state nexus) linux macos windows supply-chain software-development cicd-pipelines cloud-multi t1195.002 t1059.007 t1059.004 t1204.002 t1546.004 t1027 t1552.001 t1552.005 t1528 t1083 t1005 t1102 t1567.001 t1531 supply chain cve-2026-32201"
+ },
+ {
+  "date": "2026-04-28",
+  "year": "2026",
+  "month": "2026-04",
+  "slug": "2026-04-28_TheGentlemen-SystemBC",
+  "title": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an RC4 SOCKS5 tunnel",
+  "clusters": [
+   "The Gentlemen RaaS"
+  ],
+  "country": "Unattributed e-crime (financially motivated)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "manufacturing",
+   "healthcare",
+   "technology",
+   "finance",
+   "government"
+  ],
+  "techniques": [
+   "T1078",
+   "T1190",
+   "T1059.001",
+   "T1562.001",
+   "T1562.002",
+   "T1562.004",
+   "T1053.005",
+   "T1543.003",
+   "T1484.001",
+   "T1003.001",
+   "T1046",
+   "T1482",
+   "T1021.001",
+   "T1021.002",
+   "T1021.006",
+   "T1090.002",
+   "T1573.001",
+   "T1071.001",
+   "T1041",
+   "T1486",
+   "T1490"
+  ],
+  "tech_count": 21,
+  "tldr": "The Gentlemen is a ransomware-as-a-service operation profiled by Check Point Research in April 2026 whose affiliates route every post-foothold action through SystemBC's custom RC4-encrypted SOCKS5 proxy over plain TCP, then weaponize Active Directory Group Policy in SYSVOL to push the encryptor to the entire domain in a single operational step. Entry is typically valid accounts over VPN or a Forti",
+  "thumb": "thumbs/2026-04-28_TheGentlemen-SystemBC.svg",
+  "case_rel": "../days/2026/04/2026-04-28_TheGentlemen-SystemBC/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "The Gentlemen RaaS",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "the gentlemen raas + systembc: gpo-weaponized domain-wide encryption behind an rc4 socks5 tunnel the gentlemen raas unattributed e-crime (financially motivated) windows manufacturing healthcare technology finance government t1078 t1190 t1059.001 t1562.001 t1562.002 t1562.004 t1053.005 t1543.003 t1484.001 t1003.001 t1046 t1482 t1021.001 t1021.002 t1021.006 t1090.002 t1573.001 t1071.001 t1041 t1486 t1490 ransomware / e-crime "
  }
 ]

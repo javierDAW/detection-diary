@@ -4,7 +4,7 @@
 
 # INDEX
 
-**63 cases** · **128 actors/clusters** · **303 ATT&CK techniques** · **16 platforms** · **73 sectors** · 2026-04-29 -> 2026-06-30
+**64 cases** · **128 actors/clusters** · **303 ATT&CK techniques** · **16 platforms** · **73 sectors** · 2026-04-28 -> 2026-06-30
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -117,11 +117,12 @@
 
 </details>
 
-<details><summary><b>2026-04</b> — 2 case(s)</summary>
+<details><summary><b>2026-04</b> — 3 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
 | 2026-04-30 | [FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A)](days/2026/04/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/) | UAT-4356 · Storm-1849 · ArcaneDoor | network-edge |
 | 2026-04-29 | [Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm](days/2026/04/2026-04-29_ShaiHulud-Bitwarden/) | TeamPCP · Shai-Hulud | linux, macos, windows, supply-chain |
+| 2026-04-28 | [The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an RC4 SOCKS5 tunnel](days/2026/04/2026-04-28_TheGentlemen-SystemBC/) | The Gentlemen RaaS | windows |
 
 </details>
