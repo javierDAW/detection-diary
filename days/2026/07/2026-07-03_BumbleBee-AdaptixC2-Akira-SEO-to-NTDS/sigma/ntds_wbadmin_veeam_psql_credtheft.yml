@@ -1,0 +1,37 @@
+title: NTDS.dit Capture Via wbadmin Or Veeam PostgreSQL Credential Dump
+id: fff535e2-b35f-445b-9a72-fbbd2101c5b7
+status: experimental
+description: >
+  Detects two credential-access behaviors from the BumbleBee to Akira intrusion
+  set on or near a domain controller: (1) native wbadmin.exe backing up ntds.dit
+  (domain-database theft), and (2) psql.exe reading the credentials table from
+  the VeeamBackup database prior to DPAPI decryption. Either is a high-severity
+  signal on a DC or backup server.
+author: Jarmi
+date: 2026/07/03
+references:
+  - https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/
+tags:
+  - attack.credential-access
+  - attack.t1003.003
+  - attack.t1555
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  wbadmin_ntds:
+    Image|endswith: '\wbadmin.exe'
+    CommandLine|contains|all:
+      - 'start backup'
+      - 'ntds.dit'
+  veeam_psql:
+    Image|endswith: '\psql.exe'
+    CommandLine|contains|all:
+      - 'VeeamBackup'
+      - 'credentials'
+  condition: wbadmin_ntds or veeam_psql
+falsepositives:
+  - Sanctioned Active Directory backups that include ntds.dit via wbadmin on an approved schedule. Baseline the backup host and account.
+  - Legitimate Veeam administration querying its own database from an interactive shell (rare).
+
+level: high

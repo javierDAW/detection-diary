@@ -74,8 +74,12 @@ domain,1rpc.io,EtherRAT smart-chain RPC resolver public service,high,2026-05-15,
 domain,1vpns.com,First VPN Service primary website (seized 20-May-2026 by joint LE),high,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 domain,1vpns.net,First VPN Service secondary domain (seized),high,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 domain,1vpns.org,First VPN Service tertiary domain (seized),high,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
+domain,2rxyt8yrhq0bgj.org,BumbleBee DGA C2 domain (atomic-list spelling),high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,5.2.1.6.3.0.0.7.4.0.1.0.0.2.ip6.arpa,Staged ip6.arpa zone (armed),high,2026-06-03,2026-06-03,1,2026-06-03_ip6arpa-Reverse-DNS-Phishing,CloudSEK
+domain,5ka8rxp6t6eup2.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
+domain,6cimu4mc085em8.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,8.1.9.5.0.9.1.0.0.7.4.0.1.0.0.2.ip6.arpa,Staged ip6.arpa zone (armed),high,2026-06-03,2026-06-03,1,2026-06-03_ip6arpa-Reverse-DNS-Phishing,CloudSEK
+domain,8doj8uvx604eck.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,9.a.d.0.6.3.0.0.7.4.0.1.0.0.2.ip6.arpa,Staged ip6.arpa zone (armed),high,2026-06-03,2026-06-03,1,2026-06-03_ip6arpa-Reverse-DNS-Phishing,CloudSEK
 domain,abc.fetish-friends.com,Silver Fox staging host for ABCDoor appclient.zip pulls and channel-tagged setup endpoints,high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
 domain,abc.haijing88.com,Silver Fox payload-host domain serving CBDT.rar and similar tax-themed lure archives,high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
@@ -108,10 +112,12 @@ domain,com-ae.net,BITTER infrastructure FLD — attributed via FOFA JARM pivot t
 domain,compliance-protectionoutlook.de,AiTM landing - Code of Conduct campaign (Apr 14-16 2026),high,2026-05-06,2026-05-06,1,2026-05-06_CodeOfConduct-AiTM-Storm-1747,Microsoft Threat Intelligence 4-may-2026
 domain,cumm.info,JFMBackdoor secondary C2 domain,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
 domain,d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa,Campaign A active malicious ip6.arpa reverse zone with wildcard A record (Hurricane Electric 2001:470:63d::/48),high,2026-06-03,2026-06-03,1,2026-06-03_ip6arpa-Reverse-DNS-Phishing,Infoblox/CloudSEK
+domain,d1hmxkpwby0d4s.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,dashboard-salesforce.com,Salesforce-login impersonation using the same input_24 gating (Aug 2025); ties the kit lineage,medium,2026-07-01,2026-07-01,1,2026-07-01_AWS-Console-AiTM-input24-PhishingKit,Datadog Security Labs 2026-06-24; NVISO 2025-08-12
 domain,data-form-o5pu.p-ntz8agp6.workers.dev,Sibling-fetch path observed in the 126-host kit template (Cloudflare Worker),high,2026-06-10,2026-06-10,1,2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS,Arctic Wolf Labs 2026-06-02
 domain,ddjidd564.github.io,TrapDoor campaign payload host and configuration source (GitHub Pages),high,2026-05-28,2026-05-28,1,2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
 domain,direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion,Tor leak and negotiation site,high,2026-06-30,2026-06-30,1,2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware,Protos Labs 2025-08-28
+domain,download-center.online,Tier-2 delivery gateway serving the trojanized MSI,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,download.robovpn.com,RoboVPN MSI distribution host (app infrastructure),medium,2026-06-28,2026-06-28,1,2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet,Nokia Deepfield ERT 2026-06-18
 domain,drivelivelime.com,NetDraft or VSHELL C2 domain,high,2026-05-11,2026-05-11,1,2026-05-11_UAT-8302-China-Government-Espionage,https://blog.talosintelligence.com/uat-8302/
 domain,en.cumm.info,JFMBackdoor secondary C2 subdomain,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
@@ -119,6 +125,8 @@ domain,encryption-plug-in-signal.com-ae.net,ProSpy staging — Signal lure; BITT
 domain,enrollms.com,UNC6671 / BlackFile lookalike apex (Tucows-registered); per-victim subdomain pattern <organization>.enrollms.com for SSO portal mimicry,high,2026-05-27,2026-05-27,1,2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion,GTIG 2026-05-15
 domain,ep-lively-cherry-a80bmwii.eastus2.azure.neon.tech,TukTuk Neon Postgres workspace observed in a related campaign,medium,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
 domain,ep6pheij.com,SRG fast flux C2 domain; A records rotate < 60s TTL across 22 ISPs,high,2026-06-24,2026-06-24,1,2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion,Resecurity 2026-06-08
+domain,ev2sirbd269o5j.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
+domain,ewujsfb1dp5ran.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,fasterscommunications.com,PhantomRelayLite fingerprinting C2 base URL (worked example in report; payload appended as XOR+base64 path),medium,2026-06-01,2026-06-01,1,2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine,WithSecure
 domain,festiveparty.us,Fake event-invitation lure host observed in ANY.RUN sandbox sessions,medium,2026-06-17,2026-06-17,1,2026-06-17_FakeInvitation-PhishKit-OTP-RMM,ANY.RUN 2026-05-05
 domain,financemachinelearning.com,SPECTRALVIPER C2 domain crafted for the FireAnt stock-investor campaign; beacon host,high,2026-06-15,2026-06-15,1,2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain,ESET 2026-06-11
@@ -138,9 +146,13 @@ domain,hcgos.com,DNS C2 apex for the .aspx self-report channel; observed subdoma
 domain,hekeroyot.com,Related phishing SLD using Cloudflare NS (blakely/yisroel.ns.cloudflare.com) seen alongside 0.0.7.4.6.0.6.2.ip6.arpa,medium,2026-06-03,2026-06-03,1,2026-06-03_ip6arpa-Reverse-DNS-Phishing,BleepingComputer
 domain,image.update-kaspersky.workers.dev,Cloudflare Workers fronted C2 subdomain,high,2026-05-11,2026-05-11,1,2026-05-11_UAT-8302-China-Government-Espionage,https://blog.talosintelligence.com/uat-8302/
 domain,ip-api.com,Geolocation enrichment for first beacon (T1614),medium,2026-05-07,2026-05-07,1,2026-05-07_QLNX-Quasar-Linux-RAT,Trend Micro 5-may-2026
+domain,ip-scanner.org,Advanced IP Scanner lure front (Swisscom sibling intrusion),medium,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,join-secure-call.ai-ae.io,Delivery lure URL — fake video call join page; redirects to APK staging,high,2026-06-22,2026-06-22,1,2026-06-22_prospy-bitter-mena,Lookout 2026-04-08
 domain,k135neflez.westus3.azure.clickhouse.cloud,TukTuk ClickHouse Cloud workspace used as primary SaaS C2,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
 domain,kaztelecom.shop,Showboat telecom-impersonating C2 hosted on 101.36.105.222,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,Lumen BLL 2026-05-21
+domain,ks501oz9nm3v05.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
+domain,kwywztxoo2xdot.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
+domain,ky1d1p1daahe5t.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,Kyblogtz6k3jtxnjjvluee5ec4g3zcnvyvbgsnq5thumphmqidkt7xid.onion,Tor leak blog shared by both variants,high,2026-06-09,2026-06-09,1,2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware,Rapid7
 domain,lapas.live,PhantomClick fake LAPAS ClickFix CAPTCHA domain (Ukrainian-language run-command lure),high,2026-06-01,2026-06-01,1,2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine,WithSecure
 domain,lapas.lv,Legitimate Latvian LAPAS domain abused as decoy redirect target by PhantomClick (not attacker-controlled),low,2026-06-01,2026-06-01,1,2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine,WithSecure
@@ -161,7 +173,9 @@ domain,nfcrackatm.com,DevilNFC C2 / relay server,high,2026-06-13,2026-06-13,1,20
 domain,obmlink.com,PhantomRelayLite C2 associated with a KongTuke ClickFix cluster; overlap not confirmed as GREYVIBE-operated,medium,2026-06-01,2026-06-01,1,2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine,WithSecure
 domain,open-box-rpps.jeff-1fd.workers.dev,Live device-code phishing page (Cloudflare Worker) hardcoding SID 2091010,high,2026-06-10,2026-06-10,1,2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS,Arctic Wolf Labs 2026-06-02
 domain,openclawcli.vercel.app,Fake driver/prerequisite download lure referenced by the malicious OpenClaw SKILL.md,high,2026-05-30,2026-05-30,1,2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer,Trend Micro
+domain,opmanager.pro,Tier-1 SEO impersonation front for ManageEngine OpManager,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,orange-cell-1353.hellohiall.workers.dev,Cloudflare Workers staging endpoint hosting pheno.exe,high,2026-05-08,2026-05-08,1,2026-05-08_CloudZ-RAT-Pheno-PhoneLink,Talos
+domain,ovh1kn1tcqw5kp.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,panel.securehubcloud.com,Kali365 C2 panel login (K365 Control) polled by lures every 3 seconds; high-confidence C2 per Arctic Wolf,high,2026-06-10,2026-06-10,1,2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS,Arctic Wolf Labs 2026-06-02
 domain,passkeyms.com,UNC6671 / BlackFile lookalike apex (Tucows-registered); passkey-enrollment pretext used in vishing call,high,2026-05-27,2026-05-27,1,2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion,GTIG 2026-05-15
 domain,power-sync-services.com,SPECTRALVIPER C2 domain (corporate construction-firm intrusion),high,2026-06-15,2026-06-15,1,2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain,ESET 2026-06-11
@@ -210,6 +224,7 @@ domain,us-east-prod.com,AWS console AiTM phishing parent domain; NICENIC registr
 domain,us-west-login.com,AWS console AiTM phishing parent domain; NICENIC registrar Cloudflare-fronted,high,2026-07-01,2026-07-01,1,2026-07-01_AWS-Console-AiTM-input24-PhishingKit,Datadog Security Labs 2026-06-24
 domain,us-west-prod.com,SendGrid-impersonation phishing domain registered 2026-06-18; naming twins the AWS us-east-prod.com,high,2026-07-01,2026-07-01,1,2026-07-01_AWS-Console-AiTM-input24-PhishingKit,Datadog Security Labs 2026-06-24
 domain,uslogin-prodsg.com,SendGrid-impersonation phishing domain registered 2026-06-17,high,2026-07-01,2026-07-01,1,2026-07-01_AWS-Console-AiTM-input24-PhishingKit,Datadog Security Labs 2026-06-24
+domain,v5rjsdqogstopr.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,vefbdzzuaadnascpeqcn.supabase.co,TukTuk Supabase tenant used as primary SaaS C2,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
 domain,viki-play.com,Relay fleet front domain (sN.viki-play.com:6000),high,2026-06-28,2026-06-28,1,2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet,Nokia Deepfield ERT 2026-06-18
 domain,vnc.kcii2.com,Silver Fox auxiliary VNC-themed staging host observed in ABCDoor delivery,medium,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
@@ -218,6 +233,8 @@ domain,vnt.wherewego.top,vnt VPN/proxy community relay used by the kvlnt/vv imag
 domain,webmail.t-w.dev,Campaign B live webmail host,medium,2026-06-03,2026-06-03,1,2026-06-03_ip6arpa-Reverse-DNS-Phishing,CloudSEK
 domain,www.tor-browser.io,Dire Wolf related subdomain,medium,2026-06-30,2026-06-30,1,2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware,Protos Labs 2025-08-28
 domain,xcent.online,JFMBackdoor secondary C2 domain,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
+domain,yj6jurm5qqkye5.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
+domain,zenmap.pro,Tier-1 SEO impersonation front (related lure),medium,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 email,namikazesarada010206@gmail.com,npm publisher email,high,2026-05-07,2026-05-07,1,2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada,registry.npmjs.org
 email,support@1vpns.com,Customer-support email and Jabber account,high,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 endpoint,/+CSCOE+/ POST > 8 KiB with magic prefix,FIRESTARTER passive trigger,high,2026-04-30,2026-04-30,1,2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356,CISA AR26-113A
@@ -269,6 +286,7 @@ ipv4,104.21.32.229,Cloudflare-fronted IP (AS13335) hosting securehubcloud C2 sub
 ipv4,104.233.156.1,Cluster 4 operator IP,high,2026-05-16,2026-05-16,1,2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,Talos clusters report
 ipv4,107.149.130.5,Scanning/exploitation source IP (sample of the botnet),medium,2026-06-18,2026-06-18,1,2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE,mySites.guru
 ipv4,108.59.1.133,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
+ipv4,109.205.195.211,BumbleBee C2 over HTTPS 443,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 ipv4,111.90.141.47,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,111.90.158.72,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,116.169.244.208,Suspected upstream / test environment IP at China Unicom Chengdu,medium,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,Lumen BLL 2026-05-21
@@ -309,9 +327,12 @@ ipv4,162.33.177.101,Qilin-affiliate VPS infrastructure,high,2026-06-16,2026-06-1
 ipv4,166.88.11.196,JFMBackdoor Cloudflare origin IP for namefuture.site,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
 ipv4,166.88.77.186,SPECTRALVIPER C2 server hosting mxprodesign.com (Evoxt),high,2026-06-15,2026-06-15,1,2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain,ESET 2026-06-11
 ipv4,166.88.99.32,Served newsprojects.online certificate from 2026-04-23 to 2026-05-12,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
+ipv4,170.130.55.223,AdaptixC2 beacon endpoint (Swisscom sibling intrusion),medium,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
+ipv4,171.22.183.43,BumbleBee C2,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 ipv4,172.64.80.1,Campaign A related Cloudflare edge IP,medium,2026-06-03,2026-06-03,1,2026-06-03_ip6arpa-Reverse-DNS-Phishing,CloudSEK
 ipv4,172.67.131.33,Campaign A Cloudflare edge IP returned by the wildcard A record,medium,2026-06-03,2026-06-03,1,2026-06-03_ip6arpa-Reverse-DNS-Phishing,CloudSEK
 ipv4,172.67.156.83,Cloudflare-fronted IP (AS13335) hosting securehubcloud C2 subdomains,medium,2026-06-10,2026-06-10,1,2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS,Arctic Wolf Labs 2026-06-02
+ipv4,172.96.137.160,AdaptixC2 beacon endpoint (Shock Hosting),high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 ipv4,176.123.1.250,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,176.123.175.242,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,176.123.4.44,Attacker egress IP during identity and M365 phases,high,2026-05-20,2026-05-20,1,2026-05-20_Storm-2949-Cloud-Identity-SSPR,Microsoft Security Blog 2026-05-18
@@ -325,6 +346,7 @@ ipv4,178.209.51.234,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-
 ipv4,179.43.184.22,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,179.43.185.226,UNC6671 SharePoint exfil source IP observed in two GTIG audit-log examples (2026-02-24 and 2026-03-18); commercial VPN ASN; identity rotates frequently,high,2026-05-27,2026-05-27,1,2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion,GTIG 2026-05-15
 ipv4,185.128.43.54,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
+ipv4,185.174.100.203,FileZilla SFTP exfiltration server geolocated to Ukraine AS-COLOCROSSING,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 ipv4,185.178.209.193,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,185.184.192.108,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,185.196.10.136,CloudZ backend C2 server,high,2026-05-08,2026-05-08,1,2026-05-08_CloudZ-RAT-Pheno-PhoneLink,Talos
@@ -340,6 +362,7 @@ ipv4,188.126.79.82,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-2
 ipv4,188.127.244.3,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,188.165.236.151,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,188.227.173.198,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
+ipv4,188.40.187.145,BumbleBee C2 over HTTPS 443,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 ipv4,188.40.81.84,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,188.42.253.16,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,188.92.78.242,Current exit node,high,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
@@ -350,6 +373,7 @@ ipv4,190.97.163.117,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-
 ipv4,190.97.163.142,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,190.97.163.213,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,190.97.163.88,Current exit node,high,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
+ipv4,192.121.22.94,BumbleBee C2,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 ipv4,192.71.211.77,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,192.71.249.70,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,192.9.141.111,Showboat secondary cluster C2 with US victims and SOCKS5 banner on port 9999,medium,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,Lumen BLL 2026-05-21
@@ -361,6 +385,8 @@ ipv4,193.124.93.153,Historical IP serving newsprojects.online certificate in 202
 ipv4,193.160.216.221,Source IP used for interactive SonicWall SSL-VPN logins in the ReliaQuest escalation case,high,2026-05-23,2026-05-23,1,2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802,ReliaQuest 2026-05-19
 ipv4,193.239.86.18,Historical exit node,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 ipv4,193.239.86.19,Current exit node,high,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
+ipv4,193.242.184.150,Reverse-SSH tunnel endpoint (remote 10400 to local RDP),high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
+ipv4,194.127.178.21,BumbleBee C2,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 ipv4,194.135.25.132,Showboat secondary C2 IP linked to Afghan ISP victim,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,Lumen BLL 2026-05-21
 ipv4,194.163.175.135,Cluster 5 AdaptixC2 + Mythic C2 (Contabo VPS) — banner shadowcore,high,2026-05-16,2026-05-16,1,2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,Talos clusters report
 ipv4,194.233.100.40,Cluster 4 operator IP,high,2026-05-16,2026-05-16,1,2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,Talos clusters report
@@ -517,6 +543,7 @@ malware,IOCONTROL ELF (D-Link/Hikvision/Red Lion/Orpak/Phoenix Contact/Teltonika
 marker,"""Shai-Hulud: The Third Coming"" in README of created repos",Branding marker,high,2026-04-29,2026-04-29,1,2026-04-29_ShaiHulud-Bitwarden,JFrog
 md5,04194f8ddd0518fd8005f0e87ae96335,C++ stager GST Suvidha.exe (India lure),high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
 md5,11705121f64fa36f1e9d7e59867b0724,Go-language stager GSTSuvidha.exe (India lure),high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
+md5,124a48b78060fa851e1cc077ca35713c,ManageEngine-OpManager.msi trojanized installer,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 md5,1305e8b0f9c459d5ed85e7e474fbebb1,EDRKiller.exe,high,2026-05-12,2026-05-12,1,2026-05-12_Qilin-EDR-Killer-msimg32,Cisco Talos
 md5,13669b8f2bd0af53a3fe9ac0490499e5,ABCDoor appclient.core .pyd (version v157 — September build),high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
 md5,2c5a1dd4cb53287fe0ed14e0b7b7b1b7,RustSL loader build with Phantom Persistence (2026-01-07),high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
@@ -532,6 +559,7 @@ md5,6bc8e3505d9f51368ddf323acb6abc49,rwdrv.sys,high,2026-05-12,2026-05-12,1,2026
 md5,73ce2438d4ed475e03727b7b000d2794,RAMMap.msi MD5 alternate hash for legacy controls,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
 md5,77fbe265fd65c7f7b6d323fb6de6a4fd,v72HYLU3OpRBznc.ini MD5 alternate hash,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
 md5,89ee7235906f7d12737679860264feaf,msimg32.dll,high,2026-05-12,2026-05-12,1,2026-05-12_Qilin-EDR-Killer-msimg32,Cisco Talos
+md5,8c113b3aa82c81eee7c6b4ed0ba9a90f,locker.exe Akira ransomware,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 md5,9bf9f635019494c4b70fb0a7c0fb53e4,ABCDoor appclient.core .pyd (version v154),high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
 md5,9d19527aeb4cabfb40bbaea6d73b5ff0,NFCMultiPay APK sample (MQTT variant),high,2026-06-13,2026-06-13,1,2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay,Cleafy
 md5,a543b96b0938de798dd4f683dd92a94a,ABCDoor appclient.core .pyd (version v156),high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
@@ -541,6 +569,7 @@ md5,b2d51212744f404714fd909e87254d98,MVnVmUYj.cmd MD5 alternate hash,high,2026-0
 md5,bc6912c853be5907438b4978f6c49e43,Dire Wolf family hash,medium,2026-06-30,2026-06-30,1,2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware,AhnLab ASEC 2025-09-01
 md5,c50c980d3f4b7ed970f083b0d37a6a6a,ABCDoor appclient.core .pyd (version v143),high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
 md5,c92cf9a1af5b1fe25cdcb8771ce52be4,A7Pnj975bl.cfg MD5 alternate hash,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
+md5,ca8646dfc88423bb9fffda811160cebe,msimg32.dll BumbleBee loader,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 md5,caa5e8cf3275339d251210072ebe88c2,DevilNFC APK sample (dual-role reader),high,2026-06-13,2026-06-13,1,2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay,Cleafy
 md5,cf7cad39407d8cd93135be42b6bd258f,hlpdrv.sys,high,2026-05-12,2026-05-12,1,2026-05-12_Qilin-EDR-Killer-msimg32,Cisco Talos
 md5,de8f0008b15f2404f721f76fac34456a,ABCDoor appclient.core .pyd (version v152),high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
@@ -617,7 +646,10 @@ note,Behavioral detection anchors (durable): w3wp.exe long hex-segmented DNS; re
 note,Black Shadow attributed by Israel INCD to Iran MOIS; related site taken down 2025-08-28; persona-to-cluster link corroborated by ClearSky and Simon Kenin,,medium,2026-05-31,2026-05-31,1,2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction,Gambit
 note,BlackFile DLS launched 2026-02-06; offline late April 2026; brief return 2026-05-11 with message 'BlackFile is shutting down... under this name' — operator in mid-rebrand,high,medium,2026-05-27,2026-05-27,1,2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion,
 note,Both scripted automation (inventory iteration) and hands-on-keyboard console use; ChatGPT used to refine a Python database-destruction script to spare system databases,,medium,2026-05-31,2026-05-31,1,2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction,Gambit
+note,BumbleBee DGA narrative variant 2rxyt9urhq0bgj.org differs from atomic-list 2rxyt8yrhq0bgj.org,Source spelling discrepancy preserved not corrected,medium,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
+note,BumbleBee geofence via GetSystemDefaultLocaleName against 27 CIS locales,Anti-analysis execution guardrail T1480,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,C2 infrastructure pattern: Cloudflare-fronted .icu domains. CERT-UA's official advisory enumerates the specific FQDNs used in the May 2026 wave; pull them from the source advisory or SOC Prime TDM destination-IP / destination-domain feeds for current operationalisation. The .icu TLD anchor is durable across campaigns even after FQDN rotation.,high,medium,2026-05-25,2026-05-25,1,2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine,
+note,Campaign genealogy Cyjax May 2025; DFIR/Swisscom flash alert 2025-08-05; Zscaler Ivanti-stealer sibling Oct 2025,CTI campaign genealogy,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,choice.exe used to add a ~3s delay before self-deletion of PerfWatson2.exe,Anti-forensics self-destruct,high,2026-06-29,2026-06-29,1,2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage,Unit 42 2026-06-26
 note,CISA FCEB remediation due date for CVE-2025-67038: 2026-06-26,KEV federal deadline,high,2026-06-27,2026-06-27,1,2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge,CISA KEV 2026-06-23
 note,Cisco Catalyst SD-WAN ports: TCP/22 (SSH) TCP/830 (NETCONF) UDP/12346 (vdaemon DTLS control plane),Attack surface inventory,high,2026-05-16,2026-05-16,1,2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,Rapid7 technical analysis
@@ -632,6 +664,7 @@ note,Communication: indicators suggest Tox protocol; Qilin Linux ransomware ELF 
 note,Compromised host: internet-facing Windows Server 2016 with EOL .NET Framework 4.0 in a DMZ; access seen ~75 days before primary intrusion,Initial access path not conclusively determined; long-dwell return pattern of state-aligned espionage,high,2026-06-08,2026-06-08,1,2026-06-08_OP-512-China-IIS-WebShell-Framework,ReliaQuest
 note,Compromised npm versions include all @tanstack packages published 2026-05-11 19:20-19:26 UTC and @uipath namespace packages in the same window,,medium,2026-05-14,2026-05-14,1,2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign,
 note,Concurrent SendGrid kit is a React SPA using an email URL param and /2fa/(email|sms|ga)/:twoFactorId routes; matches NVISO PoisonSeeds,high,medium,2026-07-01,2026-07-01,1,2026-07-01_AWS-Console-AiTM-input24-PhishingKit,
+note,consent.exe sideloads msimg32.dll from a non-System32 path,BumbleBee DLL search-order hijack T1574.001,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,ContractAgreementToSign.exe,Alternate JWrapper-packaged installer filename observed in dynamic analysis,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
 note,Cryptography,npm payload uses Fernet symmetric encryption plus ECDH key agreement; Crates.io build.rs uses hardcoded XOR with the key cargo-build-helper-2026; PyPI auto-import delegates to remote JavaScript via node -e.,high,2026-05-28,2026-05-28,1,2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
 note,Current exit-node IPs (as of May 2026 per FBI FLASH). Three explicitly flagged as US-based; remainder distributed across 27 countries.,high,medium,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,
@@ -646,6 +679,7 @@ note,Day 27 Operation Saffron in this repo covers infrastructure-tracking-as-det
 note,Default Joomla serves files under tmp/ with PHP execution enabled; deny script execution under tmp/images/media at the web-server layer,Root enabler of the RCE; durable mitigation,high,2026-06-18,2026-06-18,1,2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE,YesWeHack
 note,"Default RBAC role:catch-all grants applications,get to every authenticated user — the read-only privilege that suffices",Why read-only is enough,high,2026-06-11,2026-06-11,1,2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak,Vendor advisory
 note,Defensive emphasis: restrict wscript.exe / cscript.exe execution for standard user accounts via SRP / WDAC / AppLocker; this single control breaks the OYSTERFRESH entry point.,high,medium,2026-05-25,2026-05-25,1,2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine,
+note,Delivery gateways on AS47583 Hostinger; exfil server on AS-COLOCROSSING,Hosting infrastructure context,medium,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,Destruction executed via authenticated vCenter (Power Off + Delete from Disk; Recent Tasks 2026-03-16 11:52:38),SSMS (Take Offline + Drop All Active Connections + Delete Object),medium,2026-05-31,2026-05-31,1,2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction,and Veeam Backup and Replication (Delete from disk)
 note,Detection latency benchmark,Socket detected TrapDoor releases at a median of 5 minutes 27 seconds and an average of 5 minutes 56 seconds after publication across 381 package-version records; fastest detection 58 seconds. The window for download by automated CI pipelines is short but real.,high,2026-05-28,2026-05-28,1,2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
 note,"Discovery primitives observed in OYSTERBLUES profile-and-exfil: COMPUTERNAME, USERNAME, OS version (Win32_OperatingSystem.Caption / Version), LastBootUpTime, running process list. Exfil cadence ~10 minutes via HTTP POST to .icu C2.",high,medium,2026-05-25,2026-05-25,1,2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine,
@@ -696,6 +730,7 @@ note,Geographic focus: North America Australia United Kingdom (English-native ca
 note,GET /?author=N redirect to /author/<login>/,Author-archive username enumeration precursor,high,2026-06-04,2026-06-04,1,2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover,WordPress
 note,GET /wp-json/wp/v2/users,WordPress REST username enumeration precursor to the attack,high,2026-06-04,2026-06-04,1,2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover,WordPress
 note,Get-WmiObject win32_service name=eventlog then taskkill looped,Event log service kill loop T1070.001 T1047,high,2026-06-30,2026-06-30,1,2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware,AhnLab ASEC 2025-09-01
+note,Get-WmiObject Win32_Shadowcopy | Remove-WmiObject,Akira shadow-copy deletion via WMI PowerShell T1490,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,GHSA-3v3m-wc6v-x4x3,Primary advisory; published 2026-05-01 by alexmt; reporter hoang-prod; affected 3.2.0-3.3.8; fixed 3.3.9 and 3.2.11,high,2026-06-11,2026-06-11,1,2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak,GitHub Security Advisory
 note,GHSA-786q-9hcg-v9ff,Companion advisory for CVE-2025-55190; fixed in 3.1.2/3.0.14/2.14.16/2.13.9,high,2026-06-11,2026-06-11,1,2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak,GitHub Security Advisory
 note,GHSA-f5mr-q85p-6hh6,Primary GitHub Security Advisory; published 2026-06-30; affected all versions before 1.8.6; fixed in 1.8.6,high,2026-07-02,2026-07-02,1,2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478,GitHub Security Advisory
@@ -732,6 +767,7 @@ note,leah.ns.cloudflare.com,Cloudflare nameserver delegated onto an ip6.arpa zon
 note,leak_site_impact,38+ US law firms had data posted to business-data-leaks[.]com after declining to pay as of May 2026; estimated 100+ total attacks,high,2026-06-24,2026-06-24,1,2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion,FBI IC3 Flash 260526; SecurityWeek 2026-06-08
 note,"LinkPro intrusion (Synacktiv CSIRT DFIR, AWS EKS). Sample SHA-256 are the analysed artifacts; LinkPro is rebuilt per intrusion and the config (C2/port/mode) is per-deployment, so the durable IOCs are the behavioural anchors (ld.so.preload, hidden artifact names, magic-packet window 54321, listening port 2233, eBPF Hide/Knock modules), NOT the hashes.",,high,2026-06-12,2026-06-12,1,2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS,Synacktiv 2025-10-13
 note,Local-administrator password reuse,Reused shared local-administrator password observed enabling VPN-to-file-server pivot in under 30 minutes; LAPS deployment is the structural remediation,high,2026-05-23,2026-05-23,1,2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802,ReliaQuest 2026-05-19
+note,locker.exe -p=<path> -n=<pct>,Akira encryption CLI flags path and percent T1486,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,lsass.exe or services.exe or svchost.exe spawning cmd/powershell/rundll32 on a domain controller,Post-exploit SYSTEM execution tell; near-zero false positives on a DC,high,2026-06-05,2026-06-05,1,2026-06-05_Netlogon-CVE-2026-41089-DC-RCE,analysis
 note,Lures were delivered through the legitimate email platforms SendGrid and Nimbu to pass SPF/DKIM/DMARC and improve deliverability,high,medium,2026-07-01,2026-07-01,1,2026-07-01_AWS-Console-AiTM-input24-PhishingKit,
 note,MFA-FATIGUE-AITM,AiTM toolkits sold / maintained in underground markets; sit between victim and real login page capturing credentials and session tokens in real time during MFA completion,high,2026-06-23,2026-06-23,1,2026-06-23_Cloud-Insider-Recruitment-Intel471,Intel 471 / Help Net Security 2026-06-11
@@ -785,6 +821,7 @@ note,OP-512 China-linked espionage cluster disclosed 2026-06-05 by ReliaQuest; c
 note,OP_SYN / OP_ACK / OP_PSH / OP_FIN Protobuf over raw TCP with TCP_NODELAY,DevilNFC APDU relay state machine,high,2026-06-13,2026-06-13,1,2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay,Cleafy
 note,Operator escalation playbook: mass Gmail spam from dozens of randomly generated accounts; hijacked internal mailbox spam; Teams hijack; threatening voicemails to executive cell phones; swatting in severe cases,high,medium,2026-05-27,2026-05-27,1,2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion,
 note,Oracle JRE 1.7.0_79 bundled,Private JRE EOL 2015 packaged inside the JWrapper bundle,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
+note,OriginalFileName WAB.EXE running under WmiPrvSE.exe from %AppData%\Local,AdaptixC2 masquerade plus WMI spawn T1055 T1036,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,OT environment NOT breached,Outcome of the spray attempt,high,2026-05-10,2026-05-10,1,2026-05-10_Mexico-Water-AI-Assisted-OT,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
 note,Outbound connection initiated by a serial-to-IP device server to an external/Internet host,Anomalous egress IOC — these devices normally only relay serial<->LAN; no public C2 IP released,medium,2026-06-27,2026-06-27,1,2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge,Aviatrix attack-scenario advisory / repo behavioral anchor
 note,outbound to raw.githubusercontent.com / pastebin / transfer.sh from web host,Second-stage / web-shell payload pull after takeover,medium,2026-06-04,2026-06-04,1,2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover,analysis
@@ -806,6 +843,7 @@ note,"Pricing tier $2/day to $483/year accepting Bitcoin, Perfect Money, Webmone
 note,Prior Salesforce OAuth-abuse campaigns same kill chain: UNC6395 via Salesloft Drift OAuth token theft (Aug 2025); ShinyHunters voice-phish Salesforce campaigns (Jun 2025); Gainsight integration abuse (2025-2026),Same attack class — distinct actors,high,2026-06-21,2026-06-21,1,2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion,ReliaQuest Threat Spotlight 2026-06-17
 note,Privilege escalation via JuicyPotato (SeImpersonate abuse); credential access via Mimikatz,Hands-on-keyboard tooling,high,2026-06-29,2026-06-29,1,2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage,Unit 42 2026-06-26
 note,Prompts framed as authorised penetration testing,LLM safety-rail bypass tactic,high,2026-05-10,2026-05-10,1,2026-05-10_Mexico-Water-AI-Assisted-OT,https://industrialcyber.co/reports/dragos-details-ai-assisted-intrusion-targeting-mexican-water-utility-as-claude-openai-models-used-to-pursue-ot-access/
+note,psql -U postgres -d VeeamBackup -c SELECT user_name/password/description FROM credentials,Veeam credential store dump then DPAPI decrypt T1555,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,q1_2026_legal_sector,Law firms were 4th most targeted industry Q1 2026 with ~25% of ransomware-related incidents tracked,high,2026-06-24,2026-06-24,1,2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion,Resecurity 2026-06-08
 note,QLNX (Quasar Linux RAT) — IOCs as published by Trend Micro 5-may-2026,,medium,2026-05-07,2026-05-07,1,2026-05-07_QLNX-Quasar-Linux-RAT,
 note,qTox / Tox messenger negotiation; ransom ~USD 500000; double extortion,Extortion tradecraft T1657,high,2026-06-30,2026-06-30,1,2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware,Protos Labs 2025-08-28; AhnLab ASEC 2025-09-01
@@ -825,6 +863,7 @@ note,reset password link emailed to address != user stored user_email,Highest-si
 note,RMM-delivery branch drops legitimate remote-management tools as a foothold: ScreenConnect ITarian Datto RMM ConnectWise LogMeIn Rescue,Legit signed RMM agents evade AV; hunt for agents outside the sanctioned RMM baseline,high,2026-06-17,2026-06-17,1,2026-06-17_FakeInvitation-PhishKit-OTP-RMM,ANY.RUN 2026-05-05
 note,RoboVPN/Neunative residential-proxy SDK on the Vo1d/Popa backend — Day 62 2026-06-28,Case anchor note,high,2026-06-28,2026-06-28,1,2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet,Nokia Deepfield ERT 2026-06-18
 note,Rogue profile has a machine-generated name a large NEGATIVE ordering value and upload filetypes including php and txt,Host/DB persistence-object discriminator in #__wf_profiles,high,2026-06-18,2026-06-18,1,2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE,mySites.guru
+note,rundll32 comsvcs.dll #+000024 <PID> dump full,LSASS MiniDump lsassy smb/wmi/task/mmc pattern T1003.001,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,SaaS workloads explicitly observed compromised: Microsoft 365 (SharePoint OneDrive Outlook Teams) Okta Salesforce Zendesk HubSpot Google Workspace ServiceNow,high,medium,2026-05-27,2026-05-27,1,2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion,
 note,SAT INE Civil Registry Jalisco Tamaulipas State of Mexico Monterrey Michoacan,Broader campaign scope across Mexican government,high,2026-05-10,2026-05-10,1,2026-05-10_Mexico-Water-AI-Assisted-OT,https://industrialcyber.co/reports/dragos-details-ai-assisted-intrusion-targeting-mexican-water-utility-as-claude-openai-models-used-to-pursue-ot-access/
 note,Secondary,"Laravel Lang Composer supply chain compromise (Socket + Aikido 2026-05-22 / 2026-05-23): 700+ malicious tags force-pushed across laravel-lang/lang, laravel-lang/attributes, laravel-lang/http-statuses, laravel-lang/actions in a 15-minute window; PHP RCE backdoor wired via composer.json autoload.files so every PHP request runs it.",high,2026-05-28,2026-05-28,1,2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,https://socket.dev/blog/laravel-lang-compromise | https://thehackernews.com/2026/05/gitea-vulnerability-exposes-private.html | https://thehackernews.com/2026/05/teampcp-compromises-checkmarx-jenkins.html
@@ -845,6 +884,7 @@ note,Simplified-Chinese string present in the TinyRCT C2-response parsing functi
 note,SNWLID-2025-0001,SonicWall advisory requiring 6 manual LDAP reconfiguration steps beyond firmware patch on Gen6 hardware,high,2026-05-23,2026-05-23,1,2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802,SonicWall PSIRT
 note,Some lure pages auto-start the RMM download with no click; kit code contains operator edit instructions and signs of AI-assisted generation,Mass-production tradecraft; attack surface rotates fast but backend structure is fixed,medium,2026-06-17,2026-06-17,1,2026-06-17_FakeInvitation-PhishKit-OTP-RMM,ANY.RUN 2026-05-05
 note,SonicOS upgrade alone does NOT rotate local credentials nor reseed TOTP — required as part of remediation,,medium,2026-05-05,2026-05-05,1,2026-05-05_Akira-SonicWall-CVE-2024-40766,—
+note,ssh <redacted>@193.242.184.150 -R *:10400 -p22,Reverse-SSH tunnel remote 10400 to local RDP T1090,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,statement5648.exe,JWrapper-packaged installer filename observed in dynamic analysis,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
 note,STEALER-LOG-PIPELINE,Infostealer harvests creds -> logs packaged and sold to IABs -> IABs validate and resell cloud access to ransomware affiliates; DeepStrike: 54%+ of ransomware victims appeared in stealer logs before attack,high,2026-06-23,2026-06-23,1,2026-06-23_Cloud-Insider-Recruitment-Intel471,Intel 471 2026; DeepStrike 2025
 note,Stolen 3-of-6 Gnosis Safe keys on Ethereum and 3-of-5 on BSC from one device (reportedly 7 private keys),Threshold met -> ProxyAdmin ownership transfer -> malicious Hyperlane bridge proxy upgrade,high,2026-06-14,2026-06-14,1,2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft,CCN 2026-06-10 / Humanity
@@ -883,6 +923,7 @@ note,vssadmin delete shadows /all /quiet,Inhibit recovery command T1490,high,202
 note,Vulnerable preconditions for CVE-2026-26030: Python SDK below 1.39.4 plus InMemoryVectorStore search plugin with default filter functionality,Both conditions must hold simultaneously; either one absent removes the primitive,high,2026-05-13,2026-05-13,1,2026-05-13_SemanticKernel-Prompt2RCE,https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/
 note,Vyncs intrusion: custom Python scripts enumerated and deleted databases across 58 SQL Server targets while removing backup files,,medium,2026-05-31,2026-05-31,1,2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction,Gambit
 note,wbadmin delete backup -keepVersions:0 -quiet,Inhibit recovery command T1490,high,2026-06-30,2026-06-30,1,2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware,AhnLab ASEC 2025-09-01
+note,wbadmin start backup -include ntds.dit plus SYSTEM plus SECURITY hives,NTDS.dit theft via native wbadmin T1003.003,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 note,web service account (www-data/apache/nginx/php-fpm) spawning sh/bash/curl/wget,Host signal that a PHP foothold became code execution,high,2026-06-04,2026-06-04,1,2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover,analysis
 note,Web shell framework = three files: one .aspx file manager (self-report C2) + two .ashx cryptographic command handlers,Each .ashx embeds a unique RSA public key; command pipeline is Base64-decode then RC4-decrypt then RSA-verify then execute,high,2026-06-08,2026-06-08,1,2026-06-08_OP-512-China-IIS-WebShell-Framework,ReliaQuest
 note,wevtutil cl Application/System/Security/Setup,Clear core event logs T1070.001,high,2026-06-30,2026-06-30,1,2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware,AhnLab ASEC 2025-09-01
@@ -912,6 +953,7 @@ path,%PROGRAMDATA%\Microsoft Windows\WUDFHost.ps1,USB-propagation launcher scrip
 path,%ProgramData%\ScreenConnect Client (*),Default ScreenConnect installation path - present even after service rename,medium,2026-05-20,2026-05-20,1,2026-05-20_Storm-2949-Cloud-Identity-SSPR,Microsoft Security Blog 2026-05-18
 path,%TEMP%,Common archive-extraction path for OYSTERFRESH .js (Windows Script Host execution origin),high,2026-05-25,2026-05-25,1,2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine,CERT-UA-6315762
 path,%TEMP%\appclient_YYYYMMDDHHMMSS.zip,ABCDoor self-update package staged before execution,high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
+path,%TEMP%\ApplicationInstallationFolder_11,MSI drop folder for consent.exe + msimg32.dll + decoy,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 path,%TEMP%\flt.bin,JFMBackdoor shellcode stub staging path,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
 path,%TEMP%\FLTLIB.dll,JFMBackdoor side-load DLL staging path,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
 path,%TEMP%\fltMC.exe,JFMBackdoor LOLBin staging path outside System32,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
@@ -955,6 +997,7 @@ path,\EFI\Boot\bootx64.efi,Fallback boot path on the ESP - alternate bootkit sta
 path,\EFI\Microsoft\Boot\bootmgfw.efi,Windows Boot Manager on the ESP - BlackLotus replaces it with a signed-but-revoked older version,high,2026-06-07,2026-06-07,1,2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure,CISA BlackLotus Mitigation Guide
 path,\Microsoft\Windows\Windows Error Reporting\QueueReporting,Scheduled task whose next firing executes attacker binary as SYSTEM via the hijacked windir,high,2026-05-29,2026-05-29,1,2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse,https://thehackernews.com/2026/05/miniplasma-windows-0-day-enables-system.html
 path,\Start Menu\Programs\Startup\,Canonical persistence sink written by an attacker after sandbox escape,high,2026-05-13,2026-05-13,1,2026-05-13_SemanticKernel-Prompt2RCE,https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/
+path,AdgNsy.exe,Renamed wab.exe injected with AdaptixC2 shellcode in %AppData%\Local,medium,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 path,AUDIT-MATRIX.md,Attacker playbook describing Universal AI Agent Extraction Framework,high,2026-05-28,2026-05-28,1,2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,https://github.com/ddjidd564/defi-security-best-practices/blob/gh-pages/standards/AUDIT-MATRIX.md
 path,BYPASS.md,Attacker bypass-concept document seeded in campaign repo,high,2026-05-28,2026-05-28,1,2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
 path,C:\fucked_icon\processed_file.icon,Custom icon written and registered for the .#~~~ extension by the Windows variant (elevated),medium,2026-06-09,2026-06-09,1,2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware,Rapid7
@@ -964,11 +1007,13 @@ path,C:\inetpub\pub\schtask2.exe,DynoWiper deploy location (build 2),high,2026-0
 path,C:\Program Files (x86)\ScreenConnect Client (*),Default ScreenConnect installation path on 64-bit Windows,medium,2026-05-20,2026-05-20,1,2026-05-20_Storm-2949-Cloud-Identity-SSPR,Microsoft Security Blog 2026-05-18
 path,C:\Program Files (x86)\ScreenConnect Client (adbce2b92cb435b3)\,ScreenConnect install path with campaign-invariant GUID,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
 path,C:\ProgramData\.vect,Killswitch / marker (Windows),high,2026-05-01,2026-05-01,1,2026-05-01_VECT-2.0-RaaS,Check Point Research
+path,C:\ProgramData\FileZilla_3.68.1_win64_sponsored2-setup.exe,FileZilla installer used for SFTP exfiltration,medium,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 path,C:\ProgramData\JWrapper-Remote Access\,JWrapper installation tree root,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
 path,C:\ProgramData\JWrapper-Remote Access\JWAppsSharedConfig\serviceconfig.xml,Service configuration XML,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
 path,C:\ProgramData\JWrapper-Remote Access\JWAppsSharedConfig\sgalive,Watchdog liveness file tailed by SimpleService.exe,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
 path,C:\ProgramData\JWrapper-Remote Access\JWAppsSharedConfig\SimpleGatewayService\SimpleGatewayService.exe,Service binary install path,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
 path,C:\ProgramData\JWrapper-Remote Access\JWAppsSharedConfig\SimpleService.exe,Watchdog binary install path,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
+path,C:\ProgramData\locker.exe,Akira ransomware staging path,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 path,C:\ProgramData\Microsoft\Microsoft\Appunion.exe,NetDraft persistence drop path with double-Microsoft camouflage,high,2026-05-11,2026-05-11,1,2026-05-11_UAT-8302-China-Government-Espionage,https://blog.talosintelligence.com/uat-8302/
 path,C:\ProgramData\Microsoft\Network,JFMBackdoor persistent staging directory referenced in scr.mui config,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
 path,C:\ProgramData\Tailscale\,ABCDoor implant copy directory abusing the legitimate Tailscale brand,high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
@@ -1003,6 +1048,7 @@ path,HowToRecoveryFiles.txt,Ransom note written per traversed folder,high,2026-0
 path,https://kubernetes.default.svc,Local in-cluster Kubernetes API endpoint the ServiceAccount token is meant to authenticate to exclusively,high,2026-07-02,2026-07-02,1,2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478,GitLab Advisory Database
 path,IntelAudioService.exe,Renamed copy of the legitimate signed dtlupdate.exe used as a side-loading host,high,2026-06-15,2026-06-15,1,2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain,ESET 2026-06-11
 path,MicrosoftEdgeUpdate.exe,Persistence binary masquerade dropped under user-writable path (not the genuine Edge updater under Program Files),high,2026-05-25,2026-05-25,1,2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine,CERT-UA-6315762
+path,n.exe,SoftPerfect Network Scanner renamed for recon,medium,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 path,OneDrive.Sync.Service.exe,Legitimate process injected by DtlCrashCatch.dll to run SPECTRALVIPER in backdoor mode,medium,2026-06-15,2026-06-15,1,2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain,ESET 2026-06-11
 path,PAYLOAD.md,Attacker payload-behavior document seeded in campaign repo,high,2026-05-28,2026-05-28,1,2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
 path,razer_update.log,PhantomRelayV2 watchdog execution log written to %TEMP%,medium,2026-06-01,2026-06-01,1,2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine,WithSecure
@@ -1162,6 +1208,7 @@ sha1,a7d3c46a35564fa85321f3557700f6ea0c0616a9,actions-cool/issues-helper imposte
 sha1,A8E2BBBFCB86500322D2367744FA12755AB0C165,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,2026-06-15,2026-06-15,1,2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain,ESET 2026-06-11
 sha1,aa44b5492c787fbc4c51edb8d98d88b668fe89d1,actions-cool/issues-helper imposter commit for tag v3.7.0,high,2026-05-21,2026-05-21,1,2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,StepSecurity 2026-05-18
 sha1,aa9218994798ae31a19d3e7e39cfac2e2ee55840,smokymo.msi SHA1 alternate hash,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
+sha1,ab82bf27132323861810c0efcac6d5dd01600dd4,ManageEngine-OpManager.msi trojanized installer,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 sha1,abc4310e6b8520aff6af79a4880217917cd1436b,actions-cool/issues-helper imposter commit for tag v3.7.5,high,2026-05-21,2026-05-21,1,2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,StepSecurity 2026-05-18
 sha1,ae60794c6f1d4893a20009437ebf96d790985a7c,ProSpy — ToTok Pro (al.totok.chat) 2025-08-26,high,2026-06-22,2026-06-22,1,2026-06-22_prospy-bitter-mena,Lookout 2026-04-08
 sha1,aea87833045e38098e64310e962b897ae8aaba33,actions-cool/issues-helper imposter commit for tag v3.7.4,high,2026-05-21,2026-05-21,1,2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,StepSecurity 2026-05-18
@@ -1189,6 +1236,7 @@ sha1,D29670E684E40DDC89B47010C37CBC96737035B6,GentleKiller G11 variant Symantec.
 sha1,D4B19141102015D436321E6F26976E98183CFD27,OxideHarvest (buildx64.exe) Rust credential stealer — Win64/Spy.Agent.AGC,high,2026-06-26,2026-06-26,1,2026-06-26_GentleKiller-BYOVD-Detection-Engineering,ESET Research 2026-06-18
 sha1,D605994FC72A2BB59B5CFB1624A1B9170ECA73A2,GentleKiller FACEIT Anti-Cheat variant (FaceIT1.exe) Enigma-protected — Win64/KillAV.EA,high,2026-06-26,2026-06-26,1,2026-06-26_GentleKiller-BYOVD-Detection-Engineering,ESET Research 2026-06-18
 sha1,d6622cc2415156cf4e81cf57866420479a966b3a,actions-cool/maintain-one-comment imposter commit for tag v1.2.1,high,2026-05-21,2026-05-21,1,2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,StepSecurity 2026-05-18
+sha1,d66944e1a57daf04d3e809f22cd01946d593acaf,locker.exe Akira ransomware,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 sha1,d9b1764cbe78ec9b12f01a66b2d2c902b15981b6,actions-cool/issues-helper imposter commit for tag v3.0.1,high,2026-05-21,2026-05-21,1,2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,StepSecurity 2026-05-18
 sha1,dc5687b71897e8b57bc9743e325ac72cee763c9c,actions-cool/issues-helper imposter commit for tag v3.4.0,high,2026-05-21,2026-05-21,1,2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,StepSecurity 2026-05-18
 sha1,e0585c10366288eeec3117d65ed24240ccbf1f47,actions-cool/issues-helper imposter commit for tag v3.6.0,high,2026-05-21,2026-05-21,1,2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,StepSecurity 2026-05-18
@@ -1205,6 +1253,7 @@ sha1,F74F1FEB62B662CDA489FDB2453727824E55ACB9,SPECTRALVIPER downloader (setup.ex
 sha1,F8F8209987CA7F139DE6A62F9E6EE21BD2AE93A9,SPECTRALVIPER downloader (setup.exe) served from FireAnt MetaKit update server,high,2026-06-15,2026-06-15,1,2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain,ESET 2026-06-11
 sha1,fa6a4ca487f2dc699d428126ea2b18e9d0d15c9d,actions-cool/issues-helper imposter commit for tag v3.3.1,high,2026-05-21,2026-05-21,1,2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,StepSecurity 2026-05-18
 sha1,fc084c815d2c66b608a5564dbf8ee3f93d8eeaf9,Tarball shasum viem-core@1.0.0,high,2026-05-07,2026-05-07,1,2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada,registry.npmjs.org
+sha1,febbaf5f08a8e0782ffcce8beef1f2b4e249a52b,msimg32.dll BumbleBee loader,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 sha1,ffaac2fdd9b6f5340d4202227b0b13e09f6ed031,ProSpy — ToTok Pro (ae.totok.chat) 2024-08-07,high,2026-06-22,2026-06-22,1,2026-06-22_prospy-bitter-mena,Lookout 2026-04-08
 sha256,00065b7aeaa41e3aa52cf94be0f63afdd92e04799935d612f2451bcf4b1fb704,Dire Wolf sample detected by 66 AV engines,high,2026-06-30,2026-06-30,1,2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware,Protos Labs 2025-08-28
 sha256,00e09754526d0fe836ba27e3144ae161b0ecd3774abec5560504a16a67f0087c,chrome_setup.zip dropper archive (signed exe + .config + rogue MyAppDomainManager.dll),high,2026-06-29,2026-06-29,1,2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage,Unit 42 2026-06-26
@@ -1226,6 +1275,7 @@ sha256,16f83f056177c4ec24c7e99d01ca9d9d6713bd0497eeedb777a3ffefa99c97f0,rwdrv.sy
 sha256,17302d903baf182f94dc3be40ab1e0874dd0eb2ec5255bf9131fd53591efe925,Cluster 10 root-escalation check script (alt),high,2026-05-16,2026-05-16,1,2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,Talos clusters report
 sha256,176aec5d33c459a42e7e4e984a718c52e11213ef9a6aa961b483a836fc22b507,JFMBackdoor Win32 DLL final payload mapped in memory only,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
 sha256,1795eacd2c58894ccdd6be8854fe6456c3b069a3a873432343b57b475b256aee,smokymo.msi GoTo Resolve installer used for lateral persistence,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
+sha256,186b26df63df3b7334043b47659cba4185c948629d857d47452cc1936f0aa5da,ManageEngine-OpManager.msi trojanized installer,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 sha256,18d77c9c5bbb5b9d5bdfd366fdfcf26bad9e64c63ca865fad711bcce8e3d5a80,Cluster 8 KScan/QScan scanning tool,high,2026-05-16,2026-05-16,1,2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616,Talos clusters report
 sha256,19021e53b9929fdf4b7d0e0707434d56bb73c1a9b7403c8837b44d1c417198dc,log4net.dll TukTuk side-loaded under Greenshot SyncTrayzor docfx Cake,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
 sha256,199bd156c81b2ef4fb259467a20eacaa9d861eeb2002f1570727c2f9ff1d5dab,VSHELL payload,high,2026-05-11,2026-05-11,1,2026-05-11_UAT-8302-China-Government-Espionage,https://blog.talosintelligence.com/uat-8302/
@@ -1298,6 +1348,7 @@ sha256,9fc55dd37ec38990bb27ea2bc18dff0bb2d16ad7aa562ab35a6b63453c397075,LinkPro 
 sha256,a05fbe8734a5a5a994a44dee9d21134ad7108d24ab0749499fe24fc4b36c4cbc,Showboat ELF sample staged as systemd-ac-update on the open directory,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
 sha256,a0e66f3067e4aaf5b83e45b7845cc43b2fc96032a4398cab7cc9d11f4f962e91,AMOS payload zoemtpmgck30oa8n,high,2026-05-30,2026-05-30,1,2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer,Trend Micro
 sha256,a23d126f0446755859e4d81c0c9b50b65e0062c3de2a014c543f6b263321ad78,1.bat PowerShell stager that fetches the four side-load artefacts to %TEMP%,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
+sha256,a6df0b49a5ef9ffd6513bfe061fb60f6d2941a440038e2de8a7aeb1914945331,msimg32.dll BumbleBee loader sideloaded by consent.exe,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 sha256,a838f99537d35e48e479a34086297f76db5d3363b0456f23d10d308f0d30ed82,Phish-kit brand icon google.png served from /Image/; static kit asset,high,2026-06-17,2026-06-17,1,2026-06-17_FakeInvitation-PhishKit-OTP-RMM,ANY.RUN 2026-05-05
 sha256,ab4fcadaec49c03278063dd269ea5eef82d24f2124a8e15d7b90f2fa8601266c,router_init.js embedded in all @tanstack compromised packages (byte-identical),high,2026-05-14,2026-05-14,1,2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign,"OX Security, Socket"
 sha256,ac50887e2c513b50b2170d77441b9f7e8afcc774df6b54fdd8aac863095239f4,Linux log-file tampering utility staged as clear on the open directory,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
@@ -1322,6 +1373,7 @@ sha256,d94f75a70b5cabaf786ac57177ed841732e62bdcc9a29e06e5b41d9be567bcfa,Cluster 
 sha256,d953dfbe8d91dc9fafad0a6117e1276fa636d4ae1b6a4d81616ff2446cf09234,serviceconfig.xml with AllowRecovery=true and RequireSessionConfirmation=false,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
 sha256,dbdddea03c3fc4c2574ce4221450ec86221ebc615c4915c4c4eb3f2a5e3f5b25,SimpleService.exe watchdog tailing sgalive and restarting RAT on stall,high,2026-05-26,2026-05-26,1,2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB,Securonix 2026-05-04
 sha256,dce5df29bddff5a4ddaea5c4fec14da91f7b69063a6e1c45ed61e5da4fc6c87b,SoftEther VPN component used for tunneling (often renamed vmtools.exe/vmwared.exe),high,2026-06-29,2026-06-29,1,2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage,Unit 42 2026-06-26
+sha256,de730d969854c3697fd0e0803826b4222f3a14efe47e4c60ed749fff6edce19d,locker.exe Akira ransomware,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 sha256,e74098b17d5d95e0014cf9c7f41f2a4e4be8baefc2b0eb42d39ae05a95b08ea5,gogo OSS scanner used by UAT-8302,medium,2026-05-11,2026-05-11,1,2026-05-11_UAT-8302-China-Government-Espionage,https://blog.talosintelligence.com/uat-8302/
 sha256,ea40641a086bfa4e077b066e2f2e92e6c5d777153aea2bb5405382b8b513ae0d,RoboVPN.msi installer (Cyberkick Ltd.; WiX 3.14; built 2024-03-31),high,2026-06-28,2026-06-28,1,2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet,Nokia Deepfield ERT 2026-06-18
 sha256,ea57b5768c84164fcdb25bb8338d660c5586e17e37cee924c4e5a745510925f3,scr.mui XOR-encrypted JFMBackdoor configuration blob,high,2026-05-22,2026-05-22,1,2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom,PwC TI 2026-05-21
@@ -1423,6 +1475,8 @@ string,asdmini67,PyPI publisher account used to upload TrapDoor PyPI packages,me
 string,asdxzxc,npm publisher account used to upload most of the 21 TrapDoor npm packages,high,2026-05-28,2026-05-28,1,2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
 string,assert($_REQUEST,Generic PHP web-shell sink (follow-on),medium,2026-06-04,2026-06-04,1,2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover,analysis
 string,ATDC,Metadata trailer marker in ELF-encrypted files,high,2026-06-09,2026-06-09,1,2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware,Rapid7
+string,backup_DA,Attacker-created domain account,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
+string,backup_EA,Attacker-created domain account added to Enterprise Admins,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 string,BACKUPOSINT,Self-assigned name of the AI-built post-compromise Python framework,medium,2026-05-10,2026-05-10,1,2026-05-10_Mexico-Water-AI-Assisted-OT,https://www.dragos.com/blog/ai-assisted-ics-attack-water-utility
 string,base64_decode(gzinflate(,Common PHP web-shell obfuscation wrapper (follow-on),medium,2026-06-04,2026-06-04,1,2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover,analysis
 string,bcb6b1d409144318e8fad2171d6fe06d02299d1a,Malicious orphan commit 2 — carries tag v2; child of commit 1,high,2026-06-25,2026-06-25,1,2026-06-25_Miasma-Codfish-GHA-Tag-Hijack,Aikido Security 2026-06-24
@@ -1468,6 +1522,7 @@ string,ddjidd564,Operator persona on GitHub used to host payloads and submit poi
 string,decodeURIComponent,URL-decode primitive in the stacked OYSTERFRESH decode chain,high,2026-05-25,2026-05-25,1,2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine,CERT-UA-6315762
 string,Defender Antimalware Platform 4.18.26040.7,Safe baseline that fixes RedSun and UnDefend; anything below this on or after 2026-05-21 is unpatched against active exploitation,high,2026-05-29,2026-05-29,1,2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse,https://www.securityweek.com/microsoft-patches-exploited-undefend-and-redsun-defender-zero-days/
 string,defi-security-best-practices,Campaign GitHub Pages repository path,high,2026-05-28,2026-05-28,1,2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
+string,delete.me,SoftPerfect Network Scanner write-test artifact,medium,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 string,dev-env-bootstrapper,npm package that doubles as malware and delivery vector for malicious config,high,2026-05-28,2026-05-28,1,2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer,https://socket.dev/blog/trapdoor-crypto-stealer-npm-pypi-crates
 string,dispatchGesture,Programmatic gesture dispatch used to auto-grant other permissions,high,2026-05-09,2026-05-09,1,2026-05-09_Albiriox-Android-MaaS-AcVNC,Cleafy Labs
 string,DontRevokeOrItGoesBoom,Miasma dead-drop marker for PAT exfiltration module; queried via GitHub commit search API,high,2026-06-25,2026-06-25,1,2026-06-25_Miasma-Codfish-GHA-Tag-Hijack,Miasma toolkit leak analysis / SafeDep 2026-06

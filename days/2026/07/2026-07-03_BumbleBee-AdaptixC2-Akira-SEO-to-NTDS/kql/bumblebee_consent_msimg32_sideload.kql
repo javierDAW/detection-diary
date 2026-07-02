@@ -1,0 +1,15 @@
+// Title:        BumbleBee - consent.exe Sideloading msimg32.dll From Non-System Path
+// Id:           4758716a-8993-48cd-a877-b3b5a4e91454
+// MITRE:        T1574.001 (Hijack Execution Flow: DLL Search-Order Hijacking)
+// Reference:    https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/
+// Author:       Jarmi
+// Date:         2026-07-03
+// Tested on:    Microsoft Defender XDR (DeviceImageLoadEvents)
+// FP notes:     Rare apps shipping their own msimg32.dll beside a copied consent.exe; baseline app dirs.
+DeviceImageLoadEvents
+| where Timestamp > ago(14d)
+| where InitiatingProcessFileName =~ "consent.exe"
+| where FileName =~ "msimg32.dll"
+| where FolderPath !has @"\Windows\System32\" and FolderPath !has @"\Windows\SysWOW64\" and FolderPath !has @"\WinSxS\"
+| project Timestamp, DeviceName, InitiatingProcessFolderPath, FolderPath, SHA256, InitiatingProcessCommandLine
+| order by Timestamp desc

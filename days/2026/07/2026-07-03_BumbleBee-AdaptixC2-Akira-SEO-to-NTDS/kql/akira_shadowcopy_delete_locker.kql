@@ -1,0 +1,15 @@
+// Title:        Akira - Shadow-Copy Deletion Via WMI PowerShell + locker.exe Flags
+// Id:           3ed49503-886c-4a59-8a2b-cc675a5698ae
+// MITRE:        T1490 (Inhibit System Recovery); T1486 (Data Encrypted for Impact); T1047 (WMI)
+// Reference:    https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/
+// Author:       Jarmi
+// Date:         2026-07-03
+// Tested on:    Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes:     Admin scripts enumerating shadow copies rarely pipe to Remove-WmiObject; baseline maintenance hosts.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where (ProcessCommandLine has "Win32_Shadowcopy" and ProcessCommandLine has_any ("Remove-WmiObject","Remove-CimInstance","Delete()"))
+     or (FileName =~ "locker.exe" and ProcessCommandLine has_any ("-n=","-p="))
+     or (ProcessCommandLine has_all ("-n=","netonly"))
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName
+| order by Timestamp desc

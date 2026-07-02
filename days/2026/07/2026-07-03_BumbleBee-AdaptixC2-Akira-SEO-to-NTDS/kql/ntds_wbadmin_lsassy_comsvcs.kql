@@ -1,0 +1,15 @@
+// Title:        NTDS.dit + LSASS + Veeam Credential-Access Burst
+// Id:           8980bde1-1fc2-4e98-856f-6f1fa43fbd1d
+// MITRE:        T1003.003 (NTDS); T1003.001 (LSASS Memory); T1555 (Credentials from Password Stores)
+// Reference:    https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/
+// Author:       Jarmi
+// Date:         2026-07-03
+// Tested on:    Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes:     Sanctioned AD backups (wbadmin+ntds.dit) or Veeam admin queries; baseline backup host/account.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where (FileName =~ "wbadmin.exe" and ProcessCommandLine has "start backup" and ProcessCommandLine has "ntds.dit")
+     or (FileName =~ "rundll32.exe" and ProcessCommandLine has "comsvcs.dll" and ProcessCommandLine has_any ("MiniDump","#000024","#+000024"))
+     or (FileName =~ "psql.exe" and ProcessCommandLine has "VeeamBackup" and ProcessCommandLine has "credentials")
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName
+| order by Timestamp desc

@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-07-02 07:29 UTC
+# generated 2026-07-02 17:12 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -11,8 +11,12 @@
 1vpns.com
 1vpns.net
 1vpns.org
+2rxyt8yrhq0bgj.org
 5.2.1.6.3.0.0.7.4.0.1.0.0.2.ip6.arpa
+5ka8rxp6t6eup2.org
+6cimu4mc085em8.org
 8.1.9.5.0.9.1.0.0.7.4.0.1.0.0.2.ip6.arpa
+8doj8uvx604eck.org
 9.a.d.0.6.3.0.0.7.4.0.1.0.0.2.ip6.arpa
 Kyblogtz6k3jtxnjjvluee5ec4g3zcnvyvbgsnq5thumphmqidkt7xid.onion
 Mlnmlnnrdhcaddwll4zqvfd2vyqsgtgj473gjoehwna2v4sizdukheyd.onion
@@ -47,10 +51,12 @@ com-ae.net
 compliance-protectionoutlook.de
 cumm.info
 d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
+d1hmxkpwby0d4s.org
 dashboard-salesforce.com
 data-form-o5pu.p-ntz8agp6.workers.dev
 ddjidd564.github.io
 direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion
+download-center.online
 download.robovpn.com
 drivelivelime.com
 en.cumm.info
@@ -58,6 +64,8 @@ encryption-plug-in-signal.com-ae.net
 enrollms.com
 ep-lively-cherry-a80bmwii.eastus2.azure.neon.tech
 ep6pheij.com
+ev2sirbd269o5j.org
+ewujsfb1dp5ran.org
 fasterscommunications.com
 festiveparty.us
 financemachinelearning.com
@@ -77,9 +85,13 @@ hcgos.com
 hekeroyot.com
 image.update-kaspersky.workers.dev
 ip-api.com
+ip-scanner.org
 join-secure-call.ai-ae.io
 k135neflez.westus3.azure.clickhouse.cloud
 kaztelecom.shop
+ks501oz9nm3v05.org
+kwywztxoo2xdot.org
+ky1d1p1daahe5t.org
 lapas.live
 lapas.lv
 lb.gmslb.net
@@ -98,7 +110,9 @@ nfcrackatm.com
 obmlink.com
 open-box-rpps.jeff-1fd.workers.dev
 openclawcli.vercel.app
+opmanager.pro
 orange-cell-1353.hellohiall.workers.dev
+ovh1kn1tcqw5kp.org
 panel.securehubcloud.com
 passkeyms.com
 power-sync-services.com
@@ -147,6 +161,7 @@ us-east-prod.com
 us-west-login.com
 us-west-prod.com
 uslogin-prodsg.com
+v5rjsdqogstopr.org
 vefbdzzuaadnascpeqcn.supabase.co
 viki-play.com
 vnc.kcii2.com
@@ -155,3 +170,5 @@ vnt.wherewego.top
 webmail.t-w.dev
 www.tor-browser.io
 xcent.online
+yj6jurm5qqkye5.org
+zenmap.pro

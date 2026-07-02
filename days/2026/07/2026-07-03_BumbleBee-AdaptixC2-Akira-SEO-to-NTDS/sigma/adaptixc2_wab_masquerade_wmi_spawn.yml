@@ -1,0 +1,36 @@
+title: AdaptixC2 WAB.EXE Masquerade Spawned By WmiPrvSE From AppData
+id: 0b2858c1-1d55-4b04-a791-bb0431ebe49d
+status: experimental
+description: >
+  Detects the AdaptixC2 foothold from the BumbleBee to Akira intrusion set: a
+  process whose PE OriginalFileName is WAB.EXE (Windows Address Book) is spawned
+  by WmiPrvSE.exe and runs from a user AppData path instead of Program Files. In
+  the reported case the beacon was a renamed wab.exe (AdgNsy.exe) injected with
+  AdaptixC2 shellcode and launched via WMI. Anchored on process lineage and an
+  OriginalFileName/path mismatch rather than a file name or hash.
+author: Jarmi
+date: 2026/07/03
+references:
+  - https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/
+tags:
+  - attack.defense-evasion
+  - attack.execution
+  - attack.t1036
+  - attack.t1055
+  - attack.t1047
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    ParentImage|endswith: '\WmiPrvSE.exe'
+    OriginalFileName: 'WAB.EXE'
+  filter_legit:
+    Image|endswith:
+      - '\Program Files\Windows Mail\wab.exe'
+      - '\Program Files (x86)\Windows Mail\wab.exe'
+  condition: selection and not filter_legit
+falsepositives:
+  - Legitimate Windows Address Book launched by a WMI-based management tool from its real Program Files path (excluded by filter_legit).
+
+level: high

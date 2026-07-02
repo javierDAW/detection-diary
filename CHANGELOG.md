@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.03 — Day 67 — From Bing search to NTDS.dit: BumbleBee, AdaptixC2 and Akira
+
+### Added
+- `days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/` — consolidated The DFIR Report x Swisscom B2B CSIRT analysis (published 2026-06-29) of a Bing SEO-poisoning intrusion set: a trojanized ManageEngine OpManager MSI DLL-sideloads BumbleBee (`consent.exe` loads `msimg32.dll`), which drops an AdaptixC2 beacon (renamed `wab.exe` / `AdgNsy.exe` injected via WMI); hands-on-keyboard NTDS.dit theft, Veeam DPAPI and LSASS dumping lead to ~77 GB exfiltration and Akira ransomware at ~44 h. Unattributed e-crime; underlying waves date to May/Jul 2025. Friday deep-dive #12 (DFIR Windows/AD) + #19/#24.
+- Sigma (3): `bumblebee_consent_msimg32_sideload.yml` — consent.exe loading msimg32.dll from a non-System32 path (image_load); `adaptixc2_wab_masquerade_wmi_spawn.yml` — WmiPrvSE-spawned WAB.EXE masquerade from AppData; `ntds_wbadmin_veeam_psql_credtheft.yml` — wbadmin ntds.dit backup or Veeam psql credential dump.
+- KQL (4): consent/msimg32 non-system image load; WMI-spawned WAB beacon; NTDS wbadmin + comsvcs LSASS + Veeam psql credential burst; Akira WMI shadow-copy delete + locker.exe flags.
+- YARA (1 file, 3 rules): Akira Windows locker markers; Veeam DPAPI credential-dump PowerShell; SoftPerfect Network Scanner recon tool.
+- Suricata (1 file, 9 sids): SEO-delivery domains, a BumbleBee DGA C2 domain, BumbleBee/AdaptixC2 C2 IPs and the reverse-SSH + SFTP exfil hosts — sids 9670001-9670009 (infra-decay).
+- PEAK hunts (3): SEO MSI -> sideload -> DGA C2; WMI-spawned WAB masquerade beacon; NTDS/Veeam credential burst -> reverse SSH + FileZilla exfil.
+- `iocs.csv` (55 entries) — 3 samples with SHA1/MD5, 13 BumbleBee DGA domains + delivery fronts, BumbleBee/AdaptixC2/exfil IPs, tradecraft command notes; a preserved source spelling discrepancy on one DGA domain. `kev.md` — 1/1 referenced CVE on CISA KEV (CVE-2024-40766, cited only for genealogy vs the SonicWall-Akira case).
+- `kill_chain.svg` — template A, canonical palette, ransomware accent; victim AD-timeline lane vs operator delivery/tooling/impact lane with sideload, WMI-masquerade-beacon and credential-burst anchors.
+
+### Pedagogy
+- Detect the sideload, not the loader: a signed `consent.exe` loading `msimg32.dll` from `%TEMP%`/`%AppData%` is a hash-independent tell that fires at execution.
+- A built-in launched by `WmiPrvSE.exe` from `%AppData%` with `OriginalFileName` intact (`WAB.EXE`) is a masquerade-plus-injection pattern that generalizes beyond AdaptixC2.
+- `wbadmin` backing up `ntds.dit` off a DC is domain-database theft — treat it like `ntdsutil` or DCSync.
+- NTDS exfiltration forces a double `krbtgt` rotation and full credential reset, not just re-imaging the encrypted servers.
+
 ## 2026.07.02 — Day 66 — Fulcio's blind spot: SSRF, JWKS cache poisoning and a Kubernetes token leak (CVE-2026-49478)
 
 ### Added
@@ -946,7 +964,4 @@ Versioning is by date (`YYYY.MM.DD`) — every published case bumps the calendar
 ## 2026.05.14 — Day 18 — Mini Shai-Hulud TeamPCP Mega-Campaign (CVE-2026-45321)
 
 ### Added
-- `days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/` — TeamPCP supply-chain worm campaign that compromised 170+ npm/PyPI packages (404 malicious versions, 518M cumulative downloads affected) via a GitHub Actions `pull_request_target` Pwn Request against TanStack/router. The attacker fork `zblgg/configuration` opened a PR that triggered the base-repo workflow context, poisoned the pnpm cache, and read the GitHub Actions OIDC JWT directly from runner process memory (`/proc/<pid>/mem`). The extracted token was used to publish malicious versions under TanStack's legitimate pipeline identity — the first documented case of SLSA Build Level 3 provenance forgery in an active supply-chain worm. The postinstall hook `router_init.js` (SHA256 `ab4fcadaec49c03278063dd269ea5eef82d24f2124a8e15d7b90f2fa8601266c`) downloads the Python zipapp payload `transformers.pyz` from `git-tanstack[.]com`. The payload harvests 100+ credential paths (AWS, GCP, Azure, Kubernetes, npm, PyPI, GitHub CLI, SSH, `.ethereum/keystore`, `.foundry/keystores`, 1Password, Bitwarden, Signal, Slack, VPN configs, shell history) and exits if the system locale is Russian or CPU count is below 4 (T1480). The companion PyPI package `mistralai==2.4.6` activates on `import mistralai` and probabilistically executes `rm -rf /` (1-in-6 odds) on systems geolocated to Israel or Iran. Persistence via a `gh-token-monitor` daemon (systemd on Linux; LaunchAgent on macOS) that polls GitHub every 60 seconds using a stolen token and triggers `rm -rf ~/` on HTTP 40x token-revocation responses. **Critical IR constraint: isolate the host before revoking any GitHub or npm tokens — revocation fires the destructor.** C2 infrastructure: `83.142.209.194/ingest` (primary credential exfiltration), `git-tanstack[.]com` (payload host), `*.getsession.org` (Session messenger fallback), GitHub API dead drops with Dune-themed repository names. CVE-2026-45321 CVSS 9.6.
-- Sigma (2): `mini_shai_hulud_transformers_pyz_exec.yml` — process_creation detecting python3/python executing `/tmp/*.pyz` or a command line containing the known C2 IOCs; `mini_shai_hulud_gh_token_monitor_persistence.yml` — file_event detecting creation of `/etc/systemd/system/gh-token-monitor*` or `~/Library/LaunchAgents/com.github.token-monitor.plist` (level: critical, no expected false positives).
-- KQL (2): `mini_shai_hulud_credential_burst_after_install.kql` — Defender XDR `DeviceFileEvents` detecting a burst of four or more distinct credential file reads within a five-minute window from an npm, pip, or python3 process; `mini_shai_hulud_attack_window_install_check.kql` — installs of compromised packages during the attack window (2026-05-11 19:20 UTC to 2026-05-12 14:00 UTC) joined with C2 egress within thirty minutes.
-- YARA (1 file, 2 rules): `MiniShaiHulud_TransformersPyz_TeamPCP_2026` — PK zipapp magic at offset 0, `__main__.py` entry point, at least one C2 / guardrail anchor, and at least two of the four high-value credential path strings; `MiniShaiHulud_GhTokenMonitor_Daemon_2026` — service name anchor plus the destructive `rm -rf ~/` string or the poll-and-p
+- `days/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/` — TeamPCP supply-chain worm campaign that compromised 170+ npm/PyPI packages (404 malicious versions, 518M cumulative downloads affected) via a GitHub Actions `pull_request_target` Pwn Request against TanStack/router. The attacker fork `zblgg/configuration` opened a PR t
