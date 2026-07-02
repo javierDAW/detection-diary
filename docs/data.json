@@ -1,5 +1,44 @@
 [
  {
+  "date": "2026-07-02",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478",
+  "title": "Fulcio's blind spot: SSRF, JWKS cache poisoning and a Kubernetes token leak in Sigstore's signing CA (CVE-2026-49478)",
+  "clusters": [
+   "Unattributed — coordinated vulnerability disclosure (no observed campaign)"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "cloud-multi",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1553.002",
+   "T1190",
+   "T1552.005",
+   "T1528",
+   "T1611"
+  ],
+  "tech_count": 6,
+  "tldr": "Sigstore Fulcio — the certificate authority that underpins keyless code-signing for `cosign`, SLSA provenance and npm/PyPI \"trusted publishing\" — shipped an OIDC Discovery client that would follow cross-host HTTP redirects, trust a redirected `jwks_uri` as the verifier for an issuer, and globally attach its in-cluster Kubernetes ServiceAccount token to outbound discovery requests regardless of des",
+  "thumb": "thumbs/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478.svg",
+  "case_rel": "../days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Unattributed — coordinated vulnerability disclosure (no observed campaign)",
+  "cve_count": 3,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "fulcio's blind spot: ssrf, jwks cache poisoning and a kubernetes token leak in sigstore's signing ca (cve-2026-49478) unattributed — coordinated vulnerability disclosure (no observed campaign) unattributed cloud-multi supply-chain technology cross-sector t1195.002 t1553.002 t1190 t1552.005 t1528 t1611 supply chain "
+ },
+ {
   "date": "2026-07-01",
   "year": "2026",
   "month": "2026-07",

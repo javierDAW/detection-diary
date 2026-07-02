@@ -123,3 +123,6 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge,2026-06-27,CVE-2026-34908,yes,2026-06-23,2026-06-26,Unknown,Ubiquiti UniFi OS Improper Access Control Vulnerability,Ubiquiti,UniFi OS
 2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge,2026-06-27,CVE-2026-34909,yes,2026-06-23,2026-06-26,Unknown,Ubiquiti UniFi OS Path Traversal Vulnerability,Ubiquiti,UniFi OS
 2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge,2026-06-27,CVE-2026-34910,yes,2026-06-23,2026-06-26,Unknown,Ubiquiti UniFi OS Improper Input Validation Vulnerability,Ubiquiti,UniFi OS
+2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478,2026-07-02,CVE-2026-42880,no,,,,,,
+2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478,2026-07-02,CVE-2026-49478,no,,,,,,
+2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478,2026-07-02,CVE-2026-8206,no,,,,,,

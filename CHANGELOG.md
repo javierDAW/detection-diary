@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.02 — Day 66 — Fulcio's blind spot: SSRF, JWKS cache poisoning and a Kubernetes token leak (CVE-2026-49478)
+
+### Added
+- `days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/` — chained SSRF + JWKS cache-poisoning + Kubernetes ServiceAccount token leak in Sigstore Fulcio's OIDC discovery client (CVE-2026-49478, GHSA-f5mr-q85p-6hh6, disclosed 2026-06-30, fixed in Fulcio 1.8.6); no observed exploitation, vulnerability-exposure case.
+- Sigma (3): `fulcio_oidc_discovery_crosshost_redirect.yml` — cross-host redirect during OIDC discovery; `fulcio_pod_egress_to_metadata_or_unexpected_host.yml` — Fulcio pod egress to cloud metadata/unexpected host; `fulcio_serviceaccount_token_external_use.yml` — Fulcio SA token used against a non-local target.
+- KQL (4): egress to cloud metadata; jwks_uri host mismatch; SA token presented against a non-local API target; discovery redirect-chain anomaly.
+- YARA (1 file, 2 rules): illustrative malicious OIDC discovery-document and PoC-script content heuristics (no compiled malware sample exists for this CVE class).
+- Suricata (1 file, 5 sids): anomalous `.well-known/openid-configuration` fetches, redirect Location headers to `169.254.169.254`/RFC1918, generic Fulcio-egress-to-unexpected-host patterns.
+- PEAK hunts (3): Fulcio egress to non-issuer hosts; Rekor anomalous-identity issuance; Fulcio ServiceAccount token used from an unexpected source.
+- `iocs.csv` (17 entries) — vulnerability-exposure case, no campaign hashes. `kev.md` — 0/3 CVEs referenced in this case on CISA KEV.
+- `kill_chain.svg` — template A, canonical palette, supply-chain accent, Fulcio/Kubernetes target lane vs attacker-operations lane with SSRF/JWKS-poisoning/token-leak anchors.
+
+### Pedagogy
+- A code-signing CA's OIDC discovery client is part of its trust boundary and must be threat-modeled like any other credentialed egress path.
+- Blind SSRF is a primitive, not just recon: no reflected output does not mean no impact.
+- Global credential-attachment on an HTTP transport (a token sent to every destination regardless of host) is a recurring anti-pattern, structurally similar to the Argo CD ServerSideDiff case's unconditional control bypass.
+- Trust-root bugs are categorically worse than stolen-identity bugs: they require compromising no one, unlike the Mini-Shai-Hulud/Miasma npm-worm provenance-forgery cases in this repo.
+
 ## 2026.07.01 — Day 65 — Behind the console: AWS-console AiTM phishing kit (input_24)
 
 ### Added
