@@ -4,7 +4,7 @@
 
 # INDEX
 
-**65 cases** · **129 actors/clusters** · **305 ATT&CK techniques** · **16 platforms** · **73 sectors** · 2026-04-28 -> 2026-07-01
+**66 cases** · **130 actors/clusters** · **305 ATT&CK techniques** · **16 platforms** · **73 sectors** · 2026-04-28 -> 2026-07-02
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/"><img src="days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/kill_chain.svg" alt="2026-07-02 kill chain" width="240"></a><br><sub><b>2026-07-02</b><br>Unattributed — coordinated vulnerability disclosure (no observed campaign)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/"><img src="days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/kill_chain.svg" alt="2026-07-01 kill chain" width="240"></a><br><sub><b>2026-07-01</b><br>input_24 phishing kit operator (PoisonSeeds-adjacent)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/"><img src="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/kill_chain.svg" alt="2026-06-30 kill chain" width="240"></a><br><sub><b>2026-06-30</b><br>Dire Wolf (DireWolf) ransomware group</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/"><img src="days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/kill_chain.svg" alt="2026-06-29 kill chain" width="240"></a><br><sub><b>2026-06-29</b><br>CL-STA-1062</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/"><img src="days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/kill_chain.svg" alt="2026-06-29 kill chain" width="240"></a><br><sub><b>2026-06-29</b><br>CL-STA-1062</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/"><img src="days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/kill_chain.svg" alt="2026-06-28 kill chain" width="240"></a><br><sub><b>2026-06-28</b><br>Vo1d/Popa proxy operator · Cyberkick Ltd. (RoboVPN)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/"><img src="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/kill_chain.svg" alt="2026-06-27 kill chain" width="240"></a><br><sub><b>2026-06-27</b><br>Unattributed — CVE-2025-67038 exploitation</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/"><img src="days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/kill_chain.svg" alt="2026-06-26 kill chain" width="240"></a><br><sub><b>2026-06-26</b><br>The Gentlemen RaaS (GentleKiller operator)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/"><img src="days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/kill_chain.svg" alt="2026-06-26 kill chain" width="240"></a><br><sub><b>2026-06-26</b><br>The Gentlemen RaaS (GentleKiller operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/"><img src="days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/kill_chain.svg" alt="2026-06-25 kill chain" width="240"></a><br><sub><b>2026-06-25</b><br>Miasma-unattributed</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/"><img src="days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/kill_chain.svg" alt="2026-06-24 kill chain" width="240"></a><br><sub><b>2026-06-24</b><br>Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/"><img src="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/kill_chain.svg" alt="2026-06-23 kill chain" width="240"></a><br><sub><b>2026-06-23</b><br>Cloud-Insider-Recruitment-unattributed</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/"><img src="days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/kill_chain.svg" alt="2026-06-23 kill chain" width="240"></a><br><sub><b>2026-06-23</b><br>Cloud-Insider-Recruitment-unattributed</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-22_prospy-bitter-mena/"><img src="days/2026/06/2026-06-22_prospy-bitter-mena/kill_chain.svg" alt="2026-06-22 kill chain" width="240"></a><br><sub><b>2026-06-22</b><br>BITTER · T-APT-17</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/"><img src="days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/kill_chain.svg" alt="2026-06-21 kill chain" width="240"></a><br><sub><b>2026-06-21</b><br>Icarus</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/"><img src="days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/kill_chain.svg" alt="2026-06-20 kill chain" width="240"></a><br><sub><b>2026-06-20</b><br>Agentjacking-unattributed (Tenet Threat Labs tracking)</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-07</b> — 1 case(s)</summary>
+<details><summary><b>2026-07</b> — 2 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-07-02 | [Fulcio's blind spot: SSRF, JWKS cache poisoning and a Kubernetes token leak in Sigstore's signing CA (CVE-2026-49478)](days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/) | Unattributed — coordinated vulnerability disclosure (no observed campaign) | cloud-multi, supply-chain |
 | 2026-07-01 | [Behind the console: an AiTM phishing kit that clones the AWS sign-in page and relays MFA in real time (input_24 kit)](days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/) | input_24 phishing kit operator (PoisonSeeds-adjacent) | cloud-multi |
 
 </details>

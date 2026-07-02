@@ -132,6 +132,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)](./unattributed-ip6-arpa-reverse-dns-phishing-operator-infoblox-tracked/) | 1 |
 | [Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)](./unattributed-ransomware-aligned-iab-ttp-overlap-with-akira-storm-1567-affiliate-ecosystem/) | 1 |
 | [Unattributed — CVE-2025-67038 exploitation](./unattributed-cve-2025-67038-exploitation/) | 1 |
+| [Unattributed — coordinated vulnerability disclosure (no observed campaign)](./unattributed-coordinated-vulnerability-disclosure-no-observed-campaign/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
 | [VECT](./vect/) | 1 |
 | [VENOMOUS#HELPER (Securonix)](./venomous-helper-securonix/) | 1 |
