@@ -1,0 +1,33 @@
+title: BumbleBee consent.exe Sideloading msimg32.dll From Non-System Path
+id: fb5b8e14-06b4-4357-a4f8-9163e54784a5
+status: experimental
+description: >
+  Detects the BumbleBee DLL sideload used in the Bing SEO-poisoning to Akira
+  intrusion set: the legitimate signed consent.exe loading a msimg32.dll that
+  resides outside System32/SysWOW64/WinSxS (dropped into %TEMP% or %AppData%).
+  This is search-order hijacking and is the earliest execution-time tell of the
+  loader, independent of the DLL hash.
+author: Jarmi
+date: 2026/07/03
+references:
+  - https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/
+tags:
+  - attack.defense-evasion
+  - attack.t1574.001
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection:
+    Image|endswith: '\consent.exe'
+    ImageLoaded|endswith: '\msimg32.dll'
+  filter_system:
+    ImageLoaded|contains:
+      - '\Windows\System32\'
+      - '\Windows\SysWOW64\'
+      - '\WinSxS\'
+  condition: selection and not filter_system
+falsepositives:
+  - Rare third-party software that ships its own msimg32.dll next to a copied consent.exe. Baseline legitimate application directories.
+
+level: high

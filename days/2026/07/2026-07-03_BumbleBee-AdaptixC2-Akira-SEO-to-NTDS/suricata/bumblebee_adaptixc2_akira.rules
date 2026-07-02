@@ -1,0 +1,16 @@
+# BumbleBee -> AdaptixC2 -> Akira intrusion set - network infrastructure indicators (INFRA-DECAY).
+# Author: Jarmi
+# Date: 2026-07-03
+# Reference: https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/
+# Note: SEO-delivery domains, BumbleBee DGA .org C2 domains and the C2/exfil IPs rotate and decay.
+#       Re-validate before enforcing. Durable detection is host-behavioral (see sigma/, kql/, yara/).
+#       No custom variables used. Full IP/domain set in iocs.csv.
+alert dns any any -> any any (msg:"BUMBLEBEE-AKIRA SEO delivery domain opmanager.pro DNS query"; dns.query; content:"opmanager.pro"; nocase; isdataat:!1,relative; classtype:domain-c2; sid:9670001; rev:1;)
+alert dns any any -> any any (msg:"BUMBLEBEE-AKIRA SEO delivery gateway download-center.online DNS query"; dns.query; content:"download-center.online"; nocase; isdataat:!1,relative; classtype:domain-c2; sid:9670002; rev:1;)
+alert dns any any -> any any (msg:"BUMBLEBEE-AKIRA BumbleBee DGA C2 domain ev2sirbd269o5j.org DNS query"; dns.query; content:"ev2sirbd269o5j.org"; nocase; classtype:domain-c2; sid:9670003; rev:1;)
+alert tls any any -> any any (msg:"BUMBLEBEE-AKIRA SEO delivery domain opmanager.pro TLS SNI"; tls.sni; content:"opmanager.pro"; nocase; classtype:domain-c2; sid:9670004; rev:1;)
+alert tcp any any -> [188.40.187.145,109.205.195.211,171.22.183.43,192.121.22.94,194.127.178.21] 443 (msg:"BUMBLEBEE-AKIRA BumbleBee C2 IP outbound TLS 443"; flow:to_server,established; classtype:trojan-activity; sid:9670005; rev:1;)
+alert tcp any any -> 172.96.137.160 any (msg:"BUMBLEBEE-AKIRA AdaptixC2 beacon IP 172.96.137.160 outbound"; flow:to_server,established; classtype:trojan-activity; sid:9670006; rev:1;)
+alert tcp any any -> 170.130.55.223 any (msg:"BUMBLEBEE-AKIRA AdaptixC2 beacon IP 170.130.55.223 outbound (sibling intrusion)"; flow:to_server,established; classtype:trojan-activity; sid:9670007; rev:1;)
+alert tcp any any -> 193.242.184.150 22 (msg:"BUMBLEBEE-AKIRA reverse-SSH tunnel endpoint 193.242.184.150 outbound TCP 22"; flow:to_server,established; classtype:trojan-activity; sid:9670008; rev:1;)
+alert tcp any any -> 185.174.100.203 22 (msg:"BUMBLEBEE-AKIRA FileZilla SFTP exfil server 185.174.100.203 outbound TCP 22 Ukraine"; flow:to_server,established; classtype:trojan-activity; sid:9670009; rev:1;)

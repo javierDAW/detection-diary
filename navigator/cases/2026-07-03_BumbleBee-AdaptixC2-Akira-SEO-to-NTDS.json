@@ -1,0 +1,272 @@
+{
+  "name": "2026-07-03 — 2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom) — clusters: Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1189",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1574.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1568.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1055",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1047",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1136",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1090",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1021.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1021.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1003.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1003.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1555",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1082",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1033",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1018",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1135",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1087.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1482",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1069.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1059.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1569.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1039",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1048.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1070.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1027.010",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    },
+    {
+      "techniqueID": "T1036",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encry"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

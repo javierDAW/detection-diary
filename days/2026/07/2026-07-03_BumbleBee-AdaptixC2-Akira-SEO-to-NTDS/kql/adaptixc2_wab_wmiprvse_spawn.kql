@@ -1,0 +1,15 @@
+// Title:        AdaptixC2 - WAB.EXE Masquerade Spawned By WmiPrvSE From AppData
+// Id:           9cb7789f-0e08-4e2a-8169-d0bdd00a5e17
+// MITRE:        T1055 (Process Injection); T1036 (Masquerading); T1047 (WMI)
+// Reference:    https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/
+// Author:       Jarmi
+// Date:         2026-07-03
+// Tested on:    Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes:     Legit wab.exe launched from Program Files is excluded by the path filter.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where InitiatingProcessFileName =~ "WmiPrvSE.exe"
+| where ProcessVersionInfoOriginalFileName =~ "WAB.EXE"
+| where FolderPath !has @"\Program Files\Windows Mail\" and FolderPath !has @"\Program Files (x86)\Windows Mail\"
+| project Timestamp, DeviceName, AccountName, FolderPath, FileName, ProcessCommandLine, InitiatingProcessFileName
+| order by Timestamp desc
