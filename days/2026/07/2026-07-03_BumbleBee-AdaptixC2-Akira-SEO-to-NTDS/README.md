@@ -315,4 +315,9 @@ This intrusion set uses no CVE of its own — initial access is SEO poisoning pl
 
 - [The DFIR Report — From Bing Search to Ransomware: Bumblebee and AdaptixC2 Deliver Akira (2026-06-29)](https://thedfirreport.com/2026/06/29/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira-3/)
 - [The DFIR Report — original case (2025-08-05)](https://thedfirreport.com/2025/08/05/from-bing-search-to-ransomware-bumblebee-and-adaptixc2-deliver-akira/)
-- [GBHackers — BumbleBee and AdaptixC2 Deliver Akira Ransomware Through Bing SEO Poisoning](https://gbhackers.com/bumblebee-and-ada
+- [GBHackers — BumbleBee and AdaptixC2 Deliver Akira Ransomware Through Bing SEO Poisoning](https://gbhackers.com/bumblebee-and-adaptixc2-deliver-akira/)
+- [Anvilogic — Bumblebee Malware Resurfaces in Campaigns to Deploy Akira Ransomware](https://www.anvilogic.com/threat-reports/bumblebee-akira-campaigns)
+- [AdaptixC2 — open-source framework (Adaptix-Framework/AdaptixC2)](https://github.com/Adaptix-Framework/AdaptixC2)
+- [MITRE ATT&CK — T1574.001 Hijack Execution Flow: DLL](https://attack.mitre.org/techniques/T1574/001/)
+- [MITRE ATT&CK — T1003.003 OS Credential Dumping: NTDS](https://attack.mitre.org/techniques/T1003/003/)
+- [CISA AA24-109A — #StopRansomware: Akira Ransomware](https://www.cisa.gov/news-events/cybersecurity-advisories/aa24-109a)
