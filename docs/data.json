@@ -1,5 +1,53 @@
 [
  {
+  "date": "2026-07-04",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207",
+  "title": "FUXA SCADA/HMI: dot-segment path-normalization auth bypass (CVE-2026-13207) leaks every OT role",
+  "clusters": [
+   "Opportunistic ICS/OT scanners"
+  ],
+  "country": "Global (unattributed)",
+  "platforms": [
+   "ot-ics",
+   "network-edge",
+   "linux"
+  ],
+  "sectors": [
+   "energy",
+   "water",
+   "manufacturing",
+   "building-automation"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1190",
+   "T1087",
+   "T1069",
+   "T1552.001",
+   "T1550.001",
+   "T1059.007",
+   "T1565.001",
+   "T0846",
+   "T0888",
+   "T0836",
+   "T0831"
+  ],
+  "tech_count": 12,
+  "tldr": "On 2026-06-30 CISA published ICSA-26-181-02 for **CVE-2026-13207**, an authentication bypass in the open-source **FUXA** SCADA/HMI platform (all versions <= 1.3.1). An unauthenticated attacker reads the complete user and role inventory of an OT supervisory server by prefixing the REST path with a dot-segment (`/api/./users`, `/api/project/../users`) so the request slips past the route-level auth m",
+  "thumb": "thumbs/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207.svg",
+  "case_rel": "../days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Opportunistic ICS/OT scanners",
+  "cve_count": 2,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "fuxa scada/hmi: dot-segment path-normalization auth bypass (cve-2026-13207) leaks every ot role opportunistic ics/ot scanners global (unattributed) ot-ics network-edge linux energy water manufacturing building-automation t1595.002 t1190 t1087 t1069 t1552.001 t1550.001 t1059.007 t1565.001 t0846 t0888 t0836 t0831 ot / ics "
+ },
+ {
   "date": "2026-07-03",
   "year": "2026",
   "month": "2026-07",

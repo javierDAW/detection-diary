@@ -127,3 +127,5 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478,2026-07-02,CVE-2026-49478,no,,,,,,
 2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478,2026-07-02,CVE-2026-8206,no,,,,,,
 2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,2026-07-03,CVE-2024-40766,yes,2024-09-09,2024-09-30,Known,SonicWall SonicOS Improper Access Control Vulnerability,SonicWall,SonicOS
+2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207,2026-07-04,CVE-2026-13207,no,,,,,,
+2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207,2026-07-04,CVE-2026-25939,no,,,,,,
