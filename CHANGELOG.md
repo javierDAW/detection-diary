@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.04 — Day 68 — FUXA SCADA/HMI dot-segment auth bypass (CVE-2026-13207)
+
+### Added
+- `days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/` — CISA ICSA-26-181-02 (2026-06-30) for CVE-2026-13207, an unauthenticated auth bypass in the open-source FUXA SCADA/HMI: a dot-segment prefix (`/api/./users`, `/api/project/../users`) desyncs the Express route-level auth middleware from the normalized handler path and leaks the full user + role inventory (CVSS v4 8.6, <=1.3.1). Framed as a detection build for the whole 2026 FUXA pre-auth API wave — hardcoded/default JWT secrets, upload/Node-RED/script-test-mode RCE, and unauthenticated scheduler/device-tag writes (CVE-2026-25939). Weekend auto-rescue; first repo primary in slot #9 (ICS/OT/SCADA).
+- Sigma (3): `fuxa_dotsegment_api_authbypass.yml` — dot-segment inside an `/api` path (webserver); `fuxa_privileged_api_unauth_access.yml` — privileged `/api` endpoints reached from non-operator ranges (proxy); `fuxa_node_process_spawns_shell.yml` — FUXA node parent spawning a shell (process_creation).
+- KQL (4): dot-segment `/api` in forwarded web logs (Syslog); node->shell on the FUXA host; external inbound to tcp/1881; script/exe written by node into FUXA appdata.
+- YARA (1 file, 3 rules): auth-bypass request markers, unauth RCE payload markers, public PoC-script markers.
+- Suricata (1 file, 8 sids): dot-segment variants, user/role enumeration, `getTagValue`, scheduler-write body, exposure banner, scanner UA (2026070401-2026070408).
+- PEAK hunts (3): dot-segment auth-bypass requests; FUXA node RCE; exposed HMIs + unauth endpoints.
+- `iocs.csv` (24 entries) — 2 CVEs, endpoints, 9 GHSA IDs, exposure notes. `kev.md` — 0/2 CVEs on CISA KEV (newly disclosed; not evidence of safety).
+- `kill_chain.svg` — Template A, canonical palette, ot-ics accent, victim HMI vs. attacker-ops lanes, IOC anchors.
+
+### Pedagogy
+- Normalize the URL path before applying auth middleware; test `./ ../ %2e` trailing-slash and double-encoding on every protected route.
+- "Information disclosure" on an OT HMI is initial-access recon: a leaked role map names who to phish and who can move a setpoint.
+- Open-source is not audited; segment internet-facing HMIs and proxy-deny sensitive `/api` routes rather than relying on the patch alone.
+- Detect the desync, not the CVE: a dot-segment `/api` path returning 200 to an unauthenticated client catches the sibling FUXA bugs and the same class elsewhere.
+
 ## 2026.07.03 — Day 67 — From Bing search to NTDS.dit: BumbleBee, AdaptixC2 and Akira
 
 ### Added
