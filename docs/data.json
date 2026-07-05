@@ -1,5 +1,45 @@
 [
  {
+  "date": "2026-07-05",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01",
+  "title": "OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-exhaustion DoS across medical imaging",
+  "clusters": [
+   "Opportunistic medical-imaging scanners"
+  ],
+  "country": "Global (unattributed)",
+  "platforms": [
+   "linux",
+   "windows",
+   "network-edge"
+  ],
+  "sectors": [
+   "healthcare"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1190",
+   "T1505.003",
+   "T1059",
+   "T1083",
+   "T1005",
+   "T1499.004"
+  ],
+  "tech_count": 7,
+  "tldr": "On 2026-06-30 CISA published **ICSMA-26-181-01** for five vulnerabilities in **OFFIS DCMTK** (<= 3.7.0), the reference DICOM toolkit embedded across virtually the entire medical-imaging stack (PACS, modality gateways, viewers, research pipelines). The headline is **CVE-2026-50003** (critical, CVSS v3.1 **9.8**): a DICOM storage receiver builds its output filename from attacker-controlled attribute",
+  "thumb": "thumbs/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01.svg",
+  "case_rel": "../days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Opportunistic medical-imaging scanners",
+  "cve_count": 6,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "offis dcmtk dicom toolkit: path-traversal file write (cve-2026-50003) + memory-exhaustion dos across medical imaging opportunistic medical-imaging scanners global (unattributed) linux windows network-edge healthcare t1595.002 t1190 t1505.003 t1059 t1083 t1005 t1499.004 other "
+ },
+ {
   "date": "2026-07-04",
   "year": "2026",
   "month": "2026-07",

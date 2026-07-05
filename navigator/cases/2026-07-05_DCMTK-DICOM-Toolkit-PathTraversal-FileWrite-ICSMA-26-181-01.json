@@ -1,0 +1,76 @@
+{
+  "name": "2026-07-05 — 2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-exhaustion DoS across medical imaging — clusters: Opportunistic medical-imaging scanners",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1595.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-e"
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-e"
+    },
+    {
+      "techniqueID": "T1505.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-e"
+    },
+    {
+      "techniqueID": "T1059",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-e"
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-e"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-e"
+    },
+    {
+      "techniqueID": "T1499.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-e"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.05 — Day 69 — OFFIS DCMTK DICOM toolkit path-traversal file write + memory-exhaustion DoS
+
+### Added
+- `days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/` — CISA ICSMA-26-181-01 (2026-06-30) for five vulnerabilities in OFFIS DCMTK (<=3.7.0), the reference DICOM toolkit embedded across the medical-imaging stack. Headline CVE-2026-50003 (CVSS 9.8): a storage receiver derives its output filename from attacker-controlled attributes, so a dot-segment writes a file outside the incoming store (web shell / autostart). Plus CVE-2026-52868 (path traversal), CVE-2026-50254/CVE-2026-35505 (memory-leak DoS) and CVE-2026-44628 (type-confusion crash). Reported by Abhinav Agarwal; fixed upstream in master (release >=3.7.1). No confirmed in-the-wild exploitation — a detection-first build. Weekend auto-rescue; first repo primary in slot #32 (healthcare/medical device).
+- Sigma (3): `dcmtk_receiver_spawns_shell.yml` — DICOM receiver spawning a shell (process_creation); `dcmtk_receiver_file_write_traversal.yml` — receiver writing an exec/script or `..` file outside the store (file_event); `dicom_inbound_association_external.yml` — inbound association to a DIMSE port (network_connection).
+- KQL (4): DICOM receiver->shell; script/exe or `..` file written by a receiver; external inbound to a DICOM listener; WerFault / restart-loop on a DCMTK binary (DoS).
+- YARA (1 file, 3 rules): crafted Part-10 objects with a traversal filename or embedded exec extension, and DCMTK/DICOM PoC-script markers.
+- Suricata (1 file, 5 sids): external A-ASSOCIATE-RQ, scanner AE title, traversal/exec bytes to a storage port, DICM-over-HTTP upload (2026070501-2026070505).
+- PEAK hunts (3): exposed DICOM listeners + external associations; receiver file-write escaping the store + RCE; service crash / memory-exhaustion DoS.
+- `iocs.csv` (22 entries) — 6 CVEs, DICOM protocol anchors (DICM magic, app-context UID, DIMSE ports), receiver binaries, exposure notes. `kev.md` — 0/6 CVEs on CISA KEV (advisory-stage; not evidence of safety).
+- `kill_chain.svg` — Template A, canonical palette, `other` accent, victim imaging-stack vs. attacker-ops lanes, IOC anchors.
+
+### Pedagogy
+- A storage receiver that names files from received data is a file-write primitive; constrain the resolved path to the store and reject any `..` after normalization.
+- DICOM has no transport auth in most deployments — reachability is authorization; segment, AE-title allowlist and enable DICOM TLS, never expose an SCP beyond the imaging VLAN.
+- You cannot patch what you cannot see: DCMTK is vendored without SBOMs, and a fix "in master" reaches a hospital only when each vendor re-integrates and ships.
+- Detect the behaviour, not the CVE: a DICOM receiver writing a non-`.dcm` file, spawning a shell, or crash-looping catches CVE-2026-50003, the sibling toolkits, and the next parser bug.
+
 ## 2026.07.04 — Day 68 — FUXA SCADA/HMI dot-segment auth bypass (CVE-2026-13207)
 
 ### Added

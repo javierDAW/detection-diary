@@ -1,0 +1,18 @@
+// Title:       Inbound DICOM association to a storage/QR listener from outside the imaging VLAN
+// Id:          k3-dicom-inbound-listener-external
+// MITRE:       T1190, T1595.002
+// Reference:   https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-181-01
+// Author:      Jarmi
+// Date:        2026-07-05
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes:    Modality-to-PACS and PACS-to-PACS traffic inside the imaging VLAN is expected. Extend the
+//              imaging-range allowlist below with your real modality/archive prefixes so only external or
+//              unexpected sources remain. Adjust the port list if your archive uses a non-default DIMSE port.
+let imaging_ranges = dynamic(["10.20.", "10.21."]);  // <add_known_imaging_ranges>
+DeviceNetworkEvents
+| where Timestamp > ago(14d)
+| where ActionType == "InboundConnectionAccepted"
+| where LocalPort in (104, 11112, 2762)
+| where not(RemoteIP has_any (imaging_ranges))
+| project Timestamp, DeviceName, LocalPort, RemoteIP, RemotePort, InitiatingProcessFileName
+| order by Timestamp desc
