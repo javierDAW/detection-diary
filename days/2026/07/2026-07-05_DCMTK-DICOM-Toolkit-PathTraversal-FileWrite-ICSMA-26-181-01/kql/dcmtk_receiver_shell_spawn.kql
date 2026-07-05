@@ -1,0 +1,18 @@
+// Title:       DICOM storage receiver (DCMTK) spawning a shell (post-exploit RCE)
+// Id:          k1-dcmtk-receiver-shell-spawn
+// MITRE:       T1190, T1059, T1505.003
+// Reference:   https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-181-01
+// Author:      Jarmi
+// Date:        2026-07-05
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents); DCMTK on Windows or Linux
+// FP notes:    A DICOM receiver (storescp/dcmrecv/dcmqrscp/movescu) spawning cmd/powershell/bash is not
+//              expected. Vendor post-processing hooks that shell out are the main benign case; baseline
+//              per imaging host.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where InitiatingProcessFileName in~ ("storescp.exe", "storescp", "dcmrecv.exe", "dcmrecv",
+        "dcmqrscp.exe", "dcmqrscp", "movescu.exe", "movescu", "getscu.exe", "getscu")
+| where FileName in~ ("cmd.exe", "powershell.exe", "pwsh.exe", "wscript.exe", "cscript.exe", "bash", "sh", "dash")
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine,
+          FileName, ProcessCommandLine, AccountName, InitiatingProcessAccountName
+| order by Timestamp desc

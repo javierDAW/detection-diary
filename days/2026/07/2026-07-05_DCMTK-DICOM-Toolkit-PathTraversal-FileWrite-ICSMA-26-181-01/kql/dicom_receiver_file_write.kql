@@ -1,0 +1,22 @@
+// Title:       DICOM receiver writing a script/executable or traversal file (CVE-2026-50003)
+// Id:          k2-dicom-receiver-file-write
+// MITRE:       T1190, T1505.003
+// Reference:   https://nvd.nist.gov/vuln/detail/CVE-2026-50003
+// Author:      Jarmi
+// Date:        2026-07-05
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceFileEvents); DCMTK on Windows or Linux
+// FP notes:    A DICOM store should only receive .dcm instances. Vendor pipelines that emit derived
+//              reports/thumbnails from the receiver directory are the main benign case; baseline the
+//              expected output extensions and paths.
+DeviceFileEvents
+| where Timestamp > ago(14d)
+| where InitiatingProcessFileName in~ ("storescp.exe", "storescp", "dcmrecv.exe", "dcmrecv",
+        "dcmqrscp.exe", "dcmqrscp")
+| where FileName endswith ".php" or FileName endswith ".jsp" or FileName endswith ".jspx"
+      or FileName endswith ".asp" or FileName endswith ".aspx" or FileName endswith ".ashx"
+      or FileName endswith ".sh" or FileName endswith ".bat" or FileName endswith ".ps1"
+      or FileName endswith ".exe" or FileName endswith ".dll" or FileName endswith ".war"
+      or FolderPath contains ".."
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine,
+          ActionType, FileName, FolderPath, InitiatingProcessAccountName
+| order by Timestamp desc

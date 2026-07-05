@@ -1,0 +1,40 @@
+title: Inbound DICOM Association to a Storage/QR Port from Outside the Imaging VLAN
+id: c9bf13b8-6760-4ed4-924c-dcd6ad77ef14
+status: experimental
+description: |
+  Detects an inbound network connection to a DICOM upper-layer (DIMSE) listener
+  port - tcp/104, tcp/11112 or tcp/2762 - accepted by a host on the network.
+  Exposure of a DICOM Storage/Query-Retrieve SCP beyond the imaging VLAN is the
+  precondition for exploiting the OFFIS DCMTK CVE cluster (ICSMA-26-181-01): the
+  path-traversal file write (CVE-2026-50003) and the memory-exhaustion /
+  type-confusion DoS (CVE-2026-50254 / CVE-2026-35505 / CVE-2026-44628) are all
+  reachable by any peer that can open an association. This rule anchors on the
+  destination port; restrict the source to non-imaging ranges at SIEM
+  aggregation (a threshold/allowlist push, not expressible in Sigma) to surface
+  associations from unexpected origins.
+references:
+  - https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-181-01
+  - https://attack.mitre.org/techniques/T1190/
+author: Jarmi
+date: 2026/07/05
+tags:
+  - attack.initial-access
+  - attack.t1190
+  - attack.reconnaissance
+  - attack.t1595.002
+logsource:
+  category: network_connection
+detection:
+  selection_port:
+    DestinationPort:
+      - 104
+      - 11112
+      - 2762
+  selection_inbound:
+    Initiated: 'false'
+  condition: selection_port and selection_inbound
+falsepositives:
+  - Legitimate modality-to-PACS and PACS-to-PACS associations inside the imaging
+    VLAN; allowlist known modality and archive source ranges <add_known_dicom_peers>
+
+level: medium

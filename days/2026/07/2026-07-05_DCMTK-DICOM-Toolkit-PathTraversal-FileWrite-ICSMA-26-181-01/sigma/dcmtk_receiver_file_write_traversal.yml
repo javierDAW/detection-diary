@@ -1,0 +1,60 @@
+title: DICOM Receiver Writes Executable/Traversal File Outside Incoming Store (CVE-2026-50003)
+id: 8e59c732-d6a4-44b3-87d7-97c9c426d9ed
+status: experimental
+description: |
+  Detects a DICOM storage receiver (OFFIS DCMTK storescp / dcmrecv / dcmqrscp)
+  writing a file whose name carries a dot-segment (path traversal) or a script /
+  executable extension. CVE-2026-50003 (ICSMA-26-181-01, critical, CVSS 9.8)
+  lets a crafted DICOM object's attributes control the output filename so the
+  receiver writes outside its configured incoming directory - the primitive for
+  dropping a web shell or an autostart payload. A DICOM receiver should only
+  write DICOM instances (.dcm) into its designated store, so an executable
+  extension or a '..' in the written path is anomalous by construction. Pair with
+  the receiver-spawns-shell rule for the execution follow-on.
+references:
+  - https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-181-01
+  - https://nvd.nist.gov/vuln/detail/CVE-2026-50003
+  - https://attack.mitre.org/techniques/T1505/003/
+author: Jarmi
+date: 2026/07/05
+tags:
+  - attack.persistence
+  - attack.t1505.003
+  - attack.initial-access
+  - attack.t1190
+logsource:
+  category: file_event
+detection:
+  selection_proc:
+    Image|endswith:
+      - '\storescp.exe'
+      - '\dcmrecv.exe'
+      - '\dcmqrscp.exe'
+      - '/storescp'
+      - '/dcmrecv'
+      - '/dcmqrscp'
+  selection_badext:
+    TargetFilename|endswith:
+      - '.php'
+      - '.jsp'
+      - '.jspx'
+      - '.asp'
+      - '.aspx'
+      - '.ashx'
+      - '.sh'
+      - '.bat'
+      - '.ps1'
+      - '.exe'
+      - '.dll'
+      - '.war'
+  selection_traversal:
+    TargetFilename|contains:
+      - '..\'
+      - '../'
+  condition: selection_proc and (selection_badext or selection_traversal)
+falsepositives:
+  - A vendor DICOM pipeline that legitimately emits non-.dcm derived artifacts
+    (reports, thumbnails) from the receiver directory; baseline the expected
+    output extensions and paths of your DICOM store <add_known_dicom_outputs>
+
+level: high

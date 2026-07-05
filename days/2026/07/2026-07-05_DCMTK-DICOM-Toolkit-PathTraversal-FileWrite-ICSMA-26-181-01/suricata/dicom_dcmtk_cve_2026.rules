@@ -1,0 +1,25 @@
+# OFFIS DCMTK / DICOM 2026 toolkit CVE cluster (ICSMA-26-181-01) - network detections
+# Author: Jarmi
+# Date:   2026-07-05
+# Reference: https://www.cisa.gov/news-events/ics-medical-advisories/icsma-26-181-01
+#            https://nvd.nist.gov/vuln/detail/CVE-2026-50003
+# Notes: Suricata 7.x. DICOM DIMSE runs over raw TCP (no HTTP), so these use raw content matches on the
+#        upper-layer PDU, not sticky HTTP buffers. Default DICOM ports: tcp/104, tcp/11112, tcp/2762 (TLS),
+#        tcp/2761. Every A-ASSOCIATE-RQ begins with PDU type 0x01 and carries the DICOM Application Context
+#        Name "1.2.840.10008.3.1.1.1". Scope $HOME_NET to the imaging VLAN; $EXTERNAL_NET is anything else.
+#        SIDs 2026070501-2026070505, rev:1. No custom variables beyond the standard $HOME_NET/$EXTERNAL_NET.
+
+# 1) Inbound DICOM association request from outside the imaging VLAN (exposed DICOM SCP - exploit precondition)
+alert tcp $EXTERNAL_NET any -> $HOME_NET [104,11112,2762,2761] (msg:"DICOM - inbound A-ASSOCIATE-RQ from external (exposed DICOM SCP)"; flow:established,to_server; content:"|01 00|"; depth:2; content:"1.2.840.10008.3.1.1.1"; distance:0; classtype:attempted-recon; reference:url,cisa.gov/news-events/ics-medical-advisories/icsma-26-181-01; sid:2026070501; rev:1;)
+
+# 2) DICOM association advertising a DCMTK/scanner AE title (enumeration / mass probing heuristic)
+alert tcp $EXTERNAL_NET any -> $HOME_NET [104,11112,2762,2761] (msg:"DICOM - association with DCMTK/scanner AE title (enumeration heuristic)"; flow:established,to_server; content:"|01 00|"; depth:2; pcre:"/(ECHOSCU|FINDSCU|STORESCU|MOVESCU|DCMTK|ANY-SCP)/"; classtype:attempted-recon; reference:url,cisa.gov/news-events/ics-medical-advisories/icsma-26-181-01; sid:2026070502; rev:1;)
+
+# 3) Path-traversal bytes inside a DICOM stream to a storage port (CVE-2026-50003 weaponized filename)
+alert tcp any any -> $HOME_NET [104,11112,2762,2761] (msg:"DICOM CVE-2026-50003 - path-traversal sequence in DICOM stream to storage port"; flow:established,to_server; pcre:"/\.\.[\x2f\x5c]/"; classtype:web-application-attack; reference:cve,2026-50003; sid:2026070503; rev:1;)
+
+# 4) DICOM stream to a storage port carrying a script/executable extension (file-write-to-webshell heuristic)
+alert tcp any any -> $HOME_NET [104,11112,2762,2761] (msg:"DICOM CVE-2026-50003 - script/executable extension in DICOM stream to storage port (heuristic)"; flow:established,to_server; pcre:"/\.(jsp|jspx|php|aspx|ashx|war|sh|ps1)\b/i"; classtype:web-application-attack; reference:cve,2026-50003; sid:2026070504; rev:1;)
+
+# 5) Crafted DICOM Part-10 object (DICM magic at offset 128) uploaded over HTTP to an imaging web app
+alert http any any -> $HOME_NET any (msg:"DICOM - Part-10 object (DICM magic) uploaded over HTTP to imaging web app"; flow:established,to_server; http.request_body; content:"DICM"; offset:128; depth:4; classtype:policy-violation; reference:url,cisa.gov/news-events/ics-medical-advisories/icsma-26-181-01; sid:2026070505; rev:1;)
