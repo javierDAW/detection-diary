@@ -1,0 +1,42 @@
+title: Umbrij DLL Sideload From Signed Loader In Anomalous Location
+id: faf39215-aaba-4bae-923c-88e5e934bb3b
+status: experimental
+description: |
+  Detects one of the legitimate, signed binaries ToddyCat abuses to DLL-sideload
+  the Umbrij OAuth-token stealer, when it runs from a staging directory rather
+  than its normal install path. Observed loaders: GoogleDesktop.exe (loads
+  GoogleServices.DLL), BDSubWiz.exe / BDS.exe (Bitdefender; loads log.dll) and
+  VSTestVideoRecorder.exe (loads Microsoft.VisualStudio.QualityTools.VideoRecorderEngine.dll).
+  These are trusted by name and signature but here they run from C:\Users\Public,
+  C:\Windows\Temp or C:\Windows\Vss to load an attacker-supplied DLL from the same
+  folder. Pair with an image_load rule matching the sideloaded DLL name loaded
+  from those paths. Threshold and correlation belong in SIEM aggregation, not the
+  rule condition.
+references:
+  - https://securelist.com/toddycat-apt-umbrij-tool-and-oauth/120251/
+  - https://attack.mitre.org/techniques/T1574/001/
+author: Jarmi
+date: 2026/07/06
+tags:
+  - attack.defense-evasion
+  - attack.persistence
+  - attack.t1574.001
+logsource:
+  category: process_creation
+detection:
+  selection_img:
+    Image|endswith:
+      - '\BDSubWiz.exe'
+      - '\BDS.exe'
+      - '\GoogleDesktop.exe'
+      - '\VSTestVideoRecorder.exe'
+  selection_path:
+    Image|contains:
+      - '\Users\Public\'
+      - '\Windows\Temp\'
+      - '\Windows\Vss\'
+      - '\AppData\Local\Temp\'
+  condition: selection_img and selection_path
+falsepositives:
+  - A genuine copy of one of these tools executed from a temp directory by an installer; verify the co-located DLL signature and path.
+level: high

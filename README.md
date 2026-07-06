@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**69 cases** · **133 actors/clusters** · **315 ATT&CK techniques** · **16 platforms** · **74 sectors** · 2026-04-28 -> 2026-07-05
+**70 cases** · **134 actors/clusters** · **316 ATT&CK techniques** · **16 platforms** · **74 sectors** · 2026-04-28 -> 2026-07-06
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/"><img src="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/kill_chain.svg" alt="2026-07-06 kill chain" width="240"></a><br><sub><b>2026-07-06</b><br>ToddyCat</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/"><img src="days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/kill_chain.svg" alt="2026-07-05 kill chain" width="240"></a><br><sub><b>2026-07-05</b><br>Opportunistic medical-imaging scanners</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/"><img src="days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/kill_chain.svg" alt="2026-07-04 kill chain" width="240"></a><br><sub><b>2026-07-04</b><br>Opportunistic ICS/OT scanners</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/"><img src="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/kill_chain.svg" alt="2026-07-03 kill chain" width="240"></a><br><sub><b>2026-07-03</b><br>Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/"><img src="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/kill_chain.svg" alt="2026-07-03 kill chain" width="240"></a><br><sub><b>2026-07-03</b><br>Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/"><img src="days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/kill_chain.svg" alt="2026-07-02 kill chain" width="240"></a><br><sub><b>2026-07-02</b><br>Unattributed — coordinated vulnerability disclosure (no observed campaign)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/"><img src="days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/kill_chain.svg" alt="2026-07-01 kill chain" width="240"></a><br><sub><b>2026-07-01</b><br>input_24 phishing kit operator (PoisonSeeds-adjacent)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/"><img src="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/kill_chain.svg" alt="2026-06-30 kill chain" width="240"></a><br><sub><b>2026-06-30</b><br>Dire Wolf (DireWolf) ransomware group</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

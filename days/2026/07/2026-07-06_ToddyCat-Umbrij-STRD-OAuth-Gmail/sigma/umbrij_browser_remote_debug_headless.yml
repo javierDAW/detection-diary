@@ -1,0 +1,40 @@
+title: Chromium Launched With Remote Debugging Port In Headless Mode (Umbrij STRD)
+id: 0d41a5c1-ca37-4aed-88e9-d12d05d4101f
+status: experimental
+description: |
+  Detects a Chromium-based browser (chrome.exe / msedge.exe) started with both
+  --remote-debugging-port and --headless on its command line. ToddyCat's Umbrij
+  tool copies a live user profile into a BackupFiles directory and launches the
+  browser headless against the copied profile, then drives it over the DevTools
+  protocol to mint an OAuth authorization code (the Shadow Token via Remote Debug,
+  STRD, technique). Interactive users almost never launch a browser with a remote
+  debugging port on a standard workstation, so this combination is anomalous by
+  construction. Correlate with a --user-data-dir pointing at a BackupFiles path
+  and with an unusual parent process (a sideload loader, not explorer.exe).
+references:
+  - https://securelist.com/toddycat-apt-umbrij-tool-and-oauth/120251/
+  - https://attack.mitre.org/techniques/T1550/001/
+  - https://attack.mitre.org/techniques/T1528/
+author: Jarmi
+date: 2026/07/06
+tags:
+  - attack.credential-access
+  - attack.t1528
+  - attack.defense-evasion
+  - attack.t1550.001
+logsource:
+  category: process_creation
+detection:
+  selection_img:
+    Image|endswith:
+      - '\chrome.exe'
+      - '\msedge.exe'
+  selection_flags:
+    CommandLine|contains|all:
+      - '--remote-debugging-port'
+      - '--headless'
+  condition: selection_img and selection_flags
+falsepositives:
+  - Developers and CI/CD or test automation (Selenium, Puppeteer, Playwright) legitimately drive headless browsers with a debug port; scope by user, host role and parent process.
+  - Some enterprise print-to-PDF or screenshot tooling launches headless Chromium.
+level: high

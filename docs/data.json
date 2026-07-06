@@ -1,5 +1,48 @@
 [
  {
+  "date": "2026-07-06",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail",
+  "title": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail",
+  "clusters": [
+   "ToddyCat"
+  ],
+  "country": "China-nexus",
+  "platforms": [
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "government",
+   "defense",
+   "telecommunications"
+  ],
+  "techniques": [
+   "T1053.005",
+   "T1574.001",
+   "T1036.005",
+   "T1134.003",
+   "T1005",
+   "T1539",
+   "T1550.001",
+   "T1528",
+   "T1114.002"
+  ],
+  "tech_count": 9,
+  "tldr": "Kaspersky's Securelist published Part 2 of its ToddyCat email-theft research on 2026-06-30, detailing a new .NET tool the group calls **Umbrij** and a technique they name **Shadow Token via Remote Debug (STRD)**. Instead of decrypting stored credentials, Umbrij rides a victim's *live* Google session: it copies the browser profile, launches Chromium **headless with a remote debugging port**, drives",
+  "thumb": "thumbs/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail.svg",
+  "case_rel": "../days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "ToddyCat",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "toddycat umbrij: shadow token via remote debug steals oauth tokens to read gmail toddycat china-nexus windows cloud-multi government defense telecommunications t1053.005 t1574.001 t1036.005 t1134.003 t1005 t1539 t1550.001 t1528 t1114.002 espionage / apt "
+ },
+ {
   "date": "2026-07-05",
   "year": "2026",
   "month": "2026-07",

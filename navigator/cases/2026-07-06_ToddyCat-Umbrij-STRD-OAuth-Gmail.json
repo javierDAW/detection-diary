@@ -1,0 +1,90 @@
+{
+  "name": "2026-07-06 — 2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail — clusters: ToddyCat",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail"
+    },
+    {
+      "techniqueID": "T1574.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail"
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail"
+    },
+    {
+      "techniqueID": "T1134.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail"
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail"
+    },
+    {
+      "techniqueID": "T1550.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail"
+    },
+    {
+      "techniqueID": "T1528",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail"
+    },
+    {
+      "techniqueID": "T1114.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}
