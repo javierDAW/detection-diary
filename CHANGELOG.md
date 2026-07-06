@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.06 — Day 70 — ToddyCat "Umbrij": Shadow Token via Remote Debug steals OAuth tokens to read Gmail
+
+### Added
+- `days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/` — Kaspersky Securelist Part 2 (2026-06-30) on the China-nexus espionage cluster ToddyCat and its new .NET tool Umbrij. Instead of decrypting stored credentials, Umbrij rides a victim's live Google session: DLL-sideloaded via a signed loader and a scheduled task masquerading as Kaspersky EDR, it impersonates an explorer.exe token, copies the browser profile to `BackupFiles`, launches Chromium headless with a remote debugging port, drives DevTools via PuppeteerSharp to mint an OAuth authorization code (the "Shadow Token via Remote Debug" technique), and exchanges it off-host for Gmail/Contacts/Calendar/Drive access. It reuses Google's GWMMO/GWSMO Outlook-migration client IDs to blend in. Activity is 2025; the write-up is fresh. Monday espionage slot; first repo primary in slot #2 and first ToddyCat/STRD case.
+- Sigma (3): `umbrij_browser_remote_debug_headless.yml` — browser cmdline with `--remote-debugging-port` and `--headless`; `umbrij_dll_sideload_signed_loader.yml` — known signed loader from a staging dir; `umbrij_masquerading_scheduled_task.yml` — `KasperskyEndpointSecurityEDRAvp` task.
+- KQL (4): headless/debug-port browser (flags BackupFiles); loader->sideloaded DLL (ImageLoad); masquerading task; OAuth grant to GWMMO/GWSMO in CloudAppEvents.
+- YARA (1 file, 3 rules): Umbrij OAuth/log strings, operator-log artifacts, and a generic STRD remote-debug heuristic.
+- Suricata (1 file, 6 sids): decrypted OAuth request markers (GeneralOAuthFlow / client_ids), TLS SNI corroboration, loopback DevTools endpoints (2026060601-2026060606; needs TLS inspection / loopback visibility).
+- PEAK hunts (3): headless+debug-port launch; signed-loader sideload + masquerading task; unexpected GWMMO/GWSMO OAuth grant and Gmail API reads.
+- `iocs.csv` (30 entries) — 7 Umbrij MD5s (ver. a/b/c), 3 signed-loader MD5s, staging paths, OAuth client IDs and request markers. No CVE in this chain, so no `kev.md` is generated.
+- `kill_chain.svg` — Template A, canonical palette, espionage accent; victim workstation lane vs ToddyCat operations lane; anchors on the headless-debug launch, sideload+task, and the OAuth grant.
+
+### Pedagogy
+- Token theft beats credential theft: Umbrij borrows the live session, so credential-store detections miss it — watch the browser launch flags and the OAuth grant.
+- `--remote-debugging-port` + `--headless` on a non-automation user host is a cheap, high-signal hunt.
+- Trusted vendor names (Kaspersky task, Google/Bitdefender/VS signed loaders) are attacker cover; the tell is the location and the co-located unsigned DLL.
+- For stolen OAuth tokens, revoke the app grant — a password reset does not invalidate an existing access token.
+
 ## 2026.07.05 — Day 69 — OFFIS DCMTK DICOM toolkit path-traversal file write + memory-exhaustion DoS
 
 ### Added

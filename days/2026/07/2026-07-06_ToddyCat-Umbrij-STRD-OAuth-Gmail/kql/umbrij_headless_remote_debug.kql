@@ -1,0 +1,20 @@
+// Title:       Chromium headless + remote debugging port launch (Umbrij STRD)
+// Id:          k1-umbrij-headless-remote-debug
+// MITRE:       T1528, T1550.001
+// Reference:   https://securelist.com/toddycat-apt-umbrij-tool-and-oauth/120251/
+// Author:      Jarmi
+// Date:        2026-07-06
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    Test automation (Selenium/Puppeteer/Playwright), print-to-PDF and screenshot
+//              tooling also launch headless Chromium with a debug port. Scope by device role and
+//              parent process; a browser whose parent is a signed loader in \Users\Public or
+//              \Windows\Temp (not explorer.exe) and whose --user-data-dir points at BackupFiles is
+//              high-fidelity. Tune <add_known_automation_hosts>.
+DeviceProcessEvents
+| where FileName in~ ("chrome.exe","msedge.exe")
+| where ProcessCommandLine has "--remote-debugging-port"
+| where ProcessCommandLine has "--headless"
+| extend RidesCopiedProfile = ProcessCommandLine has "BackupFiles"
+| where DeviceName !in~ (dynamic([]))  // <add_known_automation_hosts>
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName, InitiatingProcessFolderPath, FileName, ProcessCommandLine, RidesCopiedProfile
+| order by Timestamp asc

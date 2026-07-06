@@ -1,0 +1,36 @@
+title: Scheduled Task Masquerading As Kaspersky EDR (Umbrij Persistence)
+id: 29d98b91-eb69-4636-a0d8-55c193df6a74
+status: experimental
+description: |
+  Detects creation of a scheduled task named KasperskyEndpointSecurityEDRAvp,
+  the persistence used to launch ToddyCat's Umbrij sideload loader. Kaspersky
+  products do not create a scheduled task with this name, so its presence is a
+  high-fidelity masquerade indicator (defense evasion via a trusted-vendor name).
+  Matches schtasks.exe create invocations and the equivalent PowerShell cmdlet.
+  Also hunt the task store directly: %WINDIR%\System32\Tasks and the
+  TaskCache\Tree registry hive under HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion\Schedule.
+references:
+  - https://securelist.com/toddycat-apt-umbrij-tool-and-oauth/120251/
+  - https://attack.mitre.org/techniques/T1053/005/
+  - https://attack.mitre.org/techniques/T1036/005/
+author: Jarmi
+date: 2026/07/06
+tags:
+  - attack.persistence
+  - attack.t1053.005
+  - attack.defense-evasion
+  - attack.t1036.005
+logsource:
+  category: process_creation
+detection:
+  selection_tool:
+    Image|endswith:
+      - '\schtasks.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_name:
+    CommandLine|contains: 'KasperskyEndpointSecurityEDRAvp'
+  condition: selection_tool and selection_name
+falsepositives:
+  - None expected; a legitimate Kaspersky install does not create a task with this exact name.
+level: high

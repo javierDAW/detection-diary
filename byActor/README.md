@@ -115,6 +115,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [TeamPCP](./teampcp/) | 4 |
 | [The Gentlemen RaaS](./the-gentlemen-raas/) | 2 |
 | [The Gentlemen RaaS (GentleKiller operator)](./the-gentlemen-raas-gentlekiller-operator/) | 1 |
+| [ToddyCat](./toddycat/) | 1 |
 | [TrapDoor (Socket-tracked)](./trapdoor-socket-tracked/) | 1 |
 | [TukTuk (AI-generated framework)](./tuktuk-ai-generated-framework/) | 1 |
 | [Tycoon2FA](./tycoon2fa/) | 1 |

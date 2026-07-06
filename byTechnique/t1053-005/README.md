@@ -4,11 +4,12 @@
 
 # Techniques: T1053.005
 
-9 day(s) covering this technique.
+10 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-06 | ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail | ToddyCat | [`2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/`](../../days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/) |
 | 2026-06-29 | CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy | CL-STA-1062 | [`2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/`](../../days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/) |
 | 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |
 | 2026-05-29 | MiniPlasma — CVE-2020-17103 silent regression weaponized to SYSTEM on fully patched Windows 11 via cldflt.sys race + WER QueueReporting hijack | Chaotic Eclipse / Nightmare-Eclipse | [`2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/`](../../days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/) |

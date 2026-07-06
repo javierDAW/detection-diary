@@ -1,0 +1,23 @@
+// Title:       Scheduled task masquerading as Kaspersky EDR (Umbrij persistence)
+// Id:          k3-umbrij-masquerading-task
+// MITRE:       T1053.005, T1036.005
+// Reference:   https://securelist.com/toddycat-apt-umbrij-tool-and-oauth/120251/
+// Author:      Jarmi
+// Date:        2026-07-06
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents, DeviceEvents)
+// FP notes:    None expected - Kaspersky does not create a task named KasperskyEndpointSecurityEDRAvp.
+//              Any hit warrants investigation of the task action (the launched signed loader).
+union
+(
+    DeviceProcessEvents
+    | where FileName in~ ("schtasks.exe","powershell.exe","pwsh.exe")
+    | where ProcessCommandLine has "KasperskyEndpointSecurityEDRAvp"
+    | project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName
+),
+(
+    DeviceEvents
+    | where ActionType == "ScheduledTaskCreated"
+    | where AdditionalFields has "KasperskyEndpointSecurityEDRAvp"
+    | project Timestamp, DeviceName, AccountName=InitiatingProcessAccountName, FileName=InitiatingProcessFileName, ProcessCommandLine=InitiatingProcessCommandLine, InitiatingProcessFileName
+)
+| order by Timestamp asc

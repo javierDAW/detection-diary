@@ -4,11 +4,12 @@
 
 # Platforms: windows
 
-46 day(s) covering this platform.
+47 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-06 | ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail | ToddyCat | [`2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/`](../../days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/) |
 | 2026-07-05 | OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-exhaustion DoS across medical imaging | Opportunistic medical-imaging scanners | [`2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/`](../../days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/) |
 | 2026-07-03 | From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom) | Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira) | [`2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/`](../../days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/) |
 | 2026-06-30 | Dire Wolf: a Golang double-extortion ransomware that kills the recovery story before it encrypts | Dire Wolf (DireWolf) ransomware group | [`2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/`](../../days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/) |

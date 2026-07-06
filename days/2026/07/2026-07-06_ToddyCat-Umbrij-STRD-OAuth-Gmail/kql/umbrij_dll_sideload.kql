@@ -1,0 +1,18 @@
+// Title:       Umbrij DLL sideload - signed loader loads attacker DLL from staging dir
+// Id:          k2-umbrij-dll-sideload
+// MITRE:       T1574.001
+// Reference:   https://securelist.com/toddycat-apt-umbrij-tool-and-oauth/120251/
+// Author:      Jarmi
+// Date:        2026-07-06
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceImageLoadEvents)
+// FP notes:    The loaders are legitimate signed binaries; the anomaly is the location. A genuine
+//              installer may briefly run one of these from %TEMP%. Confirm the co-located DLL name
+//              and that it is unsigned or signed by an unexpected publisher.
+let loaders = dynamic(["googledesktop.exe","bdsubwiz.exe","bds.exe","vstestvideorecorder.exe"]);
+let sideloaded = dynamic(["googleservices.dll","log.dll","microsoft.visualstudio.qualitytools.videorecorderengine.dll"]);
+DeviceImageLoadEvents
+| where tolower(InitiatingProcessFileName) in (loaders)
+| where tolower(FileName) in (sideloaded)
+| where FolderPath has_any ("\\Users\\Public\\","\\Windows\\Temp\\","\\Windows\\Vss\\","\\AppData\\Local\\Temp\\")
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, FileName, FolderPath, InitiatingProcessCommandLine
+| order by Timestamp asc

@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">ToddyCat Umbrij STRD OAuth Gmail kill chain</title>
+<desc id="d">Two-lane kill chain. Left lane: the victim workstation from a ToddyCat foothold and a scheduled task masquerading as Kaspersky EDR, through DLL sideload of the Umbrij .NET tool, explorer.exe token impersonation, copying the live browser profile into BackupFiles, launching a headless Chromium with a remote debugging port, driving DevTools to mint an OAuth authorization code, and reading Gmail via the Google API. Right lane: ToddyCat operations - deploy Umbrij, masquerade and sideload from signed loaders, the Shadow Token via Remote Debug design, blending into the GWMMO and GWSMO migration client IDs, retrieving the auth code from the local log, and exchanging it off-host for an access token. Detection anchors: a browser launched with --remote-debugging-port and --headless, a signed loader in a staging dir loading an unsigned DLL, a KasperskyEndpointSecurityEDRAvp task, and an OAuth grant to GWMMO or GWSMO.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">ToddyCat "Umbrij": Shadow Token via Remote Debug -&gt; Gmail</text>
+<text class="meta" x="20" y="58">Vendor: Kaspersky Securelist - Date: 2026-06-30 - Cluster: ToddyCat - Day 70</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="104">VICTIM WORKSTATION (Windows + Chromium)</text>
+<text class="laneLabelR" x="460" y="104">TODDYCAT OPERATIONS</text>
+
+<!-- Left stage 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="144">Foothold + persistence</text>
+<text class="sub" x="40" y="168">Prior ToddyCat access on the host</text>
+<text class="sub" x="40" y="184">Scheduled task masquerades as Kaspersky EDR</text>
+<text class="sub" x="40" y="200">T1053.005 / T1036.005</text>
+<text class="mono" x="40" y="226">KasperskyEndpointSecurityEDRAvp</text>
+<text class="mono" x="40" y="244">-&gt; launches signed loader</text>
+
+<!-- Left stage 2 -->
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="294">DLL sideload of Umbrij</text>
+<text class="sub" x="40" y="318">Signed loader in a staging dir loads the</text>
+<text class="sub" x="40" y="334">malicious DLL (.NET, ConfuserEx)</text>
+<text class="sub" x="40" y="350">T1574.001</text>
+<text class="mono" x="40" y="376">BDSubWiz.exe -&gt; log.dll</text>
+<text class="mono" x="40" y="394">GoogleDesktop.exe -&gt; GoogleServices.DLL</text>
+
+<!-- Left stage 3 (critical) -->
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="444">Token impersonation</text>
+<text class="sub" x="40" y="468">Duplicate explorer.exe token, keep privileges</text>
+<text class="sub" x="40" y="484">Same mechanism as TomBerBil</text>
+<text class="sub" x="40" y="500">T1134.003</text>
+<text class="mono" x="40" y="526">CreateProcessAsUserW / RevertToSelf</text>
+<text class="mono" x="40" y="544">-user &lt;name&gt; / -runas-currentuser</text>
+
+<!-- Left stage 4 -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="594">Copy live browser profile</text>
+<text class="sub" x="40" y="618">Read Local State info_cache, pick email profile</text>
+<text class="sub" x="40" y="634">Copy cookies + Login Data to BackupFiles</text>
+<text class="sub" x="40" y="650">T1539 / T1005</text>
+<text class="mono" x="40" y="676">%LOCALAPPDATA%\Chrome\BackupFiles</text>
+<text class="mono" x="40" y="694">Edge\User Data\BackupFiles</text>
+
+<!-- Left stage 5 (critical) -->
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="744">Headless browser + debug port</text>
+<text class="sub" x="40" y="768">Launch Chromium headless on copied profile</text>
+<text class="sub" x="40" y="784">Drive DevTools via PuppeteerSharp</text>
+<text class="sub" x="40" y="800">T1550.001</text>
+<text class="mono" x="40" y="826">--headless --remote-debugging-port=11111</text>
+<text class="mono" x="40" y="844">--user-data-dir=...\BackupFiles</text>
+
+<!-- Left stage 6 (critical) -->
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="894">OAuth code minted</text>
+<text class="sub" x="40" y="918">JS emulates account choice + "Allow" click</text>
+<text class="sub" x="40" y="934">Capture code= from localhost redirect to log</text>
+<text class="sub" x="40" y="950">T1528</text>
+<text class="mono" x="40" y="976">flowName=GeneralOAuthFlow (no PKCE)</text>
+<text class="mono" x="40" y="994">redirect_uri=http://localhost</text>
+
+<!-- Left stage 7 (critical) -->
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1044">Gmail read via Google API</text>
+<text class="sub" x="40" y="1068">Exchange code for access token off-host</text>
+<text class="sub" x="40" y="1084">Read mail / contacts / calendar / drive</text>
+<text class="sub" x="40" y="1100">T1114.002</text>
+<text class="mono" x="40" y="1126">scope=https://mail.google.com/</text>
+<text class="mono" x="40" y="1144">client_id=279448736670 (GWMMO)</text>
+
+<!-- Right op 1 -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="149">ToddyCat operator</text>
+<text class="sub" x="470" y="173">China-nexus cyber-espionage cluster</text>
+<text class="sub" x="470" y="189">Target: corporate Gmail correspondence</text>
+<text class="sub" x="470" y="205">Deploy Umbrij (.NET / ConfuserEx)</text>
+<text class="sub" x="470" y="221">Discovered via Kaspersky MDR hunt</text>
+<text class="mono" x="470" y="251">Umbrij versions a / b / c</text>
+<text class="mono" x="470" y="269">ver.b adds -savepdf profile dump</text>
+
+<!-- Right op 2 -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="319">Masquerade + sideload</text>
+<text class="sub" x="470" y="343">Trusted vendor names as cover</text>
+<text class="sub" x="470" y="359">Kaspersky task name; signed loaders</text>
+<text class="sub" x="470" y="375">Staged in Public / Temp / Vss</text>
+<text class="sub" x="470" y="391">Long-standing ToddyCat tradecraft</text>
+<text class="mono" x="470" y="421">BDS.exe / VSTestVideoRecorder.exe</text>
+<text class="mono" x="470" y="439">DLL: log.dll (unsigned)</text>
+
+<!-- Right op 3 -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="489">Shadow Token via Remote Debug</text>
+<text class="sub" x="470" y="513">Ride the live authenticated session</text>
+<text class="sub" x="470" y="529">No DPAPI, no cookie decryption needed</text>
+<text class="sub" x="470" y="545">Works while user stays logged into Gmail</text>
+<text class="sub" x="470" y="561">DevTools protocol over loopback</text>
+<text class="mono" x="470" y="591">PuppeteerSharp connects to debug port</text>
+<text class="mono" x="470" y="609">ChekPortAvailable() before launch</text>
+
+<!-- Right op 4 -->
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="659">Blend into GWMMO / GWSMO</text>
+<text class="sub" x="470" y="683">Reuse Google's Outlook migration apps</text>
+<text class="sub" x="470" y="699">Their client IDs make the grant look normal</text>
+<text class="sub" x="470" y="715">Request omits PKCE / state / login_hint</text>
+<text class="sub" x="470" y="731">-sync swaps to the GWSMO client ID</text>
+<text class="mono" x="470" y="761">279448736670 (GWMMO)</text>
+<text class="mono" x="470" y="779">1095133494869 (GWSMO)</text>
+
+<!-- Right op 5 -->
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="829">Exfil auth code from log</text>
+<text class="sub" x="470" y="853">Umbrij writes code= to a local log file</text>
+<text class="sub" x="470" y="869">Operator retrieves the log manually</text>
+<text class="sub" x="470" y="885">No attacker C2 domain or IP published</text>
+<text class="sub" x="470" y="901">Off-host token exchange follows</text>
+<text class="mono" x="470" y="931">[pup] Allow click ! -&gt; code captured</text>
+<text class="mono" x="470" y="949">substring between code= and &amp;scope</text>
+
+<!-- Right op 6 -->
+<rect class="opK" x="460" y="975" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="999">Exchange code -&gt; access token</text>
+<text class="sub" x="470" y="1023">Trade the code for an OAuth access token</text>
+<text class="sub" x="470" y="1039">Reach Gmail / Contacts / Calendar / Drive</text>
+<text class="sub" x="470" y="1055">Full corporate mailbox read via API</text>
+<text class="sub" x="470" y="1071">Containment: revoke the OAuth grant</text>
+<text class="mono" x="470" y="1101">myaccount.google.com/connections</text>
+<text class="mono" x="470" y="1119">revoke = invalidate all tokens</text>
+
+<!-- vertical flow arrows left lane -->
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<!-- cross-lane detection anchors -->
+<path class="arrowX" d="M460,540 L425,540" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,712 L425,760" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,1052 L425,1090" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Detection anchors</text>
+<text class="footerT" x="34" y="1220">Browser command line with --remote-debugging-port AND --headless on a non-automation host.</text>
+<text class="footerT" x="34" y="1238">Signed loader (BDS/GoogleDesktop/VSTest) in Public/Temp/Vss loading an unsigned DLL; KasperskyEndpointSecurityEDRAvp task.</text>
+<text class="footerT" x="34" y="1256">OAuth grant to GWMMO (279448736670) or GWSMO (1095133494869) with no migration project; then Gmail API reads.</text>
+</svg>

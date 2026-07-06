@@ -1,0 +1,19 @@
+// Title:       OAuth token issued to GWMMO/GWSMO migration app (Umbrij Gmail access)
+// Id:          k4-umbrij-gwmmo-gwsmo-oauth-grant
+// MITRE:       T1528, T1114.002
+// Reference:   https://securelist.com/toddycat-apt-umbrij-tool-and-oauth/120251/
+// Author:      Jarmi
+// Date:        2026-07-06
+// Tested on:   Microsoft Defender for Cloud Apps / XDR (CloudAppEvents ingesting Google Workspace audit)
+// FP notes:    GWMMO (client_id 279448736670) and GWSMO (client_id 1095133494869) are the legitimate
+//              Google Workspace migration/sync tools for Outlook. If your org genuinely migrates from
+//              Outlook they are expected; otherwise a token grant to these apps - especially followed by
+//              Gmail API reads - is suspicious. Requires Google Workspace connected to Defender for Cloud
+//              Apps. Add your known migration windows: <add_known_migration_projects>.
+CloudAppEvents
+| where Application has_any ("Google Workspace","GSuite","Gmail")
+| where RawEventData has_any ("279448736670","1095133494869","Migration for Microsoft Outlook","Sync for Microsoft Outlook")
+| extend Action = tostring(RawEventData.event_name)
+| where ActionType has_any ("OAuth","Token","authorize","Grant") or Action has_any ("authorize","token")
+| project Timestamp, AccountDisplayName, IPAddress, Application, ActionType, Action, RawEventData
+| order by Timestamp asc

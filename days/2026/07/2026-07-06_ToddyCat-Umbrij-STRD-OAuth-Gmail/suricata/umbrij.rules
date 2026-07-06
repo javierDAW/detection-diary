@@ -1,0 +1,30 @@
+# ToddyCat "Umbrij" STRD OAuth stealer - Suricata 7.x
+# Author: Jarmi
+# Reference: https://securelist.com/toddycat-apt-umbrij-tool-and-oauth/120251/
+#
+# IMPORTANT - visibility caveats:
+#  * The Umbrij OAuth request goes to accounts.google.com over TLS. sid:20260601-20260603
+#    only fire on the *decrypted* HTTP GET, so they require a TLS-inspecting proxy / MITM
+#    or client-side proxy logs replayed to the sensor. On raw TLS you only get the SNI
+#    (sid:20260604), which is far too broad on its own - use it only as weak corroboration.
+#  * The DevTools driving happens on loopback (127.0.0.1:<debug port>); sid:20260605-20260606
+#    require the sensor to see loopback traffic (host-based Suricata / npcap loopback).
+#  * There is no attacker C2 domain or IP in the source report - do not expect one.
+#
+# Distinctive request markers (from the report):
+#   URI path  : /o/oauth2/v2/auth/identifier
+#   client_id : 279448736670  (GWMMO)  or  1095133494869 (GWSMO, with -sync)
+#   flowName  : GeneralOAuthFlow  (absent from the legitimate app flow)
+#   no PKCE code_challenge, no state, no login_hint (legit app has all three)
+
+alert http any any -> any any (msg:"UMBRIJ STRD OAuth request - GeneralOAuthFlow to Google identifier endpoint (needs TLS inspection)"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/o/oauth2/v2/auth/identifier"; content:"flowName=GeneralOAuthFlow"; distance:0; classtype:credential-theft; sid:20260601; rev:1;)
+
+alert http any any -> any any (msg:"UMBRIJ STRD OAuth request - GWMMO client_id 279448736670 (needs TLS inspection)"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/o/oauth2/v2/auth"; content:"client_id=279448736670"; distance:0; classtype:credential-theft; sid:20260602; rev:1;)
+
+alert http any any -> any any (msg:"UMBRIJ STRD OAuth request - GWSMO client_id 1095133494869 via -sync (needs TLS inspection)"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/o/oauth2/v2/auth"; content:"client_id=1095133494869"; distance:0; classtype:credential-theft; sid:20260603; rev:1;)
+
+alert tls any any -> any any (msg:"UMBRIJ STRD - TLS SNI accounts.google.com (weak; corroboration only)"; flow:established,to_server; tls.sni; content:"accounts.google.com"; bsize:19; classtype:credential-theft; sid:20260604; rev:1;)
+
+alert http any any -> [127.0.0.1,::1] any (msg:"UMBRIJ STRD - Chromium DevTools JSON endpoint on loopback (remote debugging)"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/json/version"; classtype:credential-theft; sid:20260605; rev:1;)
+
+alert http any any -> [127.0.0.1,::1] any (msg:"UMBRIJ STRD - Chromium DevTools websocket upgrade on loopback (remote debugging)"; flow:established,to_server; http.method; content:"GET"; http.header_names; content:"Upgrade"; http.uri; content:"/devtools/"; classtype:credential-theft; sid:20260606; rev:1;)

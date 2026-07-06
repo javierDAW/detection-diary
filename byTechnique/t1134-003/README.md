@@ -2,12 +2,11 @@
 <!-- Source of truth: YAML frontmatter in each day's README.md -->
 
 
-# Techniques: T1574.001
+# Techniques: T1134.003
 
-2 day(s) covering this technique.
+1 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-07-06 | ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail | ToddyCat | [`2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/`](../../days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/) |
-| 2026-07-03 | From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom) | Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira) | [`2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/`](../../days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/) |

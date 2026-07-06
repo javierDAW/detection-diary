@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.01)). Generated 2026-07-05._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.01)). Generated 2026-07-06._
 
 **1 of 1 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 
