@@ -1,0 +1,167 @@
+{
+  "name": "2026-07-07 — 2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's ClickFix-to-ransomware pipeline — clusters: Woodgnat",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1189",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1566",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1204.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1218.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1574.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1574.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1620",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1573.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1568.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1087.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1558.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1056.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

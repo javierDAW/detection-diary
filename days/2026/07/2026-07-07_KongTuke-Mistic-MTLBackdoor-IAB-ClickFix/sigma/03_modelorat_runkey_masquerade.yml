@@ -1,0 +1,42 @@
+title: ModeloRAT WinPython Run-Key Persistence Masquerading as Remote-Access Software
+id: e3bed887-0bb7-407c-bf60-0a539971c6d7
+status: experimental
+description: >
+  Detects Woodgnat/KongTuke ModeloRAT persistence: an HKCU ...\CurrentVersion\Run value whose
+  name impersonates legitimate remote-access software (AnyDesk, Splashtop, Comms) but whose data
+  launches a signed portable WinPython interpreter (pythonw.exe) from a user-writable path. The
+  RAT ships as a portable WPy64 distribution and runs Python scripts via pythonw.exe to blend in.
+references:
+  - https://www.security.com/threat-intelligence/new-mistic-backdoor-modelorat
+  - https://www.rapid7.com/blog/post/tr-it-support-dissecting-modelorat-campaign-microsoft-teams-compromise/
+author: Jarmi
+date: 2026/07/07
+tags:
+  - attack.persistence
+  - attack.t1547.001
+  - attack.t1036.005
+  - attack.t1219
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_key:
+    TargetObject|contains: '\Software\Microsoft\Windows\CurrentVersion\Run\'
+  selection_name:
+    TargetObject|endswith:
+      - '\AnyDesk'
+      - '\Splashtop'
+      - '\Comms'
+  selection_data:
+    Details|contains:
+      - 'pythonw.exe'
+      - 'WPy64'
+      - 'python-3.14'
+  condition: selection_key and (selection_name or selection_data)
+falsepositives:
+  - Genuine AnyDesk/Splashtop Run keys point to their own signed binaries in Program Files; verify the data path.
+fields:
+  - TargetObject
+  - Details
+
+level: high

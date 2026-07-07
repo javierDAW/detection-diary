@@ -1,0 +1,17 @@
+// Title: Mistic / Woodgnat C2 and Delivery Infrastructure Callback
+// Id: kongtuke-mistic-c2-004
+// MITRE: T1071.001, T1105, T1568.002
+// Reference: https://www.security.com/threat-intelligence/new-mistic-backdoor-modelorat
+// Author: Jarmi
+// Date: 2026-07-07
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: Indicators decay/rotate (DGA); re-validate before alerting in production. Extend the list from feeds/blocklists.
+let c2_domains = dynamic([
+    "authorized-logins.net","updater-worelos.com","upd-domain-goloro.com","upscale-kolo.com",
+    "sql-updater-service.com","rotoa-upda-lo.com","update-fall.com","thomphon.com",
+    "human-check.top","grande-luna.top","mueleer.com","oeannon.com","carrolc.com","cwrtwright.com"]);
+let c2_ips = dynamic(["142.93.242.144","144.31.53.78","198.13.159.44","199.91.221.42"]);
+DeviceNetworkEvents
+| where RemoteUrl has_any (c2_domains) or RemoteIP in (c2_ips)
+| project Timestamp, DeviceName, InitiatingProcessFileName, RemoteUrl, RemoteIP, RemotePort
+| sort by Timestamp desc

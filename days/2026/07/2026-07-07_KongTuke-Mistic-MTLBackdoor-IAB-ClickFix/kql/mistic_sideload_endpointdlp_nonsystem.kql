@@ -1,0 +1,16 @@
+// Title: MpExtMs.exe Side-Loading version.dll / EndpointDlp.dll From Non-System Path (Backdoor.Mistic)
+// Id: kongtuke-mistic-sideload-001
+// MITRE: T1574.002, T1574.001, T1036.005
+// Reference: https://www.security.com/threat-intelligence/new-mistic-backdoor-modelorat
+// Author: Jarmi
+// Date: 2026-07-07
+// Tested on: Microsoft Defender XDR (DeviceImageLoadEvents)
+// FP notes: Defender platform updates can relocate MpExtMs.exe; confirm the loaded DLL path and signer.
+DeviceImageLoadEvents
+| where InitiatingProcessFileName =~ "MpExtMs.exe"
+| where FileName in~ ("version.dll", "EndpointDlp.dll")
+| where not(FolderPath has_any (
+    @"\Windows\System32\", @"\Windows\WinSxS\",
+    @"\Windows Defender\Platform\", @"\Program Files\Windows Defender\"))
+| project Timestamp, DeviceName, InitiatingProcessFolderPath, FileName, FolderPath, SHA256
+| sort by Timestamp desc

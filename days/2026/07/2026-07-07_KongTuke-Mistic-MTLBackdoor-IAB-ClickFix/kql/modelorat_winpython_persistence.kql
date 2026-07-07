@@ -1,0 +1,16 @@
+// Title: ModeloRAT WinPython Persistence Masquerading as Remote-Access Software
+// Id: kongtuke-mistic-modelorat-003
+// MITRE: T1547.001, T1036.005, T1219
+// Reference: https://www.rapid7.com/blog/post/tr-it-support-dissecting-modelorat-campaign-microsoft-teams-compromise/
+// Author: Jarmi
+// Date: 2026-07-07
+// Tested on: Microsoft Defender XDR (DeviceRegistryEvents)
+// FP notes: Genuine AnyDesk/Splashtop Run keys point to signed binaries in Program Files; verify the data path.
+DeviceRegistryEvents
+| where ActionType == "RegistryValueSet"
+| where RegistryKey has @"\CurrentVersion\Run"
+| where (RegistryValueName has_any ("AnyDesk", "Splashtop", "Comms"))
+      or (RegistryValueData has_any ("pythonw.exe", "WPy64", "python-3.14"))
+| where RegistryValueData has "pythonw.exe" or RegistryValueData has "WPy64"
+| project Timestamp, DeviceName, RegistryKey, RegistryValueName, RegistryValueData
+| sort by Timestamp desc

@@ -1,0 +1,15 @@
+// Title: ClickFix Run-Dialog PowerShell/curl/certutil Fetching a Remote MSI
+// Id: kongtuke-mistic-clickfix-002
+// MITRE: T1204.004, T1059.001, T1105, T1218.007
+// Reference: https://thehackernews.com/2026/06/new-mistic-backdoor-linked-to-kongtuke.html
+// Author: Jarmi
+// Date: 2026-07-07
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: Admin MSI installs from an intranet URL via Run dialog can match; scope to interactive explorer.exe parent.
+DeviceProcessEvents
+| where InitiatingProcessFileName =~ "explorer.exe"
+| where FileName in~ ("powershell.exe", "pwsh.exe", "curl.exe", "certutil.exe")
+| where ProcessCommandLine has_any ("http:", "https:")
+| where ProcessCommandLine has_any (".msi", "msiexec")
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName
+| sort by Timestamp desc
