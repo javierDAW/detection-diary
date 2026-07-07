@@ -1,0 +1,50 @@
+title: ClickFix Run-Dialog PowerShell Fetching a Remote MSI Payload
+id: 28d1ae5e-94c2-46cc-9e71-05846c500c06
+status: experimental
+description: >
+  Detects the KongTuke/Woodgnat ClickFix / FileFix delivery pattern: a PowerShell (or curl /
+  certutil) child of explorer.exe retrieving a remote MSI and handing it to msiexec. KongTuke
+  lures (fake CAPTCHA, fake browser crash, fake IT-support Teams chat) coach the user to paste a
+  one-line command into the Run dialog or Explorer address bar, so the parent is interactive
+  (explorer.exe) and the command references http(s) plus a .msi. Push counting/rate to SIEM.
+references:
+  - https://www.security.com/threat-intelligence/new-mistic-backdoor-modelorat
+  - https://thehackernews.com/2026/06/new-mistic-backdoor-linked-to-kongtuke.html
+author: Jarmi
+date: 2026/07/07
+tags:
+  - attack.initial-access
+  - attack.execution
+  - attack.t1204.004
+  - attack.t1059.001
+  - attack.t1105
+  - attack.t1218.007
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_parent:
+    ParentImage|endswith: '\explorer.exe'
+  selection_tool:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\curl.exe'
+      - '\certutil.exe'
+  selection_web:
+    CommandLine|contains:
+      - 'http://'
+      - 'https://'
+  selection_msi:
+    CommandLine|contains:
+      - '.msi'
+      - 'msiexec'
+  condition: selection_parent and selection_tool and selection_web and selection_msi
+falsepositives:
+  - Administrators manually installing MSI packages from an intranet URL via the Run dialog.
+fields:
+  - ParentImage
+  - Image
+  - CommandLine
+
+level: high

@@ -1,0 +1,45 @@
+title: Signed MpExtMs.exe Side-Loading version.dll or EndpointDlp.dll From Non-System Path
+id: b5cbfbef-9b91-4fc1-9905-e819dad5e07e
+status: experimental
+description: >
+  Detects the KongTuke/Woodgnat Backdoor.Mistic (MTLBackdoor) side-load chain, where the
+  legitimate Microsoft binary MpExtMs.exe loads a malicious version.dll (which hooks
+  GetModuleFileNameW/LoadLibraryW) and/or an EndpointDlp.dll masquerading as Microsoft
+  endpoint-DLP tooling, from a user-writable / non-System32 directory. Legitimate copies of
+  these DLLs load only from System32/WinSxS or the Defender platform directory.
+references:
+  - https://www.security.com/threat-intelligence/new-mistic-backdoor-modelorat
+  - https://thehackernews.com/2026/06/new-mistic-backdoor-linked-to-kongtuke.html
+author: Jarmi
+date: 2026/07/07
+tags:
+  - attack.defense-evasion
+  - attack.persistence
+  - attack.t1574.002
+  - attack.t1574.001
+  - attack.t1036.005
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection_host:
+    Image|endswith: '\MpExtMs.exe'
+  selection_dll:
+    ImageLoaded|endswith:
+      - '\version.dll'
+      - '\EndpointDlp.dll'
+  filter_system:
+    ImageLoaded|contains:
+      - 'C:\Windows\System32\'
+      - 'C:\Windows\WinSxS\'
+      - 'C:\ProgramData\Microsoft\Windows Defender\Platform\'
+      - 'C:\Program Files\Windows Defender\'
+  condition: selection_host and selection_dll and not filter_system
+falsepositives:
+  - Defender platform updates that relocate MpExtMs.exe; validate the DLL path and signature.
+fields:
+  - Image
+  - ImageLoaded
+  - Hashes
+
+level: high

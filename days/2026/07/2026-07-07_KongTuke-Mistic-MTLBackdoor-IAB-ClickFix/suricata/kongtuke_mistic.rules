@@ -1,0 +1,23 @@
+# Suricata 7.x rules — KongTuke/Woodgnat Backdoor.Mistic (MTLBackdoor) delivery + C2
+# Author: Jarmi
+# Reference: https://www.security.com/threat-intelligence/new-mistic-backdoor-modelorat
+# Notes: TLS SNI + DNS + HTTP anchors. Indicators rotate (DGA); pair with feeds/blocklists and re-validate.
+# Custom vars: none. All indicators inlined.
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"KongTuke Mistic MSI delivery GET update.msi from thomphon.com"; flow:established,to_server; http.method; content:"GET"; http.host; content:"thomphon.com"; http.uri; content:"/update.msi"; nocase; classtype:trojan-activity; sid:4207101; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"KongTuke Mistic C2 DNS lookup authorized-logins.net"; dns.query; content:"authorized-logins.net"; nocase; classtype:trojan-activity; sid:4207102; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"KongTuke Mistic C2 DNS lookup updater-worelos.com"; dns.query; content:"updater-worelos.com"; nocase; classtype:trojan-activity; sid:4207103; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"KongTuke Mistic C2 DNS lookup upd-domain-goloro.com"; dns.query; content:"upd-domain-goloro.com"; nocase; classtype:trojan-activity; sid:4207104; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"KongTuke Mistic C2 DNS lookup upscale-kolo.com"; dns.query; content:"upscale-kolo.com"; nocase; classtype:trojan-activity; sid:4207105; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"KongTuke lure DNS lookup human-check.top fake-verification theme"; dns.query; content:"human-check.top"; nocase; classtype:trojan-activity; sid:4207106; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"KongTuke Mistic C2 TLS SNI authorized-logins.net"; tls.sni; content:"authorized-logins.net"; nocase; classtype:trojan-activity; sid:4207107; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"KongTuke Mistic C2 TLS SNI updater-worelos.com"; tls.sni; content:"updater-worelos.com"; nocase; classtype:trojan-activity; sid:4207108; rev:1;)
+
+alert ip $HOME_NET any -> [142.93.242.144,144.31.53.78,198.13.159.44,199.91.221.42] any (msg:"KongTuke Mistic Woodgnat C2/delivery IP contact"; classtype:trojan-activity; sid:4207109; rev:1;)

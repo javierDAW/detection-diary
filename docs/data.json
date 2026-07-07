@@ -1,5 +1,59 @@
 [
  {
+  "date": "2026-07-07",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix",
+  "title": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's ClickFix-to-ransomware pipeline",
+  "clusters": [
+   "Woodgnat"
+  ],
+  "country": "Unknown (financially motivated e-crime)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "insurance",
+   "education",
+   "technology",
+   "professional-services"
+  ],
+  "techniques": [
+   "T1189",
+   "T1566",
+   "T1204.004",
+   "T1059.001",
+   "T1105",
+   "T1218.007",
+   "T1574.002",
+   "T1574.001",
+   "T1036.005",
+   "T1027",
+   "T1620",
+   "T1071.001",
+   "T1573.001",
+   "T1568.002",
+   "T1087.002",
+   "T1558.003",
+   "T1056.002",
+   "T1547.001",
+   "T1053.005",
+   "T1219"
+  ],
+  "tech_count": 20,
+  "tldr": "Backdoor.Mistic (tracked by Zscaler as MTLBackdoor) is a stealthy new backdoor that Symantec's Threat Hunter Team, Zscaler ThreatLabz and The Hacker News reported on 2026-06-24/25, and that has been deployed in financially motivated intrusions since April 2026 across insurance, education, IT and professional-services organizations. It is assessed with medium confidence to belong to Woodgnat — the ",
+  "thumb": "thumbs/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix.svg",
+  "case_rel": "../days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "Woodgnat",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "kongtuke / woodgnat: backdoor.mistic (mtlbackdoor) — an initial access broker's clickfix-to-ransomware pipeline woodgnat unknown (financially motivated e-crime) windows insurance education technology professional-services t1189 t1566 t1204.004 t1059.001 t1105 t1218.007 t1574.002 t1574.001 t1036.005 t1027 t1620 t1071.001 t1573.001 t1568.002 t1087.002 t1558.003 t1056.002 t1547.001 t1053.005 t1219 malware / re "
+ },
+ {
   "date": "2026-07-06",
   "year": "2026",
   "month": "2026-07",
