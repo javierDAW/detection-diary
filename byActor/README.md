@@ -131,6 +131,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UNC6671 (GTIG / Mandiant)](./unc6671-gtig-mandiant/) | 1 |
 | [UNC6780](./unc6780/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
+| [Unattributed (Montana Empire operator)](./unattributed-montana-empire-operator/) | 1 |
 | [Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)](./unattributed-e-crime-bumblebee-adaptixc2-akira/) | 1 |
 | [Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)](./unattributed-fake-invitation-phish-kit-operator-any-run-tracked/) | 1 |
 | [Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)](./unattributed-ip6-arpa-reverse-dns-phishing-operator-infoblox-tracked/) | 1 |

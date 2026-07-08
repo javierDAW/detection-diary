@@ -1,0 +1,21 @@
+# Phantom Squatting - Montana Empire phishing kit - Suricata 7.x
+# Author: Jarmi
+# Reference: https://unit42.paloaltonetworks.com/phantom-squatting-hallucinated-web-domains/
+#
+# IMPORTANT - visibility caveats:
+#  * Unit 42 redacted the phantom domains, so there is NO attacker domain or IP IOC to pin on.
+#    These rules key on the kit's durable URI paths and the Telegram exfil channel instead.
+#  * The kit is served over HTTPS. sid:20260801-20260804 fire only on decrypted HTTP, so they
+#    require a TLS-inspecting proxy / MITM or replayed proxy logs. On raw TLS you have only the SNI.
+#  * sid:20260805 (Telegram exfil) matches api.telegram.org - legitimate Telegram traffic exists;
+#    treat it as weak corroboration scoped to a suspected victim host, never as a standalone verdict.
+#
+# Distinctive request markers (from the report):
+#   URI paths : /mentalite.php  /panel_track.php  /verify_api.php  /letgovip.zip
+#   exfil     : POST to api.telegram.org/bot<token>/sendMessage (card / IBAN / OTP relay)
+
+alert http any any -> any any (msg:"PHANTOM-SQUAT Montana Empire kit - credential capture endpoint mentalite.php (needs TLS inspection)"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/mentalite.php"; classtype:credential-theft; sid:20260801; rev:1;)
+alert http any any -> any any (msg:"PHANTOM-SQUAT Montana Empire kit - operator panel endpoint panel_track.php (needs TLS inspection)"; flow:established,to_server; http.uri; content:"/panel_track.php"; classtype:credential-theft; sid:20260802; rev:1;)
+alert http any any -> any any (msg:"PHANTOM-SQUAT Montana Empire kit - verify_api.php endpoint (needs TLS inspection)"; flow:established,to_server; http.uri; content:"/verify_api.php"; classtype:credential-theft; sid:20260803; rev:1;)
+alert http any any -> any any (msg:"PHANTOM-SQUAT Montana Empire kit archive retrieval - letgovip.zip"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/letgovip.zip"; classtype:trojan-activity; sid:20260804; rev:1;)
+alert http any any -> any any (msg:"PHANTOM-SQUAT possible kit credential exfil to Telegram bot API (weak - legit Telegram exists)"; flow:established,to_server; http.method; content:"POST"; http.host; content:"api.telegram.org"; http.uri; content:"/sendMessage"; classtype:credential-theft; sid:20260805; rev:1;)

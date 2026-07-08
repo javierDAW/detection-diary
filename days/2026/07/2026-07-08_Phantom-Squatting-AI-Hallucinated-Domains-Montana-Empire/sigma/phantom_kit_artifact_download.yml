@@ -1,0 +1,47 @@
+title: Download Utility Fetching Montana Empire Phishing-Kit Artifacts
+id: a9e34c65-afe3-4d65-a28a-42d07488d894
+status: experimental
+description: |
+  Detects a command-line download utility (curl, wget, certutil, bitsadmin or a
+  PowerShell web request) whose command line references a Montana Empire phishing-kit
+  artifact name. Unit 42's Phantom Squatting research documented a brand-clone kit
+  served from an AI-hallucinated (phantom) domain; the kit archive and its PHP
+  backend endpoints (letgovip.zip, mentalite.php, panel_track.php, verify_api.php)
+  are portable, hash-independent markers. A developer, an AI coding assistant or an
+  agent that "trusts" a link an LLM handed back may fetch such an artifact without
+  the human hesitation a phishing email would trigger. False positives are possible
+  where an unrelated file legitimately shares one of these generic names; scope by
+  host role and the fetched host reputation, and treat a hit as a lead, not a verdict.
+references:
+  - https://unit42.paloaltonetworks.com/phantom-squatting-hallucinated-web-domains/
+  - https://attack.mitre.org/techniques/T1204/001/
+  - https://attack.mitre.org/techniques/T1608/001/
+author: Jarmi
+date: 2026/07/08
+tags:
+  - attack.execution
+  - attack.t1204.001
+  - attack.resource-development
+  - attack.t1608.001
+logsource:
+  category: process_creation
+detection:
+  selection_tool:
+    Image|endswith:
+      - '\curl.exe'
+      - '\wget.exe'
+      - '\certutil.exe'
+      - '\bitsadmin.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+  selection_artifact:
+    CommandLine|contains:
+      - 'letgovip.zip'
+      - 'mentalite.php'
+      - 'panel_track.php'
+      - 'verify_api.php'
+  condition: selection_tool and selection_artifact
+falsepositives:
+  - Unrelated files that happen to share one of these generic PHP or archive names.
+  - Security researchers or automated sandboxes deliberately retrieving the kit.
+level: high

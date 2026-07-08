@@ -4,11 +4,12 @@
 
 # Platforms: supply-chain
 
-14 day(s) covering this platform.
+15 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-08 | Phantom Squatting: AI-Hallucinated Domains Weaponised as Phishing Infrastructure (Montana Empire kit) | Unattributed (Montana Empire operator) | [`2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/`](../../days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/) |
 | 2026-07-02 | Fulcio's blind spot: SSRF, JWKS cache poisoning and a Kubernetes token leak in Sigstore's signing CA (CVE-2026-49478) | Unattributed — coordinated vulnerability disclosure (no observed campaign) | [`2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/`](../../days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/) |
 | 2026-06-28 | RoboVPN / Neunative: A Free VPN That Ships a Residential-Proxy Botnet SDK on the Vo1d/Popa Backend | Vo1d/Popa proxy operator · Cyberkick Ltd. (RoboVPN) | [`2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/`](../../days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/) |
 | 2026-06-25 | Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack | Miasma-unattributed | [`2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/`](../../days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/) |

@@ -1,0 +1,14 @@
+// Title:       Montana Empire phishing-kit branding strings in process command lines / scripts
+// Id:          k4-phantom-kit-branding
+// MITRE:       T1656
+// Reference:   https://unit42.paloaltonetworks.com/phantom-squatting-hallucinated-web-domains/
+// Author:      Jarmi
+// Date:        2026-07-08
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes:    Weak signal on its own - the branding strings are most useful in file/YARA scans,
+//              but a script that unpacks or references the kit may echo them. Corroborate with
+//              the URI and hash hunts before escalating.
+DeviceProcessEvents
+| where ProcessCommandLine has_any ("ENTER THE EMPIRE","Enter Access Key","Kimseye Guvenme","letgovip")
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName
+| order by Timestamp asc

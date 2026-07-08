@@ -1,0 +1,31 @@
+title: HTTP Access To Montana Empire Phishing-Kit URI Paths
+id: 523066e8-adea-465e-a5de-445017c81ad3
+status: experimental
+description: |
+  Detects outbound HTTP(S) requests whose URI references a Montana Empire kit
+  server-side endpoint (mentalite.php, panel_track.php, verify_api.php) or the kit
+  archive (letgovip.zip). These are the credential-capture backend and operator
+  control-panel paths documented by Unit 42. The parent phantom domain is redacted
+  in the source, so this rule keys on the durable URI structure rather than a domain.
+  On TLS traffic the URI is only visible to a decrypting proxy; without inspection,
+  correlate the destination against a newly-registered-domain feed and a phantom
+  watchlist in the SIEM (threshold and enrichment pushed to the platform).
+references:
+  - https://unit42.paloaltonetworks.com/phantom-squatting-hallucinated-web-domains/
+  - https://attack.mitre.org/techniques/T1566/002/
+author: Jarmi
+date: 2026/07/08
+logsource:
+  category: proxy
+detection:
+  selection:
+    cs-uri-stem|contains:
+      - '/mentalite.php'
+      - '/panel_track.php'
+      - '/verify_api.php'
+      - '/letgovip.zip'
+  condition: selection
+falsepositives:
+  - A benign site that legitimately uses one of these generic PHP endpoint names.
+  - Threat-intelligence crawlers or sandboxes retrieving the kit for analysis.
+level: high

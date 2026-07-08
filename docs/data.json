@@ -1,5 +1,51 @@
 [
  {
+  "date": "2026-07-08",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire",
+  "title": "Phantom Squatting: AI-Hallucinated Domains Weaponised as Phishing Infrastructure (Montana Empire kit)",
+  "clusters": [
+   "Unattributed (Montana Empire operator)"
+  ],
+  "country": "Unknown (financially motivated e-crime)",
+  "platforms": [
+   "supply-chain",
+   "linux",
+   "windows"
+  ],
+  "sectors": [
+   "logistics",
+   "finance",
+   "government",
+   "gambling",
+   "retail"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1656",
+   "T1608.001",
+   "T1204.001",
+   "T1566.002",
+   "T1056.003",
+   "T1111",
+   "T1567",
+   "T1657"
+  ],
+  "tech_count": 9,
+  "tldr": "Palo Alto Networks Unit 42 published research on **2026-06-30** naming a new adversary technique it calls **phantom squatting**: large language models consistently invent web domains that do not exist, and attackers register those hallucinated domains first to inherit the trust developers and AI assistants place in model output. Across 913 brands and 685,339 prompts to two LLMs, Unit 42 collected ",
+  "thumb": "thumbs/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire.svg",
+  "case_rel": "../days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Unattributed (Montana Empire operator)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "phantom squatting: ai-hallucinated domains weaponised as phishing infrastructure (montana empire kit) unattributed (montana empire operator) unknown (financially motivated e-crime) supply-chain linux windows logistics finance government gambling retail t1583.001 t1656 t1608.001 t1204.001 t1566.002 t1056.003 t1111 t1567 t1657 supply chain "
+ },
+ {
   "date": "2026-07-07",
   "year": "2026",
   "month": "2026-07",
