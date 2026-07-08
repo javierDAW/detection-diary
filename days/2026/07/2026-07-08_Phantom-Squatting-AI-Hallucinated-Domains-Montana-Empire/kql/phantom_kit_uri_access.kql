@@ -1,0 +1,15 @@
+// Title:       Access to Montana Empire kit URI paths
+// Id:          k2-phantom-kit-uri
+// MITRE:       T1566.002
+// Reference:   https://unit42.paloaltonetworks.com/phantom-squatting-hallucinated-web-domains/
+// Author:      Jarmi
+// Date:        2026-07-08
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes:    Keys on the kit's durable URI structure, not a domain (the phantom domain is
+//              redacted in the source). RemoteUrl requires the network stack to record full
+//              URLs; on TLS without inspection you will only have the host. A benign site may
+//              reuse one of these generic PHP names - confirm the destination reputation.
+DeviceNetworkEvents
+| where RemoteUrl has_any ("/mentalite.php","/panel_track.php","/verify_api.php","/letgovip.zip")
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, RemoteUrl, RemoteIP, RemotePort
+| order by Timestamp asc

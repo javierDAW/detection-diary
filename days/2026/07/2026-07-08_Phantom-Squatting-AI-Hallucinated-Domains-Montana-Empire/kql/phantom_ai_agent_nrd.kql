@@ -1,0 +1,21 @@
+// Title:       AI agent process connecting to a newly-registered / unreputed domain
+// Id:          k3-phantom-ai-agent-nrd
+// MITRE:       T1204.001
+// Reference:   https://unit42.paloaltonetworks.com/phantom-squatting-hallucinated-web-domains/
+// Author:      Jarmi
+// Date:        2026-07-08
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes:    Broad by design. The signal is an AI CLI / coding-assistant / agent process
+//              reaching a domain that is newly registered or has no reputation - the phantom
+//              squatting failure mode. Replace the placeholders with your environment's agent
+//              binaries and a newly-registered-domain (NRD) or phantom watchlist; the join,
+//              not the process list, is what makes this precise.
+let ai_agents = dynamic([<add_known_ai_agent_binaries>]);   // e.g. "node.exe","python.exe","claude.exe","cursor.exe"
+let phantom_watchlist = dynamic([<add_phantom_domain_watchlist>]); // NRD feed or per-brand hallucinated-domain list
+DeviceNetworkEvents
+| where InitiatingProcessFileName in~ (ai_agents)
+| where isnotempty(RemoteUrl) or isnotempty(RemoteIP)
+| extend Host = tostring(parse_url(RemoteUrl).Host)
+| where Host in~ (phantom_watchlist)
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, Host, RemoteUrl, RemoteIP
+| order by Timestamp asc

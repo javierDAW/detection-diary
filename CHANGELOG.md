@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.08 — Day 72 — Phantom Squatting: AI-hallucinated domains as phishing infrastructure (Montana Empire kit)
+
+### Added
+- `days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/` — Unit 42 (Palo Alto Networks, 2026-06-30) named **phantom squatting**: LLMs consistently hallucinate domains for real brands, and adversaries register those non-existent domains first to inherit the trust developers and AI agents place in model output. Across 913 brands and 685,339 prompts to two LLMs, Unit 42 collected 2.1M URLs — 13,229 already malicious, ~250,000 pointing to unregistered squattable domains. Live case: on 2026-03-31 (23 days after the models hallucinated it) an actor registered a national postal e-commerce domain and stood up **Montana Empire**, a real-time brand-clone kit (PHP backend, Telegram C2) stealing cards, bank transfers, IBANs, national ID data and manually-relayed OTPs; a second case pushed a malicious APK (51-day exploitation window). Wednesday identity-&-fraud slot; first repo case on hallucinated-domain (phantom-squatting / slopsquatting-for-the-web) infrastructure; unattributed e-crime, low confidence.
+- Sigma (3): `phantom_kit_artifact_download.yml` — download utility fetching a kit artifact (letgovip.zip / *.php); `phantom_kit_uri_proxy.yml` — proxy access to a kit URI path; `phantom_ai_agent_dns_query.yml` — DNS query by an AI CLI/agent process (join to NRD/watchlist in SIEM).
+- KQL (4): kit/APK by SHA256; kit URI access; AI-agent-to-watchlisted/NRD host (placeholders); kit branding strings in command lines.
+- YARA (1 file, 3 rules): `phantom_squatting.yar` — kit branding, PHP+Telegram backend, generic Telegram-exfil brand-clone kit heuristic; filesize-bounded.
+- Suricata (1 file, 5 sids): `phantom_squatting.rules` — kit URI paths + Telegram exfil; TLS-inspection caveats, no domain/IP IOC (vendor redacted).
+- PEAK hunts (3): proactive phantom-domain watchlist; AI-agent reaching an NRD; Montana Empire kit-artifact IOC sweep.
+- `iocs.csv` (16 entries) — 2 SHA256 (kit ZIP + APK), 4 kit URI paths, kit branding strings, methodology/AEW/redaction notes. No CVE (LLM hallucination + open registration, not a vuln), so no `kev.md` generated (expected).
+- `kill_chain.svg` — template A, canonical palette, supply-chain accent; victim/AI-user lane (hallucinate->trusted delivery->phantom resolves->clone->submit->OTP relay) and adversary/infrastructure lane (map->register->build with AI->stage->Telegram C2->financial theft), IOC anchors.
+
+### Pedagogy
+- New is the attack, not the reassurance: a zero-reputation domain defeats blocklists by design — treat a freshly-registered destination reached via an AI link as hostile until verified.
+- Model output is becoming input: insert a verification checkpoint between "the model said so" and "the agent fetched it".
+- Detect the structure, not the domain: with the phantom domain redacted/per-campaign, the durable anchors are the kit URI paths, strings, hashes and AI-agent-to-NRD behaviour.
+- You cannot patch hallucination, but you can enumerate it: map what your LLMs invent for your brands and watch the registration stream (the 18-51 day exploitation window is defender lead time).
+
 ## 2026.07.07 — Day 71 — KongTuke/Woodgnat "Backdoor.Mistic" (MTLBackdoor): an IAB's ClickFix-to-ransomware pipeline
 
 ### Added

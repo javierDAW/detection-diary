@@ -1,0 +1,44 @@
+title: DNS Query Issued By An AI CLI Or Coding-Assistant Process
+id: d58a7633-0930-4580-8546-f9170cd27ae6
+status: experimental
+description: |
+  Surfaces DNS resolutions initiated directly by an AI CLI, coding assistant or
+  autonomous agent process. Phantom squatting weaponises the fact that LLMs hand
+  back domains that do not exist yet; whoever registers one first inherits the
+  trust the agent places in its own output. This rule alone is broad by design:
+  its value is realised when the resolved QueryName is joined, in the SIEM, against
+  a newly-registered-domain feed (age < 30 days) and against a per-brand phantom
+  watchlist built by mapping which domains your target LLMs hallucinate. A hit on a
+  watchlisted or freshly-registered domain from an agent process is the true signal.
+  Tune the process list to your environment's AI tooling.
+references:
+  - https://unit42.paloaltonetworks.com/phantom-squatting-hallucinated-web-domains/
+  - https://attack.mitre.org/techniques/T1204/001/
+author: Jarmi
+date: 2026/07/08
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection_agent:
+    Image|endswith:
+      - '\node.exe'
+      - '\python.exe'
+      - '\pwsh.exe'
+      - '\claude.exe'
+      - '\ollama.exe'
+      - '\cursor.exe'
+      - '\code.exe'
+  filter_common:
+    QueryName|endswith:
+      - '.microsoft.com'
+      - '.windows.com'
+      - '.github.com'
+      - '.githubusercontent.com'
+      - '.python.org'
+      - '.npmjs.org'
+  condition: selection_agent and not filter_common
+falsepositives:
+  - Legitimate first-party and dependency-registry lookups by these interpreters and editors; the process list is intentionally broad and MUST be paired with NRD or phantom-watchlist enrichment before alerting.
+  - Package installs, telemetry and update checks from AI tooling.
+level: low

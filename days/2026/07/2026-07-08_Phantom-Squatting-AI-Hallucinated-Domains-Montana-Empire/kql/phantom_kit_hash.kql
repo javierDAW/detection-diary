@@ -1,0 +1,17 @@
+// Title:       Montana Empire kit ZIP / postal APK by SHA256
+// Id:          k1-phantom-kit-hash
+// MITRE:       T1608.001
+// Reference:   https://unit42.paloaltonetworks.com/phantom-squatting-hallucinated-web-domains/
+// Author:      Jarmi
+// Date:        2026-07-08
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceFileEvents)
+// FP notes:    Exact-hash match; a hit is high fidelity. Absence proves nothing - the kit
+//              is served per-campaign and repacks trivially, so pair with the URI and
+//              string hunts rather than relying on the hash alone.
+let phantom_hashes = dynamic([
+  "eb07edaa2786cfddfa4c15526168f2200d85300aee0a8f253b32d2462a7b0bcd",  // Montana Empire kit ZIP
+  "2202a30daad9928ef47cca5f4ab04ce083692a94428e386fa01c2dd44557e34b"]);// malicious postal APK
+DeviceFileEvents
+| where SHA256 in (phantom_hashes)
+| project Timestamp, DeviceName, ActionType, FileName, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp asc
