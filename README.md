@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**72 cases** · **136 actors/clusters** · **318 ATT&CK techniques** · **16 platforms** · **75 sectors** · 2026-04-28 -> 2026-07-08
+**73 cases** · **137 actors/clusters** · **319 ATT&CK techniques** · **16 platforms** · **75 sectors** · 2026-04-28 -> 2026-07-09
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/"><img src="days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/kill_chain.svg" alt="2026-07-09 kill chain" width="240"></a><br><sub><b>2026-07-09</b><br>Opportunistic NetScaler scanners (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/"><img src="days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/kill_chain.svg" alt="2026-07-08 kill chain" width="240"></a><br><sub><b>2026-07-08</b><br>Unattributed (Montana Empire operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/"><img src="days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/kill_chain.svg" alt="2026-07-07 kill chain" width="240"></a><br><sub><b>2026-07-07</b><br>Woodgnat</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/"><img src="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/kill_chain.svg" alt="2026-07-06 kill chain" width="240"></a><br><sub><b>2026-07-06</b><br>ToddyCat</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/"><img src="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/kill_chain.svg" alt="2026-07-06 kill chain" width="240"></a><br><sub><b>2026-07-06</b><br>ToddyCat</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/"><img src="days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/kill_chain.svg" alt="2026-07-05 kill chain" width="240"></a><br><sub><b>2026-07-05</b><br>Opportunistic medical-imaging scanners</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/"><img src="days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/kill_chain.svg" alt="2026-07-04 kill chain" width="240"></a><br><sub><b>2026-07-04</b><br>Opportunistic ICS/OT scanners</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/"><img src="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/kill_chain.svg" alt="2026-07-03 kill chain" width="240"></a><br><sub><b>2026-07-03</b><br>Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

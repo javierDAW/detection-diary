@@ -6,7 +6,7 @@
     "layer": "4.5"
   },
   "domain": "ics-attack",
-  "description": "detection-diary cumulative coverage — 72 cases; score = number of cases featuring the technique.",
+  "description": "detection-diary cumulative coverage — 73 cases; score = number of cases featuring the technique.",
   "sorting": 3,
   "showTacticRowBackground": true,
   "tacticRowBackground": "#2a4a6a",

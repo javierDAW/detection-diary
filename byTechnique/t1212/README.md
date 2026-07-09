@@ -2,12 +2,11 @@
 <!-- Source of truth: YAML frontmatter in each day's README.md -->
 
 
-# Techniques: T1550.004
+# Techniques: T1212
 
-2 day(s) covering this technique.
+1 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
 | 2026-07-09 | CitrixBleed To Infinity: NetScaler SAML IdP Pre-Auth Memory Overread (CVE-2026-8451) | Opportunistic NetScaler scanners (unattributed) | [`2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/`](../../days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/) |
-| 2026-07-01 | Behind the console: an AiTM phishing kit that clones the AWS sign-in page and relays MFA in real time (input_24 kit) | input_24 phishing kit operator (PoisonSeeds-adjacent) | [`2026-07-01_AWS-Console-AiTM-input24-PhishingKit/`](../../days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/) |

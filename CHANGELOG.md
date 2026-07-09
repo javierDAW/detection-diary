@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.09 — Day 73 — CitrixBleed To Infinity: NetScaler SAML IdP pre-auth memory overread (CVE-2026-8451)
+
+### Added
+- `days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/` — watchTowr (Aliz Hammond) + Citrix CTX696604, 2026-06-30: **CVE-2026-8451** (CVSS 8.8), a pre-auth memory overread in NetScaler ADC/Gateway configured as a SAML IdP. A hand-rolled XML attribute parser on `/saml/login` fails to treat a newline as a terminator for unquoted values, so a malformed AuthnRequest reads past the request buffer and reflects process memory back in the `NSC_TASS` cookie — leaking live session material (session hijack past MFA) or crashing the `nsppe` engine (DoS). No confirmed breach at disclosure; CrowdSec logged exploitation attempts from 2026-07-02 (71 IPs, 424 signals). Thursday supply-chain / edge slot (#15).
+- Sigma (3): `netscaler_saml_login_crash_payload.yml` — empty-ID crash base64 fragment; `netscaler_saml_idp_endpoint_probing.yml` — external `/saml/login` `/saml/metadata` recon; `netscaler_saml_login_undersized_authnrequest.yml` — undersized-body overread heuristic.
+- KQL (4): Syslog crash fragment; nsppe restart joined to `/saml/login` burst; ns.log AuthnReq parse anomaly; SigninLogs federated-app session replay.
+- YARA (1 file, 3 rules): captured request / PoC generator / overread-memory tell.
+- Suricata (1 file, 6 sids): crash payload, undersized body, `NSC_TASS` 0xdeadbeef fill, SAML IdP enumeration.
+- PEAK hunts (3): `/saml/login` probe burst; nsppe crash + parse anomaly; session replay after IdP exposure.
+- `iocs.csv` (25 entries) — CVEs, endpoints, crash fragment, overread tells, fixed builds (advisory/PoC stage; no confirmed attacker infra). `kev.md` — 2/8 CVEs on CISA KEV (genealogy CVE-2025-5777, CVE-2026-3055; the headline CVE-2026-8451 not yet listed).
+- `kill_chain.svg` — template A, canonical palette, edge-network accent; victim appliance lane + attacker lane, IOC anchors.
+
+### Pedagogy
+- A bespoke parser on a pre-auth path is a liability: the entire bug is one missing terminator case with no bounds checks.
+- Token theft beats credential theft — a leaked session cookie replays past MFA and survives a password reset; revoke sessions, not just passwords.
+- Absence from KEV is not safety: CVE-2026-8451 is actively probed yet uncatalogued, while its same-class relatives are already KEV-listed.
+- Detect the request shape (`/saml/login` malformed AuthnRequest, ns.log parse anomaly), not the rotating scanner IP.
+
 ## 2026.07.08 — Day 72 — Phantom Squatting: AI-hallucinated domains as phishing infrastructure (Montana Empire kit)
 
 ### Added

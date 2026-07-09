@@ -4,7 +4,7 @@
 
 # INDEX
 
-**72 cases** · **136 actors/clusters** · **318 ATT&CK techniques** · **16 platforms** · **75 sectors** · 2026-04-28 -> 2026-07-08
+**73 cases** · **137 actors/clusters** · **319 ATT&CK techniques** · **16 platforms** · **75 sectors** · 2026-04-28 -> 2026-07-09
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/"><img src="days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/kill_chain.svg" alt="2026-07-09 kill chain" width="240"></a><br><sub><b>2026-07-09</b><br>Opportunistic NetScaler scanners (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/"><img src="days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/kill_chain.svg" alt="2026-07-08 kill chain" width="240"></a><br><sub><b>2026-07-08</b><br>Unattributed (Montana Empire operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/"><img src="days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/kill_chain.svg" alt="2026-07-07 kill chain" width="240"></a><br><sub><b>2026-07-07</b><br>Woodgnat</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/"><img src="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/kill_chain.svg" alt="2026-07-06 kill chain" width="240"></a><br><sub><b>2026-07-06</b><br>ToddyCat</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/"><img src="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/kill_chain.svg" alt="2026-07-06 kill chain" width="240"></a><br><sub><b>2026-07-06</b><br>ToddyCat</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/"><img src="days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/kill_chain.svg" alt="2026-07-05 kill chain" width="240"></a><br><sub><b>2026-07-05</b><br>Opportunistic medical-imaging scanners</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/"><img src="days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/kill_chain.svg" alt="2026-07-04 kill chain" width="240"></a><br><sub><b>2026-07-04</b><br>Opportunistic ICS/OT scanners</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/"><img src="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/kill_chain.svg" alt="2026-07-03 kill chain" width="240"></a><br><sub><b>2026-07-03</b><br>Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/"><img src="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/kill_chain.svg" alt="2026-07-03 kill chain" width="240"></a><br><sub><b>2026-07-03</b><br>Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/"><img src="days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/kill_chain.svg" alt="2026-07-02 kill chain" width="240"></a><br><sub><b>2026-07-02</b><br>Unattributed — coordinated vulnerability disclosure (no observed campaign)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/"><img src="days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/kill_chain.svg" alt="2026-07-01 kill chain" width="240"></a><br><sub><b>2026-07-01</b><br>input_24 phishing kit operator (PoisonSeeds-adjacent)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/"><img src="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/kill_chain.svg" alt="2026-06-30 kill chain" width="240"></a><br><sub><b>2026-06-30</b><br>Dire Wolf (DireWolf) ransomware group</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/"><img src="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/kill_chain.svg" alt="2026-06-30 kill chain" width="240"></a><br><sub><b>2026-06-30</b><br>Dire Wolf (DireWolf) ransomware group</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/"><img src="days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/kill_chain.svg" alt="2026-06-29 kill chain" width="240"></a><br><sub><b>2026-06-29</b><br>CL-STA-1062</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/"><img src="days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/kill_chain.svg" alt="2026-06-28 kill chain" width="240"></a><br><sub><b>2026-06-28</b><br>Vo1d/Popa proxy operator · Cyberkick Ltd. (RoboVPN)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/"><img src="days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/kill_chain.svg" alt="2026-06-27 kill chain" width="240"></a><br><sub><b>2026-06-27</b><br>Unattributed — CVE-2025-67038 exploitation</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-07</b> — 8 case(s)</summary>
+<details><summary><b>2026-07</b> — 9 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-07-09 | [CitrixBleed To Infinity: NetScaler SAML IdP Pre-Auth Memory Overread (CVE-2026-8451)](days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/) | Opportunistic NetScaler scanners (unattributed) | network-edge |
 | 2026-07-08 | [Phantom Squatting: AI-Hallucinated Domains Weaponised as Phishing Infrastructure (Montana Empire kit)](days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/) | Unattributed (Montana Empire operator) | supply-chain, linux, windows |
 | 2026-07-07 | [KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's ClickFix-to-ransomware pipeline](days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/) | Woodgnat | windows |
 | 2026-07-06 | [ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail](days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/) | ToddyCat | windows, cloud-multi |

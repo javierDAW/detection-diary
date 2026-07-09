@@ -4,11 +4,12 @@
 
 # Techniques: T1539
 
-8 day(s) covering this technique.
+9 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-09 | CitrixBleed To Infinity: NetScaler SAML IdP Pre-Auth Memory Overread (CVE-2026-8451) | Opportunistic NetScaler scanners (unattributed) | [`2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/`](../../days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/) |
 | 2026-07-06 | ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail | ToddyCat | [`2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/`](../../days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/) |
 | 2026-07-01 | Behind the console: an AiTM phishing kit that clones the AWS sign-in page and relays MFA in real time (input_24 kit) | input_24 phishing kit operator (PoisonSeeds-adjacent) | [`2026-07-01_AWS-Console-AiTM-input24-PhishingKit/`](../../days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/) |
 | 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |
