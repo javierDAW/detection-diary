@@ -1,5 +1,56 @@
 [
  {
+  "date": "2026-07-09",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451",
+  "title": "CitrixBleed To Infinity: NetScaler SAML IdP Pre-Auth Memory Overread (CVE-2026-8451)",
+  "clusters": [
+   "Opportunistic NetScaler scanners (unattributed)"
+  ],
+  "country": "Global (unattributed)",
+  "platforms": [
+   "network-edge"
+  ],
+  "sectors": [
+   "multi-sector",
+   "government",
+   "finance",
+   "technology"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1190",
+   "T1212",
+   "T1539",
+   "T1550.004",
+   "T1499.004"
+  ],
+  "tech_count": 6,
+  "tldr": "On 2026-06-30 Citrix published CTX696604 and watchTowr released a technical write-up for **CVE-2026-8451** (CVSS 8.8), a pre-authentication memory overread in NetScaler ADC and NetScaler Gateway when the appliance is configured as a **SAML Identity Provider**. A hand-rolled XML attribute parser in the `/saml/login` handler fails to treat a newline as a terminator for an unquoted attribute value, s",
+  "thumb": "thumbs/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451.svg",
+  "case_rel": "../days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "Opportunistic NetScaler scanners (unattributed)",
+  "cve_count": 8,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-5777",
+    "due": "2025-07-11",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-3055",
+    "due": "2026-04-02",
+    "ransom": false
+   }
+  ],
+  "q": "citrixbleed to infinity: netscaler saml idp pre-auth memory overread (cve-2026-8451) opportunistic netscaler scanners (unattributed) global (unattributed) network-edge multi-sector government finance technology t1595.002 t1190 t1212 t1539 t1550.004 t1499.004 edge / network cve-2025-5777 cve-2026-3055"
+ },
+ {
   "date": "2026-07-08",
   "year": "2026",
   "month": "2026-07",

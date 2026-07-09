@@ -135,3 +135,11 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01,2026-07-05,CVE-2026-50003,no,,,,,,
 2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01,2026-07-05,CVE-2026-50254,no,,,,,,
 2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01,2026-07-05,CVE-2026-52868,no,,,,,,
+2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451,2026-07-09,CVE-2025-5777,yes,2025-07-10,2025-07-11,Known,Citrix NetScaler ADC and Gateway Out-of-Bounds Read Vulnerability,Citrix,NetScaler ADC and Gateway
+2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451,2026-07-09,CVE-2026-10816,no,,,,,,
+2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451,2026-07-09,CVE-2026-10817,no,,,,,,
+2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451,2026-07-09,CVE-2026-13474,no,,,,,,
+2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451,2026-07-09,CVE-2026-3055,yes,2026-03-30,2026-04-02,Unknown,Citrix NetScaler Out-of-Bounds Read Vulnerability,Citrix,NetScaler
+2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451,2026-07-09,CVE-2026-8451,no,,,,,,
+2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451,2026-07-09,CVE-2026-8452,no,,,,,,
+2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451,2026-07-09,CVE-2026-8655,no,,,,,,

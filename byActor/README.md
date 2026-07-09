@@ -74,6 +74,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Opportunistic Argo CD ServerSideDiff exploitation (unattributed)](./opportunistic-argo-cd-serversidediff-exploitation-unattributed/) | 1 |
 | [Opportunistic CMS mass-exploitation (unattributed botnet)](./opportunistic-cms-mass-exploitation-unattributed-botnet/) | 1 |
 | [Opportunistic ICS/OT scanners](./opportunistic-ics-ot-scanners/) | 1 |
+| [Opportunistic NetScaler scanners (unattributed)](./opportunistic-netscaler-scanners-unattributed/) | 1 |
 | [Opportunistic Netlogon mass-exploitation (unattributed)](./opportunistic-netlogon-mass-exploitation-unattributed/) | 1 |
 | [Opportunistic OCPP / EV-charging exploitation (unattributed)](./opportunistic-ocpp-ev-charging-exploitation-unattributed/) | 1 |
 | [Opportunistic WordPress mass-exploitation (unattributed)](./opportunistic-wordpress-mass-exploitation-unattributed/) | 1 |
