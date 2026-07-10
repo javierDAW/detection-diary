@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Cavern Manticore kill chain - Iran-MOIS modular .NET C2 framework</title>
+<desc id="d">Two-lane diagram. Left lane is the victim environment: Cavern Manticore reaches the target through a trusted IT provider and a second-hop provider, weaponizes a SysAid software update to drop a DLL side-load where legitimate WinDirStat.exe loads a trojanized uxtheme.dll (the Cavern Agent), whose module dispatcher loads native n- DLLs via LoadLibraryA and managed .NET modules via per-module AppDomain isolation; the agent's n-HTCommp.dll reaches hospitalinstallation.com over HTTPS/WebSocket and older builds relay via a cac.aspx IIS webshell, then post-exploitation modules run AD recon, LDAP and SMB brute-force, LSASS dumping and SOCKS5/WebSocket tunneling for lateral movement and exfiltration. Right lane is the operator building the framework across three .NET compilation formats as an anti-RE layer. Detection anchors are uxtheme.dll loaded from a non-System32 path, anomalous AppDomain and Native-AOT module loads, cac.aspx on IIS, and beacons to Fars-Data-registered domains.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Cavern Manticore - Iran-MOIS Modular .NET C2 Framework (Cavern)</text>
+<text class="meta" x="20" y="58">Vendor: Check Point Research - Date: 2026-07-06 - Cluster: Cavern Manticore (Iran MOIS) - Day 74</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="34" y="104">VICTIM - Israeli IT / government estate</text>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelR" x="464" y="104">OPERATOR - Cavern Manticore (Iran MOIS)</text>
+
+<!-- Left stage 1 -->
+<rect class="stageK" x="30" y="120" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Trusted-provider access, second hop</text>
+<text class="sub" x="40" y="168">Compromise IT provider A, pivot to provider B</text>
+<text class="sub" x="40" y="184">Reach the target via managed / RMM trust</text>
+<text class="sub" x="40" y="200">Access rides the software supply chain</text>
+<text class="mono" x="40" y="226">provider A -&gt; provider B -&gt; target org</text>
+<text class="mono" x="40" y="244">T1199 trusted relationship</text>
+
+<!-- Left stage 2 -->
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">Weaponized SysAid update</text>
+<text class="sub" x="40" y="318">Malware delivered as a legit software update</text>
+<text class="sub" x="40" y="334">Also RMM tools / browser-based remote desktop</text>
+<text class="sub" x="40" y="350">Lands the side-load package with admin trust</text>
+<text class="mono" x="40" y="376">SysAid update -&gt; side-load payload on disk</text>
+<text class="mono" x="40" y="394">T1072 software deployment tools</text>
+
+<!-- Left stage 3 -->
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">DLL side-load: Cavern Agent</text>
+<text class="sub" x="40" y="468">Legit signed WinDirStat.exe loads uxtheme.dll</text>
+<text class="sub" x="40" y="484">Trojan DLL = Cavern Agent (Mixed-Mode C++/CLI)</text>
+<text class="sub" x="40" y="500">System-named DLL from a non-System32 path</text>
+<text class="mono" x="40" y="526">WinDirStat.exe -&gt; .\uxtheme.dll</text>
+<text class="mono" x="40" y="544">T1574.002 DLL side-loading</text>
+
+<!-- Left stage 4 -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Module dispatcher: native vs managed</text>
+<text class="sub" x="40" y="618">n- DLLs loaded native via LoadLibraryA</text>
+<text class="sub" x="40" y="634">Others loaded as managed .NET assemblies</text>
+<text class="sub" x="40" y="650">Per-module AppDomain isolation (anti-forensic)</text>
+<text class="mono" x="40" y="676">get_version() uniform module interface</text>
+<text class="mono" x="40" y="694">T1620 reflective code loading</text>
+
+<!-- Left stage 5 -->
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">C2 comms + IIS webshell relay</text>
+<text class="sub" x="40" y="768">n-HTCommp.dll -&gt; hospitalinstallation.com</text>
+<text class="sub" x="40" y="784">HTTPS / WebSocket; fetch modules on the fly</text>
+<text class="sub" x="40" y="800">Old builds relay via cac.aspx (XOR + Base64)</text>
+<text class="mono" x="40" y="826">CAV3RN_Http_Module -&gt; /cac.aspx on IIS</text>
+<text class="mono" x="40" y="844">T1071.001 web - T1505.003 web shell</text>
+
+<!-- Left stage 6 -->
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Recon, credentials, AD enumeration</text>
+<text class="sub" x="40" y="918">ode.dll LDAP recon + LdapBrute (any TLS cert)</text>
+<text class="sub" x="40" y="934">n-ten.dll port scan, share enum, SMB brute</text>
+<text class="sub" x="40" y="950">LSASS dumping; db.dll SQL enum / export</text>
+<text class="mono" x="40" y="976">T1087.002 - T1046 - T1110 - T1003.001</text>
+<text class="mono" x="40" y="994">page size 1000; RootDSE base DN</text>
+
+<!-- Left stage 7 -->
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Lateral movement + exfiltration</text>
+<text class="sub" x="40" y="1068">RDP + RMM; n-sws.dll SOCKS5 / WS tunneling</text>
+<text class="sub" x="40" y="1084">Remote-print exfil when transfer is blocked</text>
+<text class="sub" x="40" y="1100">Reach hosts not directly exposed</text>
+<text class="mono" x="40" y="1126">T1021.001 RDP - T1090.001 internal proxy</text>
+<text class="mono" x="40" y="1144">T1219 remote access software</text>
+
+<!-- Right op 1 -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">Compromise providers, pivot in</text>
+<text class="sub" x="470" y="173">Weaponize managed-service / RMM trust</text>
+<text class="sub" x="470" y="189">Move provider A to provider B to target</text>
+<text class="sub" x="470" y="205">Deliver malware disguised as updates</text>
+<text class="sub" x="470" y="221">Active since early 2026 vs Israeli IT/gov</text>
+<text class="mono" x="470" y="251">supply-chain lateral between victims</text>
+<text class="mono" x="470" y="269">T1199 trusted relationship</text>
+
+<!-- Right op 2 -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">Weaponize SysAid / RMM channel</text>
+<text class="sub" x="470" y="343">Push a malicious SysAid software update</text>
+<text class="sub" x="470" y="359">Or abuse browser-based remote desktop</text>
+<text class="sub" x="470" y="375">Stage WinDirStat.exe + uxtheme.dll pair</text>
+<text class="sub" x="470" y="391">Delivery inherits admin-tool credibility</text>
+<text class="mono" x="470" y="421">update push -&gt; DLL side-load host</text>
+<text class="mono" x="470" y="439">T1072 software deployment tools</text>
+
+<!-- Right op 3 -->
+<rect class="opK" x="460" y="465" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">Build multi-format .NET toolkit</text>
+<text class="sub" x="470" y="513">One shared .NET base, three compile formats</text>
+<text class="sub" x="470" y="529">.NET Framework + Mixed-Mode + Native AOT</text>
+<text class="sub" x="470" y="545">Format itself is the anti-analysis layer</text>
+<text class="sub" x="470" y="561">Near-zero VirusTotal; per-victim modules</text>
+<text class="mono" x="470" y="591">no IL metadata; multi-toolchain RE</text>
+<text class="mono" x="470" y="609">T1027 obfuscated files / info</text>
+
+<!-- Right op 4 -->
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">Establish modular C2</text>
+<text class="sub" x="470" y="683">Cavern Agent + per-victim mission modules</text>
+<text class="sub" x="470" y="699">n-HTCommp.dll speaks HTTPS / WebSocket</text>
+<text class="sub" x="470" y="715">Fars Data registrar; XOR + Base64 traffic</text>
+<text class="sub" x="470" y="731">Decoupled comms = takedown resilience</text>
+<text class="mono" x="470" y="761">hospitalinstallation.com (primary C2)</text>
+<text class="mono" x="470" y="779">T1071.001 - T1132.001 - T1573.001</text>
+
+<!-- Right op 5 -->
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Recon + credential theft</text>
+<text class="sub" x="470" y="853">AD enum, LDAP brute, SQL browse</text>
+<text class="sub" x="470" y="869">Port/share scan + SMB brute; LSASS dump</text>
+<text class="sub" x="470" y="885">Profile network to find high-value targets</text>
+<text class="sub" x="470" y="901">Modules loaded per mission, then unloaded</text>
+<text class="mono" x="470" y="931">ode / n-ten / db / mhm modules</text>
+<text class="mono" x="470" y="949">T1003.001 - T1110 - T1087.002</text>
+
+<!-- Right op 6 -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">Move laterally, exfil, evade IR</text>
+<text class="sub" x="470" y="1023">RDP + SOCKS5 / WebSocket tunneling</text>
+<text class="sub" x="470" y="1039">Remote-print exfil when copy is blocked</text>
+<text class="sub" x="470" y="1055">AppDomain unload hides modules from disk</text>
+<text class="sub" x="470" y="1071">Capture memory before you kill the host</text>
+<text class="mono" x="470" y="1101">detect behaviour, not the near-zero hash</text>
+<text class="mono" x="470" y="1119">T1021.001 - T1090.001 - T1219</text>
+
+<!-- cross-lane arrows -->
+<path class="arrowX" d="M855 202 L425 187" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M855 372 L425 337" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M855 542 L425 487" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M855 712 L425 787" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M855 882 L425 937" marker-end="url(#ah)" color="#7a3a7a"/>
+<!-- victim vertical flow -->
+<path class="arrow" d="M227 255 L227 270" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 405 L227 420" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 555 L227 570" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 705 L227 720" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 855 L227 870" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 1005 L227 1020" marker-end="url(#ah)" color="#2a4a6a"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1198">Detection anchors</text>
+<text class="footerT" x="34" y="1218">Host: uxtheme.dll loaded from a non-System32 path by WinDirStat.exe; anomalous AppDomain / Native-AOT n- module loads.</text>
+<text class="footerT" x="34" y="1236">Server: cac.aspx handler under an IIS web root (CAV3RN_Http_Module relay); w3wp.exe spawning shells.</text>
+<text class="footerT" x="34" y="1254">Network: beacons to hospitalinstallation.com and other Fars-Data-registered domains - detect behaviour, not the near-zero hash.</text>
+</svg>

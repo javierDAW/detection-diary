@@ -1,0 +1,27 @@
+type,value,context,confidence,source
+note,"Recently-published campaign (Check Point Research, 2026-07-06). Cavern Manticore (Iran-MOIS) modular .NET C2 framework 'Cavern'/'Cav3rn'. Samples are per-victim and near-zero-detection on VirusTotal, so prioritise behaviour (DLL side-load, anomalous AppDomain/native module loads, RMM/SysAid abuse) over hashes. No CVE is associated with this case.",,high,Jarmi analysis 2026-07-10
+sha256,37e123bd7998af4eae32718ce254776f36365a80ba56952593dab46f536d4066,"uxtheme.dll - Cavern Agent (build 02), Mixed-Mode C++/CLI; side-loaded by WinDirStat.exe",high,Check Point / gbhackers
+sha256,92cae0ad7f98f51a14bcc0ee05e372ebdc29ea96ea7bd161bd3f55198767603b,"uxtheme.dll - Cavern Agent (build 04)",high,Check Point / gbhackers
+sha256,5dc08bda6919a57a85e5f38b857985fa71529ca39c8299868d5a49a987e19b18,"uxtheme.dll - Cavern Agent (oldest build)",high,Check Point / gbhackers
+sha256,a4aa217def4c38f4ecacdf47b1cd687f60cc74c18ab75195be3c4357a790bf41,"n-HTCommp.dll - communication module (Native AOT); HTTPS/WebSocket C2",high,Check Point / gbhackers
+sha256,b630c96d3763182533d4fb9b614134382bd644cb02c6c1c3ade848b6ecc31e86,"n-HTCommp.dll - communication module (second sample)",high,Check Point / gbhackers
+sha256,8e9425c0b46eeb516610ae913d13f2b3f44a023043cb099277031d4ec38a6134,"mhm.dll - file manager module (.NET Framework); recursive search, archive, transfer",high,Check Point / gbhackers
+sha256,0a3663648a46771a5a5423ad01e91a4e7ba825595e99fa934cb35cbb4848adc8,"mhm.dll - file manager module (older Cav3rn variant)",high,Check Point / gbhackers
+sha256,5394d3b220de4695f731647e3a70545f951a8912ceb0c6585efab8d6842e8b42,"db.dll - SQL database browser module (.NET Framework)",high,Check Point / gbhackers
+sha256,30cb4679c4b8599eeb3d63a551716475c6332bdc4d4b4e3de0964aadb3092a10,"ode.dll - LDAP / Active Directory module (.NET Framework); LdapBrute, accepts any TLS cert",high,Check Point / gbhackers
+sha256,2cb1ad3b22db8e3666ea138fee88034a87a87cf43db3d3265a675ebf221379b0,"n-ten.dll - network reconnaissance module (Native AOT); port scan, share enum, SMB brute",high,Check Point / gbhackers
+sha256,7d586fb7f94182a8e2a0e53c7e4deb898066da029da5cd9972a94a59ca6d255a,"n-sws.dll - SOCKS5 / WebSocket tunnel module (Native AOT)",high,Check Point / gbhackers
+sha256,541b1f417b9e42078c3355693a8a492b6a76048850f6549a429e0be99e6819cb,"Older Cav3rn agent (earlier non-modular build)",medium,Check Point / gbhackers
+sha256,cbc9485db715e1b8cc384fe94b4cceadca4006cda8a5e28adc8848529cfafc93,"Older Cav3rn agent (earlier non-modular build, second sample)",medium,Check Point / gbhackers
+sha256,ccf218189c3aadb1c761da14bfda3bae686769031e1e1b10007648bd72e34748,"Older Cav3rn HTTP module (CAV3RN_Http_Module)",medium,Check Point / gbhackers
+domain,hospitalinstallation[.]com,"Primary Cavern C2 domain; registered via Fars Data (Iranian hosting provider); HTTPS/WebSocket",high,Check Point / gbhackers
+string,cac.aspx,"IIS webshell-style relay handler used by CAV3RN_Http_Module; XOR+Base64, fixed HTTP verb set",high,Check Point / gbhackers
+string,CAV3RN_Http_Module,"Older Cavern HTTP module class name; relays C2 via cac.aspx on a separate IIS server",medium,Check Point / gbhackers
+path,uxtheme.dll,"System-named DLL side-loaded from a non-System32 path (Cavern Agent); load outside System32/SysWOW64/WinSxS is the tell",high,Check Point / gbhackers
+string,WinDirStat.exe,"Legitimate signed binary abused as the DLL side-load host for uxtheme.dll",high,Check Point / gbhackers
+string,get_version,"Uniform Cavern module interface: get_version(List<string>) managed / get_version(wchar_t*) native",medium,Check Point
+string,LdapBrute,"ode.dll LDAP brute-force method; reads LDAP server + base DN from LDAP://RootDSE, page size 1000, accepts any TLS cert",medium,gbhackers / Check Point
+note,"Cavern module dispatcher: DLL names starting with 'n-' are loaded as native (LoadLibraryA); all others are managed .NET assemblies loaded via per-module AppDomain isolation (anti-forensics). Uniform get_version interface across formats.",Framework behavior,high,Check Point
+note,"Three .NET compilation formats used as an anti-RE layer: .NET Framework (mhm/db/ode), Mixed-Mode C++/CLI (uxtheme agent), Native AOT (n-HTCommp/n-ten/n-sws). Forces multiple RE toolchains + metadata reconstruction.",Anti-analysis,high,Check Point
+note,"Initial access via trusted IT provider and a second-hop provider (T1199); delivery via a weaponized SysAid software update / RMM / browser-based remote desktop. Lateral via RDP + SOCKS5/WebSocket tunneling; remote-print exfil when file transfer is blocked.",Access + delivery,high,Check Point
+note,"Attribution: Iran-MOIS (Cavern Manticore) at medium confidence, based on tactical overlaps with MuddyWater and Lyceum (OilRig subgroup) plus Iranian registrar (Fars Data) and Lyceum-style victim-side proxying / XOR obfuscation. Campaign active since early 2026 against Israeli IT, government and defense.",Attribution,medium,Check Point

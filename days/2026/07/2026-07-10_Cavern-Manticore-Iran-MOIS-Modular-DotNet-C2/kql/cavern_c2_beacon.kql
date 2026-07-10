@@ -1,0 +1,16 @@
+// Title:       Cavern Manticore C2 beacon (Cavern domain set)
+// Id:          cavern-c2-beacon
+// MITRE:       T1071.001
+// Reference:   https://research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/
+// Author:      Jarmi
+// Date:        2026-07-10
+// Tested on:   Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes:    Indicators decay; hospitalinstallation[.]com is the published primary C2. Extend the
+//              domain list from your TI feed and confirm the initiating process (native comms module).
+let cavern_domains = dynamic(["hospitalinstallation.com"]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteUrl has_any (cavern_domains)
+    or RemoteUrl endswith ".hospitalinstallation.com"
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, RemoteUrl, RemoteIP, RemotePort
+| order by Timestamp desc

@@ -1,0 +1,17 @@
+// Title:       Cavern Manticore IIS webshell relay cac.aspx creation
+// Id:          cavern-iis-aspx-webshell
+// MITRE:       T1505.003
+// Reference:   https://research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/
+// Author:      Jarmi
+// Date:        2026-07-10
+// Tested on:   Microsoft Defender XDR (DeviceFileEvents)
+// FP notes:    Any new .aspx handler written to an IIS web root outside a controlled deployment is
+//              suspect. The named artifact is cac.aspx (CAV3RN_Http_Module relay). Allowlist CI/CD accounts.
+DeviceFileEvents
+| where Timestamp > ago(14d)
+| where ActionType in ("FileCreated", "FileModified")
+| extend Target = tolower(FolderPath)
+| where Target has_any ("\\inetpub\\wwwroot\\", "\\inetpub\\", "\\wwwroot\\")
+| where FileName =~ "cac.aspx" or FileName endswith ".aspx"
+| project Timestamp, DeviceName, FileName, FolderPath, InitiatingProcessFileName, InitiatingProcessAccountName
+| order by Timestamp desc

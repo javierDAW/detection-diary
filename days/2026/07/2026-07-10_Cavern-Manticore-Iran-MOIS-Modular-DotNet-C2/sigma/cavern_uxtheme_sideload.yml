@@ -1,0 +1,43 @@
+title: Cavern Manticore uxtheme.dll DLL Side-Load (Non-System32 Load)
+id: 64afeae7-6c0a-4684-a9b3-6acdb8f2a5cb
+status: experimental
+description: |
+  Detects DLL side-loading of the system-named library uxtheme.dll from a
+  directory outside the trusted Windows system paths, the loader step of the
+  Cavern Manticore (Iran-MOIS) framework (Check Point Research, 2026-07-06). The
+  actor pairs a legitimate signed WinDirStat.exe with a trojanized uxtheme.dll
+  (the Cavern Agent, Mixed-Mode C++/CLI); Windows resolves the DLL from the
+  application directory first, loading the attacker copy. uxtheme.dll legitimately
+  ships in System32 and is loaded by shell/UI processes from there, so an image
+  load of uxtheme.dll from a temp/update/staging or user-writable path is a strong,
+  hash-independent side-load tell. Baseline any legitimate applications that ship
+  their own uxtheme.dll before enabling broadly.
+references:
+  - https://research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/
+  - https://gbhackers.com/cavern-manticore-malware/
+  - https://attack.mitre.org/techniques/T1574/002/
+author: Jarmi
+date: 2026/07/10
+tags:
+  - attack.defense-evasion
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1574.002
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection_dll:
+    ImageLoaded|endswith: '\uxtheme.dll'
+  filter_system:
+    ImageLoaded|startswith:
+      - 'C:\Windows\System32\'
+      - 'C:\Windows\SysWOW64\'
+      - 'C:\Windows\WinSxS\'
+  condition: selection_dll and not filter_system
+falsepositives:
+  - Legitimate portable applications that bundle their own uxtheme.dll; baseline
+    the known-good hosting binaries and paths <add_known_good_uxtheme_hosts>
+  - Software installers that stage a copy of uxtheme.dll during setup
+
+level: high

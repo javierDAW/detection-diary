@@ -1,0 +1,18 @@
+// Title:       Cavern Manticore side-load host WinDirStat.exe from non-standard path
+// Id:          cavern-windirstat-sideload-host
+// MITRE:       T1574.002, T1072
+// Reference:   https://research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/
+// Author:      Jarmi
+// Date:        2026-07-10
+// Tested on:   Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes:    WinDirStat is normally installed under Program Files. Execution from temp/staging or
+//              an RMM/SysAid parent is the loader tell. Confirm a co-located uxtheme.dll.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FileName =~ "WinDirStat.exe"
+| extend Folder = tolower(FolderPath)
+| where Folder !startswith "c:\\program files"
+| where Folder has_any ("\\temp\\", "\\appdata\\", "\\programdata\\", "\\users\\public\\", "\\downloads\\")
+    or InitiatingProcessFileName has_any ("sysaid", "SAConfig", "rmm", "ScreenConnect", "AteraAgent")
+| project Timestamp, DeviceName, AccountName, FolderPath, InitiatingProcessFileName, InitiatingProcessFolderPath, ProcessCommandLine
+| order by Timestamp desc

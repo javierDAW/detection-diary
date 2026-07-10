@@ -1,0 +1,43 @@
+title: Cavern Manticore Side-Load Host WinDirStat.exe From Non-Standard Path
+id: e05542b5-8f5c-4b59-aa0a-e13fe4bc7c0d
+status: experimental
+description: |
+  Detects execution of the legitimate WinDirStat.exe from a non-standard
+  directory, the DLL side-load host used to load the Cavern Agent (trojanized
+  uxtheme.dll) in the Cavern Manticore (Iran-MOIS) framework (Check Point
+  Research, 2026-07-06). WinDirStat is a disk-usage utility normally installed
+  under Program Files; the actor drops a copy alongside a malicious uxtheme.dll in
+  a temp/update/staging path, often delivered through a weaponized SysAid update or
+  an RMM channel. This rule anchors on WinDirStat.exe running from user-writable /
+  staging directories. Pair with the uxtheme.dll side-load rule for high fidelity.
+references:
+  - https://research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/
+  - https://gbhackers.com/cavern-manticore-malware/
+  - https://attack.mitre.org/techniques/T1574/002/
+author: Jarmi
+date: 2026/07/10
+tags:
+  - attack.defense-evasion
+  - attack.execution
+  - attack.t1574.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_img:
+    Image|endswith: '\WinDirStat.exe'
+  selection_path:
+    Image|contains:
+      - '\Temp\'
+      - '\Users\Public\'
+      - '\ProgramData\'
+      - '\AppData\'
+      - '\Downloads\'
+      - '\Windows\Temp\'
+  condition: selection_img and selection_path
+falsepositives:
+  - Administrators running a portable WinDirStat copy from a scratch directory;
+    confirm the co-located uxtheme.dll and the launching parent
+  - Legitimate software-management tools staging portable utilities
+
+level: medium

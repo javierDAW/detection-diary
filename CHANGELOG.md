@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.10 — Day 74 — Cavern Manticore: Iran-MOIS modular .NET C2 framework
+
+### Added
+- `days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/` — Check Point Research (2026-07-06) exposed "Cavern"/"Cav3rn", a modular .NET C2 framework used by the Iran-MOIS cluster Cavern Manticore (tactical overlaps with MuddyWater and Lyceum/OilRig) against Israeli IT, government and defense. Access via a trusted IT provider + second hop; delivery via a weaponized SysAid update that side-loads a trojanized `uxtheme.dll` (Cavern Agent) through legitimate `WinDirStat.exe`; per-victim modules over HTTPS/WebSocket to `hospitalinstallation[.]com`.
+- Sigma (3): `cavern_uxtheme_sideload.yml` — `uxtheme.dll` image-load from non-System32; `cavern_windirstat_sideload_host.yml` — `WinDirStat.exe` from a non-standard path; `cavern_iis_aspx_webshell_drop.yml` — `cac.aspx` creation in an IIS web root.
+- KQL (4): `uxtheme` side-load; `WinDirStat` loader host; C2 beacon to the Cavern domain set; `cac.aspx` webshell creation.
+- YARA (1 file, 3 rules): Cavern agent, module naming (`n-` native / managed), and IIS webshell string anchors.
+- Suricata (1 file, 5 sids): C2 DNS + TLS SNI, `cac.aspx` relay, WebSocket upgrade, base64-body relay heuristic.
+- PEAK hunts (3): DLL side-load of a system-named DLL; anomalous .NET AppDomain / Native-AOT module loading; C2 beacon + webshell relay + second-hop lateral.
+- `iocs.csv` (26 entries) — 14 module SHA256, C2 domain, side-load host + framework anchors. No CVE, so no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, malware-re accent; 7-stage victim lane + 6-op operator lane.
+
+### Pedagogy
+- Detect the side-load shape (a signed binary loading a system-named DLL from a non-System32 path), not the near-zero-detection hash.
+- Capture memory before killing the host: per-module AppDomain isolation leaves no complete on-disk copy of the toolkit.
+- Uncommon .NET compilation formats (Mixed-Mode C++/CLI + Native AOT) are a deliberate anti-RE layer, not an accident.
+- Treat IT-provider, RMM and software-update channels as tier-0 access paths and monitor them as privileged.
+
 ## 2026.07.09 — Day 73 — CitrixBleed To Infinity: NetScaler SAML IdP pre-auth memory overread (CVE-2026-8451)
 
 ### Added

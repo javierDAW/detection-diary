@@ -31,6 +31,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [CL-STA-0049](./cl-sta-0049/) | 1 |
 | [CL-STA-1062](./cl-sta-1062/) | 1 |
 | [Calypso APT](./calypso-apt/) | 1 |
+| [Cavern Manticore](./cavern-manticore/) | 1 |
 | [Chaotic Eclipse / Nightmare-Eclipse](./chaotic-eclipse-nightmare-eclipse/) | 1 |
 | [Chatty Spider](./chatty-spider/) | 1 |
 | [Cloud-Insider-Recruitment-unattributed](./cloud-insider-recruitment-unattributed/) | 1 |

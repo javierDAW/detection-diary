@@ -1,5 +1,57 @@
 [
  {
+  "date": "2026-07-10",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2",
+  "title": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE)",
+  "clusters": [
+   "Cavern Manticore"
+  ],
+  "country": "Iran (MOIS nexus)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government",
+   "technology",
+   "defense",
+   "managed-services"
+  ],
+  "techniques": [
+   "T1199",
+   "T1072",
+   "T1574.002",
+   "T1620",
+   "T1027",
+   "T1505.003",
+   "T1071.001",
+   "T1132.001",
+   "T1573.001",
+   "T1090.001",
+   "T1046",
+   "T1087.002",
+   "T1110",
+   "T1003.001",
+   "T1005",
+   "T1560",
+   "T1021.001",
+   "T1219"
+  ],
+  "tech_count": 18,
+  "tldr": "On 2026-07-06 Check Point Research published an analysis of **Cavern** (aka **Cav3rn**), a previously undocumented modular command-and-control framework used by an Iran-nexus cluster it tracks as **Cavern Manticore**, assessed as Iran's Ministry of Intelligence and Security (MOIS) with tactical overlaps to **MuddyWater** and **Lyceum** (a subgroup within **OilRig**). Active since early 2026 agains",
+  "thumb": "thumbs/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2.svg",
+  "case_rel": "../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "Cavern Manticore",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "cavern manticore: iran-mois modular .net c2 framework (sysaid side-load, native aot / mixed-mode anti-re) cavern manticore iran (mois nexus) windows government technology defense managed-services t1199 t1072 t1574.002 t1620 t1027 t1505.003 t1071.001 t1132.001 t1573.001 t1090.001 t1046 t1087.002 t1110 t1003.001 t1005 t1560 t1021.001 t1219 malware / re "
+ },
+ {
   "date": "2026-07-09",
   "year": "2026",
   "month": "2026-07",
