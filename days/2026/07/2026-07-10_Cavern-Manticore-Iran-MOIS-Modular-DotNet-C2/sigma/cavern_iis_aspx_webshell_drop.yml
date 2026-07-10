@@ -1,0 +1,43 @@
+title: Cavern Manticore IIS Webshell Relay cac.aspx Creation
+id: c4cf4928-1e08-4033-8bf6-7b8f6cdeab39
+status: experimental
+description: |
+  Detects creation of the cac.aspx handler under an IIS web root, the webshell-style
+  relay used by the Cavern Manticore (Iran-MOIS) CAV3RN_Http_Module to proxy C2
+  traffic through a separate IIS server (Check Point Research, 2026-07-06). The
+  handler brokers XOR+Base64-obfuscated traffic with a fixed HTTP verb set. This
+  rule anchors on a file_event creating cac.aspx (or any .aspx) inside inetpub /
+  wwwroot; scope to your IIS content roots and treat any new .aspx handler written
+  outside a controlled deployment as suspicious. Correlate with w3wp.exe spawning
+  shells.
+references:
+  - https://research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/
+  - https://gbhackers.com/cavern-manticore-malware/
+  - https://attack.mitre.org/techniques/T1505/003/
+author: Jarmi
+date: 2026/07/10
+tags:
+  - attack.persistence
+  - attack.t1505.003
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_webroot:
+    TargetFilename|contains:
+      - '\inetpub\wwwroot\'
+      - '\inetpub\'
+      - '\wwwroot\'
+  selection_handler:
+    TargetFilename|endswith:
+      - '\cac.aspx'
+      - '.aspx'
+  filter_named:
+    TargetFilename|endswith: '\cac.aspx'
+  condition: selection_webroot and (selection_handler or filter_named)
+falsepositives:
+  - Legitimate application deployments that add .aspx pages through a controlled
+    CI/CD pipeline; allowlist known deployment accounts and paths
+  - Web developers editing pages directly on a staging IIS host
+
+level: high

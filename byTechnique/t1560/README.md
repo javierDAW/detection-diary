@@ -4,9 +4,10 @@
 
 # Techniques: T1560
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-10 | Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE) | Cavern Manticore | [`2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/`](../../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/) |
 | 2026-06-02 | Aur0ra ransomware — in-place encryption with no rename and no extension, double-extortion via Tor | Aur0ra (unattributed ransomware family) | [`2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/`](../../days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/) |

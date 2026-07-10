@@ -1,0 +1,25 @@
+# Cavern Manticore (Iran-MOIS) - Cavern modular .NET C2 - network detections
+# Author: Jarmi
+# Date:   2026-07-10
+# Reference: https://research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/
+#            https://gbhackers.com/cavern-manticore-malware/
+# Notes: Suricata 7.x sticky buffers (dns.query, tls.sni, http.method, http.uri, http.request_body).
+#        SIDs 2026071001-2026071005, rev:1. Cavern C2 (n-HTCommp.dll) runs over HTTPS/WebSocket, so
+#        domain detection is via DNS query and TLS SNI. The cac.aspx relay is HTTP/S: the URI rule
+#        fires only where Suricata sees cleartext (reverse-proxy / TLS-terminating span). Indicators
+#        decay - revalidate the domain before blocking. No custom variables.
+
+# 1) DNS query for the primary Cavern C2 domain
+alert dns any any -> any any (msg:"Cavern Manticore CAV3RN - DNS query for C2 domain hospitalinstallation.com"; dns.query; content:"hospitalinstallation.com"; nocase; isdataat:!1,relative; classtype:command-and-control; reference:url,research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/; sid:2026071001; rev:1;)
+
+# 2) TLS SNI for the primary Cavern C2 domain
+alert tls any any -> any any (msg:"Cavern Manticore CAV3RN - TLS SNI to C2 domain hospitalinstallation.com"; tls.sni; content:"hospitalinstallation.com"; nocase; classtype:command-and-control; reference:url,research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/; sid:2026071002; rev:1;)
+
+# 3) HTTP request to the Cavern IIS webshell relay handler cac.aspx (cleartext span only)
+alert http any any -> $HOME_NET any (msg:"Cavern Manticore CAV3RN - request to IIS webshell relay cac.aspx"; flow:established,to_server; http.uri; content:"/cac.aspx"; nocase; classtype:web-application-activity; reference:url,gbhackers.com/cavern-manticore-malware/; sid:2026071003; rev:1;)
+
+# 4) WebSocket upgrade to a suspicious host (Cavern comms module can use WSS; correlate with sids 1/2)
+alert http any any -> any any (msg:"Cavern Manticore CAV3RN - WebSocket upgrade (possible C2 tunnel; correlate with C2 domain)"; flow:established,to_server; http.header; content:"Upgrade|3a 20|websocket"; nocase; http.header; content:"hospitalinstallation.com"; nocase; classtype:command-and-control; reference:url,research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/; sid:2026071004; rev:1;)
+
+# 5) POST to cac.aspx carrying a base64-shaped body (XOR+Base64 relay heuristic; cleartext span only)
+alert http any any -> $HOME_NET any (msg:"Cavern Manticore CAV3RN - POST to cac.aspx with base64-shaped body (relay heuristic)"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/cac.aspx"; nocase; http.request_body; pcre:"/^[A-Za-z0-9+\/]{64,}={0,2}/"; classtype:web-application-attack; reference:url,gbhackers.com/cavern-manticore-malware/; sid:2026071005; rev:1;)

@@ -1,0 +1,18 @@
+// Title:       Cavern Manticore uxtheme.dll side-load (non-System32 image load)
+// Id:          cavern-uxtheme-sideload
+// MITRE:       T1574.002
+// Reference:   https://research.checkpoint.com/2026/cavern-manticore-exposing-iran-linked-modular-c2-framework/
+// Author:      Jarmi
+// Date:        2026-07-10
+// Tested on:   Microsoft Defender XDR (DeviceImageLoadEvents)
+// FP notes:    uxtheme.dll normally loads only from System32/SysWOW64/WinSxS. A load from a temp/
+//              staging/user path is the Cavern side-load tell. Baseline apps that bundle uxtheme.dll.
+DeviceImageLoadEvents
+| where Timestamp > ago(14d)
+| where FileName =~ "uxtheme.dll"
+| extend Folder = tolower(FolderPath)
+| where Folder !startswith "c:\\windows\\system32\\"
+| where Folder !startswith "c:\\windows\\syswow64\\"
+| where Folder !startswith "c:\\windows\\winsxs\\"
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, FolderPath, SHA256
+| order by Timestamp desc
