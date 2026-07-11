@@ -214,11 +214,11 @@
 <text class="mono" x="470" y="1119">SeaSpoofFinder methodology</text>
 
 <!-- cross-lane arrows -->
-<path class="arrowX" d="M855 202 L425 187" marker-end="url(#ah)" color="#7a3a7a"/>
-<path class="arrowX" d="M855 372 L425 337" marker-end="url(#ah)" color="#7a3a7a"/>
-<path class="arrowX" d="M855 542 L425 487" marker-end="url(#ah)" color="#7a3a7a"/>
-<path class="arrowX" d="M855 712 L425 787" marker-end="url(#ah)" color="#7a3a7a"/>
-<path class="arrowX" d="M855 882 L425 937" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 202 L425 187" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 372 L425 337" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 542 L425 487" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 712 L425 787" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 882 L425 937" marker-end="url(#ah)" color="#7a3a7a"/>
 <!-- victim vertical flow -->
 <path class="arrow" d="M227 255 L227 270" marker-end="url(#ah)" color="#2a4a6a"/>
 <path class="arrow" d="M227 405 L227 420" marker-end="url(#ah)" color="#2a4a6a"/>
