@@ -16,6 +16,10 @@ The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 - `iocs.csv` (15 entries) — detection-surface anchors: kinematic thresholds, identity tells, geographic footprints, tooling names. No `kev.md` (no CVE).
 - `kill_chain.svg` — template A, ot-ics accent, two lanes (victim/observer vs spoofing side), IOC anchors.
 
+### Fixed
+- `kill_chain.svg` cross-lane `.arrowX` endpoints on 2026-07-09/10/11 started at the op box OUTER edge (`M855`) instead of the FACING inner edge (`M460`), drawing relationship arrows across the box interior. Repointed to `x=460 -> x=425` (facing lane edges).
+- `tools/check_svg_arrows.py` (new) - guards the two arrow rules: ERROR if an `.arrowX` is not on the facing lane edges `{425,460}`, WARN if `dy >= 200`. Run in the SVG verify step so the defect cannot recur silently.
+
 ### Pedagogy
 - Detect the physics, not the payload: a jump no ship can make, and many ships converging on one point.
 - Two layers, two responses: RF GNSS spoofing (distrust GNSS, use fallback nav) vs data-layer AIS identity lie (cross-check the registry).
