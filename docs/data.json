@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-07-11",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception",
+  "title": "AIS & GNSS Spoofing at Sea: Maritime Positioning Deception (IFC June-2026 Surge + SeaSpoofFinder)",
+  "clusters": [
+   "Multiple GNSS/AIS spoofing operators"
+  ],
+  "country": "Multiple (Russia-nexus GNSS spoofing; global dark-fleet AIS deception)",
+  "platforms": [
+   "ot-ics",
+   "iot",
+   "network-edge"
+  ],
+  "sectors": [
+   "maritime",
+   "aviation",
+   "energy",
+   "defense",
+   "logistics"
+  ],
+  "techniques": [
+   "T1565.002",
+   "T1557",
+   "T0856",
+   "T0830",
+   "T0832",
+   "T0815",
+   "T0880"
+  ],
+  "tech_count": 7,
+  "tldr": "Maritime positioning is under sustained attack on two layers at once, and July 2026 gave defenders both a fresh incident count and a concrete detection method. On the **RF layer**, GNSS spoofing broadcasts a counterfeit satellite constellation so that every receiver in the footprint computes a false position; the academic tool **SeaSpoofFinder** (arXiv 2602.16257) shows this can be inferred at sca",
+  "thumb": "thumbs/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception.svg",
+  "case_rel": "../days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Multiple GNSS/AIS spoofing operators",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-67038",
+    "due": "2026-06-26",
+    "ransom": false
+   }
+  ],
+  "q": "ais & gnss spoofing at sea: maritime positioning deception (ifc june-2026 surge + seaspooffinder) multiple gnss/ais spoofing operators multiple (russia-nexus gnss spoofing; global dark-fleet ais deception) ot-ics iot network-edge maritime aviation energy defense logistics t1565.002 t1557 t0856 t0830 t0832 t0815 t0880 ot / ics cve-2025-67038"
+ },
+ {
   "date": "2026-07-10",
   "year": "2026",
   "month": "2026-07",

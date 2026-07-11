@@ -4,6 +4,24 @@ All notable additions to detection-diary.
 
 The format is loosely [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
+## 2026.07.11 — Day 75 — AIS & GNSS spoofing at sea: maritime positioning deception
+
+### Added
+- `days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/` — Weekend auto-rescue opening the aviation/maritime slot (#34, never previously covered). The IFC AOR monthly report (2026-07-07) logged 40 June-2026 cyber incidents, all vessels transmitting false AIS; SeaSpoofFinder (arXiv 2602.16257) infers large-scale GNSS spoofing from AIS with recurrent footprints over the Baltic, Black Sea, Murmansk and Haifa. Two threat modes: RF GNSS spoofing (false position source) and data-layer AIS identity spoofing (dark-fleet sanctions evasion). Advisory/methodology-class; no CVE.
+- Sigma (3): `ais_position_kinematic_jump.yml` — per-MMSI jump + implied-speed over threshold (PSE); `ais_placeholder_mmsi_generic_label.yml` — placeholder MMSI / generic label; `ais_static_identity_mismatch.yml` — MID-flag mismatch or spoof-cluster membership.
+- KQL (4): consecutive-fix haversine jump; two-plus vessel convergence cluster (FPSE); placeholder/generic/flag-mismatch static; multi-receiver GNSS fix degradation over Syslog.
+- YARA (1 file, 3 rules): AIS/GNSS spoofing tooling (ais-simulator, gps-sdr-sim), spoofed-capture identity tells, GNSS SDR flowgraphs.
+- Suricata (1 file, 5 sids 2026071101-2026071105): AIS-over-IP feed integrity (!AIVDM on TCP 10110 / gpsd 2947), decoded-feed generic label + placeholder MMSI, ais-simulator control channel.
+- PEAK hunts (3): H1 Stage-1 kinematic jump; H2 Stage-2 clustering + circular-trajectory; H3 AIS identity spoofing / dark fleet.
+- `iocs.csv` (15 entries) — detection-surface anchors: kinematic thresholds, identity tells, geographic footprints, tooling names. No `kev.md` (no CVE).
+- `kill_chain.svg` — template A, ot-ics accent, two lanes (victim/observer vs spoofing side), IOC anchors.
+
+### Pedagogy
+- Detect the physics, not the payload: a jump no ship can make, and many ships converging on one point.
+- Two layers, two responses: RF GNSS spoofing (distrust GNSS, use fallback nav) vs data-layer AIS identity lie (cross-check the registry).
+- Unauthenticated broadcast protocols (AIS, ADS-B) age badly: they trust their inputs by design.
+- AIS evidence characterises a footprint but does not attribute the transmitter.
+
 ## 2026.07.10 — Day 74 — Cavern Manticore: Iran-MOIS modular .NET C2 framework
 
 ### Added

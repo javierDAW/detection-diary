@@ -1,4 +1,4 @@
-# CISA KEV status — 2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS
+# CISA KEV status — 2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception
 
 _Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.10)). Generated 2026-07-11._
 
@@ -6,7 +6,7 @@ _Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live
 
 | CVE | On KEV | Added | Remediation due | Ransomware use | Vulnerability |
 |---|---|---|---|---|---|
-| CVE-2024-40766 | **yes** | 2024-09-09 | 2024-09-30 | Known | SonicWall SonicOS Improper Access Control Vulnerability |
+| CVE-2025-67038 | **yes** | 2026-06-23 | 2026-06-26 | Unknown | Lantronix EDS5000 Code Injection Vulnerability |
 
 > KEV-listed CVEs are mandated for remediation in US federal agencies by the due date above; treat them as patch-now priorities, not theoretical risk.
 

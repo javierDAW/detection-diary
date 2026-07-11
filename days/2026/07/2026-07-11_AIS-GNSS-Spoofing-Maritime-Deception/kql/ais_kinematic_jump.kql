@@ -1,0 +1,32 @@
+// Title:       AIS position kinematic jump (Stage 1 potential spoofing event)
+// Id:          ais-kinematic-jump
+// MITRE:       T0856, T0830
+// Reference:   arXiv 2602.16257 SeaSpoofFinder; IFC AOR 2026-07-07
+// Author:      Jarmi
+// Date:        2026-07-11
+// Tested on:   Microsoft Sentinel custom table AisPosition_CL (decoded AIVDM 1/2/3)
+// FP notes:    Back-to-port jumps, receiver hand-off and satellite-AIS latency create
+//              apparent gaps. This is Stage 1; escalate only clustered events (see
+//              ais_spoof_cluster_convergence.kql). Tune thresholds to station revisit.
+let jump_m = 5000;          // minimum jump distance between consecutive fixes (metres)
+let max_speed_kn = 120;     // implied speed no surface vessel sustains
+let R = 6371000.0;          // earth radius, metres
+AisPosition_CL
+| where TimeGenerated > ago(24h)
+| where MsgType_d in (1, 2, 3)
+| where Latitude_d != 0 and Longitude_d != 0
+| where Seconds_d <= 59
+| project TimeGenerated, Mmsi = tostring(Mmsi_s), lat = Latitude_d, lon = Longitude_d
+| sort by Mmsi asc, TimeGenerated asc
+| serialize
+| extend prev_lat = prev(lat), prev_lon = prev(lon), prev_mmsi = prev(Mmsi), prev_time = prev(TimeGenerated)
+| where Mmsi == prev_mmsi
+| extend dlat = radians(lat - prev_lat), dlon = radians(lon - prev_lon)
+| extend a = sin(dlat / 2) * sin(dlat / 2) + cos(radians(prev_lat)) * cos(radians(lat)) * sin(dlon / 2) * sin(dlon / 2)
+| extend dist_m = R * 2 * atan2(sqrt(a), sqrt(1 - a))
+| extend dt_s = datetime_diff('second', TimeGenerated, prev_time)
+| where dt_s > 0
+| extend implied_kn = (dist_m / dt_s) * 1.94384
+| where dist_m > jump_m and implied_kn > max_speed_kn
+| project TimeGenerated, Mmsi, prev_lat, prev_lon, lat, lon, dist_m, dt_s, implied_kn
+| order by TimeGenerated desc

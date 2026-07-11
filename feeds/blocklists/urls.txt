@@ -1,5 +1,5 @@
 # detection-diary blocklist — url
-# generated 2026-07-10 08:37 UTC
+# generated 2026-07-11 11:56 UTC
 # defensive/educational — validate before blocking; indicators decay
 http://154.82.81.205/YD20251001143052.zip
 http://154.82.81.205/YN20250923193706.zip
@@ -56,6 +56,7 @@ https://pastebin.com/raw/8pYAgF0Z
 https://pastebin.com/yUkbaBH3
 https://rapids-lil-lending-charleston.trycloudflare.com
 https://seasonal-estimation-heating-necessarily.trycloudflare.com
+https://seaspooffinder.github.io/ais_data
 https://socifiapp.com/api/reports/upload
 https://t.m-kosche.com/api/public/version
 https://t.m-kosche.com/rope.pyz

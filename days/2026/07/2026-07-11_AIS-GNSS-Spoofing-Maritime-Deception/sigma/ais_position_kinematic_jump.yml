@@ -1,0 +1,47 @@
+title: AIS Position Kinematic Jump (GNSS Spoofing / Position Falsification)
+id: 4eab0521-fdc6-4f1a-b920-c7993d5a6b60
+status: experimental
+description: |
+  Detects an implausible position jump in a decoded AIS position report (message
+  type 1/2/3), the Stage-1 signature of GNSS spoofing or AIS position falsification
+  used at scale in contested maritime areas (SeaSpoofFinder, arXiv 2602.16257;
+  IFC AOR monthly report, 2026-07-07). This rule assumes an ingestion pipeline that
+  decodes AIS NMEA (AIVDM) and enriches each position record per MMSI with the jump
+  distance from the previous fix (JumpDistanceM) and the implied speed over that
+  interval (ImpliedSpeedKn). When one MMSI reports a jump larger than the distance
+  threshold together with an implied speed no vessel can sustain, the fix is a
+  candidate potential spoofing event (PSE). Data-quality artifacts (zero
+  coordinates, seconds field > 59) are excluded upstream. Correlate clustered PSEs
+  from multiple MMSIs to a common source area in a SIEM to reach a final potential
+  spoofing event (FPSE) and reduce single-vessel false positives.
+references:
+  - https://arxiv.org/abs/2602.16257
+  - https://safety4sea.com/ifc-ais-deception-drives-surge-in-maritime-cyber-security-incidents/
+  - https://attack.mitre.org/techniques/T0856/
+author: Jarmi
+date: 2026/07/11
+tags:
+  - attack.impact
+  - attack.t0856
+  - attack.t0830
+logsource:
+  product: ais
+  service: ais_position
+detection:
+  selection_msg:
+    MsgType:
+      - 1
+      - 2
+      - 3
+  selection_jump:
+    JumpDistanceM|gt: 5000
+  selection_speed:
+    ImpliedSpeedKn|gt: 120
+  condition: selection_msg and selection_jump and selection_speed
+falsepositives:
+  - Back-to-port jumps and receiver hand-off gaps in dense traffic; require the
+    Stage-2 clustering correlation before escalating
+  - Satellite AIS latency producing large apparent gaps; tune JumpDistanceM and
+    ImpliedSpeedKn to the receiving station revisit interval
+
+level: medium
