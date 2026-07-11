@@ -1,0 +1,22 @@
+// Title:       GNSS fix degradation / denial-of-view at an AIS or bridge gateway
+// Id:          ais-gnss-fix-degradation
+// MITRE:       T0815, T0880
+// Reference:   arXiv 2602.16257; EASA/EUROCONTROL GNSS interference action plan 2026
+// Author:      Jarmi
+// Date:        2026-07-11
+// Tested on:   Microsoft Sentinel Syslog (GNSS receiver / ECDIS / AIS transponder gateway)
+// FP notes:    Legitimate loss of fix occurs under terrain shadowing and equipment faults.
+//              A jamming or spoofing event shows sudden fix loss or an implausible HDOP/PDOP
+//              spike across several receivers in the same area at the same time.
+let dop_spike = 20.0;       // implausible dilution-of-precision value
+Syslog
+| where TimeGenerated > ago(24h)
+| where ProcessName has_any ("gnss", "gpsd", "ecdis", "ais", "gateway")
+| where SyslogMessage has_any ("GPS fix lost", "no fix", "position source degraded", "HDOP", "PDOP", "spoof", "jam")
+| extend hdop = extract(@"H?DOP[=:\s]+([0-9]+\.?[0-9]*)", 1, SyslogMessage, typeof(real))
+| extend fix_lost = SyslogMessage has_any ("GPS fix lost", "no fix", "position source degraded")
+| where fix_lost or hdop > dop_spike
+| summarize receivers = dcount(HostName), hosts = make_set(HostName, 20), samples = count()
+    by bin(TimeGenerated, 10m)
+| where receivers >= 2 or samples >= 5
+| order by TimeGenerated desc

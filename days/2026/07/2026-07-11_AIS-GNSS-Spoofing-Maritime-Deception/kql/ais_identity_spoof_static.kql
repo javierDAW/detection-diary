@@ -1,0 +1,20 @@
+// Title:       AIS identity spoofing - placeholder MMSI, generic label, flag mismatch
+// Id:          ais-identity-spoof-static
+// MITRE:       T0856, T0832
+// Reference:   arXiv 2602.16257 SeaSpoofFinder; IFC AOR 2026-07-07 (dark-fleet AIS)
+// Author:      Jarmi
+// Date:        2026-07-11
+// Tested on:   Microsoft Sentinel custom table AisStatic_CL (decoded AIVDM type 5)
+// FP notes:    Base stations, SAR aircraft and aids-to-navigation may use structured
+//              MMSIs; flag-of-convenience reflagging can trip MidFlagMismatch. Corroborate
+//              with a vessel registry. Identity churn per transponder is the stronger tell.
+let generic = dynamic(["NATO SHIP", "FRENCH WARSHIP", "SAMPLE", "TEST TEST", "WARSHIP"]);
+AisStatic_CL
+| where TimeGenerated > ago(7d)
+| extend Mmsi = tostring(Mmsi_s), ShipName = toupper(tostring(ShipName_s))
+| extend placeholder_mmsi = Mmsi endswith "000000" or Mmsi endswith "999999"
+| extend generic_name = ShipName has_any (generic)
+| extend flag_mismatch = tobool(MidFlagMismatch_b)
+| where placeholder_mmsi or generic_name or flag_mismatch
+| project TimeGenerated, Mmsi, ShipName, Flag = tostring(Flag_s), ShipType = tostring(ShipType_s), placeholder_mmsi, generic_name, flag_mismatch
+| order by TimeGenerated desc

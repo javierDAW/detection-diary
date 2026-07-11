@@ -1,0 +1,25 @@
+# AIS / GNSS spoofing - maritime AIS-over-IP feed monitoring
+# Author: Jarmi
+# Date:   2026-07-11
+# Reference: arXiv 2602.16257 SeaSpoofFinder; IFC AOR 2026-07-07
+# Notes: Raw AIS is VHF and 6-bit ASCII-armored; these rules apply only to AIS carried over IP -
+#        NMEA-0183 over TCP (commonly port 10110), decoded-AIS JSON from aggregators, and
+#        AIS-simulator control channels on the bridge/VTS/feed-collector LAN. They monitor feed
+#        integrity and detect rogue AIS injectors / simulators, not VHF transmissions. The
+#        identity-string rules fire on the DECODED JSON feed, where names/MMSI are cleartext.
+#        SIDs 2026071101-2026071105, rev:1. No custom variables (literal ports used).
+
+# 1) Raw NMEA AIVDM sentence seen over cleartext TCP to an internal collector (possible rogue injector / feed tamper)
+alert tcp any any -> $HOME_NET 10110 (msg:"AIS - NMEA AIVDM sentence over TCP to internal collector (feed integrity / rogue injector)"; flow:established,to_server; content:"!AIVDM"; depth:8; classtype:protocol-command-decode; reference:url,arxiv.org/abs/2602.16257; sid:2026071101; rev:1;)
+
+# 2) Decoded-AIS JSON feed carrying a generic, non-unique vessel label (identity-spoofing tell)
+alert tcp any any -> any any (msg:"AIS - decoded feed carries generic vessel label (identity spoofing tell)"; flow:established; content:"ShipName"; nocase; content:"NATO SHIP"; nocase; distance:0; within:64; classtype:bad-unknown; reference:url,safety4sea.com/ifc-ais-deception-drives-surge-in-maritime-cyber-security-incidents/; sid:2026071102; rev:1;)
+
+# 3) Decoded-AIS JSON feed carrying a placeholder MMSI (000000000 / 999999999)
+alert tcp any any -> any any (msg:"AIS - decoded feed carries placeholder MMSI (identity spoofing tell)"; flow:established; content:"MMSI"; nocase; pcre:"/\"?MMSI\"?\s*[:=]\s*\"?(000000000|999999999)/i"; classtype:bad-unknown; reference:url,arxiv.org/abs/2602.16257; sid:2026071103; rev:1;)
+
+# 4) AIS-simulator control channel (WebSocket to an ais-simulator instance that can transmit fabricated tracks)
+alert http any any -> any any (msg:"AIS - ais-simulator control channel (fabricated-track injector)"; flow:established,to_server; http.uri; content:"ais-simulator"; nocase; classtype:policy-violation; reference:url,arxiv.org/abs/2602.16257; sid:2026071104; rev:1;)
+
+# 5) NMEA AIVDM burst to a non-standard high port (possible off-band AIS injection / simulator output)
+alert tcp any any -> $HOME_NET 2947 (msg:"AIS/GNSS - NMEA/AIVDM to gpsd port 2947 (possible spoofed position injection)"; flow:established,to_server; content:"!AIVDM"; nocase; classtype:protocol-command-decode; reference:url,arxiv.org/abs/2602.16257; sid:2026071105; rev:1;)

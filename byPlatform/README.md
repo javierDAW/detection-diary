@@ -15,14 +15,14 @@ Source of truth: each day's `README.md` frontmatter.
 | [android](./android/) | 4 |
 | [cloud-multi](./cloud-multi/) | 22 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
-| [iot](./iot/) | 4 |
+| [iot](./iot/) | 5 |
 | [linux](./linux/) | 27 |
 | [macos](./macos/) | 8 |
 | [microsoft-365](./microsoft-365/) | 1 |
 | [mobile](./mobile/) | 1 |
-| [network-edge](./network-edge/) | 22 |
+| [network-edge](./network-edge/) | 23 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
-| [ot-ics](./ot-ics/) | 6 |
+| [ot-ics](./ot-ics/) | 7 |
 | [saas](./saas/) | 1 |
 | [supply-chain](./supply-chain/) | 15 |
 | [vmware-esxi](./vmware-esxi/) | 2 |

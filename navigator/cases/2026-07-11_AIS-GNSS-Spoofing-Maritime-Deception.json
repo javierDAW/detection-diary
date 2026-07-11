@@ -1,0 +1,41 @@
+{
+  "name": "2026-07-11 — 2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "AIS & GNSS Spoofing at Sea: Maritime Positioning Deception (IFC June-2026 Surge + SeaSpoofFinder) — clusters: Multiple GNSS/AIS spoofing operators",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1565.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AIS & GNSS Spoofing at Sea: Maritime Positioning Deception (IFC June-2026 Surge "
+    },
+    {
+      "techniqueID": "T1557",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AIS & GNSS Spoofing at Sea: Maritime Positioning Deception (IFC June-2026 Surge "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

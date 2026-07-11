@@ -1,0 +1,41 @@
+title: AIS Static Identity Mismatch or Spoof-Cluster Membership
+id: 62d69693-2238-497c-9278-09243283d644
+status: experimental
+description: |
+  Detects an AIS record whose enriched attributes indicate identity falsification or
+  membership of a GNSS-spoofing cluster. Two enrichment fields are assumed from the
+  ingestion pipeline: MidFlagMismatch (true when the flag country implied by the MMSI
+  Maritime Identification Digits does not match the reported flag or ship-type
+  context) and SpoofClusterId (set when the record jump target coincides with a
+  Stage-2 spatial cluster of two or more vessels converging on a near-identical
+  position from a common source area, the SeaSpoofFinder final-potential-spoofing-event
+  criterion). Either condition flags a record as suspicious: the first is the
+  sanctions-evasion / identity-laundering tell, the second is the multi-vessel GNSS
+  spoofing footprint that a single-vessel jump filter cannot confirm. Complements the
+  kinematic-jump rule, which fires on the raw jump before clustering.
+references:
+  - https://arxiv.org/abs/2602.16257
+  - https://safety4sea.com/ifc-ais-deception-drives-surge-in-maritime-cyber-security-incidents/
+  - https://attack.mitre.org/techniques/T0830/
+author: Jarmi
+date: 2026/07/11
+tags:
+  - attack.impact
+  - attack.t0830
+  - attack.t0832
+logsource:
+  product: ais
+  service: ais_enriched
+detection:
+  selection_flag_mismatch:
+    MidFlagMismatch: true
+  selection_cluster:
+    SpoofClusterId|exists: true
+  condition: selection_flag_mismatch or selection_cluster
+falsepositives:
+  - Flag-of-convenience registration changes and second-registry vessels can trip
+    MidFlagMismatch; corroborate with registry data
+  - Dense anchorages where many vessels legitimately share a small area may seed
+    weak clusters; require the source-area separation test upstream
+
+level: high

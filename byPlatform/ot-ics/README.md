@@ -4,11 +4,12 @@
 
 # Platforms: ot-ics
 
-6 day(s) covering this platform.
+7 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-11 | AIS & GNSS Spoofing at Sea: Maritime Positioning Deception (IFC June-2026 Surge + SeaSpoofFinder) | Multiple GNSS/AIS spoofing operators | [`2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/`](../../days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/) |
 | 2026-07-04 | FUXA SCADA/HMI: dot-segment path-normalization auth bypass (CVE-2026-13207) leaks every OT role | Opportunistic ICS/OT scanners | [`2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/`](../../days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/) |
 | 2026-06-27 | Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038) | Unattributed — CVE-2025-67038 exploitation | [`2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/`](../../days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/) |
 | 2026-06-19 | Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles | Iran-nexus (unattributed) | [`2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/`](../../days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/) |

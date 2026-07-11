@@ -66,6 +66,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Miasma-unattributed](./miasma-unattributed/) | 1 |
 | [Microsoft Defender Security Research (vulnerability disclosure, no threat actor)](./microsoft-defender-security-research-vulnerability-disclosure-no-threat-actor/) | 1 |
 | [Mini Shai-Hulud](./mini-shai-hulud/) | 1 |
+| [Multiple GNSS/AIS spoofing operators](./multiple-gnss-ais-spoofing-operators/) | 1 |
 | [NFCMultiPay](./nfcmultipay/) | 1 |
 | [Nexcorium](./nexcorium/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |

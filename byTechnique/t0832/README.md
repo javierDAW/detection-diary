@@ -4,10 +4,11 @@
 
 # Techniques: T0832
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-11 | AIS & GNSS Spoofing at Sea: Maritime Positioning Deception (IFC June-2026 Surge + SeaSpoofFinder) | Multiple GNSS/AIS spoofing operators | [`2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/`](../../days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/) |
 | 2026-06-27 | Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038) | Unattributed — CVE-2025-67038 exploitation | [`2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/`](../../days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/) |
 | 2026-05-03 | BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026) | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026/05/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |

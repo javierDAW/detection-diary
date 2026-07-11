@@ -1,0 +1,45 @@
+title: AIS Placeholder MMSI or Generic Vessel Label (Identity Spoofing Tell)
+id: 9bc126c4-90f8-459f-ab6c-5d34ef302765
+status: experimental
+description: |
+  Detects AIS static/voyage records (message type 5) or position records carrying a
+  placeholder MMSI or a generic, non-unique vessel label, tells of AIS identity
+  falsification and of injected or simulated AIS tracks. MMSI is nominally a unique
+  identifier, yet spoofed and simulator-generated records frequently use MMSIs whose
+  string representation ends in "000000" or "999999", or advertise generic names such
+  as "NATO SHIP" or "FRENCH WARSHIP" (SeaSpoofFinder excludes exactly these as
+  non-authentic). The same shapes appear in dark-fleet identity laundering, where a
+  vessel adopts another ship identity or a fabricated one to defeat sanctions and
+  observation (IFC AOR, 2026-07-07: 40 June-2026 incidents, all false AIS). Matches a
+  decoded-AIS log; baseline any legitimate SAR/aids-to-navigation broadcasts.
+references:
+  - https://arxiv.org/abs/2602.16257
+  - https://safety4sea.com/ifc-ais-deception-drives-surge-in-maritime-cyber-security-incidents/
+  - https://attack.mitre.org/techniques/T0856/
+author: Jarmi
+date: 2026/07/11
+tags:
+  - attack.impact
+  - attack.t0856
+  - attack.t0832
+logsource:
+  product: ais
+  service: ais_static
+detection:
+  selection_placeholder_mmsi:
+    Mmsi|endswith:
+      - '000000'
+      - '999999'
+  selection_generic_name:
+    ShipName|contains:
+      - 'NATO SHIP'
+      - 'FRENCH WARSHIP'
+      - 'SAMPLE'
+      - 'TEST TEST'
+  condition: selection_placeholder_mmsi or selection_generic_name
+falsepositives:
+  - Base stations, SAR aircraft and aids-to-navigation may use structured MMSIs;
+    scope to vessel-class transponders
+  - Sea-trial or simulator traffic on a test network
+
+level: medium

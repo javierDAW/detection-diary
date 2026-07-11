@@ -1,0 +1,21 @@
+// Title:       AIS spoof cluster convergence (Stage 2 final potential spoofing event)
+// Id:          ais-spoof-cluster-convergence
+// MITRE:       T0830, T0832
+// Reference:   arXiv 2602.16257 SeaSpoofFinder (two-vessel clustering criterion)
+// Author:      Jarmi
+// Date:        2026-07-11
+// Tested on:   Microsoft Sentinel custom table AisPositionJump_CL (Stage-1 PSE output)
+// FP notes:    Dense anchorages and port approaches can seed weak clusters. Requires
+//              at least two distinct MMSIs converging on a near-identical position in a
+//              short window - the multi-receiver spoofing footprint, not single-vessel noise.
+let win = 15m;              // convergence window
+let cell_deg = 0.0001;      // ~10 m destination cell at the equator
+let min_vessels = 2;        // at least two vessels to a common spoofed position
+AisPositionJump_CL
+| where TimeGenerated > ago(24h)
+| extend dest_lat_cell = round(Latitude_d / cell_deg) * cell_deg
+| extend dest_lon_cell = round(Longitude_d / cell_deg) * cell_deg
+| summarize vessels = dcount(Mmsi_s), mmsis = make_set(Mmsi_s, 20), events = count()
+    by dest_lat_cell, dest_lon_cell, bin(TimeGenerated, win)
+| where vessels >= min_vessels
+| order by vessels desc, events desc
