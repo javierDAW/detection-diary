@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">NoName057(16) DDoSia volunteer DDoS botnet kill chain</title>
+<desc id="d">Two-lane diagram. Left lane is the participation and impact chain: a volunteer is recruited on Telegram via the DDosiabot and issued a bcrypt client_id.txt, downloads the d.zip Go client and runs Go-Stresser from a user path, the client authenticates to a raw-IP C2 with POST /client/login carrying User-Hash and Client-Hash headers over plain HTTP port 80, pulls an AES-GCM encrypted target list with GET /client/get_targets, joins a distributed Layer-7 flood with cache-busting random values, and the victim government, transport, finance or media service is degraded; the defender then applies behavioral C2 and volumetric detection. Right lane is the operator side: NoName057(16) develops and recompiles the client, stands up short-lived tiered C2 with a roughly nine day lifespan, selects targets reactively to geopolitics, incentivizes volunteers with TON crypto rewards, and absorbs law enforcement pressure such as Operation Eastwood and the July 2026 Palencia arrest. Detection anchors are the /client/login and /client/get_targets handshake, the Go-http-client user agent and Client-Hash and User-Hash headers, the on-disk kit, and the victim-side rate spike with cache-buster parameters.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-other" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">NoName057(16) and DDoSia - The Volunteer DDoS Botnet</text>
+<text class="meta" x="20" y="58">Source: Sekoia TDR + Recorded Future + CISA AA25-343A - Why today: Palencia arrest 2026-07-07 - Class: hacktivism - Day 76</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="34" y="104">PARTICIPATION / IMPACT - volunteer, client, victim</text>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelR" x="464" y="104">OPERATOR SIDE - NoName057(16), C2, recruitment</text>
+
+<!-- Left stage 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Volunteer recruited on Telegram</text>
+<text class="sub" x="40" y="168">@DDosiabot registers user, issues identity</text>
+<text class="sub" x="40" y="184">TON crypto wallet for proportional rewards</text>
+<text class="sub" x="40" y="200">Consenting participant, not a compromise</text>
+<text class="mono" x="40" y="226">client_id.txt (bcrypt $2a$16$) + help.txt</text>
+<text class="mono" x="40" y="244">T1585.001 establish accounts</text>
+
+<!-- Left stage 2 -->
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">Download and run the Go client</text>
+<text class="sub" x="40" y="318">d.zip = six per-OS clients (win/linux/mac)</text>
+<text class="sub" x="40" y="334">client_id.txt placed beside the binary</text>
+<text class="sub" x="40" y="350">Runs from a user-writable path, no install</text>
+<text class="mono" x="40" y="376">Go-Stresser | PID n | (c) NoName057(16)</text>
+<text class="mono" x="40" y="394">T1204.002 user execution</text>
+
+<!-- Left stage 3 -->
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">Authenticate to C2</text>
+<text class="sub" x="40" y="468">POST /client/login to a raw IPv4, no DNS</text>
+<text class="sub" x="40" y="484">Plain HTTP on TCP 80 (historically)</text>
+<text class="sub" x="40" y="500">Headers: User-Hash + Client-Hash</text>
+<text class="mono" x="40" y="526">User-Agent: Go-http-client/1.1 -> token</text>
+<text class="mono" x="40" y="544">T1071.001 web protocols</text>
+
+<!-- Left stage 4 -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Pull encrypted target list</text>
+<text class="sub" x="40" y="618">GET /client/get_targets with Time=token</text>
+<text class="sub" x="40" y="634">data field = base64 AES-GCM ciphertext</text>
+<text class="sub" x="40" y="650">Key from token + User-Hash (conceals list)</text>
+<text class="mono" x="40" y="676">{token, data} -> targets + randoms JSON</text>
+<text class="mono" x="40" y="694">T1573.001 symmetric crypto channel</text>
+
+<!-- Left stage 5 -->
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Distributed Layer-7 flood</text>
+<text class="sub" x="40" y="768">Many volunteers hit the same URIs at once</text>
+<text class="sub" x="40" y="784">randoms feed cache-busting single-use vals</text>
+<text class="sub" x="40" y="800">Expensive login/search paths targeted</text>
+<text class="mono" x="40" y="826">body: login=$_1%40gmail.com&amp;password=$-1</text>
+<text class="mono" x="40" y="844">T1498.001 direct network flood</text>
+
+<!-- Left stage 6 -->
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Victim service degraded / offline</text>
+<text class="sub" x="40" y="918">Gov ~41%, transport ~12%, media ~10%</text>
+<text class="sub" x="40" y="934">2026: UK CNI, Denmark + Greenland</text>
+<text class="sub" x="40" y="950">Outage plus the Telegram victory claim</text>
+<text class="mono" x="40" y="976">availability impact (verify no 2nd stage)</text>
+<text class="mono" x="40" y="994">T1499.002 service exhaustion flood</text>
+
+<!-- Left stage 7 -->
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Defender: behavioral detection</text>
+<text class="sub" x="40" y="1068">Match /client/* handshake + custom headers</text>
+<text class="sub" x="40" y="1084">Kit on disk; host high fan-out; L7 spike</text>
+<text class="sub" x="40" y="1100">Pull fresh C2 feed, short TTL blocks</text>
+<text class="mono" x="40" y="1126">detect the protocol, not the hash/IP</text>
+<text class="mono" x="40" y="1144">Sigma + KQL + YARA + Suricata</text>
+
+<!-- Right op 1 -->
+<rect class="opK" x="460" y="125" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">NoName057(16) operators</text>
+<text class="sub" x="470" y="173">Pro-Kremlin nationalist hacktivist group</text>
+<text class="sub" x="470" y="189">Self-branding, publicity-driven claims</text>
+<text class="sub" x="470" y="205">Overlaps CARR / Z-Pentest personas</text>
+<text class="sub" x="470" y="221">Attribution high; individual volunteers low</text>
+<text class="mono" x="470" y="251">Russia-nexus; Telegram front + crypto</text>
+<text class="mono" x="470" y="269">runs the DDoSia project</text>
+
+<!-- Right op 2 -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">Develop and recompile client</text>
+<text class="sub" x="470" y="343">Cross-platform Go client (6 targets)</text>
+<text class="sub" x="470" y="359">AES-GCM target list to conceal from CTI</text>
+<text class="sub" x="470" y="375">Stripped Go build resists decompilation</text>
+<text class="sub" x="470" y="391">Frequent rebuilds -> hashes rotate</text>
+<text class="mono" x="470" y="421">d_windows_amd64.exe, d_linux_amd64, ...</text>
+<text class="mono" x="470" y="439">T1587.001 develop capabilities</text>
+
+<!-- Right op 3 -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">Short-lived tiered C2 infra</text>
+<text class="sub" x="470" y="513">Tier-1 public servers answer on port 80</text>
+<text class="sub" x="470" y="529">Average lifespan ~9 days, then rotate</text>
+<text class="sub" x="470" y="545">nginx/1.18.0 banner; /client/* endpoints</text>
+<text class="sub" x="470" y="561">IP allow/deny lists age out by design</text>
+<text class="mono" x="470" y="591">pull live C2 from ThreatFox / SEKOIA</text>
+<text class="mono" x="470" y="609">T1583.003 acquire VPS infra</text>
+
+<!-- Right op 4 -->
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">Geopolitics-reactive targeting</text>
+<text class="sub" x="470" y="683">Target list shifts same-day with events</text>
+<text class="sub" x="470" y="699">NATO eastern flank + Ukraine primary</text>
+<text class="sub" x="470" y="715">Retaliates to arms deals, elections, votes</text>
+<text class="sub" x="470" y="731">Education sites hit during exam periods</text>
+<text class="mono" x="470" y="761">target = political signal, not just outage</text>
+<text class="mono" x="470" y="779">distributes via /client/get_targets</text>
+
+<!-- Right op 5 -->
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Incentivize the volunteer crowd</text>
+<text class="sub" x="470" y="853">TON crypto rewards by contribution</text>
+<text class="sub" x="470" y="869">Leaderboards + per-account statistics</text>
+<text class="sub" x="470" y="885">Low-skill users become a rotating botnet</text>
+<text class="sub" x="470" y="901">Payment rail = incentive and intel lever</text>
+<text class="mono" x="470" y="931">wallet clustering can map the affiliates</text>
+<text class="mono" x="470" y="949">crowdsourcing is the real innovation</text>
+
+<!-- Right op 6 -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">Law-enforcement pressure</text>
+<text class="sub" x="470" y="1023">Operation Eastwood (Jul 2025): arrests</text>
+<text class="sub" x="470" y="1039">Palencia arrest 2026-07-07 (FBI tip-off)</text>
+<text class="sub" x="470" y="1055">Yet target lists grew ~80% after Eastwood</text>
+<text class="sub" x="470" y="1071">Resilient: disrupt infra + recruitment rail</text>
+<text class="mono" x="470" y="1101">takedowns hit people, not the program</text>
+<text class="mono" x="470" y="1119">CTI: track C2 churn + payment rails</text>
+
+<!-- cross-lane arrows (operator side influences participation side) -->
+<path class="arrowX" d="M460 202 L425 187" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 372 L425 337" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 542 L425 487" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 712 L425 660" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 882 L425 800" marker-end="url(#ah)" color="#7a3a7a"/>
+
+<!-- participation vertical flow -->
+<path class="arrow" d="M227 255 L227 270" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 405 L227 420" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 555 L227 570" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 705 L227 720" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 855 L227 870" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 1005 L227 1020" marker-end="url(#ah)" color="#2a4a6a"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1198">Detection anchors</text>
+<text class="footerT" x="34" y="1218">C2: POST /client/login + GET /client/get_targets; Go-http-client/1.1 UA; Client-Hash and User-Hash ($2a$16$) headers; raw-IP HTTP/80.</text>
+<text class="footerT" x="34" y="1236">Host: client_id.txt / d.zip / d_*.exe on disk; uid folder; single host high outbound fan-out to many remotes.</text>
+<text class="footerT" x="34" y="1254">Victim: per-URI rate spike + wide source fan-in + cache-buster params. Indicators decay: pull fresh C2 (~9-day churn).</text>
+</svg>

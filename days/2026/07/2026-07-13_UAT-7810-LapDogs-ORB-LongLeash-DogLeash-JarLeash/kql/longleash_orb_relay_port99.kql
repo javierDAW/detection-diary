@@ -1,0 +1,17 @@
+// Title:       LONGLEASH ORB relay - outbound TLS to port 99 / UAT-7810 infra
+// Id:          uat7810-longleash-relay-port99
+// MITRE:       T1090.003, T1573.002
+// Reference:   https://blog.talosintelligence.com/uat-7810/
+// Author:      Jarmi
+// Date:        2026-07-13
+// Tested on:   Microsoft Defender for Endpoint (Linux) DeviceNetworkEvents
+// FP notes:    Port 99 is rarely used legitimately; combined with an embedded/router
+//              source this is high-signal. IP list is a decaying reference anchor - the
+//              durable behaviour is outbound TLS on TCP/99 from a networking appliance.
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemotePort == 99
+     or RemoteIP in ("194.233.92.26","217.15.160.247","217.15.164.147","95.182.100.231")
+| project Timestamp, DeviceId, DeviceName, InitiatingProcessFileName,
+          InitiatingProcessFolderPath, RemoteIP, RemotePort, RemoteUrl, InitiatingProcessAccountName
+| order by Timestamp desc

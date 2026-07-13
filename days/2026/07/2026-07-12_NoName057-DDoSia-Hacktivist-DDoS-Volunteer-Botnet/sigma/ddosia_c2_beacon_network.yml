@@ -1,0 +1,40 @@
+title: DDoSia Client C2 Beacon To Raw IP On Port 80
+id: 80f29a4a-4f53-4d26-8fb6-0fe591b18669
+status: experimental
+description: |
+  Detects the network side of a DDoSia client's C2 handshake: an unsigned Go client
+  (d_windows_amd64.exe / d_windows_arm64.exe) initiating an outbound HTTP connection
+  to a remote host on TCP/80. The DDoSia client authenticates with POST /client/login
+  and then polls GET /client/get_targets against a raw IPv4 Tier-1 C2 (historically
+  plain HTTP on port 80, no DNS). Network_connection telemetry lacks the URI, so this
+  rule keys on the client image plus destination port; correlate with a proxy/Suricata
+  rule matching the /client/login and /client/get_targets URIs to confirm. Tier-1
+  servers rotate roughly every 9 days, so an IP allow/deny list ages out - detect the
+  behavior. Reference: Sekoia TDR; Recorded Future Anatomy of DDoSia.
+references:
+  - https://www.recordedfuture.com/research/anatomy-of-ddosia
+  - https://blog.sekoia.io/following-noname05716-ddosia-projects-targets
+  - https://attack.mitre.org/techniques/T1071/001/
+author: Jarmi
+date: 2026/07/12
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.impact
+  - attack.t1498.001
+logsource:
+  product: windows
+  category: network_connection
+detection:
+  selection:
+    Initiated: 'true'
+    DestinationPort: 80
+    Image|endswith:
+      - '\d_windows_amd64.exe'
+      - '\d_windows_arm64.exe'
+  condition: selection
+falsepositives:
+  - Rare legitimate software matching the client image names; confirm with the URI
+    match and the destination being a raw IP with no prior DNS resolution
+
+level: high

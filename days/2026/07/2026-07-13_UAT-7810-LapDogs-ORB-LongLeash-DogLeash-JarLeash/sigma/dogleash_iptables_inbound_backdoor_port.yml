@@ -1,0 +1,41 @@
+title: Inbound Firewall Allow Rule Opening A Backdoor Listener Port (DOGLEASH)
+id: 6b535fd4-3f09-48a1-9743-a9949cf940ce
+status: experimental
+description: |
+  Detects the UAT-7810 DOGLEASH install step that adds an iptables ACCEPT rule for
+  inbound TCP to the hardcoded port that the passive backdoor binds and listens on.
+  DOGLEASH is a passive (server-side) backdoor: rather than beaconing out, it waits
+  for the operator to connect, so the loader must punch a hole in the local firewall.
+  An iptables/nftables INPUT ACCEPT for a specific high dport executed from a shell on
+  a networking appliance - especially near a fresh download - is high signal. Push any
+  per-port threshold to your SIEM. Reference: Cisco Talos UAT-7810.
+references:
+  - https://blog.talosintelligence.com/uat-7810/
+  - https://attack.mitre.org/techniques/T1562/004/
+author: Jarmi
+date: 2026/07/13
+tags:
+  - attack.defense-evasion
+  - attack.t1562.004
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  selection_iptables:
+    Image|endswith:
+      - '/iptables'
+      - '/ip6tables'
+      - '/nft'
+    CommandLine|contains|all:
+      - 'INPUT'
+      - 'ACCEPT'
+  selection_proto:
+    CommandLine|contains:
+      - '--dport'
+      - 'tcp dport'
+      - '-p tcp'
+  condition: selection_iptables and selection_proto
+falsepositives:
+  - Legitimate firewall administration; correlate with a preceding payload download or
+    an unexpected process becoming a listener on the newly opened port
+level: medium

@@ -1,0 +1,25 @@
+# NoName057(16) DDoSia - client C2 handshake and participation
+# Author: Jarmi
+# Date:   2026-07-12
+# Reference: Sekoia TDR DDoSia analysis; Recorded Future Anatomy of DDoSia; CISA AA25-343A
+# Notes: The DDoSia C2 handshake was historically plain HTTP on TCP/80 to a raw IPv4
+#        Tier-1 server (no DNS), so these HTTP rules see it in cleartext. Operators may
+#        migrate to TLS - if so, detection shifts to JA4/flow heuristics and the host
+#        rules. Tier-1 C2 IPs rotate (~9-day lifespan); match the URIs and headers, not
+#        the address. The historical-IP rule (last) is a low-priority reference anchor,
+#        not a live blocklist entry. SIDs 2026071201-2026071205, rev:1. No custom vars.
+
+# 1) DDoSia client authentication: POST /client/login carrying the custom User-Hash header
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"DDoSia - client C2 login (POST /client/login + User-Hash header)"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/client/login"; startswith; http.header; content:"User-Hash"; nocase; classtype:trojan-activity; reference:url,blog.sekoia.io/following-noname05716-ddosia-projects-targets; sid:2026071201; rev:1;)
+
+# 2) DDoSia client target pull: GET /client/get_targets
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"DDoSia - client pulls target list (GET /client/get_targets)"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/client/get_targets"; startswith; classtype:trojan-activity; reference:url,blog.sekoia.io/following-noname05716-ddosia-projects-targets; sid:2026071202; rev:1;)
+
+# 3) DDoSia custom Client-Hash header (SHA256-of-UID:PID) on an outbound HTTP request
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"DDoSia - custom Client-Hash header on outbound HTTP (client beacon)"; flow:established,to_server; http.header; content:"Client-Hash|3a|"; nocase; http.header; content:"User-Hash|3a| $2a$16$"; nocase; classtype:trojan-activity; reference:url,blog.sekoia.io/following-noname05716-ddosia-projects-targets; sid:2026071203; rev:1;)
+
+# 4) DDoSia Go client User-Agent to a client/* C2 endpoint
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"DDoSia - Go-http-client agent to /client C2 endpoint"; flow:established,to_server; http.user_agent; content:"Go-http-client/1.1"; http.uri; content:"/client/"; startswith; classtype:trojan-activity; reference:url,www.recordedfuture.com/research/anatomy-of-ddosia; sid:2026071204; rev:1;)
+
+# 5) HISTORICAL reference anchor - 2023 Tier-1 C2 IP (DECAYED, not a live blocklist entry)
+alert http $HOME_NET any -> [94.140.114.239] 80 (msg:"DDoSia - connection to HISTORICAL 2023 Tier-1 C2 (reference anchor, verify freshness)"; flow:established,to_server; http.uri; content:"/client/"; classtype:trojan-activity; reference:url,blog.sekoia.io/following-noname05716-ddosia-projects-targets; sid:2026071205; rev:1;)

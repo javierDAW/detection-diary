@@ -1,0 +1,23 @@
+// Title:       DDoSia participation - single host high outbound fan-out (L7 flood)
+// Id:          ddosia-host-flood-fanout
+// MITRE:       T1498.001, T1499.002
+// Reference:   https://www.recordedfuture.com/research/anatomy-of-ddosia
+// Author:      Jarmi
+// Date:        2026-07-12
+// Tested on:   Microsoft Defender XDR DeviceNetworkEvents
+// FP notes:    Web crawlers, vuln scanners, CDN edge nodes and load-test agents also
+//              fan out. Tune the distinct-remote threshold <add_known_fanout_baseline>
+//              to the host role and exclude sanctioned scanners. Best used to confirm a
+//              host already flagged by the C2-handshake or kit-drop queries.
+let window = 10m;
+let min_distinct_remotes = 200;   // tune per environment baseline
+DeviceNetworkEvents
+| where Timestamp > ago(24h)
+| where ActionType == "ConnectionSuccess"
+| where RemotePort in (80, 443)
+| where not(ipv4_is_private(RemoteIP))
+| summarize DistinctRemotes = dcount(RemoteIP), Conns = count(),
+            Procs = make_set(InitiatingProcessFileName, 8)
+          by DeviceId, DeviceName, bin(Timestamp, window)
+| where DistinctRemotes > min_distinct_remotes
+| order by DistinctRemotes desc

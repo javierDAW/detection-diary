@@ -1,0 +1,38 @@
+title: Outbound Connection To ORB Relay TLS Server On Port 99 (LONGLEASH)
+id: 31a1a512-117c-4e2c-92bc-779ecb84ff3c
+status: experimental
+description: |
+  Detects a networking appliance / Linux host connecting outbound to a UAT-7810 ORB
+  relay node: a TLS service on TCP/99 (non-standard) hosted on the operator VPS set,
+  or a connection to one of the four documented payload/relay IPv4 addresses. LONGLEASH
+  (ff-agent nz1.0) can act as an intermediate C2, relaying between the origin C2 and
+  peers, and the operator servers exposed a self-signed TLS server on port 99 with the
+  subject CN=exploit. Because ORB IPs rotate, the durable anchor is TLS on the unusual
+  port 99 outbound from an embedded device; the IP list is a reference anchor. Confirm
+  with the TLS cert subject (Suricata) and host artifacts. Reference: Cisco Talos UAT-7810.
+references:
+  - https://blog.talosintelligence.com/uat-7810/
+  - https://attack.mitre.org/techniques/T1090/003/
+author: Jarmi
+date: 2026/07/13
+tags:
+  - attack.command-and-control
+  - attack.t1090.003
+  - attack.t1573.002
+logsource:
+  product: linux
+  category: network_connection
+detection:
+  selection_port:
+    DestinationPort: 99
+  selection_ip:
+    DestinationIp:
+      - '194.233.92.26'
+      - '217.15.160.247'
+      - '217.15.164.147'
+      - '95.182.100.231'
+  condition: selection_port or selection_ip
+falsepositives:
+  - Rare legitimate services on TCP/99; the combination of an embedded/router source
+    and an outbound TLS session on port 99 is the discriminator
+level: medium

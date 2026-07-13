@@ -1,0 +1,19 @@
+// Title:       DDoSia volunteer kit dropped (client_id.txt / d.zip / d_*.exe)
+// Id:          ddosia-kit-dropped
+// MITRE:       T1204.002
+// Reference:   https://blog.sekoia.io/following-noname05716-ddosia-projects-targets
+// Author:      Jarmi
+// Date:        2026-07-12
+// Tested on:   Microsoft Defender XDR DeviceFileEvents
+// FP notes:    client_id.txt is a strong artifact next to a d_*.exe binary; the
+//              per-OS client filenames are fixed across builds even as hashes rotate.
+//              Scope to user-writable folders to cut noise.
+let kit_files = dynamic(["client_id.txt","d.zip","d_windows_amd64.exe","d_windows_arm64.exe",
+                         "d_linux_amd64","d_linux_arm","d_mac_amd64","d_mac_arm64"]);
+DeviceFileEvents
+| where Timestamp > ago(7d)
+| where ActionType in ("FileCreated","FileRenamed","FileModified")
+| where FileName in~ (kit_files)
+| project Timestamp, DeviceId, DeviceName, ActionType, FileName, FolderPath,
+          InitiatingProcessFileName, InitiatingProcessAccountName, SHA256
+| order by Timestamp desc

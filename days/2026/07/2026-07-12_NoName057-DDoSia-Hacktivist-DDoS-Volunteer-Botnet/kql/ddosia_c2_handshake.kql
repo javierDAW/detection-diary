@@ -1,0 +1,18 @@
+// Title:       DDoSia C2 handshake (/client/login, /client/get_targets)
+// Id:          ddosia-c2-handshake
+// MITRE:       T1071.001, T1573.001
+// Reference:   https://blog.sekoia.io/following-noname05716-ddosia-projects-targets
+// Author:      Jarmi
+// Date:        2026-07-12
+// Tested on:   Microsoft Defender XDR DeviceNetworkEvents (RemoteUrl populated by network protection)
+// FP notes:    RemoteUrl is only populated for some connection types; where it is
+//              absent, fall back to ddosia_host_flood_fanout.kql. The /client/* paths
+//              plus a Go-http-client agent to a raw IP are high-signal. C2 IPs rotate
+//              (~9-day lifespan) so match the path, not the address.
+DeviceNetworkEvents
+| where Timestamp > ago(24h)
+| where RemotePort in (80, 443)
+| where RemoteUrl has "/client/get_targets" or RemoteUrl has "/client/login"
+| project Timestamp, DeviceId, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath,
+          RemoteIP, RemotePort, RemoteUrl, InitiatingProcessAccountName
+| order by Timestamp desc
