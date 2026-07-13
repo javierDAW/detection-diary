@@ -1,0 +1,18 @@
+// Title:       DOGLEASH install - iptables ACCEPT opening a passive backdoor port
+// Id:          uat7810-dogleash-iptables-open
+// MITRE:       T1562.004
+// Reference:   https://blog.talosintelligence.com/uat-7810/
+// Author:      Jarmi
+// Date:        2026-07-13
+// Tested on:   Microsoft Defender for Endpoint (Linux) DeviceProcessEvents
+// FP notes:    Legitimate firewall admin also runs iptables; the discriminator is an
+//              INPUT ACCEPT for a specific --dport shortly after a payload download,
+//              followed by a new listener on that port.
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName in~ ("iptables","ip6tables","nft")
+| where ProcessCommandLine has "INPUT" and ProcessCommandLine has "ACCEPT"
+| where ProcessCommandLine has_any ("--dport","dport","-p tcp")
+| project Timestamp, DeviceId, DeviceName, AccountName, ProcessCommandLine,
+          InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc

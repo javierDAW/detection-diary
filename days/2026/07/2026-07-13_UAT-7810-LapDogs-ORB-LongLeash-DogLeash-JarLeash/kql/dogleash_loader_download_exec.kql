@@ -1,0 +1,18 @@
+// Title:       DOGLEASH loader - download from UAT-7810 VPS then execute (Linux)
+// Id:          uat7810-dogleash-loader-download-exec
+// MITRE:       T1105, T1059.004
+// Reference:   https://blog.talosintelligence.com/uat-7810/
+// Author:      Jarmi
+// Date:        2026-07-13
+// Tested on:   Microsoft Defender for Endpoint (Linux) DeviceProcessEvents
+// FP notes:    The four IPs decay - the durable signal is a shell downloader hitting a
+//              raw dotted-quad on port 8088/2222 on a server/appliance. Correlate with
+//              a subsequent chmod +x and execution of the staged file.
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName in~ ("wget","curl","tftp","ftpget","busybox")
+| where ProcessCommandLine has_any ("194.233.92.26","217.15.160.247","217.15.164.147","95.182.100.231")
+     or ProcessCommandLine has_any (":8088/",":2222/")
+| project Timestamp, DeviceId, DeviceName, AccountName, FileName, ProcessCommandLine,
+          InitiatingProcessFileName, InitiatingProcessCommandLine
+| order by Timestamp desc

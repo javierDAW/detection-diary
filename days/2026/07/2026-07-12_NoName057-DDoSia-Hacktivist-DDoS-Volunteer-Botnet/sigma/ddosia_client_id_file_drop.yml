@@ -1,0 +1,39 @@
+title: DDoSia Volunteer Identity File Drop (client_id.txt / d.zip)
+id: a87244c2-840d-49aa-9282-08b66b9815ca
+status: experimental
+description: |
+  Detects the on-disk artifacts of a host being enrolled into the NoName057(16)
+  DDoSia volunteer botnet. After registering with the @DDosiabot Telegram bot, a
+  volunteer receives client_id.txt (a bcrypt-form identity beginning $2a$16$) that
+  must be placed next to the client binary, plus the d.zip archive that carries the
+  six per-OS Go clients (d_windows_amd64.exe, d_linux_amd64, d_mac_arm64, ...). The
+  creation of client_id.txt or d.zip on a corporate endpoint indicates an insider or
+  a compromised host preparing to participate in hacktivist DDoS. Pair with the
+  process-execution and C2-beacon rules to confirm. Reference: Sekoia TDR DDoSia
+  analysis; CISA AA25-343A.
+references:
+  - https://blog.sekoia.io/following-noname05716-ddosia-projects-targets
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/aa25-343a
+  - https://attack.mitre.org/techniques/T1204/002/
+author: Jarmi
+date: 2026/07/12
+tags:
+  - attack.execution
+  - attack.t1204.002
+  - attack.impact
+  - attack.t1498.001
+logsource:
+  product: windows
+  category: file_event
+detection:
+  selection_id:
+    TargetFilename|endswith: '\client_id.txt'
+  selection_zip:
+    TargetFilename|endswith: '\d.zip'
+  condition: selection_id or selection_zip
+falsepositives:
+  - A legitimately named client_id.txt from unrelated software; scope by the sibling
+    d_*.exe binary and the C2 beacon before escalating
+  - Security researchers detonating DDoSia in a sanctioned lab
+
+level: medium

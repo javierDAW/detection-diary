@@ -1,0 +1,20 @@
+// Title:       DDoSia victim-side Layer-7 flood (edge / IIS logs)
+// Id:          ddosia-victim-l7-flood
+// MITRE:       T1498.001, T1499.002
+// Reference:   https://www.radware.com/cyberpedia/ddos-attacks/noname057(16)/
+// Author:      Jarmi
+// Date:        2026-07-12
+// Tested on:   Microsoft Sentinel W3CIISLog (adapt to CommonSecurityLog / AzureDiagnostics WAF)
+// FP notes:    Flash-crowd events and legitimate Go clients also raise Go-http-client
+//              volume. DDoSia floods use configured/randomized headers for the actual
+//              requests, so this leans volumetric: a sharp requests-per-minute spike to
+//              a targeted URI from a wide source-IP spread. Cross-check the target host
+//              against the group's Telegram-published target list.
+let spike_rpm = 1000;   // per-URI requests-per-minute floor; tune to normal peak
+W3CIISLog
+| where TimeGenerated > ago(6h)
+| summarize Requests = count(), Sources = dcount(cIP),
+            GoAgent = countif(csUserAgent has "Go-http-client")
+          by csUriStem, bin(TimeGenerated, 1m)
+| where Requests > spike_rpm and Sources > 50
+| order by Requests desc

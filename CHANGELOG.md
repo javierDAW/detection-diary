@@ -1,3 +1,39 @@
+## 2026.07.13 — Day 77 — UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH
+
+### Added
+- `days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/` — China-nexus actor UAT-7810 compromises unpatched Ruckus / SOHO edge devices and turns them into an Operational Relay Box (LapDogs) network rented by secondary China-nexus APTs (e.g. UAT-5918). Cisco Talos (2026-07-07) disclosed a new SHORTLEASH successor LONGLEASH (ff-agent nz1.0) plus two new families — C passive backdoor DOGLEASH and Java admin backdoor JARLEASH — and a MIPS test binary LEASHTEST. Monday espionage rotation, slot #1 (APT state-nation); repo's first UAT-7810 / ORB case.
+- Sigma (3): `dogleash_loader_download_from_raw_ip.yml` — process_creation, shell downloader to a raw IP on 8088/2222; `dogleash_iptables_inbound_backdoor_port.yml` — process_creation, iptables INPUT ACCEPT for the backdoor port; `longleash_tls_relay_outbound_port99.yml` — network_connection, outbound TLS to port 99 / ORB infra.
+- KQL (4): `dogleash_loader_download_exec.kql` — Defender-Linux downloader to UAT-7810 infra; `dogleash_iptables_backdoor_port.kql` — iptables ACCEPT for a dport; `longleash_orb_relay_port99.kql` — outbound to port 99 / VPS IPs; `uat7810_known_malware_hashes.kql` — fleet hash retro-hunt.
+- YARA (1 file, 3 rules): `uat7810_leash_suite.yar` — ff-agent/nz1.0 + Chrome-122 decoy (LONGLEASH), iot-test (LEASHTEST), loader-script + CN=exploit cert.
+- Suricata (1 file, 5 sids): `uat7810_orb.rules` — CN=exploit / O=exploit TLS cert subject, HTTP payload fetch on 8088/2222, Chrome-122 decoy UA to a non-standard port, VPS IP reference anchor.
+- PEAK hunts (3): ORB relay-node backdoor triage; DOGLEASH passive-backdoor host; UAT-7810 infrastructure tracking by cert / port topology.
+- `iocs.csv` (95 entries) — 4 CVEs, 4 VPS IPs + staging URLs, TLS cert fingerprint/subject, and the full LONGLEASH / DOGLEASH (multi-arch) / JARLEASH / LEASHTEST hash set. `kev.md` — 1/4 CVEs on CISA KEV (CVE-2023-25717 Ruckus RCE).
+- `kill_chain.svg` — template A, canonical palette, acc-espionage accent; left lane victim/relay node, right lane operator/ORB infrastructure; behavioral detection anchors.
+
+### Pedagogy
+- You cannot hash your way out of an ORB: per-architecture / per-victim recompilation yields near-zero shared hashes — detect internal names (ff-agent/nz1.0/iot-test), the CN=exploit cert, and behaviour.
+- Passive backdoors invert telemetry: DOGLEASH listens behind an operator-added iptables ACCEPT rule instead of beaconing — instrument inbound-allow rules and listener births on edge devices.
+- Match topology, not address: ORB infra rotates; the port-99 TLS + 8088/2222 staging + exploit-themed cert co-occurrence is the durable selector.
+- Capture memory before you kill: DOGLEASH's default branch executes code in memory and LONGLEASH self-cleans on tamper.
+
+## 2026.07.12 — Day 76 — NoName057(16) & DDoSia: The Volunteer DDoS Botnet
+
+### Added
+- `days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/` — NoName057(16)'s crowdsourced DDoS toolkit DDoSia: Telegram-recruited volunteers run a cross-platform Go client that authenticates to a rotating C2, pulls an AES-GCM-encrypted target list, and joins Layer-7 floods. Why today: sustained 2026 campaign (UK NCSC Jan-2026; Denmark/Greenland after the 24-Mar-2026 snap election) plus the 2026-07-07 Palencia arrest of a CARR/Z-Pentest affiliate. Repo's first case in the hacktivism / influence-ops slot (#17); weekend auto-rescue (longest-gap, tie broken by freshness).
+- Sigma (3): `ddosia_client_id_file_drop.yml` — file_event, client_id.txt/d.zip kit; `ddosia_client_process_execution.yml` — process_creation, d_windows_*.exe from user path; `ddosia_c2_beacon_network.yml` — network_connection, client image to TCP/80.
+- KQL (4): `ddosia_c2_handshake.kql` — /client/login + /client/get_targets; `ddosia_kit_dropped.kql` — DeviceFileEvents kit files; `ddosia_host_flood_fanout.kql` — host high outbound fan-out; `ddosia_victim_l7_flood.kql` — victim-side per-URI rate spike (W3CIISLog).
+- YARA (1 file, 3 rules): `ddosia_client.yar` — Go client protocol strings, decrypted target-config fields, volunteer kit layout.
+- Suricata (1 file, 5 sids): `ddosia_c2.rules` — /client/login + User-Hash, /client/get_targets, Client-Hash header, Go-http-client agent, historical-C2 reference anchor.
+- PEAK hunts (3): participant host beaconing to C2; victim-side L7 flood characterization; short-lived C2 infra tracking + target-list recovery.
+- `iocs.csv` (24 entries) — behavioral anchors (C2 URIs, custom headers, kit files) plus HISTORICAL 2023 client hashes + C2 IP with decay caveats. No `kev.md` — the case has no CVE (abuses volunteer participation + an unauthenticated toolkit protocol).
+- `kill_chain.svg` — template A, canonical palette, acc-other accent; left lane participation/impact, right lane operator side; C2-handshake and volumetric detection anchors.
+
+### Pedagogy
+- Detect the protocol, not the payload: /client/login + /client/get_targets, Client-Hash/User-Hash headers and the Go agent persist across recompiles; hashes and C2 IPs do not.
+- Indicators decay by design: DDoSia Tier-1 C2 lives ~9 days — operationalize a fresh feed (ThreatFox / SEKOIA Community), not a static blocklist.
+- Two roles, two playbooks: a DDoSia event puts you on either side (an internal host that joined the botnet, or a public service under flood) — triage must branch first.
+- Crowdsourcing is the innovation: Telegram reach + crypto incentives turn low-skill volunteers into a rotating botnet that outlives arrests — disrupt the program, not just the binary.
+
 # CHANGELOG
 
 All notable additions to detection-diary.

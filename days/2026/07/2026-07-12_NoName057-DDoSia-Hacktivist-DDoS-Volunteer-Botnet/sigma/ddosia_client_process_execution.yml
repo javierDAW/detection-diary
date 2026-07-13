@@ -1,0 +1,42 @@
+title: DDoSia Go-Stresser Client Execution From User-Writable Path
+id: 2dcddbc2-37e0-4c58-92d5-cbe995d240b5
+status: experimental
+description: |
+  Detects execution of a NoName057(16) DDoSia client binary. The project ships a
+  fixed per-OS naming scheme (d_windows_amd64.exe, d_windows_arm64.exe) and runs as a
+  console Go-Stresser process printing the NoName057(16) banner. Filenames rotate
+  less often than hashes, so image-name plus a user-writable execution path is a
+  useful (if not exhaustive) participation signal; the client also creates a sibling
+  "uid" folder holding the machine-UID hash. Because the operators recompile
+  frequently, treat this as a lead and confirm with the file-drop and C2-beacon
+  rules rather than as standalone proof. Reference: Sekoia TDR DDoSia analysis.
+references:
+  - https://blog.sekoia.io/following-noname05716-ddosia-projects-targets
+  - https://attack.mitre.org/techniques/T1204/002/
+author: Jarmi
+date: 2026/07/12
+tags:
+  - attack.execution
+  - attack.t1204.002
+  - attack.impact
+  - attack.t1499.002
+logsource:
+  product: windows
+  category: process_creation
+detection:
+  selection_img:
+    Image|endswith:
+      - '\d_windows_amd64.exe'
+      - '\d_windows_arm64.exe'
+  selection_path:
+    Image|contains:
+      - '\Users\'
+      - '\Downloads\'
+      - '\Temp\'
+      - '\AppData\'
+  condition: selection_img and selection_path
+falsepositives:
+  - Unrelated tools that happen to match the d_windows_*.exe naming from a user path
+  - Sanctioned red-team or research detonation
+
+level: high

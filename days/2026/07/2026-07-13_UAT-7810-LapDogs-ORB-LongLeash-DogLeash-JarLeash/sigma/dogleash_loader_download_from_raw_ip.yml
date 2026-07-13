@@ -1,0 +1,49 @@
+title: DOGLEASH Loader Downloading Payload From Raw IP On Non-Standard Port
+id: 3858546c-72ad-4839-81e6-668291633e77
+status: experimental
+description: |
+  Detects the UAT-7810 (LapDogs ORB) DOGLEASH deployment loader on a Linux/embedded
+  device: a shell downloader (wget/curl/tftp/ftpget) fetching a payload from a raw
+  IPv4 host on a non-standard HTTP port (Talos observed 8088 and 2222 on the operator
+  VPS servers), typically staged to a world-writable directory and then executed.
+  The four IPv4 anchors decay (ORB infrastructure rotates), so this rule also fires on
+  the durable behaviour: an inline dotted-quad URL on port 8088/2222 passed to a
+  download utility from a shell on a router/appliance. Correlate with the iptables
+  firewall-open rule and the DOGLEASH file hashes. Reference: Cisco Talos UAT-7810.
+references:
+  - https://blog.talosintelligence.com/uat-7810/
+  - https://attack.mitre.org/techniques/T1105/
+  - https://attack.mitre.org/techniques/T1059/004/
+author: Jarmi
+date: 2026/07/13
+tags:
+  - attack.command-and-control
+  - attack.t1105
+  - attack.execution
+  - attack.t1059.004
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  downloader:
+    Image|endswith:
+      - '/wget'
+      - '/curl'
+      - '/tftp'
+      - '/ftpget'
+      - '/busybox'
+  known_infra:
+    CommandLine|contains:
+      - '194.233.92.26'
+      - '217.15.160.247'
+      - '217.15.164.147'
+      - '95.182.100.231'
+  odd_port:
+    CommandLine|contains:
+      - ':8088/'
+      - ':2222/'
+  condition: downloader and (known_infra or odd_port)
+falsepositives:
+  - Administrative scripts or package mirrors served on ports 8088/2222; validate the
+    destination is a raw IPv4 with no hostname and the fetched file is executed
+level: high
