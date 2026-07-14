@@ -1,0 +1,139 @@
+{
+  "name": "2026-07-13 — 2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH — clusters: UAT-7810",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1587.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1583.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1584.008",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1608.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1059.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1562.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1090.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1090.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1572",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1573.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1132.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1620",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    },
+    {
+      "techniqueID": "T1070.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -4,7 +4,7 @@
 
 # INDEX
 
-**75 cases** · **139 actors/clusters** · **322 ATT&CK techniques** · **16 platforms** · **78 sectors** · 2026-04-28 -> 2026-07-11
+**78 cases** · **142 actors/clusters** · **324 ATT&CK techniques** · **16 platforms** · **78 sectors** · 2026-04-28 -> 2026-07-14
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -16,6 +16,11 @@
 ## Recent
 
 <table>
+<tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/"><img src="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/kill_chain.svg" alt="2026-07-14 kill chain" width="240"></a><br><sub><b>2026-07-14</b><br>JADEPUFFER</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/"><img src="days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/kill_chain.svg" alt="2026-07-13 kill chain" width="240"></a><br><sub><b>2026-07-13</b><br>UAT-7810</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/"><img src="days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/kill_chain.svg" alt="2026-07-12 kill chain" width="240"></a><br><sub><b>2026-07-12</b><br>NoName057(16)</sub></td>
+</tr>
 <tr>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/"><img src="days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/kill_chain.svg" alt="2026-07-11 kill chain" width="240"></a><br><sub><b>2026-07-11</b><br>Multiple GNSS/AIS spoofing operators</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/"><img src="days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/kill_chain.svg" alt="2026-07-10 kill chain" width="240"></a><br><sub><b>2026-07-10</b><br>Cavern Manticore</sub></td>
@@ -31,21 +36,19 @@
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/"><img src="days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/kill_chain.svg" alt="2026-07-04 kill chain" width="240"></a><br><sub><b>2026-07-04</b><br>Opportunistic ICS/OT scanners</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/"><img src="days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/kill_chain.svg" alt="2026-07-03 kill chain" width="240"></a><br><sub><b>2026-07-03</b><br>Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)</sub></td>
 </tr>
-<tr>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/"><img src="days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/kill_chain.svg" alt="2026-07-02 kill chain" width="240"></a><br><sub><b>2026-07-02</b><br>Unattributed — coordinated vulnerability disclosure (no observed campaign)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/"><img src="days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/kill_chain.svg" alt="2026-07-01 kill chain" width="240"></a><br><sub><b>2026-07-01</b><br>input_24 phishing kit operator (PoisonSeeds-adjacent)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/"><img src="days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/kill_chain.svg" alt="2026-06-30 kill chain" width="240"></a><br><sub><b>2026-06-30</b><br>Dire Wolf (DireWolf) ransomware group</sub></td>
-</tr>
 </table>
 
 ---
 
 ## All cases by month
 
-<details><summary><b>2026-07</b> — 11 case(s)</summary>
+<details><summary><b>2026-07</b> — 14 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-07-14 | [JADEPUFFER: Agentic Ransomware From a Langflow CVE to a Destroyed Nacos Database](days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/) | JADEPUFFER | linux, cloud-multi |
+| 2026-07-13 | [UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH](days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/) | UAT-7810 | linux, network-edge, iot |
+| 2026-07-12 | [NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arrest)](days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/) | NoName057(16) | windows, linux, macos, network-edge |
 | 2026-07-11 | [AIS & GNSS Spoofing at Sea: Maritime Positioning Deception (IFC June-2026 Surge + SeaSpoofFinder)](days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/) | Multiple GNSS/AIS spoofing operators | ot-ics, iot, network-edge |
 | 2026-07-10 | [Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE)](days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/) | Cavern Manticore | windows |
 | 2026-07-09 | [CitrixBleed To Infinity: NetScaler SAML IdP Pre-Auth Memory Overread (CVE-2026-8451)](days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/) | Opportunistic NetScaler scanners (unattributed) | network-edge |

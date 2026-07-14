@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.10)). Generated 2026-07-13._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.13)). Generated 2026-07-14._
 
 **1 of 4 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 

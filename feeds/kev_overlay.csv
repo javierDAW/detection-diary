@@ -144,3 +144,9 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451,2026-07-09,CVE-2026-8452,no,,,,,,
 2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451,2026-07-09,CVE-2026-8655,no,,,,,,
 2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception,2026-07-11,CVE-2025-67038,yes,2026-06-23,2026-06-26,Unknown,Lantronix EDS5000 Code Injection Vulnerability,Lantronix,EDS5000
+2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash,2026-07-13,CVE-2020-22653,no,,,,,,
+2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash,2026-07-13,CVE-2020-22658,no,,,,,,
+2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash,2026-07-13,CVE-2023-25717,yes,2023-05-12,2023-06-02,Unknown,Multiple Ruckus Wireless Products CSRF and RCE Vulnerability,Ruckus Wireless,Multiple Products
+2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash,2026-07-13,CVE-2025-2492,no,,,,,,
+2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248,2026-07-14,CVE-2021-29441,no,,,,,,
+2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248,2026-07-14,CVE-2025-3248,yes,2025-05-05,2025-05-26,Known,Langflow Missing Authentication Vulnerability,Langflow,Langflow
