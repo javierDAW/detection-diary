@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**75 cases** · **139 actors/clusters** · **322 ATT&CK techniques** · **16 platforms** · **78 sectors** · 2026-04-28 -> 2026-07-11
+**78 cases** · **142 actors/clusters** · **324 ATT&CK techniques** · **16 platforms** · **78 sectors** · 2026-04-28 -> 2026-07-14
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/"><img src="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/kill_chain.svg" alt="2026-07-14 kill chain" width="240"></a><br><sub><b>2026-07-14</b><br>JADEPUFFER</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/"><img src="days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/kill_chain.svg" alt="2026-07-13 kill chain" width="240"></a><br><sub><b>2026-07-13</b><br>UAT-7810</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/"><img src="days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/kill_chain.svg" alt="2026-07-12 kill chain" width="240"></a><br><sub><b>2026-07-12</b><br>NoName057(16)</sub></td>
+</tr>
+<tr>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/"><img src="days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/kill_chain.svg" alt="2026-07-11 kill chain" width="240"></a><br><sub><b>2026-07-11</b><br>Multiple GNSS/AIS spoofing operators</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/"><img src="days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/kill_chain.svg" alt="2026-07-10 kill chain" width="240"></a><br><sub><b>2026-07-10</b><br>Cavern Manticore</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/"><img src="days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/kill_chain.svg" alt="2026-07-09 kill chain" width="240"></a><br><sub><b>2026-07-09</b><br>Opportunistic NetScaler scanners (unattributed)</sub></td>
-</tr>
-<tr>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/"><img src="days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/kill_chain.svg" alt="2026-07-08 kill chain" width="240"></a><br><sub><b>2026-07-08</b><br>Unattributed (Montana Empire operator)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/"><img src="days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/kill_chain.svg" alt="2026-07-07 kill chain" width="240"></a><br><sub><b>2026-07-07</b><br>Woodgnat</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/"><img src="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/kill_chain.svg" alt="2026-07-06 kill chain" width="240"></a><br><sub><b>2026-07-06</b><br>ToddyCat</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

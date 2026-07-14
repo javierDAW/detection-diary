@@ -57,6 +57,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Hydro Kitten](./hydro-kitten/) | 1 |
 | [Icarus](./icarus/) | 1 |
 | [Iran-nexus (unattributed)](./iran-nexus-unattributed/) | 1 |
+| [JADEPUFFER](./jadepuffer/) | 1 |
 | [Jewelbug](./jewelbug/) | 1 |
 | [Kali365](./kali365/) | 1 |
 | [Kyber](./kyber/) | 1 |
@@ -70,6 +71,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [NFCMultiPay](./nfcmultipay/) | 1 |
 | [Nexcorium](./nexcorium/) | 1 |
 | [Nexus Team](./nexus-team/) | 1 |
+| [NoName057(16)](./noname057-16/) | 1 |
 | [O-UNC-045 (Okta Defensive Cyber Operations)](./o-unc-045-okta-defensive-cyber-operations/) | 1 |
 | [OP-512](./op-512/) | 1 |
 | [OceanLotus (APT32)](./oceanlotus-apt32/) | 1 |
@@ -125,6 +127,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UAC-0057](./uac-0057/) | 1 |
 | [UAT-4356](./uat-4356/) | 1 |
 | [UAT-6382](./uat-6382/) | 1 |
+| [UAT-7810](./uat-7810/) | 1 |
 | [UAT-8302](./uat-8302/) | 1 |
 | [UAT-8616](./uat-8616/) | 1 |
 | [UNC1151](./unc1151/) | 1 |

@@ -1,3 +1,20 @@
+## 2026.07.14 — Day 78 — JADEPUFFER: agentic ransomware (Langflow CVE-2025-3248 → destroyed Nacos DB)
+
+### Added
+- `days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/` — Sysdig TRT's first documented case of agentic (fully LLM-driven) ransomware: an autonomous agent entered an internet-facing Langflow via CVE-2025-3248, swept credentials, looted MinIO with default creds, installed a cron beacon, pivoted to a MySQL/Alibaba Nacos server, and encrypted 1,342 config items with an unrecoverable ephemeral key before dropping databases. Tuesday crime-economy (#3 ransomware; secondary #18 AI/LLM). Unattributed automation-defined actor.
+- Sigma (3): `langflow_rce_python_oneliner_child.yml` — AI-orchestration parent spawning a python one-liner; `agentic_cron_beacon_urllib_persistence.yml` — cron urllib beacon to /beacon or :4444; `mysql_agentic_db_extortion_behavior.yml` — MySQL AES_ENCRYPT/README_RANSOM/DROP DATABASE.
+- KQL (4): Langflow python one-liner; cron beacon + C2; MinIO/Nacos default-cred + backdoor-admin; C2/exfil IP retro-hunt.
+- YARA (1 file, 3 rules): ransom note, DB-extortion payload, cron beacon — text heuristics on captured payloads (no reusable binary hash).
+- Suricata (1 file, 5 sids): /beacon GET on 4444, Python-urllib UA, Langflow validate/code POST, C2 + exfil IP anchors.
+- PEAK hunts (3): Langflow/AI-orchestration compromise (CVE-2025-3248); agentic MySQL/Nacos database extortion; agentic-tradecraft intent-legibility triage.
+- `iocs.csv` (15 entries) — C2 45.131.66[.]106:4444/beacon, claimed exfil 64.20.53[.]230, ransom BTC + proton contact, README_RANSOM, xadmin, /tmp/creds.json. `kev.md` — 1/2 CVEs on CISA KEV (CVE-2025-3248, ransomware use Known).
+- `kill_chain.svg` — template A, canonical palette, acc-ransomware; left lane attack-chain (7 stages), right lane automation-evidence (6 ops).
+
+### Pedagogy
+- Detect the behavior, not the binary: agent payloads are LLM-generated one-liners with no reusable hash — durable anchors are the web-process→python one-liner, urllib cron beacon, default-cred probes, and MySQL AES_ENCRYPT+DROP+README_RANSOM.
+- Ephemeral key = destruction, not extortion: the AES key was random and never stored, so data is unrecoverable even if paid — restore from backup, do not negotiate.
+- Old, neglected vulns are automated for free: a 2021 Nacos auth-bypass + default JWT key against internet-exposed infra — agents make spraying the CVE back-catalogue cheap.
+- Intent is legible: an LLM narrates its objectives and claimed exfil in its payloads — decode them for a triage target list, but treat exfil as an unverified claim.
 ## 2026.07.13 — Day 77 — UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH
 
 ### Added

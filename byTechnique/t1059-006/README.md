@@ -4,11 +4,12 @@
 
 # Techniques: T1059.006
 
-8 day(s) covering this technique.
+9 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-14 | JADEPUFFER: Agentic Ransomware From a Langflow CVE to a Destroyed Nacos Database | JADEPUFFER | [`2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/`](../../days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/) |
 | 2026-05-31 | Black Shadow / Ababil of Minab — Iran-MOIS recovery-layer destruction: vCenter VM deletion, Veeam backup wipe, SSMS database drops to deny recovery | Black Shadow (Ababil of Minab persona) | [`2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/`](../../days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/) |
 | 2026-05-28 | TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io | TrapDoor (Socket-tracked) | [`2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/`](../../days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) |
 | 2026-05-27 | BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsoft 365 and Okta with programmatic SharePoint exfiltration | UNC6671 (GTIG / Mandiant) · BlackFile (self-branded DLS) · Cordial Spider (CrowdStrike) · CL-CRI-1116 (Palo Alto Unit 42) · O-UNC-045 (Okta Defensive Cyber Operations) | [`2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/`](../../days/2026/05/2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/) |

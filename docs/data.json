@@ -1,5 +1,159 @@
 [
  {
+  "date": "2026-07-14",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248",
+  "title": "JADEPUFFER: Agentic Ransomware From a Langflow CVE to a Destroyed Nacos Database",
+  "clusters": [
+   "JADEPUFFER"
+  ],
+  "country": "Unknown (unattributed; agent explicitly swept Chinese cloud-provider credentials)",
+  "platforms": [
+   "linux",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1190",
+   "T1059.006",
+   "T1552.001",
+   "T1078.001",
+   "T1046",
+   "T1005",
+   "T1136",
+   "T1053.003",
+   "T1071.001",
+   "T1611",
+   "T1486",
+   "T1485"
+  ],
+  "tech_count": 12,
+  "tldr": "**JADEPUFFER** is, per the **Sysdig Threat Research Team (TRT)**, the **first documented case of agentic ransomware** — a complete extortion operation driven end-to-end by a large language model rather than a human at the keyboard. The agent gained initial access to an internet-facing **Langflow** instance through **CVE-2025-3248** (an unauthenticated RCE, on the **CISA KEV** list with known ranso",
+  "thumb": "thumbs/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248.svg",
+  "case_rel": "../days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "JADEPUFFER",
+  "cve_count": 2,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-3248",
+    "due": "2025-05-26",
+    "ransom": true
+   }
+  ],
+  "q": "jadepuffer: agentic ransomware from a langflow cve to a destroyed nacos database jadepuffer unknown (unattributed; agent explicitly swept chinese cloud-provider credentials) linux cloud-multi technology cross-sector t1190 t1059.006 t1552.001 t1078.001 t1046 t1005 t1136 t1053.003 t1071.001 t1611 t1486 t1485 ransomware / e-crime cve-2025-3248"
+ },
+ {
+  "date": "2026-07-13",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash",
+  "title": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH",
+  "clusters": [
+   "UAT-7810"
+  ],
+  "country": "China (China-nexus)",
+  "platforms": [
+   "linux",
+   "network-edge",
+   "iot"
+  ],
+  "sectors": [
+   "technology",
+   "telecommunications",
+   "government"
+  ],
+  "techniques": [
+   "T1190",
+   "T1587.001",
+   "T1583.003",
+   "T1584.008",
+   "T1608.001",
+   "T1105",
+   "T1059.004",
+   "T1562.004",
+   "T1090.001",
+   "T1090.003",
+   "T1572",
+   "T1071.001",
+   "T1573.002",
+   "T1132.001",
+   "T1620",
+   "T1070.004"
+  ],
+  "tech_count": 16,
+  "tldr": "**UAT-7810** is a China-nexus actor whose job is not to breach the final target but to build the road to it: it compromises unpatched SOHO and embedded networking devices — primarily **Ruckus wireless routers** — and turns them into an **Operational Relay Box (ORB) network** (publicly named **LapDogs**) that *secondary* China-nexus APTs such as UAT-5918 rent to proxy their own operations. On **202",
+  "thumb": "thumbs/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash.svg",
+  "case_rel": "../days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "UAT-7810",
+  "cve_count": 4,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2023-25717",
+    "due": "2023-06-02",
+    "ransom": false
+   }
+  ],
+  "q": "uat-7810 & the lapdogs orb: longleash, dogleash and jarleash uat-7810 china (china-nexus) linux network-edge iot technology telecommunications government t1190 t1587.001 t1583.003 t1584.008 t1608.001 t1105 t1059.004 t1562.004 t1090.001 t1090.003 t1572 t1071.001 t1573.002 t1132.001 t1620 t1070.004 espionage / apt cve-2023-25717"
+ },
+ {
+  "date": "2026-07-12",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet",
+  "title": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arrest)",
+  "clusters": [
+   "NoName057(16)"
+  ],
+  "country": "Russia (pro-Kremlin nationalist hacktivism)",
+  "platforms": [
+   "windows",
+   "linux",
+   "macos",
+   "network-edge"
+  ],
+  "sectors": [
+   "government",
+   "transportation",
+   "finance",
+   "energy",
+   "media"
+  ],
+  "techniques": [
+   "T1587.001",
+   "T1583.003",
+   "T1585.001",
+   "T1204.002",
+   "T1071.001",
+   "T1573.001",
+   "T1498.001",
+   "T1499.002"
+  ],
+  "tech_count": 8,
+  "tldr": "NoName057(16) is a pro-Russia nationalist hacktivist group that runs **DDoSia**, a crowdsourced DDoS toolkit: instead of compromising machines, it recruits willing **volunteers** on Telegram, pays them in cryptocurrency, and hands them a cross-platform **Go client** (\"Go-Stresser\") that authenticates to a rotating C2, pulls an encrypted target list, and floods it. The reason to cover it today is a",
+  "thumb": "thumbs/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet.svg",
+  "case_rel": "../days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "NoName057(16)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "noname057(16) & ddosia: the volunteer ddos botnet (2026 campaign + palencia arrest) noname057(16) russia (pro-kremlin nationalist hacktivism) windows linux macos network-edge government transportation finance energy media t1587.001 t1583.003 t1585.001 t1204.002 t1071.001 t1573.001 t1498.001 t1499.002 other "
+ },
+ {
   "date": "2026-07-11",
   "year": "2026",
   "month": "2026-07",
