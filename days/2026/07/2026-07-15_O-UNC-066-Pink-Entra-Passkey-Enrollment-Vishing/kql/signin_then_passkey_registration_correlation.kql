@@ -1,0 +1,25 @@
+// Title: Anomalous Sign-In Followed by Passkey Registration (Pink / O-UNC-066)
+// Id: 6c0f3b21-4d58-4b3f-a072-9e1b82d7c612
+// MITRE: T1078.004 (Valid Accounts: Cloud), T1098.005, T1556.006
+// Reference: https://www.okta.com/blog/threat-intelligence/vishing-actors-target-microsoft-entra-passkey-enrollment-/
+// Author: Jarmi
+// Date: 2026-07-15
+// Tested on: Microsoft Sentinel (SigninLogs + AuditLogs)
+// FP notes: Users legitimately enrolling a passkey right after login. Prioritise rows where the sign-in ASN is new for the user or matches AS57724/AS59692.
+let window = 30m;
+let regs =
+    AuditLogs
+    | where Category == "UserManagement"
+    | where OperationName has_any ("User registered security info", "Add passkey", "Register passkey")
+    | extend UPN = tolower(tostring(TargetResources[0].userPrincipalName))
+    | project RegTime = TimeGenerated, UPN, OperationName;
+SigninLogs
+| where ResultType == 0
+| extend UPN = tolower(UserPrincipalName)
+| extend ASN = toint(AutonomousSystemNumber)
+| project SignInTime = TimeGenerated, UPN, IPAddress, ASN, AppDisplayName, Location
+| join kind=inner regs on UPN
+| where RegTime between (SignInTime .. (SignInTime + window))
+| extend ActorAsnMatch = ASN in (57724, 59692)
+| project SignInTime, RegTime, UPN, IPAddress, ASN, ActorAsnMatch, Location, AppDisplayName, OperationName
+| order by SignInTime desc

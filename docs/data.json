@@ -1,5 +1,54 @@
 [
  {
+  "date": "2026-07-15",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing",
+  "title": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-resistant persistence",
+  "clusters": [
+   "O-UNC-066"
+  ],
+  "country": "The Com (Com-affiliated e-crime; global)",
+  "platforms": [
+   "cloud-multi"
+  ],
+  "sectors": [
+   "food-and-beverage",
+   "technology",
+   "healthcare",
+   "automotive",
+   "construction",
+   "aviation"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1566.004",
+   "T1656",
+   "T1204.001",
+   "T1111",
+   "T1621",
+   "T1078.004",
+   "T1098.005",
+   "T1556.006",
+   "T1213.002",
+   "T1530",
+   "T1567",
+   "T1657"
+  ],
+  "tech_count": 13,
+  "tldr": "Since April 2026 a Com-affiliated data-extortion actor tracked by Okta as **O-UNC-066** (Palo Alto Unit 42: **CL-CRI-1147**, DLS brand **Pink**) has run a voice-phishing (vishing) campaign that abuses Microsoft's new passkey-enrollment nudges as a pretext. An operator calls a Microsoft 365 user, tells them they must register a new Entra passkey \"for security,\" and steers them through a real-time, ",
+  "thumb": "thumbs/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing.svg",
+  "case_rel": "../days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "O-UNC-066",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "o-unc-066 / pink: vishing the entra passkey-enrollment ceremony for phishing-resistant persistence o-unc-066 the com (com-affiliated e-crime; global) cloud-multi food-and-beverage technology healthcare automotive construction aviation t1583.001 t1566.004 t1656 t1204.001 t1111 t1621 t1078.004 t1098.005 t1556.006 t1213.002 t1530 t1567 t1657 identity / cloud / saas "
+ },
+ {
   "date": "2026-07-14",
   "year": "2026",
   "month": "2026-07",

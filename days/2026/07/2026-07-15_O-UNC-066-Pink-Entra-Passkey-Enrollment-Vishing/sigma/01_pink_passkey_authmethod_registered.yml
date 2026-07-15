@@ -1,0 +1,43 @@
+title: Passkey (FIDO2) Authentication Method Registered in Entra ID
+id: f7410963-19ed-491a-af89-e6902c04a4ad
+status: experimental
+description: |
+  Detects registration of a passkey / FIDO2 authentication method in Microsoft Entra ID.
+  In the O-UNC-066 (Pink) vishing campaign the attacker enrols THEIR OWN passkey into the
+  victim's account after relaying credentials and MFA through an operator-controlled kit,
+  giving durable phishing-resistant persistence. A passkey registration is normal in
+  isolation - the signal is a registration that closely follows an anomalous interactive
+  sign-in (different ASN/geo, minutes after a password prompt). Correlate this event with
+  SigninLogs by userPrincipalName and time in your SIEM; this rule surfaces the registration
+  itself so it can be joined. Reference: Okta Threat Intelligence, O-UNC-066 / Pink.
+references:
+  - https://www.okta.com/blog/threat-intelligence/vishing-actors-target-microsoft-entra-passkey-enrollment-/
+  - https://attack.mitre.org/techniques/T1098/005/
+  - https://attack.mitre.org/techniques/T1556/006/
+author: Jarmi
+date: 2026/07/15
+tags:
+  - attack.persistence
+  - attack.t1098.005
+  - attack.credential-access
+  - attack.t1556.006
+logsource:
+  product: azure
+  service: auditlogs
+detection:
+  selection_op:
+    Category: UserManagement
+    OperationName|contains:
+      - 'User registered security info'
+      - 'Add passkey'
+      - 'Register passkey'
+  selection_method:
+    OperationName|contains:
+      - 'passkey'
+      - 'Fido2'
+      - 'FIDO2'
+  condition: selection_op or selection_method
+falsepositives:
+  - Legitimate user-driven passkey enrolment during an IT-approved rollout or registration campaign
+  - Helpdesk-assisted enrolment for a new employee
+level: medium

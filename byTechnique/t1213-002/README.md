@@ -4,9 +4,10 @@
 
 # Techniques: T1213.002
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-15 | O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-resistant persistence | O-UNC-066 | [`2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/`](../../days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/) |
 | 2026-05-27 | BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsoft 365 and Okta with programmatic SharePoint exfiltration | UNC6671 (GTIG / Mandiant) · BlackFile (self-branded DLS) · Cordial Spider (CrowdStrike) · CL-CRI-1116 (Palo Alto Unit 42) · O-UNC-045 (Okta Defensive Cyber Operations) | [`2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/`](../../days/2026/05/2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/) |
