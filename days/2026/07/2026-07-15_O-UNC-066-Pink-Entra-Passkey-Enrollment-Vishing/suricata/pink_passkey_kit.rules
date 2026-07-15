@@ -1,0 +1,16 @@
+# O-UNC-066 / Pink Entra passkey-enrollment phishing kit - Suricata 7.x
+# Author: Jarmi  -  2026-07-15
+# Reference: https://www.okta.com/blog/threat-intelligence/vishing-actors-target-microsoft-entra-passkey-enrollment-/
+# CAVEAT: Phishing traffic is HTTPS. sid 4000001-4000002 fire on the TLS SNI (visible pre-decrypt);
+# sid 4000003-4000005 require TLS interception / a decrypting proxy or plain-HTTP capture to see URIs.
+# Domains rotate - treat these as tripwires and pivot on the hosting ASN (DDoS-Guard AS57724, IQWeb AS59692).
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"PINK O-UNC-066 TLS SNI passkey-themed lookalike domain"; flow:established,to_server; tls.sni; content:"passkey"; nocase; pcre:"/(assign|deploy|add|set)passkey\.com$|passkeydeploy\.com$/i"; classtype:social-engineering; sid:4000001; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"PINK O-UNC-066 DNS query passkey-themed lookalike domain"; dns.query; content:"passkey"; nocase; pcre:"/(assign|deploy|add|set)passkey\.com$|passkeydeploy\.com$/i"; classtype:social-engineering; sid:4000002; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PINK O-UNC-066 kit credential/OTP POST to backend.php"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/backend.php"; classtype:credential-theft; sid:4000003; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PINK O-UNC-066 kit passkey-registration stage path"; flow:established,to_server; http.uri; content:"/passkey/register"; classtype:social-engineering; sid:4000004; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PINK O-UNC-066 kit MFA capture stage path"; flow:established,to_server; http.uri; pcre:"/\/(approve|submit)-authenticator|\/submit-otp/"; classtype:credential-theft; sid:4000005; rev:1;)

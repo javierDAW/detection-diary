@@ -1,0 +1,14 @@
+// Title: Entra Sign-In From Pink (O-UNC-066) Hosting ASN
+// Id: 7d1a4c32-5e69-4c40-b183-af2c93e8d723
+// MITRE: T1078.004 (Valid Accounts: Cloud Accounts)
+// Reference: https://www.okta.com/blog/threat-intelligence/vishing-actors-target-microsoft-entra-passkey-enrollment-/
+// Author: Jarmi
+// Date: 2026-07-15
+// Tested on: Microsoft Sentinel (SigninLogs)
+// FP notes: Enterprise users rarely egress via DDoS-Guard / IQWeb; validate against baseline. ASNs are a durable pivot while IPs rotate.
+SigninLogs
+| where ResultType == 0
+| extend ASN = toint(AutonomousSystemNumber)
+| where ASN in (57724, 59692)   // DDoS-Guard AS57724, IQWeb FZ-LLC AS59692
+| project TimeGenerated, UserPrincipalName, IPAddress, ASN, AppDisplayName, ClientAppUsed, Location, AuthenticationRequirement
+| order by TimeGenerated desc

@@ -1,0 +1,16 @@
+// Title: Entra Passkey (FIDO2) Authentication Method Registered
+// Id: 5b9e2a10-3c47-4a2e-9f61-8d0a71c6b501
+// MITRE: T1098.005 (Device Registration), T1556.006 (Modify Authentication Process: MFA)
+// Reference: https://www.okta.com/blog/threat-intelligence/vishing-actors-target-microsoft-entra-passkey-enrollment-/
+// Author: Jarmi
+// Date: 2026-07-15
+// Tested on: Microsoft Entra ID AuditLogs (Sentinel)
+// FP notes: Legitimate passkey rollout / registration campaigns will match; correlate with SigninLogs (see companion query).
+AuditLogs
+| where Category == "UserManagement"
+| where OperationName has_any ("User registered security info", "Add passkey", "Register passkey")
+    or tostring(TargetResources) has_any ("passkey", "Fido2", "FIDO2")
+| extend UPN = tostring(TargetResources[0].userPrincipalName)
+| extend InitiatedByIp = tostring(parse_json(tostring(InitiatedBy.user)).ipAddress)
+| project TimeGenerated, OperationName, Category, UPN, InitiatedByIp, Result, CorrelationId
+| order by TimeGenerated desc

@@ -1,0 +1,43 @@
+title: Proxy Connection to Passkey-Themed Lookalike Domain or Pink Kit Path
+id: 493649f1-8fa1-4c0a-9938-40ac4fc6aa2b
+status: experimental
+description: |
+  Detects outbound web requests to the O-UNC-066 (Pink) phishing infrastructure: per-target
+  subdomains of passkey-themed lookalike domains and the operator kit's stage paths. The kit
+  is a PHP panel whose page flow uses fixed paths (/gate, /identify, /password, /processing,
+  /submit-otp, /submit-authenticator, /approve-authenticator, /passkey/register, /passkey/check,
+  /backend.php). Because the base domains rotate, match the durable 'passkey' lexical tell in
+  the host together with the kit paths, and pivot on the hosting ASN. Requires proxy/DNS
+  visibility; a hit means a user reached the kit, typically while on a vishing call.
+references:
+  - https://www.okta.com/blog/threat-intelligence/vishing-actors-target-microsoft-entra-passkey-enrollment-/
+  - https://attack.mitre.org/techniques/T1204/001/
+author: Jarmi
+date: 2026/07/15
+tags:
+  - attack.initial-access
+  - attack.t1566.004
+  - attack.execution
+  - attack.t1204.001
+logsource:
+  category: proxy
+detection:
+  selection_domain:
+    c-uri|contains:
+      - 'assignpasskey.com'
+      - 'deploypasskey.com'
+      - 'passkeydeploy.com'
+      - 'passkeyadd.com'
+      - 'setpasskey.com'
+  selection_kitpath:
+    c-uri|contains:
+      - '/approve-authenticator'
+      - '/submit-authenticator'
+      - '/passkey/register'
+      - '/passkey/check'
+      - '/backend.php'
+  condition: selection_domain or selection_kitpath
+falsepositives:
+  - Legitimate vendor domains that coincidentally contain the substring 'passkey' (validate the host and ASN)
+  - Security-team detonation or awareness testing of the kit
+level: high

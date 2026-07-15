@@ -1,0 +1,15 @@
+// Title: Post-Takeover SharePoint/OneDrive Bulk Access (Pink Exfil Staging)
+// Id: 8e2b5d43-6f7a-4d51-c294-b03da4f9e834
+// MITRE: T1213.002 (SharePoint), T1530 (Data from Cloud Storage), T1567 (Exfil Over Web Service)
+// Reference: https://www.bleepingcomputer.com/news/security/entra-passkey-enrollment-vishing-targets-microsoft-365-users/
+// Author: Jarmi
+// Date: 2026-07-15
+// Tested on: Microsoft Defender XDR (CloudAppEvents)
+// FP notes: Legitimate bulk sync/migration. Prioritise sessions tied to a newly-registered passkey or an actor-ASN sign-in. <add_known_bulk_download_threshold>
+CloudAppEvents
+| where Application in ("Microsoft SharePoint Online", "Microsoft OneDrive for Business")
+| where ActionType has_any ("FileDownloaded", "FileSyncDownloadedFull", "FileAccessed")
+| summarize Files = dcount(tostring(RawEventData.ObjectId)), Actions = count(), Apps = make_set(Application)
+    by AccountObjectId, AccountDisplayName, IPAddress, bin(TimeGenerated, 1h)
+| where Files > 100
+| order by Files desc

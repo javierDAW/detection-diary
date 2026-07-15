@@ -1,3 +1,21 @@
+## 2026.07.15 — Day 79 — O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony
+
+### Added
+- `days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/` — Okta Threat Intelligence (2026-07-05) detailed a Com-affiliated data-extortion actor (O-UNC-066; Palo Alto Unit 42 CL-CRI-1147; DLS brand Pink) running a vishing campaign that abuses Microsoft's May-2026 passkey-registration nudges as a pretext. An operator-controlled PHP kit (1-second heartbeat, not an AiTM proxy) relays creds/MFA to the real tenant, then enrolls the ATTACKER's own FIDO2 passkey for durable phishing-resistant persistence; Pink then exfiltrates SharePoint/OneDrive and extorts. No CVE, no malware hash.
+- Sigma (3): `01_pink_passkey_authmethod_registered.yml` — passkey/FIDO2 registration event (azure auditlogs); `02_pink_signin_from_actor_asn.yml` — sign-in from AS57724/AS59692 (azure signinlogs); `03_pink_proxy_passkey_lookalike_kit_path.yml` — passkey lookalike domain / kit path (proxy).
+- KQL (4): `passkey_authmethod_registered.kql` — enumerate registrations; `signin_then_passkey_registration_correlation.kql` — anomalous sign-in then passkey add within 30m; `signin_from_pink_hosting_asn.kql` — actor-ASN sign-ins; `post_takeover_sharepoint_onedrive_exfil.kql` — bulk cloud-file burst.
+- YARA (1 file, 3 rules): `pink_passkey_phishing_kit.yar` — kit stage-path set, heartbeat/backend panel, fake BIP-39 recovery page (on captured kit artefacts, not a confirmed binary).
+- Suricata (1 file, 5 sids): `pink_passkey_kit.rules` — TLS SNI + DNS for passkey lookalikes; HTTP backend.php / stage paths (needs decrypt).
+- PEAK hunts (3): H1 attacker-registered passkey after anomalous sign-in; H2 per-target passkey lookalike subdomains; H3 post-takeover SharePoint/OneDrive exfil.
+- `iocs.csv` (24 entries) — 5 base domains, 2 hosting ASNs, kit stage paths, Entra detection-anchor notes; domains/ASNs decay. No `kev.md` (case has no CVE).
+- `kill_chain.svg` — template A, canonical palette, acc-identity-cloud accent; victim-experience lane vs operator-actions lane, cross-lane relay arrows, Entra passkey-registration anchor.
+
+### Pedagogy
+- Attack the enrollment ceremony, not the login: when the credential is unphishable, adversaries move upstream to how it gets registered.
+- A passkey survives a password reset — IR must enumerate and delete rogue authentication methods, or the attacker walks back in.
+- No hash, no CVE: hunt the directory change — an Entra passkey/FIDO2 registration correlated with an anomalous sign-in.
+- Absence from a patch queue is not safety; defence here is registration policy (who/where/what device) plus monitoring.
+
 ## 2026.07.14 — Day 78 — JADEPUFFER: agentic ransomware (Langflow CVE-2025-3248 → destroyed Nacos DB)
 
 ### Added

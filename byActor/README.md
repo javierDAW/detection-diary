@@ -73,6 +73,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Nexus Team](./nexus-team/) | 1 |
 | [NoName057(16)](./noname057-16/) | 1 |
 | [O-UNC-045 (Okta Defensive Cyber Operations)](./o-unc-045-okta-defensive-cyber-operations/) | 1 |
+| [O-UNC-066](./o-unc-066/) | 1 |
 | [OP-512](./op-512/) | 1 |
 | [OceanLotus (APT32)](./oceanlotus-apt32/) | 1 |
 | [Opportunistic Argo CD ServerSideDiff exploitation (unattributed)](./opportunistic-argo-cd-serversidediff-exploitation-unattributed/) | 1 |
