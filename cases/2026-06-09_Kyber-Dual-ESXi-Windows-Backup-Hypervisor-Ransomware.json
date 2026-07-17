@@ -1,0 +1,125 @@
+{
+  "name": "2026-06-09 — 2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hypervisor recovery — clusters: Kyber",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1489",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1485",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1070.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1021.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1059.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1222.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1106",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1112",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    },
+    {
+      "techniqueID": "T1057",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hyper"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

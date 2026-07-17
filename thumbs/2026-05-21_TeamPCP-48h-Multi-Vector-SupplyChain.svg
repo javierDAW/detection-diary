@@ -1,0 +1,317 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1380" role="img" aria-labelledby="t d" preserveAspectRatio="xMidYMid meet">
+  <title id="t">TeamPCP 48-hour multi-vector supply chain kill chain</title>
+  <desc id="d">Three parallel intrusion lanes on the victim side (VS Code Marketplace extension into IDE process, GitHub Action tag mutability into runner secret memory, PyPI install into developer host worm) all converging on the TeamPCP attacker C2 spine on the right (check.git-service.com, t.m-kosche.com, 83.142.209.194). Detection anchors footer summarises imposter commit on runner, /proc/PID/mem read by python3 child, .sys-update-check infection marker, bun runtime path, DNS anchors to the three IoCs.</desc>
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .lane { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1; }
+      .lane-label { fill: #57606a; font: 600 10px sans-serif; letter-spacing: 0.10em; }
+      .title { fill: #1f2328; font: 700 16px sans-serif; }
+      .sub { fill: #57606a; font: 400 10.5px sans-serif; }
+      .stage-box { fill: #ffffff; stroke: #1f6feb; stroke-width: 1.5; }
+      .stage-num { fill: #1f6feb; }
+      .stage-num-text { fill: #ffffff; font: 700 11px sans-serif; text-anchor: middle; }
+      .stage-label { fill: #1f2328; font: 600 11px sans-serif; }
+      .stage-sub { fill: #57606a; font: 400 9.5px sans-serif; }
+      .mitre { fill: #6e7681; font: 600 9px ui-monospace,"SFMono-Regular",Consolas,monospace; }
+      .ioc { fill: #8250df; font: 600 9px ui-monospace,"SFMono-Regular",Consolas,monospace; }
+      .c2-box { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1.5; }
+      .c2-title { fill: #7d4e00; font: 700 11px sans-serif; }
+      .c2-line { fill: #1f2328; font: 500 9.5px ui-monospace,"SFMono-Regular",Consolas,monospace; }
+      .c2-sub { fill: #57606a; font: 400 9.5px sans-serif; }
+      .danger-box { fill: #ffebe9; stroke: #cf222e; stroke-width: 1.5; }
+      .danger-text { fill: #cf222e; font: 700 11px sans-serif; }
+      .danger-sub { fill: #1f2328; font: 500 10px sans-serif; }
+      .anchor-box { fill: #ddf4ff; stroke: #0969da; stroke-width: 1.5; }
+      .anchor-title { fill: #0550ae; font: 700 12px sans-serif; }
+      .anchor-label { fill: #1f2328; font: 700 10.5px sans-serif; }
+      .anchor-line { fill: #1f2328; font: 500 10px sans-serif; }
+      .anchor-code { fill: #1f2328; font: 500 9.5px ui-monospace,"SFMono-Regular",Consolas,monospace; }
+      .arrow { stroke: #57606a; stroke-width: 1.5; fill: none; }
+      .arrow-yellow { stroke: #d4a72c; stroke-width: 2; fill: none; }
+      .header-line { stroke: #d0d7de; stroke-width: 1; }
+      @media (prefers-color-scheme: dark) {
+        .bg { fill: #0d1117; }
+        .lane { fill: #161b22; stroke: #30363d; }
+        .lane-label { fill: #8b949e; }
+        .title { fill: #e6edf3; }
+        .sub { fill: #8b949e; }
+        .stage-box { fill: #161b22; stroke: #2f81f7; }
+        .stage-num { fill: #2f81f7; }
+        .stage-label { fill: #e6edf3; }
+        .stage-sub { fill: #8b949e; }
+        .mitre { fill: #8b949e; }
+        .ioc { fill: #d2a8ff; }
+        .c2-box { fill: #2d2a14; stroke: #d29922; }
+        .c2-title { fill: #f0b429; }
+        .c2-line { fill: #e6edf3; }
+        .c2-sub { fill: #8b949e; }
+        .danger-box { fill: #2d1418; stroke: #f85149; }
+        .danger-text { fill: #ff7b72; }
+        .danger-sub { fill: #e6edf3; }
+        .anchor-box { fill: #0c2d6b; stroke: #58a6ff; }
+        .anchor-title { fill: #79c0ff; }
+        .anchor-label { fill: #e6edf3; }
+        .anchor-line { fill: #e6edf3; }
+        .anchor-code { fill: #e6edf3; }
+        .arrow { stroke: #8b949e; }
+        .arrow-yellow { stroke: #d29922; }
+        .header-line { stroke: #30363d; }
+      }
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+</style>
+    <marker id="arrowhead" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#57606a"/>
+    </marker>
+    <marker id="arrowhead-y" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#d4a72c"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="880" height="1380"/>
+  <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+
+  <!-- Header -->
+  <text class="title" x="20" y="30">TeamPCP / UNC6780 — 48-hour multi-vector supply chain campaign</text>
+  <text class="sub" x="20" y="48">StepSecurity + Wiz + Snyk + Aikido + GitHub corporate — 18-20 May 2026 · Day 24</text>
+  <line class="header-line" x1="20" y1="60" x2="860" y2="60"/>
+
+  <!-- Lane labels -->
+  <text class="lane-label" x="30" y="82">VICTIM SURFACE (three parallel lanes)</text>
+  <text class="lane-label" x="565" y="82">ATTACKER C2 (shared spine)</text>
+
+  <!-- Lanes — geometry: victim lane 20..550 (530w), attacker lane 560..860 (300w) -->
+  <rect class="lane" x="20" y="90" width="530" height="960" rx="8"/>
+  <rect class="lane" x="560" y="90" width="300" height="960" rx="8"/>
+
+  <!-- Box geometry: x=32 w=248 (left col 32..280), x=292 w=248 (right col 292..540), gap 12 -->
+  <!-- Stage rows of 76 height -->
+
+  <!-- ===== LANE A: VS Code Marketplace (top) ===== -->
+  <text class="lane-label" x="34" y="108">LANE A — VS CODE MARKETPLACE → GITHUB CORP</text>
+
+  <rect class="stage-box" x="32" y="118" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="50" cy="138" r="11"/>
+  <text class="stage-num-text" x="50" y="142">1</text>
+  <text class="stage-label" x="70" y="142">Nx Console v18.95.0 publish</text>
+  <text class="stage-sub" x="70" y="158">Marketplace publish 18-May 12:36</text>
+  <text class="mitre" x="70" y="172">T1195.002 · T1199</text>
+  <text class="ioc" x="70" y="186">nrwl.angular-console v18.95.0</text>
+
+  <rect class="stage-box" x="292" y="118" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="310" cy="138" r="11"/>
+  <text class="stage-num-text" x="310" y="142">2</text>
+  <text class="stage-label" x="330" y="142">GitHub employee endpoint</text>
+  <text class="stage-sub" x="330" y="158">Auto-update · full FS access</text>
+  <text class="mitre" x="330" y="172">T1078 · T1059.007</text>
+  <text class="ioc" x="330" y="186">main.js inject · 11 min window</text>
+
+  <path class="arrow" d="M 280 156 L 292 156" marker-end="url(#arrowhead)"/>
+
+  <!-- ===== LANE B: actions-cool tag poisoning ===== -->
+  <text class="lane-label" x="34" y="220">LANE B — actions-cool TAG POISONING → CI/CD SECRETS</text>
+
+  <rect class="stage-box" x="32" y="230" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="50" cy="250" r="11"/>
+  <text class="stage-num-text" x="50" y="254">3</text>
+  <text class="stage-label" x="70" y="254">Tag mutability abused</text>
+  <text class="stage-sub" x="70" y="270">53+15 tags repointed in 22 min</text>
+  <text class="mitre" x="70" y="284">T1195.002 · T1587.001</text>
+  <text class="ioc" x="70" y="298">v3.8.0 → 1c9e803c…2e90062</text>
+
+  <rect class="stage-box" x="292" y="230" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="310" cy="250" r="11"/>
+  <text class="stage-num-text" x="310" y="254">4</text>
+  <text class="stage-label" x="330" y="254">Imposter dist/index.js</text>
+  <text class="stage-sub" x="330" y="270">curl bun.sh/install · bun -e</text>
+  <text class="mitre" x="330" y="284">T1059.007 · T1027</text>
+  <text class="ioc" x="330" y="298">/home/runner/.bun/bin/bun</text>
+
+  <rect class="stage-box" x="32" y="318" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="50" cy="338" r="11"/>
+  <text class="stage-num-text" x="50" y="342">5</text>
+  <text class="stage-label" x="70" y="342">python3 reads /proc/PID/mem</text>
+  <text class="stage-sub" x="70" y="358">Runner.Worker secret scrape</text>
+  <text class="mitre" x="70" y="372">T1528 · T1552.005</text>
+  <text class="ioc" x="70" y="386">grep "isSecret":true · gh auth token</text>
+
+  <rect class="stage-box" x="292" y="318" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="310" cy="338" r="11"/>
+  <text class="stage-num-text" x="310" y="342">6</text>
+  <text class="stage-label" x="330" y="342">CI/CD secrets exfil</text>
+  <text class="stage-sub" x="330" y="358">POST /api/public/version</text>
+  <text class="mitre" x="330" y="372">T1041 · T1567.002</text>
+  <text class="ioc" x="330" y="386">t.m-kosche.com</text>
+
+  <path class="arrow" d="M 280 268 L 292 268" marker-end="url(#arrowhead)"/>
+  <path class="arrow" d="M 156 306 L 156 318" marker-end="url(#arrowhead)"/>
+  <path class="arrow" d="M 280 356 L 292 356" marker-end="url(#arrowhead)"/>
+
+  <!-- ===== LANE C: durabletask PyPI worm ===== -->
+  <text class="lane-label" x="34" y="420">LANE C — durabletask PyPI WORM → DEV HOST + CLOUD LATERAL</text>
+
+  <rect class="stage-box" x="32" y="430" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="50" cy="450" r="11"/>
+  <text class="stage-num-text" x="50" y="454">7</text>
+  <text class="stage-label" x="70" y="454">durabletask 1.4.1/2/3 publish</text>
+  <text class="stage-sub" x="70" y="470">PyPI · 35-min window 19-May</text>
+  <text class="mitre" x="70" y="484">T1195.002 · T1078</text>
+  <text class="ioc" x="70" y="498">7d80b3ef · aeaf583e · 877ff253</text>
+
+  <rect class="stage-box" x="292" y="430" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="310" cy="450" r="11"/>
+  <text class="stage-num-text" x="310" y="454">8</text>
+  <text class="stage-label" x="330" y="454">rope.pyz drop + exec</text>
+  <text class="stage-sub" x="330" y="470">/tmp/managed.pyz · /tmp/rope-*</text>
+  <text class="mitre" x="330" y="484">T1059.006 · T1480</text>
+  <text class="ioc" x="330" y="498">069ac1dc…99f44ce</text>
+
+  <rect class="stage-box" x="32" y="518" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="50" cy="538" r="11"/>
+  <text class="stage-num-text" x="50" y="542">9</text>
+  <text class="stage-label" x="70" y="542">Cred sweep 90+ paths</text>
+  <text class="stage-sub" x="70" y="558">AWS · Azure · GCP · K8s · Vault</text>
+  <text class="mitre" x="70" y="572">T1552.001 · T1552.004</text>
+  <text class="ioc" x="70" y="586">bw/op brute · bash_history</text>
+
+  <rect class="stage-box" x="292" y="518" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="310" cy="538" r="11"/>
+  <text class="stage-num-text" x="310" y="542">10</text>
+  <text class="stage-label" x="330" y="542">SSM + K8s lateral (5/host)</text>
+  <text class="stage-sub" x="330" y="558">ssm:SendCommand · kubectl exec</text>
+  <text class="mitre" x="330" y="572">T1611 · T1041</text>
+  <text class="ioc" x="330" y="586">/tmp/.rope_state/ssm_inst…json</text>
+
+  <rect class="stage-box" x="32" y="606" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="50" cy="626" r="11"/>
+  <text class="stage-num-text" x="50" y="630">11</text>
+  <text class="stage-label" x="70" y="630">Markers + persistence</text>
+  <text class="stage-sub" x="70" y="646">~/.cache/.sys-update-check</text>
+  <text class="mitre" x="70" y="660">T1098.001 · T1136.002</text>
+  <text class="ioc" x="70" y="674">RSA Key B · SSL verify on</text>
+
+  <rect class="danger-box" x="292" y="606" width="248" height="76" rx="6"/>
+  <circle class="stage-num" cx="310" cy="626" r="11" fill="#cf222e"/>
+  <text class="stage-num-text" x="310" y="630">12</text>
+  <text class="danger-text" x="330" y="630">Destructive (IL/IR)</text>
+  <text class="danger-sub" x="330" y="646">/audio.mp3 → rm -rf ~/</text>
+  <text class="mitre" x="330" y="660">T1485 · T1531</text>
+  <text class="ioc" x="330" y="674">RU locale skip · IL/IR trigger</text>
+
+  <path class="arrow" d="M 280 468 L 292 468" marker-end="url(#arrowhead)"/>
+  <path class="arrow" d="M 156 506 L 156 518" marker-end="url(#arrowhead)"/>
+  <path class="arrow" d="M 280 556 L 292 556" marker-end="url(#arrowhead)"/>
+  <path class="arrow" d="M 156 594 L 156 606" marker-end="url(#arrowhead)"/>
+  <path class="arrow" d="M 280 644 L 292 644" marker-end="url(#arrowhead)"/>
+
+  <!-- ===== GitHub corporate breach (impact box) ===== -->
+  <rect class="danger-box" x="32" y="706" width="508" height="82" rx="6"/>
+  <text class="danger-text" x="50" y="728">GITHUB CORPORATE BREACH (impact, lane A)</text>
+  <text class="danger-sub" x="50" y="746">3,800 GitHub-internal repos exfiltrated · employee endpoint compromised</text>
+  <text class="danger-sub" x="50" y="762">TeamPCP listing on cybercrime forums · USD 50k+ ask · leak threat if no buyer</text>
+  <text class="mitre" x="50" y="778">T1213 · T1567.002 · T1199</text>
+
+  <!-- Cross-vector convergence callout -->
+  <rect class="lane" x="32" y="800" width="508" height="86" rx="6"/>
+  <text class="lane-label" x="44" y="818">CROSS-VECTOR LINKAGE — same actor confirmed by shared infra</text>
+  <text class="stage-sub" x="44" y="838">t.m-kosche.com observed in actions-cool runners (B), @antv npm installs and durabletask PyPI installs (C).</text>
+  <text class="stage-sub" x="44" y="854">83.142.209.194 reused from Day-18 transformers.pyz lineage — rope.pyz adds AWS SSM + K8s lateral.</text>
+  <text class="stage-sub" x="44" y="870">Nx Console candidacy by Aikido (medium); GitHub corporate has not officially named the extension yet.</text>
+
+  <!-- ===== ATTACKER C2 SPINE (right column, x=572..848 inside lane 560..860) ===== -->
+  <text class="c2-title" x="572" y="112">SHARED C2 SPINE</text>
+
+  <rect class="c2-box" x="572" y="122" width="276" height="120" rx="6"/>
+  <text class="c2-title" x="582" y="140">Domains (T1071.001)</text>
+  <text class="c2-line" x="582" y="156">check.git-service.com</text>
+  <text class="c2-sub" x="582" y="170">primary payload + C2 for rope.pyz</text>
+  <text class="c2-line" x="582" y="188">t.m-kosche.com</text>
+  <text class="c2-sub" x="582" y="202">fallback C2 · actions-cool exfil</text>
+  <text class="c2-line" x="582" y="220">83.142.209.194</text>
+  <text class="c2-sub" x="582" y="234">legacy IP from Day-18 transformers.pyz</text>
+
+  <rect class="c2-box" x="572" y="252" width="276" height="108" rx="6"/>
+  <text class="c2-title" x="582" y="270">URL paths (HTTP)</text>
+  <text class="c2-line" x="582" y="286">/v1/models</text>
+  <text class="c2-sub" x="582" y="300">killswitch (OpenAI API mimicry)</text>
+  <text class="c2-line" x="582" y="316">/api/public/version</text>
+  <text class="c2-sub" x="582" y="330">exfil endpoint (POST secrets)</text>
+  <text class="c2-line" x="582" y="346">/audio.mp3</text>
+  <text class="c2-sub" x="582" y="360">destructive trigger (IL/IR only)</text>
+
+  <rect class="c2-box" x="572" y="370" width="276" height="112" rx="6"/>
+  <text class="c2-title" x="582" y="388">Payload artefacts</text>
+  <text class="c2-line" x="582" y="404">rope.pyz</text>
+  <text class="c2-sub" x="582" y="418">069ac1dc7f7649b76b…99f44ce</text>
+  <text class="c2-line" x="582" y="436">/tmp/managed.pyz</text>
+  <text class="c2-sub" x="582" y="450">primary runtime drop path</text>
+  <text class="c2-line" x="582" y="468">/tmp/rope-&lt;random&gt;.pyz</text>
+  <text class="c2-sub" x="582" y="482">secondary runtime drop path</text>
+
+  <rect class="c2-box" x="572" y="492" width="276" height="128" rx="6"/>
+  <text class="c2-title" x="582" y="510">Imposter commits (lane B)</text>
+  <text class="c2-line" x="582" y="526">issues-helper · 53 tags</text>
+  <text class="c2-sub" x="582" y="540">2026-05-18T19:10:24Z → 19:13:40Z</text>
+  <text class="c2-line" x="582" y="558">maintain-one-comment · 15 tags</text>
+  <text class="c2-sub" x="582" y="572">2026-05-18T19:30:30Z → 19:31:09Z</text>
+  <text class="c2-sub" x="582" y="588">v3.8.0 → 1c9e803c…2e90062</text>
+  <text class="c2-sub" x="582" y="602">v3 → 147337a9…650f1e22</text>
+
+  <rect class="c2-box" x="572" y="630" width="276" height="100" rx="6"/>
+  <text class="c2-title" x="582" y="648">Operator monetisation</text>
+  <text class="c2-line" x="582" y="664">GitHub corp dataset for sale</text>
+  <text class="c2-sub" x="582" y="678">USD 50k+ · cybercrime forums</text>
+  <text class="c2-sub" x="582" y="692">leak threatened if no buyer</text>
+  <text class="c2-line" x="582" y="710">Mini Shai-Hulud lineage</text>
+  <text class="c2-sub" x="582" y="724">Day 2 + Day 18 + today = 5 waves</text>
+
+  <!-- Bidirectional yellow arrows: lane B exfil ↔ C2; lane C rope.pyz ↔ C2 -->
+  <path class="arrow-yellow" d="M 540 356 L 572 200" marker-end="url(#arrowhead-y)" marker-start="url(#arrowhead-y)"/>
+  <path class="arrow-yellow" d="M 540 468 L 572 436" marker-end="url(#arrowhead-y)" marker-start="url(#arrowhead-y)"/>
+
+  <!-- ===== Detection anchors footer ===== -->
+  <rect class="anchor-box" x="20" y="900" width="840" height="430" rx="8"/>
+  <text class="anchor-title" x="36" y="924">DETECTION ANCHORS — what to look for first</text>
+
+  <!-- Each entry: label (bold) + 1-2 wrapped lines below. Code lines kept <= ~95 mono chars. -->
+  <text class="anchor-label" x="36" y="950">Sigma</text>
+  <text class="anchor-code" x="36" y="968">python3 reads /proc/&lt;OtherPID&gt;/mem from a Runner.Worker child   ·   file_event ~/.cache/.sys-update-check[-k8s]</text>
+  <text class="anchor-code" x="36" y="984">python3 exec of /tmp/managed.pyz or /tmp/rope-*.pyz</text>
+
+  <text class="anchor-label" x="36" y="1008">KQL</text>
+  <text class="anchor-code" x="36" y="1026">DeviceNetworkEvents to {check.git-service.com, t.m-kosche.com, 83.142.209.194}</text>
+  <text class="anchor-code" x="36" y="1042">Code.exe-node-child egress within 30 min of extension folder write</text>
+
+  <text class="anchor-label" x="36" y="1066">YARA</text>
+  <text class="anchor-code" x="36" y="1084">zipapp PK + __main__.py + .sys-update-check + rope_state + 2+ cred-path anchors · filesize &lt; 5MB</text>
+  <text class="anchor-code" x="36" y="1100">hash.sha256 anchors for rope.pyz and the three durabletask wheels</text>
+
+  <text class="anchor-label" x="36" y="1124">Suricata</text>
+  <text class="anchor-code" x="36" y="1142">DNS for the three FQDNs · TLS SNI match · IP 83.142.209.194</text>
+  <text class="anchor-code" x="36" y="1158">HTTP path /v1/models · /api/public/version · /audio.mp3</text>
+
+  <text class="anchor-label" x="36" y="1182">PEAK H1</text>
+  <text class="anchor-code" x="36" y="1200">actions-cool workflow run + bun install + python3 /proc/&lt;PID&gt;/mem read sequence</text>
+
+  <text class="anchor-label" x="36" y="1224">PEAK H2</text>
+  <text class="anchor-code" x="36" y="1242">durabletask install + /tmp/*.pyz drop + ~/.cache/.sys-update-check + cred-path reads</text>
+
+  <text class="anchor-label" x="36" y="1266">PEAK H3</text>
+  <text class="anchor-code" x="36" y="1284">extension folder write + Code.exe-node-child egress to non-baselined FQDN within 30 min</text>
+
+  <text class="danger-text" x="36" y="1314">IR rule:  ISOLATE host BEFORE revoking tokens  (rope.pyz inherits Day-18 token-revoke destructive trigger via /v1/models)</text>
+
+  <text class="sub" x="20" y="1356">Author: Jarmi · 2026-05-21 · Day 24 · Sources: StepSecurity, Wiz, Snyk, Aikido, GitHub, Help Net Security · GitHub-friendly palette w/ dark override</text>
+</svg>

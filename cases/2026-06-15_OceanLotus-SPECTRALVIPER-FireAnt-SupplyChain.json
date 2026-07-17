@@ -1,0 +1,139 @@
+{
+  "name": "2026-06-15 — 2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-chain attack and a multi-year construction-firm intrusion — clusters: OceanLotus (APT32)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1059",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1204",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1574.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1055",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1036",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1553.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1082",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1570",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1021",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1573",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-cha"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

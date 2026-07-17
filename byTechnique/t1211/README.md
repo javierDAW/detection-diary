@@ -4,9 +4,10 @@
 
 # Techniques: T1211
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-16 | Forgotten UEFI shims undermining Secure Boot: ESET's 11 Microsoft-signed bootloaders | UEFI shim trust-chain disclosure (ESET Research) | [`2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/`](../../days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/) |
 | 2026-06-16 | Qilin affiliate weaponises Check Point IKEv1 VPN auth-bypass (CVE-2026-50751) as ransomware initial access | Qilin ransomware affiliate (Check Point CPR, medium confidence) | [`2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/`](../../days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/) |

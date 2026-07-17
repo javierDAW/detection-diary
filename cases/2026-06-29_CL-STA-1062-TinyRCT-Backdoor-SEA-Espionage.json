@@ -1,0 +1,153 @@
+{
+  "name": "2026-06-29 — 2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy — clusters: CL-STA-1062",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1505.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1574.014",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1059.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1573.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1113",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1560.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1090",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1003.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1134.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1497.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1070.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    },
+    {
+      "techniqueID": "T1018",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Sou"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

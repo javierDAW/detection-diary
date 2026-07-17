@@ -1,0 +1,17 @@
+// Title: Outbound Connection to Media Land LLC (AS206728) Bulletproof Hosting Netblocks
+// Id: 8909baa0-abbb-423a-875d-79cb711a8811
+// MITRE: T1583.003, T1583.004
+// Reference: https://www.justice.gov/usao-ndoh/pr/three-russian-nationals-indicted-international-cybercrimes-resulting-more-62m-losses
+// Author: Jarmi
+// Date: 2026/07/17
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: A single hit does not confirm compromise; corroborate with
+//           fastflux_dns_pattern.kql or tunnel_binary_execution.kql before
+//           escalating to full incident status.
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteIPType == "Public"
+| where ipv4_is_match(RemoteIP, "45.141.85.0/24") or ipv4_is_match(RemoteIP, "91.220.163.0/24")
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine,
+          InitiatingProcessAccountName, RemoteIP, RemotePort, RemoteUrl
+| sort by Timestamp desc

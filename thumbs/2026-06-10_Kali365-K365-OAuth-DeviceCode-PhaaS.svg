@@ -1,0 +1,243 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Kali365 OAuth 2.0 device-code phishing kill chain</title>
+<desc id="d">Two-lane diagram. Left lane is the victim identity plane: a OneDrive/SharePoint phishing link loads a lure that shows a Preparing your secure document loader, presents a Microsoft device user_code auto-copied to the clipboard, the victim authorizes that code at the genuine microsoft.com/devicelogin endpoint and completes MFA themselves (the critical MFA-bypass point), Microsoft issues access and refresh tokens directly to the attacker application, the operator uses those tokens via Microsoft Graph from a hosting ASN, and finally collects mail and performs BEC follow-on. Right lane is the operator infrastructure: the Kali365 PhaaS backend branded K365 Control sold on Telegram, disposable Cloudflare Worker and attachedfile.com front-ends, the operator app requesting a device code from Microsoft, the C2 panel.securehubcloud.com polled every three seconds to learn when tokens are captured (the second critical anchor), CTI pivots on the TLS certificate SHA1 and HTTP banner hash that survive domain rotation, and a parallel MAX Messenger takeover branch exfiltrating OTP and 2FA to a Telegram bot. Durable detection anchors are the device-code protocol in sign-in logs, cross-ASN token reuse, and the certificate, banner and content fingerprints.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Kali365 (K365) - OAuth 2.0 device-code phishing-as-a-service</text>
+<text class="meta" x="20" y="58">Vendor: Arctic Wolf Labs - Date: 2026-06-02 - Cluster: Kali365 (unattributed PhaaS) - Day 44</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="104">VICTIM / IDENTITY PLANE (Entra ID / M365)</text>
+<text class="laneLabelR" x="460" y="104">OPERATOR INFRASTRUCTURE (Kali365 PhaaS)</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Delivery: phishing link</text>
+<text class="sub" x="42" y="168">OneDrive / SharePoint themed lure</text>
+<text class="sub" x="42" y="184">Spearphishing link (T1566.002)</text>
+<text class="sub" x="42" y="200">Brand impersonation (T1656)</text>
+<text class="mono" x="42" y="226">open-box-rpps.jeff-1fd.workers.dev</text>
+<text class="mono" x="42" y="244">loader -&gt; fetch() -&gt; document.write</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">Lure loads in browser</text>
+<text class="sub" x="42" y="318">Preparing your secure document...</text>
+<text class="sub" x="42" y="334">Same-origin sibling fetch()</text>
+<text class="sub" x="42" y="350">C2 returns the lure HTML</text>
+<text class="mono" x="42" y="376">content fp: Preparing your secure</text>
+<text class="mono" x="42" y="394">banner febb622cd9eeb5c8860dcef4</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">Device code presented</text>
+<text class="sub" x="42" y="468">user_code hardcoded in page</text>
+<text class="sub" x="42" y="484">auto-copied to the clipboard</text>
+<text class="sub" x="42" y="500">SID 2091010 maps to operator</text>
+<text class="mono" x="42" y="526">user_code e.g. SHQ748WLY</text>
+<text class="mono" x="42" y="544">Steal App Access Token (T1528)</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Victim authorizes at Microsoft</text>
+<text class="sub" x="42" y="618">Genuine microsoft.com/devicelogin</text>
+<text class="sub" x="42" y="634">MFA completed BY THE VICTIM</text>
+<text class="sub" x="42" y="650">= MFA bypass (no AiTM proxy)</text>
+<text class="mono" x="42" y="676">login.microsoftonline.com</text>
+<text class="mono" x="42" y="694">/common/oauth2/deviceauth</text>
+
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Tokens issued to attacker app</text>
+<text class="sub" x="42" y="768">Access + refresh tokens</text>
+<text class="sub" x="42" y="784">Refresh valid up to 90 days</text>
+<text class="sub" x="42" y="800">Survives a password reset</text>
+<text class="mono" x="42" y="826">Valid Accounts: Cloud (T1078.004)</text>
+<text class="mono" x="42" y="844">Use Alt Auth Material (T1550.001)</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Token use from hosting ASN</text>
+<text class="sub" x="42" y="918">Microsoft Graph as the victim</text>
+<text class="sub" x="42" y="934">Origin AS13335 / hosting</text>
+<text class="sub" x="42" y="950">Cross-ASN reuse = theft signal</text>
+<text class="mono" x="42" y="976">172.67.156.83  104.21.32.229</text>
+<text class="mono" x="42" y="994">216.203.20.95 (TCP/8443 proxy)</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Mailbox collection / BEC</text>
+<text class="sub" x="42" y="1068">Read mail + files, inbox rules</text>
+<text class="sub" x="42" y="1084">Thread hijack, invoice fraud</text>
+<text class="sub" x="42" y="1100">Remote Email Collection</text>
+<text class="mono" x="42" y="1126">T1114.002 follow-on monetization</text>
+<text class="mono" x="42" y="1144">hunt: CloudAppEvents inbox rules</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="149">Kali365 PhaaS backend</text>
+<text class="sub" x="472" y="173">Panel branded K365 Control</text>
+<text class="sub" x="472" y="189">Telegram resale; admin/agent/client</text>
+<text class="sub" x="472" y="205">Subscription Renewal model</text>
+<text class="sub" x="472" y="221">AI-generated lures (FBI IC3)</text>
+<text class="mono" x="472" y="251">panel.securehubcloud.com/login</text>
+<text class="mono" x="472" y="269">first seen Apr 2026</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="319">Disposable front-ends</text>
+<text class="sub" x="472" y="343">Cloudflare Workers (rotate days)</text>
+<text class="sub" x="472" y="359">Shared cPanel: attachedfile.com</text>
+<text class="sub" x="472" y="375">39 subdomains; block as a unit</text>
+<text class="sub" x="472" y="391">126-host cluster 6-27 May 2026</text>
+<text class="mono" x="472" y="421">*.workers.dev  *.attachedfile.com</text>
+<text class="mono" x="472" y="439">Acquire Infra: Web Svc (T1583.006)</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="489">Request device code</text>
+<text class="sub" x="472" y="513">Operator public-client app</text>
+<text class="sub" x="472" y="529">Calls MS device auth endpoint</text>
+<text class="sub" x="472" y="545">Embeds user_code into the lure</text>
+<text class="sub" x="472" y="561">offline_access scope -&gt; refresh</text>
+<text class="mono" x="472" y="591">POST /oauth2/v2.0/devicecode</text>
+<text class="mono" x="472" y="609">returns user_code + device_code</text>
+
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="659">C2 token-capture poll</text>
+<text class="sub" x="472" y="683">Lure polls C2 every 3 seconds</text>
+<text class="sub" x="472" y="699">status === captured</text>
+<text class="sub" x="472" y="715">= tokens minted to attacker</text>
+<text class="sub" x="472" y="731">Web protocol C2 (T1071.001)</text>
+<text class="mono" x="472" y="761">GET panel.securehubcloud.com</text>
+<text class="mono" x="472" y="779">/status?sid=2091010</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="829">CTI pivots (tradecraft)</text>
+<text class="sub" x="472" y="853">TLS cert SHA1 -&gt; all subdomains</text>
+<text class="sub" x="472" y="869">Banner hash -&gt; 126 hosts</text>
+<text class="sub" x="472" y="885">Title K365 Control -&gt; off-zone host</text>
+<text class="sub" x="472" y="901">durable when domains rotate</text>
+<text class="mono" x="472" y="931">6894a51278ec89118276c2dd2dc36e</text>
+<text class="mono" x="472" y="949">api/boss/panel.securehubcloud</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="999">MAX takeover + Telegram exfil</text>
+<text class="sub" x="472" y="1023">greatness-marketing.top prize page</text>
+<text class="sub" x="472" y="1039">+7 phone, OTP, 2FA captured</text>
+<text class="sub" x="472" y="1055">MFA Interception (T1111)</text>
+<text class="sub" x="472" y="1071">Exfil to Telegram bot (T1567)</text>
+<text class="mono" x="472" y="1101">@NovosibyrskyMoneyBot</text>
+<text class="mono" x="472" y="1119">chatId -5035652280</text>
+
+<!-- Left lane vertical flow arrows -->
+<path class="arrow" d="M60,255 L60,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,405 L60,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,555 L60,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,705 L60,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,855 L60,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,1005 L60,1020" marker-end="url(#ah)"/>
+
+<!-- Right lane vertical flow arrows -->
+<path class="arrowR" d="M490,280 L490,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,450 L490,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,620 L490,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,790 L490,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,960 L490,975" marker-end="url(#ah)"/>
+
+<!-- Cross-lane: operator seeds device code into the lure; victim authorization triggers C2 capture -->
+<path class="arrowX" d="M460,500 L425,500" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,600 L460,650" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Durable detection anchors (legitimate OAuth flow abused; no CVE, no binary)</text>
+<text class="footerT" x="34" y="1220">Red = MFA-bypass point (victim authorizes the attacker device code at the genuine Microsoft endpoint) and the C2 capture poll.</text>
+<text class="footerT" x="34" y="1238">Durable: device-code protocol in sign-in logs; cross-ASN token reuse; cert SHA1, banner hash, Preparing-your-secure-document content.</text>
+<text class="footerT" x="34" y="1256">Rotating: Cloudflare Worker subdomains. Revoke refresh tokens BEFORE password reset (90-day token survives the reset).</text>
+</svg>

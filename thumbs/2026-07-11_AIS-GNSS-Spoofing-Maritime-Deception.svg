@@ -1,0 +1,235 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">AIS and GNSS spoofing kill chain - maritime positioning deception</title>
+<desc id="d">Two-lane diagram. Left lane is the affected vessel and shore observer: a ship enters a contested GNSS/AIS area, its GNSS receiver locks a counterfeit signal and computes a false position, its AIS broadcasts that false position in an unauthenticated type 1/2/3 report, an operator separately falsifies AIS identity in a type 5 static record (false MMSI, name, flag), and the shore VTS/ECDIS picture is manipulated with collision and mis-routing risk; the defender then applies a Stage-1 per-MMSI kinematic jump filter and a Stage-2 multi-vessel clustering plus identity cross-check. Right lane is the spoofing side: state GNSS transmitters over the Baltic, Black Sea, Murmansk and Haifa, dark-fleet identity manipulation in choke points such as the Strait of Hormuz, and the AIS/GNSS spoofing tooling that produces it, with the caveat that AIS characterises but does not attribute. Detection anchors are per-MMSI implausible jumps, multi-vessel convergence to one point, placeholder MMSIs and generic labels, and GNSS fix degradation.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-ot-ics" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">AIS and GNSS Spoofing at Sea - Maritime Positioning Deception</text>
+<text class="meta" x="20" y="58">Source: IFC AOR + SeaSpoofFinder (arXiv 2602.16257) - Date: 2026-07-07 - Class: GNSS/AIS spoofing - Day 75</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="34" y="104">VICTIM / OBSERVER - vessel, VTS, ECDIS picture</text>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelR" x="464" y="104">SPOOFING SIDE - GNSS transmitters, dark fleet</text>
+
+<!-- Left stage 1 -->
+<rect class="stageK" x="30" y="120" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Contested positioning environment</text>
+<text class="sub" x="40" y="168">Baltic, Black Sea, Murmansk, Haifa, Hormuz</text>
+<text class="sub" x="40" y="184">GNSS spoofing + AIS deception hot-zones</text>
+<text class="sub" x="40" y="200">Entering the area is the precondition</text>
+<text class="mono" x="40" y="226">contested GNSS / AIS choke points</text>
+<text class="mono" x="40" y="244">T0830 adversary-in-the-middle (signal)</text>
+
+<!-- Left stage 2 -->
+<rect class="stageK" x="30" y="270" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">GNSS receiver locks counterfeit signal</text>
+<text class="sub" x="40" y="318">Fake constellation stronger than real sats</text>
+<text class="sub" x="40" y="334">False PVT; or jamming = loss of fix</text>
+<text class="sub" x="40" y="350">All receivers dragged to one false point</text>
+<text class="mono" x="40" y="376">false position-velocity-time solution</text>
+<text class="mono" x="40" y="394">T0815 denial of view</text>
+
+<!-- Left stage 3 -->
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">AIS repeats the false position</text>
+<text class="sub" x="40" y="468">Type 1/2/3 self-reported, unauthenticated</text>
+<text class="sub" x="40" y="484">Genuine-looking track at a false location</text>
+<text class="sub" x="40" y="500">6-bit NMEA AIVDM over VHF</text>
+<text class="mono" x="40" y="526">!AIVDM ... position report</text>
+<text class="mono" x="40" y="544">T0856 spoof reporting message</text>
+
+<!-- Left stage 4 -->
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">AIS identity falsification (type 5)</text>
+<text class="sub" x="40" y="618">False MMSI / name / flag / ship type</text>
+<text class="sub" x="40" y="634">Placeholder MMSI 000000 / 999999</text>
+<text class="sub" x="40" y="650">Generic labels: NATO SHIP, FRENCH WARSHIP</text>
+<text class="mono" x="40" y="676">dark-fleet identity laundering</text>
+<text class="mono" x="40" y="694">T0856 spoof reporting message</text>
+
+<!-- Left stage 5 -->
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Observer picture manipulated</text>
+<text class="sub" x="40" y="768">VTS / ECDIS / aggregators ingest as truth</text>
+<text class="sub" x="40" y="784">Mis-routing, sanctions blind spot</text>
+<text class="sub" x="40" y="800">Collision risk when tracks diverge</text>
+<text class="mono" x="40" y="826">corrupted traffic picture</text>
+<text class="mono" x="40" y="844">T0832 manip of view - T0880 loss of safety</text>
+
+<!-- Left stage 6 -->
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Stage-1 kinematic filter (defender)</text>
+<text class="sub" x="40" y="918">Per-MMSI jump + implied-speed test</text>
+<text class="sub" x="40" y="934">Discard zero-coord, seconds&gt;59, placeholder</text>
+<text class="sub" x="40" y="950">Flags a potential spoofing event (PSE)</text>
+<text class="mono" x="40" y="976">jump &gt; 5 km AND implied &gt; 120 kn</text>
+<text class="mono" x="40" y="994">T1565.002 transmitted data manip</text>
+
+<!-- Left stage 7 -->
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Stage-2 clustering + identity check</text>
+<text class="sub" x="40" y="1068">2+ MMSIs from ~10km source to ~10m dest</text>
+<text class="sub" x="40" y="1084">Circular-trajectory-around-a-point tell</text>
+<text class="sub" x="40" y="1100">Cross-check registry + MID vs flag</text>
+<text class="mono" x="40" y="1126">final potential spoofing event (FPSE)</text>
+<text class="mono" x="40" y="1144">T0830 confirmed footprint</text>
+
+<!-- Right op 1 -->
+<rect class="opK" x="460" y="125" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">State GNSS spoofer / jammer</text>
+<text class="sub" x="470" y="173">Kaliningrad, Murmansk, Black Sea, Haifa</text>
+<text class="sub" x="470" y="189">Area denial / electronic warfare</text>
+<text class="sub" x="470" y="205">Russia-nexus (Baltic/Black Sea) assessed</text>
+<text class="sub" x="470" y="221">AIS-only = no definitive attribution</text>
+<text class="mono" x="470" y="251">counterfeit constellation over area</text>
+<text class="mono" x="470" y="269">T0830 adversary-in-the-middle</text>
+
+<!-- Right op 2 -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">Broadcast counterfeit signal</text>
+<text class="sub" x="470" y="343">Overpower real GNSS in the footprint</text>
+<text class="sub" x="470" y="359">Every receiver computes same false PVT</text>
+<text class="sub" x="470" y="375">Or jam to deny fix entirely</text>
+<text class="sub" x="470" y="391">Footprint can span a large sea area</text>
+<text class="mono" x="470" y="421">gps-sdr-sim + SDR (bladeRF/HackRF)</text>
+<text class="mono" x="470" y="439">T0815 denial of view</text>
+
+<!-- Right op 3 -->
+<rect class="opK" x="460" y="465" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">Dark-fleet identity manipulation</text>
+<text class="sub" x="470" y="513">Falsify MMSI/name/flag to evade sanctions</text>
+<text class="sub" x="470" y="529">Fabricate tracks; go dark then re-appear</text>
+<text class="sub" x="470" y="545">IFC June 2026: 40 incidents, all false AIS</text>
+<text class="sub" x="470" y="561">Choke points: Hormuz, Gulf of Oman</text>
+<text class="mono" x="470" y="591">identity laundering on the AIS payload</text>
+<text class="mono" x="470" y="609">T0856 spoof reporting message</text>
+
+<!-- Right op 4 -->
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">AIS / GNSS spoofing tooling</text>
+<text class="sub" x="470" y="683">ais-simulator injects fabricated tracks</text>
+<text class="sub" x="470" y="699">gr-ais / AIVDM encoders (6-bit)</text>
+<text class="sub" x="470" y="715">Feeds NMEA-over-TCP / gpsd on the LAN</text>
+<text class="sub" x="470" y="731">Unauthenticated AIS = trivial to forge</text>
+<text class="mono" x="470" y="761">ais-simulator - gps-sdr-sim</text>
+<text class="mono" x="470" y="779">no auth, no replay protection</text>
+
+<!-- Right op 5 -->
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Deceive observers, mask origin</text>
+<text class="sub" x="470" y="853">Corrupt the shore traffic picture</text>
+<text class="sub" x="470" y="869">Launder cargo; hide origin and intent</text>
+<text class="sub" x="470" y="885">Create collision and safety hazards</text>
+<text class="sub" x="470" y="901">Effect propagates to every aggregator</text>
+<text class="mono" x="470" y="931">manipulation of the maritime view</text>
+<text class="mono" x="470" y="949">T0832 manipulation of view</text>
+
+<!-- Right op 6 -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">Attribution limits (CTI tradecraft)</text>
+<text class="sub" x="470" y="1023">AIS maps the footprint, not the source</text>
+<text class="sub" x="470" y="1039">Needs independent RF / imagery to attribute</text>
+<text class="sub" x="470" y="1055">Detect the shadow, not the transmitter</text>
+<text class="sub" x="470" y="1071">Pair data with geopolitical context</text>
+<text class="mono" x="470" y="1101">characterize != attribute</text>
+<text class="mono" x="470" y="1119">SeaSpoofFinder methodology</text>
+
+<!-- cross-lane arrows -->
+<path class="arrowX" d="M460 202 L425 187" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 372 L425 337" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 542 L425 487" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 712 L425 787" marker-end="url(#ah)" color="#7a3a7a"/>
+<path class="arrowX" d="M460 882 L425 937" marker-end="url(#ah)" color="#7a3a7a"/>
+<!-- victim vertical flow -->
+<path class="arrow" d="M227 255 L227 270" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 405 L227 420" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 555 L227 570" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 705 L227 720" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 855 L227 870" marker-end="url(#ah)" color="#2a4a6a"/>
+<path class="arrow" d="M227 1005 L227 1020" marker-end="url(#ah)" color="#2a4a6a"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1198">Detection anchors</text>
+<text class="footerT" x="34" y="1218">Feed: per-MMSI implausible jump (&gt;5km, &gt;120kn); 2+ vessels converging to one ~10m cell (FPSE); circular track around a point.</text>
+<text class="footerT" x="34" y="1236">Identity: placeholder MMSI 000000/999999; generic labels; MMSI MID vs flag mismatch; go-dark then re-appear in a choke point.</text>
+<text class="footerT" x="34" y="1254">Telemetry: multi-receiver GNSS fix loss / DOP spike (denial of view); AIS-over-IP feed integrity for rogue injectors.</text>
+</svg>

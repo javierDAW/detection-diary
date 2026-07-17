@@ -1,0 +1,132 @@
+{
+  "name": "2026-06-08 — 2026-06-08_OP-512-China-IIS-WebShell-Framework",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic uniqueness — clusters: OP-512",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1505.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1059.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1620",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1134.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1068",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1071.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1132.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1573.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1573.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1070.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    },
+    {
+      "techniqueID": "T1033",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

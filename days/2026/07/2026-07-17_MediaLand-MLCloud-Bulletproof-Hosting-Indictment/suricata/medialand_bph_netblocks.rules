@@ -1,0 +1,14 @@
+# Author: Jarmi
+# Date: 2026-07-17
+# Description: Network-layer rules for traffic to/from Media Land LLC (AS206728)
+#              bulletproof hosting netblocks, sanctioned Nov 2025 and named in
+#              the DOJ indictment unsealed 14 Jul 2026. Custom variable
+#              MEDIALAND_NETS must be defined in suricata.yaml or passed via
+#              --set vars.address-groups.MEDIALAND_NETS="[45.141.85.0/24,91.220.163.0/24]"
+# Reference: https://www.justice.gov/usao-ndoh/pr/three-russian-nationals-indicted-international-cybercrimes-resulting-more-62m-losses
+
+alert ip $HOME_NET any -> [45.141.85.0/24,91.220.163.0/24] any (msg:"MEDIALAND BPH - Outbound traffic to Media Land LLC (AS206728) netblock"; reference:url,justice.gov/usao-ndoh/pr/three-russian-nationals-indicted-international-cybercrimes-resulting-more-62m-losses; classtype:policy-violation; sid:9000101; rev:1;)
+
+alert tls $HOME_NET any -> [45.141.85.0/24,91.220.163.0/24] 443 (msg:"MEDIALAND BPH - TLS handshake to Media Land LLC (AS206728) front-end"; tls.subject; content:"CN="; reference:url,ipinfo.io/AS206728; classtype:policy-violation; sid:9000102; rev:1;)
+
+alert http $HOME_NET any -> [45.141.85.0/24,91.220.163.0/24] any (msg:"MEDIALAND BPH - HTTP CONNECT tunnel toward Media Land LLC (AS206728) netblock"; http.method; content:"CONNECT"; reference:url,justice.gov/usao-ndoh/pr/three-russian-nationals-indicted-international-cybercrimes-resulting-more-62m-losses; classtype:policy-violation; sid:9000103; rev:1;)

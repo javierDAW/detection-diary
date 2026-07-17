@@ -1,0 +1,26 @@
+// Title: Reverse-Proxy or Tunneling Binary Execution Preceding Suspected BPH Egress
+// Id: b82dd104-0ba5-4b0b-be9c-a0016c029bc6
+// MITRE: T1090.002, T1071.001
+// Reference: <add_known_medialand_incident_ticket>
+// Author: Jarmi
+// Date: 2026/07/17
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents, DeviceNetworkEvents)
+// FP notes: These tools have legitimate administrative uses; require the
+//           follow-on network-egress correlation below before treating as
+//           an incident.
+let tunnelBinaries = dynamic(["stunnel.exe", "socat.exe", "frpc.exe", "ngrok.exe"]);
+let bphNetblocks = dynamic(["45.141.85.0/24", "91.220.163.0/24"]);
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where FileName has_any (tunnelBinaries)
+| project Timestamp, DeviceName, FileName, ProcessCommandLine, AccountName, ProcessId
+| join kind=inner (
+    DeviceNetworkEvents
+    | where Timestamp > ago(30d)
+    | where RemoteIPType == "Public"
+    | where ipv4_is_match(RemoteIP, "45.141.85.0/24") or ipv4_is_match(RemoteIP, "91.220.163.0/24")
+    | project NetTimestamp = Timestamp, DeviceName, InitiatingProcessId, RemoteIP, RemotePort
+) on DeviceName, $left.ProcessId == $right.InitiatingProcessId
+| where NetTimestamp between (Timestamp .. (Timestamp + 1h))
+| project Timestamp, NetTimestamp, DeviceName, FileName, ProcessCommandLine, AccountName, RemoteIP, RemotePort
+| sort by Timestamp desc

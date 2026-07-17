@@ -1,0 +1,34 @@
+title: Outbound Connection to Media Land LLC (AS206728) Bulletproof Hosting Netblocks
+id: 8909baa0-abbb-423a-875d-79cb711a8811
+status: experimental
+description: |
+    Detects outbound network connections from a monitored host to IPv4 ranges
+    registered to Media Land LLC (AS206728), a Russia-based bulletproof hosting
+    provider sanctioned by US/UK/Australia in November 2025 and indicted by the
+    US DOJ in July 2026. A single hit does not confirm compromise -- Media Land
+    fronted a wide variety of content over the years -- but any connection from
+    a monitored asset should be corroborated with a second signal (fast-flux DNS
+    pattern or tunneling-binary execution) before escalation.
+references:
+    - https://www.justice.gov/usao-ndoh/pr/three-russian-nationals-indicted-international-cybercrimes-resulting-more-62m-losses
+    - https://ipinfo.io/AS206728
+author: Jarmi
+date: 2026/07/17
+tags:
+    - attack.command-and-control
+    - attack.resource-development
+logsource:
+    category: network_connection
+    product: windows
+detection:
+    selection:
+        DestinationIp|cidr:
+            - '45.141.85.0/24'
+            - '91.220.163.0/24'
+    condition: selection
+falsepositives:
+    - Legitimate business traffic with a documented reason to reach Russian-hosted
+      infrastructure (rare; verify against known-good asset inventory)
+    - Stale passive-DNS or threat-feed data pointing at IPs no longer in active
+      criminal use
+level: medium

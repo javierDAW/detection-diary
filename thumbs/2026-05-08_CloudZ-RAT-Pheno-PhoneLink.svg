@@ -1,0 +1,172 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1080" role="img" aria-labelledby="t d">
+  <title id="t">CloudZ + Pheno kill chain — Talos, May 2026</title>
+  <desc id="d">Vertical timeline: fake ScreenConnect installer drops a Rust dropper that spawns a .NET loader via a scheduled task. The loader runs three anti-analysis checks (sleep skew, forensic-tool enumeration, _ENABLE_PROFILING) and then loads CloudZ in memory. CloudZ refreshes its config via Cloudflare Workers and Pastebin and beacons to backend IP 185.196.10.136. The Pheno plugin is downloaded on demand, scans for Phone Link processes (YourPhone.exe, PhoneExperienceHost.exe, Link to Windows), reads the SQLite cache PhoneExperiences-*.db under the Microsoft.YourPhone_8wekyb3d8bbwe UWP package, filters OTP-shaped messages and exfiltrates them over HTTPS. Net effect: silent SMS and OTP theft and 2FA bypass without compromising the paired phone.</desc>
+  <defs>
+    <style>
+      .bg-stage     { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-victim    { fill: #ffffff; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2        { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1; }
+      .stagebg      { fill: #0969da; }
+      .stagenum     { fill: #ffffff; font: 700 11px sans-serif; }
+      .label        { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub          { fill: #424a53; font: 12px sans-serif; }
+      .ioc          { fill: #57606a; font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .mitre        { fill: #0969da; font: 600 11px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header       { fill: #1f2328; font: 700 18px sans-serif; }
+      .subhead      { fill: #57606a; font: 12px sans-serif; }
+      .lane         { fill: #57606a; font: 11px sans-serif; }
+      .arrow        { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-fill   { fill: #57606a; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-victim  { fill: #0d1117; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .ioc        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-fill { fill: #8b949e; }
+      }
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+</style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+  </defs>
+
+  <text x="40" y="40" class="header">CloudZ RAT + Pheno plugin — kill chain</text>
+  <text x="40" y="60" class="subhead">Cisco Talos, 5-May-2026 . dwell time &gt;= 4 months . SMS/OTP theft via Microsoft Phone Link</text>
+
+  <text x="20" y="105" class="lane" transform="rotate(-90, 20, 105)">VICTIM HOST</text>
+  <text x="855" y="105" class="lane" transform="rotate(90, 855, 105)">ATTACKER C2</text>
+
+  <circle cx="80" cy="115" r="14" class="stagebg"/>
+  <text x="80" y="119" text-anchor="middle" class="stagenum">1</text>
+  <rect x="110" y="92" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="111" class="label">Fake ScreenConnect update (Rust dropper)</text>
+  <text x="124" y="128" class="sub">User runs the trojanized installer</text>
+  <text x="600" y="111" text-anchor="end" class="mitre">T1566 . T1036.005</text>
+  <text x="600" y="128" text-anchor="end" class="ioc">SHA256 65fcd965...eb321</text>
+
+  <line x1="360" y1="140" x2="360" y2="172" class="arrow" marker-end="url(#arr)"/>
+
+  <circle cx="80" cy="195" r="14" class="stagebg"/>
+  <text x="80" y="199" text-anchor="middle" class="stagenum">2</text>
+  <rect x="110" y="172" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="191" class="label">Scheduled task =&gt; .NET loader (AppData)</text>
+  <text x="124" y="208" class="sub">Persistence at logon / boot</text>
+  <text x="600" y="191" text-anchor="end" class="mitre">T1053.005</text>
+  <text x="600" y="208" text-anchor="end" class="ioc">SHA256 ed5de036... / 24398b75...</text>
+
+  <line x1="360" y1="220" x2="360" y2="252" class="arrow" marker-end="url(#arr)"/>
+
+  <circle cx="80" cy="275" r="14" class="stagebg"/>
+  <text x="80" y="279" text-anchor="middle" class="stagenum">3</text>
+  <rect x="110" y="252" width="500" height="62" rx="6" class="bg-stage"/>
+  <text x="124" y="271" class="label">Anti-analysis chain (loader)</text>
+  <text x="124" y="287" class="sub">Sleep skew . forensic-tool enum . _ENABLE_PROFILING</text>
+  <text x="124" y="303" class="ioc">Wireshark . Procmon . Sysmon . dnSpy . IDA -&gt; exit</text>
+  <text x="600" y="271" text-anchor="end" class="mitre">T1497.003 . T1622 . T1518.001</text>
+
+  <line x1="360" y1="314" x2="360" y2="346" class="arrow" marker-end="url(#arr)"/>
+
+  <circle cx="80" cy="369" r="14" class="stagebg"/>
+  <text x="80" y="373" text-anchor="middle" class="stagenum">4</text>
+  <rect x="110" y="346" width="500" height="62" rx="6" class="bg-stage"/>
+  <text x="124" y="365" class="label">CloudZ RAT loaded in-memory</text>
+  <text x="124" y="381" class="sub">.NET . ConfuserEx . DynamicMethod + ILGenerator</text>
+  <text x="124" y="397" class="ioc">Compiled 2026-01-13 . SHA256 5b7284bc...0235</text>
+  <text x="600" y="365" text-anchor="end" class="mitre">T1027.002 . T1027.011</text>
+
+  <line x1="610" y1="377" x2="700" y2="377" class="arrow" marker-end="url(#arr)" marker-start="url(#arr)"/>
+
+  <rect x="700" y="346" width="155" height="186" rx="6" class="bg-c2"/>
+  <text x="777" y="365" text-anchor="middle" class="label">Attacker C2</text>
+  <text x="777" y="385" text-anchor="middle" class="sub">Cloudflare Workers</text>
+  <text x="713" y="402" class="ioc">*.hellohiall</text>
+  <text x="713" y="416" class="ioc">  .workers.dev</text>
+  <text x="713" y="436" class="ioc">pastebin.com/raw</text>
+  <text x="713" y="450" class="ioc">  HELLOHIALL</text>
+  <text x="713" y="470" class="ioc">backend IP</text>
+  <text x="713" y="484" class="ioc">  185.196.10.136</text>
+  <text x="713" y="510" class="mitre">T1071.001</text>
+  <text x="713" y="524" class="mitre">T1090.004</text>
+
+  <line x1="360" y1="408" x2="360" y2="440" class="arrow" marker-end="url(#arr)"/>
+
+  <circle cx="80" cy="463" r="14" class="stagebg"/>
+  <text x="80" y="467" text-anchor="middle" class="stagenum">5</text>
+  <rect x="110" y="440" width="500" height="48" rx="6" class="bg-stage"/>
+  <text x="124" y="459" class="label">Pheno plugin downloaded on demand</text>
+  <text x="124" y="476" class="sub">orange-cell-1353.hellohiall.workers.dev/pheno.exe</text>
+  <text x="600" y="459" text-anchor="end" class="ioc">SHA256 33af5545...ffd98</text>
+
+  <line x1="360" y1="488" x2="360" y2="520" class="arrow" marker-end="url(#arr)"/>
+
+  <circle cx="80" cy="543" r="14" class="stagebg"/>
+  <text x="80" y="547" text-anchor="middle" class="stagenum">6</text>
+  <rect x="110" y="520" width="500" height="62" rx="6" class="bg-stage"/>
+  <text x="124" y="539" class="label">Pheno scans Phone Link processes</text>
+  <text x="124" y="555" class="sub">YourPhone.exe . PhoneExperienceHost.exe . Link to Windows</text>
+  <text x="124" y="571" class="ioc">UWP package: Microsoft.YourPhone_8wekyb3d8bbwe</text>
+
+  <line x1="360" y1="582" x2="360" y2="614" class="arrow" marker-end="url(#arr)"/>
+
+  <circle cx="80" cy="637" r="14" class="stagebg"/>
+  <text x="80" y="641" text-anchor="middle" class="stagenum">7</text>
+  <rect x="110" y="614" width="500" height="78" rx="6" class="bg-victim"/>
+  <text x="124" y="633" class="label">Reads PhoneExperiences-*.db (SQLite, user-level)</text>
+  <text x="124" y="649" class="sub">SMS bodies . push-notification mirror . OTP messages</text>
+  <text x="124" y="665" class="ioc">%LOCALAPPDATA%\Packages\Microsoft.YourPhone_8wekyb3d8bbwe\</text>
+  <text x="124" y="681" class="ioc">  LocalState\PhoneExperiences-*.db</text>
+  <text x="600" y="633" text-anchor="end" class="mitre">T1111 . T1213</text>
+
+  <line x1="360" y1="692" x2="360" y2="724" class="arrow" marker-end="url(#arr)"/>
+
+  <circle cx="80" cy="747" r="14" class="stagebg"/>
+  <text x="80" y="751" text-anchor="middle" class="stagenum">8</text>
+  <rect x="110" y="724" width="500" height="62" rx="6" class="bg-stage"/>
+  <text x="124" y="743" class="label">OTP / token filter (Microsoft.Data.Sqlite)</text>
+  <text x="124" y="759" class="sub">Regex digit groups . service keywords (banking, MS, Apple, ...)</text>
+  <text x="600" y="743" text-anchor="end" class="mitre">T1056.001</text>
+
+  <path d="M 610 760 Q 670 760 670 600 Q 670 540 700 540" class="arrow" marker-end="url(#arr)"/>
+  <text x="616" y="708" class="lane">exfil over HTTPS</text>
+
+  <line x1="360" y1="786" x2="360" y2="818" class="arrow" marker-end="url(#arr)"/>
+
+  <circle cx="80" cy="841" r="14" class="stagebg"/>
+  <text x="80" y="845" text-anchor="middle" class="stagenum">9</text>
+  <rect x="110" y="818" width="500" height="62" rx="6" class="bg-victim"/>
+  <text x="124" y="837" class="label">Impact - silent SMS / OTP theft</text>
+  <text x="124" y="853" class="sub">2FA bypass without compromising the paired phone</text>
+  <text x="124" y="869" class="ioc">Banking . MS / Google / Apple / Meta authenticators</text>
+  <text x="600" y="837" text-anchor="end" class="mitre">T1539 . T1041</text>
+
+  <rect x="60" y="918" width="780" height="120" rx="6" class="bg-stage"/>
+  <text x="76" y="939" class="label">Defender XDR detection anchors</text>
+  <text x="76" y="958" class="sub">file_event - non-YourPhone process opens PhoneExperiences-*.db</text>
+  <text x="76" y="975" class="sub">net_event - beacon to *.hellohiall.workers.dev or 185.196.10.136 within 30 min of DB read</text>
+  <text x="76" y="992" class="sub">process_creation - schtasks /create with parent in %APPDATA%</text>
+  <text x="76" y="1009" class="sub">recovery - revoke device tokens . migrate user to FIDO2 / passkey . re-image host</text>
+  <text x="76" y="1028" class="ioc">Sources: blog.talosintelligence.com/cloudz-pheno-infostealer/ . github.com/Cisco-Talos/IOCs</text>
+
+  <rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
+</svg>

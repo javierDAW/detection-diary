@@ -150,3 +150,5 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash,2026-07-13,CVE-2025-2492,no,,,,,,
 2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248,2026-07-14,CVE-2021-29441,no,,,,,,
 2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248,2026-07-14,CVE-2025-3248,yes,2025-05-05,2025-05-26,Known,Langflow Missing Authentication Vulnerability,Langflow,Langflow
+2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797,2026-07-16,CVE-2026-10797,no,,,,,,
+2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797,2026-07-16,CVE-2026-8863,no,,,,,,

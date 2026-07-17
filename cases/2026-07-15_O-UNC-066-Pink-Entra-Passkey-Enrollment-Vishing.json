@@ -1,0 +1,118 @@
+{
+  "name": "2026-07-15 — 2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-resistant persistence — clusters: O-UNC-066",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1566.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1656",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1204.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1111",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1621",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1098.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1556.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1213.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1530",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1567",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-res"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

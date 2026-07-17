@@ -1,0 +1,4501 @@
+[
+ {
+  "date": "2026-07-16",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797",
+  "title": "Forgotten UEFI shims undermining Secure Boot: ESET's 11 Microsoft-signed bootloaders",
+  "clusters": [
+   "UEFI shim trust-chain disclosure (ESET Research)"
+  ],
+  "country": "Cross-vendor UEFI/firmware supply chain (global)",
+  "platforms": [
+   "windows",
+   "linux",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "government",
+   "education"
+  ],
+  "techniques": [
+   "T1553.006",
+   "T1542.003",
+   "T1211",
+   "T1078",
+   "T1091",
+   "T1014",
+   "T1200",
+   "T1562.001"
+  ],
+  "tech_count": 8,
+  "tldr": "On 2026-07-14, ESET Research (Martin Smolar) disclosed that **11 old, Microsoft-signed UEFI shim bootloaders** (mostly shim v0.9 and below, from products such as Oracle Linux 7.2, RHEL/CentOS 7.2, openSUSE, ROSA Linux, Finland's Abitti exam software, baramundi Management Suite, WhiteCanyon/Blancco WipeDrive, Spyrus WTGCreator and PC-Doctor Service Center) let an attacker bypass UEFI Secure Boot on",
+  "thumb": "thumbs/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797.svg",
+  "case_rel": "../days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "UEFI shim trust-chain disclosure (ESET Research)",
+  "cve_count": 2,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "forgotten uefi shims undermining secure boot: eset's 11 microsoft-signed bootloaders uefi shim trust-chain disclosure (eset research) cross-vendor uefi/firmware supply chain (global) windows linux supply-chain technology government education t1553.006 t1542.003 t1211 t1078 t1091 t1014 t1200 t1562.001 supply chain "
+ },
+ {
+  "date": "2026-07-15",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing",
+  "title": "O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-resistant persistence",
+  "clusters": [
+   "O-UNC-066"
+  ],
+  "country": "The Com (Com-affiliated e-crime; global)",
+  "platforms": [
+   "cloud-multi"
+  ],
+  "sectors": [
+   "food-and-beverage",
+   "technology",
+   "healthcare",
+   "automotive",
+   "construction",
+   "aviation"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1566.004",
+   "T1656",
+   "T1204.001",
+   "T1111",
+   "T1621",
+   "T1078.004",
+   "T1098.005",
+   "T1556.006",
+   "T1213.002",
+   "T1530",
+   "T1567",
+   "T1657"
+  ],
+  "tech_count": 13,
+  "tldr": "Since April 2026 a Com-affiliated data-extortion actor tracked by Okta as **O-UNC-066** (Palo Alto Unit 42: **CL-CRI-1147**, DLS brand **Pink**) has run a voice-phishing (vishing) campaign that abuses Microsoft's new passkey-enrollment nudges as a pretext. An operator calls a Microsoft 365 user, tells them they must register a new Entra passkey \"for security,\" and steers them through a real-time, ",
+  "thumb": "thumbs/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing.svg",
+  "case_rel": "../days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "O-UNC-066",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "o-unc-066 / pink: vishing the entra passkey-enrollment ceremony for phishing-resistant persistence o-unc-066 the com (com-affiliated e-crime; global) cloud-multi food-and-beverage technology healthcare automotive construction aviation t1583.001 t1566.004 t1656 t1204.001 t1111 t1621 t1078.004 t1098.005 t1556.006 t1213.002 t1530 t1567 t1657 identity / cloud / saas "
+ },
+ {
+  "date": "2026-07-14",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248",
+  "title": "JADEPUFFER: Agentic Ransomware From a Langflow CVE to a Destroyed Nacos Database",
+  "clusters": [
+   "JADEPUFFER"
+  ],
+  "country": "Unknown (unattributed; agent explicitly swept Chinese cloud-provider credentials)",
+  "platforms": [
+   "linux",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1190",
+   "T1059.006",
+   "T1552.001",
+   "T1078.001",
+   "T1046",
+   "T1005",
+   "T1136",
+   "T1053.003",
+   "T1071.001",
+   "T1611",
+   "T1486",
+   "T1485"
+  ],
+  "tech_count": 12,
+  "tldr": "**JADEPUFFER** is, per the **Sysdig Threat Research Team (TRT)**, the **first documented case of agentic ransomware** — a complete extortion operation driven end-to-end by a large language model rather than a human at the keyboard. The agent gained initial access to an internet-facing **Langflow** instance through **CVE-2025-3248** (an unauthenticated RCE, on the **CISA KEV** list with known ranso",
+  "thumb": "thumbs/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248.svg",
+  "case_rel": "../days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "JADEPUFFER",
+  "cve_count": 2,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-3248",
+    "due": "2025-05-26",
+    "ransom": true
+   }
+  ],
+  "q": "jadepuffer: agentic ransomware from a langflow cve to a destroyed nacos database jadepuffer unknown (unattributed; agent explicitly swept chinese cloud-provider credentials) linux cloud-multi technology cross-sector t1190 t1059.006 t1552.001 t1078.001 t1046 t1005 t1136 t1053.003 t1071.001 t1611 t1486 t1485 ransomware / e-crime cve-2025-3248"
+ },
+ {
+  "date": "2026-07-13",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash",
+  "title": "UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH",
+  "clusters": [
+   "UAT-7810"
+  ],
+  "country": "China (China-nexus)",
+  "platforms": [
+   "linux",
+   "network-edge",
+   "iot"
+  ],
+  "sectors": [
+   "technology",
+   "telecommunications",
+   "government"
+  ],
+  "techniques": [
+   "T1190",
+   "T1587.001",
+   "T1583.003",
+   "T1584.008",
+   "T1608.001",
+   "T1105",
+   "T1059.004",
+   "T1562.004",
+   "T1090.001",
+   "T1090.003",
+   "T1572",
+   "T1071.001",
+   "T1573.002",
+   "T1132.001",
+   "T1620",
+   "T1070.004"
+  ],
+  "tech_count": 16,
+  "tldr": "**UAT-7810** is a China-nexus actor whose job is not to breach the final target but to build the road to it: it compromises unpatched SOHO and embedded networking devices — primarily **Ruckus wireless routers** — and turns them into an **Operational Relay Box (ORB) network** (publicly named **LapDogs**) that *secondary* China-nexus APTs such as UAT-5918 rent to proxy their own operations. On **202",
+  "thumb": "thumbs/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash.svg",
+  "case_rel": "../days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "UAT-7810",
+  "cve_count": 4,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2023-25717",
+    "due": "2023-06-02",
+    "ransom": false
+   }
+  ],
+  "q": "uat-7810 & the lapdogs orb: longleash, dogleash and jarleash uat-7810 china (china-nexus) linux network-edge iot technology telecommunications government t1190 t1587.001 t1583.003 t1584.008 t1608.001 t1105 t1059.004 t1562.004 t1090.001 t1090.003 t1572 t1071.001 t1573.002 t1132.001 t1620 t1070.004 espionage / apt cve-2023-25717"
+ },
+ {
+  "date": "2026-07-12",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet",
+  "title": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arrest)",
+  "clusters": [
+   "NoName057(16)"
+  ],
+  "country": "Russia (pro-Kremlin nationalist hacktivism)",
+  "platforms": [
+   "windows",
+   "linux",
+   "macos",
+   "network-edge"
+  ],
+  "sectors": [
+   "government",
+   "transportation",
+   "finance",
+   "energy",
+   "media"
+  ],
+  "techniques": [
+   "T1587.001",
+   "T1583.003",
+   "T1585.001",
+   "T1204.002",
+   "T1071.001",
+   "T1573.001",
+   "T1498.001",
+   "T1499.002"
+  ],
+  "tech_count": 8,
+  "tldr": "NoName057(16) is a pro-Russia nationalist hacktivist group that runs **DDoSia**, a crowdsourced DDoS toolkit: instead of compromising machines, it recruits willing **volunteers** on Telegram, pays them in cryptocurrency, and hands them a cross-platform **Go client** (\"Go-Stresser\") that authenticates to a rotating C2, pulls an encrypted target list, and floods it. The reason to cover it today is a",
+  "thumb": "thumbs/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet.svg",
+  "case_rel": "../days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "NoName057(16)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "noname057(16) & ddosia: the volunteer ddos botnet (2026 campaign + palencia arrest) noname057(16) russia (pro-kremlin nationalist hacktivism) windows linux macos network-edge government transportation finance energy media t1587.001 t1583.003 t1585.001 t1204.002 t1071.001 t1573.001 t1498.001 t1499.002 other "
+ },
+ {
+  "date": "2026-07-11",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception",
+  "title": "AIS & GNSS Spoofing at Sea: Maritime Positioning Deception (IFC June-2026 Surge + SeaSpoofFinder)",
+  "clusters": [
+   "Multiple GNSS/AIS spoofing operators"
+  ],
+  "country": "Multiple (Russia-nexus GNSS spoofing; global dark-fleet AIS deception)",
+  "platforms": [
+   "ot-ics",
+   "iot",
+   "network-edge"
+  ],
+  "sectors": [
+   "maritime",
+   "aviation",
+   "energy",
+   "defense",
+   "logistics"
+  ],
+  "techniques": [
+   "T1565.002",
+   "T1557",
+   "T0856",
+   "T0830",
+   "T0832",
+   "T0815",
+   "T0880"
+  ],
+  "tech_count": 7,
+  "tldr": "Maritime positioning is under sustained attack on two layers at once, and July 2026 gave defenders both a fresh incident count and a concrete detection method. On the **RF layer**, GNSS spoofing broadcasts a counterfeit satellite constellation so that every receiver in the footprint computes a false position; the academic tool **SeaSpoofFinder** (arXiv 2602.16257) shows this can be inferred at sca",
+  "thumb": "thumbs/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception.svg",
+  "case_rel": "../days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Multiple GNSS/AIS spoofing operators",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-67038",
+    "due": "2026-06-26",
+    "ransom": false
+   }
+  ],
+  "q": "ais & gnss spoofing at sea: maritime positioning deception (ifc june-2026 surge + seaspooffinder) multiple gnss/ais spoofing operators multiple (russia-nexus gnss spoofing; global dark-fleet ais deception) ot-ics iot network-edge maritime aviation energy defense logistics t1565.002 t1557 t0856 t0830 t0832 t0815 t0880 ot / ics cve-2025-67038"
+ },
+ {
+  "date": "2026-07-10",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2",
+  "title": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE)",
+  "clusters": [
+   "Cavern Manticore"
+  ],
+  "country": "Iran (MOIS nexus)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government",
+   "technology",
+   "defense",
+   "managed-services"
+  ],
+  "techniques": [
+   "T1199",
+   "T1072",
+   "T1574.002",
+   "T1620",
+   "T1027",
+   "T1505.003",
+   "T1071.001",
+   "T1132.001",
+   "T1573.001",
+   "T1090.001",
+   "T1046",
+   "T1087.002",
+   "T1110",
+   "T1003.001",
+   "T1005",
+   "T1560",
+   "T1021.001",
+   "T1219"
+  ],
+  "tech_count": 18,
+  "tldr": "On 2026-07-06 Check Point Research published an analysis of **Cavern** (aka **Cav3rn**), a previously undocumented modular command-and-control framework used by an Iran-nexus cluster it tracks as **Cavern Manticore**, assessed as Iran's Ministry of Intelligence and Security (MOIS) with tactical overlaps to **MuddyWater** and **Lyceum** (a subgroup within **OilRig**). Active since early 2026 agains",
+  "thumb": "thumbs/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2.svg",
+  "case_rel": "../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "Cavern Manticore",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "cavern manticore: iran-mois modular .net c2 framework (sysaid side-load, native aot / mixed-mode anti-re) cavern manticore iran (mois nexus) windows government technology defense managed-services t1199 t1072 t1574.002 t1620 t1027 t1505.003 t1071.001 t1132.001 t1573.001 t1090.001 t1046 t1087.002 t1110 t1003.001 t1005 t1560 t1021.001 t1219 malware / re "
+ },
+ {
+  "date": "2026-07-09",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451",
+  "title": "CitrixBleed To Infinity: NetScaler SAML IdP Pre-Auth Memory Overread (CVE-2026-8451)",
+  "clusters": [
+   "Opportunistic NetScaler scanners (unattributed)"
+  ],
+  "country": "Global (unattributed)",
+  "platforms": [
+   "network-edge"
+  ],
+  "sectors": [
+   "multi-sector",
+   "government",
+   "finance",
+   "technology"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1190",
+   "T1212",
+   "T1539",
+   "T1550.004",
+   "T1499.004"
+  ],
+  "tech_count": 6,
+  "tldr": "On 2026-06-30 Citrix published CTX696604 and watchTowr released a technical write-up for **CVE-2026-8451** (CVSS 8.8), a pre-authentication memory overread in NetScaler ADC and NetScaler Gateway when the appliance is configured as a **SAML Identity Provider**. A hand-rolled XML attribute parser in the `/saml/login` handler fails to treat a newline as a terminator for an unquoted attribute value, s",
+  "thumb": "thumbs/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451.svg",
+  "case_rel": "../days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "Opportunistic NetScaler scanners (unattributed)",
+  "cve_count": 8,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-5777",
+    "due": "2025-07-11",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-3055",
+    "due": "2026-04-02",
+    "ransom": false
+   }
+  ],
+  "q": "citrixbleed to infinity: netscaler saml idp pre-auth memory overread (cve-2026-8451) opportunistic netscaler scanners (unattributed) global (unattributed) network-edge multi-sector government finance technology t1595.002 t1190 t1212 t1539 t1550.004 t1499.004 edge / network cve-2025-5777 cve-2026-3055"
+ },
+ {
+  "date": "2026-07-08",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire",
+  "title": "Phantom Squatting: AI-Hallucinated Domains Weaponised as Phishing Infrastructure (Montana Empire kit)",
+  "clusters": [
+   "Unattributed (Montana Empire operator)"
+  ],
+  "country": "Unknown (financially motivated e-crime)",
+  "platforms": [
+   "supply-chain",
+   "linux",
+   "windows"
+  ],
+  "sectors": [
+   "logistics",
+   "finance",
+   "government",
+   "gambling",
+   "retail"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1656",
+   "T1608.001",
+   "T1204.001",
+   "T1566.002",
+   "T1056.003",
+   "T1111",
+   "T1567",
+   "T1657"
+  ],
+  "tech_count": 9,
+  "tldr": "Palo Alto Networks Unit 42 published research on **2026-06-30** naming a new adversary technique it calls **phantom squatting**: large language models consistently invent web domains that do not exist, and attackers register those hallucinated domains first to inherit the trust developers and AI assistants place in model output. Across 913 brands and 685,339 prompts to two LLMs, Unit 42 collected ",
+  "thumb": "thumbs/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire.svg",
+  "case_rel": "../days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Unattributed (Montana Empire operator)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "phantom squatting: ai-hallucinated domains weaponised as phishing infrastructure (montana empire kit) unattributed (montana empire operator) unknown (financially motivated e-crime) supply-chain linux windows logistics finance government gambling retail t1583.001 t1656 t1608.001 t1204.001 t1566.002 t1056.003 t1111 t1567 t1657 supply chain "
+ },
+ {
+  "date": "2026-07-07",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix",
+  "title": "KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's ClickFix-to-ransomware pipeline",
+  "clusters": [
+   "Woodgnat"
+  ],
+  "country": "Unknown (financially motivated e-crime)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "insurance",
+   "education",
+   "technology",
+   "professional-services"
+  ],
+  "techniques": [
+   "T1189",
+   "T1566",
+   "T1204.004",
+   "T1059.001",
+   "T1105",
+   "T1218.007",
+   "T1574.002",
+   "T1574.001",
+   "T1036.005",
+   "T1027",
+   "T1620",
+   "T1071.001",
+   "T1573.001",
+   "T1568.002",
+   "T1087.002",
+   "T1558.003",
+   "T1056.002",
+   "T1547.001",
+   "T1053.005",
+   "T1219"
+  ],
+  "tech_count": 20,
+  "tldr": "Backdoor.Mistic (tracked by Zscaler as MTLBackdoor) is a stealthy new backdoor that Symantec's Threat Hunter Team, Zscaler ThreatLabz and The Hacker News reported on 2026-06-24/25, and that has been deployed in financially motivated intrusions since April 2026 across insurance, education, IT and professional-services organizations. It is assessed with medium confidence to belong to Woodgnat — the ",
+  "thumb": "thumbs/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix.svg",
+  "case_rel": "../days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "Woodgnat",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "kongtuke / woodgnat: backdoor.mistic (mtlbackdoor) — an initial access broker's clickfix-to-ransomware pipeline woodgnat unknown (financially motivated e-crime) windows insurance education technology professional-services t1189 t1566 t1204.004 t1059.001 t1105 t1218.007 t1574.002 t1574.001 t1036.005 t1027 t1620 t1071.001 t1573.001 t1568.002 t1087.002 t1558.003 t1056.002 t1547.001 t1053.005 t1219 malware / re "
+ },
+ {
+  "date": "2026-07-06",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail",
+  "title": "ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail",
+  "clusters": [
+   "ToddyCat"
+  ],
+  "country": "China-nexus",
+  "platforms": [
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "government",
+   "defense",
+   "telecommunications"
+  ],
+  "techniques": [
+   "T1053.005",
+   "T1574.001",
+   "T1036.005",
+   "T1134.003",
+   "T1005",
+   "T1539",
+   "T1550.001",
+   "T1528",
+   "T1114.002"
+  ],
+  "tech_count": 9,
+  "tldr": "Kaspersky's Securelist published Part 2 of its ToddyCat email-theft research on 2026-06-30, detailing a new .NET tool the group calls **Umbrij** and a technique they name **Shadow Token via Remote Debug (STRD)**. Instead of decrypting stored credentials, Umbrij rides a victim's *live* Google session: it copies the browser profile, launches Chromium **headless with a remote debugging port**, drives",
+  "thumb": "thumbs/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail.svg",
+  "case_rel": "../days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "ToddyCat",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "toddycat umbrij: shadow token via remote debug steals oauth tokens to read gmail toddycat china-nexus windows cloud-multi government defense telecommunications t1053.005 t1574.001 t1036.005 t1134.003 t1005 t1539 t1550.001 t1528 t1114.002 espionage / apt "
+ },
+ {
+  "date": "2026-07-05",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01",
+  "title": "OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-exhaustion DoS across medical imaging",
+  "clusters": [
+   "Opportunistic medical-imaging scanners"
+  ],
+  "country": "Global (unattributed)",
+  "platforms": [
+   "linux",
+   "windows",
+   "network-edge"
+  ],
+  "sectors": [
+   "healthcare"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1190",
+   "T1505.003",
+   "T1059",
+   "T1083",
+   "T1005",
+   "T1499.004"
+  ],
+  "tech_count": 7,
+  "tldr": "On 2026-06-30 CISA published **ICSMA-26-181-01** for five vulnerabilities in **OFFIS DCMTK** (<= 3.7.0), the reference DICOM toolkit embedded across virtually the entire medical-imaging stack (PACS, modality gateways, viewers, research pipelines). The headline is **CVE-2026-50003** (critical, CVSS v3.1 **9.8**): a DICOM storage receiver builds its output filename from attacker-controlled attribute",
+  "thumb": "thumbs/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01.svg",
+  "case_rel": "../days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Opportunistic medical-imaging scanners",
+  "cve_count": 6,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "offis dcmtk dicom toolkit: path-traversal file write (cve-2026-50003) + memory-exhaustion dos across medical imaging opportunistic medical-imaging scanners global (unattributed) linux windows network-edge healthcare t1595.002 t1190 t1505.003 t1059 t1083 t1005 t1499.004 other "
+ },
+ {
+  "date": "2026-07-04",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207",
+  "title": "FUXA SCADA/HMI: dot-segment path-normalization auth bypass (CVE-2026-13207) leaks every OT role",
+  "clusters": [
+   "Opportunistic ICS/OT scanners"
+  ],
+  "country": "Global (unattributed)",
+  "platforms": [
+   "ot-ics",
+   "network-edge",
+   "linux"
+  ],
+  "sectors": [
+   "energy",
+   "water",
+   "manufacturing",
+   "building-automation"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1190",
+   "T1087",
+   "T1069",
+   "T1552.001",
+   "T1550.001",
+   "T1059.007",
+   "T1565.001",
+   "T0846",
+   "T0888",
+   "T0836",
+   "T0831"
+  ],
+  "tech_count": 12,
+  "tldr": "On 2026-06-30 CISA published ICSA-26-181-02 for **CVE-2026-13207**, an authentication bypass in the open-source **FUXA** SCADA/HMI platform (all versions <= 1.3.1). An unauthenticated attacker reads the complete user and role inventory of an OT supervisory server by prefixing the REST path with a dot-segment (`/api/./users`, `/api/project/../users`) so the request slips past the route-level auth m",
+  "thumb": "thumbs/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207.svg",
+  "case_rel": "../days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Opportunistic ICS/OT scanners",
+  "cve_count": 2,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "fuxa scada/hmi: dot-segment path-normalization auth bypass (cve-2026-13207) leaks every ot role opportunistic ics/ot scanners global (unattributed) ot-ics network-edge linux energy water manufacturing building-automation t1595.002 t1190 t1087 t1069 t1552.001 t1550.001 t1059.007 t1565.001 t0846 t0888 t0836 t0831 ot / ics "
+ },
+ {
+  "date": "2026-07-03",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS",
+  "title": "From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom)",
+  "clusters": [
+   "Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)"
+  ],
+  "country": "Unattributed; exfil server geolocated to Ukraine (AS-COLOCROSSING); trojanized MSIs signed by Russian-registered shell LLCs",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1189",
+   "T1204.002",
+   "T1574.001",
+   "T1568.002",
+   "T1071.001",
+   "T1055",
+   "T1047",
+   "T1136",
+   "T1543.003",
+   "T1219",
+   "T1090",
+   "T1021.001",
+   "T1021.003",
+   "T1003.003",
+   "T1003.001",
+   "T1555",
+   "T1082",
+   "T1033",
+   "T1018",
+   "T1046",
+   "T1135",
+   "T1087.002",
+   "T1482",
+   "T1069.002",
+   "T1059.001",
+   "T1059.003",
+   "T1569.002",
+   "T1039",
+   "T1048.001",
+   "T1041",
+   "T1490",
+   "T1486",
+   "T1070.004",
+   "T1027.010",
+   "T1036"
+  ],
+  "tech_count": 35,
+  "tldr": "The DFIR Report, in partnership with Swisscom B2B CSIRT, published a consolidated technical analysis on 2026-06-29 of a Bing SEO-poisoning intrusion set that turns a search for IT admin software into domain-wide Akira ransomware. An administrator searching Bing for \"ManageEngine OpManager\" is steered to a lookalike (`opmanager[.]pro`) that redirects to a delivery gateway (`download-center[.]online",
+  "thumb": "thumbs/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS.svg",
+  "case_rel": "../days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-40766",
+    "due": "2024-09-30",
+    "ransom": true
+   }
+  ],
+  "q": "from bing search to ntds.dit: bumblebee sideloads, adaptixc2 drives, akira encrypts (dfir report x swisscom) unattributed e-crime (bumblebee -> adaptixc2 -> akira) unattributed; exfil server geolocated to ukraine (as-colocrossing); trojanized msis signed by russian-registered shell llcs windows cross-sector t1189 t1204.002 t1574.001 t1568.002 t1071.001 t1055 t1047 t1136 t1543.003 t1219 t1090 t1021.001 t1021.003 t1003.003 t1003.001 t1555 t1082 t1033 t1018 t1046 t1135 t1087.002 t1482 t1069.002 t1059.001 t1059.003 t1569.002 t1039 t1048.001 t1041 t1490 t1486 t1070.004 t1027.010 t1036 ransomware / e-crime cve-2024-40766"
+ },
+ {
+  "date": "2026-07-02",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478",
+  "title": "Fulcio's blind spot: SSRF, JWKS cache poisoning and a Kubernetes token leak in Sigstore's signing CA (CVE-2026-49478)",
+  "clusters": [
+   "Unattributed — coordinated vulnerability disclosure (no observed campaign)"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "cloud-multi",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1553.002",
+   "T1190",
+   "T1552.005",
+   "T1528",
+   "T1611"
+  ],
+  "tech_count": 6,
+  "tldr": "Sigstore Fulcio — the certificate authority that underpins keyless code-signing for `cosign`, SLSA provenance and npm/PyPI \"trusted publishing\" — shipped an OIDC Discovery client that would follow cross-host HTTP redirects, trust a redirected `jwks_uri` as the verifier for an issuer, and globally attach its in-cluster Kubernetes ServiceAccount token to outbound discovery requests regardless of des",
+  "thumb": "thumbs/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478.svg",
+  "case_rel": "../days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Unattributed — coordinated vulnerability disclosure (no observed campaign)",
+  "cve_count": 3,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "fulcio's blind spot: ssrf, jwks cache poisoning and a kubernetes token leak in sigstore's signing ca (cve-2026-49478) unattributed — coordinated vulnerability disclosure (no observed campaign) unattributed cloud-multi supply-chain technology cross-sector t1195.002 t1553.002 t1190 t1552.005 t1528 t1611 supply chain "
+ },
+ {
+  "date": "2026-07-01",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-01_AWS-Console-AiTM-input24-PhishingKit",
+  "title": "Behind the console: an AiTM phishing kit that clones the AWS sign-in page and relays MFA in real time (input_24 kit)",
+  "clusters": [
+   "input_24 phishing kit operator (PoisonSeeds-adjacent)"
+  ],
+  "country": "Unattributed e-crime; financially motivated; targeting US-based engineers",
+  "platforms": [
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "cryptocurrency"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1583.006",
+   "T1585.002",
+   "T1566.002",
+   "T1598.003",
+   "T1204.001",
+   "T1656",
+   "T1557",
+   "T1111",
+   "T1539",
+   "T1550.004",
+   "T1078.004",
+   "T1480",
+   "T1027"
+  ],
+  "tech_count": 14,
+  "tldr": "Between 2026-06-16 and 2026-06-19, Datadog Security Labs (report published 2026-06-24) observed a targeted adversary-in-the-middle (AiTM) campaign that cloned the **AWS Management Console** sign-in page to harvest console credentials and relay the second factor in real time. The kit is a React single-page app whose credential-harvesting logic lives in one JavaScript file; it gates rendering on a p",
+  "thumb": "thumbs/2026-07-01_AWS-Console-AiTM-input24-PhishingKit.svg",
+  "case_rel": "../days/2026/07/2026-07-01_AWS-Console-AiTM-input24-PhishingKit/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "input_24 phishing kit operator (PoisonSeeds-adjacent)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "behind the console: an aitm phishing kit that clones the aws sign-in page and relays mfa in real time (input_24 kit) input_24 phishing kit operator (poisonseeds-adjacent) unattributed e-crime; financially motivated; targeting us-based engineers cloud-multi technology finance cryptocurrency t1583.001 t1583.006 t1585.002 t1566.002 t1598.003 t1204.001 t1656 t1557 t1111 t1539 t1550.004 t1078.004 t1480 t1027 identity / cloud / saas "
+ },
+ {
+  "date": "2026-06-30",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware",
+  "title": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story before it encrypts",
+  "clusters": [
+   "Dire Wolf (DireWolf) ransomware group"
+  ],
+  "country": "Unattributed e-crime; financially motivated; victim concentration in SE Asia + APAC",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "manufacturing",
+   "technology",
+   "finance",
+   "healthcare",
+   "logistics",
+   "automotive"
+  ],
+  "techniques": [
+   "T1486",
+   "T1490",
+   "T1489",
+   "T1562.001",
+   "T1070.001",
+   "T1070.004",
+   "T1047",
+   "T1059.003",
+   "T1027.002",
+   "T1529",
+   "T1480",
+   "T1657",
+   "T1083",
+   "T1003.001"
+  ],
+  "tech_count": 14,
+  "tldr": "Dire Wolf is a financially motivated double-extortion ransomware crew that surfaced in May 2025 and is still actively posting victims through mid-2026 (Did Asia, an automotive-parts firm in Thailand, on 2026-06-12; CYFIRMA re-profiled the family in its 2026-06-26 weekly intelligence report, which is the reason it lands today). The payload is a Go binary, UPX-packed, that takes a `-d <dir>` target ",
+  "thumb": "thumbs/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware.svg",
+  "case_rel": "../days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Dire Wolf (DireWolf) ransomware group",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "dire wolf: a golang double-extortion ransomware that kills the recovery story before it encrypts dire wolf (direwolf) ransomware group unattributed e-crime; financially motivated; victim concentration in se asia + apac windows manufacturing technology finance healthcare logistics automotive t1486 t1490 t1489 t1562.001 t1070.001 t1070.004 t1047 t1059.003 t1027.002 t1529 t1480 t1657 t1083 t1003.001 ransomware / e-crime "
+ },
+ {
+  "date": "2026-06-29",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage",
+  "title": "CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy",
+  "clusters": [
+   "CL-STA-1062"
+  ],
+  "country": "China",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government",
+   "energy"
+  ],
+  "techniques": [
+   "T1190",
+   "T1505.003",
+   "T1574.014",
+   "T1053.005",
+   "T1036.005",
+   "T1059.003",
+   "T1573.001",
+   "T1071.001",
+   "T1113",
+   "T1083",
+   "T1560.001",
+   "T1041",
+   "T1090",
+   "T1003.001",
+   "T1134.001",
+   "T1497.001",
+   "T1070.004",
+   "T1018"
+  ],
+  "tech_count": 18,
+  "tldr": "Palo Alto Networks Unit 42 published (2026-06-26) a report on **CL-STA-1062**, a Chinese-speaking espionage cluster that overlaps with **UAT-7237** (Cisco Talos, Aug 2025) and has been active across East Asia since at least March 2022. From mid-2025 the group pivoted to **Southeast Asian government entities and state-owned critical energy infrastructure**, breaching at least ten organizations betw",
+  "thumb": "thumbs/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage.svg",
+  "case_rel": "../days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "CL-STA-1062",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "cl-sta-1062 / tinyrct: a chinese-speaking apt's custom .net backdoor against southeast asian government and energy cl-sta-1062 china windows government energy t1190 t1505.003 t1574.014 t1053.005 t1036.005 t1059.003 t1573.001 t1071.001 t1113 t1083 t1560.001 t1041 t1090 t1003.001 t1134.001 t1497.001 t1070.004 t1018 espionage / apt "
+ },
+ {
+  "date": "2026-06-28",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet",
+  "title": "RoboVPN / Neunative: A Free VPN That Ships a Residential-Proxy Botnet SDK on the Vo1d/Popa Backend",
+  "clusters": [
+   "Vo1d/Popa proxy operator",
+   "Cyberkick Ltd. (RoboVPN)"
+  ],
+  "country": "Unattributed operator; proxy network publicly linked to NetNut / Alarum Technologies (NASDAQ)",
+  "platforms": [
+   "windows",
+   "iot",
+   "supply-chain"
+  ],
+  "sectors": [
+   "consumer",
+   "telecom",
+   "media",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1583.005",
+   "T1584.005",
+   "T1496.002",
+   "T1090.002",
+   "T1090.003",
+   "T1071.001",
+   "T1095",
+   "T1571",
+   "T1573.002",
+   "T1036.005",
+   "T1027.009",
+   "T1133",
+   "T1498"
+  ],
+  "tech_count": 14,
+  "tldr": "RoboVPN is a functional, free Windows VPN published by Cyberkick Ltd. Bundled in the same installer as a NuGet dependency, and listed in `RoboVPN.deps.json` next to Newtonsoft.Json and the AWS SDK as if it were routine plumbing, is **Neunative** — a residential-proxy SDK that turns the user's machine into an exit node for arbitrary third-party traffic. The wiring is inverted on purpose: the relay ",
+  "thumb": "thumbs/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet.svg",
+  "case_rel": "../days/2026/06/2026-06-28_RoboVPN-Neunative-Vo1d-Popa-Residential-Proxy-Botnet/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "Vo1d/Popa proxy operator",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "robovpn / neunative: a free vpn that ships a residential-proxy botnet sdk on the vo1d/popa backend vo1d/popa proxy operator cyberkick ltd. (robovpn) unattributed operator; proxy network publicly linked to netnut / alarum technologies (nasdaq) windows iot supply-chain consumer telecom media cross-sector t1195.002 t1583.005 t1584.005 t1496.002 t1090.002 t1090.003 t1071.001 t1095 t1571 t1573.002 t1036.005 t1027.009 t1133 t1498 malware / re "
+ },
+ {
+  "date": "2026-06-27",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge",
+  "title": "Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038)",
+  "clusters": [
+   "Unattributed — CVE-2025-67038 exploitation"
+  ],
+  "country": "Unknown — targeted, non-botnet activity",
+  "platforms": [
+   "ot-ics",
+   "network-edge",
+   "iot"
+  ],
+  "sectors": [
+   "energy",
+   "manufacturing",
+   "healthcare",
+   "transportation",
+   "utilities",
+   "government"
+  ],
+  "techniques": [
+   "T1190",
+   "T1059.004",
+   "T1133",
+   "T1210",
+   "T1090",
+   "T1041",
+   "T1571",
+   "T1601",
+   "T1595.002",
+   "T0883",
+   "T0822",
+   "T0855",
+   "T0856",
+   "T0832",
+   "T0814",
+   "T0880"
+  ],
+  "tech_count": 16,
+  "tldr": "On 2026-06-23 CISA added CVE-2025-67038 to its Known Exploited Vulnerabilities catalog and gave U.S. federal agencies until 2026-06-26 to remediate. The flaw is an unauthenticated OS command injection (CVSS 9.8) in the Lantronix EDS5000 serial-to-IP device server: the HTTP RPC module shells out to write a log when authentication fails, and the client-supplied `username` is concatenated into that c",
+  "thumb": "thumbs/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge.svg",
+  "case_rel": "../days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Unattributed — CVE-2025-67038 exploitation",
+  "cve_count": 4,
+  "kev_count": 4,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-67038",
+    "due": "2026-06-26",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-34908",
+    "due": "2026-06-26",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-34909",
+    "due": "2026-06-26",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-34910",
+    "due": "2026-06-26",
+    "ransom": false
+   }
+  ],
+  "q": "lantronix eds5000 bridge:break: root command injection in a serial-to-ip ot bridge (cve-2025-67038) unattributed — cve-2025-67038 exploitation unknown — targeted, non-botnet activity ot-ics network-edge iot energy manufacturing healthcare transportation utilities government t1190 t1059.004 t1133 t1210 t1090 t1041 t1571 t1601 t1595.002 t0883 t0822 t0855 t0856 t0832 t0814 t0880 ot / ics cve-2025-67038 cve-2026-34908 cve-2026-34909 cve-2026-34910"
+ },
+ {
+  "date": "2026-06-26",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-26_GentleKiller-BYOVD-Detection-Engineering",
+  "title": "GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Maintained EDR Killers",
+  "clusters": [
+   "The Gentlemen RaaS (GentleKiller operator)"
+  ],
+  "country": "Unknown — e-crime, financially motivated",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "healthcare",
+   "manufacturing",
+   "legal",
+   "government"
+  ],
+  "techniques": [
+   "T1543.003",
+   "T1106",
+   "T1036",
+   "T1036.001",
+   "T1027",
+   "T1562.001",
+   "T1685",
+   "T1552.001",
+   "T1059.003",
+   "T1105"
+  ],
+  "tech_count": 10,
+  "tldr": "ESET Research (Jakub Soucek, 2026-06-18) published a deep-dive into GentleKiller, the in-house EDR-killing framework maintained by The Gentlemen ransomware-as-a-service gang for distribution to affiliates. The suite comprises at least eight GentleKiller variants plus three third-party EDR killers (HexKiller, ThrottleBlood, HavocKiller) and a Rust-based credential stealer named OxideHarvest. Every ",
+  "thumb": "thumbs/2026-06-26_GentleKiller-BYOVD-Detection-Engineering.svg",
+  "case_rel": "../days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "The Gentlemen RaaS (GentleKiller operator)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "gentlekiller byovd suite: behavioral detection engineering against operator-maintained edr killers the gentlemen raas (gentlekiller operator) unknown — e-crime, financially motivated windows technology finance healthcare manufacturing legal government t1543.003 t1106 t1036 t1036.001 t1027 t1562.001 t1685 t1552.001 t1059.003 t1105 ransomware / e-crime "
+ },
+ {
+  "date": "2026-06-25",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-25_Miasma-Codfish-GHA-Tag-Hijack",
+  "title": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack",
+  "clusters": [
+   "Miasma-unattributed"
+  ],
+  "country": "Unknown — e-crime, financially motivated, Miasma toolkit operator",
+  "platforms": [
+   "supply-chain",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "healthcare",
+   "government",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1195.003",
+   "T1059.007",
+   "T1552.001",
+   "T1071.001",
+   "T1027",
+   "T1070.006",
+   "T1588.001",
+   "T1567.001"
+  ],
+  "tech_count": 8,
+  "tldr": "On June 24, 2026, an unattributed operator leveraging the leaked Miasma credential-stealing toolkit force-pushed two orphan commits into the `codfish/semantic-release-action` GitHub repository and repointed sixteen release tags (v2 through v5) to a 781 KB obfuscated JavaScript payload. Any CI/CD workflow that references the action by a floating tag and runs after the compromise silently executes t",
+  "thumb": "thumbs/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack.svg",
+  "case_rel": "../days/2026/06/2026-06-25_Miasma-Codfish-GHA-Tag-Hijack/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Miasma-unattributed",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "miasma dead-drop c2 via github api: codfish/semantic-release-action tag hijack miasma-unattributed unknown — e-crime, financially motivated, miasma toolkit operator supply-chain cloud-multi technology finance healthcare government cross-sector t1195.003 t1059.007 t1552.001 t1071.001 t1027 t1070.006 t1588.001 t1567.001 supply chain "
+ },
+ {
+  "date": "2026-06-24",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion",
+  "title": "SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US Law Firms",
+  "clusters": [
+   "Silent Ransom Group (SRG)",
+   "Luna Moth",
+   "Chatty Spider",
+   "UNC3753"
+  ],
+  "country": "Unknown — e-crime, financially motivated",
+  "platforms": [
+   "windows",
+   "network-edge"
+  ],
+  "sectors": [
+   "legal",
+   "finance",
+   "healthcare",
+   "insurance",
+   "hospitality"
+  ],
+  "techniques": [
+   "T1598.003",
+   "T1566.001",
+   "T1219",
+   "T1204.002",
+   "T1583.001",
+   "T1584.005",
+   "T1568.002",
+   "T1071.001",
+   "T1046",
+   "T1021.001",
+   "T1005",
+   "T1074.001",
+   "T1048",
+   "T1567.002",
+   "T1657",
+   "T1200"
+  ],
+  "tech_count": 16,
+  "tldr": "Silent Ransom Group (SRG), tracked also as Luna Moth, Chatty Spider, and UNC3753, pivoted in 2026 to a DNS fast flux botnet — 22 ISPs, 18 countries of compromised IoT/CPE nodes — to mask its command-and-control and leak-site infrastructure behind continuously rotating DNS A records. The group combines vishing-to-RMM initial access (posing as IT support to convince targets to install ScreenConnect ",
+  "thumb": "thumbs/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion.svg",
+  "case_rel": "../days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Silent Ransom Group (SRG)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "srg / luna moth fast flux dns infrastructure: vishing-to-extortion against us law firms silent ransom group (srg) luna moth chatty spider unc3753 unknown — e-crime, financially motivated windows network-edge legal finance healthcare insurance hospitality t1598.003 t1566.001 t1219 t1204.002 t1583.001 t1584.005 t1568.002 t1071.001 t1046 t1021.001 t1005 t1074.001 t1048 t1567.002 t1657 t1200 ransomware / e-crime "
+ },
+ {
+  "date": "2026-06-23",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-23_Cloud-Insider-Recruitment-Intel471",
+  "title": "Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access",
+  "clusters": [
+   "Cloud-Insider-Recruitment-unattributed"
+  ],
+  "country": "Multiple — underground forums, international e-crime",
+  "platforms": [
+   "cloud-multi",
+   "windows",
+   "linux",
+   "macos"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "government",
+   "healthcare",
+   "education",
+   "retail"
+  ],
+  "techniques": [
+   "T1078.004",
+   "T1078.003",
+   "T1552.001",
+   "T1539",
+   "T1530",
+   "T1213",
+   "T1048",
+   "T1567.002",
+   "T1657",
+   "T1621",
+   "T1587.001",
+   "T1556.006"
+  ],
+  "tech_count": 12,
+  "tldr": "Intel 471 published a systematic analysis on June 11, 2026 documenting how cybercrime underground actors recruit, dupe, and coerce employees with cloud access, creating a structured market for insider-backed entry into corporate SaaS and cloud platforms. In 2025, Intel 471 tracked 41 insider-related underground posts; by April 4, 2026, actor **samsepi0l** ran an open auction for 24/7 insider-backe",
+  "thumb": "thumbs/2026-06-23_Cloud-Insider-Recruitment-Intel471.svg",
+  "case_rel": "../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "Cloud-Insider-Recruitment-unattributed",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "cloud insider recruitment: underground market for saas and cloud platform access cloud-insider-recruitment-unattributed multiple — underground forums, international e-crime cloud-multi windows linux macos technology finance government healthcare education retail t1078.004 t1078.003 t1552.001 t1539 t1530 t1213 t1048 t1567.002 t1657 t1621 t1587.001 t1556.006 identity / cloud / saas "
+ },
+ {
+  "date": "2026-06-22",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-22_prospy-bitter-mena",
+  "title": "ProSpy/BITTER: Hack-for-Hire Android Spyware Targeting MENA Civil Society Journalists",
+  "clusters": [
+   "BITTER",
+   "T-APT-17"
+  ],
+  "country": "South Asia (suspected India nexus); client unknown — Egypt assessed likely",
+  "platforms": [
+   "android",
+   "mobile",
+   "network-edge"
+  ],
+  "sectors": [
+   "media",
+   "government",
+   "civil-society",
+   "ngo"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1204.002",
+   "T1583.001",
+   "T1585.001",
+   "T1071.001",
+   "T1041",
+   "T1005",
+   "T1560.001",
+   "T1056.001",
+   "T1091"
+  ],
+  "tech_count": 10,
+  "tldr": "A hack-for-hire operation with assessed ties to South Asian threat group BITTER (T-APT-17) has been running an active espionage campaign against journalists, opposition politicians, and civil society members across Egypt, Lebanon, Bahrain, UAE, and Saudi Arabia since at least 2022. The attacker chain opens with sockpuppet LinkedIn / iMessage personas that spearphish targets: iOS users are pushed t",
+  "thumb": "thumbs/2026-06-22_prospy-bitter-mena.svg",
+  "case_rel": "../days/2026/06/2026-06-22_prospy-bitter-mena/",
+  "category": "mobile",
+  "cat_label": "Mobile",
+  "cat_color": "#c2569a",
+  "actor": "BITTER",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "prospy/bitter: hack-for-hire android spyware targeting mena civil society journalists bitter t-apt-17 south asia (suspected india nexus); client unknown — egypt assessed likely android mobile network-edge media government civil-society ngo t1566.002 t1204.002 t1583.001 t1585.001 t1071.001 t1041 t1005 t1560.001 t1056.001 t1091 mobile "
+ },
+ {
+  "date": "2026-06-21",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion",
+  "title": "Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft Across Enterprise Clients",
+  "clusters": [
+   "Icarus"
+  ],
+  "country": "Unknown — e-crime (extortion), financially motivated",
+  "platforms": [
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "healthcare",
+   "government",
+   "education"
+  ],
+  "techniques": [
+   "T1195.003",
+   "T1528",
+   "T1550.001",
+   "T1580",
+   "T1530",
+   "T1567.002",
+   "T1657",
+   "T1078",
+   "T1583.001"
+  ],
+  "tech_count": 9,
+  "tldr": "A new extortion group tracking as \"Icarus\" (active since April 28, 2026) compromised the backend of Klue, a competitive-intelligence SaaS platform, and exfiltrated OAuth refresh tokens used by Klue's Battlecards integration with Salesforce. Attackers authenticated as legitimate Klue integration service accounts and ran automated Python scripts against Salesforce's REST API for up to 24 hours per v",
+  "thumb": "thumbs/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion.svg",
+  "case_rel": "../days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Icarus",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "icarus saas extortion via klue oauth: salesforce crm data theft across enterprise clients icarus unknown — e-crime (extortion), financially motivated cloud-multi technology finance healthcare government education t1195.003 t1528 t1550.001 t1580 t1530 t1567.002 t1657 t1078 t1583.001 ransomware / e-crime "
+ },
+ {
+  "date": "2026-06-20",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection",
+  "title": "Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Credential Exfiltration",
+  "clusters": [
+   "Agentjacking-unattributed (Tenet Threat Labs tracking)"
+  ],
+  "country": "Unknown — opportunistic, global targeting",
+  "platforms": [
+   "windows",
+   "linux",
+   "macos",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "healthcare",
+   "government",
+   "education",
+   "critical-infrastructure"
+  ],
+  "techniques": [
+   "T1195",
+   "T1059.007",
+   "T1552.001",
+   "T1048",
+   "T1078",
+   "T1190"
+  ],
+  "tech_count": 6,
+  "tldr": "Tenet Security's Threat Labs publicly disclosed on June 12, 2026 a new attack class called **Agentjacking**: an attacker POST-injects a forged error event into any Sentry project whose write-only Data Source Name (DSN) is discoverable in public JavaScript or GitHub repositories — zero authentication required. When a developer asks their AI coding agent (Claude Code, Cursor, Codex) to investigate o",
+  "thumb": "thumbs/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection.svg",
+  "case_rel": "../days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Agentjacking-unattributed (Tenet Threat Labs tracking)",
+  "cve_count": 4,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "agentjacking via sentry mcp — forged dsn events hijack ai coding agents for credential exfiltration agentjacking-unattributed (tenet threat labs tracking) unknown — opportunistic, global targeting windows linux macos supply-chain technology finance healthcare government education critical-infrastructure t1195 t1059.007 t1552.001 t1048 t1078 t1190 supply chain "
+ },
+ {
+  "date": "2026-06-19",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical",
+  "title": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles",
+  "clusters": [
+   "Iran-nexus (unattributed)"
+  ],
+  "country": "Iran (suspected; not formally attributed by US government)",
+  "platforms": [
+   "ot-ics",
+   "network-edge",
+   "linux"
+  ],
+  "sectors": [
+   "energy",
+   "chemical",
+   "food-agriculture",
+   "transportation"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1190",
+   "T1078",
+   "T1059.004",
+   "T1068",
+   "T1562.001",
+   "T1565.001",
+   "T1041",
+   "T1071.001",
+   "T0836",
+   "T0831",
+   "T0816",
+   "T0859"
+  ],
+  "tech_count": 13,
+  "tldr": "Iran-nexus threat actors targeted internet-exposed Automatic Tank Gauge (ATG) systems — Veeder-Root TLD-350, TLS-450 Plus, and TLS4B consoles — by exploiting authentication bypass, hardcoded credentials (default 8-zero PIN), OS command injection (CVE-2025-58428, CVSS 9.4), SQL injection, and privilege escalation on the underlying Linux OS. On June 2, 2026, CISA, the FBI, NSA, Department of Energy,",
+  "thumb": "thumbs/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical.svg",
+  "case_rel": "../days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Iran-nexus (unattributed)",
+  "cve_count": 1,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "iran-nexus atg cyber-physical campaign: fuel monitor manipulation via internet-exposed veeder-root consoles iran-nexus (unattributed) iran (suspected; not formally attributed by us government) ot-ics network-edge linux energy chemical food-agriculture transportation t1595.002 t1190 t1078 t1059.004 t1068 t1562.001 t1565.001 t1041 t1071.001 t0836 t0831 t0816 t0859 ot / ics "
+ },
+ {
+  "date": "2026-06-18",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE",
+  "title": "JCE CVE-2026-48907 — unauthenticated pre-auth RCE in the Joomla Content Editor via the profile-import endpoint, now sprayed by a botnet",
+  "clusters": [
+   "Opportunistic CMS mass-exploitation (unattributed botnet)"
+  ],
+  "country": "Unattributed (commodity web exploitation)",
+  "platforms": [
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "hosting",
+   "government",
+   "education",
+   "media",
+   "small-business",
+   "technology"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1588.005",
+   "T1190",
+   "T1105",
+   "T1505.003",
+   "T1059.004",
+   "T1071.001",
+   "T1033",
+   "T1083"
+  ],
+  "tech_count": 9,
+  "tldr": "**CVE-2026-48907** (CVSS v4 **10.0**, improper access control) is a pre-auth remote code execution flaw in **JCE (Joomla Content Editor)** by Widget Factory, the single most installed Joomla editor extension. The profile-import endpoint `/index.php?option=com_jce&task=profiles.import` is reachable by an unauthenticated caller (its only gate was a CSRF token that Joomla embeds in every public page)",
+  "thumb": "thumbs/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE.svg",
+  "case_rel": "../days/2026/06/2026-06-18_JCE-CVE-2026-48907-Joomla-Unauth-RCE/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "Opportunistic CMS mass-exploitation (unattributed botnet)",
+  "cve_count": 3,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-54420",
+    "due": "2026-06-18",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-48907",
+    "due": "2026-06-19",
+    "ransom": false
+   }
+  ],
+  "q": "jce cve-2026-48907 — unauthenticated pre-auth rce in the joomla content editor via the profile-import endpoint, now sprayed by a botnet opportunistic cms mass-exploitation (unattributed botnet) unattributed (commodity web exploitation) linux network-edge hosting government education media small-business technology t1595.002 t1588.005 t1190 t1105 t1505.003 t1059.004 t1071.001 t1033 t1083 edge / network cve-2026-54420 cve-2026-48907"
+ },
+ {
+  "date": "2026-06-17",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-17_FakeInvitation-PhishKit-OTP-RMM",
+  "title": "Fake event-invitation phish kit: mass credential + OTP harvesting and RMM delivery against US organizations",
+  "clusters": [
+   "Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)"
+  ],
+  "country": "Unattributed (e-crime)",
+  "platforms": [
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "education",
+   "finance",
+   "government",
+   "technology",
+   "healthcare"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1656",
+   "T1598.003",
+   "T1204.001",
+   "T1204.002",
+   "T1111",
+   "T1219",
+   "T1583.001",
+   "T1567",
+   "T1497.001",
+   "T1078"
+  ],
+  "tech_count": 11,
+  "tldr": "A high-volume, repeatable phishing kit is targeting US organizations with fake **event invitations** that branch into two outcomes from one CAPTCHA-gated lure: (a) real-time harvesting of webmail credentials **and** the follow-up OTP, and (b) silent delivery of legitimate **RMM** tools (ScreenConnect, ITarian, Datto RMM, ConnectWise, LogMeIn Rescue) as a remote-access foothold. ANY.RUN tracked rou",
+  "thumb": "thumbs/2026-06-17_FakeInvitation-PhishKit-OTP-RMM.svg",
+  "case_rel": "../days/2026/06/2026-06-17_FakeInvitation-PhishKit-OTP-RMM/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "fake event-invitation phish kit: mass credential + otp harvesting and rmm delivery against us organizations unattributed fake-invitation phish-kit operator (any.run-tracked) unattributed (e-crime) windows cloud-multi education finance government technology healthcare t1566.002 t1656 t1598.003 t1204.001 t1204.002 t1111 t1219 t1583.001 t1567 t1497.001 t1078 identity / cloud / saas "
+ },
+ {
+  "date": "2026-06-16",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751",
+  "title": "Qilin affiliate weaponises Check Point IKEv1 VPN auth-bypass (CVE-2026-50751) as ransomware initial access",
+  "clusters": [
+   "Qilin ransomware affiliate (Check Point CPR, medium confidence)"
+  ],
+  "country": "e-crime / RaaS (financially motivated; Qilin RaaS, Russia-nexus ecosystem)",
+  "platforms": [
+   "network-edge",
+   "linux",
+   "windows"
+  ],
+  "sectors": [
+   "multi-sector",
+   "government",
+   "finance",
+   "manufacturing",
+   "technology"
+  ],
+  "techniques": [
+   "T1190",
+   "T1133",
+   "T1078",
+   "T1211",
+   "T1588.006",
+   "T1583.003",
+   "T1105",
+   "T1486",
+   "T1490",
+   "T1041",
+   "T1071.001"
+  ],
+  "tech_count": 11,
+  "tldr": "A financially-motivated operator — assessed by Check Point Research with **medium confidence** to be a **Qilin ransomware affiliate** — has been exploiting **CVE-2026-50751**, a critical (CVSS 9.3) authentication-bypass in the **deprecated IKEv1** code of Check Point Remote Access VPN / Mobile Access / Spark Firewall, to obtain unauthenticated remote-access VPN sessions as the **initial-access pri",
+  "thumb": "thumbs/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751.svg",
+  "case_rel": "../days/2026/06/2026-06-16_Qilin-CheckPoint-IKEv1-CVE-2026-50751/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Qilin ransomware affiliate (Check Point CPR, medium confidence)",
+  "cve_count": 4,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-40766",
+    "due": "2024-09-30",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-50751",
+    "due": "2026-06-11",
+    "ransom": true
+   }
+  ],
+  "q": "qilin affiliate weaponises check point ikev1 vpn auth-bypass (cve-2026-50751) as ransomware initial access qilin ransomware affiliate (check point cpr, medium confidence) e-crime / raas (financially motivated; qilin raas, russia-nexus ecosystem) network-edge linux windows multi-sector government finance manufacturing technology t1190 t1133 t1078 t1211 t1588.006 t1583.003 t1105 t1486 t1490 t1041 t1071.001 ransomware / e-crime cve-2024-40766 cve-2026-50751"
+ },
+ {
+  "date": "2026-06-15",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain",
+  "title": "OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-chain attack and a multi-year construction-firm intrusion",
+  "clusters": [
+   "OceanLotus (APT32)"
+  ],
+  "country": "Vietnam-aligned",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "finance",
+   "construction",
+   "government",
+   "transportation"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1190",
+   "T1059",
+   "T1204",
+   "T1574.002",
+   "T1055",
+   "T1036",
+   "T1027",
+   "T1553.002",
+   "T1082",
+   "T1570",
+   "T1021",
+   "T1071.001",
+   "T1573",
+   "T1105",
+   "T1041"
+  ],
+  "tech_count": 16,
+  "tldr": "ESET published (11 June 2026) two 2024–2026 OceanLotus (APT32) campaigns that both deploy the group's signature Windows backdoor, **SPECTRALVIPER**, but reveal a strategic shift from external espionage toward **domestic** Vietnamese targets. In the first, OceanLotus compromised the update server of **FireAnt MetaKit** — a market-data component widely used by Vietnamese stock investors — and replac",
+  "thumb": "thumbs/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain.svg",
+  "case_rel": "../days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "OceanLotus (APT32)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "oceanlotus (apt32) turns inward — spectralviper via a fireant metakit supply-chain attack and a multi-year construction-firm intrusion oceanlotus (apt32) vietnam-aligned windows finance construction government transportation t1195.002 t1190 t1059 t1204 t1574.002 t1055 t1036 t1027 t1553.002 t1082 t1570 t1021 t1071.001 t1573 t1105 t1041 espionage / apt "
+ },
+ {
+  "date": "2026-06-14",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft",
+  "title": "Humanity Protocol $36M bridge takeover — DPRK-linked spear-phish to a signer laptop steals the multisig keys",
+  "clusters": [
+   "DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)"
+  ],
+  "country": "DPRK (suspected)",
+  "platforms": [
+   "windows",
+   "macos",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "cryptocurrency",
+   "defi",
+   "finance"
+  ],
+  "techniques": [
+   "T1566.001",
+   "T1204.002",
+   "T1553.002",
+   "T1588.003",
+   "T1219",
+   "T1562.001",
+   "T1555",
+   "T1552.001",
+   "T1005",
+   "T1078",
+   "T1657"
+  ],
+  "tech_count": 11,
+  "tldr": "On 8 June 2026 attackers drained roughly $36M from Humanity Protocol (the palm-vein \"Chinese Worldcoin\" identity project) by compromising the operational security of one person, not the smart contracts. A spear-phishing email impersonating South Korean exchange Bithumb — with whom a director had genuinely been communicating — carried a malicious attachment that installed remote-access malware; the",
+  "thumb": "thumbs/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft.svg",
+  "case_rel": "../days/2026/06/2026-06-14_Humanity-Protocol-DPRK-Bridge-KeyTheft/",
+  "category": "crypto-defi",
+  "cat_label": "Crypto / DeFi",
+  "cat_color": "#d08a1f",
+  "actor": "DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "humanity protocol $36m bridge takeover — dprk-linked spear-phish to a signer laptop steals the multisig keys dprk-linked intrusion set (quantstamp; lazarus-cluster overlap, not definitively attributed) dprk (suspected) windows macos cloud-multi cryptocurrency defi finance t1566.001 t1204.002 t1553.002 t1588.003 t1219 t1562.001 t1555 t1552.001 t1005 t1078 t1657 crypto / defi "
+ },
+ {
+  "date": "2026-06-13",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay",
+  "title": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Brazilian TAs, AI-assisted)",
+  "clusters": [
+   "DevilNFC",
+   "NFCMultiPay"
+  ],
+  "country": "Spain (DevilNFC) / Brazil (NFCMultiPay) — EU + LATAM nexus",
+  "platforms": [
+   "android"
+  ],
+  "sectors": [
+   "finance",
+   "banking",
+   "retail-payments"
+  ],
+  "techniques": [
+   "T1660",
+   "T1655.001",
+   "T1541",
+   "T1417.002",
+   "T1636.004",
+   "T1582",
+   "T1437.001",
+   "T1521.001",
+   "T1646"
+  ],
+  "tech_count": 9,
+  "tldr": "DevilNFC and NFCMultiPay are two previously-undocumented Android NFC relay malware families analysed by Cleafy's Threat Intelligence and Response (TIR) team (publication 2026-05-18; DevilNFC recovered from a victim device during a Cleafy IR engagement in March 2026). Both perform real-time NFC relay fraud against European and LATAM banking customers — a victim is socially engineered into tapping t",
+  "thumb": "thumbs/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay.svg",
+  "case_rel": "../days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/",
+  "category": "mobile",
+  "cat_label": "Mobile",
+  "cat_color": "#c2569a",
+  "actor": "DevilNFC",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "devilnfc and nfcmultipay — locally-built android nfc relay malware (spanish + brazilian tas, ai-assisted) devilnfc nfcmultipay spain (devilnfc) / brazil (nfcmultipay) — eu + latam nexus android finance banking retail-payments t1660 t1655.001 t1541 t1417.002 t1636.004 t1582 t1437.001 t1521.001 t1646 mobile "
+ },
+ {
+  "date": "2026-06-12",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS",
+  "title": "LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment",
+  "clusters": [
+   "LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)"
+  ],
+  "country": "Unattributed (Chinese-language artifacts; vShell tooling)",
+  "platforms": [
+   "linux",
+   "cloud-multi",
+   "supply-chain"
+  ],
+  "sectors": [
+   "cross-sector",
+   "cloud-hosting"
+  ],
+  "techniques": [
+   "T1190",
+   "T1610",
+   "T1552.001",
+   "T1014",
+   "T1564.001",
+   "T1574.006",
+   "T1205.001",
+   "T1620",
+   "T1071.004",
+   "T1090",
+   "T1070.003",
+   "T1562.001"
+  ],
+  "tech_count": 12,
+  "tldr": "LinkPro is a Golang Linux backdoor discovered by the Synacktiv CSIRT during DFIR on a compromised AWS-hosted environment (publication 2025-10-13). The operator exploited an internet-exposed Jenkins server (CVE-2024-23897), pivoted into several Amazon EKS clusters, and deployed a malicious Docker Hub image (`kvlnt/vv`) that ran a vnt proxy, harvested service-account and cloud credentials from neigh",
+  "thumb": "thumbs/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS.svg",
+  "case_rel": "../days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-23897",
+    "due": "2024-09-09",
+    "ransom": true
+   }
+  ],
+  "q": "linkpro — ebpf rootkit with magic-packet activation in a compromised aws eks environment linkpro (unattributed; vshell/vnt toolchain, unc5174 overlap) unattributed (chinese-language artifacts; vshell tooling) linux cloud-multi supply-chain cross-sector cloud-hosting t1190 t1610 t1552.001 t1014 t1564.001 t1574.006 t1205.001 t1620 t1071.004 t1090 t1070.003 t1562.001 supply chain cve-2024-23897"
+ },
+ {
+  "date": "2026-06-11",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak",
+  "title": "Argo CD ServerSideDiff Kubernetes Secret extraction (CVE-2026-42880) — a read-only GitOps user reads etcd Secrets in plaintext",
+  "clusters": [
+   "Opportunistic Argo CD ServerSideDiff exploitation (unattributed)"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "cloud-multi",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "government",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1190",
+   "T1552.007",
+   "T1528",
+   "T1078",
+   "T1550.001",
+   "T1213",
+   "T1530"
+  ],
+  "tech_count": 7,
+  "tldr": "Argo CD — the most widely deployed GitOps continuous-delivery controller for Kubernetes — masks Kubernetes `Secret` values on every API surface except one: the `ServerSideDiff` gRPC/REST endpoint. **CVE-2026-42880** (GHSA-3v3m-wc6v-x4x3, CVSS 9.6, advisory published 2026-05-01 by maintainer `alexmt`, reported by `hoang-prod`) lets any authenticated user with the default `get` RBAC — including nomi",
+  "thumb": "thumbs/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak.svg",
+  "case_rel": "../days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Opportunistic Argo CD ServerSideDiff exploitation (unattributed)",
+  "cve_count": 5,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "argo cd serversidediff kubernetes secret extraction (cve-2026-42880) — a read-only gitops user reads etcd secrets in plaintext opportunistic argo cd serversidediff exploitation (unattributed) unattributed cloud-multi supply-chain technology finance government cross-sector t1190 t1552.007 t1528 t1078 t1550.001 t1213 t1530 supply chain "
+ },
+ {
+  "date": "2026-06-10",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS",
+  "title": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-brand identity operation",
+  "clusters": [
+   "Kali365"
+  ],
+  "country": "Unattributed (Russian-services focus + Western enterprise targeting)",
+  "platforms": [
+   "cloud-multi",
+   "windows"
+  ],
+  "sectors": [
+   "cross-sector",
+   "technology",
+   "government",
+   "finance",
+   "healthcare",
+   "consumer"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1656",
+   "T1528",
+   "T1550.001",
+   "T1078.004",
+   "T1114.002",
+   "T1071.001",
+   "T1111",
+   "T1567",
+   "T1583.006"
+  ],
+  "tech_count": 10,
+  "tldr": "Kali365 (also \"K365\") is a phishing-as-a-service platform, first seen in April 2026 and sold via Telegram, that abuses Microsoft's legitimate OAuth 2.0 device authorization grant to steal Entra ID tokens and bypass MFA without ever touching the victim's password. The operator initiates a device-code request against their own public-client app, embeds the resulting `user_code` in a OneDrive/SharePo",
+  "thumb": "thumbs/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS.svg",
+  "case_rel": "../days/2026/06/2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "Kali365",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "kali365 (k365) — oauth 2.0 device-code phishing-as-a-service expands to a multi-brand identity operation kali365 unattributed (russian-services focus + western enterprise targeting) cloud-multi windows cross-sector technology government finance healthcare consumer t1566.002 t1656 t1528 t1550.001 t1078.004 t1114.002 t1071.001 t1111 t1567 t1583.006 identity / cloud / saas "
+ },
+ {
+  "date": "2026-06-09",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware",
+  "title": "Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hypervisor recovery",
+  "clusters": [
+   "Kyber"
+  ],
+  "country": "Unattributed (e-crime / RaaS)",
+  "platforms": [
+   "linux",
+   "windows"
+  ],
+  "sectors": [
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1486",
+   "T1490",
+   "T1489",
+   "T1485",
+   "T1562.001",
+   "T1070.001",
+   "T1021.004",
+   "T1059.001",
+   "T1059.003",
+   "T1222.001",
+   "T1106",
+   "T1112",
+   "T1083",
+   "T1057"
+  ],
+  "tech_count": 14,
+  "tldr": "Kyber is a cross-platform ransomware family that ships **two coordinated encryptors** — an ELF binary for Linux/VMware **ESXi** and a Rust PE for **Windows** — sharing one campaign ID and one Tor negotiation/leak infrastructure. Rapid7 recovered both payloads side by side during a **March 2026** incident-response engagement (one against ESXi datastores, one against Windows file servers) and publis",
+  "thumb": "thumbs/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware.svg",
+  "case_rel": "../days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/",
+  "category": "crypto-defi",
+  "cat_label": "Crypto / DeFi",
+  "cat_color": "#d08a1f",
+  "actor": "Kyber",
+  "cve_count": 3,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-55591",
+    "due": "2025-01-21",
+    "ransom": true
+   }
+  ],
+  "q": "kyber ransomware — dual esxi + windows encryptor built to blind backup and hypervisor recovery kyber unattributed (e-crime / raas) linux windows cross-sector t1486 t1490 t1489 t1485 t1562.001 t1070.001 t1021.004 t1059.001 t1059.003 t1222.001 t1106 t1112 t1083 t1057 crypto / defi cve-2024-55591"
+ },
+ {
+  "date": "2026-06-08",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-08_OP-512-China-IIS-WebShell-Framework",
+  "title": "OP-512 — China-linked IIS web shell framework with per-deployment cryptographic uniqueness",
+  "clusters": [
+   "OP-512"
+  ],
+  "country": "China (suspected, moderate-high confidence)",
+  "platforms": [
+   "windows",
+   "network-edge"
+  ],
+  "sectors": [
+   "undisclosed"
+  ],
+  "techniques": [
+   "T1190",
+   "T1505.003",
+   "T1059.003",
+   "T1620",
+   "T1134.001",
+   "T1068",
+   "T1071.004",
+   "T1071.001",
+   "T1132.001",
+   "T1573.001",
+   "T1573.002",
+   "T1070.006",
+   "T1027",
+   "T1140",
+   "T1033"
+  ],
+  "tech_count": 15,
+  "tldr": "On 2026-06-05 ReliaQuest disclosed **OP-512**, a previously unseen China-linked espionage cluster (moderate-high confidence) it surfaced after correlating a burst of low-fidelity events on a customer's internet-facing **Internet Information Services (IIS)** server. The compromised host ran **Windows Server 2016** with end-of-life **.NET Framework 4.0**, sat in a DMZ, and had shown signs of attacke",
+  "thumb": "thumbs/2026-06-08_OP-512-China-IIS-WebShell-Framework.svg",
+  "case_rel": "../days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/",
+  "category": "crypto-defi",
+  "cat_label": "Crypto / DeFi",
+  "cat_color": "#d08a1f",
+  "actor": "OP-512",
+  "cve_count": 1,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "op-512 — china-linked iis web shell framework with per-deployment cryptographic uniqueness op-512 china (suspected, moderate-high confidence) windows network-edge undisclosed t1190 t1505.003 t1059.003 t1620 t1134.001 t1068 t1071.004 t1071.001 t1132.001 t1573.001 t1573.002 t1070.006 t1027 t1140 t1033 crypto / defi "
+ },
+ {
+  "date": "2026-06-07",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure",
+  "title": "Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window that makes BlackLotus-class bootkits permanently exploitable",
+  "clusters": [
+   "Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust"
+  ],
+  "country": "Cross-vendor firmware supply chain (global)",
+  "platforms": [
+   "windows",
+   "linux",
+   "supply-chain"
+  ],
+  "sectors": [
+   "government",
+   "defense",
+   "finance",
+   "healthcare",
+   "energy",
+   "manufacturing",
+   "technology"
+  ],
+  "techniques": [
+   "T1542.001",
+   "T1542.003",
+   "T1553.006",
+   "T1195.003",
+   "T1562.001",
+   "T1014",
+   "T1112",
+   "T1547.001",
+   "T1070.003"
+  ],
+  "tech_count": 9,
+  "tldr": "On **June 24, 2026** — seventeen days from this entry — the **Microsoft Corporation KEK CA 2011** expires; the **Microsoft Corporation UEFI CA 2011** (DB) follows on **June 27, 2026**, and the **Microsoft Windows Production PCA 2011** on **October 19, 2026** (dates per Microsoft's official table, updated 2026-05-18 to add the day of the month). The KEK (Key Exchange Key) is the credential Windows ",
+  "thumb": "thumbs/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure.svg",
+  "case_rel": "../days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust",
+  "cve_count": 5,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "secure boot 2011 certificate expiry (kek june 24, 2026) — the frozen-dbx window that makes blacklotus-class bootkits permanently exploitable bootkit ecosystem (blacklotus / bootkitty / pkfail / bombshell) exploiting frozen secure boot trust cross-vendor firmware supply chain (global) windows linux supply-chain government defense finance healthcare energy manufacturing technology t1542.001 t1542.003 t1553.006 t1195.003 t1562.001 t1014 t1112 t1547.001 t1070.003 supply chain "
+ },
+ {
+  "date": "2026-06-06",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517",
+  "title": "OCPP EV-Charging Attack Surface - ABB Terra AC Heap Overflow (CVE-2025-5517) and the OCPP WebSocket Missing-Auth Class",
+  "clusters": [
+   "Opportunistic OCPP / EV-charging exploitation (unattributed)"
+  ],
+  "country": "Not attributed",
+  "platforms": [
+   "iot",
+   "ot-ics",
+   "network-edge"
+  ],
+  "sectors": [
+   "energy",
+   "automotive",
+   "transportation",
+   "critical-infrastructure"
+  ],
+  "techniques": [
+   "T1190",
+   "T1133",
+   "T1557.002",
+   "T1040",
+   "T1499.004",
+   "T1565.002",
+   "T1059",
+   "T1078",
+   "T0814",
+   "T0826",
+   "T0855",
+   "T0857",
+   "T0831"
+  ],
+  "tech_count": 13,
+  "tldr": "EV charging is now critical energy infrastructure, and its control plane - the Open Charge Point Protocol (OCPP, JSON over WebSocket) - is dangerously exposed. SaiFlow's reverse engineering of the ABB Terra AC wallbox uncovered CVE-2025-5517: an over-long OCPP `DataTransfer` `messageId` is copied with `sprintf` into a fixed-size buffer, overflowing the heap and crashing the charger into an indefin",
+  "thumb": "thumbs/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517.svg",
+  "case_rel": "../days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Opportunistic OCPP / EV-charging exploitation (unattributed)",
+  "cve_count": 4,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "ocpp ev-charging attack surface - abb terra ac heap overflow (cve-2025-5517) and the ocpp websocket missing-auth class opportunistic ocpp / ev-charging exploitation (unattributed) not attributed iot ot-ics network-edge energy automotive transportation critical-infrastructure t1190 t1133 t1557.002 t1040 t1499.004 t1565.002 t1059 t1078 t0814 t0826 t0855 t0857 t0831 ot / ics "
+ },
+ {
+  "date": "2026-06-05",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-05_Netlogon-CVE-2026-41089-DC-RCE",
+  "title": "Netlogon CVE-2026-41089 — unauthenticated 0-click stack-overflow RCE as SYSTEM on Windows domain controllers",
+  "clusters": [
+   "Opportunistic Netlogon mass-exploitation (unattributed)"
+  ],
+  "country": "Unattributed (commodity / mass exploitation)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government",
+   "finance",
+   "healthcare",
+   "education",
+   "technology",
+   "manufacturing"
+  ],
+  "techniques": [
+   "T1046",
+   "T1018",
+   "T1210",
+   "T1068",
+   "T1003.006",
+   "T1003.001",
+   "T1207",
+   "T1558.001",
+   "T1136.001",
+   "T1484.001",
+   "T1021.002",
+   "T1070.001"
+  ],
+  "tech_count": 12,
+  "tldr": "**CVE-2026-41089** is a critical (CVSS 9.8, AV:N/AC:L/PR:N/UI:N/C:H/I:H/A:H) **stack-based buffer overflow in the Windows Netlogon Remote Protocol (MS-NRPC)** packet-handling path on **domain controllers**. An unauthenticated attacker sends one specially crafted Netlogon RPC request to a DC (TCP/135 endpoint mapper → dynamic RPC endpoint, or the `\\PIPE\\netlogon` named pipe over SMB) and obtains **",
+  "thumb": "thumbs/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE.svg",
+  "case_rel": "../days/2026/06/2026-06-05_Netlogon-CVE-2026-41089-DC-RCE/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Opportunistic Netlogon mass-exploitation (unattributed)",
+  "cve_count": 3,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2020-1472",
+    "due": "2022-05-03",
+    "ransom": true
+   }
+  ],
+  "q": "netlogon cve-2026-41089 — unauthenticated 0-click stack-overflow rce as system on windows domain controllers opportunistic netlogon mass-exploitation (unattributed) unattributed (commodity / mass exploitation) windows government finance healthcare education technology manufacturing t1046 t1018 t1210 t1068 t1003.006 t1003.001 t1207 t1558.001 t1136.001 t1484.001 t1021.002 t1070.001 other cve-2020-1472"
+ },
+ {
+  "date": "2026-06-04",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover",
+  "title": "Kirki CVE-2026-8206 — unauthenticated admin account takeover via password-reset-to-attacker-email on 150K WordPress sites",
+  "clusters": [
+   "Opportunistic WordPress mass-exploitation (unattributed)"
+  ],
+  "country": "Unattributed (commodity web exploitation)",
+  "platforms": [
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "hosting",
+   "retail",
+   "media",
+   "government",
+   "small-business",
+   "technology"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1589.002",
+   "T1087.001",
+   "T1190",
+   "T1098",
+   "T1078",
+   "T1136.001",
+   "T1505.003",
+   "T1059.004",
+   "T1071.001",
+   "T1105",
+   "T1041"
+  ],
+  "tech_count": 12,
+  "tldr": "On 2026-06-02 Wordfence/Defiant disclosed **CVE-2026-8206** (CVSS 9.8, CWE-269 improper privilege management) in the **Kirki — Freeform Page Builder, Website Builder & Customizer** WordPress plugin. The plugin's `handle_forgot_password()` handler in `ComponentLibrary/controller/CompLibFormHandler.php` accepts an **attacker-supplied destination email** for a password-reset request instead of valida",
+  "thumb": "thumbs/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover.svg",
+  "case_rel": "../days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "Opportunistic WordPress mass-exploitation (unattributed)",
+  "cve_count": 2,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "kirki cve-2026-8206 — unauthenticated admin account takeover via password-reset-to-attacker-email on 150k wordpress sites opportunistic wordpress mass-exploitation (unattributed) unattributed (commodity web exploitation) linux network-edge hosting retail media government small-business technology t1595.002 t1589.002 t1087.001 t1190 t1098 t1078 t1136.001 t1505.003 t1059.004 t1071.001 t1105 t1041 edge / network "
+ },
+ {
+  "date": "2026-06-03",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-03_ip6arpa-Reverse-DNS-Phishing",
+  "title": "ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade reputation and blocklists",
+  "clusters": [
+   "Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)"
+  ],
+  "country": "Unattributed; English-language commodity phishing",
+  "platforms": [
+   "network-edge",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "cross-sector",
+   "healthcare",
+   "government",
+   "education",
+   "telecom",
+   "retail"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1583.002",
+   "T1584.001",
+   "T1665",
+   "T1566.002",
+   "T1598.003",
+   "T1204.001",
+   "T1036",
+   "T1027"
+  ],
+  "tech_count": 9,
+  "tldr": "A commodity phishing operator abuses the `ip6.arpa` reverse-DNS namespace — a zone that by RFC design should only ever hold PTR records — to host malicious hyperlinks that email gateways and URL scanners treat as benign infrastructure plumbing. The actor obtains a free IPv6 `/48` from a tunnel broker (Hurricane Electric), is delegated the matching reverse zone, delegates that zone to a high-reputa",
+  "thumb": "thumbs/2026-06-03_ip6arpa-Reverse-DNS-Phishing.svg",
+  "case_rel": "../days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "ip6.arpa reverse-dns phishing — wildcard a records on ipv6 reverse zones evade reputation and blocklists unattributed ip6.arpa reverse-dns phishing operator (infoblox-tracked) unattributed; english-language commodity phishing network-edge cloud-multi cross-sector healthcare government education telecom retail t1583.001 t1583.002 t1584.001 t1665 t1566.002 t1598.003 t1204.001 t1036 t1027 edge / network "
+ },
+ {
+  "date": "2026-06-02",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-02_Aur0ra-NoRename-InPlace-Ransomware",
+  "title": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-extortion via Tor",
+  "clusters": [
+   "Aur0ra (unattributed ransomware family)"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "cross-sector",
+   "enterprise"
+  ],
+  "techniques": [
+   "T1486",
+   "T1490",
+   "T1566.001",
+   "T1091",
+   "T1059",
+   "T1497.001",
+   "T1564.003",
+   "T1027.002",
+   "T1055",
+   "T1134",
+   "T1546.011",
+   "T1548",
+   "T1012",
+   "T1057",
+   "T1082",
+   "T1120",
+   "T1135",
+   "T1560",
+   "T1071",
+   "T1090.003",
+   "T1070.006",
+   "T1202"
+  ],
+  "tech_count": 22,
+  "tldr": "Aur0ra is a newly catalogued Windows (x64) filecoder that CYFIRMA pulled from underground-forum monitoring (Weekly Intelligence Report, 2026-05-22) and that pcrisk independently analysed from a VirusTotal submission (2026-05-07). Its single distinctive behaviour is that it encrypts files **in place** — it does not rename them and does not append any extension, so `1.jpg` stays `1.jpg` but becomes ",
+  "thumb": "thumbs/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware.svg",
+  "case_rel": "../days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Aur0ra (unattributed ransomware family)",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-40766",
+    "due": "2024-09-30",
+    "ransom": true
+   }
+  ],
+  "q": "aur0ra ransomware — in-place encryption with no rename and no extension, double-extortion via tor aur0ra (unattributed ransomware family) unknown windows cross-sector enterprise t1486 t1490 t1566.001 t1091 t1059 t1497.001 t1564.003 t1027.002 t1055 t1134 t1546.011 t1548 t1012 t1057 t1082 t1120 t1135 t1560 t1071 t1090.003 t1070.006 t1202 ransomware / e-crime cve-2024-40766"
+ },
+ {
+  "date": "2026-06-01",
+  "year": "2026",
+  "month": "2026-06",
+  "slug": "2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine",
+  "title": "GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware",
+  "clusters": [
+   "GREYVIBE"
+  ],
+  "country": "Russia (nexus; cybercrime overlap)",
+  "platforms": [
+   "windows",
+   "android",
+   "network-edge"
+  ],
+  "sectors": [
+   "government",
+   "defense",
+   "military",
+   "civilian",
+   "business"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1204.001",
+   "T1059.001",
+   "T1059.003",
+   "T1059.007",
+   "T1027",
+   "T1140",
+   "T1071.001",
+   "T1102.001",
+   "T1053.005",
+   "T1547.009",
+   "T1548.002",
+   "T1218.003",
+   "T1497.001",
+   "T1070.003",
+   "T1113",
+   "T1560.001",
+   "T1555.003",
+   "T1041",
+   "T1091",
+   "T1219",
+   "T1021.001",
+   "T1496"
+  ],
+  "tech_count": 23,
+  "tldr": "WithSecure (report 2026-05-28, Mohammad Kazem Hassan Nejad) named **GREYVIBE**, a previously undocumented Russia-nexus threat group running persistent intelligence collection against Ukraine and Ukraine-related entities since at least August 2025. The group delivers through spear-phishing (PhantomMail), ClickFix fake CAPTCHA pages (PhantomClick), and — most distinctively — fake Ukrainian adult-clu",
+  "thumb": "thumbs/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine.svg",
+  "case_rel": "../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/",
+  "category": "mobile",
+  "cat_label": "Mobile",
+  "cat_color": "#c2569a",
+  "actor": "GREYVIBE",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "greyvibe — russia-nexus ai-augmented espionage against ukraine: phantomrelay and legionrelay powershell rats, fallspy android spyware greyvibe russia (nexus; cybercrime overlap) windows android network-edge government defense military civilian business t1566.002 t1204.001 t1059.001 t1059.003 t1059.007 t1027 t1140 t1071.001 t1102.001 t1053.005 t1547.009 t1548.002 t1218.003 t1497.001 t1070.003 t1113 t1560.001 t1555.003 t1041 t1091 t1219 t1021.001 t1496 mobile "
+ },
+ {
+  "date": "2026-05-31",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction",
+  "title": "Black Shadow / Ababil of Minab — Iran-MOIS recovery-layer destruction: vCenter VM deletion, Veeam backup wipe, SSMS database drops to deny recovery",
+  "clusters": [
+   "Black Shadow (Ababil of Minab persona)"
+  ],
+  "country": "Iran (MOIS nexus)",
+  "platforms": [
+   "windows",
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "transportation",
+   "media",
+   "insurance",
+   "education",
+   "government"
+  ],
+  "techniques": [
+   "T1078",
+   "T1133",
+   "T1021.001",
+   "T1090.003",
+   "T1572",
+   "T1059.006",
+   "T1485",
+   "T1561.001",
+   "T1561.002",
+   "T1490",
+   "T1529",
+   "T1588.007",
+   "T1041"
+  ],
+  "tech_count": 13,
+  "tldr": "Gambit Security (report 2026-05-26) tied the pro-Iranian \"Ababil of Minab\" persona — which publicly claimed the Los Angeles County Metropolitan Transportation Authority (LA Metro / LACMTA) breach confirmed 2026-04-02 — to **Black Shadow**, an Iran Ministry of Intelligence and Security (MOIS) cluster previously named by Israel's National Cyber Directorate. The campaign exfiltrated data from organiz",
+  "thumb": "thumbs/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction.svg",
+  "case_rel": "../days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Black Shadow (Ababil of Minab persona)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "black shadow / ababil of minab — iran-mois recovery-layer destruction: vcenter vm deletion, veeam backup wipe, ssms database drops to deny recovery black shadow (ababil of minab persona) iran (mois nexus) windows linux network-edge transportation media insurance education government t1078 t1133 t1021.001 t1090.003 t1572 t1059.006 t1485 t1561.001 t1561.002 t1490 t1529 t1588.007 t1041 ransomware / e-crime "
+ },
+ {
+  "date": "2026-05-30",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer",
+  "title": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers AI agents and users into installing a multi-key-XOR universal Mach-O wallet and Keychain stealer",
+  "clusters": [
+   "AMOS / Atomic macOS Stealer (MaaS)"
+  ],
+  "country": "Russian-speaking MaaS ecosystem; unattributed operators",
+  "platforms": [
+   "macos"
+  ],
+  "sectors": [
+   "cross-sector",
+   "cryptocurrency",
+   "software-development"
+  ],
+  "techniques": [
+   "T1195.001",
+   "T1204.002",
+   "T1059.004",
+   "T1059.002",
+   "T1056.002",
+   "T1497.001",
+   "T1027",
+   "T1140",
+   "T1555.001",
+   "T1555.003",
+   "T1539",
+   "T1552.001",
+   "T1560.001",
+   "T1074.001",
+   "T1071.001",
+   "T1041"
+  ],
+  "tech_count": 16,
+  "tldr": "AMOS (Atomic macOS Stealer), the dominant macOS infostealer-as-a-service, has moved beyond cracked-app and ClickFix delivery into AI-agent supply chains. Trend Micro documented a campaign (research code 26/b, Feb 2026) in which malicious **OpenClaw skill `SKILL.md` files** instruct an AI coding agent — and through it, the user — to install a fake \"prerequisite driver\" from `openclawcli[.]vercel[.]",
+  "thumb": "thumbs/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer.svg",
+  "case_rel": "../days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/",
+  "category": "crypto-defi",
+  "cat_label": "Crypto / DeFi",
+  "cat_color": "#d08a1f",
+  "actor": "AMOS / Atomic macOS Stealer (MaaS)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "amos / atomic macos stealer — malicious openclaw skill skill.md social-engineers ai agents and users into installing a multi-key-xor universal mach-o wallet and keychain stealer amos / atomic macos stealer (maas) russian-speaking maas ecosystem; unattributed operators macos cross-sector cryptocurrency software-development t1195.001 t1204.002 t1059.004 t1059.002 t1056.002 t1497.001 t1027 t1140 t1555.001 t1555.003 t1539 t1552.001 t1560.001 t1074.001 t1071.001 t1041 crypto / defi "
+ },
+ {
+  "date": "2026-05-29",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse",
+  "title": "MiniPlasma — CVE-2020-17103 silent regression weaponized to SYSTEM on fully patched Windows 11 via cldflt.sys race + WER QueueReporting hijack",
+  "clusters": [
+   "Chaotic Eclipse / Nightmare-Eclipse"
+  ],
+  "country": "Anonymous individual operator; unattributed",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1547.001",
+   "T1112",
+   "T1068",
+   "T1053.005",
+   "T1059.001",
+   "T1059.003",
+   "T1574.007",
+   "T1078.002"
+  ],
+  "tech_count": 8,
+  "tldr": "On 2026-05-18, the researcher persona Chaotic Eclipse (tracked by LevelBlue SpiderLabs and Huntress as part of the Nightmare-Eclipse cluster) published MiniPlasma, a weaponization of CVE-2020-17103 in the Windows Cloud Files Mini Filter Driver `cldflt.sys`. The bug was reported to Microsoft by James Forshaw of Google Project Zero in September 2020 and supposedly patched in December 2020, but Threa",
+  "thumb": "thumbs/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse.svg",
+  "case_rel": "../days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Chaotic Eclipse / Nightmare-Eclipse",
+  "cve_count": 6,
+  "kev_count": 3,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-33825",
+    "due": "2026-05-06",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-41091",
+    "due": "2026-06-03",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-45498",
+    "due": "2026-06-03",
+    "ransom": false
+   }
+  ],
+  "q": "miniplasma — cve-2020-17103 silent regression weaponized to system on fully patched windows 11 via cldflt.sys race + wer queuereporting hijack chaotic eclipse / nightmare-eclipse anonymous individual operator; unattributed windows cross-sector t1547.001 t1112 t1068 t1053.005 t1059.001 t1059.003 t1574.007 t1078.002 other cve-2026-33825 cve-2026-41091 cve-2026-45498"
+ },
+ {
+  "date": "2026-05-28",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer",
+  "title": "TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io",
+  "clusters": [
+   "TrapDoor (Socket-tracked)"
+  ],
+  "country": "Unattributed e-crime (English-language operator persona; GitHub account ddjidd564)",
+  "platforms": [
+   "supply-chain",
+   "linux",
+   "macos",
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "crypto-defi",
+   "ai-ml-developer-tools"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1059.007",
+   "T1059.006",
+   "T1546",
+   "T1547.013",
+   "T1037",
+   "T1053.003",
+   "T1098.004",
+   "T1027",
+   "T1027.013",
+   "T1554",
+   "T1554.001",
+   "T1071.001",
+   "T1102",
+   "T1567.001",
+   "T1552.001",
+   "T1552.004",
+   "T1552.005",
+   "T1555.003",
+   "T1539",
+   "T1083",
+   "T1057",
+   "T1041"
+  ],
+  "tech_count": 23,
+  "tldr": "Socket disclosed on 2026-05-24 a coordinated cross-ecosystem supply chain campaign that Socket tracks as **TrapDoor**: at least 34 malicious packages and 384+ versions across npm (21), PyPI (7) and Crates.io (6), first observed on 2026-05-22 at 20:20:18 UTC with PyPI `eth-security-auditor@0.1.0`. The campaign targets developers in crypto, DeFi, Solana, Sui, Move and AI-tooling communities, exfiltr",
+  "thumb": "thumbs/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer.svg",
+  "case_rel": "../days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/",
+  "category": "crypto-defi",
+  "cat_label": "Crypto / DeFi",
+  "cat_color": "#d08a1f",
+  "actor": "TrapDoor (Socket-tracked)",
+  "cve_count": 1,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "trapdoor — cross-ecosystem crypto and ai-developer credential stealer across npm, pypi and crates.io trapdoor (socket-tracked) unattributed e-crime (english-language operator persona; github account ddjidd564) supply-chain linux macos windows cloud-multi technology finance crypto-defi ai-ml-developer-tools t1195.002 t1059.007 t1059.006 t1546 t1547.013 t1037 t1053.003 t1098.004 t1027 t1027.013 t1554 t1554.001 t1071.001 t1102 t1567.001 t1552.001 t1552.004 t1552.005 t1555.003 t1539 t1083 t1057 t1041 crypto / defi "
+ },
+ {
+  "date": "2026-05-27",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion",
+  "title": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsoft 365 and Okta with programmatic SharePoint exfiltration",
+  "clusters": [
+   "UNC6671 (GTIG / Mandiant)",
+   "BlackFile (self-branded DLS)",
+   "Cordial Spider (CrowdStrike)",
+   "CL-CRI-1116 (Palo Alto Unit 42)",
+   "O-UNC-045 (Okta Defensive Cyber Operations)"
+  ],
+  "country": "Financially motivated e-crime, English-speaking nexus; tied to The Com ecosystem (Unit 42 + CrowdStrike, moderate confidence); GTIG explicit that ShinyHunters/UNC6240 brand was co-opted but operations are independent",
+  "platforms": [
+   "cloud-multi",
+   "saas",
+   "windows"
+  ],
+  "sectors": [
+   "retail",
+   "hospitality",
+   "professional-services",
+   "financial-services",
+   "healthcare"
+  ],
+  "techniques": [
+   "T1591.004",
+   "T1589.002",
+   "T1598.004",
+   "T1566.004",
+   "T1656",
+   "T1078.004",
+   "T1556.006",
+   "T1098.005",
+   "T1564.008",
+   "T1087.003",
+   "T1059.001",
+   "T1059.006",
+   "T1213.002",
+   "T1530",
+   "T1119",
+   "T1567.002",
+   "T1041",
+   "T1657"
+  ],
+  "tech_count": 18,
+  "tldr": "Google Threat Intelligence Group (GTIG) published on 2026-05-15 a deep technical writeup of **UNC6671**, a financially motivated extortion cluster operating under the **BlackFile** brand since January 2026 and tracked in parallel by CrowdStrike as **Cordial Spider** and by Palo Alto Networks Unit 42 + RH-ISAC as **CL-CRI-1116**. The operator runs a high-tempo vishing-to-extortion workflow against ",
+  "thumb": "thumbs/2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion.svg",
+  "case_rel": "../days/2026/05/2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "UNC6671 (GTIG / Mandiant)",
+  "cve_count": 2,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "blackfile / unc6671 / cordial spider — vishing + aitm sso compromise of microsoft 365 and okta with programmatic sharepoint exfiltration unc6671 (gtig / mandiant) blackfile (self-branded dls) cordial spider (crowdstrike) cl-cri-1116 (palo alto unit 42) o-unc-045 (okta defensive cyber operations) financially motivated e-crime, english-speaking nexus; tied to the com ecosystem (unit 42 + crowdstrike, moderate confidence); gtig explicit that shinyhunters/unc6240 brand was co-opted but operations are independent cloud-multi saas windows retail hospitality professional-services financial-services healthcare t1591.004 t1589.002 t1598.004 t1566.004 t1656 t1078.004 t1556.006 t1098.005 t1564.008 t1087.003 t1059.001 t1059.006 t1213.002 t1530 t1119 t1567.002 t1041 t1657 identity / cloud / saas "
+ },
+ {
+  "date": "2026-05-26",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB",
+  "title": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConnect IAB Operation",
+  "clusters": [
+   "VENOMOUS#HELPER (Securonix)",
+   "STAC6405 (Sophos)"
+  ],
+  "country": "Financially motivated e-crime; unattributed Initial Access Broker / ransomware-precursor operation (Securonix assessment)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government-services-impersonation",
+   "multi-sector-us",
+   "financial-services",
+   "healthcare",
+   "manufacturing"
+  ],
+  "techniques": [
+   "T1566.001",
+   "T1584.001",
+   "T1608.001",
+   "T1204.002",
+   "T1036.001",
+   "T1543.003",
+   "T1562.009",
+   "T1219",
+   "T1573",
+   "T1071.001",
+   "T1134.001",
+   "T1134.002",
+   "T1548.002",
+   "T1518.001",
+   "T1016",
+   "T1033",
+   "T1082",
+   "T1087.001",
+   "T1036.003",
+   "T1497.001",
+   "T1027",
+   "T1218.007"
+  ],
+  "tech_count": 22,
+  "tldr": "Securonix Threat Research, on the back of earlier independent tracking by Red Canary and Sophos (cluster STAC6405), documented a financially motivated phishing campaign — codenamed **VENOMOUS#HELPER** — that has compromised **80+ organisations, mostly in the United States**, since at least **April 2025**. The lure impersonates the U.S. Social Security Administration; the click chain runs through t",
+  "thumb": "thumbs/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB.svg",
+  "case_rel": "../days/2026/05/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "VENOMOUS#HELPER (Securonix)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "venomous#helper / stac6405 — dual-rmm jwrapper-packaged simplehelp + screenconnect iab operation venomous#helper (securonix) stac6405 (sophos) financially motivated e-crime; unattributed initial access broker / ransomware-precursor operation (securonix assessment) windows government-services-impersonation multi-sector-us financial-services healthcare manufacturing t1566.001 t1584.001 t1608.001 t1204.002 t1036.001 t1543.003 t1562.009 t1219 t1573 t1071.001 t1134.001 t1134.002 t1548.002 t1518.001 t1016 t1033 t1082 t1087.001 t1036.003 t1497.001 t1027 t1218.007 other "
+ },
+ {
+  "date": "2026-05-25",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine",
+  "title": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OYSTERBLUES Targeting Ukrainian Government via Prometheus Lures",
+  "clusters": [
+   "UAC-0057",
+   "Ghostwriter",
+   "FrostyNeighbor",
+   "UNC1151"
+  ],
+  "country": "Belarus-aligned (Russia-axis); long-standing nexus to Belarusian Ministry of Defense per Mandiant 2021",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government",
+   "defense",
+   "military",
+   "telecom"
+  ],
+  "techniques": [
+   "T1078.004",
+   "T1566.001",
+   "T1480",
+   "T1204.002",
+   "T1059.007",
+   "T1059.001",
+   "T1027",
+   "T1140",
+   "T1547.001",
+   "T1053.005",
+   "T1218.005",
+   "T1112",
+   "T1057",
+   "T1082",
+   "T1083",
+   "T1071.001",
+   "T1568.002",
+   "T1090.004",
+   "T1027.013",
+   "T1071",
+   "T1041",
+   "T1219"
+  ],
+  "tech_count": 22,
+  "tldr": "On 22 May 2026 CERT-UA published advisory CERT-UA#6315762 detailing an active spearphishing campaign that the Belarus-aligned threat cluster UAC-0057 (Ghostwriter / FrostyNeighbor / UNC1151) has been running against Ukrainian government organisations since the spring of 2026. The lures impersonate Prometheus, a widely used Ukrainian online learning platform that distributes professional and securi",
+  "thumb": "thumbs/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine.svg",
+  "case_rel": "../days/2026/05/2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "UAC-0057",
+  "cve_count": 2,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-42009",
+    "due": "2025-06-30",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2025-8088",
+    "due": "2025-09-02",
+    "ransom": false
+   }
+  ],
+  "q": "uac-0057 / ghostwriter — oysterfresh javascript loader and registry-persisted oysterblues targeting ukrainian government via prometheus lures uac-0057 ghostwriter frostyneighbor unc1151 belarus-aligned (russia-axis); long-standing nexus to belarusian ministry of defense per mandiant 2021 windows government defense military telecom t1078.004 t1566.001 t1480 t1204.002 t1059.007 t1059.001 t1027 t1140 t1547.001 t1053.005 t1218.005 t1112 t1057 t1082 t1083 t1071.001 t1568.002 t1090.004 t1027.013 t1071 t1041 t1219 malware / re cve-2024-42009 cve-2025-8088"
+ },
+ {
+  "date": "2026-05-24",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-24_OperationSaffron-FirstVPN-Takedown",
+  "title": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, France, Netherlands and FBI",
+  "clusters": [
+   "First VPN Service (1vpns.com)"
+  ],
+  "country": "Russian-speaking e-crime ecosystem (Ukrainian operator; service marketed on Exploit[.]in / XSS[.]is)",
+  "platforms": [
+   "network-edge",
+   "cloud-multi",
+   "windows",
+   "linux"
+  ],
+  "sectors": [
+   "cross-sector",
+   "ransomware-affected-orgs",
+   "government-investigations"
+  ],
+  "techniques": [
+   "T1090",
+   "T1090.003",
+   "T1133",
+   "T1078",
+   "T1078.002",
+   "T1078.004",
+   "T1110",
+   "T1110.003",
+   "T1046",
+   "T1018",
+   "T1498",
+   "T1583.003",
+   "T1572",
+   "T1571"
+  ],
+  "tech_count": 14,
+  "tldr": "On 19-20 May 2026, an 18-country law-enforcement operation led by France (BL2C) and the Netherlands (NHTC) under Europol's coordination dismantled **First VPN Service** (1vpns[.]com), a paid anonymization service marketed exclusively on Russian-speaking cybercrime forums and used by at least 25 ransomware groups (including Avaddon and Phobos) since 2014. Thirty-three servers across 27 countries we",
+  "thumb": "thumbs/2026-05-24_OperationSaffron-FirstVPN-Takedown.svg",
+  "case_rel": "../days/2026/05/2026-05-24_OperationSaffron-FirstVPN-Takedown/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "First VPN Service (1vpns.com)",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-20182",
+    "due": "2026-05-17",
+    "ransom": false
+   }
+  ],
+  "q": "operation saffron — first vpn anonymization-as-a-service takedown by europol, france, netherlands and fbi first vpn service (1vpns.com) russian-speaking e-crime ecosystem (ukrainian operator; service marketed on exploit[.]in / xss[.]is) network-edge cloud-multi windows linux cross-sector ransomware-affected-orgs government-investigations t1090 t1090.003 t1133 t1078 t1078.002 t1078.004 t1110 t1110.003 t1046 t1018 t1498 t1583.003 t1572 t1571 edge / network cve-2026-20182"
+ },
+ {
+  "date": "2026-05-23",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802",
+  "title": "SonicWall Gen6 SSL-VPN MFA Bypass (CVE-2024-12802) — First In-the-Wild Exploitation by Akira-Aligned Affiliate",
+  "clusters": [
+   "Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)"
+  ],
+  "country": "e-crime (cross-jurisdictional, infrastructure on abused VPS/VPN ASNs)",
+  "platforms": [
+   "network-edge",
+   "windows"
+  ],
+  "sectors": [
+   "small-medium-business",
+   "m-and-a-environments",
+   "multiple-cross-sector"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1583.003",
+   "T1110.001",
+   "T1110.003",
+   "T1133",
+   "T1556",
+   "T1078.002",
+   "T1018",
+   "T1046",
+   "T1021.001",
+   "T1078.003",
+   "T1071.001",
+   "T1573",
+   "T1068",
+   "T1562.001",
+   "T1083",
+   "T1552.001",
+   "T1486"
+  ],
+  "tech_count": 18,
+  "tldr": "Between February and March 2026, ReliaQuest documented what it assesses with medium confidence as the **first in-the-wild exploitation of CVE-2024-12802**, an authentication bypass in SonicWall SSL-VPN appliances disclosed in early 2025 as SNWLID-2025-0001. On Gen6 hardware the firmware patch alone does not remediate the vulnerability — six manual LDAP reconfiguration steps are required, and stand",
+  "thumb": "thumbs/2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802.svg",
+  "case_rel": "../days/2026/05/2026-05-23_SonicWall-Gen6-MFA-Bypass-CVE-2024-12802/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)",
+  "cve_count": 3,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-40766",
+    "due": "2024-09-30",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-9082",
+    "due": "2026-05-27",
+    "ransom": false
+   }
+  ],
+  "q": "sonicwall gen6 ssl-vpn mfa bypass (cve-2024-12802) — first in-the-wild exploitation by akira-aligned affiliate unattributed ransomware-aligned iab (ttp overlap with akira / storm-1567 affiliate ecosystem) e-crime (cross-jurisdictional, infrastructure on abused vps/vpn asns) network-edge windows small-medium-business m-and-a-environments multiple-cross-sector t1595.002 t1583.003 t1110.001 t1110.003 t1133 t1556 t1078.002 t1018 t1046 t1021.001 t1078.003 t1071.001 t1573 t1068 t1562.001 t1083 t1552.001 t1486 ransomware / e-crime cve-2024-40766 cve-2026-9082"
+ },
+ {
+  "date": "2026-05-22",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom",
+  "title": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux kworker masquerade) targeting Asian telecoms",
+  "clusters": [
+   "Red Lamassu",
+   "Calypso APT"
+  ],
+  "country": "China-nexus (Sichuan / Chengdu, PRC-aligned espionage)",
+  "platforms": [
+   "windows",
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "telecom",
+   "government"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1608.001",
+   "T1105",
+   "T1059.001",
+   "T1564.003",
+   "T1218",
+   "T1574.002",
+   "T1620",
+   "T1055.002",
+   "T1027",
+   "T1547",
+   "T1112",
+   "T1071.001",
+   "T1568.002",
+   "T1090",
+   "T1090.003",
+   "T1102.001",
+   "T1036.005",
+   "T1083",
+   "T1057",
+   "T1113",
+   "T1041",
+   "T1005"
+  ],
+  "tech_count": 23,
+  "tldr": "On 2026-05-21 PwC Threat Intelligence and Lumen Black Lotus Labs released tandem reports detailing the toolkit used since at least mid-2022 by Red Lamassu (a.k.a. Calypso APT), a PRC-aligned espionage actor operating out of Sichuan / Chengdu against telecommunications and government entities in Kazakhstan, Afghanistan, India, Azerbaijan and the Middle East. The PwC blog deep-dives JFMBackdoor — a ",
+  "thumb": "thumbs/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom.svg",
+  "case_rel": "../days/2026/05/2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "Red Lamassu",
+  "cve_count": 2,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-9082",
+    "due": "2026-05-27",
+    "ransom": false
+   }
+  ],
+  "q": "red lamassu / calypso apt — jfmbackdoor (windows side-load) and showboat (linux kworker masquerade) targeting asian telecoms red lamassu calypso apt china-nexus (sichuan / chengdu, prc-aligned espionage) windows linux network-edge telecom government t1566.002 t1608.001 t1105 t1059.001 t1564.003 t1218 t1574.002 t1620 t1055.002 t1027 t1547 t1112 t1071.001 t1568.002 t1090 t1090.003 t1102.001 t1036.005 t1083 t1057 t1113 t1041 t1005 edge / network cve-2026-9082"
+ },
+ {
+  "date": "2026-05-21",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain",
+  "title": "TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Worm, Nx Console VS Code Extension and the GitHub Internal Repo Breach",
+  "clusters": [
+   "TeamPCP",
+   "UNC6780",
+   "Mini Shai-Hulud"
+  ],
+  "country": "e-crime (sells stolen access on cybercrime forums; selective geofence skips Russian-locale hosts)",
+  "platforms": [
+   "linux",
+   "cloud-multi",
+   "supply-chain",
+   "windows"
+  ],
+  "sectors": [
+   "software-developers",
+   "ci-cd",
+   "cloud-native",
+   "ai-ml-tooling",
+   "devops"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1199",
+   "T1078",
+   "T1078.004",
+   "T1528",
+   "T1552.001",
+   "T1552.004",
+   "T1552.005",
+   "T1552.007",
+   "T1059.006",
+   "T1059.007",
+   "T1027",
+   "T1480",
+   "T1567.002",
+   "T1041",
+   "T1071.001",
+   "T1102",
+   "T1614.001",
+   "T1485",
+   "T1531",
+   "T1611",
+   "T1136.002",
+   "T1098.001"
+  ],
+  "tech_count": 23,
+  "tldr": "Between 18-May-2026 12:36 UTC and 20-May-2026, the TeamPCP cluster (Google Threat Intelligence Group: UNC6780) ran four overlapping supply-chain intrusions that landed on every layer of the modern developer trust surface in 48 hours. On 18-May at 12:36 UTC the `nrwl.angular-console` VS Code extension (Nx Console, 2.2M installs) was briefly backdoored on the VS Code Marketplace; the community pulle",
+  "thumb": "thumbs/2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain.svg",
+  "case_rel": "../days/2026/05/2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "TeamPCP",
+  "cve_count": 2,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "teampcp 48-hour mega-campaign — actions-cool tag poisoning, durabletask pypi worm, nx console vs code extension and the github internal repo breach teampcp unc6780 mini shai-hulud e-crime (sells stolen access on cybercrime forums; selective geofence skips russian-locale hosts) linux cloud-multi supply-chain windows software-developers ci-cd cloud-native ai-ml-tooling devops t1195.002 t1199 t1078 t1078.004 t1528 t1552.001 t1552.004 t1552.005 t1552.007 t1059.006 t1059.007 t1027 t1480 t1567.002 t1041 t1071.001 t1102 t1614.001 t1485 t1531 t1611 t1136.002 t1098.001 ransomware / e-crime "
+ },
+ {
+  "date": "2026-05-20",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-20_Storm-2949-Cloud-Identity-SSPR",
+  "title": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure",
+  "clusters": [
+   "Storm-2949"
+  ],
+  "country": "Financially motivated, attribution still developing (Microsoft Storm-prefix cluster)",
+  "platforms": [
+   "cloud-multi",
+   "windows"
+  ],
+  "sectors": [
+   "enterprise",
+   "undisclosed"
+  ],
+  "techniques": [
+   "T1591.004",
+   "T1566.004",
+   "T1078.004",
+   "T1556.006",
+   "T1098.005",
+   "T1098.001",
+   "T1087.004",
+   "T1526",
+   "T1580",
+   "T1199",
+   "T1530",
+   "T1213",
+   "T1567.002",
+   "T1552.001",
+   "T1552.004",
+   "T1552.005",
+   "T1606",
+   "T1562.007",
+   "T1059.001",
+   "T1651",
+   "T1136.001",
+   "T1543.003",
+   "T1219",
+   "T1562.001",
+   "T1070.001"
+  ],
+  "tech_count": 25,
+  "tldr": "Storm-2949 is a financially motivated threat cluster Microsoft Threat Intelligence disclosed on 18 May 2026 that compromised a customer's enterprise without traditional malware. The operator abused **Self-Service Password Reset (SSPR)** plus targeted vishing of IT staff and senior leadership to harvest MFA prompts, then reset victim passwords, **stripped every existing authentication method**, and",
+  "thumb": "thumbs/2026-05-20_Storm-2949-Cloud-Identity-SSPR.svg",
+  "case_rel": "../days/2026/05/2026-05-20_Storm-2949-Cloud-Identity-SSPR/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "Storm-2949",
+  "cve_count": 2,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-20182",
+    "due": "2026-05-17",
+    "ransom": false
+   }
+  ],
+  "q": "storm-2949 — from sspr-abused identity to cloud-wide breach across microsoft 365 and azure storm-2949 financially motivated, attribution still developing (microsoft storm-prefix cluster) cloud-multi windows enterprise undisclosed t1591.004 t1566.004 t1078.004 t1556.006 t1098.005 t1098.001 t1087.004 t1526 t1580 t1199 t1530 t1213 t1567.002 t1552.001 t1552.004 t1552.005 t1606 t1562.007 t1059.001 t1651 t1136.001 t1543.003 t1219 t1562.001 t1070.001 identity / cloud / saas cve-2026-20182"
+ },
+ {
+  "date": "2026-05-19",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-19_Embargo-Rust-SafeMode-BYOVD",
+  "title": "Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs)",
+  "clusters": [
+   "Embargo",
+   "ALPHV",
+   "BlackCat"
+  ],
+  "country": "e-crime (Russian-speaking ecosystem, possible BlackCat/ALPHV rebrand)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "healthcare",
+   "manufacturing",
+   "business-services",
+   "pharmaceutical"
+  ],
+  "techniques": [
+   "T1587.001",
+   "T1078",
+   "T1190",
+   "T1053.005",
+   "T1059.001",
+   "T1569.002",
+   "T1547.001",
+   "T1136.002",
+   "T1562.001",
+   "T1562.009",
+   "T1070.004",
+   "T1112",
+   "T1027.013",
+   "T1135",
+   "T1083",
+   "T1490",
+   "T1486"
+  ],
+  "tech_count": 17,
+  "tldr": "Embargo is a Rust-built ransomware-as-a-service operation that ESET first observed in June 2024 and that TRM Labs has assessed (8 Aug 2025) as a likely rebrand or direct successor to **BlackCat/ALPHV** based on technical overlaps (Rust, leak-site design) and on-chain overlap (shared wallet infrastructure, ~USD 13.5 M into VASPs, ~USD 1 M routed through sanctioned Cryptex.net, ~USD 18.8 M parked in",
+  "thumb": "thumbs/2026-05-19_Embargo-Rust-SafeMode-BYOVD.svg",
+  "case_rel": "../days/2026/05/2026-05-19_Embargo-Rust-SafeMode-BYOVD/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Embargo",
+  "cve_count": 2,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-57726",
+    "due": "2026-05-08",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2024-57728",
+    "due": "2026-05-08",
+    "ransom": true
+   }
+  ],
+  "q": "embargo ransomware — rust mdeployer + ms4killer with safe mode boot byovd (eset + trm labs) embargo alphv blackcat e-crime (russian-speaking ecosystem, possible blackcat/alphv rebrand) windows healthcare manufacturing business-services pharmaceutical t1587.001 t1078 t1190 t1053.005 t1059.001 t1569.002 t1547.001 t1136.002 t1562.001 t1562.009 t1070.004 t1112 t1027.013 t1135 t1083 t1490 t1486 ransomware / e-crime cve-2024-57726 cve-2024-57728"
+ },
+ {
+  "date": "2026-05-18",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-18_SilverFox-ABCDoor-Tax-Phishing",
+  "title": "Silver Fox ABCDoor Tax-Themed Phishing in India and Russia (Kaspersky Securelist)",
+  "clusters": [
+   "Silver Fox",
+   "SwimSnake",
+   "Void Arachne",
+   "UTG-Q-1000"
+  ],
+  "country": "China-nexus (hybrid e-crime / espionage)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "industrial",
+   "consulting",
+   "retail",
+   "transportation"
+  ],
+  "techniques": [
+   "T1566.001",
+   "T1566.002",
+   "T1204.002",
+   "T1027",
+   "T1027.007",
+   "T1480",
+   "T1574",
+   "T1547.001",
+   "T1053.005",
+   "T1059.006",
+   "T1140",
+   "T1055",
+   "T1071.001",
+   "T1102",
+   "T1041",
+   "T1113",
+   "T1115",
+   "T1056.001",
+   "T1218"
+  ],
+  "tech_count": 19,
+  "tldr": "On 30 April 2026 Kaspersky's Securelist team disclosed an actively running Silver Fox campaign delivering a brand-new Python implant named **ABCDoor** through tax-themed phishing emails impersonating the Indian Income Tax Department and the Russian Federal Tax Service. The infection chain layers a modified Rust loader (RustSL) with a novel **Phantom Persistence** shutdown- signal hijack on top of ",
+  "thumb": "thumbs/2026-05-18_SilverFox-ABCDoor-Tax-Phishing.svg",
+  "case_rel": "../days/2026/05/2026-05-18_SilverFox-ABCDoor-Tax-Phishing/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Silver Fox",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2023-50224",
+    "due": "2025-09-24",
+    "ransom": false
+   }
+  ],
+  "q": "silver fox abcdoor tax-themed phishing in india and russia (kaspersky securelist) silver fox swimsnake void arachne utg-q-1000 china-nexus (hybrid e-crime / espionage) windows industrial consulting retail transportation t1566.001 t1566.002 t1204.002 t1027 t1027.007 t1480 t1574 t1547.001 t1053.005 t1059.006 t1140 t1055 t1071.001 t1102 t1041 t1113 t1115 t1056.001 t1218 other cve-2023-50224"
+ },
+ {
+  "date": "2026-05-16",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616",
+  "title": "Cisco Catalyst SD-WAN vHub authentication bypass — CVE-2026-20182, UAT-8616 targeted exploitation, and ten post-compromise activity clusters",
+  "clusters": [
+   "UAT-8616",
+   "Talos Cluster 1 (Tas9er Godzilla)",
+   "Talos Cluster 2 (Behinder Base64)",
+   "Talos Cluster 3 (XenShell + Behinder)",
+   "Talos Cluster 4 (Godzilla variant)",
+   "Talos Cluster 5 (AdaptixC2 shadowcore)",
+   "Talos Cluster 6 (Sliver mTLS)",
+   "Talos Cluster 7 (XMRig + Cobalt Strike)",
+   "Talos Cluster 8 (NimPlant-variant agent1)",
+   "Talos Cluster 9 (gsocket + XMRig)",
+   "Talos Cluster 10 (vManage credential extractor)"
+  ],
+  "country": "Unattributed (UAT-8616 ORB-network overlap suggests China-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country N/A",
+  "platforms": [
+   "network-edge",
+   "linux"
+  ],
+  "sectors": [
+   "critical-infrastructure",
+   "telecommunications",
+   "enterprise"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1190",
+   "T1098.004",
+   "T1133",
+   "T1078.003",
+   "T1574.011",
+   "T1070.002",
+   "T1070.003",
+   "T1505.003",
+   "T1059.004",
+   "T1219",
+   "T1090.002",
+   "T1572",
+   "T1071.001",
+   "T1496",
+   "T1003",
+   "T1565.002",
+   "T1565.003",
+   "T1027",
+   "T1480"
+  ],
+  "tech_count": 20,
+  "tldr": "On 14-May-2026, Rapid7 Labs (Stephen Fewer and Jonah Burgess) disclosed CVE-2026-20182, a critical (CVSS 10.0) authentication bypass in the `vdaemon` service of Cisco Catalyst SD-WAN Controller (formerly vSmart) and Manager (formerly vManage) over DTLS on UDP/12346. The function `vbond_proc_challenge_ack()` has no verification branch for `device_type == 2` (vHub) and falls through to `peer->authen",
+  "thumb": "thumbs/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616.svg",
+  "case_rel": "../days/2026/05/2026-05-16_Cisco-SDWAN-vHub-AuthBypass-UAT8616/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "UAT-8616",
+  "cve_count": 8,
+  "kev_count": 8,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-40766",
+    "due": "2024-09-30",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2022-20775",
+    "due": "2026-02-27",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-20127",
+    "due": "2026-02-27",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-20122",
+    "due": "2026-04-23",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-20128",
+    "due": "2026-04-23",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-20133",
+    "due": "2026-04-23",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-20182",
+    "due": "2026-05-17",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-42897",
+    "due": "2026-05-29",
+    "ransom": false
+   }
+  ],
+  "q": "cisco catalyst sd-wan vhub authentication bypass — cve-2026-20182, uat-8616 targeted exploitation, and ten post-compromise activity clusters uat-8616 talos cluster 1 (tas9er godzilla) talos cluster 2 (behinder base64) talos cluster 3 (xenshell + behinder) talos cluster 4 (godzilla variant) talos cluster 5 (adaptixc2 shadowcore) talos cluster 6 (sliver mtls) talos cluster 7 (xmrig + cobalt strike) talos cluster 8 (nimplant-variant agent1) talos cluster 9 (gsocket + xmrig) talos cluster 10 (vmanage credential extractor) unattributed (uat-8616 orb-network overlap suggests china-nexus, medium-high confidence); other clusters are e-crime and opportunistic, country n/a network-edge linux critical-infrastructure telecommunications enterprise t1595.002 t1190 t1098.004 t1133 t1078.003 t1574.011 t1070.002 t1070.003 t1505.003 t1059.004 t1219 t1090.002 t1572 t1071.001 t1496 t1003 t1565.002 t1565.003 t1027 t1480 edge / network cve-2024-40766 cve-2022-20775 cve-2026-20127 cve-2026-20122 cve-2026-20128 cve-2026-20133 cve-2026-20182 cve-2026-42897"
+ },
+ {
+  "date": "2026-05-15",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-15_EtherRAT-TukTuk-Gentlemen",
+  "title": "EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion",
+  "clusters": [
+   "The Gentlemen RaaS",
+   "EtherRAT (DPRK-linked, UNC5342 toolchain overlap)",
+   "TukTuk (AI-generated framework)"
+  ],
+  "country": "e-crime (operator) | DPRK-nexus (EtherRAT lineage, UNC5342 overlap)",
+  "platforms": [
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "enterprise-it",
+   "manufacturing",
+   "professional-services"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1204.002",
+   "T1059.001",
+   "T1059.007",
+   "T1106",
+   "T1218.007",
+   "T1547.001",
+   "T1574.002",
+   "T1543.003",
+   "T1078.002",
+   "T1027",
+   "T1140",
+   "T1562.001",
+   "T1003.001",
+   "T1003.003",
+   "T1558.003",
+   "T1555",
+   "T1087.002",
+   "T1018",
+   "T1482",
+   "T1083",
+   "T1057",
+   "T1518.001",
+   "T1021.001",
+   "T1021.002",
+   "T1021.006",
+   "T1570",
+   "T1102.002",
+   "T1572",
+   "T1568.002",
+   "T1219",
+   "T1567.002",
+   "T1486",
+   "T1490",
+   "T1070.001",
+   "T1484.001"
+  ],
+  "tech_count": 36,
+  "tldr": "The DFIR Report's Flash Alert TB40048 (11 May 2026) documents an April intrusion that closes a loop the industry had been watching for five months: the **EtherRAT** implant Sysdig surfaced in December 2025 (Linux, CVE-2025-55182 React2Shell, DPRK-linked) and Atos saw ported to Windows in March 2026 (SEO-poisoning plus 44 GitHub facades spoofing sysadmin tools) is now observed **co-deployed with a ",
+  "thumb": "thumbs/2026-05-15_EtherRAT-TukTuk-Gentlemen.svg",
+  "case_rel": "../days/2026/05/2026-05-15_EtherRAT-TukTuk-Gentlemen/",
+  "category": "crypto-defi",
+  "cat_label": "Crypto / DeFi",
+  "cat_color": "#d08a1f",
+  "actor": "The Gentlemen RaaS",
+  "cve_count": 3,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-55182",
+    "due": "2025-12-12",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-20182",
+    "due": "2026-05-17",
+    "ransom": false
+   }
+  ],
+  "q": "etherrat + tuktuk → the gentlemen ransomware — blockchain c2 meets ai-generated framework in an enterprise intrusion the gentlemen raas etherrat (dprk-linked, unc5342 toolchain overlap) tuktuk (ai-generated framework) e-crime (operator) | dprk-nexus (etherrat lineage, unc5342 overlap) windows cloud-multi enterprise-it manufacturing professional-services t1566.002 t1204.002 t1059.001 t1059.007 t1106 t1218.007 t1547.001 t1574.002 t1543.003 t1078.002 t1027 t1140 t1562.001 t1003.001 t1003.003 t1558.003 t1555 t1087.002 t1018 t1482 t1083 t1057 t1518.001 t1021.001 t1021.002 t1021.006 t1570 t1102.002 t1572 t1568.002 t1219 t1567.002 t1486 t1490 t1070.001 t1484.001 crypto / defi cve-2025-55182 cve-2026-20182"
+ },
+ {
+  "date": "2026-05-14",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign",
+  "title": "Mini Shai-Hulud Mega-Campaign: TeamPCP Poisons 170+ npm/PyPI Packages via GitHub Actions OIDC Hijack and SLSA Provenance Forgery",
+  "clusters": [
+   "TeamPCP"
+  ],
+  "country": "Unknown (financially motivated, no state nexus attributed)",
+  "platforms": [
+   "supply-chain",
+   "linux",
+   "macos"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "healthcare",
+   "ai-ml"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1528",
+   "T1552.001",
+   "T1552.005",
+   "T1059.006",
+   "T1059.007",
+   "T1480",
+   "T1543.002",
+   "T1027",
+   "T1041",
+   "T1102",
+   "T1567.001",
+   "T1614.001",
+   "T1485",
+   "T1531"
+  ],
+  "tech_count": 15,
+  "tldr": "On 2026-05-11 at 19:20 UTC, TeamPCP launched the largest coordinated supply-chain worm attack against npm and PyPI to date: 170+ packages compromised, 404 malicious versions published, and 518 million cumulative downloads exposed. The attacker exploited a `pull_request_target` Pwn Request misconfiguration in TanStack/router to poison the GitHub Actions pnpm cache, then extracted an OIDC token dire",
+  "thumb": "thumbs/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign.svg",
+  "case_rel": "../days/2026/05/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "TeamPCP",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-45321",
+    "due": "2026-06-10",
+    "ransom": true
+   }
+  ],
+  "q": "mini shai-hulud mega-campaign: teampcp poisons 170+ npm/pypi packages via github actions oidc hijack and slsa provenance forgery teampcp unknown (financially motivated, no state nexus attributed) supply-chain linux macos technology finance healthcare ai-ml t1195.002 t1528 t1552.001 t1552.005 t1059.006 t1059.007 t1480 t1543.002 t1027 t1041 t1102 t1567.001 t1614.001 t1485 t1531 ransomware / e-crime cve-2026-45321"
+ },
+ {
+  "date": "2026-05-13",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-13_SemanticKernel-Prompt2RCE",
+  "title": "Semantic Kernel Prompt-to-RCE — CVE-2026-26030 and CVE-2026-25592",
+  "clusters": [
+   "Microsoft Defender Security Research (vulnerability disclosure, no threat actor)"
+  ],
+  "country": "Vendor research disclosure — no actor nexus",
+  "platforms": [
+   "windows",
+   "linux",
+   "cloud-multi",
+   "supply-chain"
+  ],
+  "sectors": [
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1190",
+   "T1059.001",
+   "T1059.006",
+   "T1547.001",
+   "T1106",
+   "T1078",
+   "T1078.004",
+   "T1552.005",
+   "T1213",
+   "T1567"
+  ],
+  "tech_count": 10,
+  "tldr": "Microsoft Defender Security Research disclosed on 2026-05-07 two pre-patch vulnerabilities in `semantic-kernel`, Microsoft's open-source agent framework (27K stars, foundational under Copilot Studio, M365 Copilot extensions and Azure AI Foundry integrations). CVE-2026-26030 (CVSS 9.8) — the default filter of the Python `InMemoryVectorStore` interpolates a model-controlled string into a Python lamb",
+  "thumb": "thumbs/2026-05-13_SemanticKernel-Prompt2RCE.svg",
+  "case_rel": "../days/2026/05/2026-05-13_SemanticKernel-Prompt2RCE/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Microsoft Defender Security Research (vulnerability disclosure, no threat actor)",
+  "cve_count": 7,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "semantic kernel prompt-to-rce — cve-2026-26030 and cve-2026-25592 microsoft defender security research (vulnerability disclosure, no threat actor) vendor research disclosure — no actor nexus windows linux cloud-multi supply-chain cross-sector t1190 t1059.001 t1059.006 t1547.001 t1106 t1078 t1078.004 t1552.005 t1213 t1567 supply chain "
+ },
+ {
+  "date": "2026-05-12",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-12_Qilin-EDR-Killer-msimg32",
+  "title": "Qilin EDR Killer — msimg32.dll four-stage loader and BYOVD chain",
+  "clusters": [
+   "Qilin",
+   "Agenda",
+   "Warlock"
+  ],
+  "country": "Russian-speaking e-crime (RaaS)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "real-estate",
+   "construction",
+   "business-services",
+   "healthcare",
+   "manufacturing"
+  ],
+  "techniques": [
+   "T1190",
+   "T1078",
+   "T1574.002",
+   "T1106",
+   "T1027.007",
+   "T1027.012",
+   "T1480",
+   "T1497.001",
+   "T1562.001",
+   "T1620",
+   "T1014",
+   "T1068",
+   "T1055.001",
+   "T1055.002",
+   "T1218",
+   "T1543.003",
+   "T1486",
+   "T1490",
+   "T1588.005",
+   "T1587.001"
+  ],
+  "tech_count": 20,
+  "tldr": "Cisco Talos published on 2-April-2026 a deep technical analysis of the loader Qilin (alias Agenda) is using as the pre-stage of its ransomware payload. The malicious binary is a `msimg32.dll` four-stage loader that side-loads under `FoxitPDFReader.exe` (legitimately signed), applies SEH and VEH-based syscall obfuscation in the style of *Halo's Gate*, IAT-hooks `ExitProcess` to detonate the next st",
+  "thumb": "thumbs/2026-05-12_Qilin-EDR-Killer-msimg32.svg",
+  "case_rel": "../days/2026/05/2026-05-12_Qilin-EDR-Killer-msimg32/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Qilin",
+  "cve_count": 3,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-40766",
+    "due": "2024-09-30",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-41940",
+    "due": "2026-05-03",
+    "ransom": true
+   }
+  ],
+  "q": "qilin edr killer — msimg32.dll four-stage loader and byovd chain qilin agenda warlock russian-speaking e-crime (raas) windows real-estate construction business-services healthcare manufacturing t1190 t1078 t1574.002 t1106 t1027.007 t1027.012 t1480 t1497.001 t1562.001 t1620 t1014 t1068 t1055.001 t1055.002 t1218 t1543.003 t1486 t1490 t1588.005 t1587.001 ransomware / e-crime cve-2024-40766 cve-2026-41940"
+ },
+ {
+  "date": "2026-05-11",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-11_UAT-8302-China-Government-Espionage",
+  "title": "UAT-8302 — China-nexus government espionage with shared APT arsenal",
+  "clusters": [
+   "UAT-8302",
+   "Jewelbug",
+   "REF7707",
+   "CL-STA-0049",
+   "LongNosedGoblin",
+   "UNC5174",
+   "UAT-6382",
+   "Earth Estries",
+   "Erudite Mogwai"
+  ],
+  "country": "China-nexus (government espionage)",
+  "platforms": [
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "government"
+  ],
+  "techniques": [
+   "T1190",
+   "T1059.001",
+   "T1059.003",
+   "T1047",
+   "T1053.005",
+   "T1574.002",
+   "T1055.012",
+   "T1140",
+   "T1003.001",
+   "T1555.003",
+   "T1018",
+   "T1046",
+   "T1069.002",
+   "T1087.002",
+   "T1135",
+   "T1482",
+   "T1021.002",
+   "T1071.001",
+   "T1102.002",
+   "T1568.002",
+   "T1090.001",
+   "T1090.002",
+   "T1572",
+   "T1567.002"
+  ],
+  "tech_count": 24,
+  "tldr": "Cisco Talos disclosed UAT-8302 on 5 May 2026 (modified 7 May 2026) as a sophisticated China-nexus advanced persistent threat group that has been targeting government entities in South America since late 2024 and in southeastern Europe throughout 2025. The defining characteristic of UAT-8302 is not a brand-new implant but the promiscuous rotation of implants previously attributed to other China-nex",
+  "thumb": "thumbs/2026-05-11_UAT-8302-China-Government-Espionage.svg",
+  "case_rel": "../days/2026/05/2026-05-11_UAT-8302-China-Government-Espionage/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "UAT-8302",
+  "cve_count": 5,
+  "kev_count": 5,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-0994",
+    "due": "2025-02-28",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2025-31324",
+    "due": "2025-05-20",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-0300",
+    "due": "2026-05-09",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-6973",
+    "due": "2026-05-10",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-31431",
+    "due": "2026-05-15",
+    "ransom": false
+   }
+  ],
+  "q": "uat-8302 — china-nexus government espionage with shared apt arsenal uat-8302 jewelbug ref7707 cl-sta-0049 longnosedgoblin unc5174 uat-6382 earth estries erudite mogwai china-nexus (government espionage) windows cloud-multi government t1190 t1059.001 t1059.003 t1047 t1053.005 t1574.002 t1055.012 t1140 t1003.001 t1555.003 t1018 t1046 t1069.002 t1087.002 t1135 t1482 t1021.002 t1071.001 t1102.002 t1568.002 t1090.001 t1090.002 t1572 t1567.002 identity / cloud / saas cve-2025-0994 cve-2025-31324 cve-2026-0300 cve-2026-6973 cve-2026-31431"
+ },
+ {
+  "date": "2026-05-10",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-10_Mexico-Water-AI-Assisted-OT",
+  "title": "AI-Assisted Compromise of a Mexican Water Utility — Claude + GPT pursuing OT access at SADM Monterrey (Dragos & Gambit Security)",
+  "clusters": [
+   "Unattributed-LLM-assisted-operator"
+  ],
+  "country": "Unattributed (single-operator hypothesis)",
+  "platforms": [
+   "cloud-multi",
+   "windows",
+   "linux",
+   "ot-ics"
+  ],
+  "sectors": [
+   "water",
+   "government",
+   "energy"
+  ],
+  "techniques": [
+   "T1190",
+   "T1078.004",
+   "T1059.006",
+   "T1059.001",
+   "T1090.001",
+   "T1018",
+   "T1046",
+   "T1083",
+   "T1087",
+   "T1110.003",
+   "T1552.001",
+   "T1552.005",
+   "T1213",
+   "T1567",
+   "T1569.002"
+  ],
+  "tech_count": 15,
+  "tldr": "An unattributed single operator compromised at least nine Mexican government bodies between December 2025 and February 2026, and delegated **about 75 % of remote command execution** to two commercial LLMs. - **Victim (OT-relevant):** Servicios de Agua y Drenaje de Monterrey (SADM), water utility. - **LLM stack:** Anthropic **Claude** (technical executor) + OpenAI **GPT** (analyst, Spanish output).",
+  "thumb": "thumbs/2026-05-10_Mexico-Water-AI-Assisted-OT.svg",
+  "case_rel": "../days/2026/05/2026-05-10_Mexico-Water-AI-Assisted-OT/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Unattributed-LLM-assisted-operator",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "ai-assisted compromise of a mexican water utility — claude + gpt pursuing ot access at sadm monterrey (dragos & gambit security) unattributed-llm-assisted-operator unattributed (single-operator hypothesis) cloud-multi windows linux ot-ics water government energy t1190 t1078.004 t1059.006 t1059.001 t1090.001 t1018 t1046 t1083 t1087 t1110.003 t1552.001 t1552.005 t1213 t1567 t1569.002 ot / ics "
+ },
+ {
+  "date": "2026-05-09",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-09_Albiriox-Android-MaaS-AcVNC",
+  "title": "Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026)",
+  "clusters": [
+   "Albiriox"
+  ],
+  "country": "Russian-speaking e-crime (MaaS)",
+  "platforms": [
+   "android"
+  ],
+  "sectors": [
+   "finance",
+   "cryptocurrency",
+   "any"
+  ],
+  "techniques": [
+   "T1660",
+   "T1623.001",
+   "T1655.001",
+   "T1633",
+   "T1541",
+   "T1624.001",
+   "T1626.001",
+   "T1411",
+   "T1417",
+   "T1513",
+   "T1517",
+   "T1437.001",
+   "T1521.002",
+   "T1641",
+   "T1430"
+  ],
+  "tech_count": 15,
+  "tldr": "Albiriox is a new Russian-speaking Android Malware-as-a-Service offered on cybercrime forums at roughly USD 650-720 per month. It targets **400+ banking, fintech and cryptocurrency apps worldwide**, performs On-Device Fraud (ODF), and ships a novel remote-control mode called **AcVNC** (Accessibility-VNC). AcVNC reconstructs the live UI by serialising the `AccessibilityNodeInfo` tree instead of the",
+  "thumb": "thumbs/2026-05-09_Albiriox-Android-MaaS-AcVNC.svg",
+  "case_rel": "../days/2026/05/2026-05-09_Albiriox-Android-MaaS-AcVNC/",
+  "category": "mobile",
+  "cat_label": "Mobile",
+  "cat_color": "#c2569a",
+  "actor": "Albiriox",
+  "cve_count": 1,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "albiriox — android maas rat with accessibility-vnc flag_secure bypass (cleafy labs, late-2025 / active 2026) albiriox russian-speaking e-crime (maas) android finance cryptocurrency any t1660 t1623.001 t1655.001 t1633 t1541 t1624.001 t1626.001 t1411 t1417 t1513 t1517 t1437.001 t1521.002 t1641 t1430 mobile "
+ },
+ {
+  "date": "2026-05-08",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-08_CloudZ-RAT-Pheno-PhoneLink",
+  "title": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026)",
+  "clusters": [
+   "CloudZ",
+   "Pheno"
+  ],
+  "country": "unattributed (low confidence) — financially-motivated credential / OTP theft",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "any"
+  ],
+  "techniques": [
+   "T1566",
+   "T1036.005",
+   "T1204.002",
+   "T1059.001",
+   "T1053.005",
+   "T1027.002",
+   "T1497.003",
+   "T1622",
+   "T1518.001",
+   "T1027.011",
+   "T1539",
+   "T1111",
+   "T1056.001",
+   "T1115",
+   "T1213",
+   "T1005",
+   "T1071.001",
+   "T1102.002",
+   "T1090.004",
+   "T1573.002",
+   "T1041"
+  ],
+  "tech_count": 21,
+  "tldr": "Cisco Talos disclosed on 5 May 2026 a modular .NET RAT called **CloudZ** (ConfuserEx-packed, compile timestamp 13 January 2026) and an OTP-focused plugin called **Pheno** that abuses **Microsoft Phone Link**'s default SMS-mirroring behaviour to steal 2FA codes **at user level on the PC, without touching the paired phone**. CloudZ enters as a fake **ScreenConnect installer** (Rust dropper), unpacks",
+  "thumb": "thumbs/2026-05-08_CloudZ-RAT-Pheno-PhoneLink.svg",
+  "case_rel": "../days/2026/05/2026-05-08_CloudZ-RAT-Pheno-PhoneLink/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "CloudZ",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-6973",
+    "due": "2026-05-10",
+    "ransom": false
+   }
+  ],
+  "q": "cloudz rat + pheno plugin — microsoft phone link sqlite otp/sms theft (cisco talos, may 2026) cloudz pheno unattributed (low confidence) — financially-motivated credential / otp theft windows any t1566 t1036.005 t1204.002 t1059.001 t1053.005 t1027.002 t1497.003 t1622 t1518.001 t1027.011 t1539 t1111 t1056.001 t1115 t1213 t1005 t1071.001 t1102.002 t1090.004 t1573.002 t1041 malware / re cve-2026-6973"
+ },
+ {
+  "date": "2026-05-07",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada",
+  "title": "EVM/DeFi npm typosquat — six packages by namikazesarada010206 with on-require() activation (Xygeni, May 2026)",
+  "clusters": [
+   "namikazesarada010206"
+  ],
+  "country": "unattributed — credential-first opportunistic supply-chain",
+  "platforms": [
+   "linux",
+   "macos",
+   "windows",
+   "supply-chain",
+   "cryptocurrency"
+  ],
+  "sectors": [
+   "software-development",
+   "blockchain",
+   "defi"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1583.006",
+   "T1587.001",
+   "T1608.001",
+   "T1195.002",
+   "T1059.007",
+   "T1129",
+   "T1027",
+   "T1480",
+   "T1140",
+   "T1083",
+   "T1518",
+   "T1552.001",
+   "T1552.004",
+   "T1555.005",
+   "T1539",
+   "T1005",
+   "T1071.001",
+   "T1573.001",
+   "T1041",
+   "T1657"
+  ],
+  "tech_count": 21,
+  "tldr": "Xygeni disclosed on 6 May 2026 a tightly-windowed npm typosquat cluster: **six packages published under the account `namikazesarada010206`** all stamped version `1.0.0` and uploaded within a **57-second window** on 2026-05-06 between 01:38:44 and 01:39:48 UTC — `viem-core`, `viem-utils-core`, `hardhat-core-utils`, `evm-utils`, `foundry-utils`, `web3-utils-core`. The attack pattern is **brand-adjac",
+  "thumb": "thumbs/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada.svg",
+  "case_rel": "../days/2026/05/2026-05-07_EVM-DeFi-npm-typosquat-namikazesarada/",
+  "category": "crypto-defi",
+  "cat_label": "Crypto / DeFi",
+  "cat_color": "#d08a1f",
+  "actor": "namikazesarada010206",
+  "cve_count": 2,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-0300",
+    "due": "2026-05-09",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-31431",
+    "due": "2026-05-15",
+    "ransom": false
+   }
+  ],
+  "q": "evm/defi npm typosquat — six packages by namikazesarada010206 with on-require() activation (xygeni, may 2026) namikazesarada010206 unattributed — credential-first opportunistic supply-chain linux macos windows supply-chain cryptocurrency software-development blockchain defi t1583.001 t1583.006 t1587.001 t1608.001 t1195.002 t1059.007 t1129 t1027 t1480 t1140 t1083 t1518 t1552.001 t1552.004 t1555.005 t1539 t1005 t1071.001 t1573.001 t1041 t1657 crypto / defi cve-2026-0300 cve-2026-31431"
+ },
+ {
+  "date": "2026-05-07",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-07_QLNX-Quasar-Linux-RAT",
+  "title": "QLNX (Quasar Linux RAT) — Linux developer/DevOps implant with rootkit, PAM backdoor and supply-chain credential harvester (Trend Micro, May 2026)",
+  "clusters": [
+   "QLNX",
+   "Quasar Linux"
+  ],
+  "country": "unattributed (low confidence) — fits 2026 supply-chain pre-position trend",
+  "platforms": [
+   "linux",
+   "supply-chain"
+  ],
+  "sectors": [
+   "software-development",
+   "devops",
+   "cicd-pipelines"
+  ],
+  "techniques": [
+   "T1190",
+   "T1027.004",
+   "T1059.004",
+   "T1546.004",
+   "T1547.013",
+   "T1053.003",
+   "T1556.003",
+   "T1574.006",
+   "T1014",
+   "T1480",
+   "T1083",
+   "T1552.001",
+   "T1555.005",
+   "T1614",
+   "T1071.001",
+   "T1573.002",
+   "T1041",
+   "T1070.004",
+   "T1564.001",
+   "T1195.001",
+   "T1195.002"
+  ],
+  "tech_count": 21,
+  "tldr": "Trend Micro disclosed on 5 May 2026 a previously-undocumented Linux RAT family called **QLNX** (a.k.a. **Quasar Linux**) — a single-binary ELF that combines a **userspace rootkit** (`/etc/ld.so.preload` hijack), an **eBPF kernel rootkit controller** (BPF maps hiding PIDs / files / ports), a **PAM backdoor** with a hardcoded master password `O$$f$QtYJK`, a **58-command** custom TCP/TLS C2 framework",
+  "thumb": "thumbs/2026-05-07_QLNX-Quasar-Linux-RAT.svg",
+  "case_rel": "../days/2026/05/2026-05-07_QLNX-Quasar-Linux-RAT/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "QLNX",
+  "cve_count": 2,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-0300",
+    "due": "2026-05-09",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-31431",
+    "due": "2026-05-15",
+    "ransom": false
+   }
+  ],
+  "q": "qlnx (quasar linux rat) — linux developer/devops implant with rootkit, pam backdoor and supply-chain credential harvester (trend micro, may 2026) qlnx quasar linux unattributed (low confidence) — fits 2026 supply-chain pre-position trend linux supply-chain software-development devops cicd-pipelines t1190 t1027.004 t1059.004 t1546.004 t1547.013 t1053.003 t1556.003 t1574.006 t1014 t1480 t1083 t1552.001 t1555.005 t1614 t1071.001 t1573.002 t1041 t1070.004 t1564.001 t1195.001 t1195.002 supply chain cve-2026-0300 cve-2026-31431"
+ },
+ {
+  "date": "2026-05-06",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-06_CodeOfConduct-AiTM-Storm-1747",
+  "title": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026)",
+  "clusters": [
+   "Storm-1747",
+   "Storm-1575",
+   "Tycoon2FA",
+   "Dadsec"
+  ],
+  "country": "PhaaS operator — kit-fingerprint attribution, opportunistic affiliates",
+  "platforms": [
+   "cloud-multi",
+   "microsoft-365"
+  ],
+  "sectors": [
+   "healthcare",
+   "finance",
+   "technology",
+   "professional-services"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1608.005",
+   "T1566.001",
+   "T1566.002",
+   "T1204.001",
+   "T1204.002",
+   "T1557",
+   "T1539",
+   "T1606.001",
+   "T1098.005",
+   "T1078.004",
+   "T1564.008",
+   "T1114.002",
+   "T1114.003",
+   "T1071.001",
+   "T1657"
+  ],
+  "tech_count": 16,
+  "tldr": "Microsoft Threat Intelligence published on 4 May 2026 a retrospective of a tightly-windowed **Adversary-in-the-Middle** campaign that hit **>35,000 users across >13,000 organisations in 26 countries** between **14 and 16 April 2026**. The campaign — branded internally by Microsoft as **Code of Conduct AiTM** — used PDF lures with explicit HR-disciplinary framing (`Awareness Case Log File - Tuesday",
+  "thumb": "thumbs/2026-05-06_CodeOfConduct-AiTM-Storm-1747.svg",
+  "case_rel": "../days/2026/05/2026-05-06_CodeOfConduct-AiTM-Storm-1747/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "Storm-1747",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-31431",
+    "due": "2026-05-15",
+    "ransom": false
+   }
+  ],
+  "q": "code of conduct aitm — storm-1747 / tycoon2fa campaign against microsoft 365 (microsoft threat intelligence, may 2026) storm-1747 storm-1575 tycoon2fa dadsec phaas operator — kit-fingerprint attribution, opportunistic affiliates cloud-multi microsoft-365 healthcare finance technology professional-services t1583.001 t1608.005 t1566.001 t1566.002 t1204.001 t1204.002 t1557 t1539 t1606.001 t1098.005 t1078.004 t1564.008 t1114.002 t1114.003 t1071.001 t1657 identity / cloud / saas cve-2026-31431"
+ },
+ {
+  "date": "2026-05-05",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-05_Akira-SonicWall-CVE-2024-40766",
+  "title": "Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A)",
+  "clusters": [
+   "Akira",
+   "Storm-1567",
+   "Howling Scorpius",
+   "Punk Spider",
+   "Gold Sahara"
+  ],
+  "country": "Russian-speaking e-crime (Conti lineage)",
+  "platforms": [
+   "windows",
+   "active-directory",
+   "linux",
+   "vmware-esxi",
+   "nutanix-ahv",
+   "network-edge"
+  ],
+  "sectors": [
+   "construction",
+   "engineering",
+   "manufacturing",
+   "healthcare",
+   "msp",
+   "public-sector"
+  ],
+  "techniques": [
+   "T1133",
+   "T1190",
+   "T1078",
+   "T1110",
+   "T1046",
+   "T1059.001",
+   "T1059.003",
+   "T1003.001",
+   "T1558.003",
+   "T1021.002",
+   "T1021.001",
+   "T1219",
+   "T1572",
+   "T1567.002",
+   "T1490",
+   "T1486",
+   "T1485"
+  ],
+  "tech_count": 17,
+  "tldr": "Arctic Wolf re-published a sustained advisory on the **Akira × SonicWall SSL VPN** intrusion pattern in late 2025 with multiple confirmation rounds through Q1-Q2 2026, building on the CISA / FBI joint advisory **AA24-109A** that first formalised the Akira tradecraft. The vector is the SonicWall SSL VPN endpoint left unpatched against **CVE-2024-40766** (improper access control in SonicOS managemen",
+  "thumb": "thumbs/2026-05-05_Akira-SonicWall-CVE-2024-40766.svg",
+  "case_rel": "../days/2026/05/2026-05-05_Akira-SonicWall-CVE-2024-40766/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Akira",
+  "cve_count": 4,
+  "kev_count": 4,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-40766",
+    "due": "2024-09-30",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2025-10035",
+    "due": "2025-10-20",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-23760",
+    "due": "2026-02-16",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2024-57726",
+    "due": "2026-05-08",
+    "ransom": true
+   }
+  ],
+  "q": "akira ransomware × sonicwall ssl vpn — cve-2024-40766 smash-and-grab with sub-4h dwell (arctic wolf 2025-2026 resurgence + cisa aa24-109a) akira storm-1567 howling scorpius punk spider gold sahara russian-speaking e-crime (conti lineage) windows active-directory linux vmware-esxi nutanix-ahv network-edge construction engineering manufacturing healthcare msp public-sector t1133 t1190 t1078 t1110 t1046 t1059.001 t1059.003 t1003.001 t1558.003 t1021.002 t1021.001 t1219 t1572 t1567.002 t1490 t1486 t1485 ransomware / e-crime cve-2024-40766 cve-2025-10035 cve-2026-23760 cve-2024-57726"
+ },
+ {
+  "date": "2026-05-04",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-04_C0063-Poland-Wiper",
+  "title": "Campaign C0063 — Poland Wiper Attacks (DynoWiper + LazyWiper) via Sandworm-overlap cluster (ESET / Mandiant, May 2026)",
+  "clusters": [
+   "Sandworm overlap",
+   "Static Tundra",
+   "TEMP.Veles",
+   "C0063"
+  ],
+  "country": "Russia-nexus (medium confidence) — GRU Unit 74455 ecosystem",
+  "platforms": [
+   "windows",
+   "active-directory"
+  ],
+  "sectors": [
+   "energy"
+  ],
+  "techniques": [
+   "T1078.002",
+   "T1059.001",
+   "T1059.003",
+   "T1484.001",
+   "T1003.001",
+   "T1558.003",
+   "T1550.003",
+   "T1090.002",
+   "T1485",
+   "T1490",
+   "T1561.001",
+   "T1561.002",
+   "T1529",
+   "T1562.001"
+  ],
+  "tech_count": 14,
+  "tldr": "ESET WeLiveSecurity and Mandiant / Google Threat Intelligence Group jointly published on 1 May 2026 a retrospective of **Campaign C0063 — the Poland Wiper Attacks** of 29 December 2025: a destructive intrusion against the Polish energy sector that used a **valid Active Directory account** to weaponise an existing Group Policy Object and deploy two complementary wipers — **DynoWiper** (Win32 PE, de",
+  "thumb": "thumbs/2026-05-04_C0063-Poland-Wiper.svg",
+  "case_rel": "../days/2026/05/2026-05-04_C0063-Poland-Wiper/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Sandworm overlap",
+  "cve_count": 2,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-20122",
+    "due": "2026-04-23",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2024-57726",
+    "due": "2026-05-08",
+    "ransom": true
+   }
+  ],
+  "q": "campaign c0063 — poland wiper attacks (dynowiper + lazywiper) via sandworm-overlap cluster (eset / mandiant, may 2026) sandworm overlap static tundra temp.veles c0063 russia-nexus (medium confidence) — gru unit 74455 ecosystem windows active-directory energy t1078.002 t1059.001 t1059.003 t1484.001 t1003.001 t1558.003 t1550.003 t1090.002 t1485 t1490 t1561.001 t1561.002 t1529 t1562.001 ransomware / e-crime cve-2026-20122 cve-2024-57726"
+ },
+ {
+  "date": "2026-05-03",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-03_BAUXITE-CyberAvengers-AA26-097A",
+  "title": "BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026)",
+  "clusters": [
+   "BAUXITE",
+   "CyberAv3ngers",
+   "Storm-0784",
+   "UNC5691",
+   "Hydro Kitten",
+   "Shahid Kaveh Group",
+   "G1027"
+  ],
+  "country": "Iran IRGC-CEC (high confidence — multi-vendor convergence under MITRE G1027)",
+  "platforms": [
+   "ot-ics",
+   "network-edge",
+   "windows"
+  ],
+  "sectors": [
+   "water-wastewater",
+   "energy",
+   "government"
+  ],
+  "techniques": [
+   "T1595",
+   "T1588.005",
+   "T1190",
+   "T1078.001",
+   "T1133",
+   "T1059.004",
+   "T1505.003",
+   "T1037.004",
+   "T1098",
+   "T1018",
+   "T1046",
+   "T1021.004",
+   "T1071.001",
+   "T1095",
+   "T1573.002",
+   "T1565.001",
+   "T1485",
+   "T1495",
+   "T1561",
+   "T0831",
+   "T0832"
+  ],
+  "tech_count": 21,
+  "tldr": "CISA, FBI, NSA, EPA, DOE and CNMF jointly published **Advisory AA26-097A** on 7 April 2026, formalising what Dragos has tracked as **BAUXITE** and what the FBI calls the **Shahid Kaveh Group** of Iran's IRGC-CEC: a multi-vendor cluster (CyberAv3ngers / Storm-0784 / UNC5691 / Hydro Kitten / **MITRE G1027**) that since late 2023 has been mass-targeting **internet-exposed Rockwell Automation / Allen-",
+  "thumb": "thumbs/2026-05-03_BAUXITE-CyberAvengers-AA26-097A.svg",
+  "case_rel": "../days/2026/05/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "BAUXITE",
+  "cve_count": 3,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "bauxite / cyberav3ngers (irgc-cec) — direct-to-plc tradecraft against rockwell/allen-bradley (cisa aa26-097a, april 2026) bauxite cyberav3ngers storm-0784 unc5691 hydro kitten shahid kaveh group g1027 iran irgc-cec (high confidence — multi-vendor convergence under mitre g1027) ot-ics network-edge windows water-wastewater energy government t1595 t1588.005 t1190 t1078.001 t1133 t1059.004 t1505.003 t1037.004 t1098 t1018 t1046 t1021.004 t1071.001 t1095 t1573.002 t1565.001 t1485 t1495 t1561 t0831 t0832 ot / ics "
+ },
+ {
+  "date": "2026-05-02",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721",
+  "title": "Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026)",
+  "clusters": [
+   "Nexcorium",
+   "Nexus Team"
+  ],
+  "country": "e-crime (DDoS-for-hire), opportunistic — non state-nexus, medium confidence by branding",
+  "platforms": [
+   "iot",
+   "linux"
+  ],
+  "sectors": [
+   "any"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1588.005",
+   "T1190",
+   "T1059.004",
+   "T1129",
+   "T1053.003",
+   "T1543.002",
+   "T1037.004",
+   "T1027",
+   "T1027.009",
+   "T1036",
+   "T1070.004",
+   "T1480",
+   "T1046",
+   "T1018",
+   "T1210",
+   "T1110",
+   "T1071.001",
+   "T1095",
+   "T1568.001",
+   "T1573",
+   "T1498",
+   "T1498.001",
+   "T1498.002"
+  ],
+  "tech_count": 24,
+  "tldr": "FortiGuard Labs disclosed on 17 April 2026 (with broad echo from BleepingComputer, The Hacker News, Cyble and SecurityOnline through 30 April / 1 May) a new Mirai-class botnet operator branded **Nexcorium / Nexus Team** that mass-exploits **CVE-2024-3721** on TBK Vision DVR-4104 and DVR-4216 series digital video recorders. The vector is an unauthenticated OS command injection in `/device.rsp` reac",
+  "thumb": "thumbs/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721.svg",
+  "case_rel": "../days/2026/05/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Nexcorium",
+  "cve_count": 6,
+  "kev_count": 4,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-57726",
+    "due": "2026-05-08",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2024-57728",
+    "due": "2026-05-08",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2024-7399",
+    "due": "2026-05-08",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2025-29635",
+    "due": "2026-05-08",
+    "ransom": false
+   }
+  ],
+  "q": "nexcorium — mirai variant exploiting cve-2024-3721 on tbk dvr-4104/-4216 (fortiguard labs, april 2026) nexcorium nexus team e-crime (ddos-for-hire), opportunistic — non state-nexus, medium confidence by branding iot linux any t1583.001 t1588.005 t1190 t1059.004 t1129 t1053.003 t1543.002 t1037.004 t1027 t1027.009 t1036 t1070.004 t1480 t1046 t1018 t1210 t1110 t1071.001 t1095 t1568.001 t1573 t1498 t1498.001 t1498.002 ot / ics cve-2024-57726 cve-2024-57728 cve-2024-7399 cve-2025-29635"
+ },
+ {
+  "date": "2026-05-01",
+  "year": "2026",
+  "month": "2026-05",
+  "slug": "2026-05-01_VECT-2.0-RaaS",
+  "title": "VECT 2.0 RaaS — Ransomware by design, Wiper by accident (Check Point Research, April 2026)",
+  "clusters": [
+   "VECT",
+   "TeamPCP",
+   "BreachForums"
+  ],
+  "country": "Russian-speaking e-crime alliance",
+  "platforms": [
+   "windows",
+   "linux",
+   "vmware-esxi"
+  ],
+  "sectors": [
+   "any"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1078",
+   "T1059.001",
+   "T1059.003",
+   "T1129",
+   "T1562.001",
+   "T1562.002",
+   "T1562.004",
+   "T1497",
+   "T1027",
+   "T1070.001",
+   "T1003.001",
+   "T1552.001",
+   "T1518",
+   "T1057",
+   "T1614.001",
+   "T1021.004",
+   "T1547.001",
+   "T1543.003",
+   "T1134.001",
+   "T1486",
+   "T1485",
+   "T1490",
+   "T1561.002",
+   "T1529"
+  ],
+  "tech_count": 25,
+  "tldr": "VECT is a Russian-speaking Ransomware-as-a-Service that surfaced on a Russian-language cybercrime forum in December 2025 and shipped v2 in February 2026. The v2 release added Linux and ESXi payloads (`encesxi.elf`) next to the original Windows locker (`svchostupdate.exe`). On 28 April 2026 **Check Point Research** published a full technical write-up titled *Ransomware by design, Wiper by accident*",
+  "thumb": "thumbs/2026-05-01_VECT-2.0-RaaS.svg",
+  "case_rel": "../days/2026/05/2026-05-01_VECT-2.0-RaaS/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "VECT",
+  "cve_count": 2,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-41940",
+    "due": "2026-05-03",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-33825",
+    "due": "2026-05-06",
+    "ransom": false
+   }
+  ],
+  "q": "vect 2.0 raas — ransomware by design, wiper by accident (check point research, april 2026) vect teampcp breachforums russian-speaking e-crime alliance windows linux vmware-esxi any t1195.002 t1078 t1059.001 t1059.003 t1129 t1562.001 t1562.002 t1562.004 t1497 t1027 t1070.001 t1003.001 t1552.001 t1518 t1057 t1614.001 t1021.004 t1547.001 t1543.003 t1134.001 t1486 t1485 t1490 t1561.002 t1529 ransomware / e-crime cve-2026-41940 cve-2026-33825"
+ },
+ {
+  "date": "2026-04-30",
+  "year": "2026",
+  "month": "2026-04",
+  "slug": "2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356",
+  "title": "FIRESTARTER + LINE VIPER — UAT-4356 / ArcaneDoor persistent implant on Cisco Secure Firewall ASA/FTD/Firepower (CISA AR26-113A)",
+  "clusters": [
+   "UAT-4356",
+   "Storm-1849",
+   "ArcaneDoor"
+  ],
+  "country": "China-nexus (medium confidence)",
+  "platforms": [
+   "network-edge"
+  ],
+  "sectors": [
+   "government",
+   "any"
+  ],
+  "techniques": [
+   "T1190",
+   "T1059.004",
+   "T1106",
+   "T1542.001",
+   "T1037",
+   "T1014",
+   "T1620",
+   "T1574.006",
+   "T1027",
+   "T1082",
+   "T1071.001",
+   "T1573.001",
+   "T1213",
+   "T1490",
+   "T1056.004",
+   "T1040",
+   "T1110.003",
+   "T1018",
+   "T1046",
+   "T1090.003"
+  ],
+  "tech_count": 20,
+  "tldr": "On 23-Apr-2026 CISA published Malware Analysis Report **AR26-113A** describing **FIRESTARTER**, an ELF Linux implant that lives inside the LINA process of Cisco Secure Firewall **ASA / FTD / Firepower** appliances and persists by **rewriting `/opt/cisco/config/platform/rmdb/CSP_MOUNT_LIST` during the `SIGTERM` handler of a graceful shutdown**. The implant **survives firmware upgrades, security pat",
+  "thumb": "thumbs/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356.svg",
+  "case_rel": "../days/2026/04/2026-04-30_FIRESTARTER-LINE-VIPER-UAT4356/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "UAT-4356",
+  "cve_count": 7,
+  "kev_count": 7,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-20333",
+    "due": "2025-09-26",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2025-20362",
+    "due": "2025-09-26",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-21510",
+    "due": "2026-03-03",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-20122",
+    "due": "2026-04-23",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-20128",
+    "due": "2026-04-23",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-20133",
+    "due": "2026-04-23",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-32202",
+    "due": "2026-05-12",
+    "ransom": false
+   }
+  ],
+  "q": "firestarter + line viper — uat-4356 / arcanedoor persistent implant on cisco secure firewall asa/ftd/firepower (cisa ar26-113a) uat-4356 storm-1849 arcanedoor china-nexus (medium confidence) network-edge government any t1190 t1059.004 t1106 t1542.001 t1037 t1014 t1620 t1574.006 t1027 t1082 t1071.001 t1573.001 t1213 t1490 t1056.004 t1040 t1110.003 t1018 t1046 t1090.003 ransomware / e-crime cve-2025-20333 cve-2025-20362 cve-2026-21510 cve-2026-20122 cve-2026-20128 cve-2026-20133 cve-2026-32202"
+ },
+ {
+  "date": "2026-04-29",
+  "year": "2026",
+  "month": "2026-04",
+  "slug": "2026-04-29_ShaiHulud-Bitwarden",
+  "title": "Shai-Hulud: The Third Coming — Bitwarden CLI 2026.4.0 trojanised npm worm",
+  "clusters": [
+   "TeamPCP",
+   "Shai-Hulud"
+  ],
+  "country": "e-crime / supply-chain worm (financially motivated, no nation-state nexus)",
+  "platforms": [
+   "linux",
+   "macos",
+   "windows",
+   "supply-chain"
+  ],
+  "sectors": [
+   "software-development",
+   "cicd-pipelines",
+   "cloud-multi"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1059.007",
+   "T1059.004",
+   "T1204.002",
+   "T1546.004",
+   "T1027",
+   "T1552.001",
+   "T1552.005",
+   "T1528",
+   "T1083",
+   "T1005",
+   "T1102",
+   "T1567.001",
+   "T1531"
+  ],
+  "tech_count": 14,
+  "tldr": "Between 17:57 and 19:30 ET on 22 April 2026 (~93 minutes), the npm registry served a malicious `@bitwarden/cli@2026.4.0` whose `package.json` `preinstall` and `bin` entries pointed to a downloader called `bw_setup.js`. That stub pulled the **Bun** runtime from GitHub (only if it was not already present) and executed `bw1.js` — a ~10 MB single-line obfuscated worm. The worm harvests GitHub and npm ",
+  "thumb": "thumbs/2026-04-29_ShaiHulud-Bitwarden.svg",
+  "case_rel": "../days/2026/04/2026-04-29_ShaiHulud-Bitwarden/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "TeamPCP",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-32201",
+    "due": "2026-04-28",
+    "ransom": false
+   }
+  ],
+  "q": "shai-hulud: the third coming — bitwarden cli 2026.4.0 trojanised npm worm teampcp shai-hulud e-crime / supply-chain worm (financially motivated, no nation-state nexus) linux macos windows supply-chain software-development cicd-pipelines cloud-multi t1195.002 t1059.007 t1059.004 t1204.002 t1546.004 t1027 t1552.001 t1552.005 t1528 t1083 t1005 t1102 t1567.001 t1531 supply chain cve-2026-32201"
+ },
+ {
+  "date": "2026-04-28",
+  "year": "2026",
+  "month": "2026-04",
+  "slug": "2026-04-28_TheGentlemen-SystemBC",
+  "title": "The Gentlemen RaaS + SystemBC: GPO-weaponized domain-wide encryption behind an RC4 SOCKS5 tunnel",
+  "clusters": [
+   "The Gentlemen RaaS"
+  ],
+  "country": "Unattributed e-crime (financially motivated)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "manufacturing",
+   "healthcare",
+   "technology",
+   "finance",
+   "government"
+  ],
+  "techniques": [
+   "T1078",
+   "T1190",
+   "T1059.001",
+   "T1562.001",
+   "T1562.002",
+   "T1562.004",
+   "T1053.005",
+   "T1543.003",
+   "T1484.001",
+   "T1003.001",
+   "T1046",
+   "T1482",
+   "T1021.001",
+   "T1021.002",
+   "T1021.006",
+   "T1090.002",
+   "T1573.001",
+   "T1071.001",
+   "T1041",
+   "T1486",
+   "T1490"
+  ],
+  "tech_count": 21,
+  "tldr": "The Gentlemen is a ransomware-as-a-service operation profiled by Check Point Research in April 2026 whose affiliates route every post-foothold action through SystemBC's custom RC4-encrypted SOCKS5 proxy over plain TCP, then weaponize Active Directory Group Policy in SYSVOL to push the encryptor to the entire domain in a single operational step. Entry is typically valid accounts over VPN or a Forti",
+  "thumb": "thumbs/2026-04-28_TheGentlemen-SystemBC.svg",
+  "case_rel": "../days/2026/04/2026-04-28_TheGentlemen-SystemBC/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "The Gentlemen RaaS",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "the gentlemen raas + systembc: gpo-weaponized domain-wide encryption behind an rc4 socks5 tunnel the gentlemen raas unattributed e-crime (financially motivated) windows manufacturing healthcare technology finance government t1078 t1190 t1059.001 t1562.001 t1562.002 t1562.004 t1053.005 t1543.003 t1484.001 t1003.001 t1046 t1482 t1021.001 t1021.002 t1021.006 t1090.002 t1573.001 t1071.001 t1041 t1486 t1490 ransomware / e-crime "
+ }
+]

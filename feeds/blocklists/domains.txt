@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-07-15 07:23 UTC
+# generated 2026-07-17 07:34 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -116,6 +116,7 @@ mails.updater-worelos.com
 mcagov.cc
 members.nefeshhope.com
 metakit.fireant.vn
+ml.cloud
 msiidentity.com
 mueleer.com
 muurfzqprzmdkzoibxaz.supabase.co

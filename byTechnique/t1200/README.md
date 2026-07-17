@@ -4,9 +4,10 @@
 
 # Techniques: T1200
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-16 | Forgotten UEFI shims undermining Secure Boot: ESET's 11 Microsoft-signed bootloaders | UEFI shim trust-chain disclosure (ESET Research) | [`2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/`](../../days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/) |
 | 2026-06-24 | SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US Law Firms | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 | [`2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/`](../../days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/) |

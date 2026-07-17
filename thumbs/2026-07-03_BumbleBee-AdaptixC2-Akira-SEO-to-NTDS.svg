@@ -1,0 +1,233 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">BumbleBee to AdaptixC2 to Akira kill chain</title>
+<desc id="d">Two-lane diagram. Left lane (victim Windows host and Active Directory): initial access via Bing SEO poisoning to a trojanized ManageEngine OpManager MSI; execution via a BumbleBee DLL sideload where the signed consent.exe loads a malicious msimg32.dll with a CIS-locale geofence; an AdaptixC2 foothold delivered as a renamed Windows Address Book wab.exe (AdgNsy.exe) launched via WMI and beaconing to 172.96.137.160; discovery with systeminfo, nltest, whoami and net group plus creation of a backup_EA account added to Enterprise Admins and a RustDesk service; the critical credential-access stage that backs up ntds.dit with wbadmin, dumps and DPAPI-decrypts Veeam credentials and dumps LSASS across three hosts with comsvcs; lateral movement and exfiltration of about 77 gigabytes over a reverse-SSH tunnel and FileZilla SFTP to a server in Ukraine; and the critical Akira impact where locker.exe encrypts the root domain at about 44 hours and the operator returns on day five for the child domain. Right lane (operator machinery): the two-tier SEO-poisoning delivery network on Hostinger, the BumbleBee loader, the AdaptixC2 framework, the hands-on-keyboard credential tradecraft, the RustDesk and SSH access and exfil infrastructure, and the Akira impact with its campaign genealogy from Cyjax through DFIR and Swisscom to Zscaler. Detection anchors: the consent.exe msimg32.dll sideload, the WMI-spawned wab.exe masquerade beacon, and the wbadmin plus comsvcs plus Veeam psql credential burst, all host-behavioral and surviving DGA, IP and hash rotation.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">BumbleBee -&gt; AdaptixC2 -&gt; Akira (Bing SEO to NTDS.dit)</text>
+<text class="meta" x="20" y="58">Vendor: The DFIR Report x Swisscom B2B CSIRT - Date: 2026-06-29 - Cluster: unattributed e-crime - Day 67</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="104">VICTIM - Windows host and Active Directory</text>
+<text class="laneLabelR" x="460" y="104">OPERATOR - delivery, tooling and impact</text>
+
+<!-- LEFT STAGE 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Initial access - Bing SEO poison</text>
+<text class="sub" x="40" y="168">Search "ManageEngine OpManager"</text>
+<text class="sub" x="40" y="184">opmanager[.]pro -&gt; download-center[.]online</text>
+<text class="sub" x="40" y="200">Trojanized MSI run by an IT admin</text>
+<text class="mono" x="40" y="226">T1189 / T1204.002</text>
+<text class="mono" x="40" y="244">targets privileged IT staff</text>
+
+<!-- LEFT STAGE 2 -->
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">Execution - BumbleBee sideload</text>
+<text class="sub" x="40" y="318">MSI drops consent.exe + msimg32.dll</text>
+<text class="sub" x="40" y="334">consent.exe loads the DLL from %TEMP%</text>
+<text class="sub" x="40" y="350">CIS-locale geofence aborts on match</text>
+<text class="mono" x="40" y="376">T1574.001 - DLL search-order hijack</text>
+<text class="mono" x="40" y="394">a6df0b49... msimg32.dll</text>
+
+<!-- LEFT STAGE 3 -->
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">C2 foothold - AdaptixC2</text>
+<text class="sub" x="40" y="468">BumbleBee HTTPS/443 to DGA .org</text>
+<text class="sub" x="40" y="484">~5h: AdgNsy.exe = renamed wab.exe</text>
+<text class="sub" x="40" y="500">Injected + launched via WMI</text>
+<text class="mono" x="40" y="526">T1568.002 / T1055 / T1071.001</text>
+<text class="mono" x="40" y="544">beacon 172.96.137[.]160</text>
+
+<!-- LEFT STAGE 4 -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Discovery + account creation</text>
+<text class="sub" x="40" y="618">systeminfo, nltest, whoami, net group</text>
+<text class="sub" x="40" y="634">backup_EA added to Enterprise Admins</text>
+<text class="sub" x="40" y="650">RustDesk installed as a service</text>
+<text class="mono" x="40" y="676">T1087.002 / T1482 / T1136</text>
+<text class="mono" x="40" y="694">T1543.003 / T1219</text>
+
+<!-- LEFT STAGE 5 (critical) -->
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Credential access (critical)</text>
+<text class="sub" x="40" y="768">wbadmin backs up ntds.dit off the DC</text>
+<text class="sub" x="40" y="784">Veeam psql creds + DPAPI decrypt</text>
+<text class="sub" x="40" y="800">comsvcs LSASS x3 (lsassy pattern)</text>
+<text class="mono" x="40" y="826">T1003.003 / T1003.001 / T1555</text>
+<text class="mono" x="40" y="844">smb -&gt; wmi -&gt; task -&gt; mmc</text>
+
+<!-- LEFT STAGE 6 -->
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Lateral + exfiltration</text>
+<text class="sub" x="40" y="918">RDP + DCOM; SoftPerfect n.exe recon</text>
+<text class="sub" x="40" y="934">reverse SSH -R *:10400 to local RDP</text>
+<text class="sub" x="40" y="950">FileZilla SFTP ~77GB to Ukraine</text>
+<text class="mono" x="40" y="976">T1048.001 / T1041 / T1090</text>
+<text class="mono" x="40" y="994">exfil 185.174.100[.]203:22</text>
+
+<!-- LEFT STAGE 7 (critical) -->
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Impact - Akira (critical)</text>
+<text class="sub" x="40" y="1068">locker.exe -p=&lt;drive&gt; -n=&lt;pct&gt;</text>
+<text class="sub" x="40" y="1084">WMI PowerShell shadow-copy delete</text>
+<text class="sub" x="40" y="1100">Root ~44h; child domain on day 5</text>
+<text class="mono" x="40" y="1126">T1486 / T1490</text>
+<text class="mono" x="40" y="1144">de730d96... locker.exe</text>
+
+<!-- RIGHT OP A -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">SEO-poisoning delivery network</text>
+<text class="sub" x="470" y="173">Tier-1 fronts: opmanager[.]pro, zenmap[.]pro</text>
+<text class="sub" x="470" y="189">Tier-2 gateways /Get?q= on Hostinger</text>
+<text class="sub" x="470" y="205">AS47583; revoked shell-LLC code-sign</text>
+<text class="sub" x="470" y="221">Impersonates IT admin software</text>
+<text class="mono" x="470" y="251">drives victim Stage 1</text>
+<text class="mono" x="470" y="269">T1189 / T1608</text>
+
+<!-- RIGHT OP B -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">BumbleBee loader (msimg32.dll)</text>
+<text class="sub" x="470" y="343">MSI -&gt; consent.exe DLL sideload</text>
+<text class="sub" x="470" y="359">CIS-locale geofence; gibberish PE meta</text>
+<text class="sub" x="470" y="375">DGA .org; HTTPS/443 to fixed IPs</text>
+<text class="sub" x="470" y="391">188.40.187[.]145 / 109.205.195[.]211</text>
+<text class="mono" x="470" y="421">drives victim Stage 2 + 3</text>
+<text class="mono" x="470" y="439">T1574.001 / T1568.002</text>
+
+<!-- RIGHT OP C -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">AdaptixC2 (open-source C2)</text>
+<text class="sub" x="470" y="513">Adaptix-Framework/AdaptixC2</text>
+<text class="sub" x="470" y="529">Renamed wab.exe + shellcode via WMI</text>
+<text class="sub" x="470" y="545">Default HTTP beacon profile</text>
+<text class="sub" x="470" y="561">Windows Contacts variant (sibling)</text>
+<text class="mono" x="470" y="591">drives victim Stage 3</text>
+<text class="mono" x="470" y="609">T1055 / T1036 / T1047</text>
+
+<!-- RIGHT OP D (critical) -->
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">Hands-on-keyboard tradecraft</text>
+<text class="sub" x="470" y="683">wbadmin ntds.dit; Veeam DPAPI</text>
+<text class="sub" x="470" y="699">lsassy comsvcs LSASS dump</text>
+<text class="sub" x="470" y="715">SoftPerfect n.exe; Invoke-ShareFinder</text>
+<text class="sub" x="470" y="731">DNS zone export on the child DC</text>
+<text class="mono" x="470" y="761">drives victim Stage 4 + 5</text>
+<text class="mono" x="470" y="779">T1003.003 / T1003.001 / T1555</text>
+
+<!-- RIGHT OP E -->
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Access + exfil infrastructure</text>
+<text class="sub" x="470" y="853">RustDesk service (day-5 re-entry)</text>
+<text class="sub" x="470" y="869">reverse SSH -R 10400 to 193.242.184[.]150</text>
+<text class="sub" x="470" y="885">FileZilla SFTP to 185.174.100[.]203</text>
+<text class="sub" x="470" y="901">Cloudflared tunnel (sibling intrusion)</text>
+<text class="mono" x="470" y="931">drives victim Stage 6</text>
+<text class="mono" x="470" y="949">T1219 / T1090 / T1048.001</text>
+
+<!-- RIGHT OP F -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">Akira impact + campaign genealogy</text>
+<text class="sub" x="470" y="1023">locker.exe / win.exe; shadow delete</text>
+<text class="sub" x="470" y="1039">Root then child domain (2nd wave)</text>
+<text class="sub" x="470" y="1055">Cyjax May25 -&gt; DFIR/Swisscom Aug25</text>
+<text class="sub" x="470" y="1071">Zscaler Ivanti sibling Oct25</text>
+<text class="mono" x="470" y="1101">report 2026-06-29 (DFIR x Swisscom)</text>
+<text class="mono" x="470" y="1119">unattributed e-crime</text>
+
+<!-- vertical flow arrows (left lane) -->
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+<!-- cross-lane: loader drives stage 3; tradecraft drives critical cred access; infra drives exfil -->
+<path class="arrowR" d="M460,360 L425,470" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,700 L425,770" marker-end="url(#ah)"/>
+<path class="arrowR" d="M460,880 L425,930" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Detection anchors (durable, survive DGA / IP / hash rotation)</text>
+<text class="footerT" x="34" y="1222">- Sideload: signed consent.exe loading msimg32.dll from %TEMP% / %AppData%, not System32</text>
+<text class="footerT" x="34" y="1240">- Masquerade beacon: WmiPrvSE.exe spawns OriginalFileName WAB.EXE from %AppData% that beacons outbound</text>
+<text class="footerT" x="34" y="1258">- Cred burst: wbadmin ntds.dit + comsvcs LSASS + Veeam psql, then reverse SSH + FileZilla SFTP exfil</text>
+</svg>

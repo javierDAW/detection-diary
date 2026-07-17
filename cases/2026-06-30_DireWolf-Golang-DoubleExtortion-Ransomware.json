@@ -1,0 +1,125 @@
+{
+  "name": "2026-06-30 — 2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story before it encrypts — clusters: Dire Wolf (DireWolf) ransomware group",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1489",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1070.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1070.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1047",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1059.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1027.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1529",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1480",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    },
+    {
+      "techniqueID": "T1003.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Dire Wolf: a Golang double-extortion ransomware that kills the recovery story be"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

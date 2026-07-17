@@ -1,0 +1,90 @@
+{
+  "name": "2026-06-13 — 2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Brazilian TAs, AI-assisted) — clusters: DevilNFC, NFCMultiPay",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1660",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Br"
+    },
+    {
+      "techniqueID": "T1655.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Br"
+    },
+    {
+      "techniqueID": "T1541",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Br"
+    },
+    {
+      "techniqueID": "T1417.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Br"
+    },
+    {
+      "techniqueID": "T1636.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Br"
+    },
+    {
+      "techniqueID": "T1582",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Br"
+    },
+    {
+      "techniqueID": "T1437.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Br"
+    },
+    {
+      "techniqueID": "T1521.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Br"
+    },
+    {
+      "techniqueID": "T1646",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Br"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

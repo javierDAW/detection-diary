@@ -1,0 +1,240 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Secure Boot 2011 certificate expiry - frozen DBX bootkit exposure - kill chain</title>
+<desc id="d">Two-lane diagram. Left lane is the victim device pre-OS trust chain: the OEM Platform Key root of trust, the Microsoft KEK CA 2011 that expires June 24 2026 (critical forcing event), the DBX deny-list that freezes forever on a non-migrated device so no future bootkit revocation can land (critical), a signed-but-revoked bootloader written to the EFI System Partition, pre-OS code execution that bypasses Secure Boot while the OS still reports it enabled (critical), a bootkit that persists in the ESP and NVRAM and survives OS reinstall, and the disabling of HVCI and BitLocker so the system boots green. Right lane is the attacker and bootkit-ecosystem operation: target a device still on the 2011 KEK, gain admin or physical access, drop a Microsoft-signed revoked .efi to the ESP (critical), ride the frozen DBX past Secure Boot with the revocation that never arrived (critical), persist below the OS where reimaging cannot reach, and blind EDR. Detection anchors are reading the UEFI variables directly rather than the OS Secure Boot boolean, ESP boot-component writes by a non-servicing process, the MicrosoftUpdateManagedOptIn registry state, and PCR7 Measured Boot changes.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Secure Boot 2011 cert expiry - frozen DBX bootkit exposure</text>
+<text class="meta" x="20" y="58">Vendor: Microsoft / NSA / Eclypsium · Date: 2026-06-02 · KEK CA 2011 expires 2026-06-24 · Day 41</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="34" y="104">VICTIM CHAIN - device pre-OS trust (PK -&gt; KEK -&gt; DB/DBX)</text>
+<text class="laneLabelR" x="464" y="104">ATTACKER - bootkit ecosystem operation</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="144">OEM Platform Key (PK) - root of trust</text>
+<text class="sub" x="40" y="168">PK owned by the OEM (Dell/HP/Lenovo/Supermicro)</text>
+<text class="sub" x="40" y="184">Authorizes the KEK; NOT affected by the expiry</text>
+<text class="sub" x="40" y="200">Chain: PK -&gt; KEK -&gt; {DB allow, DBX deny}</text>
+<text class="mono" x="40" y="226">T1195.003 Compromise Hardware Supply Chain</text>
+<text class="mono" x="40" y="244">A leaked PK = PKfail (CVE-2024-8105)</text>
+
+<rect class="stageK" x="30" y="270" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="294">KEK CA 2011 expires Jun 24 2026</text>
+<text class="sub" x="40" y="318">KEK = credential Windows Update uses to push</text>
+<text class="sub" x="40" y="334">new DB allow-list and DBX deny-list entries</text>
+<text class="sub" x="40" y="350">Once expired on a non-migrated host: no updates</text>
+<text class="mono" x="40" y="376">Microsoft Corporation KEK CA 2011</text>
+<text class="mono" x="40" y="394">CRITICAL: revocation-channel forcing event</text>
+
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="444">DBX deny-list frozen forever</text>
+<text class="sub" x="40" y="468">Device keeps the DB/DBX state it had at expiry</text>
+<text class="sub" x="40" y="484">No future bootkit revocation can ever land</text>
+<text class="sub" x="40" y="500">Only an OEM firmware update can unfreeze it</text>
+<text class="mono" x="40" y="526">UEFI CA 2011 (DB) expires Jun 27 2026</text>
+<text class="mono" x="40" y="544">CRITICAL: BlackLotus/BootHole stay un-revoked</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="594">Revoked signed bootloader on the ESP</text>
+<text class="sub" x="40" y="618">Signed-but-revoked .efi written under \EFI\</text>
+<text class="sub" x="40" y="634">DBX would normally block it - but it is frozen</text>
+<text class="sub" x="40" y="650">bootmgfw rolled back or reloader.efi dropped</text>
+<text class="mono" x="40" y="676">\EFI\Microsoft\Boot\bootmgfw.efi</text>
+<text class="mono" x="40" y="694">T1553.006 Code Signing Policy Modification</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="744">Pre-OS code execution (bypass)</text>
+<text class="sub" x="40" y="768">Vulnerable signed loader runs untrusted code</text>
+<text class="sub" x="40" y="784">before the kernel - Secure Boot still says ON</text>
+<text class="sub" x="40" y="800">CVE-2023-24932 / CVE-2024-7344 / CVE-2025-3052</text>
+<text class="mono" x="40" y="826">T1542.003 Bootkit</text>
+<text class="mono" x="40" y="844">CRITICAL: trust chain intact, control lost</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="894">Bootkit persists below the OS</text>
+<text class="sub" x="40" y="918">Implant lives in the ESP / NVRAM, runs first</text>
+<text class="sub" x="40" y="934">Survives OS reinstall and full disk wipe</text>
+<text class="sub" x="40" y="950">Removal needs ESP rebuild + firmware re-flash</text>
+<text class="mono" x="40" y="976">T1542.003 Bootkit / T1014 Rootkit</text>
+<text class="mono" x="40" y="994">EDR runs ABOVE it - cannot see it</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1044">HVCI / BitLocker off, system boots green</text>
+<text class="sub" x="40" y="1068">Implant disables HVCI, BitLocker, Defender ELAM</text>
+<text class="sub" x="40" y="1084">then loads an unsigned kernel driver</text>
+<text class="sub" x="40" y="1100">OS reports Secure Boot enabled the whole time</text>
+<text class="mono" x="40" y="1126">T1562.001 Impair Defenses</text>
+<text class="mono" x="40" y="1144">Confirm-SecureBootUEFI returns True (lying)</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="149">Target a frozen-KEK device</text>
+<text class="sub" x="470" y="173">Pick a host still on KEK CA 2011 after Jun 24</text>
+<text class="sub" x="470" y="189">EOL hardware with no OEM firmware update</text>
+<text class="sub" x="470" y="205">or any device that skipped the 2023 rollover</text>
+<text class="sub" x="470" y="221">Scanners and EDR cannot enumerate the KEK</text>
+<text class="mono" x="470" y="251">Audit UEFI variables, not the OS boolean</text>
+<text class="mono" x="470" y="269">uefi.org/revocationlistfile = the baseline</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="319">Gain admin/SYSTEM or physical</text>
+<text class="sub" x="470" y="343">Bootkit is post-access: commodity malware,</text>
+<text class="sub" x="470" y="359">phishing, valid creds, or brief physical access</text>
+<text class="sub" x="470" y="375">Needed to write the ESP and stage the loader</text>
+<text class="sub" x="470" y="391">CVE-2025-3052 lowered the bar (signed util)</text>
+<text class="mono" x="470" y="421">Any initial-access technique</text>
+<text class="mono" x="470" y="439">Bootkit cements access - does not grant it</text>
+
+<rect class="opK" x="460" y="465" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="489">Drop a revoked-but-signed .efi</text>
+<text class="sub" x="470" y="513">Write a Microsoft-signed vulnerable component</text>
+<text class="sub" x="470" y="529">to the EFI System Partition (FAT32, \EFI\)</text>
+<text class="sub" x="470" y="545">reloader.efi loads any unsigned payload</text>
+<text class="sub" x="470" y="561">Bombshell: signed UEFI shell NULLs gSecurity2</text>
+<text class="mono" x="470" y="591">CVE-2024-7344 reloader.efi (HISTORICAL)</text>
+<text class="mono" x="470" y="609">CRITICAL: signed + frozen DBX = bypass</text>
+
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="659">Ride frozen DBX past Secure Boot</text>
+<text class="sub" x="470" y="683">The revocation that would stop it never arrived</text>
+<text class="sub" x="470" y="699">Loader executes pre-OS with full trust</text>
+<text class="sub" x="470" y="715">gSecurity2 NULL disables LoadImage checks</text>
+<text class="sub" x="470" y="731">Windows keeps reporting Secure Boot ON</text>
+<text class="mono" x="470" y="761">T1542.001 Pre-OS Boot: System Firmware</text>
+<text class="mono" x="470" y="779">CRITICAL: only a DBX update could stop this</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="829">Persist in the ESP / NVRAM</text>
+<text class="sub" x="470" y="853">Implant outside the OS volume and the disk</text>
+<text class="sub" x="470" y="869">Reimaging the OS does not remove it</text>
+<text class="sub" x="470" y="885">Loads on every boot before any defender</text>
+<text class="sub" x="470" y="901">Eradication = ESP rebuild + firmware re-flash</text>
+<text class="mono" x="470" y="931">T1542.003 Bootkit persistence</text>
+<text class="mono" x="470" y="949">Reimage alone is insufficient</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="999">Blind EDR / anti-forensics</text>
+<text class="sub" x="470" y="1023">EDR and the OS run above the implant</text>
+<text class="sub" x="470" y="1039">PCR7 / Measured Boot is the only OS-side tell</text>
+<text class="sub" x="470" y="1055">HVCI/BitLocker disabled before they initialize</text>
+<text class="sub" x="470" y="1071">Ground truth: Get-SecureBootUEFI db/dbx/KEK</text>
+<text class="mono" x="470" y="1101">T1070.003 / T1112</text>
+<text class="mono" x="470" y="1119">Detect below the OS, not from within it</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<path class="arrowR" d="M657,280 L657,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,450 L657,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,620 L657,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,790 L657,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,960 L657,975" marker-end="url(#ah)"/>
+
+<path class="arrowX" d="M460,560 L425,585" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,720 L425,760" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">The OS "Secure Boot is on" boolean is not integrity - ground truth lives in the UEFI variables (PK/KEK/db/dbx). Instrument those.</text>
+<text class="footerT" x="34" y="1222">Revocation, not patching, remediates the boot layer. Cut the KEK (Jun 24 2026) and you cut the only field fix for the whole bootkit class.</text>
+<text class="footerT" x="34" y="1240">Sequence: apply the OEM firmware update BEFORE the Windows Update cert change, or a CMOS clear / board RMA can strand the device.</text>
+<text class="footerT" x="34" y="1258">Below-OS implants survive reimaging and blind EDR - detect at ESP integrity and PCR7, eradicate with an ESP rebuild + firmware re-flash.</text>
+</svg>

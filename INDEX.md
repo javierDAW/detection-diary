@@ -4,7 +4,7 @@
 
 # INDEX
 
-**79 cases** · **143 actors/clusters** · **324 ATT&CK techniques** · **16 platforms** · **79 sectors** · 2026-04-28 -> 2026-07-15
+**81 cases** · **145 actors/clusters** · **325 ATT&CK techniques** · **16 platforms** · **79 sectors** · 2026-04-28 -> 2026-07-17
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/"><img src="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/kill_chain.svg" alt="2026-07-17 kill chain" width="240"></a><br><sub><b>2026-07-17</b><br>Media Land LLC / ML.Cloud LLC</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/"><img src="days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/kill_chain.svg" alt="2026-07-16 kill chain" width="240"></a><br><sub><b>2026-07-16</b><br>UEFI shim trust-chain disclosure (ESET Research)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/"><img src="days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/kill_chain.svg" alt="2026-07-15 kill chain" width="240"></a><br><sub><b>2026-07-15</b><br>O-UNC-066</sub></td>
+</tr>
+<tr>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/"><img src="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/kill_chain.svg" alt="2026-07-14 kill chain" width="240"></a><br><sub><b>2026-07-14</b><br>JADEPUFFER</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/"><img src="days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/kill_chain.svg" alt="2026-07-13 kill chain" width="240"></a><br><sub><b>2026-07-13</b><br>UAT-7810</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/"><img src="days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/kill_chain.svg" alt="2026-07-12 kill chain" width="240"></a><br><sub><b>2026-07-12</b><br>NoName057(16)</sub></td>
 </tr>
 <tr>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/"><img src="days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/kill_chain.svg" alt="2026-07-12 kill chain" width="240"></a><br><sub><b>2026-07-12</b><br>NoName057(16)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/"><img src="days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/kill_chain.svg" alt="2026-07-11 kill chain" width="240"></a><br><sub><b>2026-07-11</b><br>Multiple GNSS/AIS spoofing operators</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/"><img src="days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/kill_chain.svg" alt="2026-07-10 kill chain" width="240"></a><br><sub><b>2026-07-10</b><br>Cavern Manticore</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/"><img src="days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/kill_chain.svg" alt="2026-07-09 kill chain" width="240"></a><br><sub><b>2026-07-09</b><br>Opportunistic NetScaler scanners (unattributed)</sub></td>
 </tr>
 <tr>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/"><img src="days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/kill_chain.svg" alt="2026-07-09 kill chain" width="240"></a><br><sub><b>2026-07-09</b><br>Opportunistic NetScaler scanners (unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/"><img src="days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/kill_chain.svg" alt="2026-07-08 kill chain" width="240"></a><br><sub><b>2026-07-08</b><br>Unattributed (Montana Empire operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/"><img src="days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/kill_chain.svg" alt="2026-07-07 kill chain" width="240"></a><br><sub><b>2026-07-07</b><br>Woodgnat</sub></td>
-</tr>
-<tr>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/"><img src="days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/kill_chain.svg" alt="2026-07-06 kill chain" width="240"></a><br><sub><b>2026-07-06</b><br>ToddyCat</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/"><img src="days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/kill_chain.svg" alt="2026-07-05 kill chain" width="240"></a><br><sub><b>2026-07-05</b><br>Opportunistic medical-imaging scanners</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/"><img src="days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/kill_chain.svg" alt="2026-07-04 kill chain" width="240"></a><br><sub><b>2026-07-04</b><br>Opportunistic ICS/OT scanners</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,12 @@
 
 ## All cases by month
 
-<details><summary><b>2026-07</b> — 15 case(s)</summary>
+<details><summary><b>2026-07</b> — 17 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-07-17 | [Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting Indictment](days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/) | Media Land LLC / ML.Cloud LLC | network-edge, cloud-multi, windows, linux |
+| 2026-07-16 | [Forgotten UEFI shims undermining Secure Boot: ESET's 11 Microsoft-signed bootloaders](days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/) | UEFI shim trust-chain disclosure (ESET Research) | windows, linux, supply-chain |
 | 2026-07-15 | [O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-resistant persistence](days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/) | O-UNC-066 | cloud-multi |
 | 2026-07-14 | [JADEPUFFER: Agentic Ransomware From a Langflow CVE to a Destroyed Nacos Database](days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/) | JADEPUFFER | linux, cloud-multi |
 | 2026-07-13 | [UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH](days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/) | UAT-7810 | linux, network-edge, iot |

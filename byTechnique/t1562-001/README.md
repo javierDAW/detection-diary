@@ -4,11 +4,12 @@
 
 # Techniques: T1562.001
 
-15 day(s) covering this technique.
+16 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-16 | Forgotten UEFI shims undermining Secure Boot: ESET's 11 Microsoft-signed bootloaders | UEFI shim trust-chain disclosure (ESET Research) | [`2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/`](../../days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/) |
 | 2026-06-30 | Dire Wolf: a Golang double-extortion ransomware that kills the recovery story before it encrypts | Dire Wolf (DireWolf) ransomware group | [`2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/`](../../days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/) |
 | 2026-06-26 | GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Maintained EDR Killers | The Gentlemen RaaS (GentleKiller operator) | [`2026-06-26_GentleKiller-BYOVD-Detection-Engineering/`](../../days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/) |
 | 2026-06-19 | Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles | Iran-nexus (unattributed) | [`2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/`](../../days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/) |

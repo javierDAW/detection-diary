@@ -1,0 +1,90 @@
+{
+  "name": "2026-06-19 — 2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles — clusters: Iran-nexus (unattributed)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1595.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-E"
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-E"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-E"
+    },
+    {
+      "techniqueID": "T1059.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-E"
+    },
+    {
+      "techniqueID": "T1068",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-E"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-E"
+    },
+    {
+      "techniqueID": "T1565.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-E"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-E"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-E"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

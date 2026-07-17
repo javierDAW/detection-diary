@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">ip6.arpa reverse-DNS phishing kill chain</title>
+<desc id="d">Two lanes. Left is the victim and resolver path: a phishing email with an image-only link, the victim clicking it, the resolver querying an ip6.arpa name, a wildcard A record resolving (an RFC violation and the key detection anchor), a traffic-distribution-system gate, a brand-spoof credential harvest page, and stolen credentials feeding downstream account takeover. Right is the attacker DNS infrastructure build: acquiring a free IPv6 slash 48 from a tunnel broker, delegating the matching ip6.arpa reverse zone, pointing its nameservers at Cloudflare as a staging signal, arming a single wildcard A record (the second key anchor), 382 pre-staged zones, and a TDS with a short-lived host. Critical badges are coloured red. Detection anchors: any A or AAAA answer from an ip6.arpa zone, and image-only email links to reverse-DNS strings.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <rect class="acc-edge-network" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">ip6.arpa Reverse-DNS Phishing - wildcard A records on IPv6 reverse zones</text>
+<text class="meta" x="20" y="58">Vendor: Infoblox / BleepingComputer / CloudSEK - Date: 2026-02 to 2026-03 - Cluster: Unattributed phishing operator - Day 37</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="104">VICTIM / RESOLVER PATH</text>
+<text class="laneLabelR" x="460" y="104">ATTACKER DNS INFRASTRUCTURE</text>
+
+<!-- LEFT STAGES -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">L1</text>
+<text class="label" x="72" y="144">Phishing email delivered</text>
+<text class="sub" x="40" y="168">Lure: prize / survey / account / brand spoof</text>
+<text class="sub" x="40" y="184">Clickable content is an image, no visible URL</text>
+<text class="sub" x="40" y="200">Reputation engines have nothing to score</text>
+<text class="mono" x="40" y="226">From: spoofed brand / commodity sender</text>
+<text class="mono" x="40" y="244">T1566.002 Spearphishing Link</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">L2</text>
+<text class="label" x="72" y="294">Victim clicks the image link</text>
+<text class="sub" x="40" y="318">href is a reverse-DNS string, not a hostname</text>
+<text class="sub" x="40" y="334">Per-victim random subdomain prefix</text>
+<text class="sub" x="40" y="350">Blocklists defeated by construction</text>
+<text class="mono" x="40" y="376">xqjerorqxs.d.d.e.0...2.ip6.arpa</text>
+<text class="mono" x="40" y="394">T1204.001 Malicious Link</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">L3</text>
+<text class="label" x="72" y="444">Resolver queries ip6.arpa</text>
+<text class="sub" x="40" y="468">Recursive resolver - attacker Cloudflare NS</text>
+<text class="sub" x="40" y="484">Looks like a routine PTR query to scanners</text>
+<text class="sub" x="40" y="500">.arpa has no WHOIS / age / registrar</text>
+<text class="mono" x="40" y="526">QN: rand.nibbles.ip6.arpa</text>
+<text class="mono" x="40" y="544">Sysmon EID 22 / DnsEvents</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">L4</text>
+<text class="label" x="72" y="594">Wildcard A record resolves</text>
+<text class="sub" x="40" y="618">A/AAAA answer in ip6.arpa = RFC violation</text>
+<text class="sub" x="40" y="634">Zero legitimate use; ~0% false positive</text>
+<text class="sub" x="40" y="650">Every random prefix - same phishing IP</text>
+<text class="mono" x="40" y="676">ANSWER: A 104.21.3.194 / 85.215.34.119</text>
+<text class="mono" x="40" y="694">KEY DETECT: non-PTR answer in ip6.arpa</text>
+
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">L5</text>
+<text class="label" x="72" y="744">Traffic distribution system</text>
+<text class="sub" x="40" y="768">Filters by device / IP / referrer</text>
+<text class="sub" x="40" y="784">Non-targets bounce to a legit site</text>
+<text class="sub" x="40" y="800">Links short-lived (a few days)</text>
+<text class="mono" x="40" y="826">Valid target - harvest; else - benign</text>
+<text class="mono" x="40" y="844">T1027 conditional redirection</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">L6</text>
+<text class="label" x="72" y="894">Credential harvest page</text>
+<text class="sub" x="40" y="918">Brand-spoof login (healthcare lure observed)</text>
+<text class="sub" x="40" y="934">Campaign A: Cloudflare-proxied backend</text>
+<text class="sub" x="40" y="950">Campaign B: IONOS Frankfurt 85.215.34.119</text>
+<text class="mono" x="40" y="976">CN=t-w.dev (Campaign B leaked cert)</text>
+<text class="mono" x="40" y="994">T1598.003 Spearphishing Link (harvest)</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">L7</text>
+<text class="label" x="72" y="1044">Credentials stolen - downstream</text>
+<text class="sub" x="40" y="1068">Feeds AiTM / session theft / account takeover</text>
+<text class="sub" x="40" y="1084">Reset creds, revoke tokens, check sign-ins</text>
+<text class="sub" x="40" y="1100">Review mailbox rules for persistence</text>
+<text class="mono" x="40" y="1126">Pivot: impossible-travel sign-in</text>
+<text class="mono" x="40" y="1144">Exit: 14d no ip6.arpa non-PTR answers</text>
+
+<!-- RIGHT OPS -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">R1</text>
+<text class="label" x="502" y="149">Acquire IPv6 /48</text>
+<text class="sub" x="470" y="173">Free allocation from a tunnel broker</text>
+<text class="sub" x="470" y="189">Hurricane Electric (AS6939) / TMW (AS215828)</text>
+<text class="sub" x="470" y="205">Delegated control of the reverse zone</text>
+<text class="sub" x="470" y="221">No malware, no exploit - pure DNS tradecraft</text>
+<text class="mono" x="470" y="251">2001:470:63d::/48 | 2a0e:b107:27d0::/48</text>
+<text class="mono" x="470" y="269">T1583.001 Acquire Infrastructure</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">R2</text>
+<text class="label" x="502" y="319">Delegate the ip6.arpa zone</text>
+<text class="sub" x="470" y="343">Reverse zone should hold only PTR records</text>
+<text class="sub" x="470" y="359">Provider panel allows other record types</text>
+<text class="sub" x="470" y="375">Owner sets the zone NS records</text>
+<text class="sub" x="470" y="391">Surface = the reverse zone, not an SLD</text>
+<text class="mono" x="470" y="421">d.d.e.0.6.3.0...2.ip6.arpa</text>
+<text class="mono" x="470" y="439">T1583.002 Acquire DNS Server</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">R3</text>
+<text class="label" x="502" y="489">Point NS at Cloudflare (staging)</text>
+<text class="sub" x="470" y="513">CDN nameserver on a reverse zone is abnormal</text>
+<text class="sub" x="470" y="529">Lends high reputation; hides backend</text>
+<text class="sub" x="470" y="545">Zone armed but quiet (no A yet)</text>
+<text class="sub" x="470" y="561">Staging signal for defenders to hunt</text>
+<text class="mono" x="470" y="591">NS leah/micah.ns.cloudflare.com</text>
+<text class="mono" x="470" y="609">T1665 Hide Infrastructure</text>
+
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">R4</text>
+<text class="label" x="502" y="659">Arm the wildcard A record</text>
+<text class="sub" x="470" y="683">* IN A phishing-ip - a single record</text>
+<text class="sub" x="470" y="699">Every subdomain now resolves instantly</text>
+<text class="sub" x="470" y="715">Remove it between campaigns to go quiet</text>
+<text class="sub" x="470" y="731">Reverse-DNS string masquerades as PTR</text>
+<text class="mono" x="470" y="761">* IN A 104.21.3.194 / 85.215.34.119</text>
+<text class="mono" x="470" y="779">KEY: wildcard A on ip6.arpa zone</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">R5</text>
+<text class="label" x="502" y="829">382 zones pre-staged</text>
+<text class="sub" x="470" y="853">CloudSEK swept 127,906 IPv6 prefixes</text>
+<text class="sub" x="470" y="869">384 with Cloudflare NS; only 2 firing</text>
+<text class="sub" x="470" y="885">Others armed - launch in one DNS change</text>
+<text class="sub" x="470" y="901">Also hijacks dangling CNAMEs / shadows subs</text>
+<text class="mono" x="470" y="931">T1584.001 Compromise Infrastructure</text>
+<text class="mono" x="470" y="949">Hunt NS-delegation on reverse zones</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">R6</text>
+<text class="label" x="502" y="999">TDS + short-lived host</text>
+<text class="sub" x="470" y="1023">Traffic distribution gates valid targets</text>
+<text class="sub" x="470" y="1039">Links expire in days to frustrate analysis</text>
+<text class="sub" x="470" y="1055">Campaign A proxied; Campaign B direct origin</text>
+<text class="sub" x="470" y="1071">nginx + Plesk; mail.t-w.dev live</text>
+<text class="mono" x="470" y="1101">Edge 172.67.131.33 | Origin 85.215.34.119</text>
+<text class="mono" x="470" y="1119">T1036 Masquerading</text>
+
+<!-- LEFT VERTICAL FLOW -->
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<!-- RIGHT VERTICAL FLOW -->
+<path class="arrowR" d="M657,280 L657,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,450 L657,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,620 L657,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,790 L657,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,960 L657,975" marker-end="url(#ah)"/>
+
+<!-- CROSS-LANE: armed wildcard A drives the victim-side resolution -->
+<path class="arrowX" d="M460,660 L425,640" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="30" y="1200">Detection anchors</text>
+<text class="footerT" x="30" y="1222">Primary: any A/AAAA answer from an ip6.arpa zone (RFC violation, ~0% FP) - RPZ sinkhole all non-PTR answers in ip6.arpa.</text>
+<text class="footerT" x="30" y="1240">Gateway: extract links from img/a tags; regex [a-z0-9]{6,}(.[0-9a-f]){6,}.ip6.arpa; flag image-only emails; do not whitelist .arpa.</text>
+<text class="footerT" x="30" y="1258">Vendors: Infoblox 2026-02-26 - BleepingComputer 2026-03-08 - CloudSEK 2026-03-25 (382 staged zones) - Day 37.</text>
+</svg>

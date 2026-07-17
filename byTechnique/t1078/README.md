@@ -4,11 +4,12 @@
 
 # Techniques: T1078
 
-18 day(s) covering this technique.
+19 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-16 | Forgotten UEFI shims undermining Secure Boot: ESET's 11 Microsoft-signed bootloaders | UEFI shim trust-chain disclosure (ESET Research) | [`2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/`](../../days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/) |
 | 2026-06-21 | Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft Across Enterprise Clients | Icarus | [`2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/`](../../days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/) |
 | 2026-06-20 | Agentjacking via Sentry MCP — Forged DSN Events Hijack AI Coding Agents for Credential Exfiltration | Agentjacking-unattributed (Tenet Threat Labs tracking) | [`2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/`](../../days/2026/06/2026-06-20_Agentjacking-Sentry-MCP-DSN-Injection/) |
 | 2026-06-19 | Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles | Iran-nexus (unattributed) | [`2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/`](../../days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/) |
