@@ -1,0 +1,181 @@
+{
+  "name": "2026-05-26 — 2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConnect IAB Operation — clusters: VENOMOUS#HELPER (Securonix), STAC6405 (Sophos)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1584.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1608.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1036.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1562.009",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1573",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1134.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1134.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1548.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1518.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1016",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1033",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1082",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1087.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1036.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1497.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    },
+    {
+      "techniqueID": "T1218.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConne"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -64,6 +64,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)](./linkpro-unattributed-vshell-vnt-toolchain-unc5174-overlap/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
 | [Luna Moth](./luna-moth/) | 1 |
+| [Media Land LLC / ML.Cloud LLC](./media-land-llc-ml-cloud-llc/) | 1 |
 | [Miasma-unattributed](./miasma-unattributed/) | 1 |
 | [Microsoft Defender Security Research (vulnerability disclosure, no threat actor)](./microsoft-defender-security-research-vulnerability-disclosure-no-threat-actor/) | 1 |
 | [Mini Shai-Hulud](./mini-shai-hulud/) | 1 |
@@ -131,6 +132,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UAT-7810](./uat-7810/) | 1 |
 | [UAT-8302](./uat-8302/) | 1 |
 | [UAT-8616](./uat-8616/) | 1 |
+| [UEFI shim trust-chain disclosure (ESET Research)](./uefi-shim-trust-chain-disclosure-eset-research/) | 1 |
 | [UNC1151](./unc1151/) | 1 |
 | [UNC3753](./unc3753/) | 1 |
 | [UNC5174](./unc5174/) | 1 |

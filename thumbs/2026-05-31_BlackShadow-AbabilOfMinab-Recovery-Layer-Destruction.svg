@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Black Shadow / Ababil of Minab recovery-layer destruction - kill chain</title>
+<desc id="d">Two-lane diagram. Left lane is the victim estate: access via valid accounts and proxied RDP, an authenticated vCenter session, virtual machine Power Off and Delete from Disk (critical), disk volume deletion relabeled Minab, SQL database Take Offline and drop via SSMS (critical), Veeam backup chain deletion plus WipeFile secure erase of the SQLBackup directory (critical), and exfiltration of over 700 GB. Right lane is the Black Shadow operator behind the Ababil of Minab persona: proxychains plus xfreerdp relay through 91.193.19.198 port 8443, an A.ExE Go tunneler beaconing to members.nefeshhope.com and 46.30.190.173, scripted inventory-iteration automation, a ChatGPT-refined Python script that dropped 58 SQL Server targets, and an explicit recovery-denial strategy. Detection anchors are the destructive verbs across the virtualization, database and backup planes.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Black Shadow / Ababil of Minab - Recovery-Layer Destruction</text>
+<text class="meta" x="20" y="58">Vendor: Gambit Security · Date: 2026-05-26 · Cluster: Black Shadow (Iran MOIS) · Day 34</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="34" y="104">VICTIM ESTATE - IT / virtualization / DB / backup planes</text>
+<text class="laneLabelR" x="464" y="104">OPERATOR - Black Shadow (Iran MOIS)</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="144">Access via valid accounts</text>
+<text class="sub" x="40" y="168">Authenticated entry to vCenter, RDP and</text>
+<text class="sub" x="40" y="184">management consoles; proxied multi-hop</text>
+<text class="sub" x="40" y="200">No exploit - legitimate admin tooling</text>
+<text class="mono" x="40" y="226">T1078 Valid Accounts</text>
+<text class="mono" x="40" y="244">T1133 External Remote Services</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="294">Authenticated vCenter session</text>
+<text class="sub" x="40" y="318">Operator drives the virtualization plane</text>
+<text class="sub" x="40" y="334">through the normal vCenter UI / task queue</text>
+<text class="sub" x="40" y="350">Recent Tasks logs the actions</text>
+<text class="mono" x="40" y="376">T1078.004 Cloud/Virtualization accts</text>
+<text class="mono" x="40" y="394">Anchor: vCenter SSO + Recent Tasks</text>
+
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="444">VM Power Off + Delete from Disk</text>
+<text class="sub" x="40" y="468">VM and its VMDK removed from datastore</text>
+<text class="sub" x="40" y="484">Recent Tasks: 2026-03-16 11:52:38</text>
+<text class="sub" x="40" y="500">LA Metro TAP/service outage followed</text>
+<text class="mono" x="40" y="526">ANCHOR: Destroy_Task / PowerOffVM_Task</text>
+<text class="mono" x="40" y="544">T1485 Data Destruction / T1529</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="594">Disk volumes deleted</text>
+<text class="sub" x="40" y="618">Disk Management Delete Volume / format</text>
+<text class="sub" x="40" y="634">New volume relabeled "Minab" (signature)</text>
+<text class="sub" x="40" y="650">Guest-host structure destroyed</text>
+<text class="mono" x="40" y="676">T1561.001 Disk Content Wipe</text>
+<text class="mono" x="40" y="694">T1561.002 Disk Structure Wipe</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="744">SQL databases dropped</text>
+<text class="sub" x="40" y="768">SSMS Take Offline + Drop All Connections</text>
+<text class="sub" x="40" y="784">Delete Object per DB; 58 targets scripted</text>
+<text class="sub" x="40" y="800">ChatGPT-refined to spare system DBs</text>
+<text class="mono" x="40" y="826">ANCHOR: SET OFFLINE / DROP DATABASE</text>
+<text class="mono" x="40" y="844">T1485 / T1059.006 Python</text>
+
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="894">Backups deleted - recovery denied</text>
+<text class="sub" x="40" y="918">Veeam B&amp;R "Delete from disk" - backup chain</text>
+<text class="sub" x="40" y="934">WipeFile secure-erase of SQLBackup + web</text>
+<text class="sub" x="40" y="950">Three restore paths broken in parallel</text>
+<text class="mono" x="40" y="976">ANCHOR: Remove-VBR* / WipeFile</text>
+<text class="mono" x="40" y="994">T1490 Inhibit System Recovery</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1044">Exfiltration</text>
+<text class="sub" x="40" y="1068">Custom exfil tooling; >700 GB from LACMTA</text>
+<text class="sub" x="40" y="1084">Staged via 31.172.87.20</text>
+<text class="sub" x="40" y="1100">Unexposed victims: exfil only, no wipe</text>
+<text class="mono" x="40" y="1126">T1041 Exfiltration over C2</text>
+<text class="mono" x="40" y="1144">Claim under-counts real victim set</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="149">Ababil of Minab = Black Shadow</text>
+<text class="sub" x="470" y="173">Pro-Iranian "hacktivist" persona front</text>
+<text class="sub" x="470" y="189">Assessed as Iran MOIS (INCD attribution)</text>
+<text class="sub" x="470" y="205">Corroborated by ClearSky + Simon Kenin</text>
+<text class="sub" x="470" y="221">Claimed LA Metro (confirmed 2026-04-02)</text>
+<text class="mono" x="470" y="250">Pivot on infra, not branding</text>
+<text class="mono" x="470" y="268">US / Israel / Saudi / Turkey victims</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="319">Proxied RDP relay</text>
+<text class="sub" x="470" y="343">proxychains + xfreerdp into IIS host</text>
+<text class="sub" x="470" y="359">Relayed through 91.193.19.198:8443 (SFRTA)</text>
+<text class="sub" x="470" y="375">Local admin -> SSMS, IIS, FileZilla FTP</text>
+<text class="sub" x="470" y="391">Reconstructed from operator screencast</text>
+<text class="mono" x="470" y="420">T1090.003 Multi-hop Proxy</text>
+<text class="mono" x="470" y="438">T1021.001 RDP</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="489">A.ExE Go tunneler C2</text>
+<text class="sub" x="470" y="513">Customized public Go tunneler</text>
+<text class="sub" x="470" y="529">members.nefeshhope.com -> 46.30.190.173</text>
+<text class="sub" x="470" y="545">Samples served from 45.150.108.61</text>
+<text class="sub" x="470" y="561">Truncated SHA256 f6db77b / 1c69972</text>
+<text class="mono" x="470" y="590">T1572 Protocol Tunneling</text>
+<text class="mono" x="470" y="608">YARA: Go markers + C2 strings</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="659">Scripted automation</text>
+<text class="sub" x="470" y="683">A program iterates an inventory and</text>
+<text class="sub" x="470" y="699">issues the destructive command per entry</text>
+<text class="sub" x="470" y="715">Plus hands-on-keyboard via consoles</text>
+<text class="sub" x="470" y="731">Two destruction modes in one campaign</text>
+<text class="mono" x="470" y="760">Detect on verbs, not malware</text>
+<text class="mono" x="470" y="778">LOLBin across virt/DB/backup planes</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="829">ChatGPT-refined destruction</text>
+<text class="sub" x="470" y="853">Python script to drop 58 SQL Server</text>
+<text class="sub" x="470" y="869">targets; remove backup files in parallel</text>
+<text class="sub" x="470" y="885">AI used to spare protected system DBs</text>
+<text class="sub" x="470" y="901">Skill compression, no novel malware</text>
+<text class="mono" x="470" y="930">T1588.007 Obtain Capabilities: AI</text>
+<text class="mono" x="470" y="948">Lowers the bar for destruction</text>
+
+<rect class="opK" x="460" y="975" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="999">Recovery-denial strategy</text>
+<text class="sub" x="470" y="1023">VM + volume + DB + backup deletion are</text>
+<text class="sub" x="470" y="1039">deliberately combined to deny recovery</text>
+<text class="sub" x="470" y="1055">Each forces a separate restore path</text>
+<text class="sub" x="470" y="1071">"Can we keep them out" -> "can we restore"</text>
+<text class="mono" x="470" y="1100">Defend backups as a crown jewel</text>
+<text class="mono" x="470" y="1118">Immutable + isolated + MFA + validated</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<path class="arrowX" d="M460,487 L425,487" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,1010 L425,940" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Recovery-layer destruction: the backup, vCenter and Veeam planes are the target, not just the safety net.</text>
+<text class="footerT" x="34" y="1222">Detect on destructive verbs across planes (Destroy_Task, DROP DATABASE, Remove-VBR*, WipeFile, Delete Volume), not on malware -</text>
+<text class="footerT" x="34" y="1240">the whole chain is living-off-the-land. Multiple techniques = deliberate recovery denial; plan IR for parallel, compounding restores.</text>
+<text class="footerT" x="34" y="1258">Survivability hinges on immutable, isolated, MFA-gated backups validated against an adversarial scenario - not hardware failure alone.</text>
+</svg>

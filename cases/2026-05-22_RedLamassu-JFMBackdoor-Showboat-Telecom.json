@@ -1,0 +1,188 @@
+{
+  "name": "2026-05-22 — 2026-05-22_RedLamassu-JFMBackdoor-Showboat-Telecom",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux kworker masquerade) targeting Asian telecoms — clusters: Red Lamassu, Calypso APT",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1608.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1564.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1218",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1574.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1620",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1055.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1547",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1112",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1568.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1090",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1090.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1102.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1057",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1113",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Red Lamassu / Calypso APT — JFMBackdoor (Windows side-load) and Showboat (Linux "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

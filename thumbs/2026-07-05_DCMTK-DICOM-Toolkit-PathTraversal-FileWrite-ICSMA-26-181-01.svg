@@ -1,0 +1,255 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">DCMTK DICOM toolkit CVE-2026-50003 kill chain</title>
+<desc id="d">Two-lane kill chain. Left lane: the victim medical-imaging stack from an exposed DICOM SCP (tcp/104, 11112, 2762) through association, a crafted C-STORE object, the CVE-2026-50003 path-traversal arbitrary file write, code execution, the memory-exhaustion denial-of-service, and PACS/PHI impact. Right lane: attacker operations from scanning DICOM ports, opening an association, crafting a DICOM object with a traversal filename, sending a C-STORE that writes outside the store, triggering RCE or DoS, and pivoting or denying imaging. Detection anchors: a DICOM receiver writing a non-dcm or dot-segment file, a receiver spawning a shell, inbound association from outside the imaging VLAN, and WerFault or restart loops on a DCMTK binary.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-other" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003)</text>
+<text class="meta" x="20" y="58">Vendor: OFFIS DCMTK . CISA ICSMA-26-181-01 . Date: 2026-06-30 . Cluster: unattributed (advisory-stage) . Day 69</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="103">VICTIM - Medical imaging stack (PACS / DICOM SCP)</text>
+<text class="laneLabelR" x="460" y="103">ATTACKER - Operations</text>
+
+<!-- LEFT STAGE 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="144">Exposed DICOM SCP</text>
+<text class="sub" x="40" y="168">storescp / dcmqrscp / dcmrecv listener</text>
+<text class="sub" x="40" y="184">tcp/104  tcp/11112  tcp/2762 (TLS)</text>
+<text class="sub" x="40" y="200">No transport authentication by default</text>
+<text class="mono" x="40" y="226">nmap -p 104,11112 imaging_cidr</text>
+<text class="mono" x="40" y="244">echoscu -aec ANY-SCP host 11112</text>
+
+<!-- LEFT STAGE 2 -->
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="294">Association accepted</text>
+<text class="sub" x="40" y="318">A-ASSOCIATE-RQ  PDU type 0x01</text>
+<text class="sub" x="40" y="334">App context 1.2.840.10008.3.1.1.1</text>
+<text class="sub" x="40" y="350">Any reachable peer may associate</text>
+<text class="mono" x="40" y="376">reachability == authorization</text>
+<text class="mono" x="40" y="394">detect: inbound from outside VLAN</text>
+
+<!-- LEFT STAGE 3 -->
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="444">C-STORE crafted object</text>
+<text class="sub" x="40" y="468">Object attributes drive the</text>
+<text class="sub" x="40" y="484">receiver on-disk output filename</text>
+<text class="sub" x="40" y="500">SOP Instance UID / elements</text>
+<text class="mono" x="40" y="526">storescu -aec STORE-SCP host 11112</text>
+<text class="mono" x="40" y="544">Part-10 magic DICM at offset 128</text>
+
+<!-- LEFT STAGE 4 (critical) -->
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="594">Arbitrary file write  CVE-2026-50003</text>
+<text class="sub" x="40" y="618">Dot-segment escapes the store</text>
+<text class="sub" x="40" y="634">CWE-22 path traversal  CVSS 9.8</text>
+<text class="sub" x="40" y="650">sibling read path: CVE-2026-52868</text>
+<text class="mono" x="40" y="676">store/../../var/www/html/shell.jsp</text>
+<text class="mono" x="40" y="694">ANCHOR: non-.dcm or .. write by SCP</text>
+
+<!-- LEFT STAGE 5 (critical) -->
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="744">Code execution (RCE)</text>
+<text class="sub" x="40" y="768">Dropped web shell / autostart runs</text>
+<text class="sub" x="40" y="784">Receiver or web server executes it</text>
+<text class="sub" x="40" y="800">Imaging host begins spawning shells</text>
+<text class="mono" x="40" y="826">storescp spawns bash -c ...</text>
+<text class="mono" x="40" y="844">ANCHOR: SCP process spawns a shell</text>
+
+<!-- LEFT STAGE 6 (critical) -->
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="894">Availability impact (DoS)</text>
+<text class="sub" x="40" y="918">Memory leak CVE-2026-50254 / 35505</text>
+<text class="sub" x="40" y="934">Type confusion CVE-2026-44628</text>
+<text class="sub" x="40" y="950">GDCM CVE-2026-3650  150B to 4.2GB</text>
+<text class="mono" x="40" y="976">WerFault on dcmtk / restart loop</text>
+<text class="mono" x="40" y="994">PACS offline = patient-safety event</text>
+
+<!-- LEFT STAGE 7 -->
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1044">Impact: PACS / PHI</text>
+<text class="sub" x="40" y="1068">Archive offline or workstation</text>
+<text class="sub" x="40" y="1084">frozen mid-read; PHI at risk</text>
+<text class="sub" x="40" y="1100">Segment + patch to DCMTK 3.7.1+</text>
+<text class="mono" x="40" y="1126">no confirmed ITW exploitation yet</text>
+<text class="mono" x="40" y="1144">advisory-stage: detection-first</text>
+
+<!-- RIGHT OP A -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="149">Scan for DICOM SCPs</text>
+<text class="sub" x="470" y="173">Enumerate DIMSE ports</text>
+<text class="sub" x="470" y="189">104 / 11112 / 2762 / 2761</text>
+<text class="sub" x="470" y="205">C-ECHO to confirm a live SCP</text>
+<text class="sub" x="470" y="221">T1595.002 Active Scanning</text>
+<text class="mono" x="470" y="251">nmap --open ; echoscu</text>
+<text class="mono" x="470" y="269">find exposed archives</text>
+
+<!-- RIGHT OP B -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="319">Open association</text>
+<text class="sub" x="470" y="343">Send A-ASSOCIATE-RQ</text>
+<text class="sub" x="470" y="359">Advertise a scanner AE title</text>
+<text class="sub" x="470" y="375">ECHOSCU / FINDSCU / DCMTK</text>
+<text class="sub" x="470" y="391">No credentials needed</text>
+<text class="mono" x="470" y="421">AE title = enumeration tell</text>
+<text class="mono" x="470" y="439">T1190 exploit public-facing app</text>
+
+<!-- RIGHT OP C -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="489">Craft DICOM object</text>
+<text class="sub" x="470" y="513">Attribute-controlled filename</text>
+<text class="sub" x="470" y="529">with a ../ dot-segment, or an</text>
+<text class="sub" x="470" y="545">oversized element for the DoS</text>
+<text class="sub" x="470" y="561">Weaponize the C-STORE dataset</text>
+<text class="mono" x="470" y="591">name to ../../webroot/shell.jsp</text>
+<text class="mono" x="470" y="609">or 150B to 4.2GB allocation</text>
+
+<!-- RIGHT OP D (critical) -->
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="659">Send C-STORE (file write)</text>
+<text class="sub" x="470" y="683">Receiver writes outside the store</text>
+<text class="sub" x="470" y="699">CVE-2026-50003 arbitrary write</text>
+<text class="sub" x="470" y="715">Lands in web root / autostart</text>
+<text class="sub" x="470" y="731">T1505.003 Web Shell</text>
+<text class="mono" x="470" y="761">payload dropped on the SCP host</text>
+<text class="mono" x="470" y="779">cross-lane to victim stage 4</text>
+
+<!-- RIGHT OP E (critical) -->
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="829">Trigger RCE or DoS</text>
+<text class="sub" x="470" y="853">Invoke the dropped payload (RCE)</text>
+<text class="sub" x="470" y="869">or crash the parser (DoS)</text>
+<text class="sub" x="470" y="885">T1059 / T1499.004</text>
+<text class="sub" x="470" y="901">Choose the impact</text>
+<text class="mono" x="470" y="931">shell on the imaging host</text>
+<text class="mono" x="470" y="949">or PACS taken offline</text>
+
+<!-- RIGHT OP F -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="999">Pivot / deny imaging</text>
+<text class="sub" x="470" y="1023">Move to the clinical / eng LAN</text>
+<text class="sub" x="470" y="1039">exfiltrate PHI, or hold the</text>
+<text class="sub" x="470" y="1055">archive offline for pressure</text>
+<text class="sub" x="470" y="1071">Ransomware leverage</text>
+<text class="mono" x="470" y="1101">PHI theft + availability denial</text>
+<text class="mono" x="470" y="1119">hospital operational impact</text>
+
+<!-- LEFT vertical flow arrows -->
+<line class="arrow" x1="227" y1="255" x2="227" y2="270" marker-end="url(#ah)"/>
+<line class="arrow" x1="227" y1="405" x2="227" y2="420" marker-end="url(#ah)"/>
+<line class="arrow" x1="227" y1="555" x2="227" y2="570" marker-end="url(#ah)"/>
+<line class="arrow" x1="227" y1="705" x2="227" y2="720" marker-end="url(#ah)"/>
+<line class="arrow" x1="227" y1="855" x2="227" y2="870" marker-end="url(#ah)"/>
+<line class="arrow" x1="227" y1="1005" x2="227" y2="1020" marker-end="url(#ah)"/>
+
+<!-- RIGHT vertical flow arrows -->
+<line class="arrowR" x1="657" y1="280" x2="657" y2="295" marker-end="url(#ah)"/>
+<line class="arrowR" x1="657" y1="450" x2="657" y2="465" marker-end="url(#ah)"/>
+<line class="arrowR" x1="657" y1="620" x2="657" y2="635" marker-end="url(#ah)"/>
+<line class="arrowR" x1="657" y1="790" x2="657" y2="805" marker-end="url(#ah)"/>
+<line class="arrowR" x1="657" y1="960" x2="657" y2="975" marker-end="url(#ah)"/>
+
+<!-- CROSS-LANE arrows: attacker op -> victim stage -->
+<line class="arrowX" x1="460" y1="670" x2="425" y2="640" marker-end="url(#ah)"/>
+<line class="arrowX" x1="460" y1="840" x2="425" y2="790" marker-end="url(#ah)"/>
+
+<!-- FOOTER -->
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="35" y="1200">Detection anchors (behaviour, not just the CVE)</text>
+<text class="footerT" x="35" y="1222">1) DICOM receiver writes a non-.dcm or dot-segment file (file_event)   2) receiver spawns a shell (process_creation, RCE)</text>
+<text class="footerT" x="35" y="1240">3) inbound association to a DIMSE port from outside the imaging VLAN (network)   4) WerFault / restart-loop on a DCMTK binary (DoS)</text>
+<text class="footerT" x="35" y="1258">Advisory-stage: no confirmed in-the-wild IOCs. DCMTK 3.7.0 and older; fix 3.7.1 or newer. Author: Jarmi</text>
+</svg>

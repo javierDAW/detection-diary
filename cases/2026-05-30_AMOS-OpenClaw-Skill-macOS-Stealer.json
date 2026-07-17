@@ -1,0 +1,139 @@
+{
+  "name": "2026-05-30 — 2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers AI agents and users into installing a multi-key-XOR universal Mach-O wallet and Keychain stealer — clusters: AMOS / Atomic macOS Stealer (MaaS)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1059.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1059.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1056.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1497.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1555.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1555.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1560.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1074.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

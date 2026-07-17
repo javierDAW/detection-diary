@@ -1,0 +1,174 @@
+{
+  "name": "2026-05-08 — 2026-05-08_CloudZ-RAT-Pheno-PhoneLink",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Talos, May 2026) — clusters: CloudZ, Pheno",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1027.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1497.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1622",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1518.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1027.011",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1111",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1056.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1115",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1213",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1102.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1090.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1573.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CloudZ RAT + Pheno plugin — Microsoft Phone Link SQLite OTP/SMS theft (Cisco Tal"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

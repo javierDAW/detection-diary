@@ -1,0 +1,125 @@
+{
+  "name": "2026-05-24 — 2026-05-24_OperationSaffron-FirstVPN-Takedown",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, France, Netherlands and FBI — clusters: First VPN Service (1vpns.com)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1090",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1090.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1133",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1078.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1110",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1110.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1018",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1498",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1583.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1572",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    },
+    {
+      "techniqueID": "T1571",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, Fr"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

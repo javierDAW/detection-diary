@@ -1,0 +1,153 @@
+{
+  "name": "2026-07-10 — 2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE) — clusters: Cavern Manticore",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1199",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1072",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1574.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1620",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1505.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1132.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1573.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1090.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1087.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1110",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1003.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1560",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1021.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

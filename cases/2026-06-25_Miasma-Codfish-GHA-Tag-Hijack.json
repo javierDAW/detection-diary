@@ -1,0 +1,83 @@
+{
+  "name": "2026-06-25 — 2026-06-25_Miasma-Codfish-GHA-Tag-Hijack",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack — clusters: Miasma-unattributed",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack"
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack"
+    },
+    {
+      "techniqueID": "T1070.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack"
+    },
+    {
+      "techniqueID": "T1588.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack"
+    },
+    {
+      "techniqueID": "T1567.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Miasma Dead-Drop C2 via GitHub API: codfish/semantic-release-action Tag Hijack"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

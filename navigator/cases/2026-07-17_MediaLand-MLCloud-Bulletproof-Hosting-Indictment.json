@@ -1,0 +1,76 @@
+{
+  "name": "2026-07-17 — 2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting Indictment — clusters: Media Land LLC / ML.Cloud LLC",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting I"
+    },
+    {
+      "techniqueID": "T1583.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting I"
+    },
+    {
+      "techniqueID": "T1583.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting I"
+    },
+    {
+      "techniqueID": "T1568.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting I"
+    },
+    {
+      "techniqueID": "T1090.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting I"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting I"
+    },
+    {
+      "techniqueID": "T1608.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting I"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

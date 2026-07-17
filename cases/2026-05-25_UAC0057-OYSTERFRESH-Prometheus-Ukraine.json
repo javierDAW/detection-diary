@@ -1,0 +1,181 @@
+{
+  "name": "2026-05-25 — 2026-05-25_UAC0057-OYSTERFRESH-Prometheus-Ukraine",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OYSTERBLUES Targeting Ukrainian Government via Prometheus Lures — clusters: UAC-0057, Ghostwriter, FrostyNeighbor, UNC1151",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1566.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1480",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1218.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1112",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1057",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1082",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1568.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1090.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1027.013",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1071",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "UAC-0057 / Ghostwriter — OYSTERFRESH JavaScript Loader and Registry-Persisted OY"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "name": "2026-07-12 — 2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arrest) — clusters: NoName057(16)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1587.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arre"
+    },
+    {
+      "techniqueID": "T1583.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arre"
+    },
+    {
+      "techniqueID": "T1585.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arre"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arre"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arre"
+    },
+    {
+      "techniqueID": "T1573.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arre"
+    },
+    {
+      "techniqueID": "T1498.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arre"
+    },
+    {
+      "techniqueID": "T1499.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arre"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

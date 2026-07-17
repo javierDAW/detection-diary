@@ -1,5 +1,95 @@
 [
  {
+  "date": "2026-07-17",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment",
+  "title": "Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting Indictment",
+  "clusters": [
+   "Media Land LLC / ML.Cloud LLC"
+  ],
+  "country": "Russia (St. Petersburg) nexus; reseller and transit infrastructure also documented in China, Finland, the Netherlands and the United States",
+  "platforms": [
+   "network-edge",
+   "cloud-multi",
+   "windows",
+   "linux"
+  ],
+  "sectors": [
+   "government",
+   "finance",
+   "healthcare",
+   "education",
+   "media",
+   "telecommunications",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1583.003",
+   "T1583.004",
+   "T1568.001",
+   "T1090.002",
+   "T1071.001",
+   "T1608.001"
+  ],
+  "tech_count": 7,
+  "tldr": "On 14 July 2026 the U.S. Department of Justice unsealed a December 2024 indictment against three Russian nationals — Aleksandr Volosovik (\"Yalishanda\"), Yulia Pankova and Kirill Zatolokin — and their two bulletproof hosting (BPH) companies, Media Land LLC and ML.Cloud LLC, charging conspiracy to commit computer fraud, wire fraud and money laundering tied to more than $62 million in documented loss",
+  "thumb": "thumbs/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment.svg",
+  "case_rel": "../days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "Media Land LLC / ML.Cloud LLC",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "yalishanda unmasked: doj unseals the media land / ml.cloud bulletproof hosting indictment media land llc / ml.cloud llc russia (st. petersburg) nexus; reseller and transit infrastructure also documented in china, finland, the netherlands and the united states network-edge cloud-multi windows linux government finance healthcare education media telecommunications cross-sector t1583.001 t1583.003 t1583.004 t1568.001 t1090.002 t1071.001 t1608.001 edge / network "
+ },
+ {
+  "date": "2026-07-16",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797",
+  "title": "Forgotten UEFI shims undermining Secure Boot: ESET's 11 Microsoft-signed bootloaders",
+  "clusters": [
+   "UEFI shim trust-chain disclosure (ESET Research)"
+  ],
+  "country": "Cross-vendor UEFI/firmware supply chain (global)",
+  "platforms": [
+   "windows",
+   "linux",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "government",
+   "education"
+  ],
+  "techniques": [
+   "T1553.006",
+   "T1542.003",
+   "T1211",
+   "T1078",
+   "T1091",
+   "T1014",
+   "T1200",
+   "T1562.001"
+  ],
+  "tech_count": 8,
+  "tldr": "On 2026-07-14, ESET Research (Martin Smolar) disclosed that **11 old, Microsoft-signed UEFI shim bootloaders** (mostly shim v0.9 and below, from products such as Oracle Linux 7.2, RHEL/CentOS 7.2, openSUSE, ROSA Linux, Finland's Abitti exam software, baramundi Management Suite, WhiteCanyon/Blancco WipeDrive, Spyrus WTGCreator and PC-Doctor Service Center) let an attacker bypass UEFI Secure Boot on",
+  "thumb": "thumbs/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797.svg",
+  "case_rel": "../days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "UEFI shim trust-chain disclosure (ESET Research)",
+  "cve_count": 2,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "forgotten uefi shims undermining secure boot: eset's 11 microsoft-signed bootloaders uefi shim trust-chain disclosure (eset research) cross-vendor uefi/firmware supply chain (global) windows linux supply-chain technology government education t1553.006 t1542.003 t1211 t1078 t1091 t1014 t1200 t1562.001 supply chain "
+ },
+ {
   "date": "2026-07-15",
   "year": "2026",
   "month": "2026-07",

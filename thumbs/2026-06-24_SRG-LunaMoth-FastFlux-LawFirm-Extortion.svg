@@ -1,0 +1,273 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+  <title id="t">SRG / Luna Moth Fast Flux kill chain</title>
+  <desc id="d">Two-lane kill chain. Left lane (victim side): phishing email and vishing call, RMM tool installation, remote access established, internal recon and lateral movement, bulk data collection, exfiltration within 30 min, and extortion email delivery. Right lane (attacker infrastructure): phishing and vishing script delivery, RMM callback via fast flux C2, fast flux DNS botnet across 22 ISPs, C2 monitoring session, exfil collection server, and public leak site business-data-leaks.com. Cross-lane arrows mark RMM callback to fast flux C2 (detection anchor: DNS TTL anomaly) and extortion delivery linking to leak domain.</desc>
+  <defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<!-- Background -->
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+
+<!-- Header -->
+<text class="head" x="20" y="36">SRG / Luna Moth: Vishing to Fast Flux DNS Extortion</text>
+<text class="meta" x="20" y="58">Source: Resecurity + FBI IC3 260526 · Date: 2026-06-08 · Cluster: SRG/UNC3753 · Day 58</text>
+
+<!-- Left lane: Victim -->
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="215" y="107" text-anchor="middle">VICTIM SIDE</text>
+
+<!-- Right lane: Attacker Infrastructure -->
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelR" x="655" y="107" text-anchor="middle">ATTACKER INFRASTRUCTURE</text>
+
+<!-- ========== LEFT STAGES ========== -->
+
+<!-- Stage 1: Phishing + Vishing (y=120) -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="75" y="144">Phishing Email + Vishing Call</text>
+<text class="sub" x="30" y="168">Invoice / data-migration themed email sent to target</text>
+<text class="sub" x="30" y="184">Follow-up phone call: actor poses as IT support</text>
+<text class="sub" x="30" y="200">Victim convinced to install remote access software</text>
+<text class="mono" x="30" y="226">T1566.001 Spearphishing Link</text>
+<text class="mono" x="30" y="244">T1598.003 Spearphishing Voice</text>
+
+<!-- Stage 2: RMM Installation (y=270) — KILL NODE -->
+<rect class="stageK" x="30" y="270" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="75" y="294">RMM Tool Installation [DETECTION]</text>
+<text class="sub" x="30" y="318">Actor guides victim to download and run signed RMM agent</text>
+<text class="sub" x="30" y="334">ScreenConnect / Zoho Assist / ITarian / AnyDesk</text>
+<text class="sub" x="30" y="350">Installed by browser / Office parent process from Downloads</text>
+<text class="mono" x="30" y="376">T1219 Remote Access Software</text>
+<text class="mono" x="30" y="394">T1204.002 User Execution</text>
+
+<!-- Stage 3: Remote Access (y=420) -->
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="75" y="444">Remote Access Established</text>
+<text class="sub" x="30" y="468">Actor connects via RMM session; screen control obtained</text>
+<text class="sub" x="30" y="484">Persistent foothold; can re-enter as long as RMM runs</text>
+<text class="sub" x="30" y="500">RMM callback resolves via fast flux DNS (see right lane)</text>
+<text class="mono" x="30" y="526">T1219 Remote Access Software</text>
+<text class="mono" x="30" y="544">T1021.001 Remote Desktop Protocol</text>
+
+<!-- Stage 4: Recon + Lateral Movement (y=570) -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="75" y="594">Internal Recon + Lateral Movement</text>
+<text class="sub" x="30" y="618">Enumerate file shares, document repos, matter mgmt systems</text>
+<text class="sub" x="30" y="634">Identify privileged client files and NDA-protected materials</text>
+<text class="sub" x="30" y="650">Pivot to additional hosts via RMM or remote desktop</text>
+<text class="mono" x="30" y="676">T1046 Network Service Discovery</text>
+<text class="mono" x="30" y="694">T1021.001 Remote Services</text>
+
+<!-- Stage 5: Bulk Data Collection (y=720) -->
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="75" y="744">Bulk Data Collection and Staging</text>
+<text class="sub" x="30" y="768">Copy sensitive client matter files to temp staging path</text>
+<text class="sub" x="30" y="784">Archive creation (.zip/.7z) observed prior to exfil</text>
+<text class="sub" x="30" y="800">Physical USB variant: operative inserts drive in person</text>
+<text class="mono" x="30" y="826">T1005 Data from Local System</text>
+<text class="mono" x="30" y="844">T1200 Hardware Additions (USB)</text>
+
+<!-- Stage 6: Exfiltration (y=870) — KILL NODE -->
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="75" y="894">Exfiltration [DETECTION] — &lt;30 min</text>
+<text class="sub" x="30" y="918">Bulk data exfil via RMM channel or direct HTTPS upload</text>
+<text class="sub" x="30" y="934">Completes within 30 min of RMM session start (FBI 260526)</text>
+<text class="sub" x="30" y="950">Destination: actor server behind fast flux botnet</text>
+<text class="mono" x="30" y="976">T1048 Exfiltration Over Alt Protocol</text>
+<text class="mono" x="30" y="994">T1567.002 Exfil to Cloud Storage</text>
+
+<!-- Stage 7: Extortion (y=1020) -->
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="75" y="1044">Extortion Email Delivery</text>
+<text class="sub" x="30" y="1068">Extortion email sent &lt;30 min post-exfil to org + partners</text>
+<text class="sub" x="30" y="1084">Threat: publish on business-data-leaks[.]com if unpaid</text>
+<text class="sub" x="30" y="1100">38+ law firms already posted; 100+ total attacks (Q1 2026)</text>
+<text class="mono" x="30" y="1126">T1657 Financial Theft / Extortion</text>
+<text class="mono" x="30" y="1144">business-data-leaks[.]com</text>
+
+<!-- ========== RIGHT OPS BOXES ========== -->
+
+<!-- Op 1: Phishing + Vishing Script (y=125) -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="505" y="149">Phishing Kit + Vishing Script</text>
+<text class="sub" x="460" y="173">Invoice/data-migration lure email template</text>
+<text class="sub" x="460" y="189">Scripted vishing call: fake IT support persona</text>
+<text class="sub" x="460" y="205">RMM download link delivered via email or verbally</text>
+<text class="sub" x="460" y="221">SRG active since 2022; UNC2686 BazarCall overlap</text>
+<text class="mono" x="460" y="261">T1583.001 Acquire Domains</text>
+<text class="mono" x="460" y="279">T1598.003 Spearphishing Voice</text>
+
+<!-- Op 2: RMM Callback / Fast Flux C2 (y=295) -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="505" y="319">RMM Callback via Fast Flux C2</text>
+<text class="sub" x="460" y="343">RMM agent resolves ep6pheij[.]com (fast flux)</text>
+<text class="sub" x="460" y="359">TTL &lt;= 60s; A record rotates to next flux node</text>
+<text class="sub" x="460" y="375">Flux node (compromised IoT/CPE) relays to actor C2</text>
+<text class="sub" x="460" y="391">Detection anchor: DNS TTL anomaly + high IP rotation</text>
+<text class="mono" x="460" y="431">ep6pheij[.]com (Resecurity 2026-06-08)</text>
+<text class="mono" x="460" y="449">T1568.002 Fast Flux / T1071.001</text>
+
+<!-- Op 3: Fast Flux Botnet (y=465) -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="505" y="489">Fast Flux DNS Botnet Infrastructure</text>
+<text class="sub" x="460" y="513">22 ISPs, 18 countries of compromised CPE/IoT nodes</text>
+<text class="sub" x="460" y="529">Brazil, Mexico, Bulgaria, Egypt, S. Korea, Colombia...</text>
+<text class="sub" x="460" y="545">Single-flux (A record) + possible double-flux (NS + A)</text>
+<text class="sub" x="460" y="561">CISA AA25-093a named fast flux a national security threat</text>
+<text class="mono" x="460" y="601">T1584.005 Compromise Infrastructure: Botnet</text>
+<text class="mono" x="460" y="619">T1583.001 Acquire Infrastructure: Domains</text>
+
+<!-- Op 4: C2 Monitoring (y=635) -->
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="505" y="659">C2 Session Monitoring</text>
+<text class="sub" x="460" y="683">Actor monitors RMM session in real time</text>
+<text class="sub" x="460" y="699">Directs victim or operates autonomously via screen control</text>
+<text class="sub" x="460" y="715">Selects highest-value files for exfil (privilege materials)</text>
+<text class="sub" x="460" y="731">Entire intrusion can complete in under 30 minutes</text>
+<text class="mono" x="460" y="771">T1219 Remote Access Software</text>
+<text class="mono" x="460" y="789">T1046 Network Service Discovery</text>
+
+<!-- Op 5: Exfil Collection Server (y=805) -->
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="505" y="829">Data Exfil Collection Server</text>
+<text class="sub" x="460" y="853">Actor-controlled server receives bulk data upload</text>
+<text class="sub" x="460" y="869">Reached via fast flux botnet (IP not publicly disclosed)</text>
+<text class="sub" x="460" y="885">Data staged for extortion leverage and leak site posting</text>
+<text class="sub" x="460" y="901">Possible Spy Corporate infra-as-a-service involvement</text>
+<text class="mono" x="460" y="941">T1048 Exfiltration Over Alt Protocol</text>
+<text class="mono" x="460" y="959">T1567.002 Exfil to Cloud Storage</text>
+
+<!-- Op 6: Leak Site (y=975) — KILL NODE -->
+<rect class="opK" x="460" y="975" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="505" y="999">Public Leak Site [KILL NODE]</text>
+<text class="sub" x="460" y="1023">business-data-leaks[.]com — served via fast flux</text>
+<text class="sub" x="460" y="1039">38+ US law firms posted after non-payment (May 2026)</text>
+<text class="sub" x="460" y="1055">Secondary contact: clients, partners, opposing counsel</text>
+<text class="sub" x="460" y="1071">No evidence SRG deletes data after payment received</text>
+<text class="mono" x="460" y="1111">business-data-leaks[.]com (high confidence IOC)</text>
+<text class="mono" x="460" y="1129">T1657 Financial Theft / Extortion</text>
+
+<!-- ========== ARROWS ========== -->
+<!-- Left lane vertical flow -->
+<line class="arrow" x1="227" y1="255" x2="227" y2="270" marker-end="url(#ah)"/>
+<line class="arrow" x1="227" y1="405" x2="227" y2="420" marker-end="url(#ah)"/>
+<line class="arrow" x1="227" y1="555" x2="227" y2="570" marker-end="url(#ah)"/>
+<line class="arrow" x1="227" y1="705" x2="227" y2="720" marker-end="url(#ah)"/>
+<line class="arrow" x1="227" y1="855" x2="227" y2="870" marker-end="url(#ah)"/>
+<line class="arrow" x1="227" y1="1005" x2="227" y2="1020" marker-end="url(#ah)"/>
+
+<!-- Right lane vertical flow -->
+<line class="arrowR" x1="657" y1="280" x2="657" y2="295" marker-end="url(#ah)"/>
+<line class="arrowR" x1="657" y1="450" x2="657" y2="465" marker-end="url(#ah)"/>
+<line class="arrowR" x1="657" y1="620" x2="657" y2="635" marker-end="url(#ah)"/>
+<line class="arrowR" x1="657" y1="790" x2="657" y2="805" marker-end="url(#ah)"/>
+<line class="arrowR" x1="657" y1="960" x2="657" y2="975" marker-end="url(#ah)"/>
+
+<!-- Cross-lane arrows (purple dashed) -->
+<!-- Stage 3 (left) -> Op 2 (right): RMM callback to fast flux C2 -->
+<line class="arrowX" x1="425" y1="488" x2="460" y2="373" marker-end="url(#ah)"/>
+<!-- Stage 6 (left) -> Op 5 (right): Exfil to collection server -->
+<line class="arrowX" x1="425" y1="938" x2="460" y2="882" marker-end="url(#ah)"/>
+<!-- Stage 7 (left) -> Op 6 (right): Extortion linked to leak domain -->
+<line class="arrowX" x1="425" y1="1088" x2="460" y2="1055" marker-end="url(#ah)"/>
+
+<!-- Footer -->
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="35" y="1197">Detection Anchors</text>
+<text class="footerT" x="35" y="1215">Stage 2: browser/Office spawning RMM installer from user temp/Downloads (Sigma srg_rmm_spawned_by_office_or_browser.yml)</text>
+<text class="footerT" x="35" y="1231">Stage 3: DNS query to ep6pheij[.]com TTL &lt;= 60s; 5+ unique A records/24h (Sigma srg_fast_flux_dns_ttl_anomaly.yml)</text>
+<text class="footerT" x="35" y="1247">Stage 6: &gt;100MB outbound from RMM process within 30 min of install (KQL srg_bulk_exfil_post_rmm.kql)</text>
+<text class="footerT" x="35" y="1263">Stage 7: inbound email from business-data-leaks[.]com (KQL srg_extortion_email_hunt.kql)</text>
+
+</svg>

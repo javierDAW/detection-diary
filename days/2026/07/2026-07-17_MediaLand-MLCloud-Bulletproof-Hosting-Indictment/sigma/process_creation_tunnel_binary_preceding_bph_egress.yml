@@ -1,0 +1,39 @@
+title: Reverse-Proxy or Tunneling Binary Execution Preceding Suspected BPH Egress
+id: b82dd104-0ba5-4b0b-be9c-a0016c029bc6
+status: experimental
+description: |
+    Detects execution of common reverse-proxy/tunneling utilities (stunnel,
+    socat, frpc, ngrok) that can be used to bridge an internal host toward
+    externally rented bulletproof hosting infrastructure such as Media Land
+    LLC / ML.Cloud LLC. Execution alone is not malicious -- these tools have
+    legitimate uses -- but combined with subsequent egress toward a previously
+    unseen Russia-hosted ASN it is a higher-confidence indicator of intentional
+    infrastructure bridging (see hunts/peak_h3_tunnel_binary_execution.md).
+references:
+    - https://www.justice.gov/usao-ndoh/pr/three-russian-nationals-indicted-international-cybercrimes-resulting-more-62m-losses
+author: Jarmi
+date: 2026/07/17
+tags:
+    - attack.command-and-control
+    - attack.defense-evasion
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_img:
+        Image|endswith:
+            - '\stunnel.exe'
+            - '\socat.exe'
+            - '\frpc.exe'
+            - '\ngrok.exe'
+    selection_name:
+        OriginalFileName|contains:
+            - 'stunnel'
+            - 'socat'
+            - 'frpc'
+            - 'ngrok'
+    condition: 1 of selection_*
+falsepositives:
+    - Legitimate administrative use of tunneling tools for approved remote-access
+      or development workflows
+level: low

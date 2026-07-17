@@ -1,0 +1,202 @@
+{
+  "name": "2026-05-20 — 2026-05-20_Storm-2949-Cloud-Identity-SSPR",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure — clusters: Storm-2949",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1591.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1566.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1556.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1098.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1098.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1087.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1526",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1580",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1199",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1530",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1213",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1552.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1552.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1606",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1562.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1651",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1136.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    },
+    {
+      "techniqueID": "T1070.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

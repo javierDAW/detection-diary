@@ -1,0 +1,10 @@
+type,value,context,confidence,source
+note,AS206728,Media Land LLC autonomous system; RIPE-registered allocated 2016-11-17 hosting-type ASN with approximately 385 hosted domains and 512 IPv4 addresses observed,high,ipinfo.io/AS206728
+ipv4,45.141.85.1,Sample announced host in Media Land LLC netblock 45.141.85.0/24 Moscow RU,medium,ipinfo.io/AS206728
+ipv4,91.220.163.1,Sample announced host in Media Land LLC netblock 91.220.163.0/24 Moscow RU,medium,ipinfo.io/AS206728
+ipv4,91.220.163.6,Sample announced host in Media Land LLC netblock 91.220.163.0/24 Moscow RU,medium,ipinfo.io/AS206728
+domain,ml.cloud,ML.Cloud LLC (Yulia Pankova) customer-facing bulletproof VPS ordering domain,high,DOJ indictment; BleepingComputer 2026-07-15
+note,Media Land LLC / ML.Cloud LLC,Bulletproof hosting providers St. Petersburg Russia; principals Aleksandr Volosovik alias Yalishanda Yulia Pankova Kirill Zatolokin,high,DOJ press release 2026-07-14; OFAC designation 2025-11-19
+note,Media Land Technology / Data Center Kirishi,Sister companies sanctioned alongside Media Land in the Nov 2025 Five Eyes action,high,OFAC designation 2025-11-19; CyberScoop
+note,"LockBit, BlackSuit, Play, Cl0p (+13 other groups)",Ransomware/e-crime operations documented as Media Land/ML.Cloud customers,high,OFAC designation; DOJ indictment
+note,JSC RetnNet / RETN Limited,Peering partners identified by Silent Push as key to Media Land continued internet reachability after the November 2025 sanctions,medium,CyberScoop 2025-11-19 (Silent Push Zach Edwards)

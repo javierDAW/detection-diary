@@ -1,0 +1,234 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">OP-512 China-linked IIS web shell framework - kill chain</title>
+<desc id="d">Two-lane diagram. Left lane is the victim IIS server and ASP.NET runtime: an internet-facing Windows Server 2016 with end-of-life .NET 4.0 in a DMZ, the worker process writing a .aspx file-manager web shell, a self-report C2 beacon that encodes the shell URL into a hex DNS subdomain with an HTTP fallback to a Meterpreter server (critical), two .ashx cryptographic command handlers gated by per-handler RSA signatures and RC4, in-memory privilege escalation loading the Potato suite into the worker process (critical), timestomping and compiled-DLL persistence in the ASP.NET temporary directory, and an endpoint-kill then IIS-auto-restart loop. Right lane is the attacker operation: a patient return after 75 days, dropping a per-deployment polymorphic framework (critical), letting the infrastructure catalog the deployment, driving authenticated commands through the .ashx handlers (critical), escalating in memory, and persisting and evading for long-term collection. Detection anchors are the worker emitting long hex-segmented DNS, reflective .NET loading inside w3wp.exe, and new DLLs compiled in ASP.NET temporary directories outside deployment windows.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <rect class="acc-crypto-defi" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">OP-512 - China-linked IIS web shell framework</text>
+<text class="meta" x="20" y="58">Vendor: ReliaQuest · Date: 2026-06-05 · Cluster: OP-512 (China, suspected) · Day 42</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="34" y="104">VICTIM CHAIN - IIS server / ASP.NET runtime</text>
+<text class="laneLabelR" x="464" y="104">ATTACKER - operations against the IIS host</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="144">Legacy IIS server exposed (DMZ)</text>
+<text class="sub" x="40" y="168">Internet-facing Windows Server 2016, EOL .NET 4.0</text>
+<text class="sub" x="40" y="184">DMZ host bridges internet and internal tiers</text>
+<text class="sub" x="40" y="200">Access seen ~75 days earlier (patient return)</text>
+<text class="mono" x="40" y="226">T1190 Exploit Public-Facing Application</text>
+<text class="mono" x="40" y="244">Entry path not conclusively determined</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="294">Web shell #1: .aspx file manager</text>
+<text class="sub" x="40" y="318">w3wp.exe writes a .aspx into the upload directory</text>
+<text class="sub" x="40" y="334">File ops: list, read/write, upload, delete, rename</text>
+<text class="sub" x="40" y="350">Authored by the worker process itself</text>
+<text class="mono" x="40" y="376">T1505.003 Web Shell</text>
+<text class="mono" x="40" y="394">TELL: worker writing script to a webroot path</text>
+
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="444">Self-report C2 beacon</text>
+<text class="sub" x="40" y="468">On page load, encodes own URL into a DNS query</text>
+<text class="sub" x="40" y="484">Pattern a.&lt;hex&gt;.c.hcgos[.]com (5-min cooldown)</text>
+<text class="sub" x="40" y="500">HTTP fallback to Meterpreter C2 if DNS fails</text>
+<text class="mono" x="40" y="526">T1071.004 DNS / T1071.001 Web / T1132.001</text>
+<text class="mono" x="40" y="544">CRITICAL: any visit (even IR) can alert operator</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="594">Web shells #2-3: .ashx handlers</text>
+<text class="sub" x="40" y="618">Two crypto command handlers, unique RSA key each</text>
+<text class="sub" x="40" y="634">Pipeline: Base64 -&gt; RC4 -&gt; RSA-verify -&gt; execute</text>
+<text class="sub" x="40" y="650">Only the private-key holder can issue commands</text>
+<text class="mono" x="40" y="676">T1573.002 RSA / T1573.001 RC4</text>
+<text class="mono" x="40" y="694">Compartmentalized: one key != access to other</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="744">In-memory privilege escalation</text>
+<text class="sub" x="40" y="768">Potato suite + GhostKit loaded into w3wp.exe</text>
+<text class="sub" x="40" y="784">Nothing written to disk (reflective .NET load)</text>
+<text class="sub" x="40" y="800">whoami /priv base64 matches Flax Typhoon playbook</text>
+<text class="mono" x="40" y="826">T1620 Reflective Load / T1134.001 / T1068</text>
+<text class="mono" x="40" y="844">CRITICAL: only EDR behavior analytics caught it</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="894">Timestomp + compiled-DLL persistence</text>
+<text class="sub" x="40" y="918">Shells backdate to median neighbour timestamp</text>
+<text class="sub" x="40" y="934">ASP.NET temp dir compiles .aspx/.ashx to .dll</text>
+<text class="sub" x="40" y="950">DLLs persist after web shell files are deleted</text>
+<text class="mono" x="40" y="976">T1070.006 Timestomp / T1027 Obfuscation</text>
+<text class="mono" x="40" y="994">IR: clear Temporary ASP.NET Files separately</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1044">EDR kill -&gt; IIS auto-restart loop</text>
+<text class="sub" x="40" y="1068">Prevention killed w3wp.exe; IIS restarted it</text>
+<text class="sub" x="40" y="1084">In-memory tooling reloaded within minutes</text>
+<text class="sub" x="40" y="1100">Containment = host isolation, not process kill</text>
+<text class="mono" x="40" y="1126">Detect-kill-reload loop until host isolated</text>
+<text class="mono" x="40" y="1144">Prevention fired != threat contained</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="149">Patient return after 75 days</text>
+<text class="sub" x="470" y="173">Earlier foothold + DNS to ashx.lhlsjcb[.]com</text>
+<text class="sub" x="470" y="189">Operator returns rather than moving on</text>
+<text class="sub" x="470" y="205">Hallmark of state-aligned espionage dwell</text>
+<text class="sub" x="470" y="221">Within hours: shells, channels, escalation</text>
+<text class="mono" x="470" y="251">Recon + re-entry on legacy IIS in a DMZ</text>
+<text class="mono" x="470" y="269">T1190 public-facing exploitation</text>
+
+<rect class="opK" x="460" y="295" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="319">Drop the polymorphic framework</text>
+<text class="sub" x="470" y="343">Shared builder randomizes identifiers per build</text>
+<text class="sub" x="470" y="359">Injects dead vars + junk comments (no-op)</text>
+<text class="sub" x="470" y="375">Identical logic, different hash every time</text>
+<text class="sub" x="470" y="391">Per-handler RSA key pair</text>
+<text class="mono" x="470" y="421">Signature/hash detection defeated by design</text>
+<text class="mono" x="470" y="439">CRITICAL: hunt structure + behavior, not bytes</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="489">Infra catalogs the deployment</text>
+<text class="sub" x="470" y="513">Shell self-reports its URL on first load</text>
+<text class="sub" x="470" y="529">Operator drops file and moves on</text>
+<text class="sub" x="470" y="545">DNS-first, HTTP-fallback, one-way channel</text>
+<text class="sub" x="470" y="561">Decouples deployment from discovery</text>
+<text class="mono" x="470" y="591">hcgos[.]com (later) vs lhlsjcb[.]com (earlier)</text>
+<text class="mono" x="470" y="609">T1071.004 DNS self-report</text>
+
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="659">Drive authenticated commands</text>
+<text class="sub" x="470" y="683">.ashx handler verifies RSA signature first</text>
+<text class="sub" x="470" y="699">RC4-encrypted, Base64-wrapped request body</text>
+<text class="sub" x="470" y="715">Encrypted responses evade network inspection</text>
+<text class="sub" x="470" y="731">Only the operator's private key works</text>
+<text class="mono" x="470" y="761">Each handler embeds a unique RSA public key</text>
+<text class="mono" x="470" y="779">CRITICAL: T1505.003 authenticated web shell</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="829">Escalate in memory</text>
+<text class="sub" x="470" y="853">BadPotato, SweetPotato, EfsPotato (token abuse)</text>
+<text class="sub" x="470" y="869">GhostKit (EDR label, undocumented)</text>
+<text class="sub" x="470" y="885">Reflective .NET load into the worker process</text>
+<text class="sub" x="470" y="901">Ran under a limited service account</text>
+<text class="mono" x="470" y="931">T1620 / T1134.001 token impersonation</text>
+<text class="mono" x="470" y="949">Tell: reflective loads inside w3wp.exe</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="999">Persist + evade</text>
+<text class="sub" x="470" y="1023">Timestomp blends shells into old files</text>
+<text class="sub" x="470" y="1039">Compiled DLLs survive source deletion</text>
+<text class="sub" x="470" y="1055">Returns through the same unremediated entry</text>
+<text class="sub" x="470" y="1071">Espionage objective: long-term collection</text>
+<text class="mono" x="470" y="1101">T1070.006 / T1027 anti-forensics</text>
+<text class="mono" x="470" y="1119">Close incident only after root cause fixed</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<path class="arrowX" d="M460,360 L425,340" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,700 L425,640" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">A per-deployment-unique web shell defeats hashes by construction - detect the structure (RC4 + RSA-verify + IHttpHandler) and the behavior, not bytes.</text>
+<text class="footerT" x="34" y="1222">Self-report on page load means IR interaction can tip off the operator; investigate suspected shells from logs first, never browse the URL.</text>
+<text class="footerT" x="34" y="1240">Deleting the .aspx/.ashx is not eradication - compiled DLLs in Temporary ASP.NET Files outlive the source and are reactivation points.</text>
+<text class="footerT" x="34" y="1258">Prevention fired != contained: IIS restarts the worker and reloads memory tooling; isolate the host, and fix the entry vector before closing.</text>
+</svg>

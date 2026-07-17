@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1180" role="img" aria-labelledby="t d">
+  <title id="t">Silver Fox ABCDoor tax-themed phishing kill chain</title>
+  <desc id="d">Silver Fox (also tracked as SwimSnake, Void Arachne, UTG-Q-1000) delivers a tax-themed RAR or ZIP archive containing the RustSL loader with a PDF icon. The loader applies geofencing to India, Russia, Indonesia, South Africa, Cambodia and Japan, then deobfuscates and stages ValleyRAT plugins. The ValleyRAT plugin downloads a Python environment plus the ABCDoor implant under the Tailscale brand. ABCDoor persists via HKCU Run key AppClient, a one-minute AppClient scheduled task, and Phantom Persistence shutdown-signal hijack. C2 uses Socket.IO over HTTPS to 207.56.138.28 and HTTP plugin pulls from 154.82.81.205. Detection anchors map to Sigma, KQL, YARA and Suricata rule files.</desc>
+  <defs>
+    <style>
+      .bg { fill: #ffffff; }
+      .lane { fill: #f6f8fa; stroke: #d0d7de; stroke-width: 1; }
+      .lane-label { font: 600 13px sans-serif; fill: #57606a; letter-spacing: 0.08em; }
+      .header { font: 700 22px sans-serif; fill: #1f2328; }
+      .subhead { font: 600 13px sans-serif; fill: #57606a; }
+      .stage-box { fill: #ffffff; stroke: #1f6feb; stroke-width: 1.5; }
+      .stage-label { font: 700 14px sans-serif; fill: #1f2328; }
+      .stage-sub { font: 12px sans-serif; fill: #57606a; }
+      .badge-circle { fill: #1f6feb; }
+      .badge-text { font: 700 13px sans-serif; fill: #ffffff; text-anchor: middle; }
+      .mono { font: 11px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #1f2328; }
+      .ioc { font: 11px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #cf222e; }
+      .c2-panel { fill: #fff8c5; stroke: #d4a72c; stroke-width: 1.5; }
+      .c2-title { font: 700 13px sans-serif; fill: #1f2328; }
+      .det-panel { fill: #ddf4ff; stroke: #1f6feb; stroke-width: 1.5; }
+      .det-title { font: 700 13px sans-serif; fill: #0550ae; }
+      .det-line { font: 11px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #1f2328; }
+      .arrow-line { stroke: #57606a; stroke-width: 1.5; fill: none; }
+      .arrow-c2 { stroke: #d4a72c; stroke-width: 2; fill: none; }
+      .mitre { font: 10px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #6e7781; }
+      @media (prefers-color-scheme: dark) {
+        .bg { fill: #0d1117; }
+        .lane { fill: #161b22; stroke: #30363d; }
+        .lane-label { fill: #8d96a0; }
+        .header { fill: #e6edf3; }
+        .subhead { fill: #8d96a0; }
+        .stage-box { fill: #161b22; stroke: #58a6ff; }
+        .stage-label { fill: #e6edf3; }
+        .stage-sub { fill: #8d96a0; }
+        .badge-circle { fill: #58a6ff; }
+        .mono { fill: #e6edf3; }
+        .ioc { fill: #ff7b72; }
+        .c2-panel { fill: #2d2a14; stroke: #d4a72c; }
+        .c2-title { fill: #e6edf3; }
+        .det-panel { fill: #0c2d6b; stroke: #58a6ff; }
+        .det-title { fill: #79c0ff; }
+        .det-line { fill: #e6edf3; }
+        .arrow-line { stroke: #8d96a0; }
+        .mitre { fill: #8d96a0; }
+      }
+    
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+</style>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#57606a"/>
+    </marker>
+    <marker id="arrow-c2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#d4a72c"/>
+    </marker>
+  </defs>
+
+  <rect class="bg" width="880" height="1180"/>
+  <rect class="acc-other" x="0" y="0" width="880" height="8"/>
+
+  <!-- Header -->
+  <text class="header" x="30" y="35">Silver Fox — ABCDoor tax-themed campaign</text>
+  <text class="subhead" x="30" y="56">Vendor: Kaspersky Securelist · Disclosure: 2026-04-30 · Cluster: Silver Fox / SwimSnake / Void Arachne · Nexus: China</text>
+  <text class="subhead" x="30" y="73">Targets: India · Russia · Indonesia · South Africa · Cambodia · Japan (added 2026-01-19) · Sectors: industrial, consulting, retail, transportation</text>
+
+  <!-- Lanes -->
+  <rect class="lane" x="20" y="95" width="510" height="900" rx="6"/>
+  <rect class="lane" x="545" y="95" width="315" height="900" rx="6"/>
+  <text class="lane-label" x="35" y="115">VICTIM HOST</text>
+  <text class="lane-label" x="560" y="115">ATTACKER C2</text>
+
+  <!-- Stage 1 — Phishing delivery -->
+  <g>
+    <rect class="stage-box" x="40" y="130" width="470" height="80" rx="6"/>
+    <circle class="badge-circle" cx="60" cy="150" r="14"/>
+    <text class="badge-text" x="60" y="155">1</text>
+    <text class="stage-label" x="85" y="148">Initial Access — tax-themed phishing</text>
+    <text class="stage-sub" x="85" y="166">SendGrid email impersonating ITD (India) or FNS (Russia)</text>
+    <text class="mono" x="85" y="184">attachment: ITD.-.rar · CBDT.rar · фнс.zip</text>
+    <text class="mitre" x="85" y="200">MITRE T1566.001 / T1566.002 — Spearphishing Attachment / Link</text>
+  </g>
+
+  <!-- Stage 2 — RustSL loader -->
+  <g>
+    <rect class="stage-box" x="40" y="225" width="470" height="80" rx="6"/>
+    <circle class="badge-circle" cx="60" cy="245" r="14"/>
+    <text class="badge-text" x="60" y="250">2</text>
+    <text class="stage-label" x="85" y="243">Execution — RustSL loader with PDF icon</text>
+    <text class="stage-sub" x="85" y="261">User opens Click File.exe / BillReceipt.exe / Review the file.exe</text>
+    <text class="mono" x="85" y="279">XOR key: RSL_STEG_2025_KEY · markers &lt;RSL_START&gt;...&lt;RSL_END&gt;</text>
+    <text class="mitre" x="85" y="295">MITRE T1204.002 / T1027 — User Execution / Obfuscated Files</text>
+  </g>
+
+  <!-- Stage 3 — Geofence + Halos Gate -->
+  <g>
+    <rect class="stage-box" x="40" y="320" width="470" height="80" rx="6"/>
+    <circle class="badge-circle" cx="60" cy="340" r="14"/>
+    <text class="badge-text" x="60" y="345">3</text>
+    <text class="stage-label" x="85" y="338">Defense Evasion — geofence + Halo's Gate syscalls</text>
+    <text class="stage-sub" x="85" y="356">ip-api.com · ipwho.is · ipinfo.io · ipapi.co · geoplugin.net</text>
+    <text class="mono" x="85" y="374">allow-list: RU · IN · ID · ZA · KH · JP (since 2026-01-19)</text>
+    <text class="mitre" x="85" y="390">MITRE T1027.007 / T1480 — Indirect Syscalls / Execution Guardrails</text>
+  </g>
+
+  <!-- Stage 4 — Phantom Persistence -->
+  <g>
+    <rect class="stage-box" x="40" y="415" width="470" height="80" rx="6"/>
+    <circle class="badge-circle" cx="60" cy="435" r="14"/>
+    <text class="badge-text" x="60" y="440">4</text>
+    <text class="stage-label" x="85" y="433">Persistence — Phantom Persistence shutdown hijack</text>
+    <text class="stage-sub" x="85" y="451">RegisterApplicationRestart + SetProcessShutdownParameters(0x4FF)</text>
+    <text class="mono" x="85" y="469">debug log: rsl_debug.log · "God-Tier Telemetry Blinding"</text>
+    <text class="mitre" x="85" y="485">MITRE T1574 — Hijack Execution Flow</text>
+  </g>
+
+  <!-- Stage 5 — ValleyRAT plugin chain -->
+  <g>
+    <rect class="stage-box" x="40" y="510" width="470" height="80" rx="6"/>
+    <circle class="badge-circle" cx="60" cy="530" r="14"/>
+    <text class="badge-text" x="60" y="535">5</text>
+    <text class="stage-label" x="85" y="528">Stage 2 — ValleyRAT (Winos 4.0) plugin load</text>
+    <text class="stage-sub" x="85" y="546">登录模块.dll_bin → 上线模块.dll → 保86.dll → 111.zip</text>
+    <text class="mono" x="85" y="564">PDB: winos4.0测试插件.pdb · md5 4a5195a3...393</text>
+    <text class="mitre" x="85" y="580">MITRE T1140 / T1055 — Deobfuscation / Process Injection</text>
+  </g>
+
+  <!-- Stage 6 — Python env + ABCDoor install -->
+  <g>
+    <rect class="stage-box" x="40" y="605" width="470" height="80" rx="6"/>
+    <circle class="badge-circle" cx="60" cy="625" r="14"/>
+    <text class="badge-text" x="60" y="630">6</text>
+    <text class="stage-label" x="85" y="623">Stage 3 — ABCDoor Python implant install (Tailscale brand abuse)</text>
+    <text class="stage-sub" x="85" y="641">update.bat copies to C:\ProgramData\Tailscale\</text>
+    <text class="mono" x="85" y="659">cmd: pythonw.exe -m appclient · core: appclient.core.pyd (Cython 3.0)</text>
+    <text class="mitre" x="85" y="675">MITRE T1059.006 / T1218 — Python / Signed Binary Proxy Execution</text>
+  </g>
+
+  <!-- Stage 7 — Persistence Run key + scheduled task -->
+  <g>
+    <rect class="stage-box" x="40" y="700" width="470" height="80" rx="6"/>
+    <circle class="badge-circle" cx="60" cy="720" r="14"/>
+    <text class="badge-text" x="60" y="725">7</text>
+    <text class="stage-label" x="85" y="718">Persistence — Run key + AppClient scheduled task (1-minute)</text>
+    <text class="stage-sub" x="85" y="736">HKCU\...\Run\AppClient = pythonw.exe -m appclient</text>
+    <text class="mono" x="85" y="754">schtasks /create /sc minute /mo 1 /tn AppClient /tr ...</text>
+    <text class="mitre" x="85" y="770">MITRE T1547.001 / T1053.005 — Run Key / Scheduled Task</text>
+  </g>
+
+  <!-- Stage 8 — Discovery + Collection -->
+  <g>
+    <rect class="stage-box" x="40" y="795" width="470" height="80" rx="6"/>
+    <circle class="badge-circle" cx="60" cy="815" r="14"/>
+    <text class="badge-text" x="60" y="820">8</text>
+    <text class="stage-label" x="85" y="813">Collection — screenshots, keys, clipboard, file system</text>
+    <text class="stage-sub" x="85" y="831">SystemInfoManager · RemoteControlManager · ClipboardManager</text>
+    <text class="mono" x="85" y="849">ddagrab Desktop Duplication API · DPAPI · pynput keyboard hook</text>
+    <text class="mitre" x="85" y="865">MITRE T1113 / T1115 / T1056.001 — Screen Capture / Clipboard / Input</text>
+  </g>
+
+  <!-- Stage 9 — C2 + Exfil -->
+  <g>
+    <rect class="stage-box" x="40" y="890" width="470" height="80" rx="6"/>
+    <circle class="badge-circle" cx="60" cy="910" r="14"/>
+    <text class="badge-text" x="60" y="915">9</text>
+    <text class="stage-label" x="85" y="908">Command and Control — Socket.IO over HTTPS</text>
+    <text class="stage-sub" x="85" y="926">auth JSON: role + device_info + version:157</text>
+    <text class="mono" x="85" y="944">device_id: MachineGuid (overwrites UUID4 in device.log)</text>
+    <text class="mitre" x="85" y="960">MITRE T1071.001 / T1041 — HTTPS C2 / Exfiltration Over C2</text>
+  </g>
+
+  <!-- C2 panel -->
+  <rect class="c2-panel" x="555" y="130" width="295" height="350" rx="6"/>
+  <text class="c2-title" x="567" y="150">Silver Fox C2 cluster</text>
+  <text class="mono" x="567" y="172">Payload host:</text>
+  <text class="ioc" x="567" y="188">abc.haijing88[.]com</text>
+  <text class="ioc" x="567" y="204">abc.fetish-friends[.]com</text>
+  <text class="ioc" x="567" y="220">mcagov[.]cc</text>
+  <text class="mono" x="567" y="244">ValleyRAT C2:</text>
+  <text class="ioc" x="567" y="260">207.56.138.28:6666</text>
+  <text class="mono" x="567" y="284">Plugin C2:</text>
+  <text class="ioc" x="567" y="300">154.82.81.205</text>
+  <text class="mono" x="567" y="324">Operator playbook:</text>
+  <text class="mono" x="567" y="342">• ITD (India) phishing — Dec 2025</text>
+  <text class="mono" x="567" y="358">• FNS (Russia) phishing — Jan 2026</text>
+  <text class="mono" x="567" y="374">• 1 600+ emails in Jan–Feb 2026</text>
+  <text class="mono" x="567" y="390">Aliases:</text>
+  <text class="mono" x="567" y="406">• SwimSnake · Void Arachne</text>
+  <text class="mono" x="567" y="422">• UTG-Q-1000 · Monarch</text>
+  <text class="mono" x="567" y="438">• The Great Thief of Valley</text>
+  <text class="mono" x="567" y="462">Confidence (China nexus): medium-high</text>
+
+  <!-- C2 arrows: stage 5 ↔ C2, stage 6 ↔ C2, stage 9 ↔ C2 -->
+  <line class="arrow-c2" x1="510" y1="550" x2="555" y2="300" marker-end="url(#arrow-c2)"/>
+  <line class="arrow-c2" x1="510" y1="645" x2="555" y2="260" marker-end="url(#arrow-c2)"/>
+  <line class="arrow-c2" x1="510" y1="930" x2="555" y2="190" marker-end="url(#arrow-c2)"/>
+  <line class="arrow-c2" x1="555" y1="200" x2="510" y2="640" marker-end="url(#arrow-c2)"/>
+
+  <!-- Sequential arrows between stages -->
+  <line class="arrow-line" x1="280" y1="210" x2="280" y2="225" marker-end="url(#arrow)"/>
+  <line class="arrow-line" x1="280" y1="305" x2="280" y2="320" marker-end="url(#arrow)"/>
+  <line class="arrow-line" x1="280" y1="400" x2="280" y2="415" marker-end="url(#arrow)"/>
+  <line class="arrow-line" x1="280" y1="495" x2="280" y2="510" marker-end="url(#arrow)"/>
+  <line class="arrow-line" x1="280" y1="590" x2="280" y2="605" marker-end="url(#arrow)"/>
+  <line class="arrow-line" x1="280" y1="685" x2="280" y2="700" marker-end="url(#arrow)"/>
+  <line class="arrow-line" x1="280" y1="780" x2="280" y2="795" marker-end="url(#arrow)"/>
+  <line class="arrow-line" x1="280" y1="875" x2="280" y2="890" marker-end="url(#arrow)"/>
+
+  <!-- Detection anchors footer -->
+  <rect class="det-panel" x="20" y="1015" width="840" height="150" rx="6"/>
+  <text class="det-title" x="35" y="1037">Detection anchors</text>
+  <text class="det-line" x="35" y="1057">• Sigma · silverfox_pythonw_appclient_persistence.yml — pythonw.exe -m appclient + LOCALAPPDATA\appclient\ or ProgramData\Tailscale\</text>
+  <text class="det-line" x="35" y="1075">• Sigma · silverfox_rustsl_phantom_persistence_shutdown_hijack.yml — file_event rsl_debug.log write in user-writable directory</text>
+  <text class="det-line" x="35" y="1093">• Sigma · silverfox_appclient_scheduled_task_registration.yml — schtasks /create /tn AppClient + pythonw -m appclient</text>
+  <text class="det-line" x="35" y="1111">• KQL · persistence-chain join (Run key + sched task + path) · ValleyRAT C2 egress · PDF-icon EXE from tax-themed archive</text>
+  <text class="det-line" x="35" y="1129">• YARA · ABCDoor_AppClient_Python_Implant_2026 (Cython + manager classes) · RustSL_Loader_Phantom_Persistence_2026 (banner + geofence)</text>
+  <text class="det-line" x="35" y="1147">• Suricata · 6 sids 8210001-8210006 — DNS (haijing88, mcagov.cc, fetish-friends) · TCP 207.56.138.0/24:6666 · HTTP UA PythonDownloader</text>
+</svg>

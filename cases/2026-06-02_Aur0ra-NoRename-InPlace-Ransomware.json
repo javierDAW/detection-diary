@@ -1,0 +1,181 @@
+{
+  "name": "2026-06-02 — 2026-06-02_Aur0ra-NoRename-InPlace-Ransomware",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-extortion via Tor — clusters: Aur0ra (unattributed ransomware family)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1566.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1091",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1059",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1497.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1564.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1027.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1055",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1134",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1546.011",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1548",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1012",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1057",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1082",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1120",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1135",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1560",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1071",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1090.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1070.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    },
+    {
+      "techniqueID": "T1202",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Aur0ra ransomware — in-place encryption with no rename and no extension, double-"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

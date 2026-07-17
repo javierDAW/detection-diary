@@ -1,0 +1,139 @@
+{
+  "name": "2026-05-06 — 2026-05-06_CodeOfConduct-AiTM-Storm-1747",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Microsoft Threat Intelligence, May 2026) — clusters: Storm-1747, Storm-1575, Tycoon2FA, Dadsec",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1608.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1566.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1204.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1557",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1606.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1098.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1564.008",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1114.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1114.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Code of Conduct AiTM — Storm-1747 / Tycoon2FA campaign against Microsoft 365 (Mi"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

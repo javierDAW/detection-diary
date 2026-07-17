@@ -1,0 +1,37 @@
+title: Proxy CONNECT Tunnel Toward Media Land LLC Bulletproof Hosting Space
+id: f93f2adf-398b-4934-abcc-87e23b4becab
+status: experimental
+description: |
+    Detects HTTP CONNECT-style proxy tunneling from an internal web gateway or
+    forward proxy toward destination ports commonly used by Media Land LLC
+    (AS206728) reverse-proxy front-ends within the sanctioned netblocks. Media
+    Land's fast-flux front-ends historically ran Nginx on ports 80 and 443,
+    with resellers observed fronting additional traffic on 8080/1080.
+references:
+    - https://www.spamhaus.org/resource-hub/bulletproof-hosting/bulletproof-hosting-theres-a-new-kid-in-town/
+    - https://ipinfo.io/AS206728
+author: Jarmi
+date: 2026/07/17
+tags:
+    - attack.command-and-control
+    - attack.defense-evasion
+logsource:
+    category: network_connection
+    product: linux
+    service: proxy
+detection:
+    selection_dest:
+        DestinationIp|cidr:
+            - '45.141.85.0/24'
+            - '91.220.163.0/24'
+    selection_port:
+        DestinationPort:
+            - 80
+            - 443
+            - 8080
+            - 1080
+    condition: selection_dest and selection_port
+falsepositives:
+    - Proxy telemetry gaps where destination IP is logged but original client
+      context is lost; corroborate with source-host asset ownership before acting
+level: medium

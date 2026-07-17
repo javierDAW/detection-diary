@@ -1,0 +1,22 @@
+// Title: Fast-Flux DNS Resolution Pattern Pointing Into Media Land Netblocks
+// Id: f93f2adf-398b-4934-abcc-87e23b4becab
+// MITRE: T1568.001, T1583.001
+// Reference: https://www.spamhaus.org/resource-hub/bulletproof-hosting/bulletproof-hosting-theres-a-new-kid-in-town/
+// Author: Jarmi
+// Date: 2026/07/17
+// Tested on: Microsoft Sentinel (requires a DNS query table, e.g. custom
+//            DnsEvents ingestion or a third-party pDNS connector)
+// FP notes: Legitimate CDN/anycast services also rotate A records with short
+//           TTLs; the distinguishing signal here is that at least one resolved
+//           IP falls inside a Media Land LLC (AS206728) netblock.
+let bphNetblocks = dynamic(["45.141.85.0/24", "91.220.163.0/24"]);
+<add_known_dns_query_table>
+| where TimeGenerated > ago(30d)
+| where ResponseCodeName == "NOERROR"
+| summarize ResolvedIPs = make_set(IPAddress), RecordCount = dcount(IPAddress), MinTTL = min(TTL)
+    by QueryName = tolower(Name), bin(TimeGenerated, 1h)
+| where RecordCount >= 3 and MinTTL <= 600
+| mv-expand ResolvedIPs
+| where ipv4_is_match(tostring(ResolvedIPs), "45.141.85.0/24") or ipv4_is_match(tostring(ResolvedIPs), "91.220.163.0/24")
+| project TimeGenerated, QueryName, ResolvedIPs, RecordCount, MinTTL
+| sort by TimeGenerated desc

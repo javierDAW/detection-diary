@@ -4,11 +4,13 @@
 
 # Platforms: windows
 
-51 day(s) covering this platform.
+53 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-17 | Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting Indictment | Media Land LLC / ML.Cloud LLC | [`2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/`](../../days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/) |
+| 2026-07-16 | Forgotten UEFI shims undermining Secure Boot: ESET's 11 Microsoft-signed bootloaders | UEFI shim trust-chain disclosure (ESET Research) | [`2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/`](../../days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/) |
 | 2026-07-12 | NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arrest) | NoName057(16) | [`2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/`](../../days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/) |
 | 2026-07-10 | Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE) | Cavern Manticore | [`2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/`](../../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/) |
 | 2026-07-08 | Phantom Squatting: AI-Hallucinated Domains Weaponised as Phishing Infrastructure (Montana Empire kit) | Unattributed (Montana Empire operator) | [`2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/`](../../days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/) |

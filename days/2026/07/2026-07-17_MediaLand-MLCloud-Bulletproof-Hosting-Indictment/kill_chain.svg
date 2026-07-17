@@ -1,0 +1,222 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1380" role="img" aria-labelledby="t d">
+<title id="t">Media Land / ML.Cloud bulletproof hosting kill chain</title>
+<desc id="d">Two-lane CTI takedown diagram. Left lane tracks Media Land LLC and ML.Cloud LLC building a decade-long bulletproof hosting business: AS206728 stood up in 2016, fraudulent domains and fast-flux DNS, criminal marketplace and malware hosting, ransomware affiliate onboarding for LockBit, BlackSuit, Play and Cl0p, DDoS against US critical infrastructure, and an April 2025 internal breach that leaked its own customer ledger. Right lane tracks the parallel CTI and law-enforcement disruption effort: Recorded Future and Prodaft attribution, November 2025 Five Eyes sanctions and a CISA mitigation guide, Silent Push peering-partner analysis of JSC RetnNet and RETN Limited, the July 2026 DOJ indictment unsealing, and a Rewards for Justice bounty plus joint EU/UK sanctions. Bottom band summarizes victim scope and the fact that sanctions did not immediately take the infrastructure offline. Footer states the detection anchors: ASN-level blocking, peering-partner mapping, and treating leaked provider ledgers as durable CTI assets.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1380"/>
+<rect class="acc-edge-network" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Media Land / ML.Cloud Bulletproof Hosting Indictment</text>
+<text class="meta" x="20" y="58">Vendor: DOJ / OFAC / Recorded Future / Prodaft / Silent Push - Date: 2026-07-14 to 2026-07-17 - Cluster: Media Land LLC / ML.Cloud LLC - Day 81</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="900"/>
+<rect class="laneR" x="450" y="85" width="410" height="900"/>
+<text class="laneLabelL" x="30" y="97">MEDIA LAND / ML.CLOUD BUILDUP</text>
+<text class="laneLabelR" x="460" y="97">CTI ATTRIBUTION AND LE DISRUPTION</text>
+
+<rect class="stage" x="30" y="100" width="395" height="130"/>
+<circle class="badge" cx="50" cy="120" r="14"/>
+<text class="badgeText" x="50" y="124">1</text>
+<text class="label" x="70" y="124">BPH Platform Stood Up (~2015-2016)</text>
+<text class="sub" x="40" y="148">Media Land LLC registers AS206728, RIPE-</text>
+<text class="sub" x="40" y="164">allocated 2016-11-17; VPS/KVM + dedicated-</text>
+<text class="sub" x="40" y="180">server rental sold on RU-language forums</text>
+<text class="mono" x="40" y="206">AS206728 45.141.85.0/24 91.220.163.0/24</text>
+<text class="mono" x="40" y="220">~385 domains / ~512 IPv4 (takedown-era)</text>
+
+<rect class="stage" x="30" y="245" width="395" height="130"/>
+<circle class="badge" cx="50" cy="265" r="14"/>
+<text class="badgeText" x="50" y="269">2</text>
+<text class="label" x="70" y="269">Fraudulent Domains + Fast-Flux DNS</text>
+<text class="sub" x="40" y="293">ML.Cloud fronts customer domains; 3-4 A</text>
+<text class="sub" x="40" y="309">records, ~600s TTL, chained reverse-proxy</text>
+<text class="sub" x="40" y="325">layers obscure the real backend server</text>
+<text class="mono" x="40" y="351">T1583.001 T1568.001</text>
+<text class="mono" x="40" y="365">JARM/cert overlap observed Sep-Nov 2024</text>
+
+<rect class="stage" x="30" y="390" width="395" height="130"/>
+<circle class="badge" cx="50" cy="410" r="14"/>
+<text class="badgeText" x="50" y="414">3</text>
+<text class="label" x="70" y="414">Criminal Marketplace + Malware Hosting</text>
+<text class="sub" x="40" y="438">8+ carding markets (Briansclub, Bidencash</text>
+<text class="sub" x="40" y="454">and others), ransomware leak sites, phish</text>
+<text class="sub" x="40" y="470">kits, exfil drops, code-signing servers</text>
+<text class="mono" x="40" y="496">T1071.001 T1608.001</text>
+<text class="mono" x="40" y="510">Source: DOJ indictment / Apr-2025 leak</text>
+
+<rect class="stage" x="30" y="535" width="395" height="130"/>
+<circle class="badge" cx="50" cy="555" r="14"/>
+<text class="badgeText" x="50" y="559">4</text>
+<text class="label" x="70" y="559">Ransomware Affiliate Onboarding</text>
+<text class="sub" x="40" y="583">17+ groups rent Media Land/ML.Cloud infra</text>
+<text class="sub" x="40" y="599">for C2, leak sites and DDoS, incl. LockBit</text>
+<text class="sub" x="40" y="615">BlackSuit, Play and Cl0p</text>
+<text class="mono" x="40" y="641">T1090.002</text>
+<text class="mono" x="40" y="655">OFAC designation 2025-11-19</text>
+
+<rect class="stage" x="30" y="680" width="395" height="130"/>
+<circle class="badge" cx="50" cy="700" r="14"/>
+<text class="badgeText" x="50" y="704">5</text>
+<text class="label" x="70" y="704">DDoS Against US Critical Infrastructure</text>
+<text class="sub" x="40" y="728">Media Land infra used to launch DDoS on</text>
+<text class="sub" x="40" y="744">US companies incl. telecom systems, per</text>
+<text class="sub" x="40" y="760">original Treasury sanctions rationale</text>
+<text class="mono" x="40" y="786">Source: OFAC press release 2025-11-19</text>
+
+<rect class="stageK" x="30" y="825" width="395" height="130"/>
+<circle class="badgeK" cx="50" cy="845" r="14"/>
+<text class="badgeText" x="50" y="849">6</text>
+<text class="label" x="70" y="849">Internal Breach Exposes Customer Ledger</text>
+<text class="sub" x="40" y="873">Apr 2025: unknown actor leaks Media Land's</text>
+<text class="sub" x="40" y="889">own customer/payment records; Prodaft ties</text>
+<text class="sub" x="40" y="905">intruder to the BlackBasta chat-leak actor</text>
+<text class="mono" x="40" y="931">Source: Risky.Biz / Prodaft, Apr 2025</text>
+
+<rect class="op" x="460" y="100" width="395" height="160"/>
+<circle class="badge" cx="480" cy="120" r="14"/>
+<text class="badgeText" x="480" y="124">A</text>
+<text class="label" x="500" y="124">Recorded Future / Prodaft Attribution</text>
+<text class="sub" x="470" y="148">Allan Liska (Recorded Future) traces infra</text>
+<text class="sub" x="470" y="164">activity to at least 2015; Prodaft links</text>
+<text class="sub" x="470" y="180">the Apr-2025 leak to the BlackBasta leaker</text>
+<text class="sub" x="470" y="196">10-year telemetry underwrites attribution</text>
+<text class="mono" x="470" y="226">Source: CyberScoop 2025-11-19</text>
+
+<rect class="op" x="460" y="275" width="395" height="160"/>
+<circle class="badgeR" cx="480" cy="295" r="14"/>
+<text class="badgeText" x="480" y="299">B</text>
+<text class="label" x="500" y="299">Five Eyes + NL Sanctions (19 Nov 2025)</text>
+<text class="sub" x="470" y="323">Treasury/OFAC, UK, Australia sanction</text>
+<text class="sub" x="470" y="339">Volosovik, Pankova, Zatolokin + 4 entities</text>
+<text class="sub" x="470" y="355">CISA/NSA/FBI publish joint BPH mitigation</text>
+<text class="sub" x="470" y="371">guide same day (ASN-level blocking urged)</text>
+<text class="mono" x="470" y="401">Source: CISA/OFAC 2025-11-19</text>
+
+<rect class="op" x="460" y="450" width="395" height="160"/>
+<circle class="badge" cx="480" cy="470" r="14"/>
+<text class="badgeText" x="480" y="474">C</text>
+<text class="label" x="500" y="474">ASN / Peering-Partner Pressure Mapping</text>
+<text class="sub" x="470" y="498">Silent Push (Zach Edwards) identifies JSC</text>
+<text class="sub" x="470" y="514">RetnNet (RU) and RETN Limited (UK) as the</text>
+<text class="sub" x="470" y="530">peering partners keeping Media Land routed</text>
+<text class="sub" x="470" y="546">sanctions alone did not force an outage</text>
+<text class="mono" x="470" y="576">Source: CyberScoop 2025-11-19</text>
+
+<rect class="opK" x="460" y="625" width="395" height="160"/>
+<circle class="badgeK" cx="480" cy="645" r="14"/>
+<text class="badgeText" x="480" y="649">D</text>
+<text class="label" x="500" y="649">DOJ Indictment Unsealed (14 Jul 2026)</text>
+<text class="sub" x="470" y="673">2024 indictment vs Volosovik, Pankova,</text>
+<text class="sub" x="470" y="689">Zatolokin unsealed in N.D. Ohio; conspiracy</text>
+<text class="sub" x="470" y="705">wire fraud and money-laundering charges;</text>
+<text class="sub" x="470" y="721">$62M+ losses across 21 US states + intl</text>
+<text class="mono" x="470" y="751">Source: DOJ USAO N.D. Ohio, 2026-07-14</text>
+
+<rect class="op" x="460" y="800" width="395" height="160"/>
+<circle class="badgeR" cx="480" cy="820" r="14"/>
+<text class="badgeText" x="480" y="824">E</text>
+<text class="label" x="500" y="824">Reward + Joint EU/UK Sanctions (Jul 2026)</text>
+<text class="sub" x="470" y="848">State Dept Rewards for Justice: up to $10M</text>
+<text class="sub" x="470" y="864">for info on gov-linked associates; EU</text>
+<text class="sub" x="470" y="880">Council + UK issue first joint cyber</text>
+<text class="sub" x="470" y="896">sanctions package against Russia</text>
+<text class="mono" x="470" y="926">Source: RFJ / EU Council, Jul 2026</text>
+
+<path class="arrow" d="M227.5,230 L227.5,245" marker-end="url(#ah)"/>
+<path class="arrow" d="M227.5,375 L227.5,390" marker-end="url(#ah)"/>
+<path class="arrow" d="M227.5,520 L227.5,535" marker-end="url(#ah)"/>
+<path class="arrow" d="M227.5,665 L227.5,680" marker-end="url(#ah)"/>
+<path class="arrow" d="M227.5,810 L227.5,825" marker-end="url(#ah)"/>
+
+<path class="arrowR" d="M657.5,260 L657.5,275" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657.5,435 L657.5,450" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657.5,610 L657.5,625" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657.5,785 L657.5,800" marker-end="url(#ah)"/>
+
+<path class="arrowX" d="M425,150 L460,150" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,600 L460,400" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,880 L460,870" marker-end="url(#ah)"/>
+
+<rect class="band" x="20" y="1005" width="840" height="160"/>
+<text class="label" x="30" y="1029">Impact and Outcome</text>
+<text class="sub" x="30" y="1055">Victims documented across 21 US states plus Australia, the EU, the UAE, Canada and the UK; $62M+ in confirmed losses.</text>
+<text class="sub" x="30" y="1077">None of the three defendants face near-term US extradition - Russia does not extradite nationals - so disruption here</text>
+<text class="sub" x="30" y="1099">means degraded, not eliminated, infrastructure until peering partners cut transit.</text>
+<text class="sub" x="30" y="1121">Genealogy: second primary in CTI-tradecraft slot #24, after Operation Saffron / First VPN Service (Day 22); part of the</text>
+<text class="sub" x="30" y="1143">broader Aeza Group / ZServers bulletproof-hosting sanctions wave.</text>
+
+<rect class="footer" x="20" y="1185" width="840" height="185"/>
+<text class="footerH" x="30" y="1207">Pedagogical takeaway</text>
+<text class="footerT" x="30" y="1227">ASN-level blocking beats IP-level blocking here: BPH tenants assume single IPs burn fast, so IP-only defense stays</text>
+<text class="footerT" x="30" y="1245">structurally behind the threat.</text>
+<text class="footerT" x="30" y="1263">Sanctions, indictments and actual outages are three different timelines - track peering/transit relationships, not</text>
+<text class="footerT" x="30" y="1281">just ASN ownership, to know if disrupted infrastructure is really dark.</text>
+<text class="footerT" x="30" y="1299">A hosting provider's own leaked ledger is a durable CTI asset that re-contextualizes years of orphaned IOCs across</text>
+<text class="footerT" x="30" y="1317">unrelated cybercrime investigations.</text>
+<text class="footerT" x="30" y="1335">Case detail: days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/README.md</text>
+</svg>

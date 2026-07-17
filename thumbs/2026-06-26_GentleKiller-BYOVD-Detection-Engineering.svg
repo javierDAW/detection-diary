@@ -1,0 +1,263 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+  <title id="t">GentleKiller BYOVD kill chain — Day 60</title>
+  <desc id="d">Two-lane kill chain. Left lane: victim-side stages from FortiGate initial access through BYOVD driver service install (critical detection window), EDR process kill loop (telemetry goes dark), OxideHarvest credential theft, and ransomware encryption. Right lane: Gentlemen operator toolkit — victim selection by FortiGate config, GentleKiller 8-variant package assembly, impersonation layer application, kernel BYOVD execution, OxideHarvest affiliate tool, and leaked operator backend. Red badges mark the two critical detection-window stages. Footer summarizes behavioral detection anchors: GentlemenCollection directory, sc.exe kernel service from non-standard path, and EDR process mass termination threshold.</desc>
+  <defs>
+  <style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+  
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+]]></style>
+  <marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+    <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+  </marker>
+  </defs>
+  <!-- Background -->
+  <rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+  <!-- Header -->
+  <text class="head" x="20" y="36">GentleKiller BYOVD Suite — Detection Engineering Day 60</text>
+  <text class="meta" x="20" y="58">Vendor: ESET Research · Date: 2026-06-18 · Cluster: The Gentlemen RaaS · Day 60</text>
+  <!-- Left lane -->
+  <rect class="laneL" x="20" y="85" width="410" height="1080"/>
+  <text class="laneLabelL" x="30" y="106">VICTIM / DEFENDER</text>
+  <!-- Right lane -->
+  <rect class="laneR" x="450" y="85" width="410" height="1080"/>
+  <text class="laneLabelR" x="460" y="106">OPERATOR TOOLKIT</text>
+
+  <!-- ===== LEFT STAGE 1: Initial Access y=120 ===== -->
+  <rect class="stage" x="30" y="120" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="140" r="14"/>
+  <text class="badgeText" x="50" y="145">1</text>
+  <text class="label" x="72" y="144">Initial Access — FortiGate Misconfiguration</text>
+  <text class="sub" x="36" y="168">Gentlemen select victims by FortiGate config scan</text>
+  <text class="sub" x="36" y="184">NTLM relay and OWA/M365 creds as secondary paths</text>
+  <text class="sub" x="36" y="200">Non-US focus: SE Asia / S. America / W. Europe</text>
+  <text class="mono" x="36" y="226">T1190 / T1078 — Src: Check Point + ESET</text>
+  <text class="mono" x="36" y="244">FortiBleed credentials available Jun 2026</text>
+
+  <!-- ===== LEFT STAGE 2: Staging y=270 ===== -->
+  <rect class="stage" x="30" y="270" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="290" r="14"/>
+  <text class="badgeText" x="50" y="295">2</text>
+  <text class="label" x="72" y="294">Staging — GentlemenCollection Directory</text>
+  <text class="sub" x="36" y="318">Affiliate drops operator-provided EDR killer package</text>
+  <text class="sub" x="36" y="334">GentlemenCollection\\ in ALL Gentlemen intrusions</text>
+  <text class="sub" x="36" y="350">8+ GentleKiller + HexKiller + ThrottleBlood + Havoc</text>
+  <text class="mono" x="36" y="376">T1105 / T1074.001 — Detect: file_event Sigma</text>
+  <text class="mono" x="36" y="394">GentlemenCollection = zero FP string anchor</text>
+
+  <!-- ===== LEFT STAGE 3: BYOVD Driver Install y=420 CRITICAL ===== -->
+  <rect class="stageK" x="30" y="420" width="395" height="135"/>
+  <circle class="badgeK" cx="50" cy="440" r="14"/>
+  <text class="badgeText" x="50" y="445">3</text>
+  <text class="label" x="72" y="444">BYOVD — Kernel Driver Installed as Service</text>
+  <text class="sub" x="36" y="468">sc create type= kernel binPath= vuln.sys</text>
+  <text class="sub" x="36" y="484">Path: %TEMP% or %PROGRAMDATA% (not System32)</text>
+  <text class="sub" x="36" y="500">LAST MOMENT with full EDR telemetry available</text>
+  <text class="mono" x="36" y="526">T1543.003 — EID 7045 / sc.exe Sigma fires HERE</text>
+  <text class="mono" x="36" y="544">DeviceRegistry: ImagePath .sys non-std path (KQL)</text>
+
+  <!-- ===== LEFT STAGE 4: EDR Kill y=570 CRITICAL ===== -->
+  <rect class="stageK" x="30" y="570" width="395" height="135"/>
+  <circle class="badgeK" cx="50" cy="590" r="14"/>
+  <text class="badgeText" x="50" y="595">4</text>
+  <text class="label" x="72" y="594">EDR Kill — 400+ Security Processes Terminated</text>
+  <text class="sub" x="36" y="618">DeviceIoControl IOCTL to ring-0 driver handle</text>
+  <text class="sub" x="36" y="634">Loop: MsMpEng / CSFalconService / Sysmon / ekrn...</text>
+  <text class="sub" x="36" y="650">Telemetry goes dark. Sigma/KQL rules silent here.</text>
+  <text class="mono" x="36" y="676">T1562.001 / T1685 — H3 host-silence hunt fires</text>
+  <text class="mono" x="36" y="694">Out-of-band: process events stop, network continues</text>
+
+  <!-- ===== LEFT STAGE 5: OxideHarvest y=720 ===== -->
+  <rect class="stage" x="30" y="720" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="740" r="14"/>
+  <text class="badgeText" x="50" y="745">5</text>
+  <text class="label" x="72" y="744">OxideHarvest — Rust Browser Credential Stealer</text>
+  <text class="sub" x="36" y="768">buildx641.exe -i hosts -u user -p pass -t N -o out</text>
+  <text class="sub" x="36" y="784">Chromium (Chrome/Edge/Brave) + Gecko (Firefox)</text>
+  <text class="sub" x="36" y="800">Creds survive rebuild — rotate all users on host</text>
+  <text class="mono" x="36" y="826">T1552.001 — SHA1:A5CF917E buildx641.exe</text>
+  <text class="mono" x="36" y="844">KQL: buildx64*.exe + -i -u -p -t -o CLI pattern</text>
+
+  <!-- ===== LEFT STAGE 6: Ransomware y=870 ===== -->
+  <rect class="stage" x="30" y="870" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="890" r="14"/>
+  <text class="badgeText" x="50" y="895">6</text>
+  <text class="label" x="72" y="894">Encryption + Double Extortion (T1486)</text>
+  <text class="sub" x="36" y="918">Go encryptor: Windows + Linux targets</text>
+  <text class="sub" x="36" y="934">C encryptor: ESXi targets</text>
+  <text class="sub" x="36" y="950">Exfil before encrypt — leak site if no payment</text>
+  <text class="mono" x="36" y="976">332 published victims first 5 months of 2026</text>
+  <text class="mono" x="36" y="994">90% affiliate revenue share — low entry barrier</text>
+
+  <!-- ===== LEFT STAGE 7: Recovery y=1020 ===== -->
+  <rect class="stage" x="30" y="1020" width="395" height="135"/>
+  <circle class="badge" cx="50" cy="1040" r="14"/>
+  <text class="badgeText" x="50" y="1045">7</text>
+  <text class="label" x="72" y="1044">Recovery — HVCI + Credential Rotation</text>
+  <text class="sub" x="36" y="1068">Rotate ALL browser credentials from affected hosts</text>
+  <text class="sub" x="36" y="1084">Enable HVCI + MS Vulnerable Driver Blocklist</text>
+  <text class="sub" x="36" y="1100">Deploy behavioral rules — H1/H2/H3 hunts active</text>
+  <text class="mono" x="36" y="1126">Day 60 2026-06-26 — Slot #25 detection engineering</text>
+  <text class="mono" x="36" y="1144">Repo genealogy: Days 1 + 19 (Gentlemen prior cases)</text>
+
+  <!-- ===== RIGHT OP A: Victim Selection y=125 ===== -->
+  <rect class="op" x="460" y="125" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="145" r="14"/>
+  <text class="badgeText" x="480" y="150">A</text>
+  <text class="label" x="502" y="149">Victim Selection by FortiGate Config</text>
+  <text class="sub" x="466" y="173">Operators scan for misconfigured FortiGate edge</text>
+  <text class="sub" x="466" y="189">Assign viable candidates to vetted affiliates</text>
+  <text class="sub" x="466" y="205">No US-centric focus — global distribution strategy</text>
+  <text class="sub" x="466" y="221">Leaked chats confirm centralized victim sorting</text>
+  <text class="mono" x="466" y="251">Src: Check Point leaked data 2026-05-04</text>
+  <text class="mono" x="466" y="269">2nd most active RaaS by victim count H1-2026</text>
+
+  <!-- ===== RIGHT OP B: GentleKiller Package y=295 ===== -->
+  <rect class="op" x="460" y="295" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="315" r="14"/>
+  <text class="badgeText" x="480" y="320">B</text>
+  <text class="label" x="502" y="319">GentleKiller — 8+ Variant Package</text>
+  <text class="sub" x="466" y="343">Each variant: different driver, shared kill template</text>
+  <text class="sub" x="466" y="359">eb.sys / nseckrnl.sys / vgk.sys / dmx.sys / G11.sys</text>
+  <text class="sub" x="466" y="375">New PoC weaponized within days of public release</text>
+  <text class="sub" x="466" y="391">Enigma/Themida packed — suffix 1=Enigma 2=Themida</text>
+  <text class="mono" x="466" y="421">SHA1:8AE6BD18 Kasps.exe (Kaspersky variant)</text>
+  <text class="mono" x="466" y="439">SHA1:5AA3124E Valorant2.exe (Valorant variant)</text>
+
+  <!-- ===== RIGHT OP C: Impersonation y=465 ===== -->
+  <rect class="op" x="460" y="465" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="485" r="14"/>
+  <text class="badgeText" x="480" y="490">C</text>
+  <text class="label" x="502" y="489">Impersonation + Packing Layer (T1036.001)</text>
+  <text class="sub" x="466" y="513">Filename mimics vendor: Kasps/FaceIT/Valorant/G11</text>
+  <text class="sub" x="466" y="529">Invalid cert copied from legitimate vendor binary</text>
+  <text class="sub" x="466" y="545">Version info + icon match impersonated product</text>
+  <text class="sub" x="466" y="561">Applied post-compile to 3rd-party tools too</text>
+  <text class="mono" x="466" y="591">HexKiller->Avast.exe / ThrottleBlood->Sent.exe</text>
+  <text class="mono" x="466" y="609">HavocKiller->Sophos.exe (havoc.sys Huawei drv)</text>
+
+  <!-- ===== RIGHT OP D: BYOVD Kernel y=635 CRITICAL ===== -->
+  <rect class="opK" x="460" y="635" width="395" height="155"/>
+  <circle class="badgeK" cx="480" cy="655" r="14"/>
+  <text class="badgeText" x="480" y="660">D</text>
+  <text class="label" x="502" y="659">BYOVD — DeviceIoControl to Kernel (T1106)</text>
+  <text class="sub" x="466" y="683">Driver starts as service; IOCTL -> kernel handle</text>
+  <text class="sub" x="466" y="699">Unregisters ObRegisterCallbacks / PS notify routines</text>
+  <text class="sub" x="466" y="715">TerminateProcess on 400+ protected EDR processes</text>
+  <text class="sub" x="466" y="731">PoC: github.com/BlackSnufkin/BYOVD (public)</text>
+  <text class="mono" x="466" y="761">GentlemenCollection staging dir prerequisite</text>
+  <text class="mono" x="466" y="779">Detection window closes after this executes</text>
+
+  <!-- ===== RIGHT OP E: OxideHarvest y=805 ===== -->
+  <rect class="op" x="460" y="805" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="825" r="14"/>
+  <text class="badgeText" x="480" y="830">E</text>
+  <text class="label" x="502" y="829">OxideHarvest — Affiliate Tool (quant)</text>
+  <text class="sub" x="466" y="853">Rust binary — not operator-developed (affiliate side)</text>
+  <text class="sub" x="466" y="869">Multi-threaded harvest via supplied credential list</text>
+  <text class="sub" x="466" y="885">buildx641.exe / buildx64.exe (multiple builds)</text>
+  <text class="sub" x="466" y="901">chronium_browsers + gecko_browsers JSON config</text>
+  <text class="mono" x="466" y="931">SHA1:A5CF917E buildx641.exe — Win64/Spy.Agent.AGC</text>
+  <text class="mono" x="466" y="949">T1552.001 — YARA: OxideHarvest_Rust rule</text>
+
+  <!-- ===== RIGHT OP F: Operator Backend y=975 ===== -->
+  <rect class="op" x="460" y="975" width="395" height="155"/>
+  <circle class="badgeR" cx="480" cy="995" r="14"/>
+  <text class="badgeText" x="480" y="1000">F</text>
+  <text class="label" x="502" y="999">Operator Backend — Leaked May 2026</text>
+  <text class="sub" x="466" y="1023">Rocket DB 16.22 GB leaked; 9 accounts exposed</text>
+  <text class="sub" x="466" y="1039">zeta88 = hastalamuerte = founder confirmed</text>
+  <text class="sub" x="466" y="1055">8200+ lines internal chats + ransom negotiations</text>
+  <text class="sub" x="466" y="1071">SystemBC botnet 1570+ hosts used for C2 relay</text>
+  <text class="mono" x="466" y="1101">Src: Check Point Research 2026-05-04</text>
+  <text class="mono" x="466" y="1119">Group-IB: ex-Qilin/Embargo affiliate founded gang</text>
+
+  <!-- ===== FOOTER ===== -->
+  <rect class="footer" x="20" y="1175" width="840" height="95"/>
+  <text class="footerH" x="35" y="1197">Detection anchors (behavioral — survive driver rotation):</text>
+  <text class="footerT" x="35" y="1217">(1) file_event: TargetFilename contains GentlemenCollection — fires before EDR kill, zero FP</text>
+  <text class="footerT" x="35" y="1235">(2) sc.exe create type= kernel + binPath in %TEMP%/%PROGRAMDATA% — driver service pre-kill</text>
+  <text class="footerT" x="35" y="1253">(3) 3+ security process terminations within 60s — KQL threshold aggregation post-kill</text>
+  <text class="footerT" x="35" y="1268">(4) Host telemetry silence + network activity — out-of-band H3 hunt (control-plane signal)</text>
+
+  <!-- ===== ARROWS — Left lane vertical flow ===== -->
+  <line class="arrow" x1="228" y1="255" x2="228" y2="270" marker-end="url(#ah)"/>
+  <line class="arrow" x1="228" y1="405" x2="228" y2="420" marker-end="url(#ah)"/>
+  <line class="arrow" x1="228" y1="555" x2="228" y2="570" marker-end="url(#ah)"/>
+  <line class="arrow" x1="228" y1="705" x2="228" y2="720" marker-end="url(#ah)"/>
+  <line class="arrow" x1="228" y1="855" x2="228" y2="870" marker-end="url(#ah)"/>
+  <line class="arrow" x1="228" y1="1005" x2="228" y2="1020" marker-end="url(#ah)"/>
+
+  <!-- ===== ARROWS — Cross-lane (purple dashed) ===== -->
+  <!-- Stage 2 Staging -> Op B GentleKiller Package -->
+  <line class="arrowX" x1="425" y1="337" x2="460" y2="372" marker-end="url(#ah)"/>
+  <!-- Stage 4 EDR Kill -> Op D BYOVD Kernel -->
+  <line class="arrowX" x1="425" y1="637" x2="460" y2="712" marker-end="url(#ah)"/>
+  <!-- Stage 5 OxideHarvest -> Op E -->
+  <line class="arrowX" x1="425" y1="787" x2="460" y2="882" marker-end="url(#ah)"/>
+
+  <!-- ===== ARROWS — Right lane vertical flow ===== -->
+  <line class="arrowR" x1="658" y1="280" x2="658" y2="295" marker-end="url(#ah)"/>
+  <line class="arrowR" x1="658" y1="450" x2="658" y2="465" marker-end="url(#ah)"/>
+  <line class="arrowR" x1="658" y1="620" x2="658" y2="635" marker-end="url(#ah)"/>
+  <line class="arrowR" x1="658" y1="790" x2="658" y2="805" marker-end="url(#ah)"/>
+  <line class="arrowR" x1="658" y1="960" x2="658" y2="975" marker-end="url(#ah)"/>
+</svg>

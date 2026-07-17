@@ -1,3 +1,39 @@
+## 2026.07.17 — Day 81 — Yalishanda unmasked: the Media Land / ML.Cloud indictment
+
+### Added
+- `days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/` — DOJ unsealed a December 2024 indictment (2026-07-14, N.D. Ohio) against Aleksandr Volosovik ("Yalishanda"), Yulia Pankova and Kirill Zatolokin, operators of Russia-based bulletproof hosting providers Media Land LLC and ML.Cloud LLC (AS206728), for conspiracy/wire fraud/money laundering tied to $62M+ in losses across 21 US states plus AU/EU/UAE/CA/UK victims. CTI tradecraft case (taxonomy slot #24, 54-day gap, longest in the repo): decade-long BPH buildup (fast-flux, criminal marketplaces, ransomware-affiliate hosting for LockBit/BlackSuit/Play/Cl0p) versus the parallel attribution/disruption timeline (Recorded Future/Prodaft telemetry, an April 2025 internal leak, November 2025 Five Eyes sanctions, and the July 2026 indictment plus a $10M Rewards for Justice bounty and joint EU/UK sanctions).
+- Sigma (3): `network_connection_medialand_netblock_egress.yml` — egress to Media Land LLC (AS206728) netblocks (network_connection); `network_connection_proxy_tunnel_to_medialand.yml` — proxy CONNECT tunneling toward the same netblocks (network_connection); `process_creation_tunnel_binary_preceding_bph_egress.yml` — tunneling-binary execution preceding BPH egress (process_creation).
+- KQL (3): `medialand_netblock_egress.kql` — DeviceNetworkEvents netblock egress hunt; `tunnel_binary_execution.kql` — process+network join for tunneling tools; `fastflux_dns_pattern.kql` — fast-flux DNS resolution pattern into the sanctioned netblocks.
+- YARA (1 file, 3 rules): reverse-proxy config, fast-flux automation-script and BPH marketing-text artifact matching — explicitly scoped to leaked/seized document triage, not malware, since Media Land sold hosting rather than authoring malware itself.
+- Suricata (1 file, 3 sids): any-traffic, TLS and HTTP-CONNECT alerts for the sanctioned Media Land netblocks.
+- PEAK hunts (3): H1 retrospective netblock egress review; H2 fast-flux DNS pattern hunt; H3 tunneling-binary-plus-egress correlation hunt.
+- `iocs.csv` (9 entries) — AS206728, two sample netblocks/IPs, the ml.cloud domain, and named entities/customers; no CVE in scope for this case, so no `kev.md`.
+- `kill_chain.svg` — template B (two-lane + bottom band), canonical palette, edge-network accent, Media Land buildup vs. CTI/LE disruption timeline.
+
+### Pedagogy
+- ASN-level blocking beats IP-level blocking against bulletproof hosting: BPH tenants assume individual IPs burn fast, so IP-only defense is structurally always behind.
+- Sanctions, indictments and actual infrastructure outages are three different timelines — track peering/transit relationships, not just ASN ownership, to know if disrupted infrastructure is really dark.
+- A hosting provider's own leaked internal ledger is a durable CTI asset that retroactively re-contextualizes years of otherwise-orphaned IOCs across unrelated investigations.
+- "The infrastructure enabler is a legitimate target" now threads through three repo cases (Operation Saffron Day 22, RoboVPN/Vo1d-Popa Day 55, Media Land Day 81) — expect this disruption pattern to keep recurring.
+
+## 2026.07.16 — Day 80 — Forgotten UEFI shims undermining Secure Boot
+
+### Added
+- `days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/` — ESET Research (Martin Smolar, 2026-07-14) disclosed 11 old, Microsoft-signed UEFI shim bootloaders (mostly v0.9 and below) that bypass UEFI Secure Boot on any system trusting the Microsoft Corporation UEFI CA 2011 certificate, regardless of installed OS, since an attacker can bring their own shim copy. Reported to CERT/CC 2026-02-16; dbx revocation shipped 2026-06-09 Patch Tuesday. Two CVEs: CVE-2026-8863 (general set) and CVE-2026-10797 (RHEL/CentOS shim revocation-check desync bug, ~decade old, no CVE until now). No malware sample; a vulnerability-disclosure case, not an active campaign.
+- Sigma (3): `01_sbat_secureboot_state_tamper.yml` — SbatLevel/SecureBoot registry tamper (registry_set); `02_esp_efi_write_non_servicing.yml` — non-servicing ESP `.efi` write (file_event); `03_boot_integrity_disable_commands.yml` — bcdedit/mokutil integrity-disable command lines (process_creation).
+- KQL (4): `esp_efi_write_non_servicing.kql` — fleet-wide non-servicing ESP writes; `sbat_secureboot_registry_change.kql` — SbatLevel/SecureBoot registry changes; `boot_integrity_disable_commandline.kql` — boot-integrity-disable commands; `secureboot_state_registry_4657.kql` — Sentinel Event ID 4657 fallback.
+- YARA (1 file, 3 rules): Authenticode SHA-256 hash-match rules against the 11 revoked shims, split by CVE-2026-8863 set, CVE-2026-10797 set, and a combined convenience rule — hash-matching, not heuristic, per the "no malware sample" honesty constraint.
+- Suricata (1 file, 5 sids): fwupd/LVFS update-channel integrity notes and generic `.efi`/named-vendor-installer staging telemetry — explicitly scoped, no live C2 to signature.
+- PEAK hunts (3): H1 dbx/SBAT revocation gap fleet sweep; H2 unauthorized ESP write followed by a PCR7 boot-policy change; H3 boot-integrity-disable commands outside driver development.
+- `iocs.csv` (22 entries) — 2 CVEs, 11 Authenticode SHA-256 hashes, SBAT/ESP paths, explicit no-C2 notes. `kev.md` — 0/2 CVEs on CISA KEV (checked live, catalogVersion 2026.07.16).
+- `kill_chain.svg` — template A, canonical palette, trust-chain-lifecycle vs attacker-exploitation lanes, IOC anchors.
+
+### Pedagogy
+- "Signed" is a point-in-time claim, not an ongoing guarantee — revocation only works against what was ever catalogued in the first place.
+- This bypass class needs no memory corruption: it is a design/enforcement gap (MOK denylist and SBAT support shipped later and were never backfilled into older signed shims).
+- Read the UEFI ground truth (db, dbx, SbatLevel), not the OS "Secure Boot is on" boolean — the same discipline as checking CISA KEV directly instead of assuming "no CVE listed" means "not exploited."
+- A disclosure with a shipped fix still needs an audit: the dbx update only protects devices that receive it, and does nothing for the deeper transparency gap around pre-2017 shim signings.
+
 ## 2026.07.15 — Day 79 — O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony
 
 ### Added
