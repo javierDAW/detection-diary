@@ -20,7 +20,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [macos](./macos/) | 9 |
 | [microsoft-365](./microsoft-365/) | 1 |
 | [mobile](./mobile/) | 1 |
-| [network-edge](./network-edge/) | 26 |
+| [network-edge](./network-edge/) | 27 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 7 |
 | [saas](./saas/) | 1 |

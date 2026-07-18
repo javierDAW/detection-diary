@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-07-17 07:34 UTC
+# generated 2026-07-18 08:58 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -54,6 +54,7 @@ claude.ai
 coachcybersecurity.com
 com-ae.net
 compliance-protectionoutlook.de
+cst001.epc.mnc053.mcc234.3gppnetwork.org
 cumm.info
 cwrtwright.com
 d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -66,12 +67,14 @@ deploypasskey.com
 direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion
 download-center.online
 download.robovpn.com
+dra1.je211.epc.mnc003.mcc234.3gppnetwork.org
 drivelivelime.com
 en.cumm.info
 encryption-plug-in-signal.com-ae.net
 enrollms.com
 ep-lively-cherry-a80bmwii.eastus2.azure.neon.tech
 ep6pheij.com
+epc.mnc019.mcc425.3gppnetwork.org
 ev2sirbd269o5j.org
 ewujsfb1dp5ran.org
 fasterscommunications.com
@@ -95,6 +98,8 @@ hcgos.com
 hekeroyot.com
 hospitalinstallation.com
 human-check.top
+ideabpl1h.dea.epc.mnc003.mcc520.3gppnetwork.org
+ideabpl1h.epc.mnc019.mcc425.3gppnetwork.org
 image.update-kaspersky.workers.dev
 ip-api.com
 ip-scanner.org

@@ -1,0 +1,43 @@
+title: SS7 anyTimeInterrogation Escalation Following Blocked Location Queries
+id: 570119ef-2f5b-41fd-91ab-a0aa87437018
+status: experimental
+description: |
+  Detects an SS7 MAP anyTimeInterrogation (ATI) message arriving from a Global Title (GT)
+  that already sent one or more provideSubscriberInfo (PSI) or sendRoutingInfoForSM (SRI-SM)
+  queries against the same subscriber within the prior 30 minutes. ATI is a rarely-used,
+  higher-privilege location primitive; in the STA1 campaign documented by Citizen Lab, the
+  actor escalated to ATI (12 messages from the same GT cluster) only after 25 Diameter IDR
+  attempts failed, reusing GTs already seen in the PSI burst. Legitimate ATI use is uncommon
+  outside specific value-added and lawful-intercept services, so a PSI/SRI-SM -> ATI escalation
+  chain against a single target is a strong signal even before any query succeeds. Push the
+  30-minute correlation window to your SIEM (sequence/near) if your firewall does not export
+  a pre-correlated session ID.
+references:
+  - https://citizenlab.ca/research/uncovering-global-telecom-exploitation-by-covert-surveillance-actors/
+  - https://attack.mitre.org/techniques/T1430/
+  - https://attack.mitre.org/techniques/T1095/
+author: Jarmi
+date: 2026/07/18
+tags:
+  - attack.collection
+  - attack.t1430
+  - attack.t1095
+logsource:
+  product: signaling
+  service: ss7
+detection:
+  selection_ati:
+    MAPOperation: 'anyTimeInterrogation'
+  selection_prior_recon:
+    PriorOperationSameTarget:
+      - 'provideSubscriberInfo'
+      - 'sendRoutingInfoForSM'
+  selection_window:
+    PriorOperationWithinMinutes|lte: 30
+  condition: selection_ati and selection_prior_recon and selection_window
+falsepositives:
+  - Legitimate lawful-intercept or emergency-services (E911/eCall) location lookup escalating query type after a soft failure
+  - Value-added service (fleet tracking, roadside assistance) provider retrying with a stronger primitive after a PSI timeout
+  - Signalling firewall self-test / health-check traffic that intentionally exercises multiple MAP operations against a test IMSI
+
+level: high

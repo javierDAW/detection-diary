@@ -1,0 +1,21 @@
+// Title: Diameter Cross-Operator Origin-Host / Origin-Realm Mismatch (SS7/Diameter firewall via Syslog/CEF)
+// Id: b13bb345-f4d0-4dc9-9406-e193463dfb31
+// MITRE: T1036 (Masquerading), T1665 (Hide Infrastructure)
+// Reference: Citizen Lab Report No. 192 "Bad Connection" (STA1 evasion signature)
+// Author: Jarmi
+// Date: 2026-07-18
+// Tested on: Microsoft Sentinel, Syslog table populated via CEF connector from a Diameter
+//   Edge Agent / signalling firewall (Oracle CGBU, Mavenir, Cellusys, Enea, P1 Security)
+// FP notes: confirm the vendor's CEF mapping for OriginHost/OriginRealm before enabling;
+//   exclude confirmed IR.21 roaming partners via a watchlist join instead of a hardcoded list.
+Syslog
+| where SyslogMessage has_any ("Insert-Subscriber-Data-Request", "Authentication-Information-Request", "Update-Location-Request")
+| extend OriginHost = extract(@"Origin-Host[=:]\s*([A-Za-z0-9\.\-]+)", 1, SyslogMessage)
+| extend OriginRealm = extract(@"Origin-Realm[=:]\s*([A-Za-z0-9\.\-]+)", 1, SyslogMessage)
+| extend HostOperatorTag = extract(@"mnc(\d+)\.mcc(\d+)", 0, OriginHost)
+| extend RealmOperatorTag = extract(@"mnc(\d+)\.mcc(\d+)", 0, OriginRealm)
+| where isnotempty(OriginHost) and isnotempty(OriginRealm)
+| where HostOperatorTag != RealmOperatorTag
+| where OriginRealm !endswith "<add_known_roaming_partner_realm_suffix>"
+| project TimeGenerated, Computer, OriginHost, OriginRealm, HostOperatorTag, RealmOperatorTag, SyslogMessage
+| order by TimeGenerated desc

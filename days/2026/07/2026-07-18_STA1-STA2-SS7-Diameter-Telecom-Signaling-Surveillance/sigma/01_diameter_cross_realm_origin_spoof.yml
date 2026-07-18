@@ -1,0 +1,44 @@
+title: Diameter Cross-Operator Origin-Host / Origin-Realm Mismatch
+id: b13bb345-f4d0-4dc9-9406-e193463dfb31
+status: experimental
+description: |
+  Detects a Diameter signalling message (typically Insert-Subscriber-Data-Request or
+  Authentication-Information-Request during roaming) whose Origin-Host is formatted for
+  one mobile operator while the Origin-Realm belongs to a different operator's domain.
+  Under RFC 6733 and 3GPP/GSMA conventions, Origin-Host and Origin-Realm must belong to
+  the same network; a mismatch is the STA1 evasion signature documented by Citizen Lab
+  ("Bad Connection", Report No. 192) - e.g. an AIS Thailand DEA hostname paired with a
+  China Unicom Origin-Realm to steer traffic past realm-keyed firewall allow-lists and
+  into the Syniverse IPX. Requires a Diameter Edge Agent / signalling firewall (DRA/DEA)
+  that flags Origin-Host/Origin-Realm consistency per message; map product/service to
+  your vendor's log export (Oracle CGBU, Mavenir, Cellusys, Enea, P1 Security).
+references:
+  - https://citizenlab.ca/research/uncovering-global-telecom-exploitation-by-covert-surveillance-actors/
+  - https://attack.mitre.org/techniques/T1036/
+  - https://attack.mitre.org/techniques/T1665/
+author: Jarmi
+date: 2026/07/18
+tags:
+  - attack.defense-evasion
+  - attack.t1036
+  - attack.command-and-control
+logsource:
+  product: signaling
+  service: diameter
+detection:
+  selection_command:
+    DiameterCommand:
+      - 'Insert-Subscriber-Data-Request'
+      - 'Authentication-Information-Request'
+      - 'Update-Location-Request'
+  selection_realm_mismatch:
+    OriginHostRealmMatch: 'false'
+  filter_known_roaming_partner:
+    OriginRealm|endswith: '.trusted-roaming-partner.example'
+  condition: selection_command and selection_realm_mismatch and not filter_known_roaming_partner
+falsepositives:
+  - Misconfigured Diameter Routing Agent (DRA) at a legitimate roaming partner (verify against IR.21 filings before escalating)
+  - Newly onboarded MVNO/MVNE whose Origin-Realm has not yet been added to the operator's roaming partner allow-list
+  - filter_known_roaming_partner is a placeholder - replace with your operator's own confirmed IR.21 roaming realms
+
+level: high
