@@ -1,0 +1,28 @@
+// Title: SS7 anyTimeInterrogation Escalation Following PSI/SRI-SM Recon (Syslog/CEF)
+// Id: 570119ef-2f5b-41fd-91ab-a0aa87437018
+// MITRE: T1430 (Location Tracking), T1095 (Non-Application Layer Protocol)
+// Reference: Citizen Lab Report No. 192 "Bad Connection" (STA1 chronology, 2024-11-25)
+// Author: Jarmi
+// Date: 2026-07-18
+// Tested on: Microsoft Sentinel, Syslog table populated via CEF connector from an SS7
+//   signalling firewall / STP (Cellusys, Enea, P1 Security, Mavenir)
+// FP notes: lawful-intercept and E911/eCall platforms legitimately escalate query type;
+//   join against a watchlist of confirmed VAS/LI signalling GTs before alerting.
+let ReconOps = dynamic(["provideSubscriberInfo", "sendRoutingInfoForSM"]);
+let recon = Syslog
+    | where SyslogMessage has_any (ReconOps)
+    | extend GT = extract(@"(?:CallingPartyGT|SourceGT|GT)[=:]\s*(\d{6,15})", 1, SyslogMessage)
+    | extend TargetIMSI = extract(@"IMSI[=:]\s*(\d{10,15})", 1, SyslogMessage)
+    | where isnotempty(GT)
+    | project ReconTime = TimeGenerated, GT, TargetIMSI;
+let ati = Syslog
+    | where SyslogMessage has "anyTimeInterrogation"
+    | extend GT = extract(@"(?:CallingPartyGT|SourceGT|GT)[=:]\s*(\d{6,15})", 1, SyslogMessage)
+    | extend TargetIMSI = extract(@"IMSI[=:]\s*(\d{10,15})", 1, SyslogMessage)
+    | where isnotempty(GT)
+    | project ATITime = TimeGenerated, GT, TargetIMSI, SyslogMessage;
+recon
+| join kind=inner (ati) on GT, TargetIMSI
+| where ATITime between (ReconTime .. (ReconTime + 30m))
+| project ReconTime, ATITime, GT, TargetIMSI, EscalationMinutes = datetime_diff('minute', ATITime, ReconTime), SyslogMessage
+| order by ATITime desc

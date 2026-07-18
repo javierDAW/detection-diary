@@ -1,5 +1,48 @@
 [
  {
+  "date": "2026-07-18",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance",
+  "title": "Bad Connection: STA1/STA2 SS7 and Diameter Signalling Surveillance — and Iran's Wartime Use of the Same Playbook",
+  "clusters": [
+   "STA1",
+   "STA2"
+  ],
+  "country": "Unattributed CSV-nexus (Citizen Lab designation); contextual case: Iran (MOIS/IRGC-nexus) wartime SS7 use is a separate investigation, see Attribution and confidence",
+  "platforms": [
+   "network-edge"
+  ],
+  "sectors": [
+   "telecommunications",
+   "government",
+   "defense"
+  ],
+  "techniques": [
+   "T1591",
+   "T1590.005",
+   "T1650",
+   "T1584.008",
+   "T1036",
+   "T1665",
+   "T1095",
+   "T1430",
+   "T1203"
+  ],
+  "tech_count": 9,
+  "tldr": "Citizen Lab's Report No. 192, \"Bad Connection\" (Gary Miller and Swantje Lange, 2026-04-23), documents two unattributed commercial-surveillance-class actors — STA1 and STA2 — abusing the legacy SS7 and Diameter telecom signalling protocols to covertly geolocate mobile subscribers across dozens of countries, one campaign for over three years without detection. STA1 rotated across eleven operator ide",
+  "thumb": "thumbs/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance.svg",
+  "case_rel": "../days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "STA1",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "bad connection: sta1/sta2 ss7 and diameter signalling surveillance — and iran's wartime use of the same playbook sta1 sta2 unattributed csv-nexus (citizen lab designation); contextual case: iran (mois/irgc-nexus) wartime ss7 use is a separate investigation, see attribution and confidence network-edge telecommunications government defense t1591 t1590.005 t1650 t1584.008 t1036 t1665 t1095 t1430 t1203 espionage / apt "
+ },
+ {
   "date": "2026-07-17",
   "year": "2026",
   "month": "2026-07",

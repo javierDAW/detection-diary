@@ -4,11 +4,12 @@
 
 # Techniques: T1036
 
-5 day(s) covering this technique.
+6 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-18 | Bad Connection: STA1/STA2 SS7 and Diameter Signalling Surveillance — and Iran's Wartime Use of the Same Playbook | STA1 · STA2 | [`2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/`](../../days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/) |
 | 2026-07-03 | From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom) | Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira) | [`2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/`](../../days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/) |
 | 2026-06-26 | GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Maintained EDR Killers | The Gentlemen RaaS (GentleKiller operator) | [`2026-06-26_GentleKiller-BYOVD-Detection-Engineering/`](../../days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/) |
 | 2026-06-15 | OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-chain attack and a multi-year construction-firm intrusion | OceanLotus (APT32) | [`2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/`](../../days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/) |

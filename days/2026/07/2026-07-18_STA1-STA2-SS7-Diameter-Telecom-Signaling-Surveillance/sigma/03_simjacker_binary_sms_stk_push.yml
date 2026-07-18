@@ -1,0 +1,43 @@
+title: SIMjacker-Style Binary SMS (TP-PID=127 / TP-DCS=22) SIM Toolkit Push
+id: 74e70d65-4432-44c9-a71c-7697d9112884
+status: experimental
+description: |
+  Detects an SS7 mt-ForwardSM (mobile-terminated Forward Short Message) or equivalent SMSC
+  delivery record carrying TP-Protocol-Identifier (TP-PID) 127 together with TP-Data-Coding-
+  Scheme (TP-DCS) 22 (0x16) - the SIMjacker over-the-air marker that routes a binary payload
+  directly to the SIM's S@T browser (SIM Toolkit) without any handset UI indication. STA2
+  (Citizen Lab "Bad Connection") used exactly this marker pair to push a location-tracking
+  STK command; the technique was originally disclosed by Enea in 2019 and remains actively
+  used by commercial surveillance platforms. Legitimate OTA provisioning traffic uses the
+  same TP-PID/TP-DCS combination, so this rule is high-signal only when the sender GT is not
+  the subscriber's own home operator OTA platform - tune the home-OTA exclusion list per
+  deployment.
+references:
+  - https://www.enea.com/info/simjacker/
+  - https://citizenlab.ca/research/uncovering-global-telecom-exploitation-by-covert-surveillance-actors/
+  - https://attack.mitre.org/techniques/T1203/
+author: Jarmi
+date: 2026/07/18
+tags:
+  - attack.initial-access
+  - attack.t1203
+  - attack.collection
+  - attack.t1430
+logsource:
+  product: signaling
+  service: ss7
+detection:
+  selection_op:
+    MAPOperation: 'mt-ForwardSM'
+  selection_pid:
+    SM_TP_PID: 127
+  selection_dcs:
+    SM_TP_DCS: 22
+  filter_home_ota_platform:
+    OriginGT|startswith: '<add_known_home_ota_gt_prefix>'
+  condition: selection_op and selection_pid and selection_dcs and not filter_home_ota_platform
+falsepositives:
+  - Legitimate operator OTA (over-the-air) SIM provisioning/config platform, always exclude the confirmed home-network OTA GT range
+  - Value-added-service STK menu push (balance/roaming welcome menus) using the same PID/DCS pair from an authorized VAS aggregator
+
+level: critical

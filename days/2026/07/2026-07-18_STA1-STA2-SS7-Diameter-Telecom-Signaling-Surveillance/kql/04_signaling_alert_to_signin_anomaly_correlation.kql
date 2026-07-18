@@ -1,0 +1,29 @@
+// Title: SS7/Diameter Location-Query Alert Followed by Anomalous Enterprise Sign-In
+// Id: 1a6482f3-8bb1-4e29-89ce-bed2e493a232
+// MITRE: T1430 (Location Tracking), T1591 (Gather Victim Org Information)
+// Reference: Citizen Lab Report No. 192 "Bad Connection"; FT/TechCrunch 2026-07-14 (Iran
+//   SS7 targeting of US military personnel) - correlation pattern for VVIP / deployed-
+//   personnel protection programs that enrol a roaming MSISDN alongside an enterprise identity.
+// Author: Jarmi
+// Date: 2026-07-18
+// Tested on: Microsoft Sentinel, joining a Syslog-ingested signalling-firewall alert
+//   (see 01/02/03 in this folder) with SigninLogs for a watchlist of protected personnel
+//   whose enterprise identity is mapped to a roaming MSISDN/IMSI.
+// FP notes: requires a maintained MSISDN-to-UserPrincipalName watchlist; without it this
+//   query cannot join telecom-layer and identity-layer telemetry and will return nothing.
+let ProtectedPersonnel = _GetWatchlist('ProtectedPersonnelMSISDN') | project MSISDN, UserPrincipalName;
+let SignalingAlerts = Syslog
+    | where SyslogMessage has_any ("anyTimeInterrogation", "provideSubscriberInfo", "mt-ForwardSM", "Insert-Subscriber-Data-Request")
+    | extend TargetMSISDN = extract(@"MSISDN[=:]\s*(\d{8,15})", 1, SyslogMessage)
+    | where isnotempty(TargetMSISDN)
+    | project AlertTime = TimeGenerated, TargetMSISDN, SyslogMessage;
+SignalingAlerts
+| join kind=inner (ProtectedPersonnel) on $left.TargetMSISDN == $right.MSISDN
+| join kind=inner (
+    SigninLogs
+    | where ResultType == "0"
+    | project SignInTime = TimeGenerated, UserPrincipalName, AppDisplayName, IPAddress, Location = tostring(LocationDetails.city), ASN = AutonomousSystemNumber
+) on UserPrincipalName
+| where SignInTime between (AlertTime .. (AlertTime + 6h))
+| project AlertTime, SignInTime, UserPrincipalName, TargetMSISDN, AppDisplayName, IPAddress, Location, ASN, SyslogMessage
+| order by AlertTime desc

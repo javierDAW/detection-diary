@@ -1,0 +1,23 @@
+# STA1 / STA2 SS7 and Diameter telecom-signalling surveillance - Suricata 7.x
+# Author: Jarmi  -  2026-07-18
+# Reference: https://citizenlab.ca/research/uncovering-global-telecom-exploitation-by-covert-surveillance-actors/
+# CAVEAT: Diameter (TCP/SCTP 3868) is frequently unencrypted between roaming partners in
+# practice (Citizen Lab: operators "largely failed to implement" TLS/IPsec), so sid 4100001-
+# 4100002 match cleartext AVP hostnames directly. SS7-over-SIGTRAN (M3UA/SCCP, SCTP 2905) is
+# NOT parsed at the MAP/TCAP layer by stock Suricata - sid 4100003 is a coarse SCTP tripwire
+# on the signalling port only; route confirmed hits to a dedicated SS7 probe (Cellusys/P1
+# Security/Enea) for opcode-level decoding. Hostnames rotate less than IPs in this ecosystem
+# (STA1 reused the same hostnames for 12+ months) but still treat as tripwires, not a
+# permanent blocklist - re-validate against feeds/iocs_all.csv before long-term use.
+# HOME_NET here means the protected operator/interconnect network being monitored, not a
+# typical enterprise LAN.
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET 3868 (msg:"STA1 Diameter cleartext AVP - Tango Networks UK Ghost Operator hostname"; flow:established; content:"cst001.epc.mnc053.mcc234.3gppnetwork.org"; classtype:policy-violation; reference:url,citizenlab.ca/research/uncovering-global-telecom-exploitation-by-covert-surveillance-actors; sid:4100001; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 3868 (msg:"STA1 Diameter cleartext AVP - 019Mobile or AIS/China-Unicom spoofed Ghost Operator hostname"; flow:established; pcre:"/(ideabpl1h\.epc\.mnc019\.mcc425|ideabpl1h\.dea\.epc\.mnc003\.mcc520|vdrap1\.epc\.mnc019\.mcc425|vmdra01\.epc\.mnc019\.mcc425)\.3gppnetwork\.org/"; classtype:policy-violation; reference:url,citizenlab.ca/research/uncovering-global-telecom-exploitation-by-covert-surveillance-actors; sid:4100002; rev:1;)
+
+alert sctp $EXTERNAL_NET any -> $HOME_NET 2905 (msg:"SS7-over-SIGTRAN (M3UA) session from external transit - route to SS7 probe for opcode decode"; classtype:policy-violation; reference:url,citizenlab.ca/research/uncovering-global-telecom-exploitation-by-covert-surveillance-actors; sid:4100003; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET any (msg:"SIMjacker-style binary SMS PDU (TP-PID 0x7F / TP-DCS 0x16) on SMSC-SS7 gateway interface"; flow:established; content:"|7F 16|"; classtype:policy-violation; reference:url,enea.com/info/simjacker; sid:4100004; rev:1;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET 3868 (msg:"STA2 Diameter cleartext AVP - Airtel Jersey fixed Route-Record host"; flow:established; content:"dra1.je211.epc.mnc003.mcc234.3gppnetwork.org"; classtype:policy-violation; reference:url,citizenlab.ca/research/uncovering-global-telecom-exploitation-by-covert-surveillance-actors; sid:4100005; rev:1;)

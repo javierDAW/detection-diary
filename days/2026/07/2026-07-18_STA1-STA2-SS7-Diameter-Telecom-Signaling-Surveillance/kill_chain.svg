@@ -1,0 +1,238 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">STA1/STA2 SS7 and Diameter signalling surveillance kill chain</title>
+<desc id="d">Two-lane kill chain. Left lane: target-network chronology of the STA1 campaign (2024-11-25) from SS7 reconnaissance through Diameter pivot, anyTimeInterrogation escalation and a cross-realm Diameter spoof, continuing into the STA2 SIMjacker zero-click SMS branch (2025-02-11) and a contextual stage on Iran's reported wartime SS7 use against US military personnel (separate investigation). Right lane: the Ghost Operator infrastructure layer - GT and hostname acquisition, the Tango Networks UK and 019Mobile Israel proxy identities, IPX transit manipulation via BICS/Comfone/Syniverse, the STA2 Airtel Jersey entry point, and the multi-year multi-tenant platform behind both campaigns. Critical badges mark the ATI escalation, the cross-realm spoof, the SIMjacker delivery, the DNS-suppressed Ghost Operator, the IPX screening failure and the persistent platform finding.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes & stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Bad Connection: STA1/STA2 SS7 &amp; Diameter Signalling Surveillance</text>
+<text class="meta" x="20" y="58">Vendor: Citizen Lab (Miller/Lange) 2026-04-23 (context: FT 2026-07-14) - Cluster: STA1/STA2 - Day 82</text>
+<rect class="laneL" x="20" y="85" width="410" height="1080" rx="6"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080" rx="6"/>
+<text class="laneLabelL" x="30" y="105">TARGET NETWORK - SIGNALLING CHRONOLOGY</text>
+<text class="laneLabelR" x="460" y="105">GHOST OPERATOR INFRASTRUCTURE</text>
+<!-- L1 -->
+<rect class="stage" x="30" y="120" width="395" height="135" rx="4"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="72" y="144">Recon &amp; Target Selection</text>
+<text class="sub" x="46" y="168">VVIP subscriber IMSI targeted</text>
+<text class="sub" x="46" y="184">IR.21 partner list enumerated</text>
+<text class="sub" x="46" y="200">SRI-SM blocked x2 (10:39-10:41)</text>
+<text class="mono" x="46" y="226">GT 855183901014 SEATEL</text>
+<text class="mono" x="46" y="244">T1591 / T1590.005</text>
+<!-- L2 -->
+<rect class="stage" x="30" y="270" width="395" height="135" rx="4"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="72" y="294">SS7 PSI Burst (11 GTs)</text>
+<text class="sub" x="46" y="318">7+ countries in 3 minutes</text>
+<text class="sub" x="46" y="334">Cambodia / Mozambique / Sweden</text>
+<text class="sub" x="46" y="350">Italy / Liechtenstein / Uganda</text>
+<text class="mono" x="46" y="376">provideSubscriberInfo (PSI)</text>
+<text class="mono" x="46" y="394">T1095 / T1036</text>
+<!-- L3 -->
+<rect class="stage" x="30" y="420" width="395" height="135" rx="4"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="72" y="444">Diameter IDR Pivot</text>
+<text class="sub" x="46" y="468">25x Insert-Subscriber-Data-Req</text>
+<text class="sub" x="46" y="484">via Tango UK + 019Mobile</text>
+<text class="sub" x="46" y="500">all 25 attempts failed</text>
+<text class="mono" x="46" y="526">cst001.epc.mnc053.mcc234</text>
+<text class="mono" x="46" y="544">T1584.008 / T1665</text>
+<!-- L4 -->
+<rect class="stageK" x="30" y="570" width="395" height="135" rx="4"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="72" y="594">ATI Escalation</text>
+<text class="sub" x="46" y="618">12x anyTimeInterrogation</text>
+<text class="sub" x="46" y="634">same GT cluster reused</text>
+<text class="sub" x="46" y="650">rare high-priv primitive</text>
+<text class="mono" x="46" y="676">11:17-11:20 GMT 2024-11-25</text>
+<text class="mono" x="46" y="694">T1430</text>
+<!-- L5 -->
+<rect class="stageK" x="30" y="720" width="395" height="135" rx="4"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="72" y="744">Cross-Realm Diameter Spoof</text>
+<text class="sub" x="46" y="768">AIS Thailand host +</text>
+<text class="sub" x="46" y="784">China Unicom realm spoofed</text>
+<text class="sub" x="46" y="800">Syniverse IPX passed unchecked</text>
+<text class="mono" x="46" y="826">Origin-Realm mcc460 (spoof)</text>
+<text class="mono" x="46" y="844">T1036</text>
+<!-- L6 -->
+<rect class="stageK" x="30" y="870" width="395" height="135" rx="4"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="72" y="894">STA2 SIMjacker Delivery</text>
+<text class="sub" x="46" y="918">Binary SMS TP-PID=127</text>
+<text class="sub" x="46" y="934">TP-DCS=22 S@T browser push</text>
+<text class="sub" x="46" y="950">silent, no handset UI</text>
+<text class="mono" x="46" y="976">TP-PID=127 TP-DCS=22 (0x7F/0x16)</text>
+<text class="mono" x="46" y="994">T1203 / T1430</text>
+<!-- L7 -->
+<rect class="stageK" x="30" y="1020" width="395" height="135" rx="4"/>
+<circle class="badgeR" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="72" y="1044">Contextual: Wartime Kinetic Use</text>
+<text class="sub" x="46" y="1068">Iran SS7 targeting (separate inv.)</text>
+<text class="sub" x="46" y="1084">US military Iraq/Bahrain bases</text>
+<text class="sub" x="46" y="1100">150+ troops wounded (Reuters)</text>
+<text class="mono" x="46" y="1126">FT / TechCrunch 2026-07-14</text>
+<text class="mono" x="46" y="1144">NOT confirmed STA1/STA2 infra</text>
+<!-- R1 -->
+<rect class="op" x="460" y="125" width="395" height="155" rx="4"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">1</text>
+<text class="label" x="502" y="149">GT &amp; Identity Acquisition</text>
+<text class="sub" x="476" y="173">IR.21 roaming filings harvested</text>
+<text class="sub" x="476" y="189">GT and hostname leasing/spoofing</text>
+<text class="sub" x="476" y="205">Pool: 11 GTs across 9 countries</text>
+<text class="sub" x="476" y="221">Acquire Access primitive</text>
+<text class="mono" x="476" y="251">T1590.005 Gather Victim Net Info</text>
+<text class="mono" x="476" y="269">Citizen Lab Report No.192</text>
+<!-- R2 -->
+<rect class="op" x="460" y="295" width="395" height="155" rx="4"/>
+<circle class="badge" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">2</text>
+<text class="label" x="502" y="319">Ghost Operator #1: Tango UK</text>
+<text class="sub" x="476" y="343">Tango Networks UK identity</text>
+<text class="sub" x="476" y="359">MNC053 / MCC234, UK</text>
+<text class="sub" x="476" y="375">Reused 2023-03 to 2024-11</text>
+<text class="sub" x="476" y="391">IR.21-valid, not spoofed</text>
+<text class="mono" x="476" y="421">cst001.epc.mnc053.mcc234</text>
+<text class="mono" x="476" y="439">T1584.008 Compromise Infra</text>
+<!-- R3 -->
+<rect class="opK" x="460" y="465" width="395" height="155" rx="4"/>
+<circle class="badgeK" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">3</text>
+<text class="label" x="502" y="489">Ghost Operator #2: 019Mobile</text>
+<text class="sub" x="476" y="513">019Mobile Israel identity</text>
+<text class="sub" x="476" y="529">Origin-Realm always NXDOMAIN</text>
+<text class="sub" x="476" y="545">ASN 51825 BGP-reachable</text>
+<text class="sub" x="476" y="561">Transit via Partner Comms</text>
+<text class="mono" x="476" y="591">epc.mnc019.mcc425.3gpp...</text>
+<text class="mono" x="476" y="609">T1665 Hide Infrastructure</text>
+<!-- R4 -->
+<rect class="opK" x="460" y="635" width="395" height="155" rx="4"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">4</text>
+<text class="label" x="502" y="659">IPX Transit Manipulation</text>
+<text class="sub" x="476" y="683">Route-Record host injected</text>
+<text class="sub" x="476" y="699">Transits BICS / Comfone / Syniverse</text>
+<text class="sub" x="476" y="715">IPX screening failure exploited</text>
+<text class="sub" x="476" y="731">Cross-realm host/realm spoof</text>
+<text class="mono" x="476" y="761">T1036 Masquerading</text>
+<text class="mono" x="476" y="779">T1095 Non-App Protocol</text>
+<!-- R5 -->
+<rect class="op" x="460" y="805" width="395" height="155" rx="4"/>
+<circle class="badge" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">5</text>
+<text class="label" x="502" y="829">STA2 Infrastructure</text>
+<text class="sub" x="476" y="853">Fixed entry: Airtel Jersey</text>
+<text class="sub" x="476" y="869">TP-OA spoofed as Airtel Rwanda</text>
+<text class="sub" x="476" y="885">GT overlap w/ STA1 (Sweden GT)</text>
+<text class="sub" x="476" y="901">SIMjacker since 2019 (Enea)</text>
+<text class="mono" x="476" y="931">dra1.je211.epc.mnc003...</text>
+<text class="mono" x="476" y="949">T1203 Exploit Client Exec</text>
+<!-- R6 -->
+<rect class="opK" x="460" y="975" width="395" height="155" rx="4"/>
+<circle class="badgeK" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">6</text>
+<text class="label" x="502" y="999">Multi-Tenant Platform</text>
+<text class="sub" x="476" y="1023">500+ events since 2022-11-09</text>
+<text class="sub" x="476" y="1039">15+ countries targeted</text>
+<text class="sub" x="476" y="1055">Sequential TIDs = centralized C2</text>
+<text class="sub" x="476" y="1071">Consistent with CSV platform</text>
+<text class="mono" x="476" y="1101">T1650 / T1584.008</text>
+<text class="mono" x="476" y="1119">Unattributed, CSV-nexus</text>
+<path class="arrow" d="M227.5,255 L227.5,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227.5,405 L227.5,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227.5,555 L227.5,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227.5,705 L227.5,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227.5,855 L227.5,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227.5,1005 L227.5,1020" marker-end="url(#ah)"/>
+<path class="arrow" d="M657.5,280 L657.5,295" marker-end="url(#ah)"/>
+<path class="arrow" d="M657.5,450 L657.5,465" marker-end="url(#ah)"/>
+<path class="arrow" d="M657.5,620 L657.5,635" marker-end="url(#ah)"/>
+<path class="arrow" d="M657.5,790 L657.5,805" marker-end="url(#ah)"/>
+<path class="arrow" d="M657.5,960 L657.5,975" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,337.5 L460,372.5" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,487.5 L460,542.5" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,787.5 L460,712.5" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,937.5 L460,882.5" marker-end="url(#ah)"/>
+<rect class="footer" x="20" y="1175" width="840" height="95" rx="4"/>
+<text class="footerH" x="30" y="1195">Sources and scope</text>
+<text class="footerT" x="30" y="1213">Primary: Citizen Lab Report No.192 Bad Connection (Gary Miller and Swantje Lange, 2026-04-23)</text>
+<text class="footerT" x="30" y="1229">Contextual: FT/TechCrunch Iran SS7 targeting of US military personnel (2026-07-14) - separate investigation</text>
+<text class="footerT" x="30" y="1245">No CVEs in scope: SS7/Diameter abuse is protocol design trust abuse, not a patchable vulnerability</text>
+<text class="footerT" x="30" y="1261">Day 82 - Prof. Ciber detection-diary - category: espionage - template A</text>
+</svg>

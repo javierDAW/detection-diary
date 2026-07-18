@@ -1,0 +1,19 @@
+// Title: SIMjacker-Style Binary SMS (TP-PID=127 / TP-DCS=22) via mt-ForwardSM (Syslog/CEF)
+// Id: 74e70d65-4432-44c9-a71c-7697d9112884
+// MITRE: T1203 (Exploitation for Client Execution), T1430 (Location Tracking)
+// Reference: Enea SIMjacker disclosure (2019); Citizen Lab Report No. 192 (STA2, 2025-02-11)
+// Author: Jarmi
+// Date: 2026-07-18
+// Tested on: Microsoft Sentinel, Syslog table populated via CEF connector from an SS7/SMSC
+//   signalling firewall (Cellusys, Enea, P1 Security, Mavenir)
+// FP notes: legitimate OTA (over-the-air) SIM provisioning uses the same TP-PID/TP-DCS pair;
+//   exclude the confirmed home-network OTA platform GT range via watchlist before alerting.
+Syslog
+| where SyslogMessage has "mt-ForwardSM"
+| extend TP_PID = toint(extract(@"TP-PID[=:]\s*(\d+)", 1, SyslogMessage))
+| extend TP_DCS = toint(extract(@"TP-DCS[=:]\s*(\d+)", 1, SyslogMessage))
+| extend OriginGT = extract(@"(?:CallingPartyGT|SourceGT|GT)[=:]\s*(\d{6,15})", 1, SyslogMessage)
+| where TP_PID == 127 and TP_DCS == 22
+| where OriginGT !startswith "<add_known_home_ota_gt_prefix>"
+| project TimeGenerated, Computer, OriginGT, TP_PID, TP_DCS, SyslogMessage
+| order by TimeGenerated desc

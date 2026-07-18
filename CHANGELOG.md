@@ -1,3 +1,21 @@
+## 2026.07.18 — Day 82 — Bad Connection: STA1/STA2 SS7 and Diameter signalling surveillance
+
+### Added
+- `days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/` — Citizen Lab Report No. 192 "Bad Connection" (Gary Miller and Swantje Lange, 2026-04-23) documents two unattributed commercial-surveillance-class actors, STA1 and STA2, abusing legacy SS7 and Diameter telecom signalling to covertly geolocate mobile subscribers across dozens of countries; STA1 rotated eleven operator identities in nine countries within four hours against one "VVIP" target, STA2 combined SS7 recon with a SIMjacker-class zero-click binary SMS. Weekend auto-rescue case (taxonomy slot #23, Telecom/mobile core, first primary of this repo in the slot). Why-today: FT/TechCrunch reported 2026-07-14 that Iran used the same protocol class to locate US military personnel in Iraq/Bahrain during the Iran War, enabling strikes that wounded 150+ troops — a separate investigation from STA1/STA2, kept explicitly distinct in Attribution and confidence.
+- Sigma (3): `01_diameter_cross_realm_origin_spoof.yml` — Diameter Origin-Host/Origin-Realm cross-operator mismatch (signaling/diameter); `02_ss7_anytimeinterrogation_escalation.yml` — SS7 recon-to-anyTimeInterrogation escalation chain (signaling/ss7); `03_simjacker_binary_sms_stk_push.yml` — SIMjacker TP-PID=127/TP-DCS=22 binary SMS marker (signaling/ss7).
+- KQL (4): `01_diameter_cross_realm_mismatch_syslog.kql` — Sentinel Syslog/CEF realm-mismatch query; `02_ss7_ati_escalation_syslog.kql` — Sentinel PSI/SRI-SM-to-ATI escalation join; `03_simjacker_binary_sms_syslog.kql` — Sentinel SIMjacker marker query; `04_signaling_alert_to_signin_anomaly_correlation.kql` — joins a signalling alert on a protected-personnel MSISDN to a following anomalous Entra sign-in.
+- YARA (1 file, 3 rules): Ghost Operator hostname matching, SS7 recon-to-ATI opcode/GT sequence, and SIMjacker PDU markers — scoped to exported log/PCAP text, no compiled malware sample exists in this case.
+- Suricata (1 file, 5 sids): cleartext Diameter AVP hostname matches (TCP/3868), a coarse SCTP/2905 SIGTRAN tripwire, and a SIMjacker TP-PID/TP-DCS byte match.
+- PEAK hunts (3): H1 multi-GT PSI burst against a single subscriber; H2 Ghost Operator IR.21-vs-observed transit mismatch; H3 telecom-alert-to-identity-anomaly correlation for protected personnel.
+- `iocs.csv` (16 entries) — Ghost Operator hostnames, Global Titles, ASN 51825, SIMjacker marker, and a clearly-labelled contextual note on the separate Iran/US-military reporting. No CVE in scope (SS7/Diameter abuse is protocol design trust abuse, not a patchable bug) — no `kev.md` for this case.
+- `kill_chain.svg` — template A (two-lane vertical), canonical palette, espionage accent, target-network chronology vs. Ghost Operator infrastructure lanes.
+
+### Pedagogy
+- Telecom signalling has no authentication layer — every GT/hostname is leasable, not owned; durable detections target opcode-escalation behaviour and structural realm/route mismatches, not identifiers that rotate in hours.
+- Attribution honesty matters most at the highest stakes: this entry keeps Citizen Lab's unattributed STA1/STA2 findings explicitly separate from the medium-confidence Iran/US-military reporting despite shared technique class and researcher.
+- DNS suppression as an evasion primitive (a domain that is authoritative-NXDOMAIN yet BGP-reachable) is a reusable CTI pattern (T1665) worth hunting outside telecom too.
+- When the target is a person rather than a server, the IR playbook needs a physical-security branch running in parallel with the technical investigation, not after it.
+
 ## 2026.07.17 — Day 81 — Yalishanda unmasked: the Media Land / ML.Cloud indictment
 
 ### Added
