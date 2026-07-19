@@ -1,0 +1,30 @@
+title: SystemSettingsAdminFlows.exe Invoked to Tamper Windows Defender (INC Ransom)
+id: 7f2f489b-7e89-43e9-a292-32d2e73be675
+status: experimental
+description: |
+    Detects the native Windows LOLBin SystemSettingsAdminFlows.exe being used to
+    modify Windows Defender configuration, a technique documented in INC Ransom /
+    GOLD IONIC (MITRE G1032) intrusions ahead of the encryptor detonation.
+references:
+    - https://www.huntress.com/blog/lolbin-to-inc-ransomware
+    - https://attack.mitre.org/groups/G1032/
+author: Jarmi
+date: 2026/07/19
+tags:
+    - attack.defense-evasion
+    - attack.t1685
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_image:
+        Image|endswith: '\SystemSettingsAdminFlows.exe'
+    selection_args:
+        CommandLine|contains:
+            - 'Defender'
+            - 'RemoveDeviceGuard'
+            - 'WindowsDefenderApp'
+    condition: selection_image and selection_args
+falsepositives:
+    - Legitimate MDM/Intune-driven security-baseline changes (correlate with change-management ticket)
+level: high

@@ -1,5 +1,77 @@
 [
  {
+  "date": "2026-07-19",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion",
+  "title": "INC Ransom Hits Georgia's City of Acworth: Municipal Double Extortion and the GOLD IONIC Playbook",
+  "clusters": [
+   "INC Ransom"
+  ],
+  "country": "Unattributed e-crime (RaaS); no confirmed nation-state nexus",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government"
+  ],
+  "techniques": [
+   "T1190",
+   "T1566",
+   "T1078",
+   "T1087.002",
+   "T1482",
+   "T1069.002",
+   "T1018",
+   "T1016",
+   "T1046",
+   "T1135",
+   "T1003.003",
+   "T1570",
+   "T1021.001",
+   "T1036.005",
+   "T1569.002",
+   "T1047",
+   "T1588.002",
+   "T1219",
+   "T1685",
+   "T1070.004",
+   "T1560.001",
+   "T1074",
+   "T1537",
+   "T1486",
+   "T1490",
+   "T1489",
+   "T1491.001",
+   "T1657",
+   "T1090.003",
+   "T1573.002"
+  ],
+  "tech_count": 30,
+  "tldr": "On 2026-07-02 the ransomware-as-a-service (RaaS) operation INC Ransom (tracked by MITRE ATT&CK as G1032 / \"GOLD IONIC\" by Secureworks) listed the City of Acworth, Georgia (acworth-ga.gov, population ~25,000, metro Atlanta) on its Tor double-extortion leak site, threatening to publish \"valuable municipal data\" absent contact. The city's own disclosure places the underlying network intrusion around ",
+  "thumb": "thumbs/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion.svg",
+  "case_rel": "../days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "INC Ransom",
+  "cve_count": 2,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2023-3519",
+    "due": "2023-08-09",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2023-48788",
+    "due": "2024-04-15",
+    "ransom": true
+   }
+  ],
+  "q": "inc ransom hits georgia's city of acworth: municipal double extortion and the gold ionic playbook inc ransom unattributed e-crime (raas); no confirmed nation-state nexus windows government t1190 t1566 t1078 t1087.002 t1482 t1069.002 t1018 t1016 t1046 t1135 t1003.003 t1570 t1021.001 t1036.005 t1569.002 t1047 t1588.002 t1219 t1685 t1070.004 t1560.001 t1074 t1537 t1486 t1490 t1489 t1491.001 t1657 t1090.003 t1573.002 ransomware / e-crime cve-2023-3519 cve-2023-48788"
+ },
+ {
   "date": "2026-07-18",
   "year": "2026",
   "month": "2026-07",

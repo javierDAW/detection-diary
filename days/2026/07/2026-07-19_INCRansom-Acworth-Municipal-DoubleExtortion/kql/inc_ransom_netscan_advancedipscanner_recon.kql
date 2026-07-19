@@ -1,0 +1,15 @@
+// Title: NETSCAN.EXE / Advanced IP Scanner Recon Execution -- INC Ransom Discovery Stage
+// Id: 7d2b5e91-4c0a-4f83-b6e2-1a9f3d7c8e02
+// MITRE: T1046, T1135
+// Reference: https://socradar.io/dark-web-profile-inc-ransom/ ; https://attack.mitre.org/groups/G1032/
+// Author: Jarmi
+// Date: 2026-07-19
+// Tested on: Defender XDR (DeviceProcessEvents)
+// FP notes: legitimate network/helpdesk teams occasionally run Advanced IP Scanner; correlate with change tickets and time-of-day.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FileName in~ ("netscan.exe", "advanced_ip_scanner.exe", "advanced_ip_scanner_console.exe", "AdvancedIPScanner.exe")
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Hosts = dcount(DeviceName), Runs = count()
+    by FileName, InitiatingProcessAccountName
+| where Hosts >= 1
+| order by LastSeen desc

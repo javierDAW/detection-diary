@@ -1,0 +1,14 @@
+// Title: PsExec Renamed winupd.exe -- INC Ransom Lateral Movement
+// Id: 3f1a9c2e-6b7d-4e11-9a2f-8c5d7e1b0a44
+// MITRE: T1036.005, T1569.002
+// Reference: https://attack.mitre.org/groups/G1032/ ; https://www.huntress.com/blog/investigating-new-inc-ransom-group-activity
+// Author: Jarmi
+// Date: 2026-07-19
+// Tested on: Defender XDR (DeviceProcessEvents)
+// FP notes: legitimate WSUS/Intune deployment tools rarely use a binary literally named winupd.exe; verify code signature on any hit.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FileName =~ "winupd.exe"
+| where ProcessCommandLine has_any ("-accepteula", "PSEXESVC") or InitiatingProcessFileName =~ "services.exe"
+| project Timestamp, DeviceName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessAccountName, InitiatingProcessFileName
+| order by Timestamp asc

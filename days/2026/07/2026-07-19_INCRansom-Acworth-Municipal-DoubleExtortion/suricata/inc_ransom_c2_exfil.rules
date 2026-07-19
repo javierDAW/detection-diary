@@ -1,0 +1,12 @@
+# Author: Jarmi
+# Date: 2026-07-19
+# Case: INC Ransom / GOLD IONIC (City of Acworth, GA) -- network detections
+# Custom variables used: $HOME_NET, $EXTERNAL_NET (standard suricata.yaml defaults)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"INC RANSOM Exfil - TLS SNI to Mega cloud storage from internal host"; tls.sni; content:"mega.nz"; endswith; flow:established,to_server; classtype:policy-violation; sid:9200001; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"INC RANSOM Exfil - TLS SNI to mega.co.nz from internal host"; tls.sni; content:"mega.co.nz"; endswith; flow:established,to_server; classtype:policy-violation; sid:9200002; rev:1;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET 6568 (msg:"INC RANSOM Remote Access - AnyDesk protocol traffic to external host on default port"; flow:established,to_server; classtype:policy-violation; sid:9200003; rev:1;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET [5900,5901,5902] (msg:"INC RANSOM Remote Access - RFB/VNC handshake banner observed outbound (TightVNC-class)"; content:"RFB 003."; depth:7; flow:established,to_server; classtype:policy-violation; sid:9200004; rev:1;)
