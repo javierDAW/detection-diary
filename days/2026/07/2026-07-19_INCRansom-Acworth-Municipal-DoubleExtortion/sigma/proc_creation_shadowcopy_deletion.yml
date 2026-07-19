@@ -1,0 +1,34 @@
+title: Volume Shadow Copy Deletion via vssadmin or wmic (INC Ransom Impact Stage)
+id: b1085a66-ca55-40fe-a3f1-d6d83dd3fea9
+status: experimental
+description: |
+    Detects command-line deletion or resizing of Volume Shadow Copy snapshots, the
+    recovery-inhibition step INC Ransomware (S1139) performs via DeviceIoControl /
+    shelled-out vssadmin and wmic shadowcopy commands immediately before or during
+    the encryption run.
+references:
+    - https://attack.mitre.org/software/S1139/
+    - https://www.cybereason.com/hubfs/dam/collateral/reports/threat-alert-inc-ransomware.pdf
+author: Jarmi
+date: 2026/07/19
+tags:
+    - attack.impact
+    - attack.t1490
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_vssadmin:
+        Image|endswith: '\vssadmin.exe'
+        CommandLine|contains|all:
+            - 'delete'
+            - 'shadows'
+    selection_wmic:
+        Image|endswith: '\wmic.exe'
+        CommandLine|contains|all:
+            - 'shadowcopy'
+            - 'delete'
+    condition: selection_vssadmin or selection_wmic
+falsepositives:
+    - Authorized backup-retention maintenance scripts (correlate with scheduled maintenance windows)
+level: high

@@ -55,6 +55,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Gold Sahara](./gold-sahara/) | 1 |
 | [Howling Scorpius](./howling-scorpius/) | 1 |
 | [Hydro Kitten](./hydro-kitten/) | 1 |
+| [INC Ransom](./inc-ransom/) | 1 |
 | [Icarus](./icarus/) | 1 |
 | [Iran-nexus (unattributed)](./iran-nexus-unattributed/) | 1 |
 | [JADEPUFFER](./jadepuffer/) | 1 |

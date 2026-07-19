@@ -1,0 +1,37 @@
+title: PsExec Renamed to winupd.exe (INC Ransom Lateral Movement Masquerade)
+id: b4d6cd3e-9204-4f29-947a-9f5483161998
+status: experimental
+description: |
+    Detects execution or service installation of a PsExec-derived binary renamed
+    winupd.exe to masquerade as a legitimate Windows update artifact. Documented
+    lateral-movement technique used by INC Ransom / GOLD IONIC (MITRE G1032) ahead
+    of fleet-wide encryptor deployment. Threshold aggregation (multiple hosts in a
+    short window) should be pushed to the SIEM layer, not encoded here.
+references:
+    - https://attack.mitre.org/groups/G1032/
+    - https://www.huntress.com/blog/investigating-new-inc-ransom-group-activity
+author: Jarmi
+date: 2026/07/19
+tags:
+    - attack.lateral-movement
+    - attack.defense-evasion
+    - attack.t1036.005
+    - attack.t1569.002
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_image:
+        Image|endswith: '\winupd.exe'
+    selection_psexec_marker:
+        - CommandLine|contains: '-accepteula'
+        - CommandLine|contains: 'PSEXESVC'
+    filter_legit_wsus:
+        Image|startswith:
+            - 'C:\Windows\System32\'
+            - 'C:\Windows\SysWOW64\'
+        Image|endswith: '\WindowsUpdateElevatedInstaller.exe'
+    condition: (selection_image and selection_psexec_marker) and not filter_legit_wsus
+falsepositives:
+    - Legitimately named winupd.exe deployed by an internal patch-management tool (rare; verify code signature)
+level: high

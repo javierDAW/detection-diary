@@ -1,0 +1,34 @@
+title: Outbound Connection to MegaSync/Mega.nz Cloud Storage from Server-Tier Host (INC Ransom Exfil)
+id: 0b99d1a7-8d31-4f5b-a3a4-80c82b9f7631
+status: experimental
+description: |
+    Detects a server-tier or domain-controller-class host initiating outbound
+    connections to Mega cloud-storage infrastructure, the exfiltration channel
+    documented for INC Ransom (MITRE G1032) prior to encryptor detonation. Servers
+    rarely have a legitimate business reason to reach consumer cloud-storage
+    endpoints directly.
+references:
+    - https://attack.mitre.org/groups/G1032/
+    - https://www.secureworks.com/blog/gold-ionic-deploys-inc-ransomware
+author: Jarmi
+date: 2026/07/19
+tags:
+    - attack.exfiltration
+    - attack.t1537
+logsource:
+    category: network_connection
+    product: windows
+detection:
+    selection:
+        DestinationHostname|contains:
+            - 'mega.nz'
+            - 'mega.co.nz'
+            - 'megasync'
+    filter_workstation:
+        Computer|contains:
+            - 'WKS-'
+            - 'LAPTOP-'
+    condition: selection and not filter_workstation
+falsepositives:
+    - Legitimate personal or approved MegaSync backup usage on non-server hosts (tune the workstation filter to your naming convention)
+level: medium

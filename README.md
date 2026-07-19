@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**82 cases** · **147 actors/clusters** · **329 ATT&CK techniques** · **16 platforms** · **79 sectors** · 2026-04-28 -> 2026-07-18
+**83 cases** · **148 actors/clusters** · **333 ATT&CK techniques** · **16 platforms** · **79 sectors** · 2026-04-28 -> 2026-07-19
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/"><img src="days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/kill_chain.svg" alt="2026-07-19 kill chain" width="240"></a><br><sub><b>2026-07-19</b><br>INC Ransom</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/"><img src="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/kill_chain.svg" alt="2026-07-18 kill chain" width="240"></a><br><sub><b>2026-07-18</b><br>STA1 · STA2</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/"><img src="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/kill_chain.svg" alt="2026-07-17 kill chain" width="240"></a><br><sub><b>2026-07-17</b><br>Media Land LLC / ML.Cloud LLC</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/"><img src="days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/kill_chain.svg" alt="2026-07-16 kill chain" width="240"></a><br><sub><b>2026-07-16</b><br>UEFI shim trust-chain disclosure (ESET Research)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/"><img src="days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/kill_chain.svg" alt="2026-07-16 kill chain" width="240"></a><br><sub><b>2026-07-16</b><br>UEFI shim trust-chain disclosure (ESET Research)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/"><img src="days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/kill_chain.svg" alt="2026-07-15 kill chain" width="240"></a><br><sub><b>2026-07-15</b><br>O-UNC-066</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/"><img src="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/kill_chain.svg" alt="2026-07-14 kill chain" width="240"></a><br><sub><b>2026-07-14</b><br>JADEPUFFER</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/"><img src="days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/kill_chain.svg" alt="2026-07-13 kill chain" width="240"></a><br><sub><b>2026-07-13</b><br>UAT-7810</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

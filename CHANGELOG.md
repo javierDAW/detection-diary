@@ -1,3 +1,34 @@
+## 2026.07.19 — Day 83 — INC Ransom hits City of Acworth, GA (municipal double extortion)
+
+### Added
+- `days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/` — INC Ransom (GOLD IONIC, MITRE G1032) claimed City of Acworth, GA on its Tor leak site 2026-07-02; city discloses intrusion start ~2026-06-08. Weekend auto-rescue (taxonomy slot #35, Election/civic infrastructure -- civic-service ransomware, first primary of this repo in the slot, infinite gap) with secondary slot #3 (Ransomware/RaaS/e-crime). Documents the group's general playbook (AdFind/NETSCAN recon, PsExec-as-winupd.exe lateral movement, MegaSync exfil, Rust cross-platform encryptor) since no Acworth-specific technical root cause is public.
+- Sigma (4): `proc_creation_psexec_winupd_masquerade.yml` detects PsExec renamed winupd.exe; `proc_creation_systemsettingsadminflows_defender_tamper.yml` detects native-LOLBin Defender tampering; `proc_creation_shadowcopy_deletion.yml` detects vssadmin/wmic VSS deletion; `network_megasync_cloud_exfil.yml` detects MegaSync cloud egress from server-tier hosts.
+- KQL (3): winupd service-install lateral-movement hunt; NETSCAN/Advanced IP Scanner recon-execution hunt; archive-then-MegaSync exfil correlation join.
+- YARA (1 file, 1 rule): documented INC-README note artifacts, base64 note-decode routine, and winupd/PSEXESVC/NETSCAN markers.
+- Suricata (1 file, 4 sids): MegaSync TLS SNI, AnyDesk port traffic, and RFB/VNC handshake detections.
+- PEAK hunts (3): winupd/PsExec masquerade; archive-then-MegaSync egress; Defender-tamper LOLBin outside maintenance windows.
+- `iocs.csv` (14 entries) -- ransom-note artifacts, persistence/masquerade strings, two playbook CVEs, and cross-city spree context. `kev.md` -- 2/2 CVEs on CISA KEV (CVE-2023-3519, CVE-2023-48788; both playbook-level, neither confirmed as this incident's entry vector).
+- `kill_chain.svg` -- Template A, canonical palette, ransomware category accent, seven defender-lane stages and six attacker-infrastructure ops boxes.
+
+### Pedagogy
+- Civic-service ransomware targets municipalities for public-records/FOIA leverage and thin budgets, not superior tradecraft.
+- Official silence on "was it ransomware" (Delaware County parallel case) is not evidence of absence -- apply known-group playbooks as working hypotheses regardless.
+- LOLBin masquerade (winupd.exe, SystemSettingsAdminFlows.exe) defeats filename allow-listing -- anchor on process lineage and code-signing instead.
+- Distinguish "voter data availability" from "voter data breach" precisely, especially when the underlying claim is politically contested and evidence is still developing.
+
+## 2026.07.18 — Maintenance — Root pollution cleanup (stray duplicate directories/files)
+
+### Removed
+- ~494 stray top-level paths in the repo root: actor/technique/platform-slug directories (e.g. `akira/`, `t1036/`, `windows/`) that were pure legacy duplicates of content already correctly nested under `byActor/`, `byTechnique/`, `byPlatform/`; plus stale root-level `blocklists/`, `stix/`, `thumbs/`, `coverage-enterprise.json`, `coverage-ics.json`, `data.json`, `index.html`, `iocs_all.csv`, `kev_overlay.csv`, `known_exploited_vulnerabilities.json` duplicating `feeds/`, `navigator/`, and `docs/` output.
+- Two leftover atomic-write temp files that were accidentally tracked in git: `byTechnique/t1588-006/.README.md.2iXxDF` and `docs/thumbs/.2026-06-17_FakeInvitation-PhishKit-OTP-RMM.svg.Tjyflc` (both had an identical, correctly-named sibling already in place).
+
+### Root cause
+An early version of the facet-generation logic wrote `byActor`/`byTechnique`/`byPlatform` output directly to repo root instead of into the nested facet folders; this was fixed long ago in `tools/generate_index.py`, but the pre-fix root-level copies were never deleted and kept growing as new facet names appeared across ~80 days of daily commits. Every removed path was byte-diffed against its canonical counterpart before deletion — all were exact duplicates or strictly stale/older subsets (missing only the latest day's row); nothing unique was lost. `tools/validate_all.py` confirms unchanged pre-existing FAIL count (2, both pre-existing unrelated Suricata rule-syntax issues from 2026-06-21/2026-06-25, untouched by this cleanup).
+
+### Pedagogy
+- A generator bug fixed in code isn't fully fixed until its accumulated bad output is cleaned up too — "stop producing more of X" and "remove existing X" are two separate remediation steps.
+- Byte-diffing every candidate against its canonical counterpart before a bulk deletion turns "looks like duplicate cruft" into a verifiable, reversible-if-wrong claim.
+
 ## 2026.07.18 — Day 82 — Bad Connection: STA1/STA2 SS7 and Diameter signalling surveillance
 
 ### Added

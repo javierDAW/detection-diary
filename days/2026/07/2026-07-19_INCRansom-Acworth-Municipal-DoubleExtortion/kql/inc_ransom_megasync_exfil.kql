@@ -1,0 +1,20 @@
+// Title: MegaSync Cloud Egress Correlated with Prior Archive-Utility Execution -- INC Ransom Exfil
+// Id: 9e6c1f48-2a5d-4b9e-8f01-6d3c2b7a5e19
+// MITRE: T1537, T1560.001
+// Reference: https://attack.mitre.org/groups/G1032/ ; https://www.secureworks.com/blog/gold-ionic-deploys-inc-ransomware
+// Author: Jarmi
+// Date: 2026-07-19
+// Tested on: Defender XDR (DeviceNetworkEvents, DeviceProcessEvents)
+// FP notes: approved backup/sync usage of Mega on designated workstations should be allow-listed by DeviceName before triage.
+let archiveHosts =
+    DeviceProcessEvents
+    | where Timestamp > ago(7d)
+    | where FileName in~ ("7z.exe", "7za.exe", "winrar.exe", "rar.exe")
+    | summarize ArchiveTime = max(Timestamp) by DeviceName;
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteUrl has_any ("mega.nz", "mega.co.nz") or InitiatingProcessFileName =~ "megasync.exe"
+| join kind=inner archiveHosts on DeviceName
+| where Timestamp between (ArchiveTime .. ArchiveTime + 6h)
+| project Timestamp, DeviceName, RemoteUrl, RemoteIP, InitiatingProcessFileName, ArchiveTime
+| order by Timestamp asc
