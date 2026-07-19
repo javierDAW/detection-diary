@@ -1,3 +1,16 @@
+## 2026.07.18 — Maintenance — Root pollution cleanup (stray duplicate directories/files)
+
+### Removed
+- ~494 stray top-level paths in the repo root: actor/technique/platform-slug directories (e.g. `akira/`, `t1036/`, `windows/`) that were pure legacy duplicates of content already correctly nested under `byActor/`, `byTechnique/`, `byPlatform/`; plus stale root-level `blocklists/`, `stix/`, `thumbs/`, `coverage-enterprise.json`, `coverage-ics.json`, `data.json`, `index.html`, `iocs_all.csv`, `kev_overlay.csv`, `known_exploited_vulnerabilities.json` duplicating `feeds/`, `navigator/`, and `docs/` output.
+- Two leftover atomic-write temp files that were accidentally tracked in git: `byTechnique/t1588-006/.README.md.2iXxDF` and `docs/thumbs/.2026-06-17_FakeInvitation-PhishKit-OTP-RMM.svg.Tjyflc` (both had an identical, correctly-named sibling already in place).
+
+### Root cause
+An early version of the facet-generation logic wrote `byActor`/`byTechnique`/`byPlatform` output directly to repo root instead of into the nested facet folders; this was fixed long ago in `tools/generate_index.py`, but the pre-fix root-level copies were never deleted and kept growing as new facet names appeared across ~80 days of daily commits. Every removed path was byte-diffed against its canonical counterpart before deletion — all were exact duplicates or strictly stale/older subsets (missing only the latest day's row); nothing unique was lost. `tools/validate_all.py` confirms unchanged pre-existing FAIL count (2, both pre-existing unrelated Suricata rule-syntax issues from 2026-06-21/2026-06-25, untouched by this cleanup).
+
+### Pedagogy
+- A generator bug fixed in code isn't fully fixed until its accumulated bad output is cleaned up too — "stop producing more of X" and "remove existing X" are two separate remediation steps.
+- Byte-diffing every candidate against its canonical counterpart before a bulk deletion turns "looks like duplicate cruft" into a verifiable, reversible-if-wrong claim.
+
 ## 2026.07.19 — Day 83 — INC Ransom hits City of Acworth, GA (municipal double extortion)
 
 ### Added
