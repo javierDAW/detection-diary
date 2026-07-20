@@ -1,0 +1,15 @@
+// Title: RedHook C2 WebSocket and REST Domain Family Egress (Android)
+// Id: 8a3f1d2e-6b7c-4a5d-9e0f-1c2b3a4d5e6f
+// MITRE: T1437.001 (Web Protocols), T1646 (Exfiltration Over C2 Channel)
+// Reference: https://www.group-ib.com/blog/redhook-android-rat-upgraded/
+// Author: Jarmi
+// Date: 2026-07-20
+// Tested on: Microsoft Defender for Endpoint (mobile), DeviceNetworkEvents
+// FP notes: 3n7wj.com is the only published C2 domain family for this variant and
+//           will rotate on the next build; pair with the behavioural Sigma rules
+//           (Accessibility-to-ADB chain, shell-uid anomaly) for durable coverage.
+let redhook_domains = dynamic(["3n7wj.com", "api.3n7wj.com", "skt.3n7wj.com", "sktv.3n7wj.com"]);
+DeviceNetworkEvents
+| where RemoteUrl has_any (redhook_domains)
+| project Timestamp, DeviceName, RemoteUrl, RemoteIP, RemotePort, InitiatingProcessFileName, InitiatingProcessAccountName
+| sort by Timestamp desc

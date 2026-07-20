@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.16)). Generated 2026-07-19._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.16)). Generated 2026-07-20._
 
 **2 of 2 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 

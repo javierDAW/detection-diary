@@ -94,6 +94,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Quasar Linux](./quasar-linux/) | 1 |
 | [REF7707](./ref7707/) | 1 |
 | [Red Lamassu](./red-lamassu/) | 1 |
+| [RedHook](./redhook/) | 1 |
 | [STA1](./sta1/) | 1 |
 | [STA2](./sta2/) | 1 |
 | [STAC6405 (Sophos)](./stac6405-sophos/) | 1 |

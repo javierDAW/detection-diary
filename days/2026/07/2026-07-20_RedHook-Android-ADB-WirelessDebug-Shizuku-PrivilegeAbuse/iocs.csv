@@ -1,0 +1,16 @@
+type,value,context,confidence,source
+note,,"RedHook Android RAT (Group-IB, upgraded variant reported 2026-07-09; original family documented by Cyble, July 2025). No CVE in scope -- this is abuse of a legitimate ADB Wireless Debugging feature via Accessibility-driven automation and the open-source Shizuku framework, not a patchable vulnerability. Domain/endpoint IOCs rotate per build; the durable anchors are the automated Developer-Options/Wireless-ADB-enable behavioural chain and shell-uid (2000) process anomalies.",high,Group-IB
+sha256,453333bffdd1850ea2e0647f7c805530b578919978a01b1e2be52d6eb2add946,RedHook APK sample,high,Group-IB
+domain,3n7wj[.]com,RedHook C2 base domain (api/skt/sktv subdomains),high,Group-IB
+url,hxxps://api.3n7wj[.]com,RedHook REST C2 endpoint base,high,Group-IB
+url,wss://skt.3n7wj[.]com,RedHook WebSocket C2/streaming,high,Group-IB
+url,wss://sktv.3n7wj[.]com/ws/device,RedHook WebSocket screen-streaming endpoint,high,Group-IB
+string,libmx.so,RedHook bundled Shizuku-derived privileged server binary,high,Group-IB
+string,/auth/login,RedHook REST endpoint - initial credential exfiltration,medium,Group-IB
+string,/file/upload,RedHook REST endpoint - screenshot upload,medium,Group-IB
+string,/member/info/addDevice,RedHook REST endpoint - device info upload,medium,Group-IB
+string,/member/info/addsKeyboardInput,RedHook REST endpoint - keylog upload,medium,Group-IB
+string,/member/info/addMessage,RedHook REST endpoint - SMS exfiltration,medium,Group-IB
+string,/member/identity_verification/saveSecurityCode,RedHook REST endpoint - verification code theft,medium,Group-IB
+note,,"Automated Accessibility-driven ADB Wireless Debugging enable chain (tap build number x7, then Developer Options, then Wireless debugging, then pair over 127.0.0.1) is the durable behavioural anchor per Group-IB; not tied to any single hash or domain.",high,Group-IB
+note,,"Shell-uid (2000) process activity by a non-system, non-Shizuku-installed app, and unexplained WRITE_SECURE_SETTINGS grants, are anomalous on stock (non power-user) Android fleets.",medium,Group-IB

@@ -1,3 +1,21 @@
+## 2026.07.20 — Day 84 — RedHook Returns: ADB Wireless Debugging and Shizuku Privilege Abuse
+
+### Added
+- `days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/` — Group-IB (2026-07-09, corroborated by BleepingComputer 2026-07-12) documents an upgraded RedHook Android RAT (family first reported by Cyble, July 2025) that autonomously abuses ADB Wireless Debugging and the Shizuku framework to reach shell-level privilege (uid 2000) via Accessibility-driven automation, no root or exploit required. Monday Espionage-day rotation, slot #11 Mobile (37-day gap, the largest of any Monday-compatible slot). Targets Vietnam and Indonesia via vishing/smishing impersonating government or bank organizations, with APKs hosted on GitHub and AWS S3.
+- Sigma (3): Accessibility-to-Wireless-ADB auto-enable chain; non-system app at shell uid 2000 or unexplained WRITE_SECURE_SETTINGS; screen-streaming activity with no MediaProjection consent event.
+- KQL (3): C2 WebSocket/REST domain-family egress; Accessibility-to-ADB-enable chain join; privileged shell-uid anomaly.
+- YARA (1 file, 2 rules): known-hash/string RedHook APK rule plus a generic ADB/Shizuku privilege-abuse heuristic.
+- Suricata (1 file, 5 sids): TLS SNI on the 3n7wj[.]com C2 subdomain family plus keylog/SMS REST-exfil URI paths.
+- PEAK hunts (3): Accessibility-to-ADB-enable chain; shell-uid/WRITE_SECURE_SETTINGS anomaly; MediaProjection-bypass streaming plus C2 egress.
+- `iocs.csv` (15 entries) — one file hash, C2 domain/URL family, REST endpoint strings, and behavioural-anchor notes. No CVE in scope — legitimate-feature abuse, not a patchable vulnerability — so no `kev.md` for this case.
+- `kill_chain.svg` — Template A, canonical palette, mobile category accent, seven victim-phone stages and six operator-estate ops boxes.
+
+### Pedagogy
+- Legitimate debugging/power-user tooling (ADB Wireless Debugging, Shizuku) is a first-class privilege-escalation surface once Accessibility can drive the UI on its own -- no CVE, no root required.
+- A shell-privileged RTMP stream bypasses the mandatory MediaProjection consent dialog -- absence of a consent prompt is not evidence that no screen capture occurred.
+- Trusted-platform abuse for delivery (GitHub, AWS S3) defeats naive domain-reputation blocking better than throwaway attacker domains.
+- A malware family documented once is not "done": RedHook shows a twelve-month gap between first documentation and a substantially more dangerous re-armed variant.
+
 ## 2026.07.18 — Maintenance — Root pollution cleanup (stray duplicate directories/files)
 
 ### Removed

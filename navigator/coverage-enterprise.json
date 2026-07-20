@@ -6,7 +6,7 @@
     "layer": "4.5"
   },
   "domain": "enterprise-attack",
-  "description": "detection-diary cumulative coverage — 83 cases; score = number of cases featuring the technique.",
+  "description": "detection-diary cumulative coverage — 84 cases; score = number of cases featuring the technique.",
   "sorting": 3,
   "showTacticRowBackground": true,
   "tacticRowBackground": "#2a4a6a",
@@ -752,6 +752,12 @@
       "enabled": true
     },
     {
+      "techniqueID": "T1437.001",
+      "score": 3,
+      "comment": "3 case(s); first 2026-05-09, last 2026-07-20",
+      "enabled": true
+    },
+    {
       "techniqueID": "T1489",
       "score": 3,
       "comment": "3 case(s); first 2026-06-09, last 2026-07-19",
@@ -779,6 +785,12 @@
       "techniqueID": "T1531",
       "score": 3,
       "comment": "3 case(s); first 2026-04-29, last 2026-05-21",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1541",
+      "score": 3,
+      "comment": "3 case(s); first 2026-05-09, last 2026-07-20",
       "enabled": true
     },
     {
@@ -875,6 +887,18 @@
       "techniqueID": "T1614.001",
       "score": 3,
       "comment": "3 case(s); first 2026-05-01, last 2026-05-21",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1655.001",
+      "score": 3,
+      "comment": "3 case(s); first 2026-05-09, last 2026-07-20",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1660",
+      "score": 3,
+      "comment": "3 case(s); first 2026-05-09, last 2026-07-20",
       "enabled": true
     },
     {
@@ -1052,15 +1076,15 @@
       "enabled": true
     },
     {
-      "techniqueID": "T1430",
+      "techniqueID": "T1417.002",
       "score": 2,
-      "comment": "2 case(s); first 2026-05-09, last 2026-07-18",
+      "comment": "2 case(s); first 2026-06-13, last 2026-07-20",
       "enabled": true
     },
     {
-      "techniqueID": "T1437.001",
+      "techniqueID": "T1430",
       "score": 2,
-      "comment": "2 case(s); first 2026-05-09, last 2026-06-13",
+      "comment": "2 case(s); first 2026-05-09, last 2026-07-18",
       "enabled": true
     },
     {
@@ -1079,12 +1103,6 @@
       "techniqueID": "T1518",
       "score": 2,
       "comment": "2 case(s); first 2026-05-01, last 2026-05-07",
-      "enabled": true
-    },
-    {
-      "techniqueID": "T1541",
-      "score": 2,
-      "comment": "2 case(s); first 2026-05-09, last 2026-06-13",
       "enabled": true
     },
     {
@@ -1244,15 +1262,15 @@
       "enabled": true
     },
     {
-      "techniqueID": "T1655.001",
+      "techniqueID": "T1636.004",
       "score": 2,
-      "comment": "2 case(s); first 2026-05-09, last 2026-06-13",
+      "comment": "2 case(s); first 2026-06-13, last 2026-07-20",
       "enabled": true
     },
     {
-      "techniqueID": "T1660",
+      "techniqueID": "T1646",
       "score": 2,
-      "comment": "2 case(s); first 2026-05-09, last 2026-06-13",
+      "comment": "2 case(s); first 2026-06-13, last 2026-07-20",
       "enabled": true
     },
     {
@@ -1526,12 +1544,6 @@
       "enabled": true
     },
     {
-      "techniqueID": "T1417.002",
-      "score": 1,
-      "comment": "1 case(s); first 2026-06-13, last 2026-06-13",
-      "enabled": true
-    },
-    {
       "techniqueID": "T1491.001",
       "score": 1,
       "comment": "1 case(s); first 2026-07-19, last 2026-07-19",
@@ -1577,6 +1589,12 @@
       "techniqueID": "T1513",
       "score": 1,
       "comment": "1 case(s); first 2026-05-09, last 2026-05-09",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1516",
+      "score": 1,
+      "comment": "1 case(s); first 2026-07-20, last 2026-07-20",
       "enabled": true
     },
     {
@@ -1868,6 +1886,12 @@
       "enabled": true
     },
     {
+      "techniqueID": "T1626",
+      "score": 1,
+      "comment": "1 case(s); first 2026-07-20, last 2026-07-20",
+      "enabled": true
+    },
+    {
       "techniqueID": "T1626.001",
       "score": 1,
       "comment": "1 case(s); first 2026-05-09, last 2026-05-09",
@@ -1880,21 +1904,9 @@
       "enabled": true
     },
     {
-      "techniqueID": "T1636.004",
-      "score": 1,
-      "comment": "1 case(s); first 2026-06-13, last 2026-06-13",
-      "enabled": true
-    },
-    {
       "techniqueID": "T1641",
       "score": 1,
       "comment": "1 case(s); first 2026-05-09, last 2026-05-09",
-      "enabled": true
-    },
-    {
-      "techniqueID": "T1646",
-      "score": 1,
-      "comment": "1 case(s); first 2026-06-13, last 2026-06-13",
       "enabled": true
     },
     {

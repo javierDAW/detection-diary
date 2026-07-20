@@ -101,6 +101,7 @@ domain,1vpns.com,First VPN Service primary website (seized 20-May-2026 by joint 
 domain,1vpns.net,First VPN Service secondary domain (seized),high,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 domain,1vpns.org,First VPN Service tertiary domain (seized),high,2026-05-24,2026-05-24,1,2026-05-24_OperationSaffron-FirstVPN-Takedown,FBI_FLASH-20260521-001
 domain,2rxyt8yrhq0bgj.org,BumbleBee DGA C2 domain (atomic-list spelling),high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
+domain,3n7wj.com,RedHook C2 base domain (api/skt/sktv subdomains),high,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
 domain,5.2.1.6.3.0.0.7.4.0.1.0.0.2.ip6.arpa,Staged ip6.arpa zone (armed),high,2026-06-03,2026-06-03,1,2026-06-03_ip6arpa-Reverse-DNS-Phishing,CloudSEK
 domain,5ka8rxp6t6eup2.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
 domain,6cimu4mc085em8.org,BumbleBee DGA C2 domain,high,2026-07-03,2026-07-03,1,2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS,The DFIR Report 2026-06-29
@@ -1522,6 +1523,7 @@ sha256,4109f15056414f25140c7027092953264944664480dd53f086acb8e07d9fccab,httpx OS
 sha256,4130f49fa81a699a667cafdbd6d1f6e781edd686c947eb8ae27134f6dc2c43d7,DOGLEASH backdoor variant,high,2026-07-13,2026-07-13,1,2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash,Cisco Talos UAT-7810 (2026-07-07)
 sha256,4142d5efd4ea2abab77f2f0a917610e2ff976bf9e19d7ad1e9156eccdc5412db,A7Pnj975bl.cfg EtherRAT initial JavaScript payload encrypted AES-256-CBC layered,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
 sha256,425bf771c8c9f740b1ae9803dcb4fd45af4d6a6f171fcc72fc7d511095ca82ce,DOGLEASH backdoor variant,high,2026-07-13,2026-07-13,1,2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash,Cisco Talos UAT-7810 (2026-07-07)
+sha256,453333bffdd1850ea2e0647f7c805530b578919978a01b1e2be52d6eb2add946,RedHook APK sample,high,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
 sha256,45bff0df2c408b3f589aed984cc331b617021ecbea57171dac719b5f545f5e8d,Windows Rust encryptor win_encryptor 1.0 (AES-256-CTR + Kyber1024 + X25519),high,2026-06-09,2026-06-09,1,2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware,Rapid7
 sha256,45cd169bf9cd7298d972425ad0d4e98512f29de4560a155101ab7427e4f4123f,naabu OSS,medium,2026-05-11,2026-05-11,1,2026-05-11_UAT-8302-China-Government-Espionage,https://blog.talosintelligence.com/uat-8302/
 sha256,45d8e56bd86960727bcaa4b5c9f7c3422a22723c23ea5b46b6aa9bc42ed1f9f1,AMOS payload 528n21ktxu08pmer,high,2026-05-30,2026-05-30,1,2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer,Trend Micro
@@ -1718,7 +1720,13 @@ string,/api/nfc/check-pin,NFCMultiPay REST session-PIN validation endpoint (v1),
 string,/api/nfc/poll,NFCMultiPay REST relay polling endpoint (v1),high,2026-06-13,2026-06-13,1,2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay,Cleafy
 string,/api/nfc/publish,NFCMultiPay REST APDU-response publish endpoint (v1),high,2026-06-13,2026-06-13,1,2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay,Cleafy
 string,/api/register,LegionRelay REST C2 endpoint (client registration); paired with /api/status /api/commands /api/result /api/upload,high,2026-06-01,2026-06-01,1,2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine,WithSecure
+string,/auth/login,RedHook REST endpoint - initial credential exfiltration,medium,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
+string,/file/upload,RedHook REST endpoint - screenshot upload,medium,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
 string,/ingest,HTTP POST path used for credential exfiltration to C2,medium,2026-05-14,2026-05-14,1,2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign,Wiz
+string,/member/identity_verification/saveSecurityCode,RedHook REST endpoint - verification code theft,medium,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
+string,/member/info/addDevice,RedHook REST endpoint - device info upload,medium,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
+string,/member/info/addMessage,RedHook REST endpoint - SMS exfiltration,medium,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
+string,/member/info/addsKeyboardInput,RedHook REST endpoint - keylog upload,medium,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
 string,/v3/getType,ProSpy C2 command-polling endpoint URI prefix — Retrofit HTTPS POST,high,2026-06-22,2026-06-22,1,2026-06-22_prospy-bitter-mena,Lookout 2026-04-08
 string,/v3/setEvent,ProSpy error/debug reporting endpoint,high,2026-06-22,2026-06-22,1,2026-06-22_prospy-bitter-mena,Lookout 2026-04-08
 string,/v3/setStatus,ProSpy operational status endpoint,high,2026-06-22,2026-06-22,1,2026-06-22_prospy-bitter-mena,Lookout 2026-04-08
@@ -1952,6 +1960,7 @@ string,kubernetes.io/service-account-token,Highest-impact Secret type leaked (au
 string,kvlnt/vv,Malicious Docker Hub image (Kali base + 2 layers) deployed to EKS; removed by Docker support,high,2026-06-12,2026-06-12,1,2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS,Synacktiv
 string,KYBER,Metadata trailer marker in the last 535 bytes of ELF-encrypted files (already-encrypted skip check),high,2026-06-09,2026-06-09,1,2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware,Rapid7
 string,LdapBrute,"ode.dll LDAP brute-force method; reads LDAP server + base DN from LDAP://RootDSE, page size 1000, accepts any TLS cert",medium,2026-07-10,2026-07-10,1,2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2,gbhackers / Check Point
+string,libmx.so,RedHook bundled Shizuku-derived privileged server binary,high,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
 string,libnfcgate.so,NFCGate-derived native relay engine loaded into com.android.nfc (DevilNFC),high,2026-06-13,2026-06-13,1,2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay,Cleafy
 string,link-pro/link-client,Go main module symbol used to name LinkPro,high,2026-06-12,2026-06-12,1,2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS,Synacktiv
 string,load_module('os'),Module load primitive that bypasses the absence of import and an empty __builtins__ in the validator,high,2026-05-13,2026-05-13,1,2026-05-13_SemanticKernel-Prompt2RCE,https://www.microsoft.com/en-us/security/blog/2026/05/07/prompts-become-shells-rce-vulnerabilities-ai-agent-frameworks/
@@ -2237,6 +2246,7 @@ url,https://<phish_site>/<url-pattern>/processmail.php,Defanged credential-submi
 url,https://abc.haijing88.com/uploads/фнс/фнс.zip,Direct payload URL for Russia-targeted FNS lure archive,high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
 url,https://abc.haijing88.com/uploads/印度邮箱/CBDT.rar,Direct payload URL for India-targeted CBDT lure archive,high,2026-05-18,2026-05-18,1,2026-05-18_SilverFox-ABCDoor-Tax-Phishing,Kaspersky Securelist 2026-04-30
 url,https://afford-effect-construct-tricks.trycloudflare.com,EtherRAT TryCloudflare tunnel C2 endpoint,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
+url,https://api.3n7wj.com,RedHook REST C2 endpoint base,high,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
 url,https://api.github.com/search/commits?q=thebeautifulsnadsoftime,Dead-drop C2 polling endpoint — Miasma JS variant,high,2026-06-25,2026-06-25,1,2026-06-25_Miasma-Codfish-GHA-Tag-Hijack,Aikido Security 2026-06-24
 url,https://check.git-service.com/audio.mp3,Destructive trigger for Israel/Iran-locale hosts,high,2026-05-21,2026-05-21,1,2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,Wiz 2026-05-19
 url,https://check.git-service.com/rope.pyz,Primary rope.pyz payload URL,high,2026-05-21,2026-05-21,1,2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain,Wiz 2026-05-19
@@ -2277,4 +2287,6 @@ url,https://walt-messaging-affairs-occurring.trycloudflare.com,EtherRAT TryCloud
 url,https://when-architectural-cdna-faster.trycloudflare.com,EtherRAT TryCloudflare tunnel C2 endpoint,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
 url,https://witch-skins-lip-coal.trycloudflare.com,EtherRAT TryCloudflare tunnel C2 endpoint,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
 url,https://workshop-lighting-protective-customs.trycloudflare.com,EtherRAT TryCloudflare tunnel C2 endpoint,high,2026-05-15,2026-05-15,1,2026-05-15_EtherRAT-TukTuk-Gentlemen,DFIR Report TB40048
+url,wss://skt.3n7wj.com,RedHook WebSocket C2/streaming,high,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
+url,wss://sktv.3n7wj.com/ws/device,RedHook WebSocket screen-streaming endpoint,high,2026-07-20,2026-07-20,1,2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse,Group-IB
 xor_key,0xBB55FF59DF597B8D,EVTX clearing XOR key,high,2026-05-01,2026-05-01,1,2026-05-01_VECT-2.0-RaaS,Check Point Research

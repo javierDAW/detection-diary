@@ -1,0 +1,20 @@
+# RedHook Android RAT -- C2 WebSocket and REST detections
+# Author: Jarmi
+# Date: 2026-07-20
+# Reference: https://www.group-ib.com/blog/redhook-android-rat-upgraded/
+# Notes:
+#   - SID 2026072001-2026072003 key on the 3n7wj[.]com C2 subdomain family via TLS SNI;
+#     the domain will rotate on the next build, so pair with the behavioural Sigma/KQL
+#     rules (Accessibility-to-ADB-enable chain, shell-uid anomaly) for durable coverage.
+#   - SID 2026072004 catches the keylog-upload REST endpoint used for bulk exfiltration.
+#   - SID 2026072005 catches the SMS-exfiltration REST endpoint.
+
+alert tls any any -> any any (msg:"RedHook C2 REST domain in TLS SNI (api.3n7wj.com)"; flow:to_server,established; tls.sni; content:"api.3n7wj.com"; nocase; endswith; classtype:trojan-activity; sid:2026072001; rev:1;)
+
+alert tls any any -> any any (msg:"RedHook C2 WebSocket domain in TLS SNI (skt.3n7wj.com)"; flow:to_server,established; tls.sni; content:"skt.3n7wj.com"; nocase; endswith; classtype:trojan-activity; sid:2026072002; rev:1;)
+
+alert tls any any -> any any (msg:"RedHook screen-streaming WebSocket domain in TLS SNI (sktv.3n7wj.com)"; flow:to_server,established; tls.sni; content:"sktv.3n7wj.com"; nocase; endswith; classtype:trojan-activity; sid:2026072003; rev:1;)
+
+alert http any any -> any any (msg:"RedHook keylog-upload REST endpoint (addsKeyboardInput)"; flow:to_server,established; http.method; content:"POST"; http.uri; content:"/member/info/addsKeyboardInput"; nocase; classtype:trojan-activity; sid:2026072004; rev:1;)
+
+alert http any any -> any any (msg:"RedHook SMS exfiltration REST endpoint (addMessage)"; flow:to_server,established; http.method; content:"POST"; http.uri; content:"/member/info/addMessage"; nocase; classtype:trojan-activity; sid:2026072005; rev:1;)

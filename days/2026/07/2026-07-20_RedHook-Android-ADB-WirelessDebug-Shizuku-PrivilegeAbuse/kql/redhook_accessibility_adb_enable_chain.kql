@@ -1,0 +1,24 @@
+// Title: Accessibility Grant Followed by Developer-Options / Wireless-ADB Enable (Android)
+// Id: 2b4c6d8e-0a1b-4c3d-8e5f-6a7b8c9d0e1f
+// MITRE: T1516 (Input Injection), T1626 (Abuse Elevation Control Mechanism)
+// Reference: https://www.group-ib.com/blog/redhook-android-rat-upgraded/
+// Author: Jarmi
+// Date: 2026-07-20
+// Tested on: Microsoft Defender for Endpoint (mobile), DeviceEvents
+// FP notes: legitimate developers and Shizuku power users toggle Developer Options
+//           and Wireless ADB directly, without a preceding Accessibility grant from
+//           the same package within the correlation window; baseline that small set.
+let window = 15m;
+let accessibility_grants =
+    DeviceEvents
+    | where ActionType == "AccessibilityServiceEnabled"
+    | project DeviceName, PackageName, AccessTime = Timestamp;
+let adb_enables =
+    DeviceEvents
+    | where ActionType in ("DeveloperOptionsEnabled", "WirelessDebuggingEnabled", "AdbPairingCompleted")
+    | project DeviceName, AdbTime = Timestamp, AdbAction = ActionType;
+accessibility_grants
+| join kind=inner (adb_enables) on DeviceName
+| where AdbTime between (AccessTime .. (AccessTime + window))
+| project DeviceName, PackageName, AccessTime, AdbAction, AdbTime
+| sort by AdbTime desc
