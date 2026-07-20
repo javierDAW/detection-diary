@@ -4,10 +4,11 @@
 
 # Techniques: T1660
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-20 | RedHook Returns: ADB Wireless Debugging and Shizuku Turn Accessibility Abuse into Shell-Level Privilege | RedHook | [`2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/`](../../days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/) |
 | 2026-06-13 | DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Brazilian TAs, AI-assisted) | DevilNFC · NFCMultiPay | [`2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/`](../../days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/) |
 | 2026-05-09 | Albiriox — Android MaaS RAT with Accessibility-VNC FLAG_SECURE bypass (Cleafy Labs, late-2025 / active 2026) | Albiriox | [`2026-05-09_Albiriox-Android-MaaS-AcVNC/`](../../days/2026/05/2026-05-09_Albiriox-Android-MaaS-AcVNC/) |

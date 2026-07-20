@@ -1,5 +1,47 @@
 [
  {
+  "date": "2026-07-20",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse",
+  "title": "RedHook Returns: ADB Wireless Debugging and Shizuku Turn Accessibility Abuse into Shell-Level Privilege",
+  "clusters": [
+   "RedHook"
+  ],
+  "country": "Vietnam / Indonesia (victim geography); operator origin unattributed -- financially motivated, Southeast-Asia-focused",
+  "platforms": [
+   "android"
+  ],
+  "sectors": [
+   "finance",
+   "banking",
+   "government"
+  ],
+  "techniques": [
+   "T1660",
+   "T1655.001",
+   "T1516",
+   "T1626",
+   "T1417.002",
+   "T1541",
+   "T1437.001",
+   "T1636.004",
+   "T1646"
+  ],
+  "tech_count": 9,
+  "tldr": "RedHook is an Android Remote Access Trojan first documented by Cyble Research and Intelligence Labs in July 2025 targeting Vietnamese banking customers; Group-IB's report published 2026-07-09 (amplified by BleepingComputer on 2026-07-12) documents a significantly upgraded variant that autonomously abuses Android's Wireless Debugging (Wireless ADB) feature and the open-source Shizuku framework to o",
+  "thumb": "thumbs/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse.svg",
+  "case_rel": "../days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/",
+  "category": "mobile",
+  "cat_label": "Mobile",
+  "cat_color": "#c2569a",
+  "actor": "RedHook",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "redhook returns: adb wireless debugging and shizuku turn accessibility abuse into shell-level privilege redhook vietnam / indonesia (victim geography); operator origin unattributed -- financially motivated, southeast-asia-focused android finance banking government t1660 t1655.001 t1516 t1626 t1417.002 t1541 t1437.001 t1636.004 t1646 mobile "
+ },
+ {
   "date": "2026-07-19",
   "year": "2026",
   "month": "2026-07",

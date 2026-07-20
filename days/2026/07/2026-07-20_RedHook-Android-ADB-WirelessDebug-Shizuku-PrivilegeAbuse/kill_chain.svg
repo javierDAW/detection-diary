@@ -1,0 +1,252 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">RedHook Android RAT kill chain</title>
+<desc id="d">Two-lane diagram. Left lane is the victim phone: vishing/smishing delivery, sideloaded APK install from GitHub or AWS S3, Accessibility service grant, automated Wireless ADB activation, critical Shizuku privileged shell at uid 2000, a six-mechanism persistence stack, and command-and-control plus data theft. Right lane is the operator estate: distribution infrastructure, the REST command-and-control API, critical WebSocket plus RTMP screen streaming that bypasses MediaProjection consent, the 53-command control surface, dormant OEM-specific enablement code, and the family lineage back to the original 2025 report. Critical anchors in red are the Shizuku privileged shell and the consent-bypassing streaming channel.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+  <rect class="acc-mobile" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">RedHook - Android ADB Wireless Debugging / Shizuku privilege abuse</text>
+<text class="meta" x="20" y="58">Vendor: Group-IB - Date: 2026-07-09 - Cluster: RedHook - Day 84</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="105">VICTIM PHONE</text>
+<text class="laneLabelR" x="460" y="105">OPERATOR ESTATE</text>
+
+<!-- LEFT STAGE 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Delivery - vishing / smishing</text>
+<text class="sub" x="40" y="168">Call or message impersonates a government</text>
+<text class="sub" x="40" y="184">agency or bank; directs to fake Play page.</text>
+<text class="sub" x="40" y="200">T1660 Phishing (Mobile).</text>
+<text class="mono" x="40" y="226">lure channel: phone call / Zalo message</text>
+<text class="mono" x="40" y="244">-&gt; fake Google Play Store page</text>
+
+<!-- LEFT STAGE 2 -->
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">Install - sideloaded APK</text>
+<text class="sub" x="40" y="318">Hosted on GitHub repos or AWS S3 buckets</text>
+<text class="sub" x="40" y="334">for delivery reliability, not throwaway infra.</text>
+<text class="sub" x="40" y="350">T1655.001 Match Legitimate Name.</text>
+<text class="mono" x="40" y="376">sha256: 453333bf...2add946</text>
+<text class="mono" x="40" y="394">victim geo: Vietnam, Indonesia</text>
+
+<!-- LEFT STAGE 3 -->
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">Accessibility grant</text>
+<text class="sub" x="40" y="468">Guided walkthrough frames the grant as</text>
+<text class="sub" x="40" y="484">required to unlock full app functionality.</text>
+<text class="sub" x="40" y="500">T1417.002 GUI Input Capture.</text>
+<text class="mono" x="40" y="526">phishing UI collects creds + PII first</text>
+<text class="mono" x="40" y="544">then requests AccessibilityService</text>
+
+<!-- LEFT STAGE 4 -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Automated Wireless ADB enable</text>
+<text class="sub" x="40" y="618">Accessibility-driven taps: build number x7,</text>
+<text class="sub" x="40" y="634">Developer Options, Wireless debugging, pair.</text>
+<text class="sub" x="40" y="650">T1516 Input Injection.</text>
+<text class="mono" x="40" y="676">reads on-screen pairing code</text>
+<text class="mono" x="40" y="694">connects over loopback 127.0.0.1</text>
+
+<!-- LEFT STAGE 5 (critical) -->
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Shizuku privileged shell (CRITICAL)</text>
+<text class="sub" x="40" y="768">libmx.so runs as shell uid 2000; grants</text>
+<text class="sub" x="40" y="784">itself perms, WRITE_SECURE_SETTINGS.</text>
+<text class="sub" x="40" y="800">T1626 Abuse Elevation Control Mechanism.</text>
+<text class="mono" x="40" y="826">no root, no exploit, no CVE</text>
+<text class="mono" x="40" y="844">silent app install/uninstall unlocked</text>
+
+<!-- LEFT STAGE 6 -->
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Persistence stack (6 mechanisms)</text>
+<text class="sub" x="40" y="918">1px activity, silent audio, WakeLock, cross-</text>
+<text class="sub" x="40" y="934">process bind+alarm, BOOT_COMPLETED, oom_adj.</text>
+<text class="sub" x="40" y="950">T1541 Foreground Persistence.</text>
+<text class="mono" x="40" y="976">oom_score_adj = -1000</text>
+<text class="mono" x="40" y="994">mlock() memory pin, touched periodically</text>
+
+<!-- LEFT STAGE 7 -->
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">C2 and data theft</text>
+<text class="sub" x="40" y="1068">Keylog, SMS, contacts, screenshots to REST</text>
+<text class="sub" x="40" y="1084">endpoints; WebSocket C2 channel.</text>
+<text class="sub" x="40" y="1100">T1636.004 SMS / T1646 Exfil Over C2.</text>
+<text class="mono" x="40" y="1126">POST /member/info/addsKeyboardInput</text>
+<text class="mono" x="40" y="1144">POST /member/info/addMessage</text>
+
+<!-- RIGHT OP 1 -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">D</text>
+<text class="label" x="504" y="149">Distribution infrastructure</text>
+<text class="sub" x="470" y="173">GitHub repos + AWS S3 buckets host the</text>
+<text class="sub" x="470" y="189">APK; phishing sites mimic Google Play.</text>
+<text class="sub" x="470" y="205">Expanded Vietnam -&gt; Indonesia in 2026.</text>
+<text class="sub" x="470" y="221">Trusted-platform hosting beats domain rep.</text>
+<text class="mono" x="470" y="251">GitHub repo (observed, since taken down)</text>
+<text class="mono" x="470" y="269">AWS S3 bucket APK hosting</text>
+
+<!-- RIGHT OP 2 -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">R</text>
+<text class="label" x="504" y="319">REST command-and-control API</text>
+<text class="sub" x="470" y="343">Nine endpoints: auth, upload, device info,</text>
+<text class="sub" x="470" y="359">passwords, keylog, SMS, verification codes.</text>
+<text class="sub" x="470" y="375">T1437.001 Web Protocols.</text>
+<text class="sub" x="470" y="391">hxxps://api.3n7wj[.]com base.</text>
+<text class="mono" x="470" y="421">/auth/login, /member/info/addDevice</text>
+<text class="mono" x="470" y="439">/member/identity_verification/saveSecurityCode</text>
+
+<!-- RIGHT OP 3 (critical) -->
+<rect class="opK" x="460" y="465" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">S</text>
+<text class="label" x="504" y="489">WebSocket + RTMP streaming (CRITICAL)</text>
+<text class="sub" x="470" y="513">wss://skt / wss://sktv WebSocket C2 and</text>
+<text class="sub" x="470" y="529">screen stream; parallel RTMP from uid 2000</text>
+<text class="sub" x="470" y="545">bypasses MediaProjection consent dialog.</text>
+<text class="mono" x="470" y="575">wss://sktv.3n7wj[.]com/ws/device</text>
+<text class="mono" x="470" y="593">no consent prompt shown to victim</text>
+
+<!-- RIGHT OP 4 -->
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">C</text>
+<text class="label" x="504" y="659">53-command control surface</text>
+<text class="sub" x="470" y="683">Swipe/click/drag, overlays, fake camera</text>
+<text class="sub" x="470" y="699">verification window, lock/unlock, install.</text>
+<text class="sub" x="470" y="715">Anti-uninstall + auto-reconnect commands.</text>
+<text class="mono" x="470" y="745">cmd 10023: fake verification + camera</text>
+<text class="mono" x="470" y="763">cmd 10047: enable anti-uninstall</text>
+
+<!-- RIGHT OP 5 -->
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">O</text>
+<text class="label" x="504" y="829">Dormant OEM-specific routines</text>
+<text class="sub" x="470" y="853">Google/Huawei/Meizu/Oppo/Samsung/Vivo/</text>
+<text class="sub" x="470" y="869">Xiaomi gesture sequences present in code.</text>
+<text class="sub" x="470" y="885">Not invoked in this execution flow yet.</text>
+<text class="sub" x="470" y="901">Portability groundwork for future builds.</text>
+<text class="mono" x="470" y="931">present but dormant per Group-IB RE</text>
+<text class="mono" x="470" y="949">signals planned OEM-launcher coverage</text>
+
+<!-- RIGHT OP 6 -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">L</text>
+<text class="label" x="504" y="999">Family lineage (2025 -&gt; 2026)</text>
+<text class="sub" x="470" y="1023">Cyble first documented RedHook (July 2025)</text>
+<text class="sub" x="470" y="1039">as an Accessibility overlay/keylog trojan.</text>
+<text class="sub" x="470" y="1055">Group-IB's 2026 build adds ADB/Shizuku.</text>
+<text class="sub" x="470" y="1071">Twelve-month re-arm, not a new family.</text>
+<text class="mono" x="470" y="1101">Cyble 2025 -&gt; Group-IB 2026-07-09</text>
+<text class="mono" x="470" y="1119">same lure template, new privilege path</text>
+
+<!-- LEFT vertical flow arrows -->
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<!-- RIGHT internal flow: distribution -> REST C2 -> streaming -> command surface -->
+<path class="arrowR" d="M657,280 L657,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,450 L657,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,620 L657,635" marker-end="url(#ah)"/>
+
+<!-- CROSS-LANE: install (stage2) -> distribution infra (op1) -->
+<path class="arrowX" d="M425,340 L460,220" marker-end="url(#ah)"/>
+<!-- CROSS-LANE: Shizuku shell (stage5) -> streaming (op3) -->
+<path class="arrowX" d="M425,730 L460,610" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="40" y="1203">Detection anchors (transport rotates, behaviour persists)</text>
+<text class="footerT" x="40" y="1226">Accessibility grant immediately followed by Developer-Options/Wireless-ADB enable; a non-system app process at shell uid 2000 or holding</text>
+<text class="footerT" x="40" y="1246">WRITE_SECURE_SETTINGS; screen-streaming network activity with no MediaProjection consent event. The C2 domain family and file hash will</text>
+<text class="footerT" x="40" y="1264">rotate on the next build; anchor detections on the autonomous privilege-abuse chain, not on any single indicator.</text>
+</svg>

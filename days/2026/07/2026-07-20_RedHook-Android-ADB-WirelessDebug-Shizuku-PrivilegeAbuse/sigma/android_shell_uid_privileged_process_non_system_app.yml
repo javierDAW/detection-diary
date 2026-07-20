@@ -1,0 +1,45 @@
+title: Android Non-System App Process Associated with Shell UID 2000
+id: 31d2235a-baaa-4b4d-aebb-02e23e8e58af
+status: experimental
+description: |
+  Detects a non-system, non-power-user-installed Android app whose process is
+  associated with shell UID 2000, or that has been granted WRITE_SECURE_SETTINGS
+  outside a known MDM/EMM workflow. RedHook (Group-IB, 2026-07-09) launches a
+  bundled Shizuku-derived server (libmx.so) under this identity after pairing
+  itself over ADB Wireless Debugging, using the borrowed uid to grant itself
+  further permissions and write directly to Settings.Secure.
+references:
+  - https://www.group-ib.com/blog/redhook-android-rat-upgraded/
+  - https://attack.mitre.org/techniques/T1626/
+author: Jarmi
+date: 2026/07/20
+logsource:
+  product: mtd
+  category: mobile_event
+detection:
+  selection_uid:
+    ProcessUid: 2000
+  selection_perm:
+    GrantedPermission: 'WRITE_SECURE_SETTINGS'
+  filter_system:
+    PackageName|startswith:
+      - 'com.android.'
+      - 'com.google.android.'
+  filter_known_dev_tools:
+    PackageName:
+      - 'moe.shizuku.privileged.api'
+  condition: (selection_uid or selection_perm) and not (filter_system or filter_known_dev_tools)
+falsepositives:
+  - Legitimate Shizuku installations deliberately set up by a power user for other apps to use; baseline the approved Shizuku-consumer app set by PackageName.
+  - MDM-orchestrated configuration profiles that legitimately write Settings.Secure entries.
+fields:
+  - PackageName
+  - ProcessUid
+  - GrantedPermission
+  - DeviceName
+
+level: critical
+tags:
+  - attack.privilege-escalation
+  - attack.t1626
+  - attack.defense-evasion

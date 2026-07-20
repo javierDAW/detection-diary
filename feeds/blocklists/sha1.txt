@@ -1,5 +1,5 @@
 # detection-diary blocklist — sha1
-# generated 2026-07-19 09:28 UTC
+# generated 2026-07-20 10:03 UTC
 # defensive/educational — validate before blocking; indicators decay
 01d00d3dd8bc8fd92dae9e04d0f076cb3158dc9c
 02ee423f1cd1a123169ef1e4e7d40dbb2139d86b

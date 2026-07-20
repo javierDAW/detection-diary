@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-07-19 09:28 UTC
+# generated 2026-07-20 10:03 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -12,6 +12,7 @@
 1vpns.net
 1vpns.org
 2rxyt8yrhq0bgj.org
+3n7wj.com
 5.2.1.6.3.0.0.7.4.0.1.0.0.2.ip6.arpa
 5ka8rxp6t6eup2.org
 6cimu4mc085em8.org

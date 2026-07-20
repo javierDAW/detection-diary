@@ -1,0 +1,19 @@
+// Title: Non-System App Shell-UID (2000) or WRITE_SECURE_SETTINGS Anomaly (Android)
+// Id: 4d6e8f0a-2c3d-4e5f-9a0b-1c2d3e4f5a6b
+// MITRE: T1626 (Abuse Elevation Control Mechanism)
+// Reference: https://www.group-ib.com/blog/redhook-android-rat-upgraded/
+// Author: Jarmi
+// Date: 2026-07-20
+// Tested on: Microsoft Defender for Endpoint (mobile), DeviceEvents
+// FP notes: baseline any legitimate Shizuku consumer apps deliberately installed by
+//           power users; alert on the delta -- an unrecognised package acquiring
+//           shell-uid capability or WRITE_SECURE_SETTINGS with no Shizuku dependency.
+let known_dev_tools = dynamic(["moe.shizuku.privileged.api"]);
+DeviceEvents
+| where (ActionType == "ProcessCreated" and AdditionalFields has "\"ProcessUid\":2000")
+     or (ActionType == "PermissionGranted" and AdditionalFields has "WRITE_SECURE_SETTINGS")
+| where InitiatingProcessFileName !startswith "com.android."
+    and InitiatingProcessFileName !startswith "com.google.android."
+    and InitiatingProcessFileName !in (known_dev_tools)
+| project Timestamp, DeviceName, InitiatingProcessFileName, ActionType, AdditionalFields
+| sort by Timestamp desc

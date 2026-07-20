@@ -1,0 +1,43 @@
+title: Android Screen-Streaming Network Activity Without MediaProjection Consent Event
+id: fc0bca45-cfd7-4eed-a38a-226d9b9c905e
+status: experimental
+description: |
+  Detects sustained outbound screen-streaming-pattern network activity (WebSocket
+  or RTMP) from a mobile device with no corresponding MediaProjection consent-
+  dialog event in the same session. RedHook (Group-IB, 2026-07-09) streams the
+  screen over RTMP directly from its shell-privileged (uid 2000) process once
+  Wireless-ADB/Shizuku privilege abuse succeeds, which bypasses the mandatory
+  MediaProjection API and its consent dialog entirely -- so the absence of a
+  consent prompt is not evidence that no screen capture occurred.
+references:
+  - https://www.group-ib.com/blog/redhook-android-rat-upgraded/
+  - https://attack.mitre.org/techniques/T1437/001/
+author: Jarmi
+date: 2026/07/20
+logsource:
+  product: mtd
+  category: network_connection
+detection:
+  selection_stream_proto:
+    DestinationPort:
+      - 1935
+      - 443
+    Protocol|contains:
+      - 'rtmp'
+      - 'websocket'
+  filter_consent_present:
+    MediaProjectionConsentGranted: true
+  condition: selection_stream_proto and not filter_consent_present
+falsepositives:
+  - Legitimate screen-mirroring or remote-support apps that use RTMP/WebSocket transports and correctly trigger MediaProjection consent; this rule depends on the MTD vendor correlating the consent event, tune the join window to the vendor's event model.
+fields:
+  - PackageName
+  - DestinationHost
+  - DestinationPort
+  - DeviceName
+
+level: high
+tags:
+  - attack.collection
+  - attack.t1437.001
+  - attack.credential-access

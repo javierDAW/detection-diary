@@ -1,0 +1,52 @@
+title: Android Developer Options and Wireless ADB Auto-Enabled After Accessibility Grant
+id: 11b1804b-242a-403c-a8d1-1b2f6a615914
+status: experimental
+description: |
+  Detects a non-system Android app enabling Developer Options and Wireless ADB
+  (Wireless Debugging) shortly after being granted the Accessibility service,
+  with no corresponding IT/user-initiated developer action. RedHook (Group-IB,
+  2026-07-09) automates this exact chain via Accessibility-driven UI taps to
+  reach shell-level privilege (uid 2000) without root or an exploit. The chain
+  -- not any single event -- is the signal: Developer Options and Wireless ADB
+  are legitimately toggled by developers directly, not minutes after an
+  unrelated app's Accessibility grant.
+references:
+  - https://www.group-ib.com/blog/redhook-android-rat-upgraded/
+  - https://www.bleepingcomputer.com/news/security/redhook-android-malware-now-uses-wireless-adb-for-shell-access/
+  - https://attack.mitre.org/techniques/T1516/
+author: Jarmi
+date: 2026/07/20
+logsource:
+  product: mtd
+  category: mobile_event
+detection:
+  selection_accessibility:
+    EventType: 'AccessibilityServiceEnabled'
+  selection_devoptions:
+    EventType:
+      - 'DeveloperOptionsEnabled'
+      - 'WirelessDebuggingEnabled'
+      - 'AdbPairingCompleted'
+  filter_system:
+    PackageName|startswith:
+      - 'com.android.'
+      - 'com.google.android.'
+      - 'com.samsung.android.'
+  filter_known_dev_tools:
+    PackageName:
+      - 'moe.shizuku.privileged.api'
+      - 'com.termux'
+  condition: selection_accessibility and selection_devoptions and not (filter_system or filter_known_dev_tools)
+falsepositives:
+  - A device owner or developer deliberately enabling Developer Options and Wireless ADB for legitimate debugging, often via Shizuku itself; baseline the small set of power-user-installed packages associated with this behaviour.
+  - MDM-driven developer provisioning on managed test/lab fleets.
+fields:
+  - PackageName
+  - EventType
+  - DeviceName
+
+level: high
+tags:
+  - attack.privilege-escalation
+  - attack.t1516
+  - attack.t1626
