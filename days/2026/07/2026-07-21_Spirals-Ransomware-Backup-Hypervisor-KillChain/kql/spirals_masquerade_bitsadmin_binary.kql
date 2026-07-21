@@ -1,0 +1,17 @@
+// Title: Masquerading bitsadmin.exe Outside Its Legitimate System32 Path
+// Id: spirals-masquerade-bitsadmin-2026-07-21
+// MITRE: T1036.005
+// Reference: https://www.security.com/threat-intelligence/ransomware-spirals-extortion
+// Author: Jarmi
+// Date: 2026-07-21
+// Tested on: Microsoft Defender XDR (DeviceFileEvents, DeviceProcessEvents)
+// FP notes: none expected - the legitimate bitsadmin.exe only ever ships
+//   under %SystemRoot%\System32 and %SystemRoot%\SysWOW64; any other path
+//   is inherently suspicious for a file of this name.
+DeviceFileEvents
+| where Timestamp > ago(7d)
+| where FileName =~ "bitsadmin.exe"
+| where FolderPath !has @"\Windows\System32\"
+    and FolderPath !has @"\Windows\SysWOW64\"
+| project Timestamp, DeviceName, FolderPath, FileName, SHA256, InitiatingProcessFileName
+| order by Timestamp desc

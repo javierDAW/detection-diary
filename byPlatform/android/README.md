@@ -4,11 +4,12 @@
 
 # Platforms: android
 
-4 day(s) covering this platform.
+5 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-20 | RedHook Returns: ADB Wireless Debugging and Shizuku Turn Accessibility Abuse into Shell-Level Privilege | RedHook | [`2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/`](../../days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/) |
 | 2026-06-22 | ProSpy/BITTER: Hack-for-Hire Android Spyware Targeting MENA Civil Society Journalists | BITTER · T-APT-17 | [`2026-06-22_prospy-bitter-mena/`](../../days/2026/06/2026-06-22_prospy-bitter-mena/) |
 | 2026-06-13 | DevilNFC and NFCMultiPay — locally-built Android NFC relay malware (Spanish + Brazilian TAs, AI-assisted) | DevilNFC · NFCMultiPay | [`2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/`](../../days/2026/06/2026-06-13_DevilNFC-NFCMultiPay-NFC-Relay/) |
 | 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |

@@ -1,0 +1,40 @@
+title: IIS Worker Process Spawning Command Shell (Spirals Web Shell Pattern)
+id: 9558ccc3-e663-40f5-8528-8bbcc8ccf7ba
+status: experimental
+description: |
+  Detects w3wp.exe (the IIS application pool worker process) spawning cmd.exe,
+  powershell.exe, or conhost.exe. Symantec observed the Spirals ransomware
+  operator use exactly this pattern to gain an interactive hands-on-keyboard
+  session through an ASP.NET web shell uploaded to a compromised
+  internet-facing IIS server, less than three hours before beginning
+  privilege escalation and credential theft.
+references:
+  - https://www.security.com/threat-intelligence/ransomware-spirals-extortion
+  - https://www.bleepingcomputer.com/news/security/new-spirals-ransomware-encrypts-victim-network-in-under-24-hours/
+author: Jarmi
+date: 2026/07/21
+tags:
+  - attack.initial-access
+  - attack.persistence
+  - attack.t1190
+  - attack.t1505-003
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_parent:
+    ParentImage|endswith: '\w3wp.exe'
+  selection_child:
+    Image|endswith:
+      - '\cmd.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\conhost.exe'
+  condition: selection_parent and selection_child
+falsepositives:
+  - Legitimate IIS application pools that intentionally shell out (rare;
+    should be inventoried and excluded by ParentCommandLine or AppPool name)
+  - Web server health-check or deployment automation scripts that spawn a
+    shell through the worker process (uncommon, should be allow-listed)
+
+level: high

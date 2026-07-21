@@ -4,11 +4,12 @@
 
 # Techniques: T1572
 
-7 day(s) covering this technique.
+8 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-21 | Spirals ransomware: IIS web shell to full-network encryption in under 24 hours, 23 backup/database/hypervisor services killed on the way | Spirals | [`2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/`](../../days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/) |
 | 2026-07-13 | UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH | UAT-7810 | [`2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/`](../../days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/) |
 | 2026-05-31 | Black Shadow / Ababil of Minab — Iran-MOIS recovery-layer destruction: vCenter VM deletion, Veeam backup wipe, SSMS database drops to deny recovery | Black Shadow (Ababil of Minab persona) | [`2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/`](../../days/2026/05/2026-05-31_BlackShadow-AbabilOfMinab-Recovery-Layer-Destruction/) |
 | 2026-05-24 | Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, France, Netherlands and FBI | First VPN Service (1vpns.com) | [`2026-05-24_OperationSaffron-FirstVPN-Takedown/`](../../days/2026/05/2026-05-24_OperationSaffron-FirstVPN-Takedown/) |

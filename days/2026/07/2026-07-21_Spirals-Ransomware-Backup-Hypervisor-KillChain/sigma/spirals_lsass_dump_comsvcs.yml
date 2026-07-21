@@ -1,0 +1,33 @@
+title: LSASS Memory Dump via rundll32 and comsvcs.dll MiniDump
+id: 88d67695-9d09-4412-99cd-dc1d11b0b014
+status: experimental
+description: |
+  Detects rundll32.exe invoking the MiniDump export of comsvcs.dll against
+  the LSASS process, a well-known living-off-the-land credential dumping
+  technique. Symantec observed this exact method used by the Spirals
+  ransomware operator during WMI-based lateral movement, in addition to a
+  separate SAM hive dump earlier in the intrusion.
+references:
+  - https://www.security.com/threat-intelligence/ransomware-spirals-extortion
+author: Jarmi
+date: 2026/07/21
+tags:
+  - attack.credential-access
+  - attack.t1003-001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    Image|endswith: '\rundll32.exe'
+  selection_module:
+    CommandLine|contains: 'comsvcs.dll'
+  selection_export:
+    CommandLine|contains: 'MiniDump'
+  condition: selection_image and selection_module and selection_export
+falsepositives:
+  - Legitimate crash-dump collection by authorized incident responders or
+    EDR agents using the same LOLBIN technique (should be excluded by known
+    responder tooling process ancestry)
+
+level: high

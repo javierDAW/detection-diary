@@ -1,5 +1,51 @@
 [
  {
+  "date": "2026-07-21",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain",
+  "title": "Spirals ransomware: IIS web shell to full-network encryption in under 24 hours, 23 backup/database/hypervisor services killed on the way",
+  "clusters": [
+   "Spirals"
+  ],
+  "country": "Unattributed (e-crime); victim in South Asia",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "technology",
+   "professional-services"
+  ],
+  "techniques": [
+   "T1190",
+   "T1505.003",
+   "T1548.002",
+   "T1136.001",
+   "T1021.001",
+   "T1003.002",
+   "T1003.001",
+   "T1047",
+   "T1569.002",
+   "T1572",
+   "T1562.001",
+   "T1489",
+   "T1486",
+   "T1036.005"
+  ],
+  "tech_count": 14,
+  "tldr": "Symantec's Threat Hunter Team (2026-07-16) disclosed **Spirals**, a previously unseen Rust-based ransomware family deployed against an IT services company in South Asia in June 2026. The operator compromised an internet-facing IIS web server, uploaded an ASP.NET web shell, and moved from that foothold to full-network encryption in **under 24 hours** — a three-hour hands-on-keyboard session on day ",
+  "thumb": "thumbs/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain.svg",
+  "case_rel": "../days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Spirals",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "spirals ransomware: iis web shell to full-network encryption in under 24 hours, 23 backup/database/hypervisor services killed on the way spirals unattributed (e-crime); victim in south asia windows technology professional-services t1190 t1505.003 t1548.002 t1136.001 t1021.001 t1003.002 t1003.001 t1047 t1569.002 t1572 t1562.001 t1489 t1486 t1036.005 ransomware / e-crime "
+ },
+ {
   "date": "2026-07-20",
   "year": "2026",
   "month": "2026-07",

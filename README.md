@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**84 cases** · **149 actors/clusters** · **335 ATT&CK techniques** · **16 platforms** · **79 sectors** · 2026-04-28 -> 2026-07-20
+**85 cases** · **150 actors/clusters** · **336 ATT&CK techniques** · **16 platforms** · **79 sectors** · 2026-04-28 -> 2026-07-21
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/"><img src="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/kill_chain.svg" alt="2026-07-21 kill chain" width="240"></a><br><sub><b>2026-07-21</b><br>Spirals</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/"><img src="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/kill_chain.svg" alt="2026-07-20 kill chain" width="240"></a><br><sub><b>2026-07-20</b><br>RedHook</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/"><img src="days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/kill_chain.svg" alt="2026-07-19 kill chain" width="240"></a><br><sub><b>2026-07-19</b><br>INC Ransom</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/"><img src="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/kill_chain.svg" alt="2026-07-18 kill chain" width="240"></a><br><sub><b>2026-07-18</b><br>STA1 · STA2</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/"><img src="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/kill_chain.svg" alt="2026-07-18 kill chain" width="240"></a><br><sub><b>2026-07-18</b><br>STA1 · STA2</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/"><img src="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/kill_chain.svg" alt="2026-07-17 kill chain" width="240"></a><br><sub><b>2026-07-17</b><br>Media Land LLC / ML.Cloud LLC</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/"><img src="days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/kill_chain.svg" alt="2026-07-16 kill chain" width="240"></a><br><sub><b>2026-07-16</b><br>UEFI shim trust-chain disclosure (ESET Research)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/"><img src="days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/kill_chain.svg" alt="2026-07-15 kill chain" width="240"></a><br><sub><b>2026-07-15</b><br>O-UNC-066</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->
