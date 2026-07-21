@@ -4,11 +4,12 @@
 
 # Techniques: T1489
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-21 | Spirals ransomware: IIS web shell to full-network encryption in under 24 hours, 23 backup/database/hypervisor services killed on the way | Spirals | [`2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/`](../../days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/) |
 | 2026-07-19 | INC Ransom Hits Georgia's City of Acworth: Municipal Double Extortion and the GOLD IONIC Playbook | INC Ransom | [`2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/`](../../days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/) |
 | 2026-06-30 | Dire Wolf: a Golang double-extortion ransomware that kills the recovery story before it encrypts | Dire Wolf (DireWolf) ransomware group | [`2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/`](../../days/2026/06/2026-06-30_DireWolf-Golang-DoubleExtortion-Ransomware/) |
 | 2026-06-09 | Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hypervisor recovery | Kyber | [`2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/`](../../days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/) |

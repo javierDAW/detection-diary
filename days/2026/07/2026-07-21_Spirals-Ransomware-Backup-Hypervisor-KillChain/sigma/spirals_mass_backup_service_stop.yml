@@ -1,0 +1,53 @@
+title: Rapid Sequential Stop of Backup, Database, or Hypervisor Services
+id: d2fdd168-05b5-4588-a055-967b28c11717
+status: experimental
+description: |
+  Detects Service Control Manager "service stopped" events (or PowerShell
+  Stop-Service invocations) against services whose name matches common
+  backup, database, or virtualization products, occurring in a tight burst.
+  The Spirals ransomware operator ran a single PowerShell one-liner that
+  enumerated and force-stopped every running service matching 23 such name
+  patterns (Veeam, VMware, Hyper-V, Exchange, SQL Server, Oracle, MySQL,
+  PostgreSQL, Acronis, Veritas, Commvault, SAP, Sage, Intuit, Lotus Domino)
+  immediately before deploying the encryptor. Push the burst-count threshold
+  to SIEM aggregation as noted below; this rule flags the qualifying
+  individual stop events.
+references:
+  - https://www.security.com/threat-intelligence/ransomware-spirals-extortion
+  - https://cybersecuritynews.com/new-spirals-ransomware/
+author: Jarmi
+date: 2026/07/21
+tags:
+  - attack.impact
+  - attack.defense-evasion
+  - attack.t1489
+  - attack.t1562-001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_stopservice_cmdlet:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+    CommandLine|contains: 'Stop-Service'
+  selection_target_pattern:
+    CommandLine|contains:
+      - 'veeam'
+      - 'vmms'
+      - 'vmcompute'
+      - 'commvault'
+      - 'acronis'
+      - 'veritas'
+      - 'SQL Server'
+      - 'oracle'
+      - 'postgre'
+      - 'exchange'
+  condition: selection_stopservice_cmdlet and selection_target_pattern
+falsepositives:
+  - Planned maintenance windows performing legitimate bulk service restarts
+    (should correlate with a documented change ticket)
+  - Backup software's own upgrade/reinstall routines that briefly stop their
+    services (should not match the broad multi-vendor pattern list above)
+
+level: critical

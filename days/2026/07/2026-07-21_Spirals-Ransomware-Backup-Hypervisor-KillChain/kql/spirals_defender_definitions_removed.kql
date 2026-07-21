@@ -1,0 +1,18 @@
+// Title: Defender Real-Time Monitoring Disabled via MpCmdRun -RemoveDefinitions
+// Id: spirals-defender-definitions-removed-2026-07-21
+// MITRE: T1562.001
+// Reference: https://cybersecuritynews.com/new-spirals-ransomware/
+// Author: Jarmi
+// Date: 2026-07-21
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: authorized Defender troubleshooting or definition-reset by
+//   endpoint admins can match; scope to unexpected accounts/hosts and to
+//   the specific -RemoveDefinitions -All flag combination which is not part
+//   of routine operations.
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName =~ "MpCmdRun.exe"
+| where ProcessCommandLine has "-RemoveDefinitions"
+    and ProcessCommandLine has "-DisableRealtimeMonitoring"
+| project Timestamp, DeviceName, AccountName, ProcessCommandLine, InitiatingProcessFileName
+| order by Timestamp desc

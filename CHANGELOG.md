@@ -1,3 +1,21 @@
+## 2026.07.21 — Day 85 — Spirals Ransomware: IIS Web Shell to Full-Network Encryption in Under 24 Hours
+
+### Added
+- `days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/` — Symantec Threat Hunter Team (2026-07-16, corroborated by BleepingComputer and Help Net Security) documents Spirals, a previously unseen Rust ransomware family that moved from an IIS web shell to full-network encryption of a South Asian IT services firm in under 24 hours, force-stopping 23 backup/database/hypervisor services (Veeam, VMware, Hyper-V, Exchange, SQL Server, and more) before detonating a payload disguised as bitsadmin.exe.
+- Sigma (3): `spirals_iis_webshell_process_spawn.yml` detects w3wp.exe spawning a shell; `spirals_mass_backup_service_stop.yml` detects the burst service-kill sweep; `spirals_lsass_dump_comsvcs.yml` detects LSASS dumping via rundll32+comsvcs.dll.
+- KQL (3): `spirals_psexec_fanout.kql` flags single-host PsExec fan-out to many targets; `spirals_defender_definitions_removed.kql` flags MpCmdRun definition removal; `spirals_masquerade_bitsadmin_binary.kql` flags a fake bitsadmin.exe off its legitimate path.
+- YARA (1 file, 3 rules): hash-anchored matches for the Spirals payload and its confirmed tunneling toolkit (revsocks, Chisel, Cloudflared, token-impersonation tool), plus a script-content rule for the service-kill PowerShell one-liner.
+- Suricata (1 file, 6 sids): confirmed staging IP/domain indicators plus a generic reverse-SOCKS-over-443 heuristic.
+- PEAK hunts (3): IIS web shell to tunnel-tool drop; mass backup-service-stop burst; PsExec identical-payload fan-out.
+- `iocs.csv` (15 entries) — 7 file hashes, 1 staging IP, 4 URLs/domains, ransom-note path/string, and a documented coverage-gap note. No CVE in scope for this case (no `kev.md`).
+- `kill_chain.svg` — Template A, canonical palette, two lanes (victim chronology / attacker tooling), acc-ransomware accent bar.
+
+### Pedagogy
+- A backup/hypervisor service-kill burst against 15-23 predictable, slow-changing service names is a rare, high-value detection anchor — build on the burst pattern, not on any single vendor name.
+- Staging the payload inside `SYSVOL\<domain>\scripts\` turns Active Directory replication itself into a self-service propagation channel that PsExec-target lists never touch directly.
+- First-sighting malware families (n=1 victim) still deserve production detections: the reusable behaviors (WMI-then-PsExec fan-out, named-pattern service kill) outlive any single family name.
+- A ransom note's "double extortion" claim is not confirmed exfiltration — treat it as a claim to verify against DLP/proxy telemetry during IR, not as an established fact.
+
 ## 2026.07.20 — Day 84 — RedHook Returns: ADB Wireless Debugging and Shizuku Privilege Abuse
 
 ### Added

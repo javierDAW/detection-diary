@@ -1,0 +1,242 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Spirals ransomware kill chain</title>
+<desc id="d">Two-lane diagram of the Spirals ransomware intrusion. Left lane, victim-side chronology: IIS web shell initial access, UAC bypass and RDP persistence, SAM and LSASS credential dumping, three redundant tunnels for command and control, WMI then PsExec lateral movement, Defender disablement and a 23-service backup and hypervisor kill, and finally Rust-based encryption with a double-extortion note. Right lane, attacker tooling and infrastructure: web shell staging paths, the tunneling toolkit, a token impersonation tool, PsExec mass-deployment infrastructure using SYSVOL for domain-wide propagation, the Spirals payload itself, and the Tor extortion portal. Detection anchors: the web shell to tunnel-drop window, the WMI-to-PsExec handoff, and the backup-service-stop burst immediately preceding encryption.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Spirals Ransomware: Backup and Hypervisor Kill Chain</text>
+<text class="meta" x="20" y="58">Vendor: Symantec Threat Hunter Team - Date: 2026-07-16 - Cluster: Spirals - Day 85</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="35" y="105">VICTIM-SIDE CHRONOLOGY</text>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelR" x="465" y="105">ATTACKER TOOLING AND INFRASTRUCTURE</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="65" y="144">Initial Access - IIS Web Shell</text>
+<text class="sub" x="40" y="168">Internet-facing IIS server compromised, June 16 22:21</text>
+<text class="sub" x="40" y="184">ASP.NET web shell uploaded; spawns cmd.exe/powershell.exe</text>
+<text class="sub" x="40" y="200">via w3wp.exe worker process (T1190, T1505.003)</text>
+<text class="mono" x="40" y="226">First 3-hour hands-on-keyboard session begins</text>
+<text class="mono" x="40" y="244">No CVE named - IIS server compromise vector</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="65" y="294">Persistence and Privilege Escalation</text>
+<text class="sub" x="40" y="318">UAC bypass; RDP enabled for remote access</text>
+<text class="sub" x="40" y="334">Local account created for persistence</text>
+<text class="sub" x="40" y="350">Users/shares enumerated (T1548.002, T1136.001, T1021.001)</text>
+<text class="mono" x="40" y="376">Attempted AV/EDR removal via wmic, mpcmdrun.exe</text>
+<text class="mono" x="40" y="394">By 23:07 - ransomware precursor activity begins</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="65" y="444">Credential Access</text>
+<text class="sub" x="40" y="468">SAM hive dumped to password-protected archive</text>
+<text class="sub" x="40" y="484">LSASS dumped via rundll32.exe + comsvcs.dll</text>
+<text class="sub" x="40" y="500">during later WMI lateral movement (T1003.002, T1003.001)</text>
+<text class="mono" x="40" y="526">rundll32 comsvcs.dll MiniDump lsass.exe pid dump.bin</text>
+<text class="mono" x="40" y="544">Feeds further domain admin credential harvesting</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="65" y="594">Command and Control - Tunnel Toolkit</text>
+<text class="sub" x="40" y="618">3 redundant tunnels within 10 min of access (T1572)</text>
+<text class="sub" x="40" y="634">revsocks reverse SOCKS proxy over TCP/443</text>
+<text class="sub" x="40" y="650">Chisel (chrome.exe) + Cloudflare Tunnel client</text>
+<text class="mono" x="40" y="676">185.141.216[.]194 - staging IP and revsocks target</text>
+<text class="mono" x="40" y="694">Local RDP exposed externally via cloudflared</text>
+
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="65" y="744">Lateral Movement - WMI then PsExec</text>
+<text class="sub" x="40" y="768">23:33 June 16 - WMI hits 12+ hosts in minutes (T1047)</text>
+<text class="sub" x="40" y="784">June 17 14:12 - PsExec mass push begins (T1569.002)</text>
+<text class="sub" x="40" y="800">1+ new target every few seconds for about 30 minutes</text>
+<text class="mono" x="40" y="826">psexec.exe -accepteula -d -s target powershell -enc</text>
+<text class="mono" x="40" y="844">Identical base64 PowerShell blob to every target</text>
+
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="65" y="894">Defense Evasion and Recovery-Layer Denial</text>
+<text class="sub" x="40" y="918">Defender disabled via MpCmdRun -RemoveDefinitions (T1562.001)</text>
+<text class="sub" x="40" y="934">23 backup/DB/hypervisor services force-stopped (T1489)</text>
+<text class="sub" x="40" y="950">Veeam, VMware, Hyper-V, SQL Server, Exchange, and more</text>
+<text class="mono" x="40" y="976">Get-WmiObject Win32_Service pipe Stop-Service -Force</text>
+<text class="mono" x="40" y="994">Clears open file handles ahead of encryption</text>
+
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="65" y="1044">Impact - Spirals Encryption</text>
+<text class="sub" x="40" y="1068">bitsadmin.exe staged in 4 locations incl. SYSVOL scripts</text>
+<text class="sub" x="40" y="1084">Per-file AES-128 keys wrapped with ECDH P-256 (T1486)</text>
+<text class="sub" x="40" y="1100">Intermittent encryption for files over 5MB</text>
+<text class="mono" x="40" y="1126">C colon RECOVERY_SECTION.log - ransom note, 6-day threat</text>
+<text class="mono" x="40" y="1144">bitsadmin.exe masquerade - not the real BITS utility</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="495" y="149">Web Shell and Staging Paths</text>
+<text class="sub" x="470" y="173">ASP.NET web shell on public IIS server</text>
+<text class="sub" x="470" y="189">Payloads disguised with .jpg extensions</text>
+<text class="sub" x="470" y="205">Staged under public web dirs and Tasks folder</text>
+<text class="sub" x="470" y="221">hxxp colon 185.141.216[.]194/cd.jpg and cd.zip</text>
+<text class="mono" x="470" y="251">2 compromised domains: computer.kplus[.]com</text>
+<text class="mono" x="470" y="269">beta.padmin[.]com/mybenefits/Templates/cd.zip</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="495" y="319">Tunneling Toolkit</text>
+<text class="sub" x="470" y="343">tunn.exe - generic tunnel binary</text>
+<text class="sub" x="470" y="359">revsocks.exe - reverse SOCKS proxy</text>
+<text class="sub" x="470" y="375">chrome.exe - Chisel tunnel, renamed</text>
+<text class="sub" x="470" y="391">cloudflared-windows-amd64.exe - CF Tunnel</text>
+<text class="mono" x="470" y="421">SHA256 4cab935d...2de649 (revsocks)</text>
+<text class="mono" x="470" y="439">SHA256 84b9a9a1...5c22d (Chisel/chrome.exe)</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="495" y="489">Token Impersonation Tool</text>
+<text class="sub" x="470" y="513">tokens.exe dropped from web project dir</text>
+<text class="sub" x="470" y="529">Used for local privilege escalation</text>
+<text class="sub" x="470" y="545">Precedes UAC bypass and RDP enablement</text>
+<text class="sub" x="470" y="561">Runs alongside the tunneling toolkit drop</text>
+<text class="mono" x="470" y="591">SHA256 862a3ca7...4a2a1 (tokens.exe)</text>
+<text class="mono" x="470" y="609">Path: webprodprojects REMOVED tokens.exe</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="495" y="659">PsExec Mass-Deployment Infrastructure</text>
+<text class="sub" x="470" y="683">Single host pushes to entire target list</text>
+<text class="sub" x="470" y="699">Target list pre-compiled from AD enumeration</text>
+<text class="sub" x="470" y="715">DCs, file/app servers, VMs, workstations hit</text>
+<text class="sub" x="470" y="731">SYSVOL domain-scripts share used for propagation</text>
+<text class="mono" x="470" y="761">DC SYSVOL domain scripts bitsadmin.exe</text>
+<text class="mono" x="470" y="779">Reaches hosts never touched by PsExec directly</text>
+
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="495" y="829">Ransomware Payload - Spirals</text>
+<text class="sub" x="470" y="853">Rust binary, full-featured encryptor</text>
+<text class="sub" x="470" y="869">AES-128 per-file keys, ECDH P-256 wrap</text>
+<text class="sub" x="470" y="885">Intermittent encryption for files over 5MB</text>
+<text class="sub" x="470" y="901">Named bitsadmin.exe to masquerade as BITS</text>
+<text class="mono" x="470" y="931">SHA256 0f9574dc...73141 (bitsadmin/vbr2116)</text>
+<text class="mono" x="470" y="949">Confirmed on a single victim network so far</text>
+
+<rect class="opK" x="460" y="975" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="495" y="999">Extortion Infrastructure</text>
+<text class="sub" x="470" y="1023">Ransom note: C colon RECOVERY_SECTION.log</text>
+<text class="sub" x="470" y="1039">Tor negotiation portal referenced in note</text>
+<text class="sub" x="470" y="1055">6-day countdown before data leak threat</text>
+<text class="sub" x="470" y="1071">Exfiltration mechanism undocumented publicly</text>
+<text class="mono" x="470" y="1101">Double extortion structure - encrypt plus leak threat</text>
+<text class="mono" x="470" y="1119">n=1 victim - scale of campaign unknown</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<path class="arrowR" d="M657,280 L657,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,450 L657,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,620 L657,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,790 L657,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,960 L657,975" marker-end="url(#ah)"/>
+
+<path class="arrowX" d="M425,150 L460,155" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,450 L460,495" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,750 L460,715" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,900 L460,855" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,1050 L460,1025" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="35" y="1198">Detection anchor: the backup/hypervisor service-stop burst is the last honest chance to interrupt the chain.</text>
+<text class="footerT" x="35" y="1218">Burst kills of 15-23 named backup/DB/virtualization services are rare, predictable, and slow to change across rebrands -</text>
+<text class="footerT" x="35" y="1234">detect the behavior (WMI-then-PsExec fan-out, Stop-Service burst), not just today's IOCs from a single n=1 sighting.</text>
+<text class="footerT" x="35" y="1250">SYSVOL staging turns AD replication into a self-service propagation channel; recovery validation must sweep it too.</text>
+</svg>

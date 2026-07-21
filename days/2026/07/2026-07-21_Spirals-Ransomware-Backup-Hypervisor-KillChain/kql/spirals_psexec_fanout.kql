@@ -1,0 +1,18 @@
+// Title: PsExec Fan-Out to Many Distinct Targets in a Short Window
+// Id: spirals-psexec-fanout-2026-07-21
+// MITRE: T1569.002, T1047
+// Reference: https://www.security.com/threat-intelligence/ransomware-spirals-extortion
+// Author: Jarmi
+// Date: 2026-07-21
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: legitimate mass-deployment/patching tools using PsExec (SCCM,
+//   third-party patch managers) can trigger this; correlate InitiatingProcessAccountName
+//   against a known change-management allow list before escalating.
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName in~ ("PsExec.exe", "PsExec64.exe")
+| where ProcessCommandLine has "-s" and ProcessCommandLine has "-d"
+| summarize TargetCount = dcount(DeviceName), Targets = make_set(DeviceName, 50)
+    by InitiatingProcessAccountName, bin(Timestamp, 30m)
+| where TargetCount > 5
+| order by TargetCount desc

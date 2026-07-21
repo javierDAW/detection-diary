@@ -4,11 +4,12 @@
 
 # Techniques: T1569.002
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-21 | Spirals ransomware: IIS web shell to full-network encryption in under 24 hours, 23 backup/database/hypervisor services killed on the way | Spirals | [`2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/`](../../days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/) |
 | 2026-07-19 | INC Ransom Hits Georgia's City of Acworth: Municipal Double Extortion and the GOLD IONIC Playbook | INC Ransom | [`2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/`](../../days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/) |
 | 2026-07-03 | From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom) | Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira) | [`2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/`](../../days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/) |
 | 2026-05-19 | Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs) | Embargo · ALPHV · BlackCat | [`2026-05-19_Embargo-Rust-SafeMode-BYOVD/`](../../days/2026/05/2026-05-19_Embargo-Rust-SafeMode-BYOVD/) |

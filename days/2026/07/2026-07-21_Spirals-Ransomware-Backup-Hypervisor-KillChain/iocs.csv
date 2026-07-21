@@ -1,0 +1,16 @@
+type,value,context,confidence,source
+sha256,0f9574dc38e5c34a31153f0bcc603c6ec29cb3bf65c3d25380dbe86d42573141,Spirals ransomware payload dropped as bitsadmin.exe and vbr2116.exe,high,Symantec Threat Hunter Team
+sha256,4cab935d0ec400059a3fcdc95b6623efdd51a61dff401fba8d5da244cc2de649,Revsocks reverse SOCKS proxy binary revsocks.exe,high,Symantec Threat Hunter Team
+sha256,7f0d49b11d0a3697685622ce510c570199bf2dc76515b3f9a6b6735de8c9134b,Tunnel binary tunn.exe dropped in public web directory and Windows Tasks folder,high,Symantec Threat Hunter Team
+sha256,83a7e51f3787ac5a8a9884edd0a58ddbef380969aa6529d282a461a1a614a892,Suspicious file observed in the intrusion but not further classified by Symantec,medium,Symantec Threat Hunter Team
+sha256,84b9a9a1668145df04faa3d0e118e2f0acbebd3d9d260baf3a355b44c815c22d,Chisel tunneling tool renamed chrome.exe to masquerade as the browser,high,Symantec Threat Hunter Team
+sha256,862a3ca7e944ccf0ff3a6d556b34faade4b68343015c35a014a43725ac14a2a1,Token impersonation tool tokens.exe used for privilege escalation,high,Symantec Threat Hunter Team
+sha256,b5d598b00cc3a28cabc5812d9f762819334614bae452db4e7f23eefe7b081556,Cloudflare Tunnel client cloudflared-windows-amd64.exe exposing local RDP externally,high,Symantec Threat Hunter Team
+ipv4,185.141.216.194,Staging infrastructure; payload delivery source and revsocks reverse-proxy destination,high,Symantec Threat Hunter Team
+url,hxxp://185.141.216[.]194/cd.jpg,Payload staged with a .jpg extension to disguise the download,high,Symantec Threat Hunter Team
+url,hxxp://185.141.216[.]194/cd.zip,Payload archive staging location,high,Symantec Threat Hunter Team
+url,hxxps://computer.kplus[.]com/cd.zip,Compromised domain used for payload hosting,medium,Symantec Threat Hunter Team
+url,hxxps://beta.padmin[.]com/mybenefits/Templates/cd.zip,Compromised domain used for payload hosting,medium,Symantec Threat Hunter Team
+path,C:\RECOVERY_SECTION.log,Spirals ransom note dropped on the C: drive of every encrypted host,high,Symantec Threat Hunter Team
+string,RECOVERY_SECTION.log,Ransom note filename constant usable for file-creation detection logic,high,Symantec Threat Hunter Team
+note,Symantec's public writeup does not include the Tor onion address for the negotiation portal; only the ransom-note path and the two staging domains above are public,Coverage gap disclosure - exfiltration mechanism and onion address undocumented in public reporting,high,Symantec Threat Hunter Team

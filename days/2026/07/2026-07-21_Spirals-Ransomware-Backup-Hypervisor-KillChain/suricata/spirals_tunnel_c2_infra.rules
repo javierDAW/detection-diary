@@ -1,0 +1,22 @@
+# Author: Jarmi
+# Date: 2026-07-21
+# Reference: https://www.security.com/threat-intelligence/ransomware-spirals-extortion
+# Custom variables used below (define in your suricata.yaml or local vars file):
+#   $HOME_NET  - your internal address space (standard Suricata default var)
+#   $EXTERNAL_NET - standard Suricata default var
+# Coverage note: the confirmed staging IP/domains are the only concrete
+# network indicators Symantec published; the reverse-SOCKS-over-443 rule is
+# a generic heuristic and will require local tuning to avoid alerting on
+# legitimate TLS traffic that happens to match the payload-size window.
+
+alert ip $HOME_NET any -> 185.141.216.194 any (msg:"SPIRALS Outbound Connection to Confirmed Staging IP 185.141.216.194"; reference:url,security.com/threat-intelligence/ransomware-spirals-extortion; classtype:trojan-activity; sid:9100001; rev:1;)
+
+alert http $HOME_NET any -> 185.141.216.194 any (msg:"SPIRALS HTTP Request for Payload Staged as cd.jpg"; http.uri; content:"/cd.jpg"; http.method; content:"GET"; reference:url,security.com/threat-intelligence/ransomware-spirals-extortion; classtype:trojan-activity; sid:9100002; rev:1;)
+
+alert http $HOME_NET any -> 185.141.216.194 any (msg:"SPIRALS HTTP Request for Payload Archive cd.zip"; http.uri; content:"/cd.zip"; reference:url,security.com/threat-intelligence/ransomware-spirals-extortion; classtype:trojan-activity; sid:9100003; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"SPIRALS TLS SNI Match on Compromised Staging Domain computer.kplus.com"; tls.sni; content:"computer.kplus.com"; nocase; reference:url,security.com/threat-intelligence/ransomware-spirals-extortion; classtype:trojan-activity; sid:9100004; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"SPIRALS TLS SNI Match on Compromised Staging Domain beta.padmin.com"; tls.sni; content:"beta.padmin.com"; nocase; reference:url,security.com/threat-intelligence/ransomware-spirals-extortion; classtype:trojan-activity; sid:9100005; rev:1;)
+
+alert tcp $HOME_NET any -> $EXTERNAL_NET 443 (msg:"SPIRALS Possible Reverse-SOCKS-over-443 Tunnel Heuristic (revsocks-style)"; flow:established,to_server; dsize:>0; threshold:type both, track by_src, count 200, seconds 60; reference:url,security.com/threat-intelligence/ransomware-spirals-extortion; classtype:trojan-activity; sid:9100006; rev:1;)
