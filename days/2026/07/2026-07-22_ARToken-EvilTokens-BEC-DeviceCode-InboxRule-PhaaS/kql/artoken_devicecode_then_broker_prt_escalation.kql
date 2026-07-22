@@ -1,0 +1,22 @@
+// Title: Device Code Sign-In Followed by Broker/WAM Sign-In from a New IP (PRT Escalation)
+// Id: 8f2c1a4e-9d63-4b71-a9e2-1c5f7d3a6b90
+// MITRE: T1528, T1550.001, T1098.001
+// Reference: https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/
+// Author: Jarmi
+// Date: 2026-07-22
+// Tested on: Microsoft Sentinel (SigninLogs)
+// FP notes: legitimate WHfB/Entra-joined provisioning on a managed device shortly after
+//   a CLI/device-code login can trigger this; cross-check DeviceDetail compliance state
+//   and exclude known-compliant corporate device IDs before escalating.
+SigninLogs
+| where AuthenticationProtocol == "deviceCode" and ResultType == 0
+| project user = UserPrincipalName, dcTime = TimeGenerated, dcIP = IPAddress, dcApp = AppDisplayName
+| join kind=inner (
+    SigninLogs
+    | where AppDisplayName == "Microsoft Authentication Broker" and ResultType == 0
+    | project user = UserPrincipalName, brokerTime = TimeGenerated, brokerIP = IPAddress, brokerDevice = DeviceDetail
+) on user
+| where brokerTime between (dcTime .. dcTime + 6h)
+| where brokerIP != dcIP
+| project user, dcTime, dcIP, brokerTime, brokerIP, brokerDevice
+| order by dcTime desc

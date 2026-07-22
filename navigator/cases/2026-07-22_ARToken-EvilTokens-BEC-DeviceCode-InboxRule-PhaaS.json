@@ -1,0 +1,97 @@
+{
+  "name": "2026-07-22 — 2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BEC-as-a-service operations platform — clusters: ARToken (EvilTokens affiliate PhaaS)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BE"
+    },
+    {
+      "techniqueID": "T1583.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BE"
+    },
+    {
+      "techniqueID": "T1528",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BE"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BE"
+    },
+    {
+      "techniqueID": "T1497.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BE"
+    },
+    {
+      "techniqueID": "T1098.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BE"
+    },
+    {
+      "techniqueID": "T1550.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BE"
+    },
+    {
+      "techniqueID": "T1114.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BE"
+    },
+    {
+      "techniqueID": "T1114.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BE"
+    },
+    {
+      "techniqueID": "T1531",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BE"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

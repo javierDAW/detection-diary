@@ -1,0 +1,42 @@
+title: Microsoft Authentication Broker Sign-In Shortly After a Device Code Completion (PRT Escalation)
+id: 53d1a18b-61a7-46fa-9d36-737d9f478a97
+status: experimental
+description: |
+  Detects a Microsoft Authentication Broker (WAM) sign-in for a user
+  within a short window following a device code authentication
+  completion for the same user. ARToken's clientMode:"broker" parameter
+  instructs the phishing kit backend to use Microsoft's Authentication
+  Broker flow specifically to escalate a captured device-code token into
+  a Primary Refresh Token (PRT), a persistence mechanism that survives
+  a victim password reset. This sequence -- device code, then broker,
+  from a device or IP the user has not used before -- is the strongest
+  available signal that an attacker is escalating to durable persistence
+  rather than making one-off use of a stolen token. Standalone this rule
+  fires broadly; pair with the companion KQL join rule for the two-event
+  correlation logic.
+references:
+  - https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/
+  - https://attack.mitre.org/techniques/T1550/001/
+  - https://attack.mitre.org/techniques/T1098/001/
+author: Jarmi
+date: 2026/07/22
+modified: 2026/07/22
+tags:
+  - attack.persistence
+  - attack.t1098.001
+  - attack.credential-access
+  - attack.t1550.001
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection:
+    AppDisplayName: 'Microsoft Authentication Broker'
+    ResultType: 0
+  filter_registered_device:
+    DeviceDetail|contains: 'Compliant'
+  condition: selection and not filter_registered_device
+falsepositives:
+  - Legitimate Windows Hello for Business / Entra-joined device provisioning, which also uses the Authentication Broker; correlate with a preceding device-code event on a non-compliant, unregistered device before alerting.
+  - Users who legitimately use device code once (e.g. CLI login) and are then issued a broker token by a managed corporate device shortly after.
+level: medium

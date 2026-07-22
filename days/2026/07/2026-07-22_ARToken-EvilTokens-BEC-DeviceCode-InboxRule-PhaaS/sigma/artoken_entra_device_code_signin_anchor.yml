@@ -1,0 +1,47 @@
+title: Entra ID Sign-In Using OAuth 2.0 Device Code Authentication (ARToken/EvilTokens Anchor)
+id: 45aa5689-bb4b-4721-a162-dad4bbe3f585
+status: experimental
+description: |
+  Detects an interactive Microsoft Entra ID sign-in completed through the
+  OAuth 2.0 device authorization grant (device code flow). ARToken -- an
+  EvilTokens affiliate phishing-as-a-service panel documented by Cisco
+  Talos -- redirects victims to the genuine microsoft.com/devicelogin
+  page and has them enter an attacker-seeded device code, causing
+  Microsoft to issue access and refresh tokens directly to the ARToken
+  backend and bypassing MFA entirely. The device code protocol is
+  legitimately used by input-constrained devices (smart TVs, printers,
+  CLI tooling) and is rare for ordinary employees, so a successful
+  device code sign-in by a standard user is the highest fidelity
+  behavioural anchor for this campaign. Correlate with the companion
+  broker/PRT-escalation rule for post-compromise persistence.
+references:
+  - https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/
+  - https://cyberscoop.com/artoken-bec-platform-cisco-talos/
+  - https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-device-code
+  - https://attack.mitre.org/techniques/T1528/
+  - https://attack.mitre.org/techniques/T1566/002/
+author: Jarmi
+date: 2026/07/22
+modified: 2026/07/22
+tags:
+  - attack.credential-access
+  - attack.t1528
+  - attack.initial-access
+  - attack.t1566.002
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection:
+    AuthenticationProtocol: deviceCode
+    ResultType: 0
+  filter_known_devices:
+    AppDisplayName:
+      - 'Microsoft Authentication Broker'
+      - 'Microsoft Edge'
+  condition: selection and not filter_known_devices
+falsepositives:
+  - Legitimate device code sign-ins from smart TVs, conference room devices, printers and CLI tools (Azure CLI, kubectl). Baseline the principals and apps that genuinely use device code and exclude them.
+  - IT-driven provisioning of shared or kiosk devices.
+
+level: high

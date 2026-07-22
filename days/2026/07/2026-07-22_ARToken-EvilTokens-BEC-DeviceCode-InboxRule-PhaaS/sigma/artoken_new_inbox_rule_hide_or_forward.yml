@@ -1,0 +1,46 @@
+title: New Inbox Rule Created With Forwarding, Redirect, or Auto-Delete Action (ARTSender Evidence Suppression)
+id: 359ea802-ba53-465b-806b-28250a827d07
+status: experimental
+description: |
+  Detects creation of an Exchange Online inbox rule (New-InboxRule /
+  Set-InboxRule) with a forwarding, redirect, delete, or move-to-hidden-
+  folder action. ARToken's built-in ARTSender module programmatically
+  creates exactly this kind of rule after a mailbox is compromised, so
+  that any reply related to a fraudulent payment request is hidden or
+  redirected away from the real account holder -- the mechanism that
+  turns a single credential-theft event into a sustained business email
+  compromise (BEC) campaign that can run undetected for weeks. This is
+  the single highest-fidelity indicator that a mailbox has been
+  weaponized for ongoing fraud rather than merely accessed once.
+references:
+  - https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/
+  - https://www.paubox.com/blog/bec-phishing-kit-adds-inbox-rule-manipulation-to-microsoft-365-attacks
+  - https://pushsecurity.com/help/what-to-do-if-you-find-a-malicious-mail-rule-microsoft-office-365/
+  - https://attack.mitre.org/techniques/T1114/003/
+author: Jarmi
+date: 2026/07/22
+modified: 2026/07/22
+tags:
+  - attack.collection
+  - attack.t1114.003
+  - attack.t1114.002
+  - attack.defense-evasion
+logsource:
+  product: m365
+  service: exchange
+detection:
+  selection_op:
+    Operation:
+      - 'New-InboxRule'
+      - 'Set-InboxRule'
+  selection_action:
+    Parameters|contains:
+      - 'ForwardTo'
+      - 'RedirectTo'
+      - 'DeleteMessage'
+      - 'MoveToFolder'
+  condition: selection_op and selection_action
+falsepositives:
+  - Legitimate user-created rules for personal mailbox organization; scope confidence by correlating with a preceding risky or device-code sign-in for the same account within the prior 24 hours.
+  - IT-administered mail-flow rules deployed via bulk scripting; exclude known service accounts and change-management windows.
+level: high

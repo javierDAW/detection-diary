@@ -1,0 +1,232 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">ARToken / EvilTokens BEC-as-a-service kill chain</title>
+<desc id="d">Two-lane kill chain. Left lane (victim side): Cloudflare Workers resource development, vendor-impersonation invoice lure, seven-layer anti-analysis gate, device-code credential theft, Primary Refresh Token persistence, ARTSender BEC mailbox collection, and SharePoint/OneDrive impact plus operator cleanup. Right lane (attacker side): the ARToken Panel dashboard, its C2 API for device-code and PRT endpoints, the anti-analysis stack, the ARTSender and Box Monitor BEC toolkit, the ARTBrowser desktop session viewer, and the platform's subscription economics. Cross-lane arrows anchor the C2 API's role in credential/PRT escalation and the ARTSender toolkit's role in mailbox collection.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">ARToken: an EvilTokens affiliate BEC-as-a-service panel</text>
+<text class="meta" x="20" y="58">Vendor: Cisco Talos &#183; Date: 2026-07-01 &#183; Cluster: ARToken (EvilTokens affiliate) &#183; Day 86</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="35" y="105">VICTIM SIDE -- MAILBOX &amp; IDENTITY LIFECYCLE</text>
+<text class="laneLabelR" x="465" y="105">ATTACKER SIDE -- ARTOKEN / EVILTOKENS INFRA</text>
+
+<!-- Left lane stages -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="75" y="144">Resource development (T1583.006)</text>
+<text class="sub" x="46" y="168">ARToken panel deploys lures via Cloudflare API</text>
+<text class="sub" x="46" y="184">UUID-prefixed workers.dev subdomains</text>
+<text class="sub" x="46" y="200">Themes: docviewer, onedrive, adobe2</text>
+<text class="mono" x="46" y="226">clear90489058903-document.workers.dev</text>
+<text class="mono" x="46" y="244">reynoldsjace5.workers.dev</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="75" y="294">Initial access: invoice lure (T1566.002)</text>
+<text class="sub" x="46" y="318">Spoofs a real AP contact at a real vendor</text>
+<text class="sub" x="46" y="334">SPF/DKIM/DMARC fail; Reply-To pivots domain</text>
+<text class="sub" x="46" y="350">Anchor = real tenant, href = lookalike tenant</text>
+<text class="mono" x="46" y="376">shown: mononapfp.sharepoint.com</text>
+<text class="mono" x="46" y="394">actual: mononapfpcom.sharepoint.com</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="75" y="444">Defense evasion: anti-analysis (T1027)</text>
+<text class="sub" x="46" y="468">UA regex, webdriver check, fingerprinting</text>
+<text class="sub" x="46" y="484">800ms timing gate + mouse trajectory check</text>
+<text class="sub" x="46" y="500">Gates a 16-byte XOR-encrypted JS payload</text>
+<text class="mono" x="46" y="526">fires on DOMContentLoaded</text>
+<text class="mono" x="46" y="544">key: 233,69,224,219,53,48,213,165...</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="75" y="594">Credential access: device code (T1528)</text>
+<text class="sub" x="46" y="618">Victim redirected to the real devicelogin page</text>
+<text class="sub" x="46" y="634">Enters the attacker-seeded device code</text>
+<text class="sub" x="46" y="650">MFA bypassed; token issued to ARToken backend</text>
+<text class="mono" x="46" y="676">POST /api/device/start clientMode:broker</text>
+<text class="mono" x="46" y="694">operator UUID 84eb384d-cd3e-4c90-a283-...</text>
+
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="75" y="744">Persistence: PRT escalation (T1098.001)</text>
+<text class="sub" x="46" y="768">prt/setup -&gt; refresh -&gt; renew -&gt; reacquire</text>
+<text class="sub" x="46" y="784">Survives password reset (device-bound token)</text>
+<text class="sub" x="46" y="800">UI: PRT-enabled, persists across pw changes</text>
+<text class="mono" x="46" y="826">persistAfterPassChange: false</text>
+
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="75" y="894">Collection: ARTSender BEC toolkit (T1114)</text>
+<text class="sub" x="46" y="918">Full mailbox read + send-as-victim with BCC</text>
+<text class="sub" x="46" y="934">Inbox rules hide/forward replies (evidence sup.)</text>
+<text class="sub" x="46" y="950">Box Monitor: cross-mailbox keyword watch</text>
+<text class="mono" x="46" y="976">New-InboxRule ForwardTo/DeleteMessage</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="75" y="1044">Impact: SharePoint/OneDrive theft (T1531)</text>
+<text class="sub" x="46" y="1068">Browse/upload/download victim files</text>
+<text class="sub" x="46" y="1084">Lateral phishing via stolen documents</text>
+<text class="sub" x="46" y="1100">Operators revoke access once mailbox exhausted</text>
+
+<!-- Left lane vertical flow -->
+<path class="arrow" d="M228,255 L228,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M228,405 L228,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M228,555 L228,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M228,705 L228,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M228,855 L228,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M228,1005 L228,1020" marker-end="url(#ah)"/>
+
+<!-- Right lane ops -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badge" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">1</text>
+<text class="label" x="505" y="149">ARToken Panel: operator dashboard</text>
+<text class="sub" x="476" y="173">React SPA at dashboard-bl.pamconj.com</text>
+<text class="sub" x="476" y="189">1.7MB JS bundle, 80+ API endpoints</text>
+<text class="sub" x="476" y="205">No auth needed to view client code</text>
+<text class="sub" x="476" y="221">Found during a Talos IR engagement</text>
+<text class="mono" x="476" y="251">dashboard-bl.pamconj.com</text>
+<text class="mono" x="476" y="269">EvilTokens affiliate panel</text>
+
+<rect class="opK" x="460" y="295" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">2</text>
+<text class="label" x="505" y="319">C2 API: device code + PRT endpoints</text>
+<text class="sub" x="476" y="343">spx.pamconj.com backend</text>
+<text class="sub" x="476" y="359">Identical contract to EvilTokens (Sekoia)</text>
+<text class="sub" x="476" y="375">clientMode:broker triggers WAM/PRT flow</text>
+<text class="sub" x="476" y="391">5 overlapping indicators link both kits</text>
+<text class="mono" x="476" y="421">spx.pamconj.com</text>
+<text class="mono" x="476" y="439">POST /api/device/start</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badge" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">3</text>
+<text class="label" x="505" y="489">Anti-analysis stack: 7 layers</text>
+<text class="sub" x="476" y="513">More advanced than EvilTokens X-Antibot-Token</text>
+<text class="sub" x="476" y="529">Client-side behavioral verification</text>
+<text class="sub" x="476" y="545">XOR payload encryption, 16-byte key</text>
+<text class="sub" x="476" y="561">Sold separately via a Telegram bot</text>
+
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">4</text>
+<text class="label" x="505" y="659">ARTSender + Box Monitor: BEC ops</text>
+<text class="sub" x="476" y="683">Mailbox read/send-as/inbox-rule automation</text>
+<text class="sub" x="476" y="699">Cross-account keyword monitoring</text>
+<text class="sub" x="476" y="715">Shared access links between operators</text>
+<text class="sub" x="476" y="731">Geo-dynamic lure templates: city, country</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badge" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">5</text>
+<text class="label" x="505" y="829">ARTBrowser: desktop session viewer</text>
+<text class="sub" x="476" y="853">Standalone Windows application</text>
+<text class="sub" x="476" y="869">Browses victim M365 sessions outside panel</text>
+<text class="sub" x="476" y="885">Equivalent of EvilTokens Portal Browser</text>
+<text class="sub" x="476" y="901">Telegram bot notifies operator on capture</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badge" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">6</text>
+<text class="label" x="505" y="999">Subscription economics</text>
+<text class="sub" x="476" y="1023">$1,500 one-time + $500 per month</text>
+<text class="sub" x="476" y="1039">ARTBrowser standalone: $500 lifetime</text>
+<text class="sub" x="476" y="1055">Multi-tenant: isolated operator workspaces</text>
+<text class="sub" x="476" y="1071">Panel has gone dark; EvilTokens still active</text>
+
+<!-- Right lane vertical flow -->
+<path class="arrowR" d="M658,280 L658,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M658,450 L658,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M658,620 L658,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M658,790 L658,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M658,960 L658,975" marker-end="url(#ah)"/>
+
+<!-- Cross-lane detection anchors -->
+<path class="arrowX" d="M460,440 L425,590" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,775 L425,885" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="35" y="1200">Detection anchors</text>
+<text class="footerT" x="35" y="1220">Anchor 1: device-code sign-in followed by a broker/WAM sign-in from a new IP -- PRT persistence begins.</text>
+<text class="footerT" x="35" y="1238">Anchor 2: a new inbox rule (forward/hide/delete) created after a risky sign-in -- BEC evidence suppression begins.</text>
+<text class="footerT" x="35" y="1256">No CVE in scope: abuse of the legitimate OAuth 2.0 Device Authorization Grant (RFC 8628), not a software flaw.</text>
+</svg>

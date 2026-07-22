@@ -1,0 +1,16 @@
+// Title: Egress to pamconj.com or UUID-Prefixed workers.dev ARToken Lure Subdomains
+// Id: c1a5d928-7f3b-4e91-b6d0-9a2c48e3f715
+// MITRE: T1583.006, T1566.002
+// Reference: https://github.com/Cisco-Talos/IOCs/blob/main/2026/07/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365.json
+// Author: Jarmi
+// Date: 2026-07-22
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: workers.dev is a shared, legitimate Cloudflare Workers hosting domain used
+//   by many benign developers; this rule anchors on the confirmed campaign subdomains
+//   and the docviewer/onedrive/adobe2 UUID-prefixed naming pattern, not on workers.dev
+//   as a bare domain, to avoid broad false positives.
+DeviceNetworkEvents
+| where RemoteUrl has_any ("pamconj.com", "clear90489058903-document.workers.dev", "reynoldsjace5.workers.dev")
+    or RemoteUrl matches regex @"[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-(docviewer|onedrive|adobe2)\."
+| project Timestamp, DeviceName, InitiatingProcessAccountName, RemoteUrl, RemoteIP, InitiatingProcessFileName
+| order by Timestamp desc

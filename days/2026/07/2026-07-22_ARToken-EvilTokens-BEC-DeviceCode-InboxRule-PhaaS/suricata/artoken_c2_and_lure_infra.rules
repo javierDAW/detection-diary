@@ -1,0 +1,16 @@
+# Author: Jarmi
+# Date: 2026-07-22
+# Reference: https://github.com/Cisco-Talos/IOCs/blob/main/2026/07/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365.json
+# Custom vars: uses default $HOME_NET / $EXTERNAL_NET from suricata.yaml.
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"ARTOKEN C2 - TLS SNI to pamconj.com panel/API domain"; tls.sni; content:"pamconj.com"; endswith; sid:9200001; rev:1; classtype:trojan-activity; reference:url,blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ARTOKEN C2 - HTTP Host header to pamconj.com panel/API domain"; http.host; content:"pamconj.com"; endswith; sid:9200002; rev:1; classtype:trojan-activity; reference:url,blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"ARTOKEN lure - TLS SNI to clear90489058903-document.workers.dev Cloudflare Workers lure account"; tls.sni; content:"clear90489058903-document.workers.dev"; endswith; sid:9200003; rev:1; classtype:trojan-activity; reference:url,blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"ARTOKEN lure - TLS SNI to reynoldsjace5.workers.dev Cloudflare Workers lure account"; tls.sni; content:"reynoldsjace5.workers.dev"; endswith; sid:9200004; rev:1; classtype:trojan-activity; reference:url,blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ARTOKEN device-code broker API call - POST /api/device/start with clientMode broker"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/api/device/start"; http.request_body; content:"clientMode"; content:"broker"; distance:0; sid:9200005; rev:1; classtype:trojan-activity; reference:url,blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ARTOKEN lure - UUID-prefixed docviewer/onedrive/adobe2 Workers.dev subdomain pattern"; http.host; content:"workers.dev"; endswith; pcre:"/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-(docviewer|onedrive|adobe2)\./i"; sid:9200006; rev:1; classtype:trojan-activity; reference:url,blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/;)
