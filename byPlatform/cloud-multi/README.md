@@ -4,11 +4,12 @@
 
 # Platforms: cloud-multi
 
-25 day(s) covering this platform.
+26 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-22 | ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BEC-as-a-service operations platform | ARToken (EvilTokens affiliate PhaaS) | [`2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/`](../../days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/) |
 | 2026-07-17 | Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting Indictment | Media Land LLC / ML.Cloud LLC | [`2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/`](../../days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/) |
 | 2026-07-15 | O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-resistant persistence | O-UNC-066 | [`2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/`](../../days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/) |
 | 2026-07-14 | JADEPUFFER: Agentic Ransomware From a Langflow CVE to a Destroyed Nacos Database | JADEPUFFER | [`2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/`](../../days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/) |

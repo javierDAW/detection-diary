@@ -1,0 +1,16 @@
+// Title: New Inbox Rule With Forwarding, Redirect, or Hide Action (ARTSender BEC Anchor)
+// Id: 4b7e9c15-2a68-4f0d-8c3e-6a1f5b9d7e42
+// MITRE: T1114.003, T1114.002
+// Reference: https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/
+// Author: Jarmi
+// Date: 2026-07-22
+// Tested on: Microsoft Sentinel (OfficeActivity)
+// FP notes: legitimate personal mailbox organization rules and change-managed bulk
+//   mail-flow rule deployments will also match; correlate with a preceding risky or
+//   device-code sign-in within 24 hours to raise confidence before escalating.
+OfficeActivity
+| where RecordType == "ExchangeAdmin"
+| where Operation in ("New-InboxRule", "Set-InboxRule")
+| where Parameters has_any ("ForwardTo", "RedirectTo", "DeleteMessage", "MoveToFolder")
+| project TimeGenerated, UserId, Operation, Parameters, ClientIP
+| order by TimeGenerated desc

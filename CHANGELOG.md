@@ -1,3 +1,21 @@
+## 2026.07.22 — Day 86 — ARToken: an EvilTokens Affiliate BEC-as-a-Service Platform
+
+### Added
+- `days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/` — Cisco Talos (2026-07-01, corroborated by CyberScoop the same day, BleepingComputer 2026-07-03, and Paubox 2026-07-17) exposed ARToken, an EvilTokens-affiliate device-code phishing panel that ships a full built-in BEC toolkit (ARTSender): mailbox read/send-as, programmatic inbox-rule creation for evidence suppression, cross-account keyword monitoring, and Primary Refresh Token persistence surviving a password reset. Wednesday Identity & fraud rotation, slot #27 (BEC/email fraud), 35-day gap, the largest of any Wednesday-compatible slot.
+- Sigma (4): `artoken_entra_device_code_signin_anchor.yml` flags device-code sign-in by a standard user; `artoken_prt_broker_signin_after_devicecode.yml` flags the broker/WAM PRT-escalation handoff; `artoken_new_inbox_rule_hide_or_forward.yml` flags evidence-suppression inbox rules; `artoken_mass_sendas_bcc_batch.yml` flags the ARTSender BCC-batch send signature.
+- KQL (3): `artoken_devicecode_then_broker_prt_escalation.kql` joins device-code and broker sign-ins; `artoken_new_inbox_rule_forward_or_hide.kql` flags new forward/hide inbox rules; `artoken_workers_dev_uuid_lure_egress.kql` flags egress to the confirmed lure infrastructure.
+- YARA (2 files, 2 rules): JS-bundle string signatures (operator UUID, PRT endpoints, broker client mode) and a lookalike-SharePoint lure HTML heuristic.
+- Suricata (1 file, 6 sids): TLS SNI/HTTP Host indicators for the confirmed C2 and lure domains plus a device-code broker-mode API body heuristic.
+- PEAK hunts (3): device-code-to-broker PRT escalation; new inbox rule after a risky sign-in; mass send-as BCC-batch fan-out.
+- `iocs.csv` (23 entries) — 13 domains, 1 IP, 2 URLs, 3 strings, 3 context notes. No CVE in scope (abuse of the legitimate OAuth 2.0 Device Authorization Grant), so no `kev.md` for this case.
+- `kill_chain.svg` — Template A, canonical palette, acc-identity-cloud accent, seven victim-mailbox stages and six ARToken/EvilTokens infrastructure ops boxes.
+
+### Pedagogy
+- A password reset alone does not remediate a device-code compromise once Primary Refresh Token escalation has occurred -- PRTs are device-bound, not credential-bound, and survive the reset that kills a plain refresh token.
+- A new inbox rule (forward/hide/delete) created after a risky sign-in is the highest-value signal separating a one-time credential theft from an active, sustained BEC operation.
+- PhaaS platforms now commoditize the entire BEC fraud lifecycle -- mailbox send-as, cross-account keyword monitoring, shared operator access -- not just initial access, so any successful device-code phish should be treated as BEC-capable by default.
+- Domain reputation inherited from a legitimate platform (sharepoint.com, workers.dev) defeats naive URL-reputation filtering; detection has to inspect subdomain/path structure and behavior, not baseline domain trust.
+
 ## 2026.07.21 — Day 85 — Spirals Ransomware: IIS Web Shell to Full-Network Encryption in Under 24 Hours
 
 ### Added

@@ -1,0 +1,24 @@
+type,value,context,confidence,source
+domain,pamconj.com,ARToken root C2/panel domain,high,Cisco Talos
+domain,dashboard-bl.pamconj.com,ARToken Panel React SPA login host serving the client JS bundle,high,Cisco Talos
+domain,spx.pamconj.com,ARToken C2 API host serving device/start and prt/* endpoints,high,Cisco Talos
+domain,clear90489058903-document.workers.dev,Cloudflare Workers account hosting UUID-prefixed lure subdomains,high,Cisco Talos
+domain,917bedb0-554e-a8b9-79f1-docviewer.clear90489058903-document.workers.dev,Document-viewer-themed lure page,high,Cisco Talos
+domain,321a1392-939d-3bf5-4040-docviewer.clear90489058903-document.workers.dev,Document-viewer-themed lure page,high,Cisco Talos
+domain,98c4c82e-2d81-0837-e3d6-docviewer.clear90489058903-document.workers.dev,Document-viewer-themed lure page,high,Cisco Talos
+domain,112838d8-9a75-2e90-d63b-docviewer.clear90489058903-document.workers.dev,Document-viewer-themed lure page,high,Cisco Talos
+domain,aquaclaude-09494-9099403-docviewer.clear90489058903-document.workers.dev,Document-viewer-themed lure page,medium,Cisco Talos
+domain,e5469cec-124a-c84f-abaa-docviewer.clear90489058903-document.workers.dev,Document-viewer-themed lure page,medium,Cisco Talos
+domain,50a201fd-dd2d-cf72-5fa6-onedrive.clear90489058903-document.workers.dev,OneDrive-themed lure page,high,Cisco Talos
+domain,reynoldsjace5.workers.dev,Second Cloudflare Workers account hosting lure subdomains,high,Cisco Talos
+domain,50a201fd-dd2d-cf72-5fa6-adobe2.reynoldsjace5.workers.dev,Adobe-themed lure page,high,Cisco Talos
+ipv4,172.67.214.35,Cloudflare-fronted IP observed in campaign network traffic; shared CDN IP so corroborate with SNI/Host not on its own,medium,Cisco Talos
+url,hxxps://mononapfp.sharepoint[.]com/:f:/document/INV-IgCx1X50pgUjR7iAjZL2fuQaAW4GfKVs6wHT3BYv9sgwW7g,Legitimate vendor SharePoint tenant shown as the lure's visible anchor text (not itself malicious; abused for display trust),medium,Cisco Talos
+url,hxxps://mononapfpcom.sharepoint[.]com/:f:/g/IgAdH_aaBPMcQbtINZzC1TsLARj3dHj63MnKjvnY-QJrKEc,Actual malicious lookalike SharePoint tenant destination behind the lure hyperlink,high,Cisco Talos
+string,artoken_jwt,localStorage key the payload probes for existing victim session JWTs,high,Cisco Talos
+string,84eb384d-cd3e-4c90-a283-c960ce557913,Hardcoded ARToken operator UUID embedded in the phishing payload,high,Cisco Talos
+string,"clientMode"":""broker""",Non-standard OAuth device-code request parameter unique to the EvilTokens/ARToken API contract,high,Cisco Talos
+note,"XOR payload key: [233,69,224,219,53,48,213,165,119,243,77,151,101,148,15,227] (16 bytes)",Runtime-decryption key for the delivered phishing JavaScript payload,high,Cisco Talos
+note,"Pricing: USD 1500 one-time plus USD 500/month subscription; standalone ARTBrowser desktop app USD 500 lifetime",Commercial PhaaS economics; useful context for takedown/financial-disruption prioritization,high,Cisco Talos
+note,"ARToken panel (dashboard-bl.pamconj.com) had gone dark as of the most recent public reporting; the wider EvilTokens affiliate ecosystem remains active",Indicator freshness/decay warning -- do not treat panel domains as necessarily live without re-validation,high,Cisco Talos
+cve,none,ARToken/EvilTokens abuse the legitimate OAuth 2.0 Device Authorization Grant (RFC 8628); no software vulnerability is in scope for this case,high,analysis

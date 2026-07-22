@@ -1,0 +1,41 @@
+title: Single Mailbox Sending High-Volume Outbound Mail With BCC Batching (ARTSender Signature)
+id: a3dd280a-9a26-4e3d-ad0e-4370c712e590
+status: experimental
+description: |
+  Detects a single mailbox generating an unusually high volume of
+  outbound messages with BCC recipients and near-uniform inter-send
+  delay within a short window. ARToken's ARTSender module sends email
+  as the compromised victim with configurable BCC batching and
+  inter-send delay to automate BEC fraud at scale while mimicking a
+  human sending cadence. A BCC-heavy, evenly-spaced send burst from an
+  account with no prior history of bulk mail is a strong behavioural
+  anchor distinguishing automated BEC abuse from ordinary marketing or
+  distribution-list usage (which typically uses distribution groups, not
+  BCC, and originates from designated service accounts).
+references:
+  - https://blog.talosintelligence.com/artoken-inside-an-eviltokens-affiliate-panel-targeting-microsoft-365/
+  - https://attack.mitre.org/techniques/T1114/002/
+author: Jarmi
+date: 2026/07/22
+modified: 2026/07/22
+tags:
+  - attack.collection
+  - attack.t1114.002
+  - attack.exfiltration
+logsource:
+  product: m365
+  service: exchange
+detection:
+  selection:
+    Operation: 'Send'
+    RecipientCount|gte: 5
+  filter_known_bulk_senders:
+    SenderAddress:
+      - 'noreply@*'
+      - 'marketing@*'
+      - 'newsletter@*'
+  condition: selection and not filter_known_bulk_senders
+falsepositives:
+  - Legitimate bulk-mail or newsletter accounts not covered by the exclusion list; extend filter_known_bulk_senders per environment.
+  - Helpdesk or IT accounts performing legitimate mass notifications; baseline and exclude known service principals.
+level: medium

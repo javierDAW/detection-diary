@@ -1,5 +1,48 @@
 [
  {
+  "date": "2026-07-22",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS",
+  "title": "ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BEC-as-a-service operations platform",
+  "clusters": [
+   "ARToken (EvilTokens affiliate PhaaS)"
+  ],
+  "country": "Unattributed e-crime PhaaS; multi-tenant affiliate model, public-sector targeting observed but not exclusive",
+  "platforms": [
+   "cloud-multi"
+  ],
+  "sectors": [
+   "life-sciences",
+   "professional-services",
+   "government"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1583.006",
+   "T1528",
+   "T1027",
+   "T1497.001",
+   "T1098.001",
+   "T1550.001",
+   "T1114.002",
+   "T1114.003",
+   "T1531"
+  ],
+  "tech_count": 10,
+  "tldr": "Cisco Talos (2026-07-01, corroborated by CyberScoop the same day, BleepingComputer 2026-07-03, and a fresh healthcare-sector angle from Paubox on 2026-07-17) exposed **ARToken**, a React-based phishing-as-a-service operator panel discovered during an incident-response engagement that shares its API contract, infrastructure model, and Primary Refresh Token (PRT) persistence chain with **EvilTokens*",
+  "thumb": "thumbs/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS.svg",
+  "case_rel": "../days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "ARToken (EvilTokens affiliate PhaaS)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "artoken: an eviltokens affiliate panel turns device-code phishing into a full bec-as-a-service operations platform artoken (eviltokens affiliate phaas) unattributed e-crime phaas; multi-tenant affiliate model, public-sector targeting observed but not exclusive cloud-multi life-sciences professional-services government t1566.002 t1583.006 t1528 t1027 t1497.001 t1098.001 t1550.001 t1114.002 t1114.003 t1531 identity / cloud / saas "
+ },
+ {
   "date": "2026-07-21",
   "year": "2026",
   "month": "2026-07",

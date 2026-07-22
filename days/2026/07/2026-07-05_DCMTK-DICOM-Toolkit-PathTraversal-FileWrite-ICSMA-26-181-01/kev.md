@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.16)). Generated 2026-07-21._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.21)). Generated 2026-07-22._
 
 **0 of 6 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 

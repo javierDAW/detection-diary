@@ -4,11 +4,12 @@
 
 # Techniques: T1550.001
 
-5 day(s) covering this technique.
+6 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-22 | ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BEC-as-a-service operations platform | ARToken (EvilTokens affiliate PhaaS) | [`2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/`](../../days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/) |
 | 2026-07-06 | ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail | ToddyCat | [`2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/`](../../days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/) |
 | 2026-07-04 | FUXA SCADA/HMI: dot-segment path-normalization auth bypass (CVE-2026-13207) leaks every OT role | Opportunistic ICS/OT scanners | [`2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/`](../../days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/) |
 | 2026-06-21 | Icarus SaaS Extortion via Klue OAuth: Salesforce CRM Data Theft Across Enterprise Clients | Icarus | [`2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/`](../../days/2026/06/2026-06-21_Icarus-Klue-OAuth-Salesforce-SaaS-Extortion/) |

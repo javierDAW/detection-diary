@@ -1,10 +1,11 @@
 # detection-diary blocklist — domain
-# generated 2026-07-21 08:44 UTC
+# generated 2026-07-22 08:25 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
 0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 1.9.5.0.9.1.0.0.7.4.0.1.0.0.2.ip6.arpa
+112838d8-9a75-2e90-d63b-docviewer.clear90489058903-document.workers.dev
 15hourolddomain-bypass-ed-google-workspaceprotection-fuckgoogle.com
 1jabber.com
 1rpc.io
@@ -12,13 +13,18 @@
 1vpns.net
 1vpns.org
 2rxyt8yrhq0bgj.org
+321a1392-939d-3bf5-4040-docviewer.clear90489058903-document.workers.dev
 3n7wj.com
 5.2.1.6.3.0.0.7.4.0.1.0.0.2.ip6.arpa
+50a201fd-dd2d-cf72-5fa6-adobe2.reynoldsjace5.workers.dev
+50a201fd-dd2d-cf72-5fa6-onedrive.clear90489058903-document.workers.dev
 5ka8rxp6t6eup2.org
 6cimu4mc085em8.org
 8.1.9.5.0.9.1.0.0.7.4.0.1.0.0.2.ip6.arpa
 8doj8uvx604eck.org
 9.a.d.0.6.3.0.0.7.4.0.1.0.0.2.ip6.arpa
+917bedb0-554e-a8b9-79f1-docviewer.clear90489058903-document.workers.dev
+98c4c82e-2d81-0837-e3d6-docviewer.clear90489058903-document.workers.dev
 Kyblogtz6k3jtxnjjvluee5ec4g3zcnvyvbgsnq5thumphmqidkt7xid.onion
 Mlnmlnnrdhcaddwll4zqvfd2vyqsgtgj473gjoehwna2v4sizdukheyd.onion
 abc.fetish-friends.com
@@ -29,6 +35,7 @@ api.anthropic.com
 api.openai.com
 api.securehubcloud.com
 api.vpns.robovpn.com
+aquaclaude-09494-9099403-docviewer.clear90489058903-document.workers.dev
 arweave.net
 ashx.lhlsjcb.com
 assignpasskey.com
@@ -52,6 +59,7 @@ cheapoca.biz
 check.git-service.com
 cj06y9v4xab.com
 claude.ai
+clear90489058903-document.workers.dev
 coachcybersecurity.com
 com-ae.net
 compliance-protectionoutlook.de
@@ -60,6 +68,7 @@ cumm.info
 cwrtwright.com
 d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
 d1hmxkpwby0d4s.org
+dashboard-bl.pamconj.com
 dashboard-salesforce.com
 data-form-o5pu.p-ntz8agp6.workers.dev
 ddjidd564.github.io
@@ -70,6 +79,7 @@ download-center.online
 download.robovpn.com
 dra1.je211.epc.mnc003.mcc234.3gppnetwork.org
 drivelivelime.com
+e5469cec-124a-c84f-abaa-docviewer.clear90489058903-document.workers.dev
 en.cumm.info
 encryption-plug-in-signal.com-ae.net
 enrollms.com
@@ -138,6 +148,7 @@ openclawcli.vercel.app
 opmanager.pro
 orange-cell-1353.hellohiall.workers.dev
 ovh1kn1tcqw5kp.org
+pamconj.com
 panel.securehubcloud.com
 passkeyadd.com
 passkeydeploy.com
@@ -150,6 +161,7 @@ redviper.com
 regularsports.org
 relaxmode.org
 replit.dev
+reynoldsjace5.workers.dev
 robovpn-windows-default-rtdb.firebaseio.com
 robovpn.com
 roldco.com
@@ -167,6 +179,7 @@ sitemap.tor-browser.io
 sitemaps.tor-browser.io
 socifiapp.com
 spicynagets.shop
+spx.pamconj.com
 sql-updater-service.com
 sslzeromail.run.place
 sss.authorized-logins.net
