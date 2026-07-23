@@ -79,6 +79,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [O-UNC-066](./o-unc-066/) | 1 |
 | [OP-512](./op-512/) | 1 |
 | [OceanLotus (APT32)](./oceanlotus-apt32/) | 1 |
+| [OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark)](./openai-internal-evaluation-agent-gpt-5-6-sol-an-unnamed-pre-release-model-exploitgym-benchmark/) | 1 |
 | [Opportunistic Argo CD ServerSideDiff exploitation (unattributed)](./opportunistic-argo-cd-serversidediff-exploitation-unattributed/) | 1 |
 | [Opportunistic CMS mass-exploitation (unattributed botnet)](./opportunistic-cms-mass-exploitation-unattributed-botnet/) | 1 |
 | [Opportunistic ICS/OT scanners](./opportunistic-ics-ot-scanners/) | 1 |

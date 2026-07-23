@@ -189,6 +189,5 @@
   <text x="56" y="1108" class="det-line">• kql/uat8302_netdraft_graph_egress.kql — non-browser process beaconing graph.microsoft.com from ProgramData\Microsoft\Microsoft</text>
   <text x="56" y="1128" class="det-line">• kql/uat8302_deaddrop_resolver_chain.kql — GitHub or GameSpot pull followed within 5 min by a derived public IP</text>
   <text x="56" y="1148" class="det-line">• suricata/uat8302_c2_domains_subnet.rules — TLS SNI + HTTP host anchors + bulletproof subnet egress (sids 8110001-8110005)</text>
-
   <rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
 </svg>

@@ -198,6 +198,5 @@
   <text x="60" y="1086" class="anchor">Pedagogical anchor</text>
   <text x="60" y="1108" class="anchor-sub">FLAG_SECURE protects framebuffer + MediaProjection. It does not protect AccessibilityNodeInfo.</text>
   <text x="60" y="1128" class="anchor-sub">SMS-OTP / push without number matching / TOTP visible in foreground are all reachable. FIDO2 is the durable answer.</text>
-
   <rect class="acc-mobile" x="0" y="0" width="880" height="8"/>
 </svg>

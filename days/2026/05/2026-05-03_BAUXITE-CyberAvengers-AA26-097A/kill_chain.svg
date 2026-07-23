@@ -227,6 +227,5 @@
   <text x="60" y="1198" class="anchor-sub">A broken comparator in a wiper hints at LLM-assisted code authoring — keep that signal in your model.</text>
   <text x="60" y="1218" class="anchor-sub">Detection target is exposure, not exploitation. Inventory + Censys / Shodan sweep your own perimeter.</text>
   <text x="60" y="1238" class="anchor-sub">7 days clean OT-sensor + HMI/PLC ground-truth parity before declaring recovery.</text>
-
   <rect class="acc-ot-ics" x="0" y="0" width="880" height="8"/>
 </svg>

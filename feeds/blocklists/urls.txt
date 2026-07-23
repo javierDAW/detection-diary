@@ -1,5 +1,5 @@
 # detection-diary blocklist — url
-# generated 2026-07-22 08:25 UTC
+# generated 2026-07-23 08:09 UTC
 # defensive/educational — validate before blocking; indicators decay
 http://154.82.81.205/YD20251001143052.zip
 http://154.82.81.205/YN20250923193706.zip
@@ -57,6 +57,7 @@ https://github.com/ddjidd564/env-security-scanner
 https://github.com/microsoft/semantic-kernel/pull/13478/changes
 https://github.com/tenet-security/agent-jackstop
 https://howto-tar-naturals-coordination.trycloudflare.com
+https://huggingface.co/zai-org/GLM-5.2
 https://login.microsoftonline.com/common/oauth2/deviceauth
 https://mcagov.cc/download.php?type=exe
 https://microsoft.com/devicelogin

@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**86 cases** · **151 actors/clusters** · **336 ATT&CK techniques** · **16 platforms** · **80 sectors** · 2026-04-28 -> 2026-07-22
+**87 cases** · **152 actors/clusters** · **338 ATT&CK techniques** · **16 platforms** · **80 sectors** · 2026-04-28 -> 2026-07-23
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/"><img src="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/kill_chain.svg" alt="2026-07-23 kill chain" width="240"></a><br><sub><b>2026-07-23</b><br>OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/"><img src="days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/kill_chain.svg" alt="2026-07-22 kill chain" width="240"></a><br><sub><b>2026-07-22</b><br>ARToken (EvilTokens affiliate PhaaS)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/"><img src="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/kill_chain.svg" alt="2026-07-21 kill chain" width="240"></a><br><sub><b>2026-07-21</b><br>Spirals</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/"><img src="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/kill_chain.svg" alt="2026-07-20 kill chain" width="240"></a><br><sub><b>2026-07-20</b><br>RedHook</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/"><img src="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/kill_chain.svg" alt="2026-07-20 kill chain" width="240"></a><br><sub><b>2026-07-20</b><br>RedHook</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/"><img src="days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/kill_chain.svg" alt="2026-07-19 kill chain" width="240"></a><br><sub><b>2026-07-19</b><br>INC Ransom</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/"><img src="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/kill_chain.svg" alt="2026-07-18 kill chain" width="240"></a><br><sub><b>2026-07-18</b><br>STA1 · STA2</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/"><img src="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/kill_chain.svg" alt="2026-07-17 kill chain" width="240"></a><br><sub><b>2026-07-17</b><br>Media Land LLC / ML.Cloud LLC</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

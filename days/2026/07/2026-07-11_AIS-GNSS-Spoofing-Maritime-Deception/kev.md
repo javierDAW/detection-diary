@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.21)). Generated 2026-07-22._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.07.22)). Generated 2026-07-23._
 
 **1 of 1 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 

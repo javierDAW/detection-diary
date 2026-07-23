@@ -70,7 +70,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1380"/>
-<rect class="acc-edge-network" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-edge-network" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">Media Land / ML.Cloud Bulletproof Hosting Indictment</text>
 <text class="meta" x="20" y="58">Vendor: DOJ / OFAC / Recorded Future / Prodaft / Silent Push - Date: 2026-07-14 to 2026-07-17 - Cluster: Media Land LLC / ML.Cloud LLC - Day 81</text>
 

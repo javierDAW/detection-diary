@@ -68,7 +68,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">ToddyCat "Umbrij": Shadow Token via Remote Debug -&gt; Gmail</text>
 <text class="meta" x="20" y="58">Vendor: Kaspersky Securelist - Date: 2026-06-30 - Cluster: ToddyCat - Day 70</text>
 

@@ -68,7 +68,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">UAT-7810 and the LapDogs ORB - LONGLEASH / DOGLEASH / JARLEASH</text>
 <text class="meta" x="20" y="58">Source: Cisco Talos - Date: 2026-07-07 - Cluster: UAT-7810 (China-nexus) - Class: espionage - Day 77</text>
 
