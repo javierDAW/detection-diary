@@ -197,6 +197,5 @@
   <text x="28" y="812" class="anchor-txt">ISOLATION RULE: isolate host BEFORE revoking GitHub token — token revocation triggers rm -rf ~/ destructor in gh-token-monitor daemon</text>
   <text x="28" y="827" class="anchor-txt">CRYPTO RULE: move on-chain funds BEFORE host cleanup if .ethereum/keystore or .foundry/keystores were accessible on the compromised machine</text>
   <text x="28" y="846" class="anchor-txt">SLSA CAVEAT: valid SLSA Build L3 provenance does NOT guarantee authorized workflow or legitimate commit — cross-check branch protection rules</text>
-
   <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
 </svg>

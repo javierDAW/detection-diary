@@ -4,11 +4,12 @@
 
 # Techniques: T1213
 
-7 day(s) covering this technique.
+8 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-23 | ExploitGym Escape: an OpenAI cyber-evaluation agent breaks its sandbox and chains a dataset-loader RCE into Hugging Face's production infrastructure | OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark) | [`2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/`](../../days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/) |
 | 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |
 | 2026-06-11 | Argo CD ServerSideDiff Kubernetes Secret extraction (CVE-2026-42880) — a read-only GitOps user reads etcd Secrets in plaintext | Opportunistic Argo CD ServerSideDiff exploitation (unattributed) | [`2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/`](../../days/2026/06/2026-06-11_ArgoCD-ServerSideDiff-CVE-2026-42880-K8s-Secret-Leak/) |
 | 2026-05-20 | Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure | Storm-2949 | [`2026-05-20_Storm-2949-Cloud-Identity-SSPR/`](../../days/2026/05/2026-05-20_Storm-2949-Cloud-Identity-SSPR/) |

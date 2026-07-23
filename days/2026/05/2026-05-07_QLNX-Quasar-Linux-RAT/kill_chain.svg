@@ -219,6 +219,5 @@
   <text x="60" y="1102" class="anchor-sub">suricata/qlnx_ipapi_recon.rules — DNS/HTTP/TLS ip-api.com from server-tier + QLNX beacon shape</text>
   <text x="60" y="1124" class="anchor-sub">Pedagogical: re-image not clean. Detect side-effects (gcc, ld.so.preload, cred burst), not file signatures.</text>
   <text x="60" y="1144" class="anchor-sub">QLNX_MANAGED is operator self-clean convenience and defender high-precision anchor.</text>
-
   <rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
 </svg>

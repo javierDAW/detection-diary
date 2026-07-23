@@ -70,7 +70,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">INC Ransom vs City of Acworth, GA -- Municipal Double Extortion</text>
 <text class="meta" x="20" y="58">Vendor: DeXpose/TechNadu/MITRE G1032 . Date: 2026-07-19 . Cluster: INC Ransom (GOLD IONIC) . Day 83</text>
 

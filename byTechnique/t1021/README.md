@@ -4,9 +4,10 @@
 
 # Techniques: T1021
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-23 | ExploitGym Escape: an OpenAI cyber-evaluation agent breaks its sandbox and chains a dataset-loader RCE into Hugging Face's production infrastructure | OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark) | [`2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/`](../../days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/) |
 | 2026-06-15 | OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-chain attack and a multi-year construction-firm intrusion | OceanLotus (APT32) | [`2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/`](../../days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/) |

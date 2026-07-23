@@ -4,7 +4,7 @@
 
 # INDEX
 
-**86 cases** · **151 actors/clusters** · **336 ATT&CK techniques** · **16 platforms** · **80 sectors** · 2026-04-28 -> 2026-07-22
+**87 cases** · **152 actors/clusters** · **338 ATT&CK techniques** · **16 platforms** · **80 sectors** · 2026-04-28 -> 2026-07-23
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/"><img src="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/kill_chain.svg" alt="2026-07-23 kill chain" width="240"></a><br><sub><b>2026-07-23</b><br>OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/"><img src="days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/kill_chain.svg" alt="2026-07-22 kill chain" width="240"></a><br><sub><b>2026-07-22</b><br>ARToken (EvilTokens affiliate PhaaS)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/"><img src="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/kill_chain.svg" alt="2026-07-21 kill chain" width="240"></a><br><sub><b>2026-07-21</b><br>Spirals</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/"><img src="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/kill_chain.svg" alt="2026-07-20 kill chain" width="240"></a><br><sub><b>2026-07-20</b><br>RedHook</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/"><img src="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/kill_chain.svg" alt="2026-07-20 kill chain" width="240"></a><br><sub><b>2026-07-20</b><br>RedHook</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/"><img src="days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/kill_chain.svg" alt="2026-07-19 kill chain" width="240"></a><br><sub><b>2026-07-19</b><br>INC Ransom</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/"><img src="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/kill_chain.svg" alt="2026-07-18 kill chain" width="240"></a><br><sub><b>2026-07-18</b><br>STA1 · STA2</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/"><img src="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/kill_chain.svg" alt="2026-07-17 kill chain" width="240"></a><br><sub><b>2026-07-17</b><br>Media Land LLC / ML.Cloud LLC</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/"><img src="days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/kill_chain.svg" alt="2026-07-17 kill chain" width="240"></a><br><sub><b>2026-07-17</b><br>Media Land LLC / ML.Cloud LLC</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/"><img src="days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/kill_chain.svg" alt="2026-07-16 kill chain" width="240"></a><br><sub><b>2026-07-16</b><br>UEFI shim trust-chain disclosure (ESET Research)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/"><img src="days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/kill_chain.svg" alt="2026-07-15 kill chain" width="240"></a><br><sub><b>2026-07-15</b><br>O-UNC-066</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/"><img src="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/kill_chain.svg" alt="2026-07-14 kill chain" width="240"></a><br><sub><b>2026-07-14</b><br>JADEPUFFER</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/"><img src="days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/kill_chain.svg" alt="2026-07-14 kill chain" width="240"></a><br><sub><b>2026-07-14</b><br>JADEPUFFER</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/"><img src="days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/kill_chain.svg" alt="2026-07-13 kill chain" width="240"></a><br><sub><b>2026-07-13</b><br>UAT-7810</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/"><img src="days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/kill_chain.svg" alt="2026-07-12 kill chain" width="240"></a><br><sub><b>2026-07-12</b><br>NoName057(16)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/"><img src="days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/kill_chain.svg" alt="2026-07-11 kill chain" width="240"></a><br><sub><b>2026-07-11</b><br>Multiple GNSS/AIS spoofing operators</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-07</b> — 22 case(s)</summary>
+<details><summary><b>2026-07</b> — 23 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-07-23 | [ExploitGym Escape: an OpenAI cyber-evaluation agent breaks its sandbox and chains a dataset-loader RCE into Hugging Face's production infrastructure](days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/) | OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark) | cloud-multi, linux, supply-chain |
 | 2026-07-22 | [ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BEC-as-a-service operations platform](days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/) | ARToken (EvilTokens affiliate PhaaS) | cloud-multi |
 | 2026-07-21 | [Spirals ransomware: IIS web shell to full-network encryption in under 24 hours, 23 backup/database/hypervisor services killed on the way](days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/) | Spirals | windows |
 | 2026-07-20 | [RedHook Returns: ADB Wireless Debugging and Shizuku Turn Accessibility Abuse into Shell-Level Privilege](days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/) | RedHook | android |

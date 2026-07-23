@@ -224,6 +224,5 @@
   <text class="anchor-line" x="610" y="1190">- Real Linux kworker is kernel-space -- any user-space match is masquerading</text>
 
   <text class="anchor-foot" x="50" y="1218">PwC TI + Lumen Black Lotus Labs (2026-05-21) - 3 Sigma + 3 KQL + 1 YARA (3 rules) + 1 Suricata (10 sids) + 3 PEAK hunts - ground truth: this folder.</text>
-
   <rect class="acc-edge-network" x="0" y="0" width="880" height="8"/>
 </svg>

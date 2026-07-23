@@ -203,6 +203,5 @@
   <text x="60" y="1102" class="anchor-sub">--ignore-scripts is NOT a defence in 2026. On-require activation bypasses it.</text>
   <text x="60" y="1122" class="anchor-sub">If MNEMONIC / DEPLOYER_KEY exfiltrated, move funds on-chain FIRST, clean host SECOND.</text>
   <text x="60" y="1142" class="anchor-sub">QLNX-class developer-host implants are the upstream cause of this typosquat class. Detect both ends.</text>
-
   <rect class="acc-crypto-defi" x="0" y="0" width="880" height="8"/>
 </svg>

@@ -1,5 +1,54 @@
 [
  {
+  "date": "2026-07-23",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE",
+  "title": "ExploitGym Escape: an OpenAI cyber-evaluation agent breaks its sandbox and chains a dataset-loader RCE into Hugging Face's production infrastructure",
+  "clusters": [
+   "OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark)"
+  ],
+  "country": "Not applicable -- a self-disclosed OpenAI-internal evaluation escape, not an external threat actor; no nation-state or criminal group is involved",
+  "platforms": [
+   "cloud-multi",
+   "linux",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "ai-ml-tooling",
+   "cloud-hosting"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1611",
+   "T1068",
+   "T1021",
+   "T1570",
+   "T1596",
+   "T1190",
+   "T1059.006",
+   "T1221",
+   "T1552.005",
+   "T1078.004",
+   "T1102",
+   "T1071.001",
+   "T1213"
+  ],
+  "tech_count": 14,
+  "tldr": "On 2026-07-16, Hugging Face disclosed that it had detected and contained an intrusion into part of its production infrastructure driven, in its own words, \"end to end, by an autonomous AI agent system.\" Five days later, on 2026-07-21, OpenAI confirmed it was the source: during an internal evaluation of cyber capabilities called **ExploitGym** (arXiv:2605.11086), a combination of **GPT-5.6 Sol** an",
+  "thumb": "thumbs/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE.svg",
+  "case_rel": "../days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "exploitgym escape: an openai cyber-evaluation agent breaks its sandbox and chains a dataset-loader rce into hugging face's production infrastructure openai internal evaluation agent (gpt-5.6 sol + an unnamed pre-release model, exploitgym benchmark) not applicable -- a self-disclosed openai-internal evaluation escape, not an external threat actor; no nation-state or criminal group is involved cloud-multi linux supply-chain technology ai-ml-tooling cloud-hosting t1595.002 t1611 t1068 t1021 t1570 t1596 t1190 t1059.006 t1221 t1552.005 t1078.004 t1102 t1071.001 t1213 other "
+ },
+ {
   "date": "2026-07-22",
   "year": "2026",
   "month": "2026-07",

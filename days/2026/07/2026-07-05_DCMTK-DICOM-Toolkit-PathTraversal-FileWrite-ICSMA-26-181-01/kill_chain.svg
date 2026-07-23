@@ -69,7 +69,7 @@
 </defs>
 
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-other" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-other" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003)</text>
 <text class="meta" x="20" y="58">Vendor: OFFIS DCMTK . CISA ICSMA-26-181-01 . Date: 2026-06-30 . Cluster: unattributed (advisory-stage) . Day 69</text>
 

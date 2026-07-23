@@ -206,6 +206,5 @@
   <text x="60" y="1014" class="anchor-sub">yara/FIRESTARTER_ELF_Heuristic.yar — ELF + CSP_MOUNT_LIST + /+CSCOE+/ + SIGTERM/sigaction + magic-byte family + crypto cues</text>
   <text x="60" y="1042" class="anchor">Pedagogical anchor</text>
   <text x="60" y="1062" class="anchor-sub">On-device Sigma does NOT work (CISA explicit). Hunt network and management side-effects. SIGTERM is the persistence primitive.</text>
-
   <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
 </svg>

@@ -71,7 +71,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">Bad Connection: STA1/STA2 SS7 &amp; Diameter Signalling Surveillance</text>
 <text class="meta" x="20" y="58">Vendor: Citizen Lab (Miller/Lange) 2026-04-23 (context: FT 2026-07-14) - Cluster: STA1/STA2 - Day 82</text>
 <rect class="laneL" x="20" y="85" width="410" height="1080" rx="6"/>

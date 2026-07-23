@@ -167,6 +167,5 @@
   <text x="76" y="992" class="sub">process_creation - schtasks /create with parent in %APPDATA%</text>
   <text x="76" y="1009" class="sub">recovery - revoke device tokens . migrate user to FIDO2 / passkey . re-image host</text>
   <text x="76" y="1028" class="ioc">Sources: blog.talosintelligence.com/cloudz-pheno-infostealer/ . github.com/Cisco-Talos/IOCs</text>
-
   <rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
 </svg>

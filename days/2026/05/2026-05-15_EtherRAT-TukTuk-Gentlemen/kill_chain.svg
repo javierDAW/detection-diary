@@ -242,6 +242,5 @@
   <text x="80" y="1224" class="detect-line">Sigma: node_headless_appdata.yml · tuktuk_sideload_signed_apps.yml · lsass_dump_comsvcs_ordinal.yml</text>
   <text x="80" y="1242" class="detect-line">KQL: etherrat_staging_chain.kql · tuktuk_saas_exotics_burst.kql · gotoresolve_install_dc_plus_gpo_drop.kql</text>
   <text x="80" y="1260" class="detect-line">YARA: tuktuk_sideload_log4net_2026.yar  ·  Suricata: etherrat_tuktuk_c2_anchors.rules  ·  Hunts: H1, H2, H3</text>
-
   <rect class="acc-crypto-defi" x="0" y="0" width="880" height="8"/>
 </svg>

@@ -68,7 +68,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">Dire Wolf - Golang double-extortion ransomware</text>
 <text class="meta" x="20" y="58">Vendor: Trustwave / AhnLab ASEC / Protos - Date: 2026-06-26 (CYFIRMA re-profile) - Cluster: Dire Wolf - Day 64</text>
 
