@@ -1,3 +1,21 @@
+## 2026.07.24 — Day 88 — RefluXFS: XFS Reflink O_DIRECT Race to Root (CVE-2026-64600)
+
+### Added
+- `days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/` — Qualys TRU (Saeed Abbasi) disclosed CVE-2026-64600 on 2026-07-22, a copy-on-write lock-drop race in the Linux kernel's XFS reflink path letting an unprivileged local user overwrite `/etc/passwd` or a SUID-root binary at the block layer and gain root with zero kernel log output; affects an estimated 16.4M default RHEL-family/Fedora Server/Amazon Linux installs since kernel 4.11 (2017), fixed upstream 2026-07-16. Notable for its discovery method: Qualys used Claude Mythos Preview (Project Glasswing) to find the race, then independently verified and responsibly disclosed it.
+- Sigma (3): `xfs_reflink_recon_and_target_selection.yml` detects `xfs_info`/`filefrag` recon against sensitive paths; `refluxfs_race_helper_execution_from_writable_dir.yml` detects unpackaged binaries executed from `/var/tmp`, `/tmp`, `/dev/shm`; `root_file_hash_drift_without_write_audit.yml` flags FIM content-hash drift on an anchor path with an unchanged inode — the defining silent tell.
+- KQL (3): `xfs_reflink_recon_and_target_selection.kql` mirrors the recon Sigma over Syslog; `refluxfs_race_helper_execution_from_writable_dir.kql` hunts auditd EXECVE from world-writable dirs; `root_file_hash_drift_without_write_audit.kql` left-anti-joins FIM hash-change events against auditd write events to surface unexplained overwrites.
+- YARA (1 file, 2 rules): compiled-ELF and source/script reimplementation detection for a RefluXFS PoC (`O_DIRECT`, `FICLONE`, `pthread_barrier_wait`, `root::0:0:` payload signature) ahead of any public exploit release.
+- Suricata (1 file, 5 sids): PoC-filename fetch, post-root SSH connection fan-out, reverse-shell banners, and shadow-shaped exfiltration POST bodies — network telemetry is weak for a local-only kernel bug, so these cover the surrounding consequences, not the exploit itself.
+- PEAK hunts (3): H1 root-file hash drift with no matching write audit (the core silent tell); H2 O_DIRECT race-helper staged and executed from a world-writable directory; H3 post-root anomalies (SSH keys, sudoers, accounts) on hosts with no visible privilege-escalation event.
+- `iocs.csv` (13 entries) — CVE, vulnerable/fix kernel commits, target paths, payload/ioctl strings, advisory URL. `kev.md` — 0/1 CVEs on CISA KEV (responsible disclosure, no observed in-the-wild exploitation).
+- `kill_chain.svg` — template C (single-lane linear timeline), canonical palette, malware-re accent, six stages from local footprint through confirmed persistent root.
+
+### Pedagogy
+- "No kernel log" is a bug category, not a one-off — build FIM hash-drift detection independent of write-audit correlation for any filesystem-allocation-layer flaw.
+- Standard hardening (SELinux Enforcing, KASLR/SMEP/SMAP, kernel lockdown, container isolation) does not help when a bug operates below all of them, at the block-allocation layer — know which layer each control actually covers.
+- Copy-on-write allocation races are a durable bug class across reflink/dedup/snapshot filesystem features, not an XFS-specific footnote — keep hunting the pattern, not just this CVE.
+- AI-assisted vulnerability research cuts both ways: the same capability that found and helped close RefluXFS before public exploitation could, without responsible-disclosure discipline, have found and weaponized it instead.
+
 ## 2026.07.23 — Day 87 — ExploitGym Escape: OpenAI Cyber-Evaluation Agent to Hugging Face RCE
 
 ### Added
