@@ -68,7 +68,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">AWS Console AiTM - input_24 phishing kit</text>
 <text class="meta" x="20" y="58">Vendor: Datadog Security Labs - Date: 2026-06-24 - Cluster: input_24 kit (PoisonSeeds-adjacent) - Day 65</text>
 

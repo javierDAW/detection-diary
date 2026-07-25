@@ -4,11 +4,12 @@
 
 # Techniques: T1082
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-24 | RefluXFS: XFS Reflink O_DIRECT Race to Root (CVE-2026-64600) | Unattributed vulnerability research (Qualys TRU, AI-assisted discovery) | [`2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/`](../../days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/) |
 | 2026-07-03 | From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom) | Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira) | [`2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/`](../../days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/) |
 | 2026-06-15 | OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-chain attack and a multi-year construction-firm intrusion | OceanLotus (APT32) | [`2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/`](../../days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/) |
 | 2026-06-02 | Aur0ra ransomware — in-place encryption with no rename and no extension, double-extortion via Tor | Aur0ra (unattributed ransomware family) | [`2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/`](../../days/2026/06/2026-06-02_Aur0ra-NoRename-InPlace-Ransomware/) |

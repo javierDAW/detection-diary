@@ -1,5 +1,94 @@
 [
  {
+  "date": "2026-07-25",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass",
+  "title": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter",
+  "clusters": [
+   "CrashStealer (unattributed developer/operator)"
+  ],
+  "country": "Unattributed; Apple Developer ID identity \"Emil Grigorov (WWB7JA7AQV)\" unconfirmed, reported to Apple by Jamf",
+  "platforms": [
+   "macos"
+  ],
+  "sectors": [
+   "cross-sector",
+   "cryptocurrency"
+  ],
+  "techniques": [
+   "T1204.002",
+   "T1553.002",
+   "T1036.005",
+   "T1102.001",
+   "T1105",
+   "T1518.001",
+   "T1056.002",
+   "T1555.001",
+   "T1555.005",
+   "T1005",
+   "T1027",
+   "T1622",
+   "T1543.001",
+   "T1560.003",
+   "T1041",
+   "T1071.001"
+  ],
+  "tech_count": 16,
+  "tldr": "CrashStealer is a native-C++ macOS infostealer, first spotted by Jamf Threat Labs as a development sample in May 2026 and confirmed in active deployment by early July 2026, that impersonates Apple's built-in CrashReporter component to loot browser credentials, roughly 80 cryptocurrency-wallet extensions, 14 password managers, and the login Keychain. What makes it notable for DFIR macOS is the deli",
+  "thumb": "thumbs/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass.svg",
+  "case_rel": "../days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "CrashStealer (unattributed developer/operator)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "crashstealer: a notarized macos infostealer wears apple's own crash reporter crashstealer (unattributed developer/operator) unattributed; apple developer id identity \"emil grigorov (wwb7ja7aqv)\" unconfirmed, reported to apple by jamf macos cross-sector cryptocurrency t1204.002 t1553.002 t1036.005 t1102.001 t1105 t1518.001 t1056.002 t1555.001 t1555.005 t1005 t1027 t1622 t1543.001 t1560.003 t1041 t1071.001 malware / re "
+ },
+ {
+  "date": "2026-07-24",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600",
+  "title": "RefluXFS: XFS Reflink O_DIRECT Race to Root (CVE-2026-64600)",
+  "clusters": [
+   "Unattributed vulnerability research (Qualys TRU, AI-assisted discovery)"
+  ],
+  "country": "N/A -- coordinated disclosure, not a tracked intrusion",
+  "platforms": [
+   "linux"
+  ],
+  "sectors": [
+   "multi-sector",
+   "cloud-hosting",
+   "government",
+   "finance",
+   "technology"
+  ],
+  "techniques": [
+   "T1078",
+   "T1082",
+   "T1005",
+   "T1068",
+   "T1565.001",
+   "T1548.001"
+  ],
+  "tech_count": 6,
+  "tldr": "On 2026-07-22 the Qualys Threat Research Unit disclosed **CVE-2026-64600** (\"RefluXFS\"), a race condition in the Linux kernel's XFS copy-on-write allocation path that lets an unprivileged local user overwrite any file they can read -- including `/etc/passwd` or a SUID-root binary -- and gain full host root. The bug has existed since kernel 4.11 (February 2017) and affects any XFS filesystem create",
+  "thumb": "thumbs/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600.svg",
+  "case_rel": "../days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "Unattributed vulnerability research (Qualys TRU, AI-assisted discovery)",
+  "cve_count": 1,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "refluxfs: xfs reflink o_direct race to root (cve-2026-64600) unattributed vulnerability research (qualys tru, ai-assisted discovery) n/a -- coordinated disclosure, not a tracked intrusion linux multi-sector cloud-hosting government finance technology t1078 t1082 t1005 t1068 t1565.001 t1548.001 malware / re "
+ },
+ {
   "date": "2026-07-23",
   "year": "2026",
   "month": "2026-07",

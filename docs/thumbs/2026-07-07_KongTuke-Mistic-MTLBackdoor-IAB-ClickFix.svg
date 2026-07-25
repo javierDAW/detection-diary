@@ -68,7 +68,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor)</text>
 <text class="meta" x="20" y="58">Vendor: Symantec / Zscaler / THN - Date: 2026-06-24/25 - Cluster: Woodgnat (KongTuke) - Day 71</text>
 

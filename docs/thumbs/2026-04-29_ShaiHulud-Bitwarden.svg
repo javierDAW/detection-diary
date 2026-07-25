@@ -206,6 +206,5 @@
   <text x="60" y="1058" class="anchor-sub">A public victim-owned GitHub repo with a Shai-Hulud marker is exfil, not a hobby project.</text>
   <text x="60" y="1078" class="anchor-sub">If NPM_TOKEN with publish scope was on the host, rotate first, audit maintainer's published versions second.</text>
   <text x="60" y="1098" class="anchor-sub">Containment requires GitHub PAT revoke + npm token revoke + cloud key rotation — host re-image alone is incomplete.</text>
-
   <rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
 </svg>

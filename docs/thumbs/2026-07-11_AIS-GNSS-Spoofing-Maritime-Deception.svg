@@ -68,7 +68,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-ot-ics" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-ot-ics" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">AIS and GNSS Spoofing at Sea - Maritime Positioning Deception</text>
 <text class="meta" x="20" y="58">Source: IFC AOR + SeaSpoofFinder (arXiv 2602.16257) - Date: 2026-07-07 - Class: GNSS/AIS spoofing - Day 75</text>
 

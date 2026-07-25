@@ -191,6 +191,5 @@
   <text x="80" y="1088" class="anchor-l">• <tspan class="anchor-h">Suricata</tspan> internal_ot_web_auth_burst — east-west burst of POST to OT mgmt web ports</text>
   <text x="80" y="1110" class="anchor-l">• <tspan class="anchor-h">Hunt H1</tspan> AI-paced reconnaissance pivot — discovery → cred-list build → POST burst inside one hour</text>
   <text x="80" y="1132" class="ioc">References: dragos.com/blog/ai-assisted-ics-attack-water-utility · industrialcyber.co · securityweek.com (May 6-8, 2026)</text>
-
   <rect class="acc-ot-ics" x="0" y="0" width="880" height="8"/>
 </svg>

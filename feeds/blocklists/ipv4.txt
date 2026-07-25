@@ -1,5 +1,5 @@
 # detection-diary blocklist — ipv4
-# generated 2026-07-23 08:09 UTC
+# generated 2026-07-25 09:19 UTC
 # defensive/educational — validate before blocking; indicators decay
 101.36.105.222
 103.119.47.104
@@ -72,6 +72,7 @@
 178.175.139.202
 178.175.139.203
 178.209.51.234
+179.43.166.242
 179.43.184.22
 179.43.185.226
 185.128.43.54

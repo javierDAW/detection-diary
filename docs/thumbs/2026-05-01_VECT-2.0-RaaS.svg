@@ -231,6 +231,5 @@
   <text x="60" y="1021" class="anchor-sub">sigma/vect_killswitch_marker.yml  .  sigma/vect_safeboot_bcdedit.yml  .  sigma/vect_safeboot_regset.yml</text>
   <text x="60" y="1039" class="anchor-sub">kql/vect_mass_process_kill.kql  .  yara/VECT2_ChaCha20_Nonce_Bug_Heuristic.yar</text>
   <text x="60" y="1058" class="anchor-sub">Pedagogical anchor — files &gt; 128 KB are unrecoverable even to the operator. Do not negotiate; restore from air-gapped backups.</text>
-
   <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
 </svg>

@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-07-23 08:09 UTC
+# generated 2026-07-25 09:19 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -61,8 +61,11 @@ cj06y9v4xab.com
 claude.ai
 clear90489058903-document.workers.dev
 coachcybersecurity.com
+cohezo.com
+cohezo.io
 com-ae.net
 compliance-protectionoutlook.de
+cordinex.io
 cst001.epc.mnc053.mcc234.3gppnetwork.org
 cumm.info
 cwrtwright.com
@@ -82,6 +85,7 @@ drivelivelime.com
 e5469cec-124a-c84f-abaa-docviewer.clear90489058903-document.workers.dev
 en.cumm.info
 encryption-plug-in-signal.com-ae.net
+endpoint-api-v1.com
 enrollms.com
 ep-lively-cherry-a80bmwii.eastus2.azure.neon.tech
 ep6pheij.com
@@ -220,6 +224,7 @@ vngz3ntdrb.us-east1.gcp.clickhouse.cloud
 vnt.wherewego.top
 w3xasv14culvnqj.top
 webmail.t-w.dev
+werkbit.io
 www.tor-browser.io
 xcent.online
 yj6jurm5qqkye5.org

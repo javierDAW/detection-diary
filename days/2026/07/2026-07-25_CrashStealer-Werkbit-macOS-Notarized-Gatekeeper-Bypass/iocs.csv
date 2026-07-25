@@ -1,0 +1,22 @@
+type,value,context,confidence,source
+domain,werkbit[.]io,PIN-gated delivery domain serving the notarized "Werkbit Setup" dropper; registered late June 2026,high,Jamf Threat Labs
+domain,endpoint-api-v1[.]com,Hosts the base64-encoded staging shell script the cleartext CrashReporter.dmg payload and the Command Panel operator login,high,Jamf Threat Labs
+domain,cohezo[.]io,Shared backend infrastructure tied to the same multi-platform CrashStealer operation,medium,Jamf Threat Labs
+domain,cohezo[.]com,Shared backend infrastructure tied to the same multi-platform CrashStealer operation,medium,Jamf Threat Labs
+domain,cordinex[.]io,Shared backend infrastructure tied to the same multi-platform CrashStealer operation,medium,Jamf Threat Labs
+ipv4,179.43.166[.]242,Hardcoded C2 address present as an ATS exception in earlier payload builds; later builds omit it,high,Jamf Threat Labs
+url,hxxp://endpoint-api-v1[.]com/d/f1b24e/download,Cleartext HTTP staging download of CrashReporter.dmg retried up to 3x,high,Jamf Threat Labs
+url,hxxps://endpoint-api-v1[.]com/login,Dark-themed operator "Command Panel" login page,high,Jamf Threat Labs / MalwareHunterTeam
+url,hxxps://github[.]com/mgothiclove/pkeys,GitHub repository hosting sys.cache the staging curl-command dead-drop resolver,high,Jamf Threat Labs / The Hacker News
+path,/private/tmp/.CrashReporter/,Hidden first-execution staging path for the re-signed second-stage payload,high,Jamf Threat Labs
+path,~/Library/Caches/com.apple.crashreporter/CrashReporter.app,Persisted ad hoc re-signed copy of the payload,high,Jamf Threat Labs
+path,~/Library/LaunchAgents/com.apple.crashreporter.helper.plist,Persistence LaunchAgent label com.apple.crashreporter.helper,high,Jamf Threat Labs
+path,~/.cache/.sys_auth,Locally cached validated login password mode 600,high,Jamf Threat Labs
+path,~/.cache/com.apple.crashreporter/,Staging directory for encrypted collected items before archiving,high,Jamf Threat Labs
+string,.zx_ + 8 random hex chars.zip,Naming pattern for hidden staged/encrypted exfiltration archives,high,Jamf Threat Labs
+string,panel_salt_v1,Hardcoded PBKDF2 salt found in the binary alongside a fallback-salt development string,high,Jamf Threat Labs
+string,com.apple.crashreporter.helper,LaunchAgent label and persistence identifier impersonating Apple naming,high,Jamf Threat Labs
+string,com.apple.crashreporter,Payload bundle identifier impersonating Apple's CrashReporter component,high,Jamf Threat Labs
+string,veltod,Executable name of the Werkbit.app dropper binary,high,Jamf Threat Labs / Help Net Security
+string,Emil Grigorov (WWB7JA7AQV),Apple Developer ID used to sign and notarize the Werkbit Setup dropper; reported to Apple by Jamf,high,Jamf Threat Labs / SecurityAffairs
+note,no-hashes-reproduced,No public SHA256/SHA1/MD5 hashes were reproduced in this case. Jamf's technical report states hashes were published but the primary report page returned no retrievable content to this repository's research tooling at time of writing; per project policy hashes are omitted rather than fabricated. Detection is deliberately behavioral/infrastructure-anchored.,high,Jamf Threat Labs (unreproduced)

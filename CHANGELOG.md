@@ -1,3 +1,21 @@
+## 2026.07.25 — Day 89 — CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter
+
+### Added
+- `days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/` — Jamf Threat Labs (Thijs Xhaflaire) documented CrashStealer, a native-C++ macOS infostealer first seen as a May 2026 development sample and confirmed in active deployment by early July 2026; distributed via a PIN-gated, genuinely notarized "Werkbit Setup" dropper that clears Gatekeeper with no warning, deploys a re-signed payload from a hidden `/private/tmp` path, captures the login password with a fake native prompt validated via `dscl -authonly`, and loots ~80 crypto-wallet extensions, 14 password managers, browsers and the Keychain before AES-256-GCM encrypting and exfiltrating it. First repository primary on taxonomy slot #14 (DFIR macOS) since Day 33 — 56 days, the largest gap of any slot — via weekend auto-rescue.
+- Sigma (3): `crashstealer_dscl_authonly_nonapple_parent.yml` flags `dscl -authonly` invoked by a non-Apple parent; `crashstealer_hidden_tmp_app_launch.yml` flags an app bundle launched from a hidden dot-directory under `/tmp`; `crashstealer_launchagent_crashreporter_helper.yml` flags creation of the impersonating LaunchAgent.
+- KQL (3): parallel `dscl -authonly` hunt for Defender XDR; a correlation query joining a hidden-tmp launch with a same-host LaunchAgent write; a network-egress query for the delivery/C2 domains and hardcoded IP.
+- YARA (1 file, 3 rules): Mach-O crypto/staging indicators (PBKDF2 salt, `.zx_` archive prefix, CommonCrypto GCM API sequence); LaunchAgent plist impersonation strings; sysctl `KERN_PROC`/`P_TRACED` anti-debug indicators.
+- Suricata (1 file, 6 sids): DNS/TLS for `werkbit.io` and `endpoint-api-v1.com`, the shared `cohezo`/`cordinex` backend, the cleartext staging-payload GET path, and direct HTTP to the hardcoded C2 IP.
+- PEAK hunts (3): H1 — hidden-tmp app launch; H2 — `dscl -authonly` and Keychain-unlock co-occurrence; H3 — hidden `.zx_` staging archive followed by a `libcurl` exfil POST.
+- `iocs.csv` (20 entries) — delivery/C2 domains and IP, staging URLs, filesystem paths, LaunchAgent and bundle-ID strings, Developer ID. No CVE in scope (abuse of a genuinely valid notarization workflow, not a vulnerability) — no `kev.md` generated.
+- `kill_chain.svg` — Template A, canonical palette, `acc-malware-re` category accent, seven victim-Mac stages against six attacker-infrastructure boxes.
+
+### Pedagogy
+- Notarization is a scan-time attestation, not a runtime guarantee — Gatekeeper's approval says nothing about a re-signed second-stage payload launched minutes later from a hidden path.
+- Hash-based IOCs decay fast for actively developed native stealers; anchor hunts on filesystem/persistence patterns (hidden-tmp launch, `com.apple.*`-labeled LaunchAgent, `.zx_` archive naming) instead.
+- A native-looking password prompt is not proof of an OS-level requirement — `dscl -authonly` lets any unprivileged process validate a password locally before reusing it against the Keychain.
+- Deliberately gated distribution (a PIN-gated install link) is itself a detection-evasion control, independent of anything yet known about the binary behind it.
+
 ## 2026.07.24 — Day 88 — RefluXFS: XFS Reflink O_DIRECT Race to Root (CVE-2026-64600)
 
 ### Added

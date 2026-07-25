@@ -68,7 +68,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-other" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-other" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">NoName057(16) and DDoSia - The Volunteer DDoS Botnet</text>
 <text class="meta" x="20" y="58">Source: Sekoia TDR + Recorded Future + CISA AA25-343A - Why today: Palencia arrest 2026-07-07 - Class: hacktivism - Day 76</text>
 

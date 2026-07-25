@@ -1,0 +1,33 @@
+// Title:       CrashStealer macOS -- hidden /tmp app launch correlated with a new LaunchAgent
+// Id:          56ef2545-dfc2-4a94-994c-9534dc754f85 + cc34a792-efbf-4284-b340-6c6eeea58a70 (parallel to Sigma 02+03)
+// MITRE:       T1036.005, T1204.002, T1543.001
+// Reference:   https://securityaffairs.com/195278/malware/crashstealer-new-macos-infostealer-uses-signed-apps-to-evade-gatekeeper.html
+//              https://www.helpnetsecurity.com/2026/07/14/crashstealer-macos-infostealer-password-theft/
+// Author:      Jarmi
+// Date:        2026-07-25
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents, DeviceFileEvents, macOS onboarded devices)
+// FP notes:    Each signal alone is rare; developer/CI staging under a hidden
+//              /tmp folder happens occasionally, and third-party LaunchAgents
+//              are common. The two co-occurring on the same host within 30
+//              minutes, with the LaunchAgent using an Apple-style
+//              com.apple.* label, is high-confidence CrashStealer activity.
+let lookback = 14d;
+let hidden_tmp_launch =
+    DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where FolderPath matches regex @"^/(private/)?tmp/\.[^/]+/.*\.app/Contents/MacOS/"
+    | project Timestamp, DeviceName, Signal = "hidden_tmp_app_launch",
+              FolderPath, InitiatingProcessFileName;
+let new_launchagent =
+    DeviceFileEvents
+    | where Timestamp > ago(lookback)
+    | where FolderPath has "Library/LaunchAgents" and FileName startswith "com.apple."
+    | where InitiatingProcessFolderPath !has "/System/Library/"
+    | project Timestamp, DeviceName, Signal = "apple_named_launchagent_created",
+              FolderPath, FileName, InitiatingProcessFileName;
+hidden_tmp_launch
+| union new_launchagent
+| summarize Signals = make_set(Signal), Events = count(), FirstSeen = min(Timestamp), LastSeen = max(Timestamp)
+    by DeviceName, bin(Timestamp, 30m)
+| where array_length(Signals) >= 2
+| order by FirstSeen desc

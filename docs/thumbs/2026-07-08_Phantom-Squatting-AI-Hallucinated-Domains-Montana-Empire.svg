@@ -72,7 +72,7 @@
 </defs>
 
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">Phantom Squatting - AI-Hallucinated Domains (Montana Empire kit)</text>
 <text class="meta" x="20" y="58">Vendor: Unit 42 (Palo Alto) - Date: 2026-06-30 - Cluster: Unattributed e-crime - Day 72</text>
 

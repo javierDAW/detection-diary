@@ -1,0 +1,20 @@
+// Title:       CrashStealer macOS -- network egress to delivery and C2 infrastructure
+// Id:          fa2c1e90-crashstealer-c2 (parallel to Suricata rules)
+// MITRE:       T1041, T1071.001, T1102.001
+// Reference:   https://securityaffairs.com/195278/malware/crashstealer-new-macos-infostealer-uses-signed-apps-to-evade-gatekeeper.html
+//              https://www.jamf.com/blog/crashstealer-macos-infostealer-analysis/
+// Author:      Jarmi
+// Date:        2026-07-25
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents, macOS onboarded devices)
+// FP notes:    werkbit.io and endpoint-api-v1.com are not known-good domains
+//              in any legitimate baseline; a hit against these or the
+//              hardcoded C2 IP is treated as high-confidence. If the C2 IP
+//              is later reused by a different, unrelated service, re-verify
+//              via passive DNS before alerting purely on IP recurrence.
+DeviceNetworkEvents
+| where Timestamp > ago(14d)
+| where RemoteUrl has_any ("werkbit.io", "endpoint-api-v1.com", "cohezo.io", "cohezo.com", "cordinex.io")
+    or RemoteIP == "179.43.166.242"
+| project Timestamp, DeviceName, InitiatingProcessFileName, RemoteUrl, RemoteIP, RemotePort,
+          InitiatingProcessCommandLine
+| order by Timestamp desc

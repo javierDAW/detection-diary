@@ -1,0 +1,25 @@
+// Title:       CrashStealer macOS -- dscl -authonly password validation by a non-Apple parent
+// Id:          ec65fee3-f381-4ab6-bd19-4032a584f1d5 (parallel to Sigma 01)
+// MITRE:       T1056.002, T1555.001
+// Reference:   https://securityaffairs.com/195278/malware/crashstealer-new-macos-infostealer-uses-signed-apps-to-evade-gatekeeper.html
+//              https://www.jamf.com/blog/crashstealer-macos-infostealer-analysis/
+// Author:      Jarmi
+// Date:        2026-07-25
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents, macOS onboarded devices)
+// FP notes:    opendirectoryd, SecurityAgent, and loginwindow legitimately call
+//              dscl -authonly as part of normal macOS authentication. The
+//              exclusion list below covers the known Apple binaries; extend
+//              via <add_known_apple_auth_parents> if a future macOS release
+//              introduces another one.
+DeviceProcessEvents
+| where Timestamp > ago(7d)
+| where FileName =~ "dscl"
+| where ProcessCommandLine has "-authonly"
+| where InitiatingProcessFolderPath !has_any (
+    "/System/Library/", "/usr/libexec/opendirectoryd",
+    "/System/Library/CoreServices/SecurityAgent.app",
+    "/System/Library/CoreServices/loginwindow.app")
+// Extend the Apple-parent exclusion list for your fleet: <add_known_apple_auth_parents>
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine,
+          InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessCommandLine
+| order by Timestamp desc

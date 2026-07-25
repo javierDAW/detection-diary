@@ -1,0 +1,43 @@
+title: CrashStealer Impersonating LaunchAgent com.apple.crashreporter.helper Created
+id: cc34a792-efbf-4284-b340-6c6eeea58a70
+status: experimental
+description: |
+  Detects CrashStealer's persistence step. After completing collection, the
+  malware copies itself to
+  ~/Library/Caches/com.apple.crashreporter/CrashReporter.app, re-signs the
+  copy ad hoc, and installs a LaunchAgent at
+  ~/Library/LaunchAgents/com.apple.crashreporter.helper.plist with the label
+  com.apple.crashreporter.helper and KeepAlive/SuccessfulExit set to false so
+  launchd restarts it on any failed exit. Apple's own, genuine crash-reporting
+  services do not install a per-user LaunchAgent under this label from a
+  non-Apple-signed installer, so any file-creation event at this exact path
+  outside /System/Library is a high-confidence persistence indicator.
+references:
+  - https://securityaffairs.com/195278/malware/crashstealer-new-macos-infostealer-uses-signed-apps-to-evade-gatekeeper.html
+  - https://www.malwarebytes.com/blog/threat-intel/2026/07/this-fake-apple-app-can-unlock-your-macs-password-vault
+  - https://www.jamf.com/blog/crashstealer-macos-infostealer-analysis/
+author: Jarmi
+date: 2026/07/25
+tags:
+  - attack.persistence
+  - attack.defense-evasion
+  - attack.t1543.001
+  - attack.t1036.005
+logsource:
+  category: file_event
+  product: macos
+detection:
+  selection_path:
+    TargetFilename|contains: 'Library/LaunchAgents/com.apple.crashreporter.helper.plist'
+  filter_apple_installer:
+    Image|startswith:
+      - '/System/Library/'
+      - '/usr/sbin/installer'
+  condition: selection_path and not filter_apple_installer
+falsepositives:
+  - None expected. Genuine Apple software delivery (softwareupdated, the
+    system installer framework) does not create a user-level LaunchAgent at
+    this exact label; treat any hit outside a confirmed Apple-signed
+    installer as true positive pending investigation
+
+level: critical

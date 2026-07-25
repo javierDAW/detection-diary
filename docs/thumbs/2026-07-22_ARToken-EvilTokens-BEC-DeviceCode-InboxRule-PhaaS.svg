@@ -70,7 +70,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">ARToken: an EvilTokens affiliate BEC-as-a-service panel</text>
 <text class="meta" x="20" y="58">Vendor: Cisco Talos &#183; Date: 2026-07-01 &#183; Cluster: ARToken (EvilTokens affiliate) &#183; Day 86</text>
 

@@ -214,6 +214,5 @@
   <text x="60" y="1110" class="anchor">Pedagogical anchors</text>
   <text x="60" y="1132" class="anchor-sub">TOTP / SMS / push without number matching do NOT stop AiTM. FIDO2 / passkey does.</text>
   <text x="60" y="1152" class="anchor-sub">PRT survives password rotation. Containment requires Remove-MgDevice + Revoke-MgUserSignInSession.</text>
-
   <rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
 </svg>
