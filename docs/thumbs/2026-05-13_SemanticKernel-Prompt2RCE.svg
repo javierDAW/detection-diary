@@ -181,6 +181,5 @@
   <text x="82" y="1119" class="ioc">kql/ — host LOLBin spawn + Startup write + AST traversal heuristic (Defender XDR / Sentinel)</text>
   <text x="82" y="1136" class="ioc">yara/sk_prompt2rce_heuristic.yar — AST band + SessionsPython sandbox-escape band</text>
   <text x="82" y="1153" class="ioc">suricata/sk_prompt2rce_anchors.rules — sids 8140001-3: body AST / DL→Startup / UL exfil</text>
-
   <rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
 </svg>

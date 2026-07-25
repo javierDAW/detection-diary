@@ -1,0 +1,32 @@
+# Suricata 7.x rules -- CrashStealer macOS Infostealer (notarized-dropper delivery + C2)
+# Author:    Jarmi
+# Date:      2026-07-25
+# Family:    CrashStealer (unattributed developer/operator)
+# Reference: https://securityaffairs.com/195278/malware/crashstealer-new-macos-infostealer-uses-signed-apps-to-evade-gatekeeper.html
+#            https://thehackernews.com/2026/07/crashstealer-macos-malware-uses.html
+#            https://www.jamf.com/blog/crashstealer-macos-infostealer-analysis/
+#
+# Network coverage intent:
+#   CrashStealer's delivery, staging and C2 traffic is a mix of PIN-gated
+#   HTTPS delivery, a GitHub-hosted staging pointer, cleartext HTTP for the
+#   second-stage payload, and a hardcoded C2 IP in earlier builds. These
+#   rules sit on the perimeter / proxy / IDS and catch (a) DNS/TLS resolution
+#   of the delivery and shared-backend domains, (b) the cleartext HTTP GET of
+#   the staging payload path, and (c) direct HTTP to the hardcoded C2 IP.
+#   sids 7204001-7204006.
+#
+# Custom variables expected in suricata.yaml:
+#   $HOME_NET    your internal CIDR (Mac endpoints)
+#   $HTTP_PORTS  default 80,8080,8000,8888
+
+alert dns $HOME_NET any -> any any (msg:"CrashStealer macOS DNS query for delivery domain werkbit.io"; dns.query; content:"werkbit.io"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:7204001; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"CrashStealer macOS DNS query for staging/C2 domain endpoint-api-v1.com"; dns.query; content:"endpoint-api-v1.com"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:7204002; rev:1;)
+
+alert tls $HOME_NET any -> any any (msg:"CrashStealer macOS TLS SNI to staging/C2 domain endpoint-api-v1.com"; tls.sni; content:"endpoint-api-v1.com"; nocase; classtype:trojan-activity; sid:7204003; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"CrashStealer macOS DNS query for shared backend domain (cohezo/cordinex family)"; dns.query; content:"cohezo."; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:7204004; rev:1;)
+
+alert http $HOME_NET any -> any any (msg:"CrashStealer macOS cleartext HTTP GET of staged payload path /d/f1b24e/download"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/d/f1b24e/download"; nocase; classtype:trojan-activity; sid:7204005; rev:1;)
+
+alert http $HOME_NET any -> [179.43.166.242] any (msg:"CrashStealer macOS direct HTTP to hardcoded C2 IP 179.43.166.242"; flow:established,to_server; classtype:trojan-activity; sid:7204006; rev:1;)

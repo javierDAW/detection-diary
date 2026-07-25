@@ -1,0 +1,256 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">CrashStealer macOS kill chain — notarized dropper to Keychain and wallet theft</title>
+<desc id="d">Two-lane kill chain for the CrashStealer macOS infostealer. Left lane shows seven victim-Mac stages: a PIN-gated notarized "Werkbit Setup" dropper clearing Gatekeeper, execution of the veltod binary, a GitHub-hosted staging fetch and cleartext HTTP payload download, deployment of a re-signed payload from a hidden /private/tmp path, a fake password prompt validated via dscl -authonly that unlocks the login Keychain, bulk collection of browsers/wallets/password managers/files, and persistence via a LaunchAgent impersonating Apple's crash-reporter naming. Right lane shows six infrastructure boxes: the notarized signing identity and delivery site, the GitHub dead-drop resolver, the cleartext payload host and operator panel, the hardcoded command-and-control IP, the client-side AES-256-GCM encryption and libcurl exfiltration, and shared backend domains tying the operation to a larger multi-platform campaign. Critical badges flag the credential-capture stage, the persistence stage, and the command-and-control infrastructure box.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">CrashStealer — Notarized macOS Infostealer</text>
+<text class="meta" x="20" y="58">Vendor: Jamf Threat Labs · Date: 2026-07-13/14 · Cluster: unattributed · Day 89</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="35" y="105">Victim Mac — execution timeline</text>
+<text class="laneLabelR" x="465" y="105">Attacker infrastructure</text>
+
+<!-- Left stage 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Delivery: PIN-gated dropper</text>
+<text class="sub" x="40" y="168">PIN-gated download from werkbit.io</text>
+<text class="sub" x="40" y="184">Signed disk image plus notarized Werkbit.app</text>
+<text class="sub" x="40" y="200">Domain registered late June 2026</text>
+<text class="mono" x="40" y="226">werkbit[.]io</text>
+<text class="mono" x="40" y="244">Dev ID: Emil Grigorov (WWB7JA7AQV)</text>
+
+<!-- Left stage 2 -->
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">Execution: Gatekeeper clears app</text>
+<text class="sub" x="40" y="318">veltod binary launches with no warning</text>
+<text class="sub" x="40" y="334">Notarization ticket stapled to the app</text>
+<text class="sub" x="40" y="350">Masquerades as meeting/collab software</text>
+<text class="mono" x="40" y="376">Werkbit.app/Contents/MacOS/veltod</text>
+<text class="mono" x="40" y="394">spctl assessment: accepted</text>
+
+<!-- Left stage 3 -->
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">Staging fetch via GitHub and curl</text>
+<text class="sub" x="40" y="468">sys.cache from mgothiclove/pkeys repo</text>
+<text class="sub" x="40" y="484">Base64 blobs decoded at runtime, piped to bash</text>
+<text class="sub" x="40" y="500">Cleartext HTTP fetch of the payload image</text>
+<text class="mono" x="40" y="526">github.com/mgothiclove/pkeys</text>
+<text class="mono" x="40" y="544">/d/f1b24e/download -&gt; CrashReporter.dmg</text>
+
+<!-- Left stage 4 -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Payload deploy: hidden tmp path</text>
+<text class="sub" x="40" y="618">hdiutil mounts -nobrowse -noverify -quiet</text>
+<text class="sub" x="40" y="634">App copied into a hidden dot-directory</text>
+<text class="sub" x="40" y="650">Signature stripped, re-signed ad hoc, launched</text>
+<text class="mono" x="40" y="676">/private/tmp/.CrashReporter/</text>
+<text class="mono" x="40" y="694">Bundle ID: com.apple.crashreporter</text>
+
+<!-- Left stage 5 (critical) -->
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Credential capture: fake prompt</text>
+<text class="sub" x="40" y="768">Native-looking dialog validated via dscl</text>
+<text class="sub" x="40" y="784">Loops until the correct password is entered</text>
+<text class="sub" x="40" y="800">Unlocks the login Keychain via security cli</text>
+<text class="mono" x="40" y="826">~/.cache/.sys_auth (mode 600)</text>
+<text class="mono" x="40" y="844">dscl . -authonly &lt;user&gt; &lt;password&gt;</text>
+
+<!-- Left stage 6 -->
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Collection: browsers, wallets, files</text>
+<text class="sub" x="40" y="918">Nine Chromium and Firefox browsers targeted</text>
+<text class="sub" x="40" y="934">About 80 wallet extensions, 14 password managers</text>
+<text class="sub" x="40" y="950">Documents and Downloads file search</text>
+<text class="mono" x="40" y="976">MetaMask, Phantom, 1Password, Bitwarden</text>
+<text class="mono" x="40" y="994">AES-256-GCM via CommonCrypto</text>
+
+<!-- Left stage 7 (critical) -->
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Persistence: impersonating LaunchAgent</text>
+<text class="sub" x="40" y="1068">Copies itself to a Library/Caches path</text>
+<text class="sub" x="40" y="1084">Re-signed ad hoc a second time</text>
+<text class="sub" x="40" y="1100">KeepAlive relaunches it on failed exit</text>
+<text class="mono" x="40" y="1126">com.apple.crashreporter.helper.plist</text>
+<text class="mono" x="40" y="1144">Label: com.apple.crashreporter.helper</text>
+
+<!-- Right op 1 -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">Signing identity and delivery site</text>
+<text class="sub" x="470" y="173">Apple Developer ID, valid and notarized</text>
+<text class="sub" x="470" y="189">Disk image itself is signed, not just the app</text>
+<text class="sub" x="470" y="205">werkbit.io registered late June 2026</text>
+<text class="sub" x="470" y="221">Download gated behind a meeting PIN</text>
+<text class="mono" x="470" y="251">Emil Grigorov (WWB7JA7AQV)</text>
+<text class="mono" x="470" y="269">werkbit[.]io</text>
+
+<!-- Right op 2 -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">GitHub staging pointer</text>
+<text class="sub" x="470" y="343">Repo hosts sys.cache, a config pointer</text>
+<text class="sub" x="470" y="359">Not the payload itself, a dead-drop resolver</text>
+<text class="sub" x="470" y="375">curl command embedded inside the file</text>
+<text class="sub" x="470" y="391">API-based fetch blends with dev traffic</text>
+<text class="mono" x="470" y="421">github.com/mgothiclove/pkeys</text>
+<text class="mono" x="470" y="439">sys.cache</text>
+
+<!-- Right op 3 -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">Payload host (cleartext HTTP)</text>
+<text class="sub" x="470" y="513">Serves CrashReporter.dmg over plain HTTP</text>
+<text class="sub" x="470" y="529">Retries the download up to three times</text>
+<text class="sub" x="470" y="545">Also hosts the operator login panel</text>
+<text class="sub" x="470" y="561">Dark-themed "Command Panel" interface</text>
+<text class="mono" x="470" y="591">endpoint-api-v1[.]com</text>
+<text class="mono" x="470" y="609">/login</text>
+
+<!-- Right op 4 (critical) -->
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">Command and control</text>
+<text class="sub" x="470" y="683">IP hardcoded as an ATS exception</text>
+<text class="sub" x="470" y="699">Present in earlier builds only</text>
+<text class="sub" x="470" y="715">Later builds use a proper TLS endpoint</text>
+<text class="sub" x="470" y="731">Panel spotted independently by MalwareHunterTeam</text>
+<text class="mono" x="470" y="761">179.43.166.242</text>
+<text class="mono" x="470" y="779">ATS exception in Info.plist</text>
+
+<!-- Right op 5 -->
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Client-side encryption and exfil</text>
+<text class="sub" x="470" y="853">AES-256-GCM applied per collected item</text>
+<text class="sub" x="470" y="869">PBKDF2-HMAC-SHA256, 10000 iterations</text>
+<text class="sub" x="470" y="885">Hardcoded salt panel_salt_v1</text>
+<text class="sub" x="470" y="901">Exfiltration over libcurl to the C2</text>
+<text class="mono" x="470" y="931">.zx_ + 8 hex chars.zip</text>
+<text class="mono" x="470" y="949">panel_salt_v1</text>
+
+<!-- Right op 6 -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">Shared backend infrastructure</text>
+<text class="sub" x="470" y="1023">Related operator domains observed</text>
+<text class="sub" x="470" y="1039">Points to a larger multi-platform campaign</text>
+<text class="sub" x="470" y="1055">Jamf reported the Team ID to Apple</text>
+<text class="sub" x="470" y="1071">Not yet publicly attributed to a named group</text>
+<text class="mono" x="470" y="1101">cohezo[.]io / cohezo[.]com</text>
+<text class="mono" x="470" y="1119">cordinex[.]io</text>
+
+<!-- Vertical flow arrows inside left lane -->
+<g class="arrow" color="#2a4a6a">
+<line x1="225" y1="255" x2="225" y2="269" marker-end="url(#ah)"/>
+<line x1="225" y1="405" x2="225" y2="419" marker-end="url(#ah)"/>
+<line x1="225" y1="555" x2="225" y2="569" marker-end="url(#ah)"/>
+<line x1="225" y1="705" x2="225" y2="719" marker-end="url(#ah)"/>
+<line x1="225" y1="855" x2="225" y2="869" marker-end="url(#ah)"/>
+<line x1="225" y1="1005" x2="225" y2="1019" marker-end="url(#ah)"/>
+</g>
+
+<!-- Cross-lane arrows (Δy < 200) -->
+<g class="arrowX" color="#7a3a7a">
+<line x1="425" y1="187" x2="460" y2="202" marker-end="url(#ah)"/>
+<line x1="425" y1="480" x2="460" y2="372" marker-end="url(#ah)"/>
+<line x1="425" y1="494" x2="460" y2="542" marker-end="url(#ah)"/>
+<line x1="425" y1="637" x2="460" y2="712" marker-end="url(#ah)"/>
+<line x1="425" y1="937" x2="460" y2="882" marker-end="url(#ah)"/>
+<line x1="425" y1="1087" x2="460" y2="1052" marker-end="url(#ah)"/>
+</g>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="35" y="1200">Detection anchors</text>
+<text class="footerT" x="35" y="1220">Sigma 01 / KQL 01 — dscl -authonly invoked by a non-Apple parent process (credential capture)</text>
+<text class="footerT" x="35" y="1236">Sigma 02 / KQL 02 — application launch from a hidden dot-directory under /private/tmp</text>
+<text class="footerT" x="35" y="1252">Sigma 03 / KQL 03 — LaunchAgent com.apple.crashreporter.helper.plist creation; egress to 179.43.166.242</text>
+</svg>

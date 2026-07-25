@@ -4,11 +4,12 @@
 
 # Techniques: T1027
 
-25 day(s) covering this technique.
+26 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-25 | CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter | CrashStealer (unattributed developer/operator) | [`2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/`](../../days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/) |
 | 2026-07-22 | ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BEC-as-a-service operations platform | ARToken (EvilTokens affiliate PhaaS) | [`2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/`](../../days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/) |
 | 2026-07-10 | Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE) | Cavern Manticore | [`2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/`](../../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/) |
 | 2026-07-07 | KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's ClickFix-to-ransomware pipeline | Woodgnat | [`2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/`](../../days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/) |

@@ -68,7 +68,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="36">BumbleBee -&gt; AdaptixC2 -&gt; Akira (Bing SEO to NTDS.dit)</text>
 <text class="meta" x="20" y="58">Vendor: The DFIR Report x Swisscom B2B CSIRT - Date: 2026-06-29 - Cluster: unattributed e-crime - Day 67</text>
 

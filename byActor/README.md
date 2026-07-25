@@ -38,6 +38,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Cloud-Insider-Recruitment-unattributed](./cloud-insider-recruitment-unattributed/) | 1 |
 | [CloudZ](./cloudz/) | 1 |
 | [Cordial Spider (CrowdStrike)](./cordial-spider-crowdstrike/) | 1 |
+| [CrashStealer (unattributed developer/operator)](./crashstealer-unattributed-developer-operator/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |
 | [Cyberkick Ltd. (RoboVPN)](./cyberkick-ltd-robovpn/) | 1 |
 | [DPRK-linked intrusion set (Quantstamp; Lazarus-cluster overlap, not definitively attributed)](./dprk-linked-intrusion-set-quantstamp-lazarus-cluster-overlap-not-definitively-attributed/) | 1 |
@@ -152,6 +153,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)](./unattributed-fake-invitation-phish-kit-operator-any-run-tracked/) | 1 |
 | [Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)](./unattributed-ip6-arpa-reverse-dns-phishing-operator-infoblox-tracked/) | 1 |
 | [Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)](./unattributed-ransomware-aligned-iab-ttp-overlap-with-akira-storm-1567-affiliate-ecosystem/) | 1 |
+| [Unattributed vulnerability research (Qualys TRU, AI-assisted discovery)](./unattributed-vulnerability-research-qualys-tru-ai-assisted-discovery/) | 1 |
 | [Unattributed — CVE-2025-67038 exploitation](./unattributed-cve-2025-67038-exploitation/) | 1 |
 | [Unattributed — coordinated vulnerability disclosure (no observed campaign)](./unattributed-coordinated-vulnerability-disclosure-no-observed-campaign/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |

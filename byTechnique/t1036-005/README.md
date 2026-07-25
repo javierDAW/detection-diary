@@ -4,11 +4,12 @@
 
 # Techniques: T1036.005
 
-8 day(s) covering this technique.
+9 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-25 | CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter | CrashStealer (unattributed developer/operator) | [`2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/`](../../days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/) |
 | 2026-07-21 | Spirals ransomware: IIS web shell to full-network encryption in under 24 hours, 23 backup/database/hypervisor services killed on the way | Spirals | [`2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/`](../../days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/) |
 | 2026-07-19 | INC Ransom Hits Georgia's City of Acworth: Municipal Double Extortion and the GOLD IONIC Playbook | INC Ransom | [`2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/`](../../days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/) |
 | 2026-07-07 | KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's ClickFix-to-ransomware pipeline | Woodgnat | [`2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/`](../../days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/) |

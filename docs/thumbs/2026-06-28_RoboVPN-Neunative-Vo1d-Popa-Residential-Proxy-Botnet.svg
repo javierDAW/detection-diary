@@ -68,7 +68,7 @@
 </marker>
 </defs>
 <rect class="bg" x="0" y="0" width="880" height="1280"/>
-<rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
+  <rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
 <text class="head" x="20" y="40">RoboVPN / Neunative: free VPN ships a residential-proxy botnet SDK</text>
 <text class="meta" x="20" y="60">Vendor: Nokia Deepfield ERT · Date: 2026-06-18 · Backend: Vo1d/Popa (gmslb.net) · Day 62</text>
 

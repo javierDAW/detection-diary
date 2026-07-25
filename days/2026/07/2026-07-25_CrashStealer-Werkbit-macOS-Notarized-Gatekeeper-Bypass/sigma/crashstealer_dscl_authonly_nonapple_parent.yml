@@ -1,0 +1,48 @@
+title: CrashStealer macOS Fake Password Prompt Validated via dscl -authonly
+id: ec65fee3-f381-4ab6-bd19-4032a584f1d5
+status: experimental
+description: |
+  Detects CrashStealer's local password-validation step. Instead of forging
+  Apple's real authentication UI, the malware shows a native-looking password
+  prompt and validates whatever the victim types by calling the legitimate
+  macOS directory-service utility dscl with the -authonly flag, looping until
+  a correct password is entered before reusing it to unlock the login
+  Keychain. A dscl -authonly invocation whose parent process is not one of
+  Apple's known system authentication binaries (opendirectoryd, SecurityAgent,
+  loginwindow) is a high-confidence indicator of this technique. Pair with the
+  hidden-tmp app-launch rule for confirmation of the CrashStealer chain
+  specifically.
+references:
+  - https://securityaffairs.com/195278/malware/crashstealer-new-macos-infostealer-uses-signed-apps-to-evade-gatekeeper.html
+  - https://thehackernews.com/2026/07/crashstealer-macos-malware-uses.html
+  - https://www.jamf.com/blog/crashstealer-macos-infostealer-analysis/
+author: Jarmi
+date: 2026/07/25
+tags:
+  - attack.credential-access
+  - attack.t1056.002
+  - attack.t1555.001
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_proc:
+    Image|endswith: '/dscl'
+  selection_flag:
+    CommandLine|contains: '-authonly'
+  filter_apple_parent:
+    ParentImage|contains:
+      - '/System/Library/'
+      - '/usr/libexec/opendirectoryd'
+      - '/System/Library/CoreServices/SecurityAgent.app'
+      - '/System/Library/CoreServices/loginwindow.app'
+  condition: selection_proc and selection_flag and not filter_apple_parent
+falsepositives:
+  - Legitimate Apple authentication flows (opendirectoryd, SecurityAgent,
+    loginwindow) also call dscl -authonly; the parent-path filter excludes
+    the known-good cases but a new macOS release could add another Apple
+    authentication binary not yet in the filter
+  - Admin/IT scripts that deliberately validate a local password via dscl
+    for account-management purposes
+
+level: high

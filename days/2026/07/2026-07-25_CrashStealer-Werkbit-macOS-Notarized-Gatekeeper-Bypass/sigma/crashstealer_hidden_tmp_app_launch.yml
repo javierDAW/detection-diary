@@ -1,0 +1,38 @@
+title: Application Bundle Launched From Hidden Dot-Directory Under macOS /tmp
+id: 56ef2545-dfc2-4a94-994c-9534dc754f85
+status: experimental
+description: |
+  Detects CrashStealer's payload-deployment step. After the notarized
+  "Werkbit Setup" dropper clears Gatekeeper, it downloads a second-stage
+  payload disk image, copies the first .app bundle it contains into a hidden
+  directory at /tmp/.CrashReporter (i.e. /private/tmp/.CrashReporter), strips
+  its original signature, re-signs it ad hoc, and launches it from that
+  hidden path. An executable launching from any hidden dot-directory under
+  /private/tmp or /tmp is a near-zero-baseline pattern on macOS -- almost no
+  legitimate software installs or launches itself from a hidden folder under
+  the world-writable temp directory.
+references:
+  - https://securityaffairs.com/195278/malware/crashstealer-new-macos-infostealer-uses-signed-apps-to-evade-gatekeeper.html
+  - https://www.helpnetsecurity.com/2026/07/14/crashstealer-macos-infostealer-password-theft/
+  - https://www.jamf.com/blog/crashstealer-macos-infostealer-analysis/
+author: Jarmi
+date: 2026/07/25
+tags:
+  - attack.defense-evasion
+  - attack.execution
+  - attack.t1036.005
+  - attack.t1204.002
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_hidden_tmp:
+    Image|re: '^/(private/)?tmp/\.[^/]+/.*\.app/Contents/MacOS/.*'
+  condition: selection_hidden_tmp
+falsepositives:
+  - Rare developer or CI tooling that unpacks and runs a bundle from a
+    self-created hidden staging directory under /tmp; baseline by
+    InitiatingProcessFileName and confirm against known build pipelines
+    before treating a hit as benign
+
+level: high

@@ -4,11 +4,13 @@
 
 # Techniques: T1005
 
-11 day(s) covering this technique.
+13 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-25 | CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter | CrashStealer (unattributed developer/operator) | [`2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/`](../../days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/) |
+| 2026-07-24 | RefluXFS: XFS Reflink O_DIRECT Race to Root (CVE-2026-64600) | Unattributed vulnerability research (Qualys TRU, AI-assisted discovery) | [`2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/`](../../days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/) |
 | 2026-07-14 | JADEPUFFER: Agentic Ransomware From a Langflow CVE to a Destroyed Nacos Database | JADEPUFFER | [`2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/`](../../days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/) |
 | 2026-07-10 | Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE) | Cavern Manticore | [`2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/`](../../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/) |
 | 2026-07-06 | ToddyCat Umbrij: Shadow Token via Remote Debug steals OAuth tokens to read Gmail | ToddyCat | [`2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/`](../../days/2026/07/2026-07-06_ToddyCat-Umbrij-STRD-OAuth-Gmail/) |

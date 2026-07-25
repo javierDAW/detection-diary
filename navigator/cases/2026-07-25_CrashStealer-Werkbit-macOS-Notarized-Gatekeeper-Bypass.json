@@ -1,0 +1,139 @@
+{
+  "name": "2026-07-25 — 2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter — clusters: CrashStealer (unattributed developer/operator)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1553.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1102.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1518.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1056.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1555.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1555.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1622",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1543.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1560.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}
