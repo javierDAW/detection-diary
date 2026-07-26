@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**89 cases** · **154 actors/clusters** · **341 ATT&CK techniques** · **16 platforms** · **80 sectors** · 2026-04-28 -> 2026-07-25
+**90 cases** · **155 actors/clusters** · **344 ATT&CK techniques** · **16 platforms** · **80 sectors** · 2026-04-28 -> 2026-07-26
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/"><img src="days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/kill_chain.svg" alt="2026-07-26 kill chain" width="240"></a><br><sub><b>2026-07-26</b><br>Unattributed vulnerability research (SaiFlow); affected vendor: XCharge</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/"><img src="days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/kill_chain.svg" alt="2026-07-25 kill chain" width="240"></a><br><sub><b>2026-07-25</b><br>CrashStealer (unattributed developer/operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/"><img src="days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/kill_chain.svg" alt="2026-07-24 kill chain" width="240"></a><br><sub><b>2026-07-24</b><br>Unattributed vulnerability research (Qualys TRU, AI-assisted discovery)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/"><img src="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/kill_chain.svg" alt="2026-07-23 kill chain" width="240"></a><br><sub><b>2026-07-23</b><br>OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/"><img src="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/kill_chain.svg" alt="2026-07-23 kill chain" width="240"></a><br><sub><b>2026-07-23</b><br>OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/"><img src="days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/kill_chain.svg" alt="2026-07-22 kill chain" width="240"></a><br><sub><b>2026-07-22</b><br>ARToken (EvilTokens affiliate PhaaS)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/"><img src="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/kill_chain.svg" alt="2026-07-21 kill chain" width="240"></a><br><sub><b>2026-07-21</b><br>Spirals</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/"><img src="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/kill_chain.svg" alt="2026-07-20 kill chain" width="240"></a><br><sub><b>2026-07-20</b><br>RedHook</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

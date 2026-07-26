@@ -1,5 +1,48 @@
 [
  {
+  "date": "2026-07-26",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039",
+  "title": "XCharge C6 EV Chargers: CCS2 Plug-In Root Shell via Exposed SSH/Telnet, Default Credentials, and Firmware Integrity Bypass (CVE-2026-9037, CVE-2026-9038, CVE-2026-9039)",
+  "clusters": [
+   "Unattributed vulnerability research (SaiFlow); affected vendor: XCharge"
+  ],
+  "country": "N/A -- coordinated disclosure via CISA ICS-CERT, not a tracked intrusion; SaiFlow HQ Israel, XCharge HQ China",
+  "platforms": [
+   "ot-ics",
+   "iot"
+  ],
+  "sectors": [
+   "automotive",
+   "energy",
+   "transportation"
+  ],
+  "techniques": [
+   "T1200",
+   "T1078.001",
+   "T1210",
+   "T0883",
+   "T0812",
+   "T0857",
+   "T0800",
+   "T0866",
+   "T0836"
+  ],
+  "tech_count": 9,
+  "tldr": "On 2026-05-28 CISA published ICS advisory **ICSA-26-148-08** covering three vulnerabilities that SaiFlow researcher Lionel R. Saposnik reported for **XCharge's C6** DC fast-charging station: **CVE-2026-9037** (unsigned firmware updates, CVSS 3.1 9.8 Critical), **CVE-2026-9038** (stack-based buffer overflow in the charging controller's signal-processing logic, CVSS 3.1 7.6 High), and **CVE-2026-903",
+  "thumb": "thumbs/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039.svg",
+  "case_rel": "../days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Unattributed vulnerability research (SaiFlow); affected vendor: XCharge",
+  "cve_count": 6,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "xcharge c6 ev chargers: ccs2 plug-in root shell via exposed ssh/telnet, default credentials, and firmware integrity bypass (cve-2026-9037, cve-2026-9038, cve-2026-9039) unattributed vulnerability research (saiflow); affected vendor: xcharge n/a -- coordinated disclosure via cisa ics-cert, not a tracked intrusion; saiflow hq israel, xcharge hq china ot-ics iot automotive energy transportation t1200 t1078.001 t1210 t0883 t0812 t0857 t0800 t0866 t0836 ot / ics "
+ },
+ {
   "date": "2026-07-25",
   "year": "2026",
   "month": "2026-07",
