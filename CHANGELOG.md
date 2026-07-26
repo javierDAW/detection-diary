@@ -1,3 +1,21 @@
+## 2026.07.26 — Day 90 — XCharge C6: CCS2 Plug-In Root Shell on an EV Charger
+
+### Added
+- `days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/` — CISA ICSA-26-148-08 (2026-05-28) documents three SaiFlow-reported vulnerabilities in the XCharge C6 DC fast charger: unsigned firmware updates (CVE-2026-9037, CVSS 9.8), a signal-processing stack overflow (CVE-2026-9038, CVSS 7.6), and default `root:root` credentials on SSH/Telnet exposed over the CCS2 vehicle-facing PLC interface (CVE-2026-9039, CVSS 7.6); a ~$130 hardware rig gets a plugged-in attacker a root shell with no network position required. First repository primary on taxonomy slot #33 (Automotive/EV) in 50 days — the largest gap of any slot — via weekend auto-rescue.
+- Sigma (3): `xcharge_c6_admin_port_reachable_plc.yml` flags a network connection to charger ports 22/23 sourced from the vehicle-facing PLC segment; `xcharge_c6_default_root_login_syslog.yml` flags a root authentication success on Dropbear/BusyBox in device syslog; `xcharge_c6_ota_unsigned_firmware_push.yml` flags an OTA firmware push with no matching signature-verification log entry.
+- KQL (3): admin-port-reachable-from-PLC-segment query for `CommonSecurityLog`/`Syslog`; root-login-via-Dropbear/BusyBox query; OTA-push-without-verification join query.
+- YARA (1 file, 3 rules): default-credential config/init-script artifact heuristic; unsigned-firmware-package heuristic (missing signature-block trailer); oversized ISO 15118/SECC field heuristic.
+- Suricata (1 file, 6 sids): Dropbear/BusyBox banner exposure on the PLC segment, root-login-success tokens, oversized SECC message fields, and post-compromise outbound pivot detection.
+- PEAK hunts (3): H1 — admin-port exposure inventory; H2 — default credential reuse; H3 — unsigned firmware push detection.
+- `iocs.csv` (15 entries) — three primary CVEs plus two historical OpenV2G dependency CVEs, default credential, exposed ports/interfaces, and attack-rig cost. `kev.md` — 0/6 CVEs referenced are on CISA KEV (three primary XCharge findings, all "Exploitation: none" per SSVC).
+- `kill_chain.svg` — Template A, canonical palette, `acc-ot-ics` category accent, seven charger/CPO-network stages against six attacker-rig operations.
+
+### Pedagogy
+- A charging port is a network port: any interface establishing an IP link (CCS2/PLC included) inherits every service bound to `0.0.0.0` on the device behind it.
+- Default credentials on embedded/OT devices are not a checklist afterthought — CVE-2026-9039 required no exploit development at all, just `root:root` with no lockout.
+- CVSS severity and CISA KEV listing measure different things — CVE-2026-9037 is CVSS 9.8 Critical yet absent from KEV, since no in-the-wild exploitation has been observed; treat high CVSS on OT/IoT hardware as urgent regardless of KEV status.
+- Physical-access attack surfaces do not respect network segmentation — standard CPO firewall/VLAN controls do nothing to stop an attacker who reaches the charger through the charging cable itself.
+
 ## 2026.07.25 — Day 89 — CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter
 
 ### Added
