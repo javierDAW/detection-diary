@@ -1,3 +1,21 @@
+## 2026.07.27 — Day 91 — SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT backdoor
+
+### Added
+- `days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/` — Israel National Digital Agency (INDA) attributes the SpearSpecter espionage campaign to APT42 (IRGC-IO; aka Mint Sandstorm, Educated Manticore, CharmingCypress). Operators cultivate senior defense/government officials and their family members over WhatsApp for weeks, then deliver a OneDrive lure that chains a `search-ms` URI prompt and a Somee WebDAV LNK into the fileless, modular PowerShell backdoor TAMECAT; C2 runs over Cloudflare Workers, Telegram, Discord and a Firebase heartbeat, AES-256 with the IV in a custom `Sec-Host` header — the first documented APT42 use of Telegram/Discord as C2. Monday espionage rotation, taxonomy slot #1 (APT state-nation), 14-day gap; Iran-nexus, diversifying from the last #1 (China UAT-7810, Day 77).
+- Sigma (3): `webdav_davsetcookie_rundll32.yml` — rundll32 davclnt.dll DavSetCookie to an external `@SSL` host; `tamecat_inmemory_iex_wildcard.yml` — PowerShell payload read fed to a wildcard-resolved `&(gcm i*x)`; `tamecat_persistence_run_logonscript.yml` — `Renovation` Run value / `UserInitMprLogonScript` conhost batch.
+- KQL (3): WebDAV to curl/rename to in-memory PowerShell chain; trusted-cloud C2 beacon from LOLBins; Run/logon-script/console-delegation registry writes.
+- YARA (1 file, 2 rules): TAMECAT loader/config strings (AES key, `Sec-Host`, `#journey`, wildcard iex, workers.dev map); WebDAV/LNK/batch initial-access artifacts.
+- Suricata (1 file, 6 sids): WebDAV MiniRedir UA, Somee/Workers TLS SNI, `Sec-Host` header, Firebase `OutlookStandaloneUpdate` beacon.
+- PEAK hunts (3): H1 search-ms/WebDAV LNK delivery; H2 fileless wildcard Invoke-Expression; H3 trusted-cloud C2 plus Sec-Host header.
+- `iocs.csv` (33 entries) — delivery/loader/C2 domains, Workers module map, AES key, `Sec-Host`, registry persistence and paths. No CVE in scope, so no `kev.md` was generated.
+- `kill_chain.svg` — Template A, canonical palette, `acc-espionage` accent; seven victim-host stages against six APT42 cloud-infrastructure operations.
+
+### Pedagogy
+- The exploit is the relationship: weeks of WhatsApp trust-building precede any payload — there is no CVE to patch, so senior-staff (and family) awareness plus out-of-band verification are the primary controls.
+- Fileless means behaviour, not hashes — PowerShell Script Block Logging + AMSI + Constrained Language Mode are what make a memory-only backdoor visible.
+- Trusted cloud is the modern C2 (Cloudflare Workers / Firebase / Telegram / Discord); baseline normal use and alert on `Sec-Host` headers and per-host Firebase paths rather than blanket-blocking the providers.
+- Stolen session cookies survive password resets (T1539) — remediation must revoke sessions/tokens, not just reset passwords.
+
 ## 2026.07.26 — Day 90 — XCharge C6: CCS2 Plug-In Root Shell on an EV Charger
 
 ### Added

@@ -1,0 +1,21 @@
+# SpearSpecter / TAMECAT (APT42 / IRGC-IO) network detections - Suricata 7.x
+# Author: Jarmi
+# Date: 2026-07-27
+# Reference: https://govextra.gov.il/national-digital-agency/cyber/research/spearspecter/
+# Notes:
+#   - Cloudflare Workers, Somee, Firebase and Azion are shared/legitimate services; these rules key on
+#     specific SNIs/paths/headers observed in SpearSpecter. Tune to your environment before enforcing.
+#   - No custom variables required (rules use $HOME_NET / $EXTERNAL_NET defaults).
+#   - SID block 3272701-3272706, rev:1.
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"SpearSpecter WebDAV MiniRedir reach-out (search-ms/WebDAV initial access)"; flow:established,to_server; http.user_agent; content:"Microsoft-WebDAV-MiniRedir"; classtype:trojan-activity; sid:3272701; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"SpearSpecter WebDAV delivery host TLS SNI datadrift.somee.com"; flow:established,to_server; tls.sni; content:"datadrift.somee.com"; nocase; classtype:trojan-activity; sid:3272702; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"SpearSpecter TAMECAT loader TLS SNI line.completely.workers.dev"; flow:established,to_server; tls.sni; content:"line.completely.workers.dev"; nocase; classtype:trojan-activity; sid:3272703; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"SpearSpecter TAMECAT C2 module TLS SNI darijo-bosanac-dl.workers.dev"; flow:established,to_server; tls.sni; content:"darijo-bosanac-dl.workers.dev"; nocase; classtype:trojan-activity; sid:3272704; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"SpearSpecter TAMECAT AES IV custom header Sec-Host"; flow:established,to_server; http.header_names; content:"Sec-Host"; nocase; classtype:trojan-activity; sid:3272705; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"SpearSpecter TAMECAT Firebase heartbeat OutlookStandaloneUpdate"; flow:established,to_server; http.host; content:"firebaseio.com"; nocase; http.uri; content:"OutlookStandaloneUpdate"; nocase; classtype:trojan-activity; sid:3272706; rev:1;)

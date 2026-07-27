@@ -1,0 +1,19 @@
+// Title: TAMECAT registry persistence and console-delegation writes (SpearSpecter / APT42)
+// Id: 5f2a8c31-9e64-4d07-a1b8-6c4e0f9a2d73
+// MITRE: T1547.001, T1037.001, T1112
+// Reference: https://govextra.gov.il/national-digital-agency/cyber/research/spearspecter/
+// Author: Jarmi
+// Date: 2026-07-27
+// Tested on: Microsoft Defender XDR (DeviceRegistryEvents)
+// FP notes: UserInitMprLogonScript can be set by legitimate admins; verify the target binary. The Renovation Run value,
+//           MSCore\config identifier and the DelegationConsole/DelegationTerminal GUID are otherwise near-zero benign.
+let lookback = 7d;
+DeviceRegistryEvents
+| where Timestamp > ago(lookback)
+| where ActionType in ("RegistryValueSet","RegistryKeyCreated")
+| where (RegistryKey has @"\CurrentVersion\Run" and RegistryValueName =~ "Renovation")
+     or (RegistryKey has @"\Environment" and RegistryValueName =~ "UserInitMprLogonScript" and RegistryValueData has "conhost")
+     or (RegistryKey has @"\SOFTWARE\MSCore" and RegistryValueName =~ "config")
+     or (RegistryValueName in~ ("DelegationConsole","DelegationTerminal") and RegistryValueData has "B23D10C0-E52E-411E-9D5B-C09DF709C7D")
+| project Timestamp, DeviceName, InitiatingProcessFileName, RegistryKey, RegistryValueName, RegistryValueData
+| sort by DeviceName asc, Timestamp asc

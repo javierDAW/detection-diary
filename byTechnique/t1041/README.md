@@ -4,11 +4,12 @@
 
 # Techniques: T1041
 
-23 day(s) covering this technique.
+24 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-25 | CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter | CrashStealer (unattributed developer/operator) | [`2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/`](../../days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/) |
 | 2026-07-03 | From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom) | Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira) | [`2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/`](../../days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/) |
 | 2026-06-29 | CL-STA-1062 / TinyRCT: A Chinese-Speaking APT's Custom .NET Backdoor Against Southeast Asian Government and Energy | CL-STA-1062 | [`2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/`](../../days/2026/06/2026-06-29_CL-STA-1062-TinyRCT-Backdoor-SEA-Espionage/) |

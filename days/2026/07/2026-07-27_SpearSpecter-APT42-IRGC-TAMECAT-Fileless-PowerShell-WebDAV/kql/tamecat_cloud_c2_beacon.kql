@@ -1,0 +1,19 @@
+// Title: TAMECAT trusted-cloud C2 beacon from LOLBins (SpearSpecter / APT42)
+// Id: 1c9b4e60-7d2a-4f5e-8b0c-3a9f21d6e8b2
+// MITRE: T1071.001, T1102.002, T1573.001
+// Reference: https://securityonline.info/iran-apt-spearspecter-uses-weeks-long-whatsapp-lures-and-fileless-tamecat-backdoor-to-hit-defense/
+// Author: Jarmi
+// Date: 2026-07-27
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: Cloudflare Workers, Firebase, Telegram and Discord all have legitimate use. Baseline per-org and alert on
+//           PowerShell/curl/conhost as the initiating process, and on workers.dev subdomains that are not on your allowlist.
+let lookback = 3d;
+let c2_hosts = dynamic(["workers.dev","firebaseio.com","api.telegram.org","discord.com","azionedge.net","somee.com","scalingo.io","s3.tebi.io"]);
+let known_workers = dynamic(["darijo-bosanac-dl.workers.dev","line.completely.workers.dev"]);
+DeviceNetworkEvents
+| where Timestamp > ago(lookback)
+| where InitiatingProcessFileName in~ ("powershell.exe","pwsh.exe","curl.exe","conhost.exe","msedge.exe","cmd.exe","rundll32.exe")
+| where RemoteUrl has_any (c2_hosts) or RemoteUrl has_any (known_workers)
+| extend HighConfidence = iff(RemoteUrl has_any (known_workers) or RemoteUrl has "OutlookStandaloneUpdate", "yes", "no")
+| project Timestamp, DeviceName, InitiatingProcessFileName, RemoteUrl, RemoteIP, InitiatingProcessCommandLine, HighConfidence
+| sort by HighConfidence desc, Timestamp asc

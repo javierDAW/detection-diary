@@ -1,0 +1,27 @@
+// Title: TAMECAT WebDAV -> curl -> in-memory PowerShell chain (SpearSpecter / APT42)
+// Id: 8a1d7f2c-4b3e-49aa-9f10-2e6c0a5b7d41
+// MITRE: T1218.011, T1204.002, T1105, T1059.003, T1059.001, T1620
+// Reference: https://govextra.gov.il/national-digital-agency/cyber/research/spearspecter/
+// Author: Jarmi
+// Date: 2026-07-27
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: Legitimate WebDAV to internal hosts; curl used by developers. The value is the SEQUENCE on one device in a short window.
+let lookback = 3d;
+let win = 15m;
+let dav =
+    DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where FileName =~ "rundll32.exe"
+    | where ProcessCommandLine has "davclnt.dll" and ProcessCommandLine has "DavSetCookie" and ProcessCommandLine has "@SSL"
+    | project DeviceId, DeviceName, DavTime = Timestamp, DavCmd = ProcessCommandLine;
+let exec =
+    DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where (FileName =~ "curl.exe" and ProcessCommandLine has_any ("vgh.txt", ".txt"))
+         or (FileName in~ ("powershell.exe","pwsh.exe") and ProcessCommandLine has_any ("gcm i*x","gcm i*ee*","invoke-restmethod"))
+    | project DeviceId, ExecTime = Timestamp, ExecFile = FileName, ExecCmd = ProcessCommandLine;
+dav
+| join kind=inner exec on DeviceId
+| where ExecTime between (DavTime .. (DavTime + win))
+| project DeviceName, DavTime, DavCmd, ExecTime, ExecFile, ExecCmd
+| sort by DeviceName asc, DavTime asc

@@ -1,5 +1,66 @@
 [
  {
+  "date": "2026-07-27",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV",
+  "title": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery",
+  "clusters": [
+   "APT42"
+  ],
+  "country": "Iran (IRGC-IO)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government",
+   "defense"
+  ],
+  "techniques": [
+   "T1589",
+   "T1585.001",
+   "T1583.001",
+   "T1583.006",
+   "T1566.003",
+   "T1204.001",
+   "T1204.002",
+   "T1218.011",
+   "T1059.001",
+   "T1059.003",
+   "T1105",
+   "T1027",
+   "T1140",
+   "T1620",
+   "T1112",
+   "T1547.001",
+   "T1037.001",
+   "T1071.001",
+   "T1102.002",
+   "T1573.001",
+   "T1555.003",
+   "T1539",
+   "T1114.001",
+   "T1113",
+   "T1005",
+   "T1074.001",
+   "T1560",
+   "T1041",
+   "T1567.002"
+  ],
+  "tech_count": 29,
+  "tldr": "SpearSpecter is an Iranian espionage campaign that the Israel National Digital Agency (INDA) attributes with high confidence to APT42, the IRGC Intelligence Organization cyber unit also tracked as Mint Sandstorm, Educated Manticore and CharmingCypress. Instead of mass phishing, operators spend days or weeks cultivating a relationship with a senior defense or government official over WhatsApp - imp",
+  "thumb": "thumbs/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV.svg",
+  "case_rel": "../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "APT42",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "spearspecter: apt42 (irgc-io) fileless tamecat powershell backdoor via whatsapp trust-building and search-ms/webdav delivery apt42 iran (irgc-io) windows government defense t1589 t1585.001 t1583.001 t1583.006 t1566.003 t1204.001 t1204.002 t1218.011 t1059.001 t1059.003 t1105 t1027 t1140 t1620 t1112 t1547.001 t1037.001 t1071.001 t1102.002 t1573.001 t1555.003 t1539 t1114.001 t1113 t1005 t1074.001 t1560 t1041 t1567.002 espionage / apt "
+ },
+ {
   "date": "2026-07-26",
   "year": "2026",
   "month": "2026-07",

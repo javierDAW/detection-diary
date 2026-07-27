@@ -4,11 +4,12 @@
 
 # Techniques: T1547.001
 
-9 day(s) covering this technique.
+10 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-07 | KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's ClickFix-to-ransomware pipeline | Woodgnat | [`2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/`](../../days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/) |
 | 2026-06-07 | Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window that makes BlackLotus-class bootkits permanently exploitable | Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust | [`2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/`](../../days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/) |
 | 2026-05-29 | MiniPlasma — CVE-2020-17103 silent regression weaponized to SYSTEM on fully patched Windows 11 via cldflt.sys race + WER QueueReporting hijack | Chaotic Eclipse / Nightmare-Eclipse | [`2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/`](../../days/2026/05/2026-05-29_MiniPlasma-CVE-2020-17103-Silent-Regression-NightmareEclipse/) |

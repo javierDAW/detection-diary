@@ -4,11 +4,12 @@
 
 # Techniques: T1555.003
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-06-01 | GREYVIBE — Russia-nexus AI-augmented espionage against Ukraine: PhantomRelay and LegionRelay PowerShell RATs, FallSpy Android spyware | GREYVIBE | [`2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/`](../../days/2026/06/2026-06-01_GREYVIBE-PhantomRelay-LegionRelay-Ukraine/) |
 | 2026-05-30 | AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers AI agents and users into installing a multi-key-XOR universal Mach-O wallet and Keychain stealer | AMOS / Atomic macOS Stealer (MaaS) | [`2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/`](../../days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/) |
 | 2026-05-28 | TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io | TrapDoor (Socket-tracked) | [`2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/`](../../days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) |

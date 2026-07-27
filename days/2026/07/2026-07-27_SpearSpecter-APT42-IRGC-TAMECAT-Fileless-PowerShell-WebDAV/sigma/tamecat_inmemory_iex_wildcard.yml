@@ -1,0 +1,44 @@
+title: TAMECAT Fileless PowerShell Wildcard Invoke-Expression Resolution (SpearSpecter)
+id: c979e421-0cf0-4a74-a423-9bc724b9d3f6
+status: experimental
+description: >
+  Detects the TAMECAT in-memory loader pattern used by SpearSpecter (APT42): PowerShell that reads a
+  payload (Get-Content or invoke-restmethod) and executes it through a wildcard-resolved Invoke-Expression
+  such as &(gcm i*x) or .(gcm i*ee*), a deliberate obfuscation to avoid the literal "iex"/"Invoke-Expression"
+  string. Best evaluated over process_creation command lines and PowerShell Script Block Logs. Wildcard
+  Get-Command resolution to iex is extremely rare in benign automation.
+references:
+    - https://govextra.gov.il/national-digital-agency/cyber/research/spearspecter/
+    - https://cybersecuritynews.com/apt42-uses-ai-assisted-phishing-and-tamecat-malware/
+author: Jarmi
+date: 2026/07/27
+tags:
+    - attack.execution
+    - attack.defense-evasion
+    - attack.t1059.001
+    - attack.t1027
+    - attack.t1620
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_ps:
+        Image|endswith:
+            - '\powershell.exe'
+            - '\pwsh.exe'
+    selection_wildcard_iex:
+        CommandLine|contains:
+            - 'gcm i*x'
+            - 'gcm i*ee*'
+            - '(gcm i*'
+    selection_read:
+        CommandLine|contains:
+            - 'Get-Content'
+            - 'invoke-restmethod'
+            - 'iwr '
+    condition: selection_ps and selection_wildcard_iex and selection_read
+falsepositives:
+    - Rare red-team or tooling that resolves cmdlets via Get-Command wildcards
+    - Highly obfuscated but legitimate packers (investigate regardless)
+
+level: high

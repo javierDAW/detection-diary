@@ -4,10 +4,11 @@
 
 # Techniques: T1585.001
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-12 | NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arrest) | NoName057(16) | [`2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/`](../../days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/) |
 | 2026-06-22 | ProSpy/BITTER: Hack-for-Hire Android Spyware Targeting MENA Civil Society Journalists | BITTER · T-APT-17 | [`2026-06-22_prospy-bitter-mena/`](../../days/2026/06/2026-06-22_prospy-bitter-mena/) |

@@ -1,5 +1,5 @@
 # detection-diary blocklist — url
-# generated 2026-07-26 18:02 UTC
+# generated 2026-07-27 08:38 UTC
 # defensive/educational — validate before blocking; indicators decay
 http://154.82.81.205/YD20251001143052.zip
 http://154.82.81.205/YN20250923193706.zip
@@ -46,6 +46,7 @@ https://check.git-service.com/audio.mp3
 https://check.git-service.com/rope.pyz
 https://check.git-service.com/v1/models
 https://computer.kplus.com/cd.zip
+https://datadrift.somee.com/aoh5/
 https://ddjidd564.github.io/defi-security-best-practices/
 https://ddjidd564.github.io/defi-security-best-practices/config.json
 https://endpoint-api-v1.com/login
@@ -62,6 +63,8 @@ https://github.com/microsoft/semantic-kernel/pull/13478/changes
 https://github.com/tenet-security/agent-jackstop
 https://howto-tar-naturals-coordination.trycloudflare.com
 https://huggingface.co/zai-org/GLM-5.2
+https://line.completely.workers.dev/aoh5
+https://line.completely.workers.dev/aoh52
 https://login.microsoftonline.com/common/oauth2/deviceauth
 https://mcagov.cc/download.php?type=exe
 https://microsoft.com/devicelogin
