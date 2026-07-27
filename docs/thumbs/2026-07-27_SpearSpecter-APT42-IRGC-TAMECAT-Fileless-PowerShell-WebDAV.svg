@@ -1,0 +1,244 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">SpearSpecter APT42 kill chain</title>
+<desc id="d">Two-lane kill chain. Left lane: the victim Windows host from WhatsApp trust-building, a search-ms prompt and WebDAV LNK, a curl-delivered temp.bat loader, in-memory PowerShell modules, Renovation and UserInitMprLogonScript persistence, browser and Outlook collection, and chunked exfiltration. Right lane: APT42 cloud infrastructure - fake personas, Somee WebDAV delivery, Cloudflare Workers module hosts, Telegram and Discord command and control with an AES IV in a Sec-Host header, a Firebase heartbeat with an Azion edge front, and S3-compatible staging. Critical anchors are the davclnt.dll DavSetCookie WebDAV reach-out, the curl-rename-execute LNK, and the wildcard gcm i-star-x in-memory Invoke-Expression.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">SpearSpecter - APT42 (IRGC-IO) fileless TAMECAT backdoor</text>
+<text class="meta" x="20" y="58">Vendor: Israel National Digital Agency (INDA) - Date: 2026-07 - Cluster: APT42 - Day 91</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="104">Victim host (Windows)</text>
+<text class="laneLabelR" x="460" y="104">APT42 cloud infrastructure</text>
+
+<!-- LEFT STAGES -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="76" y="144">WhatsApp trust-building</text>
+<text class="sub" x="40" y="168">Impersonate scholar / conference organizer</text>
+<text class="sub" x="40" y="184">Weeks of rapport before any payload</text>
+<text class="sub" x="40" y="200">Targets senior officials + family</text>
+<text class="mono" x="40" y="226">T1566.003 T1585.001 T1589</text>
+<text class="mono" x="40" y="244">human vector, no CVE</text>
+
+<rect class="stageK" x="30" y="270" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="76" y="294">search-ms prompt + WebDAV LNK</text>
+<text class="sub" x="40" y="318">OneDrive lure -&gt; search-ms URI prompt</text>
+<text class="sub" x="40" y="334">rundll32 davclnt.dll,DavSetCookie @SSL</text>
+<text class="sub" x="40" y="350">LNK disguised as PDF (garbled cmd)</text>
+<text class="mono" x="40" y="376">T1204.001 T1218.011 T1204.002</text>
+<text class="mono" x="40" y="394">datadrift.somee.com</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="76" y="444">curl -&gt; temp.bat loader</text>
+<text class="sub" x="40" y="468">cmd repaired at runtime -&gt; curl fetch</text>
+<text class="sub" x="40" y="484">vgh.txt renamed to temp.bat, executed</text>
+<text class="sub" x="40" y="500">obfuscated PowerShell stager</text>
+<text class="mono" x="40" y="526">T1105 T1059.003 T1140</text>
+<text class="mono" x="40" y="544">line.completely.workers.dev/aoh5</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="76" y="594">In-memory PowerShell modules</text>
+<text class="sub" x="40" y="618">invoke-restmethod pulls modules</text>
+<text class="sub" x="40" y="634">&amp;(gcm i*x) wildcard iex, Scriptblock</text>
+<text class="sub" x="40" y="650">runs in memory, minimal disk</text>
+<text class="mono" x="40" y="676">T1059.001 T1620 T1027</text>
+<text class="mono" x="40" y="694">gcm i*ee* / gcm i*x</text>
+
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="76" y="744">Persistence</text>
+<text class="sub" x="40" y="768">Renovation Run key -&gt; IE List batch</text>
+<text class="sub" x="40" y="784">UserInitMprLogonScript -&gt; conhost</text>
+<text class="sub" x="40" y="800">victim id in HKCU SOFTWARE MSCore</text>
+<text class="mono" x="40" y="826">T1547.001 T1037.001 T1112</text>
+<text class="mono" x="40" y="844">Renovation ; Microsoft.bat</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="76" y="894">Collection</text>
+<text class="sub" x="40" y="918">Chrome/Edge creds + cookies</text>
+<text class="sub" x="40" y="934">Outlook OST, 50 screenshots/session</text>
+<text class="sub" x="40" y="950">selective file crawl (docs, pwd db)</text>
+<text class="mono" x="40" y="976">T1555.003 T1539 T1114.001 T1113</text>
+<text class="mono" x="40" y="994">session tokens survive resets</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="76" y="1044">Staging + exfiltration</text>
+<text class="sub" x="40" y="1068">Runs.dll chunked byte-range reads</text>
+<text class="sub" x="40" y="1084">AES over HTTPS / Telegram / FTP</text>
+<text class="sub" x="40" y="1100">S3-compatible staging</text>
+<text class="mono" x="40" y="1126">T1560 T1041 T1567.002</text>
+<text class="mono" x="40" y="1144">s3.tebi.io</text>
+
+<!-- RIGHT OPS -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="506" y="149">Recon + fake personas</text>
+<text class="sub" x="470" y="173">Social media / public databases</text>
+<text class="sub" x="470" y="189">Impersonation aligned to target</text>
+<text class="sub" x="470" y="205">WhatsApp outreach accounts</text>
+<text class="sub" x="470" y="221">IRGC-IO tasking</text>
+<text class="mono" x="470" y="251">T1589 T1585.001</text>
+<text class="mono" x="470" y="269">no malware yet</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="506" y="319">Somee WebDAV delivery</text>
+<text class="sub" x="470" y="343">filenest.info -&gt; cloudcaravan.info</text>
+<text class="sub" x="470" y="359">search-ms redirect page</text>
+<text class="sub" x="470" y="375">WebDAV share serves the LNK</text>
+<text class="sub" x="470" y="391">disposable free hosting</text>
+<text class="mono" x="470" y="421">datadrift.somee.com</text>
+<text class="mono" x="470" y="439">reg. 2025-08-17 (paired)</text>
+
+<rect class="opK" x="460" y="465" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="506" y="489">Cloudflare Workers modules</text>
+<text class="sub" x="470" y="513">Per-keyword module subdomains</text>
+<text class="sub" x="470" y="529">Invest / Scene / Look / Anchor ...</text>
+<text class="sub" x="470" y="545">serverless C2 edge, blends in</text>
+<text class="sub" x="470" y="561">dynamic module loading</text>
+<text class="mono" x="470" y="591">darijo-bosanac-dl.workers.dev</text>
+<text class="mono" x="470" y="609">*.workers.dev</text>
+
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="506" y="659">Telegram / Discord C2</text>
+<text class="sub" x="470" y="683">First APT42 use of TG/Discord C2</text>
+<text class="sub" x="470" y="699">unknown msg = PowerShell exec</text>
+<text class="sub" x="470" y="715">AES-256, IV in Sec-Host header</text>
+<text class="sub" x="470" y="731">#journey rotates key</text>
+<text class="mono" x="470" y="761">T1102.002 T1573.001</text>
+<text class="mono" x="470" y="779">Sec-Host ; #journey</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="506" y="829">Firebase heartbeat + edge</text>
+<text class="sub" x="470" y="853">Microsoft.bat GET/POST timestamp</text>
+<text class="sub" x="470" y="869">per-host OutlookStandaloneUpdate</text>
+<text class="sub" x="470" y="885">Azion edge C2 front</text>
+<text class="sub" x="470" y="901">HTTPS blends with browsing</text>
+<text class="mono" x="470" y="931">zx3nkaavlai.map.azionedge.net</text>
+<text class="mono" x="470" y="949">*.firebaseio.com</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="506" y="999">Staging / exfil sink</text>
+<text class="sub" x="470" y="1023">S3-compatible object storage</text>
+<text class="sub" x="470" y="1039">receives chunked archives</text>
+<text class="sub" x="470" y="1055">Scalingo PaaS staging</text>
+<text class="sub" x="470" y="1071">long-term collection</text>
+<text class="mono" x="470" y="1101">s3.tebi.io</text>
+<text class="mono" x="470" y="1119">filenest.osc-fr1.scalingo.io</text>
+
+<!-- VERTICAL FLOW ARROWS (left lane) -->
+<g color="#2a4a6a">
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+</g>
+
+<!-- CROSS-LANE ARROWS -->
+<g color="#7a3a7a">
+<path class="arrowX" d="M425,337 L460,372" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,545 L425,600" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,712 L425,650" marker-end="url(#ah)"/>
+</g>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="30" y="1200">Detection anchors</text>
+<text class="footerT" x="30" y="1222">WebDAV DavSetCookie to external host; curl-rename-.bat; wildcard gcm i*x in-memory iex; Renovation / UserInitMprLogonScript.</text>
+<text class="footerT" x="30" y="1240">Trusted-cloud C2 (workers.dev / Firebase / Telegram / Discord) with a Sec-Host AES IV; block the disposable hosts, not the providers.</text>
+<text class="footerT" x="30" y="1258">Fileless: enable PowerShell Script Block Logging + AMSI + CLM. No CVE - the exploit is the relationship. Revoke sessions, not just passwords.</text>
+</svg>

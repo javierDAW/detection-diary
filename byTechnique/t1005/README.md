@@ -4,11 +4,12 @@
 
 # Techniques: T1005
 
-13 day(s) covering this technique.
+14 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-25 | CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter | CrashStealer (unattributed developer/operator) | [`2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/`](../../days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/) |
 | 2026-07-24 | RefluXFS: XFS Reflink O_DIRECT Race to Root (CVE-2026-64600) | Unattributed vulnerability research (Qualys TRU, AI-assisted discovery) | [`2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/`](../../days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/) |
 | 2026-07-14 | JADEPUFFER: Agentic Ransomware From a Langflow CVE to a Destroyed Nacos Database | JADEPUFFER | [`2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/`](../../days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/) |

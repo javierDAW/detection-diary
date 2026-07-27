@@ -4,10 +4,11 @@
 
 # Techniques: T1074.001
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-06-24 | SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US Law Firms | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 | [`2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/`](../../days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/) |
 | 2026-05-30 | AMOS / Atomic macOS Stealer — malicious OpenClaw skill SKILL.md social-engineers AI agents and users into installing a multi-key-XOR universal Mach-O wallet and Keychain stealer | AMOS / Atomic macOS Stealer (MaaS) | [`2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/`](../../days/2026/05/2026-05-30_AMOS-OpenClaw-Skill-macOS-Stealer/) |

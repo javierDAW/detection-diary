@@ -1,0 +1,230 @@
+{
+  "name": "2026-07-27 — 2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery — clusters: APT42",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1589",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1585.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1583.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1566.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1204.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1218.011",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1059.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1620",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1112",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1037.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1102.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1573.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1555.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1114.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1113",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1074.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1560",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

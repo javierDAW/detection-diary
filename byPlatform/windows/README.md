@@ -4,11 +4,12 @@
 
 # Platforms: windows
 
-55 day(s) covering this platform.
+56 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-21 | Spirals ransomware: IIS web shell to full-network encryption in under 24 hours, 23 backup/database/hypervisor services killed on the way | Spirals | [`2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/`](../../days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/) |
 | 2026-07-19 | INC Ransom Hits Georgia's City of Acworth: Municipal Double Extortion and the GOLD IONIC Playbook | INC Ransom | [`2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/`](../../days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/) |
 | 2026-07-17 | Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting Indictment | Media Land LLC / ML.Cloud LLC | [`2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/`](../../days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/) |

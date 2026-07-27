@@ -4,11 +4,12 @@
 
 # Techniques: T1059.001
 
-19 day(s) covering this technique.
+20 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-07 | KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's ClickFix-to-ransomware pipeline | Woodgnat | [`2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/`](../../days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/) |
 | 2026-07-03 | From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom) | Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira) | [`2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/`](../../days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/) |
 | 2026-06-09 | Kyber ransomware — dual ESXi + Windows encryptor built to blind backup and hypervisor recovery | Kyber | [`2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/`](../../days/2026/06/2026-06-09_Kyber-Dual-ESXi-Windows-Backup-Hypervisor-Ransomware/) |

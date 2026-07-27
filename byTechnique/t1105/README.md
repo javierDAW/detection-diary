@@ -4,11 +4,12 @@
 
 # Techniques: T1105
 
-9 day(s) covering this technique.
+10 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-25 | CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter | CrashStealer (unattributed developer/operator) | [`2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/`](../../days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/) |
 | 2026-07-13 | UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH | UAT-7810 | [`2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/`](../../days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/) |
 | 2026-07-07 | KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's ClickFix-to-ransomware pipeline | Woodgnat | [`2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/`](../../days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/) |

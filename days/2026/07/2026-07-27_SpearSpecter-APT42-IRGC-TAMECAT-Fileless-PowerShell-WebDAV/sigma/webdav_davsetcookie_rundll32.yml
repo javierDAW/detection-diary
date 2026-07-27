@@ -1,0 +1,37 @@
+title: Rundll32 DavSetCookie WebDAV Reach-Out to External SSL Host (SpearSpecter Initial Access)
+id: 0b8f405f-d1ac-485a-8121-812f48b3c932
+status: experimental
+description: >
+  Detects rundll32.exe invoking davclnt.dll DavSetCookie to open a WebDAV (SSL) connection to a remote
+  host, the mechanism SpearSpecter (APT42) uses after a search-ms URI prompt to mount an attacker WebDAV
+  share and hand the victim a malicious LNK disguised as a PDF. Legitimate WebDAV to internal/known
+  SharePoint or corporate hosts is a false positive; scope by destination and pair with the follow-on
+  curl/rename-to-bat behaviour for higher fidelity.
+references:
+    - https://govextra.gov.il/national-digital-agency/cyber/research/spearspecter/
+    - https://securityonline.info/iran-apt-spearspecter-uses-weeks-long-whatsapp-lures-and-fileless-tamecat-backdoor-to-hit-defense/
+author: Jarmi
+date: 2026/07/27
+tags:
+    - attack.initial-access
+    - attack.command-and-control
+    - attack.t1218.011
+    - attack.t1204.001
+logsource:
+    category: process_creation
+    product: windows
+detection:
+    selection_img:
+        Image|endswith: '\rundll32.exe'
+    selection_dav:
+        CommandLine|contains|all:
+            - 'davclnt.dll'
+            - 'DavSetCookie'
+    selection_ssl:
+        CommandLine|contains: '@SSL'
+    condition: selection_img and selection_dav and selection_ssl
+falsepositives:
+    - Legitimate WebDAV mounts to internal or trusted SharePoint/corporate file shares
+    - Enterprise document-management clients that use the WebDAV redirector
+
+level: high

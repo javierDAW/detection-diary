@@ -4,11 +4,12 @@
 
 # Techniques: T1583.001
 
-12 day(s) covering this technique.
+13 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-17 | Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting Indictment | Media Land LLC / ML.Cloud LLC | [`2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/`](../../days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/) |
 | 2026-07-15 | O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-resistant persistence | O-UNC-066 | [`2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/`](../../days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/) |
 | 2026-07-08 | Phantom Squatting: AI-Hallucinated Domains Weaponised as Phishing Infrastructure (Montana Empire kit) | Unattributed (Montana Empire operator) | [`2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/`](../../days/2026/07/2026-07-08_Phantom-Squatting-AI-Hallucinated-Domains-Montana-Empire/) |
