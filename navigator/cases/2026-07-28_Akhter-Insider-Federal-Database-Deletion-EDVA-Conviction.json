@@ -1,0 +1,76 @@
+{
+  "name": "2026-07-28 — 2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases — clusters: Akhter twins (convicted insiders)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1078.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases"
+    },
+    {
+      "techniqueID": "T1213",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases"
+    },
+    {
+      "techniqueID": "T1114",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases"
+    },
+    {
+      "techniqueID": "T1485",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases"
+    },
+    {
+      "techniqueID": "T1070",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases"
+    },
+    {
+      "techniqueID": "T1070.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

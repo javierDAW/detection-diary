@@ -1,3 +1,21 @@
+## 2026.07.28 — Day 92 — Akhter insider: post-termination deletion of ~96 U.S. government databases
+
+### Added
+- `days/2026/07/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/` — On 2026-05-07 an EDVA jury convicted Sohaib Akhter (with twin Muneeb) of conspiracy to commit computer fraud, password trafficking and felon-in-possession; the brothers, employees of a DC-area contractor serving 45+ federal agencies (hosting in Ashburn VA), pulled a complainant's plaintext password from the EEOC Public Portal store on 2026-02-01, then minutes after being fired on a 2026-02-18 remote meeting logged back in on live credentials and deleted ~96 case-management/FOIA databases over several hours. Tuesday crime-economy rotation, taxonomy slot #20 (insider threat), 35-day gap (last primary Day 57 Cloud Insider Recruitment); surfaced by a 2026-07-27 Security Boulevard legal analysis amplifying the DOJ conviction. No CVE, no malware sample — behavioral case.
+- Sigma (3): `proc_evidence_destruction_eventlog_usn_clear.yml` — wevtutil cl / Clear-EventLog / fsutil usn deletejournal; `proc_mass_database_drop_cli.yml` — DROP DATABASE/DETACH via sqlcmd/mysql/psql/mongo; `file_database_backup_deletion.yml` — .mdf/.ldf/.bak deletion via FileDelete.
+- KQL (3): log/USN clearing; DROP/DETACH burst (>=3/actor/hour); authentication by a leaver-list account (placeholder watchlist).
+- YARA (1 file, 2 rules): destructive DB-drop script and combined anti-forensics wipe script (heuristic, no sample).
+- Suricata (1 file, 6 sids): destructive SQL verbs (DROP DATABASE/TABLE, sp_detach_db, dropDatabase) in cleartext MSSQL/MySQL/PostgreSQL/MongoDB streams.
+- PEAK hunts (3): post-termination authentication; mass database destruction burst; plaintext credential retrieval from an app store.
+- `iocs.csv` (10 entries) — behavioral/organizational indicators + MITRE mapping. No `kev.md` (0 CVEs in scope).
+- `kill_chain.svg` — template A, canonical palette, category accent `other`; victim-left / insider-operator-right lanes with leaver-auth, DROP-burst and log-clear anchors.
+
+### Pedagogy
+- Insider sabotage with valid credentials has no CVE and no hash to block — detection anchors on the sequence and timing of behavior, not on static artifacts.
+- Deprovisioning latency is an attack surface; treat time-to-disable as a measured SLA and drive it to zero for privileged roles.
+- Reversible credential storage turns one repository read into an account takeover — hash with a slow KDF and segregate secrets.
+- Availability engineering is security: immutable/offline backups separate "hours of deletion" from "unrecoverable loss".
+
 ## 2026.07.27 — Day 91 — SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT backdoor
 
 ### Added

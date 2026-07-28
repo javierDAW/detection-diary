@@ -1,0 +1,16 @@
+// Title: Mass Database Drop / Detach via CLI
+// Id: ed44f122-0035-4eef-b6fa-d4dcaac7250b
+// MITRE: T1485 (Data Destruction)
+// Reference: https://www.justice.gov/opa/pr/federal-jury-convicts-virgina-man-charges-relating-deletion-us-government-databases
+// Author: Jarmi
+// Date: 2026-07-28
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: Scripted teardown of ephemeral CI/test databases; baseline maintenance service accounts. The >=N-in-window burst is what escalates severity.
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where FileName in~ ("sqlcmd.exe", "osql.exe", "mysql.exe", "psql.exe", "mongosh.exe", "mongo.exe", "sqlite3.exe")
+| where ProcessCommandLine has_any ("DROP DATABASE", "DROP TABLE", "sp_detach_db", "DETACH DATABASE", "dropDatabase")
+| summarize DropCount = count(), Commands = make_set(ProcessCommandLine, 20), FirstSeen = min(Timestamp), LastSeen = max(Timestamp)
+    by DeviceName, AccountName, bin(Timestamp, 1h)
+| where DropCount >= 3
+| order by DropCount desc

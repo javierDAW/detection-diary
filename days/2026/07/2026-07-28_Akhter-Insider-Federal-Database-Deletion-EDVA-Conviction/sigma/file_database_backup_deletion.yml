@@ -1,0 +1,37 @@
+title: Database and Backup File Deletion Burst
+id: 7f9b6763-6a51-4353-bed5-efc1b3c3aaeb
+status: experimental
+description: >
+  Detects deletion of database data, log and backup files (.mdf, .ldf, .ndf, .bak, .trn,
+  .mdb, .bacpac, .dmp, .frm, .ibd, .sqlite) captured via Sysmon FileDelete telemetry.
+  In the 2026 Akhter insider case databases were write-protected and then deleted; the file
+  layer is a second, engine-independent vantage point on the same destruction. Volume/burst
+  threshold belongs in SIEM aggregation.
+references:
+  - https://www.justice.gov/opa/pr/federal-jury-convicts-virgina-man-charges-relating-deletion-us-government-databases
+  - https://attack.mitre.org/techniques/T1485/
+author: Jarmi
+date: 2026/07/28
+tags:
+  - attack.impact
+  - attack.t1485
+logsource:
+  category: file_delete
+  product: windows
+detection:
+  selection:
+    TargetFilename|endswith:
+      - '.mdf'
+      - '.ldf'
+      - '.ndf'
+      - '.bak'
+      - '.trn'
+      - '.mdb'
+      - '.bacpac'
+      - '.ibd'
+      - '.sqlite'
+  condition: selection
+falsepositives:
+  - Backup retention pruning and storage tiering; baseline the accounts and paths that legitimately rotate database backups.
+
+level: medium

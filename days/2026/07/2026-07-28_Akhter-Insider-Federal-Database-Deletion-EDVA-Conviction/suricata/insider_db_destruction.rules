@@ -1,0 +1,24 @@
+# Suricata 7.x rules -- Insider mass database destruction (cleartext DB protocols)
+# Author: Jarmi
+# Date: 2026-07-28
+# Reference: https://www.justice.gov/opa/pr/federal-jury-convicts-virgina-man-charges-relating-deletion-us-government-databases
+# Confidence: HEURISTIC / ENVIRONMENTAL -- these match destructive SQL verbs in UNENCRYPTED
+#   database protocol streams only. TLS-wrapped DB connections will not match; deploy inside a
+#   segment where DB traffic is inspectable (or on a decrypting tap). Tune $SQL_SERVERS to the
+#   actual database hosts before enabling to keep volume manageable.
+# Variables (define in suricata.yaml vars.address-groups / port-groups):
+#   $SQL_SERVERS  = database host addresses (default: $HOME_NET)
+#   MSSQL 1433, MySQL 3306, PostgreSQL 5432, MongoDB 27017
+# SID range: 9580100-9580105
+
+alert tcp $HOME_NET any -> $HOME_NET 1433 (msg:"INSIDER MSSQL DROP DATABASE in cleartext TDS"; flow:established,to_server; content:"DROP DATABASE"; nocase; classtype:policy-violation; sid:9580100; rev:1;)
+
+alert tcp $HOME_NET any -> $HOME_NET 1433 (msg:"INSIDER MSSQL sp_detach_db invoked"; flow:established,to_server; content:"sp_detach_db"; nocase; classtype:policy-violation; sid:9580101; rev:1;)
+
+alert tcp $HOME_NET any -> $HOME_NET 3306 (msg:"INSIDER MySQL DROP DATABASE in cleartext"; flow:established,to_server; content:"DROP DATABASE"; nocase; classtype:policy-violation; sid:9580102; rev:1;)
+
+alert tcp $HOME_NET any -> $HOME_NET 5432 (msg:"INSIDER PostgreSQL DROP DATABASE in cleartext"; flow:established,to_server; content:"DROP DATABASE"; nocase; classtype:policy-violation; sid:9580103; rev:1;)
+
+alert tcp $HOME_NET any -> $HOME_NET 27017 (msg:"INSIDER MongoDB dropDatabase command"; flow:established,to_server; content:"dropDatabase"; nocase; classtype:policy-violation; sid:9580104; rev:1;)
+
+alert tcp $HOME_NET any -> $HOME_NET [1433,3306,5432] (msg:"INSIDER SQL DROP TABLE burst candidate in cleartext DB stream"; flow:established,to_server; content:"DROP TABLE"; nocase; classtype:policy-violation; sid:9580105; rev:1;)

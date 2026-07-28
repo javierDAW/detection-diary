@@ -1,0 +1,11 @@
+type,value,context,confidence,source
+note,US v. Muneeb Akhter and Sohaib Akhter (1:25-cr-307-RDA),EDVA case number for the 2026 destructive-insider prosecution; jury conviction of Sohaib Akhter announced 2026-05-07,high,DOJ OPA press release 26-463 2026-05-07
+note,~96 databases deleted,Number of U.S. government databases holding case-management and FOIA response-processing data deleted by two just-terminated contractors over several hours on 2026-02-18,high,DOJ OPA press release 26-463 2026-05-07
+note,45+ federal agencies affected,Blast radius of the DC-area contractor environment whose hosted government data was destroyed; servers located in Ashburn Virginia,high,DOJ OPA press release 26-463 2026-05-07
+note,Termination-then-sabotage window,Access-abuse began minutes after the online remote termination meeting on 2026-02-18 while credentials were still live; illustrates deprovisioning-latency risk,high,DOJ OPA / Security Boulevard 2026-07-27
+note,Plaintext-password-via-query,Operator ran a database query against the EEOC Public Portal store on 2026-02-01 and returned an individual complainant plaintext password reused to seize that persons email account,high,DOJ OPA press release 26-463 2026-05-07
+string,DROP DATABASE,Destructive SQL verb whose burst execution across many databases in a short window is the core behavioral anchor for mass data destruction,medium,Behavioral inference from DOJ facts (deletion of ~96 databases)
+string,write-protect databases,Court record describes write-protecting databases before deletion; maps to attribute/ACL denial preceding destruction,medium,DOJ OPA press release 26-463 2026-05-07
+string,EEOC Public Portal,Federal complaint-intake web application maintained by the contractor whose backing store exposed a plaintext password to a routine operator query,high,DOJ OPA press release 26-463 2026-05-07
+cve,none,No software vulnerability or CVE is in scope; this is authorized-access abuse and post-termination unauthorized access not exploitation of a flaw,high,Analyst note
+note,MITRE ATT&CK,T1078.002 Valid Accounts Domain / T1213 Data from Information Repositories / T1552.001 Unsecured Credentials Credentials In Files / T1114 Email Collection / T1485 Data Destruction / T1070 Indicator Removal,high,Analyst mapping to DOJ facts

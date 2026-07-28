@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Akhter insider federal-database-deletion kill chain</title>
+<desc id="d">Two-lane diagram. Left lane: the DC-area federal contractor environment serving 45-plus agencies, its EEOC Public Portal plaintext-password store, case-management and FOIA databases, live credentials at termination, the roughly 96 deleted databases, event logs and the Teams termination-meeting recording. Right lane: the two insider operators query a plaintext password on 2026-02-01, reuse it to seize a complainant email, are fired on a remote meeting on 2026-02-18, log on post-termination without authorization, write-protect and delete about 96 databases, then destroy evidence. Detection anchors: post-termination authentication, mass DROP DATABASE bursts, plaintext credential retrieval and event-log clearing.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-other" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Akhter Insider: Federal Database Deletion (EDVA conviction)</text>
+<text class="meta" x="20" y="58">Vendor: DOJ OPA / Security Boulevard - Date: 2026-05-07 conv, 2026-07-27 analysis - Cluster: Convicted insiders (Akhter twins) - Day 92</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="105">Victim: DC-area federal contractor environment</text>
+<text class="laneLabelR" x="460" y="105">Insider operators: Sohaib + Muneeb Akhter</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Contractor environment</text>
+<text class="sub" x="40" y="168">Software + hosting for 45+ federal agencies</text>
+<text class="sub" x="40" y="184">Government data on servers in Ashburn VA</text>
+<text class="sub" x="40" y="200">Trusted position, privileged DB access</text>
+<text class="mono" x="40" y="226">scope: case-mgmt + FOIA processing</text>
+<text class="mono" x="40" y="244">T1078.002 valid domain accounts</text>
+
+<rect class="stageK" x="30" y="270" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">EEOC Public Portal store</text>
+<text class="sub" x="40" y="318">Complaint-intake app maintained by employer</text>
+<text class="sub" x="40" y="334">Password recoverable by a routine query</text>
+<text class="sub" x="40" y="350">Plaintext / reversible credential storage</text>
+<text class="mono" x="40" y="376">T1552.001 unsecured credentials</text>
+<text class="mono" x="40" y="394">T1213 data from info repository</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">Case-management + FOIA DBs</text>
+<text class="sub" x="40" y="468">Workflow + records of citizen requests</text>
+<text class="sub" x="40" y="484">Hosted for multiple federal clients</text>
+<text class="sub" x="40" y="500">High-value, sensitive government data</text>
+<text class="mono" x="40" y="526">victims: 45+ agencies downstream</text>
+<text class="mono" x="40" y="544">integrity + availability at risk</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Live credentials at firing</text>
+<text class="sub" x="40" y="618">Accounts still enabled after termination</text>
+<text class="sub" x="40" y="634">Deprovisioning lagged the HR event</text>
+<text class="sub" x="40" y="650">Window abused within minutes</text>
+<text class="mono" x="40" y="676">anchor: post-termination logon</text>
+<text class="mono" x="40" y="694">T1078.002 valid accounts</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">~96 databases (destruction)</text>
+<text class="sub" x="40" y="768">Write-protected, then deleted</text>
+<text class="sub" x="40" y="784">Several hours of sustained deletion</text>
+<text class="sub" x="40" y="800">Government records destroyed</text>
+<text class="mono" x="40" y="826">anchor: DROP DATABASE burst</text>
+<text class="mono" x="40" y="844">T1485 data destruction</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Event logs / USN journal</text>
+<text class="sub" x="40" y="918">Targeted to erase the destruction trail</text>
+<text class="sub" x="40" y="934">wevtutil cl / fsutil usn deletejournal</text>
+<text class="sub" x="40" y="950">Anti-forensics after impact</text>
+<text class="mono" x="40" y="976">anchor: log-clear command line</text>
+<text class="mono" x="40" y="994">T1070.001 clear event logs</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Teams meeting recording</text>
+<text class="sub" x="40" y="1068">Termination call kept recording</text>
+<text class="sub" x="40" y="1084">Captured the operators mid-deletion</text>
+<text class="sub" x="40" y="1100">Collaboration platform as witness</text>
+<text class="mono" x="40" y="1126">forensic: self-incriminating capture</text>
+<text class="mono" x="40" y="1144">lesson: telemetry you did not plan</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">2026-02-01: password query</text>
+<text class="sub" x="470" y="173">Muneeb asks Sohaib for a plaintext pw</text>
+<text class="sub" x="470" y="189">Sohaib queries the EEOC store</text>
+<text class="sub" x="470" y="205">Returns a complainant password</text>
+<text class="sub" x="470" y="221">Authorized access, misused</text>
+<text class="mono" x="470" y="251">T1552.001 / T1213</text>
+<text class="mono" x="470" y="269">still-employed abuse begins</text>
+
+<rect class="opK" x="460" y="295" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">Seize complainant email</text>
+<text class="sub" x="470" y="343">Reused password to log into email</text>
+<text class="sub" x="470" y="359">Access without authorization</text>
+<text class="sub" x="470" y="375">Private citizen data exposed</text>
+<text class="sub" x="470" y="391">Credential reuse across services</text>
+<text class="mono" x="470" y="421">T1114 email collection</text>
+<text class="mono" x="470" y="439">password trafficking 1030(a)(6)</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">2026-02-18: fired remotely</text>
+<text class="sub" x="470" y="513">Employer finds prior felony conviction</text>
+<text class="sub" x="470" y="529">Both terminated on an online meeting</text>
+<text class="sub" x="470" y="545">Access should have been revoked</text>
+<text class="sub" x="470" y="561">Deprovisioning did not keep pace</text>
+<text class="mono" x="470" y="591">trigger: HR termination event</text>
+<text class="mono" x="470" y="609">SLA gap: time-to-disable</text>
+
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">Post-termination logon</text>
+<text class="sub" x="470" y="683">Accessed computers without authorization</text>
+<text class="sub" x="470" y="699">Credentials still live minutes later</text>
+<text class="sub" x="470" y="715">Now-unauthorized by definition</text>
+<text class="sub" x="470" y="731">Pivot to hosted database tier</text>
+<text class="mono" x="470" y="761">anchor: leaver-account auth</text>
+<text class="mono" x="470" y="779">T1078.002 valid accounts</text>
+
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Write-protect + delete DBs</text>
+<text class="sub" x="470" y="853">Write-protected databases first</text>
+<text class="sub" x="470" y="869">Deleted ~96 stores over hours</text>
+<text class="sub" x="470" y="885">Case-management + FOIA data gone</text>
+<text class="sub" x="470" y="901">Availability + integrity destroyed</text>
+<text class="mono" x="470" y="931">anchor: DROP/DETACH burst</text>
+<text class="mono" x="470" y="949">T1485 data destruction</text>
+
+<rect class="opK" x="460" y="975" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">Destroy evidence</text>
+<text class="sub" x="470" y="1023">Erased traces of the activity</text>
+<text class="sub" x="470" y="1039">Anti-forensics after the impact</text>
+<text class="sub" x="470" y="1055">Recording still captured the act</text>
+<text class="sub" x="470" y="1071">Convicted EDVA jury 2026-05-07</text>
+<text class="mono" x="470" y="1101">T1070 indicator removal</text>
+<text class="mono" x="470" y="1119">1:25-cr-307-RDA</text>
+
+<path class="arrowX" d="M425,337 L460,337" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,637 L460,712" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,882 L425,787" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,280 L657,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,620 L657,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,790 L657,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,960 L657,975" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="30" y="1198">Detection anchors (behavioral, no CVE / no malware sample)</text>
+<text class="footerT" x="30" y="1218">1. Authentication by a terminated / should-be-disabled account (T1078.002) joined to an HR leaver feed.</text>
+<text class="footerT" x="30" y="1236">2. Mass DROP DATABASE / DETACH burst and .mdf/.bak deletion in a short window (T1485).</text>
+<text class="footerT" x="30" y="1254">3. Plaintext credential SELECT from an app store (T1552.001) and event-log clearing (T1070.001).</text>
+</svg>

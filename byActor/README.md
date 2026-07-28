@@ -17,6 +17,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [ARToken (EvilTokens affiliate PhaaS)](./artoken-eviltokens-affiliate-phaas/) | 1 |
 | [Agenda](./agenda/) | 1 |
 | [Agentjacking-unattributed (Tenet Threat Labs tracking)](./agentjacking-unattributed-tenet-threat-labs-tracking/) | 1 |
+| [Akhter twins (convicted insiders)](./akhter-twins-convicted-insiders/) | 1 |
 | [Akira](./akira/) | 1 |
 | [Albiriox](./albiriox/) | 1 |
 | [ArcaneDoor](./arcanedoor/) | 1 |

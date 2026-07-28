@@ -1,5 +1,45 @@
 [
  {
+  "date": "2026-07-28",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction",
+  "title": "Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases",
+  "clusters": [
+   "Akhter twins (convicted insiders)"
+  ],
+  "country": "United States (domestic insider)",
+  "platforms": [
+   "windows",
+   "linux"
+  ],
+  "sectors": [
+   "government",
+   "federal-contractor"
+  ],
+  "techniques": [
+   "T1078.002",
+   "T1213",
+   "T1552.001",
+   "T1114",
+   "T1485",
+   "T1070",
+   "T1070.001"
+  ],
+  "tech_count": 7,
+  "tldr": "On 2026-05-07 a federal jury in the Eastern District of Virginia convicted Sohaib Akhter (34, Alexandria VA) of conspiracy to commit computer fraud, password trafficking, and being a felon in possession of firearms. He and his twin brother and co-defendant Muneeb Akhter worked for a Washington, D.C. company that provided software and hosting to more than 45 federal agencies from servers in Ashburn",
+  "thumb": "thumbs/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction.svg",
+  "case_rel": "../days/2026/07/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Akhter twins (convicted insiders)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "akhter insider case: post-termination deletion of ~96 u.s. government databases akhter twins (convicted insiders) united states (domestic insider) windows linux government federal-contractor t1078.002 t1213 t1552.001 t1114 t1485 t1070 t1070.001 other "
+ },
+ {
   "date": "2026-07-27",
   "year": "2026",
   "month": "2026-07",

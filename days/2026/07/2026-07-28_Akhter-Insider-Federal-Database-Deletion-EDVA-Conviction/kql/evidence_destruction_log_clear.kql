@@ -1,0 +1,15 @@
+// Title: Event Log / USN Journal Clearing (anti-forensics)
+// Id: 301d2963-c085-434f-8e63-dfee141fdd9f
+// MITRE: T1070.001 (Clear Windows Event Logs), T1070.009 (Clear Persistence)
+// Reference: https://www.justice.gov/opa/pr/federal-jury-convicts-virgina-man-charges-relating-deletion-us-government-databases
+// Author: Jarmi
+// Date: 2026-07-28
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: Correlate with change tickets; alert is high value when the actor account was recently terminated or off-hours.
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where (FileName =~ "wevtutil.exe" and ProcessCommandLine has_any (" cl ", "clear-log"))
+    or (ProcessCommandLine has_any ("Clear-EventLog", "Remove-EventLog", "Limit-EventLog"))
+    or (FileName =~ "fsutil.exe" and ProcessCommandLine has "usn" and ProcessCommandLine has "deletejournal")
+| project Timestamp, DeviceName, AccountName, InitiatingProcessAccountName, FileName, ProcessCommandLine
+| order by Timestamp desc
