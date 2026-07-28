@@ -1,0 +1,15 @@
+// Title: Authentication by a Terminated / Should-Be-Disabled Account
+// Id: 7f9b6763-6a51-4353-bed5-efc1b3c3aaeb
+// MITRE: T1078.002 (Valid Accounts: Domain Accounts)
+// Reference: https://www.justice.gov/opa/pr/federal-jury-convicts-virgina-man-charges-relating-deletion-us-government-databases
+// Author: Jarmi
+// Date: 2026-07-28
+// Tested on: Microsoft Defender XDR (IdentityLogonEvents). Requires an HR/leaver watchlist.
+// FP notes: Grace-period access for handover; keep the leaver list authoritative and time-bound. Placeholder below is expected as a warning.
+let terminated_accounts = dynamic([<add_known_terminated_upns>]);
+IdentityLogonEvents
+| where Timestamp > ago(30d)
+| where AccountUpn in~ (terminated_accounts) or AccountName in~ (terminated_accounts)
+| where ActionType in ("LogonSuccess", "LogonAttempted")
+| project Timestamp, AccountUpn, AccountName, Application, LogonType, DeviceName, IPAddress
+| order by Timestamp desc

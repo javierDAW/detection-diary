@@ -1,0 +1,43 @@
+title: Mass Database Drop or Detach via Command-Line Client
+id: ed44f122-0035-4eef-b6fa-d4dcaac7250b
+status: experimental
+description: >
+  Detects destructive SQL verbs (DROP DATABASE / DROP TABLE / DETACH / DELETE without WHERE)
+  passed to common database command-line clients (sqlcmd, osql, mysql, psql, mongosh, mongo,
+  sqlite3). A short burst of such executions against many databases is the core anchor for the
+  2026 Akhter insider case in which ~96 U.S. government databases were deleted over several
+  hours. Threshold on burst count belongs in SIEM aggregation (see description); this atomic
+  rule fires on a single destructive invocation.
+references:
+  - https://www.justice.gov/opa/pr/federal-jury-convicts-virgina-man-charges-relating-deletion-us-government-databases
+  - https://attack.mitre.org/techniques/T1485/
+author: Jarmi
+date: 2026/07/28
+tags:
+  - attack.impact
+  - attack.t1485
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_client:
+    Image|endswith:
+      - '\sqlcmd.exe'
+      - '\osql.exe'
+      - '\mysql.exe'
+      - '\psql.exe'
+      - '\mongosh.exe'
+      - '\mongo.exe'
+      - '\sqlite3.exe'
+  selection_verb:
+    CommandLine|contains:
+      - 'DROP DATABASE'
+      - 'DROP TABLE'
+      - 'sp_detach_db'
+      - 'DETACH DATABASE'
+      - 'dropDatabase'
+  condition: selection_client and selection_verb
+falsepositives:
+  - Scripted teardown of ephemeral test or CI databases; baseline authorized maintenance jobs and their service accounts.
+
+level: high
