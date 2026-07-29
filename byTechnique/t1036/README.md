@@ -4,11 +4,12 @@
 
 # Techniques: T1036
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-29 | OAuth Client ID Spoofing: Stealthy Entra ID Credential Validation via ROPC and the AADSTS Error Oracle | UNK_pyreq2323 · UNK_OutFlareAZ · UNK_CustomCloak | [`2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/`](../../days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/) |
 | 2026-07-18 | Bad Connection: STA1/STA2 SS7 and Diameter Signalling Surveillance — and Iran's Wartime Use of the Same Playbook | STA1 · STA2 | [`2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/`](../../days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/) |
 | 2026-07-03 | From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom) | Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira) | [`2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/`](../../days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/) |
 | 2026-06-26 | GentleKiller BYOVD Suite: Behavioral Detection Engineering Against Operator-Maintained EDR Killers | The Gentlemen RaaS (GentleKiller operator) | [`2026-06-26_GentleKiller-BYOVD-Detection-Engineering/`](../../days/2026/06/2026-06-26_GentleKiller-BYOVD-Detection-Engineering/) |

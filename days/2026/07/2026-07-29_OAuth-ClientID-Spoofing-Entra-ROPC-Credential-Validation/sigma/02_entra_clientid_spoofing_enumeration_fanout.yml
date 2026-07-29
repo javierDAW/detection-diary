@@ -1,0 +1,42 @@
+title: Entra ID User Enumeration via Spoofed Client IDs (Blank App, AADSTS50034/50126)
+id: cd8e3cd6-23f6-4d8e-87d0-9d2b43967ec4
+status: experimental
+description: |
+  Detects Microsoft Entra ID authentication failures consistent with OAuth client ID spoofing:
+  events carrying AADSTS50034 (user does not exist) or AADSTS50126 (valid user, bad password)
+  where AppDisplayName is empty (the supplied client_id did not resolve to a registered app).
+  Proofpoint observed actors fragmenting attempts across hundreds of thousands to millions of
+  fictional client_id values (UNK_pyreq2323, UNK_OutFlareAZ) to defeat per-application detection
+  and rate limiting. This atomic rule surfaces the individual blank-app failure events; push the
+  aggregation - many DISTINCT AppId values from one source IP/UA over a short window - to your SIEM
+  (e.g. count_distinct(AppId) by IPAddress over 1h), because Sigma conditions cannot express
+  cardinality thresholds. See the companion KQL for the aggregation.
+references:
+  - https://www.proofpoint.com/us/blog/threat-insight/oauth-client-id-spoofing-why-fake-client-ids-are-gaining-traction-stealthy
+  - https://learn.microsoft.com/en-us/entra/identity-platform/reference-error-codes
+  - https://attack.mitre.org/techniques/T1087/004/
+author: Jarmi
+date: 2026/07/29
+tags:
+  - attack.discovery
+  - attack.t1087.004
+  - attack.credential-access
+  - attack.t1110.003
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection_error:
+    ResultType:
+      - '50034'
+      - 50034
+      - '50126'
+      - 50126
+  selection_blankapp:
+    AppDisplayName: ''
+  condition: selection_error and selection_blankapp
+falsepositives:
+  - Broken legacy integrations that repeatedly present an unregistered client_id
+  - Isolated typo-level failures; the true signal is high-cardinality AppId fan-out from one source (aggregate in SIEM)
+
+level: medium

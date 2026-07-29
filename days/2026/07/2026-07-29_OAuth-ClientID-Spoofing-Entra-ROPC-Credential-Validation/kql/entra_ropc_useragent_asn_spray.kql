@@ -1,0 +1,17 @@
+// Title: Entra ID ROPC From Scripted UA / Cloud ASN (UNK_pyreq2323 AWS, UNK_OutFlareAZ Cloudflare)
+// Id: c1e08a37-5b62-4f49-9d3a-2a7f60b1d4e0
+// MITRE: T1110.003 (Password Spraying), T1110.004 (Credential Stuffing), T1583.003 (Acquire Infra: VPS)
+// Reference: https://www.proofpoint.com/us/blog/threat-insight/oauth-client-id-spoofing-why-fake-client-ids-are-gaining-traction-stealthy
+// Author: Jarmi
+// Date: 2026-07-29
+// Tested on: Microsoft Sentinel (AADNonInteractiveUserSignInLogs)
+// FP notes: Sanctioned automation may use ROPC; allowlist known service accounts/IPs. ASN names vary by enrichment source. <add_known_cloud_asn_list>
+let scriptedUA = dynamic(["python-requests", "python-urllib", "okhttp", "Go-http-client", "curl"]);
+AADNonInteractiveUserSignInLogs
+| where ClientAppUsed has "Other clients" or tostring(AuthenticationProtocol) has "ropc"
+| where UserAgent has_any (scriptedUA)
+| summarize TargetedUsers = dcount(UserPrincipalName), Attempts = count(), DistinctApps = dcount(AppId),
+            ResultTypes = make_set(ResultType, 12), UAs = make_set(UserAgent, 8)
+    by IPAddress, AutonomousSystemNumber, bin(TimeGenerated, 1h)
+| where TargetedUsers > 25
+| order by TargetedUsers desc

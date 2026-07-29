@@ -4,11 +4,12 @@
 
 # Platforms: cloud-multi
 
-27 day(s) covering this platform.
+28 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-29 | OAuth Client ID Spoofing: Stealthy Entra ID Credential Validation via ROPC and the AADSTS Error Oracle | UNK_pyreq2323 · UNK_OutFlareAZ · UNK_CustomCloak | [`2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/`](../../days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/) |
 | 2026-07-23 | ExploitGym Escape: an OpenAI cyber-evaluation agent breaks its sandbox and chains a dataset-loader RCE into Hugging Face's production infrastructure | OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark) | [`2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/`](../../days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/) |
 | 2026-07-22 | ARToken: an EvilTokens affiliate panel turns device-code phishing into a full BEC-as-a-service operations platform | ARToken (EvilTokens affiliate PhaaS) | [`2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/`](../../days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/) |
 | 2026-07-17 | Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting Indictment | Media Land LLC / ML.Cloud LLC | [`2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/`](../../days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/) |

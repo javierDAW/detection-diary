@@ -1,0 +1,18 @@
+// Title: Entra ID Spoofed Client ID Fan-Out (user enumeration / password spray across fictional AppIds)
+// Id: 7b3d2e54-9a10-4c88-b6f2-1d90a7c4e825
+// MITRE: T1087.004 (Account Discovery: Cloud), T1110.003 (Password Spraying), T1036 (Masquerading)
+// Reference: https://www.proofpoint.com/us/blog/threat-insight/oauth-client-id-spoofing-why-fake-client-ids-are-gaining-traction-stealthy
+// Author: Jarmi
+// Date: 2026-07-29
+// Tested on: Microsoft Sentinel (AADNonInteractiveUserSignInLogs)
+// FP notes: Tune DistinctApps and TargetedUsers to your baseline. Legitimate sources rarely present many DISTINCT unregistered AppIds. <add_known_ropc_automation_ips>
+let window = 1h;
+let minDistinctApps = 20;   // <add_known_baseline> fan-out across fictional client_ids
+AADNonInteractiveUserSignInLogs
+| where ResultType in (50034, 50126, 50053, 700016)
+| where isempty(AppDisplayName) and isnotempty(AppId)
+| summarize DistinctApps = dcount(AppId), TargetedUsers = dcount(UserPrincipalName), Attempts = count(),
+            ErrCodes = make_set(ResultType, 10), UAs = make_set(UserAgent, 10)
+    by IPAddress, AutonomousSystemNumber, bin(TimeGenerated, window)
+| where DistinctApps >= minDistinctApps
+| order by DistinctApps desc

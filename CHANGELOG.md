@@ -1,3 +1,21 @@
+## 2026.07.29 — Day 93 — OAuth client ID spoofing: stealthy Entra ID credential validation
+
+### Added
+- `days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/` — Proofpoint (2026-07-14) disclosed OAuth client ID spoofing: attackers POST stolen credentials to Entra's ROPC token endpoint with a fake `client_id`, reading AADSTS error codes (50034 / 50126 / 700016) as an oracle to validate credentials and enumerate accounts with no successful sign-in and a blank `AppDisplayName`. Clusters UNK_pyreq2323 (AWS, `python-requests`) and UNK_OutFlareAZ (Cloudflare), plus precursor UNK_CustomCloak.
+- Sigma (3): `01_entra_ropc_spoofed_clientid_cred_confirmed.yml` — 700016 + blank app on ROPC; `02_entra_clientid_spoofing_enumeration_fanout.yml` — 50034/50126 blank-app failures; `03_entra_ropc_python_requests_ua.yml` — scripted UA ROPC.
+- KQL (3): 700016 credential-confirmed; distinct-AppId fan-out; UA/ASN ROPC spray — Sentinel `AADNonInteractiveUserSignInLogs`.
+- YARA (1 file, 2 rules): sign-in-log spoofing signature; ROPC credential-checker tooling.
+- Suricata (1 file, 6 sids): TLS-inspected ROPC egress, `python-requests` UA, token-endpoint SNI.
+- PEAK hunts (3): credential-confirmed-no-login; spoofed-AppId fan-out; ROPC from cloud ASN.
+- `iocs.csv` (13 entries) — behavioral/config indicators; no `kev.md` (0 CVEs).
+- `kill_chain.svg` — template A, canonical palette, acc-identity-cloud; victim-tenant vs attacker-harness lanes.
+
+### Pedagogy
+- Distinguishable auth error codes are a credential-validity oracle even when no session is granted.
+- "No successful sign-in" is not "no compromise" — AADSTS700016 confirms working credentials silently.
+- A blank `AppDisplayName` with a live `AppId` defeats app-scoped Conditional Access and per-app detections.
+- Block ROPC / legacy auth tenant-wide to collapse the entire technique.
+
 ## 2026.07.28 — Day 92 — Akhter insider: post-termination deletion of ~96 U.S. government databases
 
 ### Added

@@ -1,0 +1,27 @@
+# Suricata 7.x - OAuth client ID spoofing / Entra ID ROPC credential validation
+# Author: Jarmi
+# Reference: https://www.proofpoint.com/us/blog/threat-insight/oauth-client-id-spoofing-why-fake-client-ids-are-gaining-traction-stealthy
+# Date: 2026-07-29
+#
+# IMPORTANT: Auth to login.microsoftonline.com is TLS-encrypted. These rules assume a
+# TLS-inspecting egress proxy that re-emits decrypted HTTP to Suricata, EXCEPT the TLS-SNI
+# rule (sid 3000206) which works on the cleartext ClientHello without decryption.
+# Tune $HOME_NET and only deploy the ROPC/UA rules where TLS inspection is in place.
+#
+# sid 3000201 - ROPC grant in POST body to Microsoft token endpoint (decrypted)
+alert http $HOME_NET any -> any any (msg:"ENTRA ClientID-Spoofing ROPC grant_type=password to token endpoint"; flow:established,to_server; http.method; content:"POST"; http.host; content:"login.microsoftonline.com"; http.uri; content:"/oauth2/"; http.request_body; content:"grant_type=password"; nocase; classtype:credential-theft; sid:3000201; rev:1;)
+#
+# sid 3000202 - python-requests UA hitting the token endpoint (UNK_pyreq2323, decrypted)
+alert http $HOME_NET any -> any any (msg:"ENTRA ClientID-Spoofing python-requests UA to login.microsoftonline.com token endpoint"; flow:established,to_server; http.host; content:"login.microsoftonline.com"; http.user_agent; content:"python-requests"; nocase; http.uri; content:"/oauth2/"; classtype:credential-theft; sid:3000202; rev:1;)
+#
+# sid 3000203 - ROPC body carrying a spoofed client_id built on the Exchange Online prefix (decrypted)
+alert http $HOME_NET any -> any any (msg:"ENTRA ClientID-Spoofing client_id mutated from Exchange Online first-party prefix"; flow:established,to_server; http.method; content:"POST"; http.host; content:"login.microsoftonline.com"; http.request_body; content:"client_id=00000002-0000-0ff1-ce00-"; nocase; classtype:credential-theft; sid:3000203; rev:1;)
+#
+# sid 3000204 - ROPC body with both password grant and client_id (generic spoofing shape, decrypted)
+alert http $HOME_NET any -> any any (msg:"ENTRA ClientID-Spoofing ROPC password grant with client_id parameter"; flow:established,to_server; http.method; content:"POST"; http.host; content:"login.microsoftonline.com"; http.request_body; content:"grant_type=password"; nocase; http.request_body; content:"client_id="; nocase; classtype:credential-theft; sid:3000204; rev:1;)
+#
+# sid 3000205 - scripted (non-browser) UA to the token endpoint, broader UA set (decrypted)
+alert http $HOME_NET any -> any any (msg:"ENTRA ClientID-Spoofing scripted UA (curl/okhttp/go-http) to token endpoint"; flow:established,to_server; http.host; content:"login.microsoftonline.com"; http.uri; content:"/oauth2/"; pcre:"/^User-Agent\x3a\s*(curl|okhttp|Go-http-client|python-urllib)/Hmi"; classtype:credential-theft; sid:3000205; rev:1;)
+#
+# sid 3000206 - TLS SNI to login.microsoftonline.com from a scripted client (no decryption; pair with proxy allowlist)
+alert tls $HOME_NET any -> any any (msg:"ENTRA ClientID-Spoofing TLS SNI login.microsoftonline.com from non-proxy source (baseline egress)"; flow:established,to_server; tls.sni; content:"login.microsoftonline.com"; nocase; classtype:credential-theft; sid:3000206; rev:1;)

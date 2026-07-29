@@ -4,9 +4,10 @@
 
 # Techniques: T1087.004
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-29 | OAuth Client ID Spoofing: Stealthy Entra ID Credential Validation via ROPC and the AADSTS Error Oracle | UNK_pyreq2323 · UNK_OutFlareAZ · UNK_CustomCloak | [`2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/`](../../days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/) |
 | 2026-05-20 | Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure | Storm-2949 | [`2026-05-20_Storm-2949-Cloud-Identity-SSPR/`](../../days/2026/05/2026-05-20_Storm-2949-Cloud-Identity-SSPR/) |
