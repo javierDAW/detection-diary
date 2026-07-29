@@ -1,0 +1,37 @@
+title: Entra ID ROPC Authentication From python-requests User-Agent (UNK_pyreq2323)
+id: b5a97efb-d3d5-44a8-8344-4eed4f92334c
+status: experimental
+description: |
+  Detects Microsoft Entra ID non-interactive (ROPC) authentication attempts that carry the
+  python-requests User-Agent, matching the UNK_pyreq2323 cluster documented by Proofpoint
+  (2026-07-14). That cluster drove OAuth client ID spoofing from AWS infrastructure using
+  the User-Agent python-requests/2.32.3, mutating the trailing digits of a known first-party
+  application ID to generate ~700,000 spoofed client_id values. Interactive Entra sign-ins almost
+  never legitimately present a scripted python-requests User-Agent; combined with the ROPC
+  (password) grant this is high-signal. Baseline any legitimate automation before enforcing.
+references:
+  - https://www.proofpoint.com/us/blog/threat-insight/oauth-client-id-spoofing-why-fake-client-ids-are-gaining-traction-stealthy
+  - https://thehackernews.com/2026/07/oauth-client-id-spoofing-lets-attackers.html
+  - https://attack.mitre.org/techniques/T1110/004/
+author: Jarmi
+date: 2026/07/29
+tags:
+  - attack.credential-access
+  - attack.t1110.004
+  - attack.discovery
+  - attack.t1087.004
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection_ua:
+    UserAgent|contains: 'python-requests'
+  selection_ropc:
+    ClientAppUsed|contains: 'Other clients'
+  selection_ropc_field:
+    AuthenticationProtocol|contains: 'ropc'
+  condition: selection_ua and (selection_ropc or selection_ropc_field)
+falsepositives:
+  - Sanctioned Python automation using ROPC against a registered application; allowlist the known service account and source IP
+
+level: high

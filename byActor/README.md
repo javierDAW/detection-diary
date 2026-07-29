@@ -149,6 +149,9 @@ Source of truth: each day's `README.md` frontmatter.
 | [UNC5691](./unc5691/) | 1 |
 | [UNC6671 (GTIG / Mandiant)](./unc6671-gtig-mandiant/) | 1 |
 | [UNC6780](./unc6780/) | 1 |
+| [UNK_CustomCloak](./unk-customcloak/) | 1 |
+| [UNK_OutFlareAZ](./unk-outflareaz/) | 1 |
+| [UNK_pyreq2323](./unk-pyreq2323/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
 | [Unattributed (Montana Empire operator)](./unattributed-montana-empire-operator/) | 1 |
 | [Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)](./unattributed-e-crime-bumblebee-adaptixc2-akira/) | 1 |

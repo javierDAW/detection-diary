@@ -1,0 +1,15 @@
+// Title: Entra ID Credential Confirmed via Spoofed Client ID (AADSTS700016, blank AppDisplayName)
+// Id: 2f6a1b90-4c8e-4d21-9a77-8b1e0c4d5f31
+// MITRE: T1110.004 (Credential Stuffing), T1036 (Masquerading), T1078.004 (Valid Accounts: Cloud)
+// Reference: https://www.proofpoint.com/us/blog/threat-insight/oauth-client-id-spoofing-why-fake-client-ids-are-gaining-traction-stealthy
+// Author: Jarmi
+// Date: 2026-07-29
+// Tested on: Microsoft Sentinel (AADNonInteractiveUserSignInLogs)
+// FP notes: A deleted/cross-tenant app can also yield 700016; the tell is an EMPTY AppDisplayName with a present AppId and no matching successful sign-in.
+AADNonInteractiveUserSignInLogs
+| where ResultType == 700016
+| where isempty(AppDisplayName) and isnotempty(AppId)
+| project TimeGenerated, UserPrincipalName, AppId, AppDisplayName, IPAddress, AutonomousSystemNumber, UserAgent, ResultType, ResultDescription
+| summarize ConfirmedAttempts = count(), FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated), SourceIPs = make_set(IPAddress, 20), AppIds = dcount(AppId)
+    by UserPrincipalName
+| order by ConfirmedAttempts desc

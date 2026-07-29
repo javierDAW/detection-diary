@@ -1,0 +1,41 @@
+title: Entra ID Credential Confirmed via ROPC With Spoofed Client ID (AADSTS700016)
+id: 8ce8e7d2-70ca-4c8a-a29d-86b27222752e
+status: experimental
+description: |
+  Detects a Microsoft Entra ID non-interactive (ROPC) authentication that returns AADSTS700016
+  ("application not found in tenant") while the AppDisplayName is empty. In the OAuth client ID
+  spoofing technique reported by Proofpoint (2026-07-14), an attacker submits a stolen
+  username/password to the token endpoint with a fake client_id. AADSTS700016 is only reached
+  after Entra has ACCEPTED the credential, so this response confirms a working username+password
+  pair without ever producing a successful sign-in event. A blank AppDisplayName paired with a
+  present AppId is the tell that the client_id did not resolve to a registered application.
+  Map ResultType/error codes to your ingestion field (ResultType or Status.errorCode).
+references:
+  - https://www.proofpoint.com/us/blog/threat-insight/oauth-client-id-spoofing-why-fake-client-ids-are-gaining-traction-stealthy
+  - https://learn.microsoft.com/en-us/entra/identity-platform/reference-error-codes
+  - https://attack.mitre.org/techniques/T1110/004/
+author: Jarmi
+date: 2026/07/29
+tags:
+  - attack.credential-access
+  - attack.t1110.004
+  - attack.defense-evasion
+  - attack.t1036
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection_error:
+    ResultType:
+      - '700016'
+      - 700016
+  selection_blankapp:
+    AppDisplayName: ''
+  selection_appid_present:
+    AppId|exists: true
+  condition: selection_error and selection_blankapp and selection_appid_present
+falsepositives:
+  - A genuinely deleted or cross-tenant application can return 700016; validate that AppDisplayName is blank and that the source is not a known service principal
+  - Rare legitimate ROPC integrations misconfigured with a wrong client_id
+
+level: high
