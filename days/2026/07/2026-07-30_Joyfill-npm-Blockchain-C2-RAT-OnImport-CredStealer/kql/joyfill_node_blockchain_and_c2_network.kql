@@ -1,0 +1,17 @@
+// Title: Joyfill npm implant - node contacting blockchain dead-drop APIs or C2 hosts
+// Id: 3c1f77a2-9e40-4b6c-bb21-0d5a2e7c8419
+// MITRE: T1102.001 (Dead Drop Resolver), T1071.001 (Web Protocols), T1195.002 (Compromise Software Supply Chain)
+// Reference: https://www.stepsecurity.io/blog/joyfill-npm-supply-chain-compromise
+// Author: Jarmi
+// Date: 2026-07-30
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: The blockchain endpoints are legitimate; the signal is a build/CI/dev node process reaching them, or any process reaching the C2 IPs. Validate C2 IP freshness before blocking - indicators decay.
+let c2ips = dynamic(["166.88.134.62","23.27.13.43","198.105.127.210","23.27.202.27"]);
+let chainhosts = dynamic(["api.trongrid.io","fullnode.mainnet.aptoslabs.com","bsc-dataseed.binance.org","bsc-rpc.publicnode.com"]);
+DeviceNetworkEvents
+| where InitiatingProcessFileName in~ ("node.exe","node")
+| where RemoteIP in (c2ips)
+    or RemoteUrl has_any (chainhosts)
+    or RemoteUrl has_any (c2ips)
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, RemoteIP, RemoteUrl, RemotePort, InitiatingProcessAccountName
+| order by Timestamp asc

@@ -1,0 +1,28 @@
+# Suricata 7.x - Joyfill npm implant C2 (Socket.IO RAT + staged downloaders)
+# Author: Jarmi
+# Reference: https://www.stepsecurity.io/blog/joyfill-npm-supply-chain-compromise
+# Date: 2026-07-30
+#
+# The stage-1 blockchain dead-drop resolution uses HTTPS to legitimate public APIs
+# (api.trongrid.io, *.aptoslabs.com, bsc-dataseed.binance.org) and is NOT rule-matched here to
+# avoid false positives on real web3 traffic - hunt that in endpoint/CI telemetry instead.
+# These rules target the plain-HTTP C2 surface. Validate C2 IP freshness before enforcing;
+# indicators decay. C2 hosts: 166.88.134.62 (:443/:80), 23.27.13.43, 198.105.127.210, 23.27.202.27.
+#
+# sid 3000301 - Socket.IO handshake to a known Joyfill C2 IP over plain HTTP
+alert http [166.88.134.62,23.27.13.43,198.105.127.210,23.27.202.27] any -> $HOME_NET any (msg:"JOYFILL npm implant Socket.IO handshake from C2"; flow:established,to_client; http.response_line; content:"200"; http.server; content:"socket.io"; nocase; classtype:trojan-activity; sid:3000301; rev:1;)
+#
+# sid 3000302 - client Socket.IO polling/upgrade request to a Joyfill C2 IP
+alert http $HOME_NET any -> [166.88.134.62,23.27.13.43,198.105.127.210,23.27.202.27] any (msg:"JOYFILL npm implant Socket.IO client request to C2"; flow:established,to_server; http.uri; content:"/socket.io/"; nocase; classtype:trojan-activity; sid:3000302; rev:1;)
+#
+# sid 3000303 - second-stage boot download path /$/boot with the Sec-V campaign header
+alert http $HOME_NET any -> any any (msg:"JOYFILL npm implant second-stage /boot with Sec-V campaign header"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/$/boot"; http.header_names; content:"Sec-V"; nocase; classtype:trojan-activity; sid:3000303; rev:1;)
+#
+# sid 3000304 - explicit Sec-V request header carrying the campaign tag to any host
+alert http $HOME_NET any -> any any (msg:"JOYFILL npm implant Sec-V campaign header in outbound request"; flow:established,to_server; http.header:Sec-V; content:"A9-0135-3"; nocase; classtype:trojan-activity; sid:3000304; rev:1;)
+#
+# sid 3000305 - multipart file exfiltration upload to /u/f on a Joyfill C2 IP
+alert http $HOME_NET any -> [166.88.134.62,23.27.13.43,198.105.127.210,23.27.202.27] any (msg:"JOYFILL npm implant file exfiltration POST to /u/f"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/u/f"; http.content_type; content:"multipart/form-data"; nocase; classtype:trojan-activity; sid:3000305; rev:1;)
+#
+# sid 3000306 - implant C2 request paths on a Joyfill C2 IP (/0x/js, /u/e, /verify-human/, /snv)
+alert http $HOME_NET any -> [166.88.134.62,23.27.13.43,198.105.127.210,23.27.202.27] any (msg:"JOYFILL npm implant C2 request path"; flow:established,to_server; http.uri; pcre:"/^\/(0x\/js|u\/e|verify-human\/|snv)/i"; classtype:trojan-activity; sid:3000306; rev:1;)

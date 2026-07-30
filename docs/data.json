@@ -1,5 +1,56 @@
 [
  {
+  "date": "2026-07-30",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer",
+  "title": "Joyfill npm Compromise: an On-Import RAT With Blockchain Dead-Drop C2 and a Python Credential Stealer",
+  "clusters": [
+   "Joyfill npm compromise (StepSecurity-tracked, unattributed)"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "supply-chain",
+   "windows",
+   "macos",
+   "linux",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "cross-sector",
+   "software-development"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1059.007",
+   "T1059.006",
+   "T1027",
+   "T1140",
+   "T1620",
+   "T1102.001",
+   "T1071.001",
+   "T1105",
+   "T1554",
+   "T1555.003",
+   "T1552.001",
+   "T1115",
+   "T1082",
+   "T1041"
+  ],
+  "tech_count": 15,
+  "tldr": "On 2026-07-28 StepSecurity reported that malicious **\"2773\" beta versions** of two legitimate Joyfill npm packages — `@joyfill/components` and `@joyfill/layouts` — were published to the npm registry with an obfuscated payload spliced only into the built `dist` bundles (no source change, and `package.json` carries no install hook). The payload runs **on import, not on install**, so `npm install --i",
+  "thumb": "thumbs/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer.svg",
+  "case_rel": "../days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Joyfill npm compromise (StepSecurity-tracked, unattributed)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "joyfill npm compromise: an on-import rat with blockchain dead-drop c2 and a python credential stealer joyfill npm compromise (stepsecurity-tracked, unattributed) unattributed supply-chain windows macos linux cloud-multi cross-sector software-development t1195.002 t1059.007 t1059.006 t1027 t1140 t1620 t1102.001 t1071.001 t1105 t1554 t1555.003 t1552.001 t1115 t1082 t1041 supply chain "
+ },
+ {
   "date": "2026-07-29",
   "year": "2026",
   "month": "2026-07",

@@ -1,3 +1,21 @@
+## 2026.07.30 — Day 94 — Joyfill npm compromise: on-import RAT with blockchain dead-drop C2
+
+### Added
+- `days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/` — StepSecurity (2026-07-28) reported malicious "2773" beta versions of `@joyfill/components` and `@joyfill/layouts` carrying an obfuscated payload spliced into the built `dist` bundles that runs on import (not `postinstall`, defeating `--ignore-scripts`). Five-stage in-memory chain: loader → blockchain dead-drop C2 resolver (Tron → BNB Smart Chain → Aptos fallback) → staged downloaders → Socket.IO RAT with npm-CLI worm self-propagation + a Python credential stealer. Unattributed; identical implant in both packages indicates one actor.
+- Sigma (3): `01_node_blockchain_deaddrop_resolution.yml` — node → Tron/Aptos/BSC APIs; `02_npm_runtime_dep_install_and_detached_node.yml` — runtime `socket.io-client`/`axios` install or detached `node -e`; `03_worm_injection_into_npm_cli_and_electron_apps.yml` — writes to `npm/lib/cli.js` and Electron bundles.
+- KQL (3): node→blockchain/C2 network; runtime dep install / detached node / python spawn; npm-CLI/Electron file writes — Defender XDR.
+- YARA (1 file, 2 rules): injected loader block (campaign marker + sentinel tags); stage-3 Socket.IO RAT command surface.
+- Suricata (1 file, 6 sids): plain-HTTP Socket.IO, `/$/boot` + `Sec-V` header, `/u/f` exfil to the C2 IP set.
+- PEAK hunts (3): node web3 dead-drop; plain-HTTP Socket.IO to unfamiliar IP; worm injection + credential staging.
+- `iocs.csv` (39 entries) — 6 package versions, 4 C2 IPs, blockchain endpoints, 3 Tron addresses, 2 SHA-256, campaign markers/sentinels; no `kev.md` (0 CVEs).
+- `kill_chain.svg` — template A, canonical palette, acc-supply-chain; victim dev-machine/CI vs attacker registry + blockchain dead drop + C2.
+
+### Pedagogy
+- `--ignore-scripts` is not a supply-chain control: bundled payloads run on import, not on `postinstall`.
+- A blockchain dead drop moves the C2 IOC off your blocklist — hunt the process (a build `node` touching web3), not the domain.
+- The developer workstation is the target and the npm CLI is the worm amplifier; treat dev machines as production.
+- Diff the published artifact against a build from source — the malice lived only in the `dist` tarball, not the repo.
+
 ## 2026.07.29 — Day 93 — OAuth client ID spoofing: stealthy Entra ID credential validation
 
 ### Added

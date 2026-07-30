@@ -1,0 +1,14 @@
+// Title: Joyfill npm implant - loader injection into global npm CLI / Electron app bundles
+// Id: d47a9c60-1f52-4e8b-8a3d-77b0e6c214a5
+// MITRE: T1554 (Compromise Host Software Binary), T1105 (Ingress Tool Transfer)
+// Reference: https://www.stepsecurity.io/blog/joyfill-npm-supply-chain-compromise
+// Author: Jarmi
+// Date: 2026-07-30
+// Tested on: Microsoft Defender XDR (DeviceFileEvents)
+// FP notes: A genuine upgrade of npm/VS Code/Discord/GitHub Desktop rewrites these files; correlate with a matching updater and version bump. A write by node/npm outside an upgrade is the tell.
+DeviceFileEvents
+| where ActionType in ("FileModified","FileCreated")
+| where FolderPath has_any ("npm\\lib\\cli.js","npm/lib/cli.js","@vscode\\deviceid","@vscode/deviceid","discord_desktop_core","GitHub Desktop")
+| where InitiatingProcessFileName in~ ("node.exe","node","npm.exe","npm-cli.js")
+| project Timestamp, DeviceName, FolderPath, FileName, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName
+| order by Timestamp asc

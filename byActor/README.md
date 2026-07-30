@@ -64,6 +64,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Iran-nexus (unattributed)](./iran-nexus-unattributed/) | 1 |
 | [JADEPUFFER](./jadepuffer/) | 1 |
 | [Jewelbug](./jewelbug/) | 1 |
+| [Joyfill npm compromise (StepSecurity-tracked, unattributed)](./joyfill-npm-compromise-stepsecurity-tracked-unattributed/) | 1 |
 | [Kali365](./kali365/) | 1 |
 | [Kyber](./kyber/) | 1 |
 | [LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)](./linkpro-unattributed-vshell-vnt-toolchain-unc5174-overlap/) | 1 |

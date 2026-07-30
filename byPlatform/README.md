@@ -13,17 +13,17 @@ Source of truth: each day's `README.md` frontmatter.
 |---|---|
 | [active-directory](./active-directory/) | 2 |
 | [android](./android/) | 5 |
-| [cloud-multi](./cloud-multi/) | 28 |
+| [cloud-multi](./cloud-multi/) | 29 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 7 |
-| [linux](./linux/) | 35 |
-| [macos](./macos/) | 10 |
+| [linux](./linux/) | 36 |
+| [macos](./macos/) | 11 |
 | [microsoft-365](./microsoft-365/) | 1 |
 | [mobile](./mobile/) | 1 |
 | [network-edge](./network-edge/) | 27 |
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 8 |
 | [saas](./saas/) | 1 |
-| [supply-chain](./supply-chain/) | 17 |
+| [supply-chain](./supply-chain/) | 18 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
-| [windows](./windows/) | 57 |
+| [windows](./windows/) | 58 |

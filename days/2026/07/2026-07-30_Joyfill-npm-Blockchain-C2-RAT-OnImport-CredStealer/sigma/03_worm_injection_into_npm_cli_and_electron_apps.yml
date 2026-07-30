@@ -1,0 +1,36 @@
+title: Loader Injection Into Global npm CLI or Electron App Bundles (Joyfill Worm Persistence)
+id: f302b011-36ad-4717-8eb7-bbee5dd897ff
+status: experimental
+description: |
+  Detects file modifications that the Joyfill npm implant (StepSecurity, 2026-07-28) uses for
+  persistence and worm self-propagation: it inserts a self-reloading loader stub into files that
+  developer tools run routinely - the global npm CLI (npm/lib/cli.js, resolved via 'npm root -g'),
+  the @vscode/deviceid module shared by VS Code / Cursor / Antigravity, the Discord desktop core
+  module, and GitHub Desktop main.js. Patching npm/lib/cli.js is the supply-chain amplifier: every
+  subsequent npm invocation re-executes the malware. These are normally immutable between installs,
+  so a write to them by a node/npm process outside a package upgrade is high-signal. Pair with the
+  YARA rule that matches the injected sentinel tags (C250617A..C260512A, RS260605) inside the file.
+references:
+  - https://www.stepsecurity.io/blog/joyfill-npm-supply-chain-compromise
+  - https://attack.mitre.org/techniques/T1554/
+author: Jarmi
+date: 2026/07/30
+tags:
+  - attack.persistence
+  - attack.t1554
+  - attack.command-and-control
+  - attack.t1105
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_targets:
+    TargetFilename|endswith:
+      - '\npm\lib\cli.js'
+      - '\@vscode\deviceid\dist\index.js'
+      - '\discord_desktop_core\index.js'
+      - '\GitHub Desktop\resources\app\main.js'
+  condition: selection_targets
+falsepositives:
+  - A genuine upgrade of npm, VS Code, Discord or GitHub Desktop rewrites these files; correlate with a matching installer/updater process and package version change
+level: high

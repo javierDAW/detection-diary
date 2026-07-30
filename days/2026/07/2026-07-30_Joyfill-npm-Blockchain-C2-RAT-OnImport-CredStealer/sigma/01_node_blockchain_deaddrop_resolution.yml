@@ -1,0 +1,43 @@
+title: Node.js Process Contacting Public Blockchain APIs During Build (Dead-Drop C2 Resolution)
+id: a5db8f40-a00b-4f64-a42e-8c287b4a7185
+status: experimental
+description: |
+  Detects a Node.js process making outbound connections to public blockchain / web3 API
+  endpoints (Tron TronGrid, Aptos fullnode, BNB Smart Chain RPC). In the Joyfill npm
+  compromise (StepSecurity, 2026-07-28), the on-import loader resolves its live command
+  and control server from an on-chain dead drop: it reads the latest transaction from a
+  Tron address, follows it to a BNB Smart Chain transaction, XOR-decrypts the tx input,
+  and evaluates the result. The only hardcoded stage-1 network indicators are legitimate
+  public blockchain APIs, so the anomaly is a build/CI/dev node process touching web3
+  infrastructure it has no business touching. Baseline any legitimate web3 tooling first;
+  in most software build pipelines these destinations from node during install/test are
+  high-signal. Threshold and time-correlation with the install/test window belong in the SIEM.
+references:
+  - https://www.stepsecurity.io/blog/joyfill-npm-supply-chain-compromise
+  - https://attack.mitre.org/techniques/T1102/001/
+  - https://attack.mitre.org/techniques/T1195/002/
+author: Jarmi
+date: 2026/07/30
+tags:
+  - attack.command-and-control
+  - attack.t1102.001
+  - attack.initial-access
+  - attack.t1195.002
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection_proc:
+    Image|endswith:
+      - '\node.exe'
+      - '/node'
+  selection_dest:
+    DestinationHostname|contains:
+      - 'api.trongrid.io'
+      - 'fullnode.mainnet.aptoslabs.com'
+      - 'bsc-dataseed.binance.org'
+      - 'bsc-rpc.publicnode.com'
+  condition: selection_proc and selection_dest
+falsepositives:
+  - Legitimate blockchain/web3 developer tooling or tests that call these public APIs; baseline and allowlist the known project and source host
+level: high
