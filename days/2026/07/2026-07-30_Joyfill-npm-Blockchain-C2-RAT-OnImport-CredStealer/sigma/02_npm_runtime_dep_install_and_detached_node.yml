@@ -1,0 +1,45 @@
+title: Runtime npm Install of socket.io-client/axios or Detached node -e Child (Joyfill RAT Staging)
+id: 951071ab-5e57-4831-b296-c2a1b228631b
+status: experimental
+description: |
+  Detects two staging behaviours of the Joyfill npm implant (StepSecurity, 2026-07-28): the
+  Socket.IO remote access trojan self-installs its missing dependencies at runtime by running
+  'npm --prefix <tmp> install socket.io-client' (and axios / form-data), and stage 1 spawns a
+  detached 'node -e' child that survives the parent and prints nothing (branch B) carrying a
+  'global[_V]=' assignment. A build or application process that triggers a fresh npm install of
+  socket.io-client/axios into a temp prefix mid-run, or spawns a detached node -e evaluating an
+  inline script, is anomalous outside of a package manager bootstrap. Correlate with the parent
+  being a test runner, bundler, dev server or CI job.
+references:
+  - https://www.stepsecurity.io/blog/joyfill-npm-supply-chain-compromise
+  - https://attack.mitre.org/techniques/T1105/
+  - https://attack.mitre.org/techniques/T1059/007/
+author: Jarmi
+date: 2026/07/30
+tags:
+  - attack.command-and-control
+  - attack.t1105
+  - attack.execution
+  - attack.t1059.007
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_npm_install:
+    CommandLine|contains|all:
+      - 'npm'
+      - 'install'
+    CommandLine|contains:
+      - 'socket.io-client'
+      - 'axios'
+  selection_detached_node:
+    Image|endswith:
+      - '\node.exe'
+      - '/node'
+    CommandLine|contains|all:
+      - '-e'
+      - 'global['
+  condition: selection_npm_install or selection_detached_node
+falsepositives:
+  - A developer legitimately adding socket.io-client or axios to a project; confirm the parent process, working directory and timing against a real dependency change
+level: medium

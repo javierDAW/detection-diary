@@ -4,7 +4,7 @@
 
 # INDEX
 
-**93 cases** · **160 actors/clusters** · **352 ATT&CK techniques** · **16 platforms** · **81 sectors** · 2026-04-28 -> 2026-07-29
+**94 cases** · **161 actors/clusters** · **352 ATT&CK techniques** · **16 platforms** · **81 sectors** · 2026-04-28 -> 2026-07-30
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/"><img src="days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/kill_chain.svg" alt="2026-07-30 kill chain" width="240"></a><br><sub><b>2026-07-30</b><br>Joyfill npm compromise (StepSecurity-tracked, unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/"><img src="days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/kill_chain.svg" alt="2026-07-29 kill chain" width="240"></a><br><sub><b>2026-07-29</b><br>UNK_pyreq2323 · UNK_OutFlareAZ · UNK_CustomCloak</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/"><img src="days/2026/07/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/kill_chain.svg" alt="2026-07-28 kill chain" width="240"></a><br><sub><b>2026-07-28</b><br>Akhter twins (convicted insiders)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/"><img src="days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/kill_chain.svg" alt="2026-07-27 kill chain" width="240"></a><br><sub><b>2026-07-27</b><br>APT42</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/"><img src="days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/kill_chain.svg" alt="2026-07-27 kill chain" width="240"></a><br><sub><b>2026-07-27</b><br>APT42</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/"><img src="days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/kill_chain.svg" alt="2026-07-26 kill chain" width="240"></a><br><sub><b>2026-07-26</b><br>Unattributed vulnerability research (SaiFlow); affected vendor: XCharge</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/"><img src="days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/kill_chain.svg" alt="2026-07-25 kill chain" width="240"></a><br><sub><b>2026-07-25</b><br>CrashStealer (unattributed developer/operator)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/"><img src="days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/kill_chain.svg" alt="2026-07-24 kill chain" width="240"></a><br><sub><b>2026-07-24</b><br>Unattributed vulnerability research (Qualys TRU, AI-assisted discovery)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/"><img src="days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/kill_chain.svg" alt="2026-07-24 kill chain" width="240"></a><br><sub><b>2026-07-24</b><br>Unattributed vulnerability research (Qualys TRU, AI-assisted discovery)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/"><img src="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/kill_chain.svg" alt="2026-07-23 kill chain" width="240"></a><br><sub><b>2026-07-23</b><br>OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/"><img src="days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/kill_chain.svg" alt="2026-07-22 kill chain" width="240"></a><br><sub><b>2026-07-22</b><br>ARToken (EvilTokens affiliate PhaaS)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/"><img src="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/kill_chain.svg" alt="2026-07-21 kill chain" width="240"></a><br><sub><b>2026-07-21</b><br>Spirals</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/"><img src="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/kill_chain.svg" alt="2026-07-21 kill chain" width="240"></a><br><sub><b>2026-07-21</b><br>Spirals</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/"><img src="days/2026/07/2026-07-20_RedHook-Android-ADB-WirelessDebug-Shizuku-PrivilegeAbuse/kill_chain.svg" alt="2026-07-20 kill chain" width="240"></a><br><sub><b>2026-07-20</b><br>RedHook</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/"><img src="days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/kill_chain.svg" alt="2026-07-19 kill chain" width="240"></a><br><sub><b>2026-07-19</b><br>INC Ransom</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/"><img src="days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/kill_chain.svg" alt="2026-07-18 kill chain" width="240"></a><br><sub><b>2026-07-18</b><br>STA1 · STA2</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-07</b> — 29 case(s)</summary>
+<details><summary><b>2026-07</b> — 30 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-07-30 | [Joyfill npm Compromise: an On-Import RAT With Blockchain Dead-Drop C2 and a Python Credential Stealer](days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/) | Joyfill npm compromise (StepSecurity-tracked, unattributed) | supply-chain, windows, macos, linux, cloud-multi |
 | 2026-07-29 | [OAuth Client ID Spoofing: Stealthy Entra ID Credential Validation via ROPC and the AADSTS Error Oracle](days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/) | UNK_pyreq2323 · UNK_OutFlareAZ · UNK_CustomCloak | cloud-multi |
 | 2026-07-28 | [Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases](days/2026/07/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/) | Akhter twins (convicted insiders) | windows, linux |
 | 2026-07-27 | [SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery](days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) | APT42 | windows |

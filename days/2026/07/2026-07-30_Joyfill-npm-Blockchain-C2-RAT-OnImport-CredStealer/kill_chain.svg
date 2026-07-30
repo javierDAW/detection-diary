@@ -1,0 +1,231 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Joyfill npm compromise - on-import RAT with blockchain dead-drop C2 kill chain</title>
+<desc id="d">Two lanes. Left: the victim developer machine or CI runner from importing a trojanized Joyfill 2773 npm build, through an in-memory obfuscated loader, stashing Node require and module under short globals, resolving the command and control server from a public blockchain dead drop, opening a plain-HTTP Socket.IO remote access trojan channel, injecting a loader stub into the global npm CLI and Electron app bundles for worm self-propagation, and running a Python credential stealer that exfiltrates browser, wallet, SSH, Git and keychain secrets. Right: the attacker infrastructure publishing the 2773 beta builds to the npm registry, the Tron transaction dead-drop pointer, the BNB Smart Chain transaction whose XOR-decrypted input is the next stage, the plain-HTTP C2 host 166.88.134.62 on port 443, the boot downloader with the Sec-V campaign header, and the file collection endpoint slash u slash f. Detection anchors: a build or CI node process contacting public blockchain APIs, a plain-HTTP Socket.IO channel on port 443 to an unfamiliar IP, and writes into npm slash lib slash cli.js.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Joyfill npm Compromise: On-Import RAT + Blockchain Dead-Drop C2</text>
+<text class="meta" x="20" y="58">Vendor: StepSecurity - Date: 2026-07-28 - Packages: @joyfill/components + @joyfill/layouts (2773 beta) - Day 94</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="104">VICTIM DEVELOPER MACHINE / CI RUNNER</text>
+<text class="laneLabelR" x="460" y="104">ATTACKER INFRASTRUCTURE</text>
+
+<!-- LEFT STAGES -->
+<rect class="stageK" x="30" y="120" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Import trojanized package</text>
+<text class="sub" x="40" y="168">payload in dist bundle only</text>
+<text class="sub" x="40" y="184">runs on import, not install</text>
+<text class="sub" x="40" y="200">--ignore-scripts does NOT help</text>
+<text class="mono" x="40" y="226">@joyfill/layouts 2773.beta.0</text>
+<text class="mono" x="40" y="244">test / bundler / deploy</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">Loader deobfuscates</text>
+<text class="sub" x="40" y="318">seeded string-shuffle</text>
+<text class="sub" x="40" y="334">Function-ctor ladder</text>
+<text class="sub" x="40" y="350">dictionary decompressor</text>
+<text class="mono" x="40" y="376">stage source in memory only</text>
+<text class="mono" x="40" y="394">marker 9-0135-3</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">Stash Node primitives</text>
+<text class="sub" x="40" y="468">global.r = require</text>
+<text class="sub" x="40" y="484">global.m = module</text>
+<text class="sub" x="40" y="500">reflective code loading</text>
+<text class="mono" x="40" y="526">child_process / http hidden</text>
+<text class="mono" x="40" y="544">30s re-entry guard</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Resolve C2 from blockchain</text>
+<text class="sub" x="40" y="618">Tron tx memo (reversed)</text>
+<text class="sub" x="40" y="634">to BSC tx input, XOR</text>
+<text class="sub" x="40" y="650">Aptos fallback pointer</text>
+<text class="mono" x="40" y="676">api.trongrid.io (legit API)</text>
+<text class="mono" x="40" y="694">eval decrypted stage</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Socket.IO RAT beacon</text>
+<text class="sub" x="40" y="768">fingerprint host + CI markers</text>
+<text class="sub" x="40" y="784">self-install socket.io-client</text>
+<text class="sub" x="40" y="800">verbs ss_info/eval/upf/inz</text>
+<text class="mono" x="40" y="826">plain HTTP 166.88.134.62:443</text>
+<text class="mono" x="40" y="844">reports _V = A9-0135-3</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Worm injection (persist)</text>
+<text class="sub" x="40" y="918">patch global npm CLI</text>
+<text class="sub" x="40" y="934">@vscode/deviceid, Discord</text>
+<text class="sub" x="40" y="950">GitHub Desktop main.js</text>
+<text class="mono" x="40" y="976">npm/lib/cli.js re-runs loader</text>
+<text class="mono" x="40" y="994">sentinel /*C250617A*/</text>
+
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Python credential stealer</text>
+<text class="sub" x="40" y="1068">browsers, wallets, keychains</text>
+<text class="sub" x="40" y="1084">SSH / Git / GitHub tokens</text>
+<text class="sub" x="40" y="1100">encrypted archive to C2</text>
+<text class="mono" x="40" y="1126">staged in ~/.npm or /tmp/.npm</text>
+<text class="mono" x="40" y="1144">upload POST /u/f</text>
+
+<!-- RIGHT OPS -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">Publish 2773 builds</text>
+<text class="sub" x="470" y="173">hijacked legit projects</text>
+<text class="sub" x="470" y="189">malice only in dist tarball</text>
+<text class="sub" x="470" y="205">no source change, no hook</text>
+<text class="sub" x="470" y="221">same implant in both pkgs</text>
+<text class="mono" x="470" y="251">components 4.0.0-rc24-2773</text>
+<text class="mono" x="470" y="269">layouts 0.1.2-2773.beta</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">Tron dead-drop pointer</text>
+<text class="sub" x="470" y="343">latest outbound tx memo</text>
+<text class="sub" x="470" y="359">hex(reversed BSC tx hash)</text>
+<text class="sub" x="470" y="375">limit=1 = always newest</text>
+<text class="sub" x="470" y="391">rotate C2 by new tx</text>
+<text class="mono" x="470" y="421">TMfKQEd7...vrzrs7mAP</text>
+<text class="mono" x="470" y="439">Aptos fallback channel</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">BNB Smart Chain stage</text>
+<text class="sub" x="470" y="513">eth_getTransactionByHash</text>
+<text class="sub" x="470" y="529">tx.input hex to utf8</text>
+<text class="sub" x="470" y="545">split("?.?")[1] = blob</text>
+<text class="sub" x="470" y="561">repeating-key XOR</text>
+<text class="mono" x="470" y="591">bsc-dataseed.binance.org</text>
+<text class="mono" x="470" y="609">next stage = eval()</text>
+
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">Plain-HTTP C2 host</text>
+<text class="sub" x="470" y="683">campaign A to 166.88.134.62</text>
+<text class="sub" x="470" y="699">SOCKET_URL :443 (cleartext)</text>
+<text class="sub" x="470" y="715">UPLOAD_URL :80</text>
+<text class="sub" x="470" y="731">Socket.IO command channel</text>
+<text class="mono" x="470" y="761">http on 443 = first tell</text>
+<text class="mono" x="470" y="779">ss_eval arbitrary JS</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Boot downloader</text>
+<text class="sub" x="470" y="853">GET /$/boot</text>
+<text class="sub" x="470" y="869">Sec-V campaign header</text>
+<text class="sub" x="470" y="885">XOR key ThZG+0jfXE6VAGOJ</text>
+<text class="sub" x="470" y="901">numeric-campaign branch</text>
+<text class="mono" x="470" y="931">23.27.13.43 /$/boot</text>
+<text class="mono" x="470" y="949">198.105.127.210</text>
+
+<rect class="opK" x="460" y="975" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">Collection endpoint</text>
+<text class="sub" x="470" y="1023">multipart POST /u/f</text>
+<text class="sub" x="470" y="1039">files + directories</text>
+<text class="sub" x="470" y="1055">encrypted cred archive</text>
+<text class="sub" x="470" y="1071">workstation is the target</text>
+<text class="mono" x="470" y="1101">RAT sha256 26351aed...</text>
+<text class="mono" x="470" y="1119">stealer sha256 36ff00b4...</text>
+
+<!-- ARROWS: left vertical flow -->
+<g color="#2a4a6a">
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+</g>
+<!-- ARROWS: right vertical flow -->
+<g color="#8a5520">
+<path class="arrowR" d="M657,280 L657,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,450 L657,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M657,790 L657,805" marker-end="url(#ah)"/>
+</g>
+<!-- ARROWS: cross-lane dead-drop resolution (stage 4 -> BSC stage) and C2 delivery (C2 host -> RAT beacon) -->
+<g color="#7a3a7a">
+<path class="arrowX" d="M425,640 L460,545" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,700 L425,760" marker-end="url(#ah)"/>
+</g>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="30" y="1200">Joyfill npm compromise - on-import RAT with blockchain dead-drop C2 (StepSecurity, 2026-07-28)</text>
+<text class="footerT" x="30" y="1222">Detection anchors: build/CI node contacting blockchain APIs; plain-HTTP Socket.IO on 443 to an unknown IP; writes to npm/lib/cli.js.</text>
+<text class="footerT" x="30" y="1242">Kill switches: diff published artifact vs source; CI egress allowlist; file-integrity on npm CLI + Electron bundles. No CVE.</text>
+<text class="footerT" x="30" y="1262">Unattributed (StepSecurity-tracked). Slot #7 supply-chain software. Day 94.</text>
+</svg>

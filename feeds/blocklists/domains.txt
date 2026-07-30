@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-07-29 09:32 UTC
+# generated 2026-07-30 08:04 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -36,6 +36,7 @@ advisory-tracker.com
 api.anthropic.com
 api.openai.com
 api.securehubcloud.com
+api.trongrid.io
 api.vpns.robovpn.com
 aquaclaude-09494-9099403-docviewer.clear90489058903-document.workers.dev
 arweave.net
@@ -52,6 +53,8 @@ bithill.com
 borjumaniya.store
 boss.securehubcloud.com
 botim-app.pro
+bsc-dataseed.binance.org
+bsc-rpc.publicnode.com
 business-data-leaks.com
 calm-wildflower-1349.hellohiall.workers.dev
 carrolc.com
@@ -107,6 +110,7 @@ financemachinelearning.com
 fixupcount.s3.dualstack.ap-northeast-1.amazonaws.com
 frontforce.org
 ftps.upd-domain-goloro.com
+fullnode.mainnet.aptoslabs.com
 g8way.io
 gatewayrvcenter.com
 getceptionparty.de

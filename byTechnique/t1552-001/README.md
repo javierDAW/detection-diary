@@ -4,11 +4,12 @@
 
 # Techniques: T1552.001
 
-20 day(s) covering this technique.
+21 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-07-30 | Joyfill npm Compromise: an On-Import RAT With Blockchain Dead-Drop C2 and a Python Credential Stealer | Joyfill npm compromise (StepSecurity-tracked, unattributed) | [`2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/`](../../days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/) |
 | 2026-07-28 | Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases | Akhter twins (convicted insiders) | [`2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/`](../../days/2026/07/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/) |
 | 2026-07-14 | JADEPUFFER: Agentic Ransomware From a Langflow CVE to a Destroyed Nacos Database | JADEPUFFER | [`2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/`](../../days/2026/07/2026-07-14_JADEPUFFER-Agentic-Ransomware-Langflow-Nacos-CVE-2025-3248/) |
 | 2026-07-04 | FUXA SCADA/HMI: dot-segment path-normalization auth bypass (CVE-2026-13207) leaks every OT role | Opportunistic ICS/OT scanners | [`2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/`](../../days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/) |

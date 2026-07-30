@@ -1,0 +1,14 @@
+// Title: Joyfill npm implant - runtime npm install of socket.io-client/axios or detached node -e child
+// Id: 8b0d2e51-6a7c-4f39-9d84-2c1b5e903f7a
+// MITRE: T1105 (Ingress Tool Transfer), T1059.007 (JavaScript), T1059.006 (Python)
+// Reference: https://www.stepsecurity.io/blog/joyfill-npm-supply-chain-compromise
+// Author: Jarmi
+// Date: 2026-07-30
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: A developer legitimately adding socket.io-client/axios triggers the first branch; confirm parent process, working dir and timing. The Python spawn (~py) and detached node -e are stronger signals.
+DeviceProcessEvents
+| where (ProcessCommandLine has "npm" and ProcessCommandLine has "install" and ProcessCommandLine has_any ("socket.io-client","axios"))
+    or (FileName in~ ("node.exe","node") and ProcessCommandLine has "-e" and ProcessCommandLine has "global[")
+    or (InitiatingProcessFileName in~ ("node.exe","node") and FileName in~ ("python.exe","python3","python"))
+| project Timestamp, DeviceName, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, AccountName
+| order by Timestamp asc
