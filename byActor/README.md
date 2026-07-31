@@ -164,6 +164,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed — CVE-2025-67038 exploitation](./unattributed-cve-2025-67038-exploitation/) | 1 |
 | [Unattributed — coordinated vulnerability disclosure (no observed campaign)](./unattributed-coordinated-vulnerability-disclosure-no-observed-campaign/) | 1 |
 | [Unattributed-LLM-assisted-operator](./unattributed-llm-assisted-operator/) | 1 |
+| [V25 / Generation 26 XMRig botnet](./v25-generation-26-xmrig-botnet/) | 1 |
 | [VECT](./vect/) | 1 |
 | [VENOMOUS#HELPER (Securonix)](./venomous-helper-securonix/) | 1 |
 | [Vo1d/Popa proxy operator](./vo1d-popa-proxy-operator/) | 1 |

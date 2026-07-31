@@ -1,5 +1,50 @@
 [
  {
+  "date": "2026-07-31",
+  "year": "2026",
+  "month": "2026-07",
+  "slug": "2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25",
+  "title": "XMRig Covert Ops: fileless Monero miner abusing Linux PAM (pam_rootok) for a forensic smokescreen",
+  "clusters": [
+   "V25 / Generation 26 XMRig botnet"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "linux"
+  ],
+  "sectors": [
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1199",
+   "T1078.003",
+   "T1556",
+   "T1053.003",
+   "T1564.013",
+   "T1036",
+   "T1070.002",
+   "T1070.004",
+   "T1562.001",
+   "T1027",
+   "T1140",
+   "T1082",
+   "T1071.001",
+   "T1496"
+  ],
+  "tech_count": 14,
+  "tldr": "Group-IB published on 2026-07-30 the analysis of a covert Monero cryptomining campaign (identified in May 2026) that trades loud root activity for a quieter, harder-to-trace posture: after escalating to root it abuses the `pam_rootok` PAM policy with `su` to hop password-less into multiple low-privileged accounts, scattering redundant cron persistence under identities nobody monitors. The payload ",
+  "thumb": "thumbs/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25.svg",
+  "case_rel": "../days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "V25 / Generation 26 XMRig botnet",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "xmrig covert ops: fileless monero miner abusing linux pam (pam_rootok) for a forensic smokescreen v25 / generation 26 xmrig botnet unattributed linux cross-sector t1199 t1078.003 t1556 t1053.003 t1564.013 t1036 t1070.002 t1070.004 t1562.001 t1027 t1140 t1082 t1071.001 t1496 malware / re "
+ },
+ {
   "date": "2026-07-30",
   "year": "2026",
   "month": "2026-07",

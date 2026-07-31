@@ -1,0 +1,230 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">XMRig V25 covert fileless miner kill chain</title>
+<desc id="d">Two-lane kill chain. Left lane, victim Linux host: partner trust pivot, escalate to root, pam_rootok su smokescreen, redundant cron persistence, telemetry suppression, fileless XMRig with tmp .lock and self-unlink, process masquerade. Right lane, miner and operator infrastructure: modified XMRig 6.25.0 musl build, XOR-obfuscated config, mining pool unable.download, covert Stratum over Java/Agent, V25 Generation 26 aggregation, Monero resource hijacking. Red anchors: pam_rootok su burst, tmp .lock plus self-unlink, logging-daemon stop with auth-log wipe.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">XMRig Covert Ops: fileless Monero miner + PAM smokescreen</text>
+<text class="meta" x="20" y="58">Vendor: Group-IB - Date: 2026-07-30 - Cluster: V25 / Generation 26 (unattributed) - Day 95</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="105">VICTIM LINUX HOST</text>
+<text class="laneLabelR" x="460" y="105">MINER / OPERATOR INFRASTRUCTURE</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="75" y="144">Partner trust pivot</text>
+<text class="sub" x="40" y="168">Trusted third-party relationship</text>
+<text class="sub" x="40" y="184">Legitimate account, no exploit</text>
+<text class="sub" x="40" y="200">Perimeter controls bypassed</text>
+<text class="mono" x="40" y="226">MITRE T1199 / T1078.003</text>
+<text class="mono" x="40" y="244">vector: partner -&gt; victim</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="75" y="294">Escalate to root</text>
+<text class="sub" x="40" y="318">Foothold raised to uid 0</text>
+<text class="sub" x="40" y="334">Method not disclosed by vendor</text>
+<text class="sub" x="40" y="350">Sets up the deliberate step-down</text>
+<text class="mono" x="40" y="376">root shell obtained</text>
+<text class="mono" x="40" y="394">precedes PAM abuse</text>
+
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="75" y="444">PAM su smokescreen</text>
+<text class="sub" x="40" y="468">pam_rootok + su, no password</text>
+<text class="sub" x="40" y="484">root -&gt; many low-priv users</text>
+<text class="sub" x="40" y="500">Activity fragmented and hidden</text>
+<text class="mono" x="40" y="526">MITRE T1556</text>
+<text class="mono" x="40" y="544">su - &lt;user&gt;  (no prompt)</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="75" y="594">Redundant cron persist</text>
+<text class="sub" x="40" y="618">Cron jobs under shadowed users</text>
+<text class="sub" x="40" y="634">Hydra: regrows after root fix</text>
+<text class="sub" x="40" y="650">Hunt every user crontab</text>
+<text class="mono" x="40" y="676">MITRE T1053.003</text>
+<text class="mono" x="40" y="694">/etc/cron.d, /var/spool/cron</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="75" y="744">Suppress telemetry</text>
+<text class="sub" x="40" y="768">Stop rsyslog/auditd/journald</text>
+<text class="sub" x="40" y="784">Prune auth.log / secure</text>
+<text class="sub" x="40" y="800">Blinds file-based monitoring</text>
+<text class="mono" x="40" y="826">T1562.001 / T1070.002</text>
+<text class="mono" x="40" y="844">off-host forwarding survives</text>
+
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="75" y="894">Fileless XMRig</text>
+<text class="sub" x="40" y="918">Create /tmp/.lock mutex</text>
+<text class="sub" x="40" y="934">Self-unlink, run in memory</text>
+<text class="sub" x="40" y="950">Disk scan comes back clean</text>
+<text class="mono" x="40" y="976">T1070.004  /proc exe (deleted)</text>
+<text class="mono" x="40" y="994">sha256 55c67c84...96f838</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="75" y="1044">Process masquerade</text>
+<text class="sub" x="40" y="1068">-h flag spoofs name 'ssh'</text>
+<text class="sub" x="40" y="1084">Hidden from ps / top / proc</text>
+<text class="sub" x="40" y="1100">MSR + Huge Pages tuning</text>
+<text class="mono" x="40" y="1126">MITRE T1036 / T1564.013</text>
+<text class="mono" x="40" y="1144">companion kills rival miners</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">A</text>
+<text class="label" x="505" y="149">Modified XMRig 6.25.0</text>
+<text class="sub" x="470" y="173">Cross-compiled with musl libc</text>
+<text class="sub" x="470" y="189">Banner: PRIVATE VERSION</text>
+<text class="sub" x="470" y="205">  FOR BOTNET</text>
+<text class="sub" x="470" y="221">Non-standard -lan/-h/-c CLI</text>
+<text class="mono" x="470" y="251">RandomX/CryptoNight/Argon2</text>
+<text class="mono" x="470" y="269">md5 17b60d65...75d11</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">B</text>
+<text class="label" x="505" y="319">XOR-obfuscated config</text>
+<text class="sub" x="470" y="343">Key chain I3F0 -&gt; xmrig</text>
+<text class="sub" x="470" y="359">  decodes CLI arguments</text>
+<text class="sub" x="470" y="375">Key CLIENT decrypts pool</text>
+<text class="sub" x="470" y="391">Layered, per-build</text>
+<text class="mono" x="470" y="421">MITRE T1027 / T1140</text>
+<text class="mono" x="470" y="439">defeats naive signatures</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">C</text>
+<text class="label" x="505" y="489">Mining pool host</text>
+<text class="sub" x="470" y="513">Decrypted default pool:</text>
+<text class="sub" x="470" y="529">  unable[.]download</text>
+<text class="sub" x="470" y="545">LAN mode: hardcoded IPs</text>
+<text class="sub" x="470" y="561">  bypasses DNS sinkholes</text>
+<text class="mono" x="470" y="591">domain unable[.]download</text>
+<text class="mono" x="470" y="609">revalidate before blocking</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">D</text>
+<text class="label" x="505" y="659">Covert Stratum C2</text>
+<text class="sub" x="470" y="683">JSON-RPC over TCP</text>
+<text class="sub" x="470" y="699">User-Agent: Java/Agent</text>
+<text class="sub" x="470" y="715">Blends into web-app flows</text>
+<text class="sub" x="470" y="731">login / submit methods</text>
+<text class="mono" x="470" y="761">MITRE T1071.001</text>
+<text class="mono" x="470" y="779">ua=Java/Agent</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">E</text>
+<text class="label" x="505" y="829">V25 aggregation</text>
+<text class="sub" x="470" y="853">Stratum login credentials:</text>
+<text class="sub" x="470" y="869">  My-V25-GEN-26</text>
+<text class="sub" x="470" y="885">  pass V25-GEN-26</text>
+<text class="sub" x="470" y="901">Hash rate per generation</text>
+<text class="mono" x="470" y="931">campaign: V25 / Gen 26</text>
+<text class="mono" x="470" y="949">unattributed operator</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">F</text>
+<text class="label" x="505" y="999">Resource hijacking</text>
+<text class="sub" x="470" y="1023">Monero (XMR) mining</text>
+<text class="sub" x="470" y="1039">Huge Pages, MSR tuning</text>
+<text class="sub" x="470" y="1055">Pins host CPU</text>
+<text class="sub" x="470" y="1071">Kills competing miners</text>
+<text class="mono" x="470" y="1101">MITRE T1496</text>
+<text class="mono" x="470" y="1119">impact: stolen compute</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,912 L460,882" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,1062 L460,1052" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="30" y="1200">Detection anchors (red = behavioural must-catch, no CVE, no persistent binary)</text>
+<text class="footerT" x="30" y="1222">1) root -&gt; many-users su burst (pam_rootok)  2) /tmp/.lock + (deleted) exe  3) logging stop + auth-log wipe</text>
+<text class="footerT" x="30" y="1240">Fileless -&gt; memory forensics. Pool unable[.]download; UA Java/Agent; markers My-V25-GEN-26 / V25-GEN-26.</text>
+<text class="footerT" x="30" y="1258">Group-IB 2026-07-30 - category malware-re - detection-diary Day 95</text>
+</svg>

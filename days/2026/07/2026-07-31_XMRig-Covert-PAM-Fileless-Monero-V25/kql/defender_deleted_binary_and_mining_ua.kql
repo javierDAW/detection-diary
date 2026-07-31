@@ -1,0 +1,17 @@
+// Title: Fileless Process With Java/Agent Mining Egress or unable.download C2
+// Id: b1e6c33a-9042-47df-a5c8-8e2f6d1b7c05
+// MITRE: T1071.001 (Application Layer Protocol: Web Protocols), T1496 (Resource Hijacking)
+// Reference: https://www.group-ib.com/blog/xmrig-covert-linux-pam-abuse/
+// Author: Jarmi
+// Date: 2026-07-31
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents, Linux onboarding)
+// FP notes: Legitimate JVM apps can emit Java/Agent. Scope to non-JVM/service-account
+//           initiators and pair with the pool host or JSON-RPC markers. <add_known_mining_pools>
+let mining_pool_host = dynamic(["unable.download"]);
+DeviceNetworkEvents
+| where RemoteUrl has_any (mining_pool_host)
+    or (InitiatingProcessCommandLine has "Java/Agent" and InitiatingProcessFileName !endswith "java")
+| where InitiatingProcessAccountName !in ("<add_known_service_accounts>")
+| project Timestamp, DeviceName, DeviceId, InitiatingProcessFileName, InitiatingProcessAccountName,
+    RemoteUrl, RemoteIP, RemotePort, InitiatingProcessCommandLine
+| order by Timestamp desc

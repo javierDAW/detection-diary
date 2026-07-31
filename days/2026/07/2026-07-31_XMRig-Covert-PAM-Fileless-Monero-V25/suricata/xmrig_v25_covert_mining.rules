@@ -1,0 +1,26 @@
+# Suricata 7.x rules - V25 / Generation 26 covert XMRig fileless miner (Group-IB, 2026-07-30)
+# Author: Jarmi
+# Date: 2026-07-31
+# Reference: https://www.group-ib.com/blog/xmrig-covert-linux-pam-abuse/
+# Custom variables: none required. Uses default $HOME_NET / $EXTERNAL_NET.
+# Notes: The miner disguises JSON-RPC Stratum with a Java/Agent User-Agent and can resolve/
+#        connect to the pool host unable[.]download. LAN-pool mode uses hardcoded IPs (not
+#        matched here); these rules target the disguised-HTTP and DNS/TLS surfaces.
+
+# 1. HTTP User-Agent Java/Agent used to disguise Stratum as web-app traffic
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"XMRig V25 covert mining - Java/Agent User-Agent (disguised Stratum)"; flow:established,to_server; http.user_agent; content:"Java/Agent"; startswith; classtype:trojan-activity; sid:26073101; rev:1;)
+
+# 2. DNS query for the decrypted default mining pool host
+alert dns $HOME_NET any -> any any (msg:"XMRig V25 covert mining - DNS query for pool host unable.download"; dns.query; content:"unable.download"; nocase; endswith; classtype:trojan-activity; sid:26073102; rev:1;)
+
+# 3. TLS SNI for the pool host
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"XMRig V25 covert mining - TLS SNI unable.download"; tls.sni; content:"unable.download"; nocase; endswith; classtype:trojan-activity; sid:26073103; rev:1;)
+
+# 4. JSON-RPC Stratum login carrying the V25 generation marker
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"XMRig V25 covert mining - Stratum login with My-V25-GEN-26 marker"; flow:established,to_server; content:"\"method\""; content:"login"; distance:0; content:"My-V25-GEN-26"; distance:0; classtype:trojan-activity; sid:26073104; rev:1;)
+
+# 5. Generic JSON-RPC Stratum submit method from client (low severity, corroborating)
+alert tcp $HOME_NET any -> $EXTERNAL_NET any (msg:"XMRig V25 covert mining - JSON-RPC Stratum submit method"; flow:established,to_server; content:"\"method\""; content:"\"submit\""; distance:0; content:"\"job_id\""; classtype:trojan-activity; sid:26073105; rev:1;)
+
+# 6. HTTP POST body carrying the campaign password marker V25-GEN-26
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"XMRig V25 covert mining - campaign password marker V25-GEN-26 in HTTP body"; flow:established,to_server; http.request_body; content:"V25-GEN-26"; classtype:trojan-activity; sid:26073106; rev:1;)
