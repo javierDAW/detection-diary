@@ -1,0 +1,19 @@
+// Title: Root-Initiated su Burst to Multiple Local Users (pam_rootok smokescreen)
+// Id: 7c2b1a90-3d5e-4a11-9c6f-2b0d9e7a4f31
+// MITRE: T1556 (Modify Authentication Process), T1078.003 (Valid Accounts: Local Accounts)
+// Reference: https://www.group-ib.com/blog/xmrig-covert-linux-pam-abuse/
+// Author: Jarmi
+// Date: 2026-07-31
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents, Linux onboarding)
+// FP notes: Admin/automation using su to service accounts. Baseline normal parents/users;
+//           the campaign signal is >=3 distinct target users from root within 10 minutes.
+DeviceProcessEvents
+| where FileName == "su"
+| where InitiatingProcessAccountName == "root"
+| where ProcessCommandLine matches regex @"su\s+(-|-l|--login)\s+\S+"
+| where ProcessCommandLine !contains "root"
+| extend TargetUser = extract(@"su\s+(?:-|-l|--login)\s+(\S+)", 1, ProcessCommandLine)
+| summarize DistinctTargets = dcount(TargetUser), Targets = make_set(TargetUser, 20),
+    Events = count() by DeviceId, DeviceName, bin(Timestamp, 10m)
+| where DistinctTargets >= 3
+| order by DistinctTargets desc

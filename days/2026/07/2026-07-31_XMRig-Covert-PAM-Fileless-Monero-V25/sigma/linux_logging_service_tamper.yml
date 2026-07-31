@@ -1,0 +1,66 @@
+title: Linux Logging/Audit Service Stop or Auth-Log Truncation
+id: aa3c17f1-0c4d-4af3-9b5a-fc9f4d03056a
+status: experimental
+description: >
+  Detects attempts to blind file-based monitoring by stopping/masking core logging or audit
+  daemons (rsyslog, syslog-ng, auditd, systemd-journald) or truncating/removing authentication
+  logs. The V25/Generation-26 XMRig campaign stops logging services and prunes auth logs to
+  erase the privilege-escalation and PAM-abuse trail.
+references:
+  - https://www.group-ib.com/blog/xmrig-covert-linux-pam-abuse/
+  - https://attack.mitre.org/techniques/T1562/001/
+author: Jarmi
+date: 2026/07/31
+tags:
+  - attack.defense-evasion
+  - attack.t1562.001
+  - attack.t1070.002
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  selection_service_ctrl:
+    CommandLine|contains:
+      - 'systemctl stop'
+      - 'systemctl mask'
+      - 'systemctl disable'
+      - 'service '
+    CommandLine|contains:
+      - 'rsyslog'
+      - 'syslog-ng'
+      - 'auditd'
+      - 'systemd-journald'
+      - 'journald'
+  selection_kill_daemon:
+    Image|endswith:
+      - '/kill'
+      - '/pkill'
+      - '/killall'
+    CommandLine|contains:
+      - 'rsyslog'
+      - 'syslog-ng'
+      - 'auditd'
+      - 'journald'
+  selection_authlog_wipe:
+    CommandLine|contains|all:
+      - '/var/log/'
+    CommandLine|contains:
+      - 'auth.log'
+      - 'secure'
+      - 'wtmp'
+      - 'btmp'
+    CommandLine|contains:
+      - 'rm '
+      - 'truncate '
+      - ' > '
+      - 'shred '
+  condition: selection_service_ctrl or selection_kill_daemon or selection_authlog_wipe
+falsepositives:
+  - Legitimate log rotation, patching, or host maintenance windows. Correlate with concurrent
+    su bursts or fileless processes to raise fidelity.
+fields:
+  - CommandLine
+  - User
+  - ParentImage
+
+level: high

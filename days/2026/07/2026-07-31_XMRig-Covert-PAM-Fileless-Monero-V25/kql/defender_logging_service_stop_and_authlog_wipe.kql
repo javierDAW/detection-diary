@@ -1,0 +1,27 @@
+// Title: Linux Logging Daemon Stop Correlated With Auth-Log Deletion
+// Id: 3f9d47c2-6e18-4b0a-8d21-5a7c1f0e6b44
+// MITRE: T1562.001 (Impair Defenses: Disable or Modify Tools), T1070.002 (Clear Linux Logs)
+// Reference: https://www.group-ib.com/blog/xmrig-covert-linux-pam-abuse/
+// Author: Jarmi
+// Date: 2026-07-31
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents, DeviceFileEvents, Linux onboarding)
+// FP notes: Log rotation / patching windows. Correlating a daemon stop with an auth-log
+//           delete on the same host in the same window sharply cuts benign hits.
+let window = 15m;
+let daemon_stop =
+    DeviceProcessEvents
+    | where FileName in ("systemctl","service","kill","pkill","killall")
+    | where ProcessCommandLine has_any ("rsyslog","syslog-ng","auditd","systemd-journald","journald")
+    | where ProcessCommandLine has_any ("stop","mask","disable") or FileName in ("kill","pkill","killall")
+    | project Timestamp, DeviceId, DeviceName, StopCmd = ProcessCommandLine;
+let authlog_wipe =
+    DeviceFileEvents
+    | where ActionType in ("FileDeleted","FileModified")
+    | where FolderPath startswith "/var/log/"
+    | where FileName in ("auth.log","secure","wtmp","btmp") or FolderPath has_any ("auth.log","secure")
+    | project WipeTime = Timestamp, DeviceId, WipedFile = strcat(FolderPath, FileName);
+daemon_stop
+| join kind=inner authlog_wipe on DeviceId
+| where abs(datetime_diff('second', WipeTime, Timestamp)) <= 900
+| project Timestamp, DeviceName, DeviceId, StopCmd, WipeTime, WipedFile
+| order by Timestamp desc

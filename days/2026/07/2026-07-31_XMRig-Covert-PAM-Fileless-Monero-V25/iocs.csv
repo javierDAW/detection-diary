@@ -1,0 +1,19 @@
+type,value,context,confidence,source
+sha256,55c67c844258807c4335f40262777a5307bcf5b537c0492cf869b3328796f838,Modified XMRig 6.25.0 fileless miner (musl libc private botnet build),high,Group-IB 2026-07-30
+sha1,88520bcfc741610591a23592f9d4ecb31e34deb5,Modified XMRig 6.25.0 fileless miner (same sample),high,Group-IB 2026-07-30
+md5,17b60d650fc5d1718d7f2ac3a6075d11,Modified XMRig 6.25.0 fileless miner (same sample),high,Group-IB 2026-07-30
+domain,unable.download,Decrypted default mining pool host (XOR CLIENT key),high,Group-IB 2026-07-30
+string,My-V25-GEN-26,Stratum User/login value; campaign generation marker (hardcoded credential),high,Group-IB 2026-07-30
+string,V25-GEN-26,Stratum Password value; campaign generation marker,high,Group-IB 2026-07-30
+string,PRIVATE VERSION FOR BOTNET,Hardcoded internal banner in the modified XMRig build,high,Group-IB 2026-07-30
+string,Java/Agent,HTTP User-Agent used to disguise JSON-RPC Stratum traffic as web-app flows,high,Group-IB 2026-07-30
+string,I3F0,First-stage XOR key decoding argument strings (chains to key 'xmrig'),medium,Group-IB 2026-07-30
+string,CLIENT,Second-stage XOR key decrypting mining pool identifiers and defaults,medium,Group-IB 2026-07-30
+path,/tmp/.lock,File-based single-instance mutex created before self-unlink,high,Group-IB 2026-07-30
+note,pam_rootok + su,Password-less root-to-user identity switching abusing the pam_rootok PAM policy (forensic smokescreen),high,Group-IB 2026-07-30
+note,-lan flag,Custom CLI flag for LAN-based pool mining via hardcoded IPs to bypass DNS sinkholes,high,Group-IB 2026-07-30
+note,-h flag,Custom CLI flag enabling process masquerading (spoofing legitimate names such as ssh),high,Group-IB 2026-07-30
+note,-c flag,Custom CLI flag controlling cron auto-install / persistence behaviour,medium,Group-IB 2026-07-30
+note,XMRig 6.25.0 musl,Cross-compiled with musl libc for portability across Linux hosts; RandomX/CryptoNight/Argon2 algo families,high,Group-IB 2026-07-30
+note,self-unlink,Binary deletes itself from disk after mutex creation and runs entirely in memory (anti-forensics),high,Group-IB 2026-07-30
+note,V25 Generation 26,Botnet lineage aggregating hash rate across compromised hosts per generation,medium,Group-IB 2026-07-30

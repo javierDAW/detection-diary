@@ -1,0 +1,36 @@
+title: Fileless Miner Indicators - tmp .lock Mutex and Self-Deleted Executable
+id: f83ef422-dda2-414f-9971-d24534b9896e
+status: experimental
+description: >
+  Detects two artifacts of the V25/Generation-26 XMRig fileless miner: creation of the
+  single-instance mutex file /tmp/.lock, and a process whose on-disk executable was unlinked
+  while it keeps running (self-unlink / memory-resident execution). Either is a strong tell
+  because the miner deletes its binary from disk after taking the lock and continues in memory.
+references:
+  - https://www.group-ib.com/blog/xmrig-covert-linux-pam-abuse/
+  - https://attack.mitre.org/techniques/T1070/004/
+author: Jarmi
+date: 2026/07/31
+tags:
+  - attack.defense-evasion
+  - attack.t1070.004
+  - attack.t1564.013
+logsource:
+  product: linux
+  category: file_event
+detection:
+  selection_lock:
+    TargetFilename: '/tmp/.lock'
+  selection_selfdelete:
+    TargetFilename|endswith: ' (deleted)'
+  condition: selection_lock or selection_selfdelete
+falsepositives:
+  - Some applications legitimately use /tmp lock files. Scope by process lineage (a mining
+    workload pins CPU and allocates Huge Pages) and pair with the deleted-executable check
+    via /proc/<pid>/exe on the live host.
+fields:
+  - TargetFilename
+  - Image
+  - User
+
+level: medium

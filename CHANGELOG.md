@@ -1,3 +1,21 @@
+## 2026.07.31 — Day 95 — XMRig Covert Ops: fileless Monero miner abusing Linux PAM (pam_rootok)
+
+### Added
+- `days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/` — Group-IB (2026-07-30) analysed a covert Monero cryptomining campaign (V25 / Generation 26, unattributed) identified in May 2026 that reaches victims through a trusted third-party relationship, escalates to root, then abuses the legitimate `pam_rootok` PAM policy with `su` to hop password-less into many low-privileged accounts — a forensic smokescreen with redundant cron persistence under shadowed identities. Payload is a modified XMRig 6.25.0 (musl, banner `PRIVATE VERSION FOR BOTNET`) that takes a `/tmp/.lock` mutex, self-unlinks and runs in memory. First repo case on fileless cryptojacking and PAM identity-smokescreen abuse.
+- Sigma (3): `pam_rootok_passwordless_su_root_to_user.yml` — root→non-root `su` (threshold to SIEM); `linux_logging_service_tamper.yml` — stop/mask/kill of rsyslog/auditd/journald or auth-log truncation; `proc_running_deleted_executable_tmp_lock.yml` — `/tmp/.lock` mutex or `(deleted)`-backed executable.
+- KQL (3): root→multi-user `su` burst; logging-daemon stop correlated with auth-log wipe; fileless process + `Java/Agent` mining egress / `unable.download` — Defender XDR (Linux).
+- YARA (1 file, 2 rules): XMRig V25 banner/generation markers/pool/XOR keys, filesize-bound.
+- Suricata (1 file, 6 sids): `Java/Agent` Stratum UA, `unable[.]download` DNS/TLS, JSON-RPC login/submit with `My-V25-GEN-26` marker.
+- PEAK hunts (3): `pam_rootok` su burst; deleted-executable + `/tmp/.lock`; `Java/Agent` Stratum egress.
+- `iocs.csv` (18 entries) — sha256/sha1/md5, pool host, generation markers, XOR keys, CLI flags. No `kev.md` (0 CVEs — native-feature abuse, no software vulnerability).
+- `kill_chain.svg` — template A, canonical palette, acc-malware-re accent; victim-host lane vs miner/operator-infra lane, red anchors on PAM su, `/tmp/.lock`+self-unlink, log suppression.
+
+### Pedagogy
+- A deliberate downgrade from root is itself the signal: a burst of password-less root→user `su` with no failed auths beats any static hash.
+- Fileless ≠ invisible — pivot to `/proc/<pid>/exe → (deleted)`, `/tmp/.lock`, Huge Pages + pinned CPU, and memory forensics.
+- Persistence spread across shadowed accounts makes remediation scope a control: hunt every user crontab, not just root's.
+- No CVE and absence from KEV do not mean no risk — behaviour-first detection and tamper-proof off-host log forwarding cover the gap.
+
 ## 2026.07.30 — Day 94 — Joyfill npm compromise: on-import RAT with blockchain dead-drop C2
 
 ### Added
