@@ -109,6 +109,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Shai-Hulud](./shai-hulud/) | 1 |
 | [Silent Ransom Group (SRG)](./silent-ransom-group-srg/) | 1 |
 | [Silver Fox](./silver-fox/) | 1 |
+| [SourTrade](./sourtrade/) | 1 |
 | [Spirals](./spirals/) | 1 |
 | [Static Tundra](./static-tundra/) | 1 |
 | [Storm-0784](./storm-0784/) | 1 |
