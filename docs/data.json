@@ -1,5 +1,48 @@
 [
  {
+  "date": "2026-08-01",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising",
+  "title": "SourTrade: malvertising that assembles a unique Windows executable inside the victim's browser",
+  "clusters": [
+   "SourTrade"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "finance",
+   "cryptocurrency",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1583.008",
+   "T1608.001",
+   "T1189",
+   "T1656",
+   "T1204.002",
+   "T1059.007",
+   "T1105",
+   "T1140",
+   "T1027.013",
+   "T1553.005"
+  ],
+  "tech_count": 10,
+  "tldr": "Confiant published on 2026-07-23 (updated 2026-07-30) a detailed teardown of **SourTrade**, a persistent malvertising cluster that has run paid ads since late 2024 impersonating **TradingView, Solana and Luno** to reach retail traders and crypto investors across 12 countries in 25 languages, concentrated in APAC and LATAM. What makes it technically distinct is that the landing page does **not** de",
+  "thumb": "thumbs/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising.svg",
+  "case_rel": "../days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/",
+  "category": "crypto-defi",
+  "cat_label": "Crypto / DeFi",
+  "cat_color": "#d08a1f",
+  "actor": "SourTrade",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "sourtrade: malvertising that assembles a unique windows executable inside the victim's browser sourtrade unattributed windows finance cryptocurrency cross-sector t1583.008 t1608.001 t1189 t1656 t1204.002 t1059.007 t1105 t1140 t1027.013 t1553.005 crypto / defi "
+ },
+ {
   "date": "2026-07-31",
   "year": "2026",
   "month": "2026-07",

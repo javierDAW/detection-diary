@@ -1,3 +1,20 @@
+## 2026.08.01 — Day 96 — SourTrade: browser-assembled malvertising malware
+
+### Added
+- `days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/` — Confiant (2026-07-23, updated 2026-07-30) detailed SourTrade, a persistent malvertising cluster (active since late 2024, unattributed) that impersonates TradingView/Solana/Luno to reach retail traders and crypto investors across 12 countries. Its money pages assemble a unique Windows PE inside the victim's browser: a ServiceWorker + SharedWorker fetch a `/config` build recipe (template + AES-CTR seed + `standaloneUrl`), pull a clean Bun runtime from a separate staging host, and combine them in memory so no finished malware crosses the network and every download has a different hash. First repo case on browser-assembled/in-memory-compiled malware and on malvertising as primary delivery. Weekend auto-rescue: slot #16 (Crypto/DeFi, 48-day gap).
+- Sigma (3): `dns_sourtrade_landing_and_bun_staging.yml` — DNS to staging/money-page infra; `file_event_motw_exe_from_lookalike_or_streamsaver.yml` — `.exe:Zone.Identifier` origin on a lookalike-brand or StreamSaver host; `proc_creation_bun_single_file_exe_from_download.yml` — Bun/Oven PE version info on an `.exe` run from a download path.
+- KQL (3): egress to landing/staging infra; Bun single-file EXE from Downloads/Temp; downloaded EXE with a lookalike-brand MotW origin — Defender XDR.
+- YARA (1 file, 2 rules): assembled Bun PE (`.bun`/`$bunfs`/`app.js`) and the landing-page browser-assembler JS, filesize-bound.
+- Suricata (1 file, 6 sids): staging-host DNS/TLS + `/static/*.exe` fetch, `/config` request, money-page DNS/TLS.
+- PEAK hunts (3): Bun single-file EXEs in download folders; MotW origin on a lookalike-brand domain; split `/config` + second-domain Bun fetch.
+- `iocs.csv` (112 entries) — 3 sample SHA256, staging host `purelogicbox[.]org`, ~96 money-page domains, historical StreamSaver artifact, behavioural markers. No CVE in scope — no `kev.md`.
+- `kill_chain.svg` — Template A, canonical palette, crypto-defi accent; victim-browser lane vs operator-infrastructure lane; red anchors on `/config` recipe, in-browser assembly, same-origin MotW.
+
+### Pedagogy
+- Client-side assembly is structurally invisible to network payload inspection and hash reputation — detect the download artifact (unusual runtime format in a browser folder) and the split delivery shape.
+- Per-victim AES-CTR randomization makes "the hash" a non-durable IOC; prioritize structural/behavioural rules over sample hashes.
+- A same-origin ServiceWorker download can make Mark-of-the-Web attest to the wrong origin — trust MotW as a hint, not proof.
+
 ## 2026.07.31 — Day 95 — XMRig Covert Ops: fileless Monero miner abusing Linux PAM (pam_rootok)
 
 ### Added
