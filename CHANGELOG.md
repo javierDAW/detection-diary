@@ -1,3 +1,39 @@
+## 2026.08.03 — Day 98 — OctLurk & SilkLurk: in-memory victim-keyed backdoors hitting Central Asian governments
+
+### Added
+- `days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/` — Kaspersky GReAT (Securelist, 2026-07-30) disclosed two obfuscated, memory-resident backdoors (OctLurk, SilkLurk) plus a proxy utility (LurkProxy) run since January 2025 by a suspected Chinese-speaking, unattributed actor against government, healthcare, research and other sectors in Central Asia (Afghanistan, Kyrgyzstan, Tajikistan, Uzbekistan, Kazakhstan) and Syria. Loaders decode payloads with machine-specific keys (C: drive serial / computer-name hash) and pull plugins into memory for shells, keylogging, browser-credential theft, DCSync-style dumping, scanning, and email collection; infrastructure overlaps the C++ implant SilentRaid (MystRodX/TrustFall).
+- Sigma (3): `proc_octlurk_scheduled_task_masquerade.yml` — GoogleUpDate/AnyDesk task with .bat/user-path action; `proc_octlurk_command_shell_plugin_tmp_redirect.yml` — cmd /S /C output to %TEMP%\tmp*.tmp and chcp 1256 recon; `reg_octlurk_service_registerservice_loader.yml` — ServiceMain=RegisterService and service names NgcCIntSvc/Cusrxsrv/RmSs.
+- KQL (3): schtasks masquerade; masqueraded tooling (Adobe.exe secretsdump / 64.exe decryptor / fc.exe Fscan) from user paths; C2 domains/IP and port 64980 beacons.
+- YARA (1 file, 2 rules): OctLurk hard-coded XOR key + RegisterService/curl_easy_escape; SilkLurk fixed CONNECT User-Agent + side-load DLLs.
+- Suricata (1 file, 6 sids): DNS/TLS SNI multitoconference.com + ssentialserv.xyz; TCP to 154.196.162.76 and to port 64980; SilkLurk CONNECT User-Agent.
+- PEAK hunts (3): GoogleUpDate/AnyDesk task masquerade; service-loader + NVIDIA/Realtek/Symantec side-loading; C2 raw-socket beacon + masqueraded tooling + DCSync.
+- `iocs.csv` (37 entries) — 15 MD5, 2 domains, 1 IPv4, host paths, service/task names, encryption notes. No CVE in scope, so no `kev.md` for this case.
+- `kill_chain.svg` — template A, canonical palette, acc-espionage accent, victim-host vs attacker-infrastructure lanes with IOC anchors.
+
+### Pedagogy
+- Machine-keyed payloads (drive serial / computer-name hash) are inert off the victim: detections must be behavioral and memory-based, not hash- or sandbox-based.
+- `ServiceMain` pointing at an odd export (`RegisterService`) with a ServiceDll outside System32 is a compact, high-signal persistence tell.
+- A raw TCP stream socket on 443 with no TLS ClientHello is not HTTPS — port is not protocol; Zeek ssl.log absence on a 443 flow is the giveaway.
+- No CVE and no KEV entry is not low priority: credential-and-native-tooling espionage is exactly what patch-centric programs miss.
+
+## 2026.08.02 — Day 97 — Certighost: AD CS chase abuse to Domain Controller impersonation (CVE-2026-54121)
+
+### Added
+- `days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/` — H0j3n and Aniq Fakhrul published a working PoC (2026-07-24) for CVE-2026-54121, an AD CS "chase" enrollment flaw Microsoft patched 2026-07-14 (CVSS 8.8). A low-privilege domain user obtains a certificate carrying a Domain Controller's identity, authenticates via PKINIT, and DCSyncs krbtgt for full domain compromise. Weekend auto-rescue slot #12 (DFIR Windows / AD).
+- Sigma (3): `sec_4741_computer_account_created_by_user.yml` — computer account created by a non-$ user; `sec_4768_pkinit_cert_auth_machine_account.yml` — PKINIT cert TGT for a $ account; `sec_4662_dcsync_replication_nondc.yml` — DCSync replication by a non-DC principal.
+- KQL (3): `sentinel_computer_account_created_by_user.kql`; `sentinel_pkinit_cert_logon_machine_account.kql`; `sentinel_dcsync_replication_nondc.kql` — Sentinel SecurityEvent equivalents.
+- YARA (1 file, 2 rules): public PoC Python (cdc/rmd/CVE-2026-54121) and the PFX/ccache artifacts.
+- Suricata (1 file, 6 sids): WCCE ICertRequestD/D2 and DRSUAPI DCERPC binds, cleartext-LDAP computer-object add, pKIEnrollmentService recon, Kerberos machine-principal AS-REQ.
+- PEAK hunts (3): user-created machine account then AD CS enrollment; CA outbound SMB/LDAP to a non-DC (chase callback); PKINIT-as-DC then DCSync.
+- `iocs.csv` (18 entries) — CVE, public PoC, and behavioural/config anchors (no malware sample, no C2). `kev.md` — 0/1 CVE on CISA KEV (CVE-2026-54121 not listed as of catalogVersion 2026.07.29).
+- `kill_chain.svg` — Template A, canonical palette, identity-cloud accent, victim-AD vs attacker lanes with red anchors on the chase, the DC cert issuance, and DCSync.
+
+### Pedagogy
+- A CA that resolves identity from requester-supplied targets issues attacker-chosen identities; the fix (`_ValidateChaseTargetIsDC`) is an authorization check, not crypto.
+- The default `ms-DS-MachineAccountQuota` of 10 is a recurring offensive primitive (Certifried, RBCD, now Certighost) — treat computer-object creation as privilege.
+- DCSync (EID 4662 from a non-DC) is the shared end-state across unrelated entry vectors; one robust detection covers many intrusion paths.
+- KEV absence is not safety: a CVSS 8.8 identity flaw with a public PoC is patch-now regardless of catalog membership.
+
 ## 2026.08.01 — Day 96 — SourTrade: browser-assembled malvertising malware
 
 ### Added

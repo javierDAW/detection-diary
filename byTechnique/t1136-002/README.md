@@ -4,10 +4,11 @@
 
 # Techniques: T1136.002
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-02 | Certighost: AD CS chase abuse turns any domain user into a Domain Controller (CVE-2026-54121) | Certighost (CVE-2026-54121) | [`2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/`](../../days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/) |
 | 2026-05-21 | TeamPCP 48-Hour Mega-Campaign — actions-cool Tag Poisoning, durabletask PyPI Worm, Nx Console VS Code Extension and the GitHub Internal Repo Breach | TeamPCP · UNC6780 · Mini Shai-Hulud | [`2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain/`](../../days/2026/05/2026-05-21_TeamPCP-48h-Multi-Vector-SupplyChain/) |
 | 2026-05-19 | Embargo Ransomware — Rust MDeployer + MS4Killer with Safe Mode Boot BYOVD (ESET + TRM Labs) | Embargo · ALPHV · BlackCat | [`2026-05-19_Embargo-Rust-SafeMode-BYOVD/`](../../days/2026/05/2026-05-19_Embargo-Rust-SafeMode-BYOVD/) |

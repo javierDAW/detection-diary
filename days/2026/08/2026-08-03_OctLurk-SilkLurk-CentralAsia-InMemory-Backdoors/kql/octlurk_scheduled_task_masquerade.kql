@@ -1,0 +1,16 @@
+// Title: OctLurk/SilkLurk Scheduled Task Masquerade (GoogleUpDate / AnyDesk)
+// Id: 7e699e6b-b9ec-42f0-ace2-c1a024bff133
+// MITRE: T1053.005, T1036.005
+// Reference: https://securelist.com/octlurk-silklurk-backdoors-central-asia/120840/
+// Author: Jarmi
+// Date: 2026-08-03
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: Legit Google Update/AnyDesk register services, not schtasks tasks named
+//           GoogleUpDate/AnyDesk pointing at a .bat under Videos/Desktop/Public.
+DeviceProcessEvents
+| where FileName =~ "schtasks.exe"
+| where ProcessCommandLine has "/create"
+| where ProcessCommandLine has_any ("GoogleUpDate", "AnyDesk")
+| where ProcessCommandLine has_any (@"\Videos\", @"\Desktop\", @"\Users\Public\", @"\ProgramData\", ".bat")
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine, ReportId
+| sort by Timestamp desc

@@ -4,11 +4,13 @@
 
 # Platforms: windows
 
-59 day(s) covering this platform.
+61 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-03 | OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments | OctLurk/SilkLurk operator (unattributed, Chinese-speaking) | [`2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/`](../../days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/) |
+| 2026-08-02 | Certighost: AD CS chase abuse turns any domain user into a Domain Controller (CVE-2026-54121) | Certighost (CVE-2026-54121) | [`2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/`](../../days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/) |
 | 2026-08-01 | SourTrade: malvertising that assembles a unique Windows executable inside the victim's browser | SourTrade | [`2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/`](../../days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/) |
 | 2026-07-30 | Joyfill npm Compromise: an On-Import RAT With Blockchain Dead-Drop C2 and a Python Credential Stealer | Joyfill npm compromise (StepSecurity-tracked, unattributed) | [`2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/`](../../days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/) |
 | 2026-07-28 | Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases | Akhter twins (convicted insiders) | [`2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/`](../../days/2026/07/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/) |

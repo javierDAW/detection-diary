@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-08-01 09:02 UTC
+# generated 2026-08-03 07:45 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -106,6 +106,8 @@ defs.updater-worelos.com
 deploypasskey.com
 dexarionrte.info
 direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion
+dns.multitoconference.com
+dns.ssentialserv.xyz
 dotlor.site
 download-center.online
 download.robovpn.com

@@ -161,3 +161,4 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039,2026-07-26,CVE-2026-9037,no,,,,,,
 2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039,2026-07-26,CVE-2026-9038,no,,,,,,
 2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039,2026-07-26,CVE-2026-9039,no,,,,,,
+2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121,2026-08-02,CVE-2026-54121,no,,,,,,

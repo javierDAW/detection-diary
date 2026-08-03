@@ -4,11 +4,12 @@
 
 # Techniques: T1082
 
-9 day(s) covering this technique.
+10 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-03 | OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments | OctLurk/SilkLurk operator (unattributed, Chinese-speaking) | [`2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/`](../../days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/) |
 | 2026-07-31 | XMRig Covert Ops: fileless Monero miner abusing Linux PAM (pam_rootok) for a forensic smokescreen | V25 / Generation 26 XMRig botnet | [`2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/`](../../days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/) |
 | 2026-07-30 | Joyfill npm Compromise: an On-Import RAT With Blockchain Dead-Drop C2 and a Python Credential Stealer | Joyfill npm compromise (StepSecurity-tracked, unattributed) | [`2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/`](../../days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/) |
 | 2026-07-24 | RefluXFS: XFS Reflink O_DIRECT Race to Root (CVE-2026-64600) | Unattributed vulnerability research (Qualys TRU, AI-assisted discovery) | [`2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/`](../../days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/) |

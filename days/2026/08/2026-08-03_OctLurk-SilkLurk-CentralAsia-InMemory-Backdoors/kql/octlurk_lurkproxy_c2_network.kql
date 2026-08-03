@@ -1,0 +1,17 @@
+// Title: OctLurk C2 and LurkProxy Beacon Network Connections
+// Id: e2423289-35c7-4afe-b5d6-62283666719c
+// MITRE: T1071.001, T1090, T1571
+// Reference: https://securelist.com/octlurk-silklurk-backdoors-central-asia/120840/
+// Author: Jarmi
+// Date: 2026-08-03
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: Indicators decay - revalidate the IP/domains before alerting in production.
+//           Port 64980 is the hard-coded LurkProxy listener; treat egress to it as high-signal.
+let c2_domains = dynamic(["dns.multitoconference.com","dns.ssentialserv.xyz"]);
+let c2_ip = dynamic(["154.196.162.76"]);
+DeviceNetworkEvents
+| where RemoteUrl has_any (c2_domains)
+     or RemoteIP in (c2_ip)
+     or (RemotePort == 64980 and Protocol == "Tcp")
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, RemoteIP, RemotePort, RemoteUrl, ReportId
+| sort by Timestamp desc

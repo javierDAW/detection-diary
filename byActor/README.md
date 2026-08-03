@@ -35,6 +35,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [CL-STA-1062](./cl-sta-1062/) | 1 |
 | [Calypso APT](./calypso-apt/) | 1 |
 | [Cavern Manticore](./cavern-manticore/) | 1 |
+| [Certighost (CVE-2026-54121)](./certighost-cve-2026-54121/) | 1 |
 | [Chaotic Eclipse / Nightmare-Eclipse](./chaotic-eclipse-nightmare-eclipse/) | 1 |
 | [Chatty Spider](./chatty-spider/) | 1 |
 | [Cloud-Insider-Recruitment-unattributed](./cloud-insider-recruitment-unattributed/) | 1 |
@@ -83,6 +84,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [O-UNC-066](./o-unc-066/) | 1 |
 | [OP-512](./op-512/) | 1 |
 | [OceanLotus (APT32)](./oceanlotus-apt32/) | 1 |
+| [OctLurk/SilkLurk operator (unattributed, Chinese-speaking)](./octlurk-silklurk-operator-unattributed-chinese-speaking/) | 1 |
 | [OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark)](./openai-internal-evaluation-agent-gpt-5-6-sol-an-unnamed-pre-release-model-exploitgym-benchmark/) | 1 |
 | [Opportunistic Argo CD ServerSideDiff exploitation (unattributed)](./opportunistic-argo-cd-serversidediff-exploitation-unattributed/) | 1 |
 | [Opportunistic CMS mass-exploitation (unattributed botnet)](./opportunistic-cms-mass-exploitation-unattributed-botnet/) | 1 |

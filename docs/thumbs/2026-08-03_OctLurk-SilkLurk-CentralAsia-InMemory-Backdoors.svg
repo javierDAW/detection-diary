@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">OctLurk and SilkLurk kill chain</title>
+<desc id="d">Two lanes. Left: victim Windows host - initial access with valid admin credentials, GoogleUpDate scheduled task creating service NgcCIntSvc that loads oleasapi.dll, an in-memory loader keyed to the C drive serial, discovery with Fscan, credential access via Impacket secretsdump and a keylogger, collection, and staging and exfiltration. Right: attacker infrastructure - OctLurk raw TCP 443 C2 at multitoconference, LurkProxy on port 64980, the in-memory plugin framework, SilkLurk DLL side-loading with service RmSs, PlugX second stage via RasTls, and Chinese-speaking attribution overlapping SilentRaid MystRodX TrustFall. Detection anchors: task and service masquerade, ServiceMain equals RegisterService, and the raw-socket beacon on 443.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">OctLurk &amp; SilkLurk - In-Memory Backdoors, Central Asia Government Espionage</text>
+<text class="meta" x="20" y="58">Vendor: Kaspersky GReAT (Securelist) - Date: 2026-07-30 - Cluster: Chinese-speaking (unattributed) - Day 98</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="106">VICTIM HOST (Windows) - on-disk and behavioral tells</text>
+<text class="laneLabelR" x="460" y="106">ATTACKER INFRASTRUCTURE and IN-MEMORY TOOLING</text>
+
+<!-- LEFT STAGES -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="146">Initial access (vector unknown)</text>
+<text class="sub" x="42" y="170">Operator already holds admin credentials</text>
+<text class="sub" x="42" y="186">Creates scheduled tasks on remote hosts</text>
+<text class="sub" x="42" y="202">MITRE T1078 Valid Accounts</text>
+<text class="mono" x="42" y="228">net use \\host\share  (admin creds)</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="296">Task + service persistence</text>
+<text class="sub" x="42" y="320">schtasks GoogleUpDate (SYSTEM, run-once)</text>
+<text class="sub" x="42" y="336">1.bat -&gt; service NgcCIntSvc</text>
+<text class="sub" x="42" y="352">T1053.005 / T1543.003 / T1036.005</text>
+<text class="mono" x="42" y="378">oleasapi.dll  md5 082d49ef...5069</text>
+<text class="mono" x="42" y="396">ServiceMain = RegisterService</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="446">In-memory loader / evasion</text>
+<text class="sub" x="42" y="470">Double-XOR + zlib; Key2 = C: drive serial</text>
+<text class="sub" x="42" y="486">Reflective inject of backdoor DLL</text>
+<text class="sub" x="42" y="502">T1027 / T1140 / T1620 / T1055</text>
+<text class="mono" x="42" y="528">victim-keyed: inert off the target host</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="596">Discovery / recon</text>
+<text class="sub" x="42" y="620">in.bat: chcp 1256, wmic, wevtutil, reg</text>
+<text class="sub" x="42" y="636">Fscan SSH 22 / MySQL 3306 (pp.txt)</text>
+<text class="sub" x="42" y="652">T1082 / T1046 / T1110.001</text>
+<text class="mono" x="42" y="678">fc.exe  md5 cf903e4a...6676</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="746">Credential access (critical)</text>
+<text class="sub" x="42" y="770">Adobe.exe = Impacket secretsdump (DCSync)</text>
+<text class="sub" x="42" y="786">64.exe browser decryptor; AnyDesk keylog</text>
+<text class="sub" x="42" y="802">T1003.006 / T1555.003 / T1056.001</text>
+<text class="mono" x="42" y="828">msect\dev0 keystrokes; dev1 clipboard</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="896">Collection</text>
+<text class="sub" x="42" y="920">Screenshot + clipboard plugin (in memory)</text>
+<text class="sub" x="42" y="936">Email via curl (authenticate, select Inbox)</text>
+<text class="sub" x="42" y="952">T1113 / T1115 / T1114.002</text>
+<text class="mono" x="42" y="978">info.txt ; &lt;host&gt;.datb ; result.txt</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1046">Staging &amp; exfil</text>
+<text class="sub" x="42" y="1070">WinRAR / 7-Zip archive of loot</text>
+<text class="sub" x="42" y="1086">net use to admin shares; out via LurkProxy</text>
+<text class="sub" x="42" y="1102">T1560.001 / T1021.002 / T1090</text>
+<text class="mono" x="42" y="1128">7z.exe md5 9a1dd1d9...1d06</text>
+
+<!-- RIGHT OPS -->
+<rect class="opK" x="460" y="125" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="151">OctLurk C2</text>
+<text class="sub" x="472" y="175">dns.multitoconference[.]com : 443</text>
+<text class="sub" x="472" y="191">Raw TCP stream socket (no TLS)</text>
+<text class="sub" x="472" y="207">Plugins pulled directly into memory</text>
+<text class="sub" x="472" y="223">T1071.001 / T1105</text>
+<text class="mono" x="472" y="250">XOR key FDrertgr##@QEWASG...98h</text>
+<text class="mono" x="472" y="268">+ 0x53 (83) random-byte second key</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="321">LurkProxy tunnel</text>
+<text class="sub" x="472" y="345">154.196.162[.]76 : 64980</text>
+<text class="sub" x="472" y="361">SOCKS5 or transparent proxy</text>
+<text class="sub" x="472" y="377">staging dns.ssentialserv[.]xyz</text>
+<text class="sub" x="472" y="393">T1090 / T1571</text>
+<text class="mono" x="472" y="420">auto.bat -&gt; service Cusrxsrv</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="491">Plugin framework (in memory)</text>
+<text class="sub" x="472" y="515">File Manager / Command Shell</text>
+<text class="sub" x="472" y="531">Interaction Manager (screen, input)</text>
+<text class="sub" x="472" y="547">exports ins_ctl_db + oct_lk_col</text>
+<text class="sub" x="472" y="563">T1055 / T1620</text>
+<text class="mono" x="472" y="590">cmd /S /C ... &gt; %TEMP%\tmp%d%x.tmp</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="661">SilkLurk side-load</text>
+<text class="sub" x="472" y="685">NVIDIA/Realtek EXE -&gt; vulkan-1.dll</text>
+<text class="sub" x="472" y="701">Service RmSs; computer-name-hash key</text>
+<text class="sub" x="472" y="717">4 C2 hosts in 0x4AC config</text>
+<text class="sub" x="472" y="733">T1574.002 / T1543.003</text>
+<text class="mono" x="472" y="760">config 2470b666bece868f (%APPDATA%)</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="831">PlugX second stage</text>
+<text class="sub" x="472" y="855">kmsonline.exe drops the RasTls set</text>
+<text class="sub" x="472" y="871">RasTls.exe -&gt; RasTls.dll -&gt; .dll.res</text>
+<text class="sub" x="472" y="887">Chinese-nexus staple backdoor</text>
+<text class="sub" x="472" y="903">T1574.002</text>
+<text class="mono" x="472" y="930">RasTls.dll md5 ef59aad6...ce69</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badge" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="1001">Attribution / infrastructure</text>
+<text class="sub" x="472" y="1025">Chinese-speaking (medium confidence)</text>
+<text class="sub" x="472" y="1041">Unattributed to a named group</text>
+<text class="sub" x="472" y="1057">Overlap: SilentRaid / MystRodX / TrustFall</text>
+<text class="sub" x="472" y="1073">prior UAT-7290 telecom infrastructure</text>
+<text class="mono" x="472" y="1100">cross-OS shared infra (Win + Linux)</text>
+
+<!-- LEFT VERTICAL FLOW -->
+<path class="arrow" d="M60,255 L60,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,405 L60,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,555 L60,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,705 L60,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,855 L60,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,1005 L60,1020" marker-end="url(#ah)"/>
+
+<!-- RIGHT VERTICAL FLOW -->
+<path class="arrowR" d="M490,280 L490,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,450 L490,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,620 L490,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,790 L490,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,960 L490,975" marker-end="url(#ah)"/>
+
+<!-- CROSS-LANE -->
+<path class="arrowX" d="M425,187 L460,190" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,487 L460,520" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Durable detection anchors</text>
+<text class="footerT" x="34" y="1222">1) GoogleUpDate/AnyDesk task masquerade  2) service ServiceMain = RegisterService (DLL outside System32)</text>
+<text class="footerT" x="34" y="1240">3) raw TCP/443 beacon with no TLS ClientHello  4) DCSync (4662) from a non-DC  5) egress to port 64980</text>
+<text class="footerT" x="34" y="1258">Payloads are in-memory and victim-keyed (C: serial / computer-name hash): hunt behavior + memory, not hashes.</text>
+</svg>

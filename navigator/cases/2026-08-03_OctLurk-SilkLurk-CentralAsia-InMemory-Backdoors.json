@@ -1,0 +1,202 @@
+{
+  "name": "2026-08-03 — 2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments — clusters: OctLurk/SilkLurk operator (unattributed, Chinese-speaking)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1053.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1574.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1620",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1055",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1082",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1110.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1003.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1555.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1056.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1115",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1113",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1090",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1571",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1114.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1560.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1021.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Gove"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

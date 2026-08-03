@@ -1,0 +1,48 @@
+title: OctLurk/SilkLurk Scheduled Task Masquerade (GoogleUpDate / AnyDesk)
+id: 7e699e6b-b9ec-42f0-ace2-c1a024bff133
+status: experimental
+description: |
+  Detects creation of scheduled tasks named GoogleUpDate or AnyDesk via schtasks.exe where
+  the task action points to a batch script or executable staged under user-writable or
+  masquerade paths (Videos, Desktop, ProgramData, Users\Public). The OctLurk operator creates
+  a GoogleUpDate task with SYSTEM privileges to run 1.bat / in.bat and to launch the Pandora RC
+  agent, and an AnyDesk task to run a keylogger on every logon. The task names imitate Google
+  Update and AnyDesk to blend in. Threshold and per-host baselining are pushed to SIEM
+  aggregation; Sigma matches the single-event masquerade pattern only.
+references:
+  - https://securelist.com/octlurk-silklurk-backdoors-central-asia/120840/
+  - https://thehackernews.com/2026/08/suspected-chinese-speaking-hackers.html
+  - https://attack.mitre.org/techniques/T1053/005/
+author: Jarmi
+date: 2026/08/03
+tags:
+  - attack.persistence
+  - attack.execution
+  - attack.t1053.005
+  - attack.t1036.005
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_schtasks:
+    Image|endswith: '\schtasks.exe'
+    CommandLine|contains: '/create'
+  selection_taskname:
+    CommandLine|contains:
+      - '/tn GoogleUpDate'
+      - '/tn "GoogleUpDate"'
+      - '/tn AnyDesk'
+      - '/tn "AnyDesk"'
+  selection_action:
+    CommandLine|contains:
+      - '\Videos\'
+      - '\Desktop\'
+      - '\Users\Public\'
+      - '\ProgramData\'
+      - '.bat'
+  condition: selection_schtasks and selection_taskname and selection_action
+falsepositives:
+  - Legitimate Google Update or AnyDesk installers normally register their own service, not a
+    schtasks task named GoogleUpDate/AnyDesk pointing at a .bat under Videos/Desktop.
+
+level: high

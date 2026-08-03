@@ -1,0 +1,42 @@
+title: OctLurk Command-Shell Plugin Temp-File Output Redirection
+id: f13742a9-f42f-454b-a80f-bf64e075b8bf
+status: experimental
+description: |
+  Detects the OctLurk command-shell plugin execution pattern, in which cmd.exe is spawned with
+  /S /C and the command output is redirected into a randomly named temporary file under %TEMP%
+  matching tmp<dec><hex>.tmp. The plugin is injected into memory and runs arbitrary commands,
+  capturing stdout/stderr in %TEMP%\tmp%d%x.tmp for exfiltration. Also flags the recon lead-in
+  chcp 1256 (Arabic code page) used before the wmic/wevtutil/reg-query battery. Tune the temp
+  path and expected admin tooling in SIEM; Sigma matches the command-line shape only.
+references:
+  - https://securelist.com/octlurk-silklurk-backdoors-central-asia/120840/
+  - https://attack.mitre.org/techniques/T1059/003/
+author: Jarmi
+date: 2026/08/03
+tags:
+  - attack.execution
+  - attack.discovery
+  - attack.t1059.003
+  - attack.t1082
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_cmd:
+    Image|endswith: '\cmd.exe'
+    CommandLine|contains|all:
+      - '/S'
+      - '/C'
+  selection_redirect:
+    CommandLine|contains:
+      - '\Temp\tmp'
+      - '%TEMP%\tmp'
+    CommandLine|contains: '.tmp'
+  selection_recon:
+    CommandLine|contains: 'chcp 1256'
+  condition: (selection_cmd and selection_redirect) or selection_recon
+falsepositives:
+  - Some installers and admin scripts redirect cmd output to %TEMP%; correlate with the parent
+    process (a service host / injected process with no on-disk image) and the GoogleUpDate task.
+
+level: medium
