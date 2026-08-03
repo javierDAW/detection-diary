@@ -1,0 +1,38 @@
+type,value,context,confidence,source
+md5,6ecf84fb18f6747ed08d7598364d853a,OctLurk deployment batch 1.bat dropped under Users\<user>\Videos; creates service NgcCIntSvc,high,Securelist 2026-07-30
+md5,082d49ef9f14e6811d68c7e0e82e5069,OctLurk loader DLL oleasapi.dll loaded by service NgcCIntSvc via RegisterService export,high,Securelist 2026-07-30
+md5,b874123a80fc4f40e06872b9cb54ebc6,auto.bat LurkProxy deployment script; creates service Cusrxsrv loading msbasesysdc.dll,high,Securelist 2026-07-30
+md5,45cf5916fab4272a1313c26e67aa9220,in.bat host fingerprinting recon script run via GoogleUpDate task; output info.txt / <host>.datb,high,Securelist 2026-07-30
+md5,4e6d5c4770d5a822d7fcce6a74f7ad73,in.bat host fingerprinting recon script (second observed hash),high,Securelist 2026-07-30
+md5,32a5985543433a4f60da2fafd873b927,Adobe.exe portable Impacket secretsdump used for DCSync-style hash theft from DCs,high,Securelist 2026-07-30
+md5,2a571f6cee42a17d873f4c942649813f,AnyDesk.exe keylogger masquerade; task AnyDesk runs it on logon; stores msect\dev0 dev1,high,Securelist 2026-07-30
+md5,37dc84e4bcad92fa28f1e7778d088283,64.exe browser password decryptor for Chrome (-help) and Firefox (-exit),high,Securelist 2026-07-30
+md5,5e26df131ff0a679a0a2699b723b46e3,1.bat installer for Pandora RC remote-access agent (EHORUS args),high,Securelist 2026-07-30
+md5,cf903e4a1629aa0582fd0363b5786676,fc.exe Fscan network scanner; scans SSH 22 and MySQL 3306 with pp.txt password list,high,Securelist 2026-07-30
+md5,18dc8bff47cc282508354771d0c8cf8c,RecordedTV.exe / recordutil.exe WinRAR archiver used to stage stolen data,medium,Securelist 2026-07-30
+md5,9a1dd1d96481d61934dcc2d568971d06,7z.exe 7-Zip archiver dropped under windows\vss to stage stolen data,medium,Securelist 2026-07-30
+md5,3c9a1ba8e0c7475706adc6376e9d7b7c,kmsonline.exe PlugX dropper deploying RasTls side-load set,high,Securelist 2026-07-30
+md5,62944e26b36b1dcace429ae26ba66164,RasTls.exe legitimate Symantec binary abused as PlugX side-load host,medium,Securelist 2026-07-30
+md5,ef59aad625eebda8650aec5820d6ce69,RasTls.dll PlugX loader DLL side-loaded by RasTls.exe; payload RasTls.dll.res,high,Securelist 2026-07-30
+domain,dns.multitoconference.com,OctLurk backdoor C2 over a raw TCP 443 stream socket (not TLS/HTTP),high,Securelist 2026-07-30
+domain,dns.ssentialserv.xyz,LurkProxy connectivity-check / staging domain; resolved to the LurkProxy C2 IP,high,Securelist 2026-07-30
+ipv4,154.196.162.76,LurkProxy C2 server on TCP 64980 (revalidate before blocking - indicators decay),high,Securelist 2026-07-30
+path,C:\Users\Public\Pictures\AnyDesk.exe,Keylogger binary masquerading as AnyDesk,high,Securelist 2026-07-30
+path,C:\Users\Public\Libraries\msect\dev0,Keylogger keystroke store (bytes encoded by subtracting 2),high,Securelist 2026-07-30
+path,C:\Users\Public\Libraries\msect\dev1,Keylogger clipboard store (bytes encoded by subtracting 2),high,Securelist 2026-07-30
+path,C:\ProgramData\Microsoft OneDrive\setup,SilkLurk payload relocation target directory,medium,Securelist 2026-07-30
+path,C:\ProgramData\Symantec\RasTls.dll.res,PlugX encrypted payload file dropped by kmsonline.exe,high,Securelist 2026-07-30
+string,GoogleUpDate,Scheduled task name reused for OctLurk deploy / recon / Pandora RC,high,Securelist 2026-07-30
+string,NgcCIntSvc,Service name that loads the OctLurk loader oleasapi.dll,high,Securelist 2026-07-30
+string,Cusrxsrv,Service name that loads the LurkProxy loader msbasesysdc.dll,high,Securelist 2026-07-30
+string,RmSs,SilkLurk persistence service (runs nvgwls.exe side-loading vulkan-1.dll),high,Securelist 2026-07-30
+string,RegisterService,Malicious loader DLL export invoked by the service ServiceMain entry,medium,Securelist 2026-07-30
+string,2470b666bece868f,SilkLurk encrypted config filename observed under %APPDATA%,medium,Securelist 2026-07-30
+string,27879a4df1a740ff,SilkLurk encrypted config filename observed under %APPDATA%,medium,Securelist 2026-07-30
+note,FDrertgr##@QEWASGkio865ehyf98foidsjzhug874392dfsREFDfdsAGH43wea98h,OctLurk backdoor hard-coded XOR key; second key is 0x53 (83) random bytes; data zlib-deflated then XORed twice,high,Securelist 2026-07-30
+note,octlurk-loader-double-xor,OctLurk loader Key1 hard-coded + Key2 from C: drive serial number then zlib; reflective in-memory injection,high,Securelist 2026-07-30
+note,silklurk-computername-hash,SilkLurk decrypts payload with a 32-bit hash of the victim computer name; import names single-byte XOR 0xD9,high,Securelist 2026-07-30
+note,silklurk-proxy-user-agent,SilkLurk proxy CONNECT User-Agent Chrome/86.0.4240.75 (Mozilla/5.0 Windows NT 10.0 Win64 x64 AppleWebKit/537.36 Safari/537.36),medium,Securelist 2026-07-30
+note,lurkproxy-port-64980,LurkProxy listens on all interfaces TCP 64980; SOCKS5 or transparent mode; cmd IDs 0x1000010/0x1000030/0x1000050,medium,Securelist 2026-07-30
+note,recon-chcp-1256,Host recon starts with chcp 1256 (Arabic code page) then wmic/wevtutil/reg query/netstat battery,medium,Securelist 2026-07-30
+note,silentraid-mystrodx-trustfall-overlap,Infrastructure overlap with C++ implant SilentRaid (aka MystRodX / TrustFall) from prior UAT-7290 telecom campaign,medium,The Hacker News 2026-07-31

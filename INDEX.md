@@ -4,7 +4,7 @@
 
 # INDEX
 
-**96 cases** · **163 actors/clusters** · **355 ATT&CK techniques** · **16 platforms** · **81 sectors** · 2026-04-28 -> 2026-08-01
+**98 cases** · **165 actors/clusters** · **357 ATT&CK techniques** · **16 platforms** · **83 sectors** · 2026-04-28 -> 2026-08-03
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/"><img src="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/kill_chain.svg" alt="2026-08-03 kill chain" width="240"></a><br><sub><b>2026-08-03</b><br>OctLurk/SilkLurk operator (unattributed, Chinese-speaking)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/"><img src="days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/kill_chain.svg" alt="2026-08-02 kill chain" width="240"></a><br><sub><b>2026-08-02</b><br>Certighost (CVE-2026-54121)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/"><img src="days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/kill_chain.svg" alt="2026-08-01 kill chain" width="240"></a><br><sub><b>2026-08-01</b><br>SourTrade</sub></td>
+</tr>
+<tr>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/"><img src="days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/kill_chain.svg" alt="2026-07-31 kill chain" width="240"></a><br><sub><b>2026-07-31</b><br>V25 / Generation 26 XMRig botnet</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/"><img src="days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/kill_chain.svg" alt="2026-07-30 kill chain" width="240"></a><br><sub><b>2026-07-30</b><br>Joyfill npm compromise (StepSecurity-tracked, unattributed)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/"><img src="days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/kill_chain.svg" alt="2026-07-29 kill chain" width="240"></a><br><sub><b>2026-07-29</b><br>UNK_pyreq2323 · UNK_OutFlareAZ · UNK_CustomCloak</sub></td>
 </tr>
 <tr>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/"><img src="days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/kill_chain.svg" alt="2026-07-29 kill chain" width="240"></a><br><sub><b>2026-07-29</b><br>UNK_pyreq2323 · UNK_OutFlareAZ · UNK_CustomCloak</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/"><img src="days/2026/07/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/kill_chain.svg" alt="2026-07-28 kill chain" width="240"></a><br><sub><b>2026-07-28</b><br>Akhter twins (convicted insiders)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/"><img src="days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/kill_chain.svg" alt="2026-07-27 kill chain" width="240"></a><br><sub><b>2026-07-27</b><br>APT42</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/"><img src="days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/kill_chain.svg" alt="2026-07-26 kill chain" width="240"></a><br><sub><b>2026-07-26</b><br>Unattributed vulnerability research (SaiFlow); affected vendor: XCharge</sub></td>
 </tr>
 <tr>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/"><img src="days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/kill_chain.svg" alt="2026-07-26 kill chain" width="240"></a><br><sub><b>2026-07-26</b><br>Unattributed vulnerability research (SaiFlow); affected vendor: XCharge</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/"><img src="days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/kill_chain.svg" alt="2026-07-25 kill chain" width="240"></a><br><sub><b>2026-07-25</b><br>CrashStealer (unattributed developer/operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/"><img src="days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/kill_chain.svg" alt="2026-07-24 kill chain" width="240"></a><br><sub><b>2026-07-24</b><br>Unattributed vulnerability research (Qualys TRU, AI-assisted discovery)</sub></td>
-</tr>
-<tr>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/"><img src="days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/kill_chain.svg" alt="2026-07-23 kill chain" width="240"></a><br><sub><b>2026-07-23</b><br>OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/"><img src="days/2026/07/2026-07-22_ARToken-EvilTokens-BEC-DeviceCode-InboxRule-PhaaS/kill_chain.svg" alt="2026-07-22 kill chain" width="240"></a><br><sub><b>2026-07-22</b><br>ARToken (EvilTokens affiliate PhaaS)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/"><img src="days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/kill_chain.svg" alt="2026-07-21 kill chain" width="240"></a><br><sub><b>2026-07-21</b><br>Spirals</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,12 @@
 
 ## All cases by month
 
-<details><summary><b>2026-08</b> — 1 case(s)</summary>
+<details><summary><b>2026-08</b> — 3 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-08-03 | [OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments](days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/) | OctLurk/SilkLurk operator (unattributed, Chinese-speaking) | windows, linux |
+| 2026-08-02 | [Certighost: AD CS chase abuse turns any domain user into a Domain Controller (CVE-2026-54121)](days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/) | Certighost (CVE-2026-54121) | windows |
 | 2026-08-01 | [SourTrade: malvertising that assembles a unique Windows executable inside the victim's browser](days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/) | SourTrade | windows |
 
 </details>

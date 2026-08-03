@@ -1,0 +1,45 @@
+title: Malicious Service Loader DLL via ServiceMain=RegisterService (OctLurk/LurkProxy/SilkLurk)
+id: e2423289-35c7-4afe-b5d6-62283666719c
+status: experimental
+description: |
+  Detects registry writes that configure a Windows service to load an attacker DLL through the
+  ServiceMain parameter set to the export RegisterService, or that create the OctLurk-family
+  service names NgcCIntSvc, Cusrxsrv or RmSs. The OctLurk loader (oleasapi.dll) and LurkProxy
+  loader (msbasesysdc.dll) are svchost-hosted service DLLs whose ServiceDll Parameters point
+  ServiceMain at RegisterService; SilkLurk persists via the RmSs service. Baseline legitimate
+  service DLLs in SIEM; Sigma matches the registry write shape only.
+references:
+  - https://securelist.com/octlurk-silklurk-backdoors-central-asia/120840/
+  - https://attack.mitre.org/techniques/T1543/003/
+  - https://attack.mitre.org/techniques/T1574/002/
+author: Jarmi
+date: 2026/08/03
+tags:
+  - attack.persistence
+  - attack.defense-evasion
+  - attack.t1543.003
+  - attack.t1574.002
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_svcname:
+    TargetObject|contains:
+      - '\Services\NgcCIntSvc'
+      - '\Services\Cusrxsrv'
+      - '\Services\RmSs'
+  selection_registerservice:
+    TargetObject|contains: '\Services\'
+    TargetObject|endswith: '\Parameters\ServiceMain'
+    Details|contains: 'RegisterService'
+  selection_svcdll:
+    TargetObject|endswith: '\Parameters\ServiceDll'
+    Details|contains:
+      - 'oleasapi.dll'
+      - 'msbasesysdc.dll'
+  condition: selection_svcname or selection_registerservice or selection_svcdll
+falsepositives:
+  - Rare legitimate services expose a RegisterService export; confirm the DLL path is outside
+    System32 / a signed vendor directory and correlate with the GoogleUpDate task.
+
+level: high

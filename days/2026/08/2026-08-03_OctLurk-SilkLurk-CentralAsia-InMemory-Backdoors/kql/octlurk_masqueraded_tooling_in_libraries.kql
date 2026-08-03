@@ -1,0 +1,17 @@
+// Title: OctLurk Masqueraded Post-Exploitation Tooling (secretsdump / browser decryptor / Fscan)
+// Id: f13742a9-f42f-454b-a80f-bf64e075b8bf
+// MITRE: T1003.006, T1555.003, T1046, T1036.005
+// Reference: https://securelist.com/octlurk-silklurk-backdoors-central-asia/120840/
+// Author: Jarmi
+// Date: 2026-08-03
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: Adobe.exe/AnyDesk.exe are normally signed vendor binaries in Program Files; here
+//           they run from Users\...\Libraries or Users\Public\Pictures. Tune <add_known_admin_tools>.
+DeviceProcessEvents
+| where (FileName =~ "Adobe.exe" and FolderPath has_any (@"\Libraries\", @"\Users\Public\"))
+     or (FileName =~ "AnyDesk.exe" and FolderPath has @"\Users\Public\Pictures\")
+     or (FileName =~ "64.exe" and FolderPath has @"\Libraries\" and ProcessCommandLine has_any ("-help","-exit"))
+     or (FileName =~ "fc.exe" and ProcessCommandLine has_any ("22","3306","pp.txt"))
+| where ProcessCommandLine !has "<add_known_admin_tools>"
+| project Timestamp, DeviceName, AccountName, FolderPath, FileName, ProcessCommandLine, SHA256, ReportId
+| sort by Timestamp desc

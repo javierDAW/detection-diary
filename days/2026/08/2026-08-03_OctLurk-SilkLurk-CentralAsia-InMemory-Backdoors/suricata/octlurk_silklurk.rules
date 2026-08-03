@@ -1,0 +1,11 @@
+# OctLurk / SilkLurk / LurkProxy network detections
+# Author: Jarmi
+# Date: 2026-08-03
+# Reference: https://securelist.com/octlurk-silklurk-backdoors-central-asia/120840/
+# Notes: Indicators decay - revalidate the IP/domains/port before deploying inline. No custom vars.
+alert dns $HOME_NET any -> any any (msg:"OctLurk C2 DNS query multitoconference.com"; dns.query; content:"multitoconference.com"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:2026080301; rev:1;)
+alert dns $HOME_NET any -> any any (msg:"LurkProxy staging DNS query ssentialserv.xyz"; dns.query; content:"ssentialserv.xyz"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:2026080302; rev:1;)
+alert tcp $HOME_NET any -> 154.196.162.76 any (msg:"LurkProxy C2 connection to hardcoded IP"; flow:to_server,established; classtype:trojan-activity; sid:2026080303; rev:1;)
+alert tcp $HOME_NET any -> any 64980 (msg:"LurkProxy hardcoded listener port 64980 egress"; flow:to_server,established; classtype:trojan-activity; sid:2026080304; rev:1;)
+alert http $HOME_NET any -> any any (msg:"SilkLurk proxy CONNECT fixed User-Agent Chrome/86.0.4240.75"; flow:to_server,established; http.user_agent; content:"Chrome/86.0.4240.75 Safari/537.36"; classtype:trojan-activity; sid:2026080305; rev:1;)
+alert tls $HOME_NET any -> any any (msg:"OctLurk/SilkLurk C2 SNI multitoconference.com"; flow:to_server,established; tls.sni; content:"multitoconference.com"; nocase; classtype:trojan-activity; sid:2026080306; rev:1;)

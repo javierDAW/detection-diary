@@ -1,5 +1,105 @@
 [
  {
+  "date": "2026-08-03",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors",
+  "title": "OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments",
+  "clusters": [
+   "OctLurk/SilkLurk operator (unattributed, Chinese-speaking)"
+  ],
+  "country": "China (suspected nexus)",
+  "platforms": [
+   "windows",
+   "linux"
+  ],
+  "sectors": [
+   "government",
+   "healthcare",
+   "research",
+   "logistics",
+   "law-enforcement",
+   "education"
+  ],
+  "techniques": [
+   "T1078",
+   "T1053.005",
+   "T1543.003",
+   "T1574.002",
+   "T1620",
+   "T1055",
+   "T1027",
+   "T1140",
+   "T1082",
+   "T1046",
+   "T1110.001",
+   "T1003.006",
+   "T1555.003",
+   "T1056.001",
+   "T1115",
+   "T1113",
+   "T1071.001",
+   "T1090",
+   "T1571",
+   "T1114.002",
+   "T1560.001",
+   "T1021.002",
+   "T1036.005",
+   "T1105",
+   "T1219"
+  ],
+  "tech_count": 25,
+  "tldr": "Kaspersky's GReAT disclosed (2026-07-30) two new, heavily obfuscated backdoors - **OctLurk** and **SilkLurk** - plus a proxy utility, **LurkProxy**, used since January 2025 against government organizations across Central Asia (Afghanistan, Kyrgyzstan, Tajikistan, Uzbekistan, Kazakhstan) and the Syrian Arab Republic, spanning ministries of foreign affairs, law enforcement, healthcare, research, log",
+  "thumb": "thumbs/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors.svg",
+  "case_rel": "../days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "OctLurk/SilkLurk operator (unattributed, Chinese-speaking)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "octlurk & silklurk: in-memory, victim-keyed backdoors hitting central asian governments octlurk/silklurk operator (unattributed, chinese-speaking) china (suspected nexus) windows linux government healthcare research logistics law-enforcement education t1078 t1053.005 t1543.003 t1574.002 t1620 t1055 t1027 t1140 t1082 t1046 t1110.001 t1003.006 t1555.003 t1056.001 t1115 t1113 t1071.001 t1090 t1571 t1114.002 t1560.001 t1021.002 t1036.005 t1105 t1219 espionage / apt "
+ },
+ {
+  "date": "2026-08-02",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121",
+  "title": "Certighost: AD CS chase abuse turns any domain user into a Domain Controller (CVE-2026-54121)",
+  "clusters": [
+   "Certighost (CVE-2026-54121)"
+  ],
+  "country": "Unattributed (public research / PoC)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1078.002",
+   "T1136.002",
+   "T1068",
+   "T1557.001",
+   "T1649",
+   "T1550.003",
+   "T1003.006"
+  ],
+  "tech_count": 7,
+  "tldr": "On **2026-07-24** researchers **H0j3n and Aniq Fakhrul** published a full working proof-of-concept for **Certighost / CVE-2026-54121**, an **Active Directory Certificate Services (AD CS)** flaw that Microsoft patched ten days earlier (2026-07-14, improper authorization, CVSS 8.8). A standard, low-privilege **Domain Users** account with network reach to an Enterprise CA can obtain a certificate car",
+  "thumb": "thumbs/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121.svg",
+  "case_rel": "../days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "Certighost (CVE-2026-54121)",
+  "cve_count": 1,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "certighost: ad cs chase abuse turns any domain user into a domain controller (cve-2026-54121) certighost (cve-2026-54121) unattributed (public research / poc) windows cross-sector t1078.002 t1136.002 t1068 t1557.001 t1649 t1550.003 t1003.006 identity / cloud / saas "
+ },
+ {
   "date": "2026-08-01",
   "year": "2026",
   "month": "2026-08",
