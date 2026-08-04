@@ -1,0 +1,24 @@
+type,value,context,confidence,source
+sha256,14ed580291658fa6410f4cbb18d9a2f979b93f4ce640c7445d999bcf440492e8,ByteToCrypt Linux ransomware sample (ELF64 x86-64 statically linked musl/OpenSSL Alpine build),high,TLPBLACK 2026-07-28
+sha1,0f5b4c446c6e108e62d6af5667406dbbb7f3860a,ByteToCrypt Linux ransomware sample (same file),high,TLPBLACK 2026-07-28
+md5,ffd7c9a18bb4c8173e4c4b273595c9b7,ByteToCrypt Linux ransomware sample (same file),high,TLPBLACK 2026-07-28
+string,7e8489d4fecca4754d3e5f3ab49a5684bcb7cc19,GNU build ID of the ByteToCrypt ELF (build-level correlation),high,TLPBLACK 2026-07-28
+string,b1583dddcd97f24438c52bbdb414e58c324b25af3765b7e8a87521c4cf3b4d37,SHA-256 of the embedded RSA-4096 SPKI DER (durable campaign key-generation identifier),high,TLPBLACK 2026-07-28
+sha256,4e8c9f799b07b04dc04b9c63a088d2af73d3b383718875236550f5576c0cb75d,Decoded ByteToCrypt ransom note (stored Base64 over single-byte XOR 0xAA),high,TLPBLACK 2026-07-28
+string,.encrypted,Ciphertext destination suffix appended to each encrypted file,high,TLPBLACK 2026-07-28
+string,.tmp,Predictable intermediate ciphertext file before rename,medium,TLPBLACK 2026-07-28
+string,note,Runtime ransom-note filename written in the working directory,high,TLPBLACK 2026-07-28
+string,bytetocrypt,Self-referential basename-exclusion substring baked into the sample,high,TLPBLACK 2026-07-28
+string,05c2db4775cb46350f16814dfe3bfa856664f315585653e4c368af08ce50b0c31b,Session ID embedded in the ransom note (actor correlation),high,TLPBLACK 2026-07-28
+email,Bytetobreach@tuta.com,Contact address embedded in the ransom note,high,TLPBLACK 2026-07-28
+email,dodkhloyka@outlook.com,Contact address embedded in the ransom note,high,TLPBLACK 2026-07-28
+string,@Bytetobreach.33,Signal handle embedded in the ransom note,high,TLPBLACK 2026-07-28
+string,@Bytetobreach33,Telegram handle embedded in the ransom note,high,TLPBLACK 2026-07-28
+string,@GgsFafagas,X/Twitter handle embedded in the ransom note,high,TLPBLACK 2026-07-28
+domain,bytetobreach.com,ByteToBreach actor infrastructure (not contacted by the analysed sample),medium,WhiteHat NG 2026-05-15
+domain,bytetobreach.online,ByteToBreach actor infrastructure (not contacted by the analysed sample),medium,WhiteHat NG 2026-05-15
+domain,bytetobreach.xyz,ByteToBreach actor infrastructure (not contacted by the analysed sample),medium,WhiteHat NG 2026-05-15
+string,killall -9 rsyslogd syslog-ng auditd systemd-journald,Anti-forensics command 1 of 9 executed via system() after encryption,high,TLPBLACK 2026-07-28
+string,rm -rf /var/log/* /var/log/journal/* /run/log/journal/* /etc/audit/*,Anti-forensics command executed via system() to wipe logs and audit config,high,TLPBLACK 2026-07-28
+note,Binary has no application-level network communications; operator lateral movement used publicly available tooling such as ligolo-ng and remote-access utilities (AnyDesk / SystemBC),Detection surface is host behaviour and forensic artifacts rather than encryptor C2,high,TLPBLACK 2026-07-28
+note,No CVE is asserted for this case; the actor described the ANCPI intrusion as opportunistic using leaked credentials plus known vulnerabilities in edge software,Not a single named software vulnerability in scope; nothing maps to CISA KEV,medium,SecurityPatch 2026-07-17

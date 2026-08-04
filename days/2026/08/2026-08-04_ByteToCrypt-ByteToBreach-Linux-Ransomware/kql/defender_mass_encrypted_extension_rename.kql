@@ -1,0 +1,19 @@
+// Title: ByteToCrypt Mass .encrypted Creation with .tmp Intermediates (Linux Impact)
+// Id: b7e41c58-2d9a-4f13-8c60-9a3e7d15b0f4
+// MITRE: T1486 (Data Encrypted for Impact)
+// Reference: https://tlpblack.net/blog/20260728-a-deep-dive-into-bytetobreach-s-bytetocrypt-ransomware
+// Author: Jarmi
+// Date: 2026-08-04
+// Tested on: Microsoft Defender XDR (DeviceFileEvents, Linux onboarding)
+// FP notes: Backup/archival tools that append '.encrypted'. Baseline expected producers; the
+//           ransomware signal is a single process creating many .encrypted files fast, plus .tmp.
+DeviceFileEvents
+| where ActionType in ("FileCreated", "FileRenamed", "FileModified")
+| where FileName endswith ".encrypted" or FileName endswith ".tmp"
+| extend Kind = iff(FileName endswith ".encrypted", "encrypted", "tmp")
+| summarize EncryptedFiles = dcountif(FileName, Kind == "encrypted"),
+    TmpFiles = dcountif(FileName, Kind == "tmp"),
+    Sample = make_set(FolderPath, 10)
+    by DeviceId, DeviceName, InitiatingProcessFileName, InitiatingProcessId, bin(Timestamp, 5m)
+| where EncryptedFiles >= 25
+| order by EncryptedFiles desc

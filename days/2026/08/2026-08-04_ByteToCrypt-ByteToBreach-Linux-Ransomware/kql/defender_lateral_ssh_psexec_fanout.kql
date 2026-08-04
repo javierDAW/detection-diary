@@ -1,0 +1,20 @@
+// Title: Single-Account SSH + PsExec Fan-Out Before Ransomware (ByteToBreach)
+// Id: c1f8a06d-4e73-4b2a-9d51-6b0c8f2e93a7
+// MITRE: T1021.004 (SSH), T1021.002 (SMB/Windows Admin Shares), T1570 (Lateral Tool Transfer)
+// Reference: https://tlpblack.net/blog/20260728-a-deep-dive-into-bytetobreach-s-bytetocrypt-ransomware
+// Author: Jarmi
+// Date: 2026-08-04
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents, Windows + Linux onboarding)
+// FP notes: Admin automation / patching orchestrators. Baseline <add_known_admin_tools>; the
+//           signal is one account driving broad ssh + psexec fan-out shortly before encryption.
+let window = 1h;
+DeviceProcessEvents
+| where (FileName == "ssh" and ProcessCommandLine matches regex @"ssh\s+\S+@\S+")
+    or (FileName in~ ("psexec.exe", "psexec64.exe") or ProcessCommandLine has "psexec")
+| extend Vector = iff(FileName == "ssh", "ssh", "psexec")
+| summarize SshTargets = dcountif(ProcessCommandLine, Vector == "ssh"),
+    PsexecEvents = countif(Vector == "psexec"),
+    Devices = dcount(DeviceId)
+    by InitiatingProcessAccountName, bin(Timestamp, window)
+| where SshTargets >= 5 and PsexecEvents >= 1
+| order by SshTargets desc

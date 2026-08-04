@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-08-04",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware",
+  "title": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-by-datastore blast radius",
+  "clusters": [
+   "ByteToBreach"
+  ],
+  "country": "Algeria (financially motivated e-crime)",
+  "platforms": [
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "government",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1190",
+   "T1078",
+   "T1567",
+   "T1572",
+   "T1021.004",
+   "T1021.002",
+   "T1219",
+   "T1486",
+   "T1485",
+   "T1490",
+   "T1083",
+   "T1027",
+   "T1140",
+   "T1489",
+   "T1562.001",
+   "T1070.002",
+   "T1070.003"
+  ],
+  "tech_count": 17,
+  "tldr": "TLPBLACK published on 2026-07-28 the first thorough technical analysis of **ByteToCrypt**, the custom Linux ransomware wielded by the financially motivated **ByteToBreach** actor (whom KELA links to a cybercriminal based in Oran, Algeria, active since ~June 2025). The sample is a stripped ELF64 statically linked against OpenSSL, ~4 MB, that walks the current working directory and hybrid-encrypts e",
+  "thumb": "thumbs/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware.svg",
+  "case_rel": "../days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "ByteToBreach",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "bytetocrypt: bytetobreach's brittle-but-effective linux ransomware and its esxi-by-datastore blast radius bytetobreach algeria (financially motivated e-crime) linux network-edge government cross-sector t1190 t1078 t1567 t1572 t1021.004 t1021.002 t1219 t1486 t1485 t1490 t1083 t1027 t1140 t1489 t1562.001 t1070.002 t1070.003 ransomware / e-crime "
+ },
+ {
   "date": "2026-08-03",
   "year": "2026",
   "month": "2026-08",

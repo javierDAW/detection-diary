@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-08-03 07:45 UTC
+# generated 2026-08-04 10:34 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -67,6 +67,9 @@ brightmosaic.info
 bsc-dataseed.binance.org
 bsc-rpc.publicnode.com
 business-data-leaks.com
+bytetobreach.com
+bytetobreach.online
+bytetobreach.xyz
 calm-wildflower-1349.hellohiall.workers.dev
 campainter.digital
 carrolc.com

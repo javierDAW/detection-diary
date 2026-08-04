@@ -1,0 +1,230 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">ByteToCrypt / ByteToBreach Linux ransomware kill chain</title>
+<desc id="d">Two-lane kill chain. Left lane, victim environment: initial access via edge exploit and leaked credentials, internal recon and lateral movement over SSH and PsExec, backup channel with AnyDesk SystemBC and ligolo-ng tunneling, data theft before impact, ByteToCrypt encryptor run from a datastore, fixed nine-command anti-forensics burst, systems and backup destruction with extortion. Right lane, ByteToCrypt binary internals: stripped ELF64 musl OpenSSL sample, embedded RSA-4096 public key and note as Base64 over XOR 0xAA, per-file AES-256-CBC wrapped under RSA-OAEP, destructive tmp-then-rename chain with ignored return values, fixed system() anti-forensics commands, generic directory walker with no ESXi awareness. Red anchors: encryptor run from datastore, anti-forensics burst, systems and backup destruction.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">ByteToCrypt: ByteToBreach Linux ransomware</text>
+<text class="meta" x="20" y="58">Vendor: TLPBLACK - Date: 2026-07-28 - Cluster: ByteToBreach (Algeria) - Day 99</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="105">VICTIM ENVIRONMENT</text>
+<text class="laneLabelR" x="460" y="105">BYTETOCRYPT BINARY INTERNALS</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="75" y="144">Initial access</text>
+<text class="sub" x="40" y="168">Edge-device exploit (known bug)</text>
+<text class="sub" x="40" y="184">Leaked / valid credentials</text>
+<text class="sub" x="40" y="200">Actor claims no zero-day</text>
+<text class="mono" x="40" y="226">MITRE T1190 / T1078</text>
+<text class="mono" x="40" y="244">ANCPI: stolen creds + old CVE</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="75" y="294">Recon + lateral movement</text>
+<text class="sub" x="40" y="318">Exploit old software, brute AD</text>
+<text class="sub" x="40" y="334">SSH to Unix, PsExec to Windows</text>
+<text class="sub" x="40" y="350">One account fans out widely</text>
+<text class="mono" x="40" y="376">T1021.004 / T1021.002</text>
+<text class="mono" x="40" y="394">deploy path: ssh + psexec</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="75" y="444">Backup channel + tunnel</text>
+<text class="sub" x="40" y="468">AnyDesk / SystemBC persistence</text>
+<text class="sub" x="40" y="484">ligolo-ng network tunneling</text>
+<text class="sub" x="40" y="500">Encryptor itself has no C2</text>
+<text class="mono" x="40" y="526">MITRE T1219 / T1572</text>
+<text class="mono" x="40" y="544">hunt tools, not payload calls</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="75" y="594">Data theft (double extortion)</text>
+<text class="sub" x="40" y="618">Exfiltrate docs, DBs, source</text>
+<text class="sub" x="40" y="634">ANCPI: GitLab + citizen data</text>
+<text class="sub" x="40" y="650">Sold on forum within a day</text>
+<text class="mono" x="40" y="676">MITRE T1567</text>
+<text class="mono" x="40" y="694">theft is the primary loss</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="75" y="744">Encrypt from datastore</text>
+<text class="sub" x="40" y="768">Run bytetocrypt with CWD = .</text>
+<text class="sub" x="40" y="784">No target arg, no ESXi layer</text>
+<text class="sub" x="40" y="800">VMs hit only via datastore</text>
+<text class="mono" x="40" y="826">MITRE T1486 / T1083</text>
+<text class="mono" x="40" y="844">sha256 14ed5802...0492e8</text>
+
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="75" y="894">Anti-forensics burst</text>
+<text class="sub" x="40" y="918">9 fixed system() commands</text>
+<text class="sub" x="40" y="934">Kill logs, wipe /var/log, utmp</text>
+<text class="sub" x="40" y="950">Runs even if encryption failed</text>
+<text class="mono" x="40" y="976">T1489 / T1562.001 / T1070.002</text>
+<text class="mono" x="40" y="994">off-host forwarding survives</text>
+
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="75" y="1044">Destruction + extortion</text>
+<text class="sub" x="40" y="1068">Failed extortion at ANCPI</text>
+<text class="sub" x="40" y="1084">Systems and backups destroyed</text>
+<text class="sub" x="40" y="1100">National land registry frozen</text>
+<text class="mono" x="40" y="1126">MITRE T1485 / T1490</text>
+<text class="mono" x="40" y="1144">immutable backups are the fix</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">A</text>
+<text class="label" x="505" y="149">Sample profile</text>
+<text class="sub" x="470" y="173">ELF64 x86-64, stripped</text>
+<text class="sub" x="470" y="189">Static musl + OpenSSL 3.5.7</text>
+<text class="sub" x="470" y="205">Alpine GCC 15.2.0, ~4.2 MB</text>
+<text class="sub" x="470" y="221">8 named app routines</text>
+<text class="mono" x="470" y="251">md5 ffd7c9a1...75c9b7</text>
+<text class="mono" x="470" y="269">only 8/63 AV at first upload</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">B</text>
+<text class="label" x="505" y="319">Embedded config</text>
+<text class="sub" x="470" y="343">RSA-4096 pubkey + ransom note</text>
+<text class="sub" x="470" y="359">Base64 over single-byte XOR</text>
+<text class="sub" x="470" y="375">Constant key 0xAA, no integrity</text>
+<text class="sub" x="470" y="391">Defeats a naive strings pass</text>
+<text class="mono" x="470" y="421">MITRE T1027 / T1140</text>
+<text class="mono" x="470" y="439">SPKI sha256 b1583ddd...4d37</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">C</text>
+<text class="label" x="505" y="489">Per-file hybrid crypto</text>
+<text class="sub" x="470" y="513">RAND_bytes AES-256 key + IV</text>
+<text class="sub" x="470" y="529">RSA-OAEP wrap = 512 bytes</text>
+<text class="sub" x="470" y="545">AES-256-CBC, PKCS#7 padding</text>
+<text class="sub" x="470" y="561">No auth tag, no magic/size</text>
+<text class="mono" x="470" y="591">hdr: 00 02 | 512B key | 16B IV</text>
+<text class="mono" x="470" y="609">RSA private key = recovery root</text>
+
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">D</text>
+<text class="label" x="505" y="659">Destructive rename chain</text>
+<text class="sub" x="470" y="683">src -&gt; .tmp -&gt; unlink -&gt; .encrypted</text>
+<text class="sub" x="470" y="699">All return values ignored</text>
+<text class="sub" x="470" y="715">Failed write can precede delete</text>
+<text class="sub" x="470" y="731">Announces false success</text>
+<text class="mono" x="470" y="761">orphan .tmp = recovery chance</text>
+<text class="mono" x="470" y="779">plaintext survivors possible</text>
+
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">E</text>
+<text class="label" x="505" y="829">Fixed anti-forensics</text>
+<text class="sub" x="470" y="853">killall rsyslogd auditd journald</text>
+<text class="sub" x="470" y="869">auditctl -e 0; dmesg -C</text>
+<text class="sub" x="470" y="885">rm -rf /var/log/*; truncate utmp</text>
+<text class="sub" x="470" y="901">history -c; wipe known_hosts</text>
+<text class="mono" x="470" y="931">9 commands via system()</text>
+<text class="mono" x="470" y="949">exact strings = host IOCs</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">F</text>
+<text class="label" x="505" y="999">Not ESXi-aware walker</text>
+<text class="sub" x="470" y="1023">Generic CWD directory walk</text>
+<text class="sub" x="470" y="1039">Single-threaded, full-file</text>
+<text class="sub" x="470" y="1055">No device boundary; skips links</text>
+<text class="sub" x="470" y="1071">Excludes .ssh .cfg pem note</text>
+<text class="mono" x="470" y="1101">reaches VMs via datastore only</text>
+<text class="mono" x="470" y="1119">restrict datastore mount/exec</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,780 L460,712" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,930 L460,882" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="30" y="1200">Detection anchors (red = behavioural must-catch; no CVE, no encryptor C2)</text>
+<text class="footerT" x="30" y="1222">1) encryptor run from datastore (mass .encrypted via .tmp)  2) 9-command anti-forensics burst  3) systems + backup destruction</text>
+<text class="footerT" x="30" y="1240">Recovery: RSA private key, live AES key from RAM, immutable/offline backups, plaintext survivors of the fragile rename chain.</text>
+<text class="footerT" x="30" y="1258">TLPBLACK 2026-07-28 - category ransomware - detection-diary Day 99</text>
+</svg>
