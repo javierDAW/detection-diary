@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**98 cases** · **165 actors/clusters** · **357 ATT&CK techniques** · **16 platforms** · **83 sectors** · 2026-04-28 -> 2026-08-03
+**99 cases** · **166 actors/clusters** · **357 ATT&CK techniques** · **16 platforms** · **83 sectors** · 2026-04-28 -> 2026-08-04
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/"><img src="days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/kill_chain.svg" alt="2026-08-04 kill chain" width="240"></a><br><sub><b>2026-08-04</b><br>ByteToBreach</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/"><img src="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/kill_chain.svg" alt="2026-08-03 kill chain" width="240"></a><br><sub><b>2026-08-03</b><br>OctLurk/SilkLurk operator (unattributed, Chinese-speaking)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/"><img src="days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/kill_chain.svg" alt="2026-08-02 kill chain" width="240"></a><br><sub><b>2026-08-02</b><br>Certighost (CVE-2026-54121)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/"><img src="days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/kill_chain.svg" alt="2026-08-01 kill chain" width="240"></a><br><sub><b>2026-08-01</b><br>SourTrade</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/"><img src="days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/kill_chain.svg" alt="2026-08-01 kill chain" width="240"></a><br><sub><b>2026-08-01</b><br>SourTrade</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/"><img src="days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/kill_chain.svg" alt="2026-07-31 kill chain" width="240"></a><br><sub><b>2026-07-31</b><br>V25 / Generation 26 XMRig botnet</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/"><img src="days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/kill_chain.svg" alt="2026-07-30 kill chain" width="240"></a><br><sub><b>2026-07-30</b><br>Joyfill npm compromise (StepSecurity-tracked, unattributed)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/"><img src="days/2026/07/2026-07-29_OAuth-ClientID-Spoofing-Entra-ROPC-Credential-Validation/kill_chain.svg" alt="2026-07-29 kill chain" width="240"></a><br><sub><b>2026-07-29</b><br>UNK_pyreq2323 · UNK_OutFlareAZ · UNK_CustomCloak</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

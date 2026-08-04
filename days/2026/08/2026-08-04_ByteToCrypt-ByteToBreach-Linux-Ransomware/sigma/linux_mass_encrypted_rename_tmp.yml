@@ -1,0 +1,35 @@
+title: Linux Mass File Rename to .encrypted via .tmp (ByteToCrypt Impact)
+id: 115f0ade-fea6-48fe-b925-e586ce42f35e
+status: experimental
+description: >
+  Detects the on-disk footprint of the ByteToCrypt encryptor, which writes each ciphertext to
+  <path>.tmp and renames it to <path>.encrypted after unlinking the original. A single process
+  producing many .encrypted files (and .tmp intermediates) under a datastore or user tree is a
+  ransomware-impact signal. This rule fires per file event; the burst threshold (many files from
+  one process in a short window) is enforced in SIEM aggregation, as explained here.
+references:
+  - https://tlpblack.net/blog/20260728-a-deep-dive-into-bytetobreach-s-bytetocrypt-ransomware
+  - https://attack.mitre.org/techniques/T1486/
+author: Jarmi
+date: 2026/08/04
+tags:
+  - attack.impact
+  - attack.t1486
+logsource:
+  product: linux
+  category: file_event
+detection:
+  selection_encrypted:
+    TargetFilename|endswith: '.encrypted'
+  selection_note:
+    TargetFilename|endswith:
+      - '/note'
+  condition: selection_encrypted or selection_note
+falsepositives:
+  - Legitimate backup or archival tooling that appends a '.encrypted' suffix. Baseline expected
+    producers; the ransomware signal is many files from a single non-backup process quickly.
+fields:
+  - TargetFilename
+  - Image
+  - User
+level: high

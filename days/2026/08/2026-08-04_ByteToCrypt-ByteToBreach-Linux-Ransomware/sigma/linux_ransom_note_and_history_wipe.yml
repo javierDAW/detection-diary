@@ -1,0 +1,44 @@
+title: Linux Shell-History and known_hosts Wipe (ByteToCrypt Post-Encryption)
+id: f5d80e3f-baf0-4897-a359-c0fb642938af
+status: experimental
+description: >
+  Detects the shell-history and SSH known_hosts removal that ByteToCrypt performs as part of its
+  fixed anti-forensics block: clearing ~/.bash_history via redirection, 'history -c', and removing
+  /root/.bash_history, /home/*/.bash_history and /root/.ssh/known_hosts. Best correlated with a
+  concurrent ransom 'note' write or the logging-daemon kill from the same parent process.
+references:
+  - https://tlpblack.net/blog/20260728-a-deep-dive-into-bytetobreach-s-bytetocrypt-ransomware
+  - https://attack.mitre.org/techniques/T1070/003/
+author: Jarmi
+date: 2026/08/04
+tags:
+  - attack.defense-evasion
+  - attack.t1070.003
+logsource:
+  product: linux
+  category: process_creation
+detection:
+  selection_history_clear:
+    CommandLine|contains:
+      - 'history -c'
+  selection_bash_history_wipe:
+    CommandLine|contains|all:
+      - '.bash_history'
+    CommandLine|contains:
+      - 'rm '
+      - ' > '
+      - 'truncate '
+  selection_known_hosts:
+    CommandLine|contains|all:
+      - 'rm '
+      - '.ssh/known_hosts'
+  condition: 1 of selection_*
+falsepositives:
+  - Interactive admins clearing their own history. The ransomware signal is a non-interactive
+    parent clearing multiple users' histories plus known_hosts in one burst.
+fields:
+  - CommandLine
+  - User
+  - ParentImage
+
+level: medium

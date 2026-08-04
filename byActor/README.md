@@ -29,6 +29,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [BlackFile (self-branded DLS)](./blackfile-self-branded-dls/) | 1 |
 | [Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust](./bootkit-ecosystem-blacklotus-bootkitty-pkfail-bombshell-exploiting-frozen-secure-boot-trust/) | 1 |
 | [BreachForums](./breachforums/) | 1 |
+| [ByteToBreach](./bytetobreach/) | 1 |
 | [C0063](./c0063/) | 1 |
 | [CL-CRI-1116 (Palo Alto Unit 42)](./cl-cri-1116-palo-alto-unit-42/) | 1 |
 | [CL-STA-0049](./cl-sta-0049/) | 1 |

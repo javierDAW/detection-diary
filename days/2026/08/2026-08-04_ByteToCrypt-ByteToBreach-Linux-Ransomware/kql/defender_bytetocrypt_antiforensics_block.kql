@@ -1,0 +1,17 @@
+// Title: ByteToCrypt Fixed Anti-Forensics Command Block (Linux)
+// Id: 3a9d7e21-6c04-4b8f-9e2a-1f7c5b0d84a2
+// MITRE: T1562.001 (Impair Defenses), T1489 (Service Stop), T1070.002 (Clear Linux System Logs)
+// Reference: https://tlpblack.net/blog/20260728-a-deep-dive-into-bytetobreach-s-bytetocrypt-ransomware
+// Author: Jarmi
+// Date: 2026-08-04
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents, Linux onboarding)
+// FP notes: Host decommissioning / aggressive log rotation. The ransomware signal is >=2 of the
+//           fixed commands from one device within 5 minutes, often alongside *.encrypted renames.
+DeviceProcessEvents
+| where ProcessCommandLine has_any (
+    "killall -9 rsyslogd", "auditctl -e 0", "dmesg -C",
+    "rm -rf /var/log", "truncate -s 0 /var/run/utmp", "truncate -s 0 /var/log/lastlog")
+| summarize Commands = make_set(ProcessCommandLine, 20), DistinctCmds = dcount(ProcessCommandLine),
+    Hits = count() by DeviceId, DeviceName, bin(Timestamp, 5m)
+| where DistinctCmds >= 2
+| order by DistinctCmds desc

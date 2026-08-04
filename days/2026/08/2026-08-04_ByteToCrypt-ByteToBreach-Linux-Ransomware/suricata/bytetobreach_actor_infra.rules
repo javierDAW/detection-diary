@@ -1,0 +1,26 @@
+# Suricata 7.x rules - ByteToBreach actor infrastructure (ByteToCrypt ransomware; TLPBLACK 2026-07-28)
+# Author: Jarmi
+# Date: 2026-08-04
+# Reference: https://tlpblack.net/blog/20260728-a-deep-dive-into-bytetobreach-s-bytetocrypt-ransomware
+# Custom variables: none required. Uses default $HOME_NET / $EXTERNAL_NET.
+# Notes: The ByteToCrypt encryptor has NO application-level network communications. These rules
+#        target actor-context infrastructure reported by WhiteHat NG (2026-05-15) and are lower
+#        confidence for live C2 - refang/revalidate before blocking (domains may be sinkholed/dead).
+
+# 1. DNS query for actor domain bytetobreach.com
+alert dns $HOME_NET any -> any any (msg:"ByteToBreach actor infra - DNS query bytetobreach.com"; dns.query; content:"bytetobreach.com"; nocase; endswith; classtype:trojan-activity; sid:26080401; rev:1;)
+
+# 2. DNS query for actor domain bytetobreach.online
+alert dns $HOME_NET any -> any any (msg:"ByteToBreach actor infra - DNS query bytetobreach.online"; dns.query; content:"bytetobreach.online"; nocase; endswith; classtype:trojan-activity; sid:26080402; rev:1;)
+
+# 3. DNS query for actor domain bytetobreach.xyz
+alert dns $HOME_NET any -> any any (msg:"ByteToBreach actor infra - DNS query bytetobreach.xyz"; dns.query; content:"bytetobreach.xyz"; nocase; endswith; classtype:trojan-activity; sid:26080403; rev:1;)
+
+# 4. TLS SNI for any bytetobreach actor domain
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"ByteToBreach actor infra - TLS SNI bytetobreach"; tls.sni; content:"bytetobreach"; nocase; classtype:trojan-activity; sid:26080404; rev:1;)
+
+# 5. HTTP Host header for any bytetobreach actor domain
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ByteToBreach actor infra - HTTP Host bytetobreach"; flow:established,to_server; http.host; content:"bytetobreach"; nocase; classtype:trojan-activity; sid:26080405; rev:1;)
+
+# 6. Ransom-note contact leakage over HTTP (corroborating, low severity)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ByteToBreach actor infra - ransom-note contact Bytetobreach in HTTP body"; flow:established,to_server; http.request_body; content:"Bytetobreach"; nocase; classtype:trojan-activity; sid:26080406; rev:1;)

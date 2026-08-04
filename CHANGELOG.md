@@ -1,3 +1,21 @@
+## 2026.08.04 — Day 99 — ByteToCrypt: ByteToBreach's Linux ransomware (datastore-run, not ESXi-aware)
+
+### Added
+- `days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/` — TLPBLACK's 2026-07-28 reverse-engineering of ByteToCrypt, the custom Linux encryptor used by the financially motivated ByteToBreach actor (KELA attributes it to an individual in Oran, Algeria). A stripped ELF64 (static musl/OpenSSL) that hybrid-encrypts from the current working directory; it is not ESXi-aware and reaches VMs only when run from a datastore. The same actor froze Romania's ANCPI land registry (July 2026), destroying systems and backups after failed extortion.
+- Sigma (3): `linux_bytetocrypt_antiforensics_burst.yml` — nine-command anti-forensics block; `linux_mass_encrypted_rename_tmp.yml` — bulk `.encrypted` via `.tmp`; `linux_ransom_note_and_history_wipe.yml` — ransom `note` write + history/known_hosts wipe.
+- KQL (3): fixed anti-forensics command correlation; mass `.encrypted` creation burst; single-account SSH+PsExec fan-out before impact.
+- YARA (1 file, 2 rules): anti-forensics command strings + `%s.encrypted`/developer messages; XOR and Base64 decoder opcode patterns.
+- Suricata (1 file, 6 sids): ByteToBreach actor-domain DNS/TLS/HTTP and ransom-note contact leakage — actor context, not encryptor C2 (the binary has no network code).
+- PEAK hunts (3): anti-forensics burst; mass `.encrypted` rename from a datastore; lateral fan-out + AnyDesk/SystemBC/ligolo-ng backup channel.
+- `iocs.csv` (23 entries) — sample hashes, RSA SPKI SHA-256, note contacts, anti-forensics command strings, actor domains. No CVE in scope; no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, acc-ransomware accent; victim-environment vs binary-internals lanes; datastore/anti-forensics/destruction anchors.
+
+### Pedagogy
+- Recovery hunting starts with the malware's bugs: a return-value-ignoring rename chain leaves plaintext survivors and orphan `.tmp` files.
+- The static embedded RSA public key (SPKI SHA-256) is a durable campaign identifier even as per-file AES keys and file hashes vary.
+- "ESXi ransomware" is often a generic directory walker; the control is restricting datastore mount/exec and root reachability, not signaturing a locker.
+- No CVE, national-scale impact: immutable off-host backups and credential hygiene are exactly what a patch-only program misses.
+
 ## 2026.08.03 — Day 98 — OctLurk & SilkLurk: in-memory victim-keyed backdoors hitting Central Asian governments
 
 ### Added

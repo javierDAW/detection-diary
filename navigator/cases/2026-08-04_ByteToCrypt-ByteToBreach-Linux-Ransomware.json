@@ -1,0 +1,146 @@
+{
+  "name": "2026-08-04 — 2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-by-datastore blast radius — clusters: ByteToBreach",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1567",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1572",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1021.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1021.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1485",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1490",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1083",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1489",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1070.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    },
+    {
+      "techniqueID": "T1070.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}
