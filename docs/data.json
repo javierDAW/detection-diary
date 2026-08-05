@@ -1,5 +1,48 @@
 [
  {
+  "date": "2026-08-05",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat",
+  "title": "Indirect prompt injection against AI web agents: crypto-payment scam and DeBank typosquat (Zscaler ThreatLabz)",
+  "clusters": [
+   "Unattributed IPI operator"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "cloud-multi",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "cryptocurrency",
+   "ai-ml-tooling",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1608.006",
+   "T1583.001",
+   "T1656",
+   "T1036.005",
+   "T1027",
+   "T1204",
+   "T1657"
+  ],
+  "tech_count": 7,
+  "tldr": "On 2026-07-02 Zscaler ThreatLabz published two real-world **indirect prompt injection (IPI)** campaigns in which attackers hide instructions inside ordinary-looking web pages so that a browsing **AI agent** ingests them as data and then obeys them as commands. **Campaign 1** is a payment scam disguised as API documentation for a non-existent Python library, `requests-secure-v2`: it is floated to t",
+  "thumb": "thumbs/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat.svg",
+  "case_rel": "../days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Unattributed IPI operator",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "indirect prompt injection against ai web agents: crypto-payment scam and debank typosquat (zscaler threatlabz) unattributed ipi operator unknown cloud-multi supply-chain technology finance cryptocurrency ai-ml-tooling cross-sector t1608.006 t1583.001 t1656 t1036.005 t1027 t1204 t1657 other "
+ },
+ {
   "date": "2026-08-04",
   "year": "2026",
   "month": "2026-08",

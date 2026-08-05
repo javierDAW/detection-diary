@@ -159,6 +159,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UNK_pyreq2323](./unk-pyreq2323/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
 | [Unattributed (Montana Empire operator)](./unattributed-montana-empire-operator/) | 1 |
+| [Unattributed IPI operator](./unattributed-ipi-operator/) | 1 |
 | [Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)](./unattributed-e-crime-bumblebee-adaptixc2-akira/) | 1 |
 | [Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)](./unattributed-fake-invitation-phish-kit-operator-any-run-tracked/) | 1 |
 | [Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)](./unattributed-ip6-arpa-reverse-dns-phishing-operator-infoblox-tracked/) | 1 |

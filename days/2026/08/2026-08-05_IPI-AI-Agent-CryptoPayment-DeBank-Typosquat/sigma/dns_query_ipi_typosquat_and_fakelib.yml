@@ -1,0 +1,51 @@
+title: DNS Query for Indirect-Prompt-Injection Campaign Domains (DeBank Typosquat and Fake Python Library)
+id: 4305e13b-a67a-400d-93a8-6a496a6073b4
+status: experimental
+description: |
+  Detects a host-side DNS query (Sysmon EID 22) that resolves one of the Zscaler
+  ThreatLabz indirect-prompt-injection campaign domains from July 2026, including
+  the DeBank typosquat debank[.]auction and the fake-library documentation host
+  py-lib-repository[.]dev. Firing on resolution rather than on the full URL means
+  the rule works even when the agent uses TLS and no proxy body is available. The
+  domains are single-purpose IPI staging infrastructure, so a resolution from an
+  AI-agent runner or developer host is high-signal. The durable pivot is the
+  domain set plus the .global-transit-authority.org parent used for a subdomain
+  site; re-registration under new names is expected, so also run the content and
+  proxy rules that key on the IPI content shape.
+references:
+  - https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents
+  - https://securityweek.com/prompt-injection-attacks-trick-ai-agents-into-making-crypto-payments/
+  - https://attack.mitre.org/techniques/T1583/001/
+author: Jarmi
+date: 2026/08/05
+tags:
+  - attack.resource-development
+  - attack.t1583.001
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection_exact:
+    QueryName:
+      - 'py-lib-repository.dev'
+      - 'debank.auction'
+      - 'market-insight-global.com'
+      - 'identity-breach-response.org'
+      - 'runners-daily-blog.com'
+      - 'bistro-reserve-now.net'
+      - 'edge-compliance-node.org'
+      - 'digital-asset-mart.org'
+      - 'consensus-protocol-v4.org'
+      - 'visual-media-rights-group.org'
+  selection_suffix:
+    QueryName|endswith: '.global-transit-authority.org'
+  condition: selection_exact or selection_suffix
+falsepositives:
+  - Deliberate analyst or sandbox resolution of the reported domains; scope to
+    production AI-agent and developer subnets <add_known_research_hosts>
+fields:
+  - QueryName
+  - Image
+  - ComputerName
+
+level: high

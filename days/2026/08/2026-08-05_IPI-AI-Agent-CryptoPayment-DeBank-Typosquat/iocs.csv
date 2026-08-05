@@ -1,0 +1,29 @@
+type,value,context,confidence,source
+domain,py-lib-repository.dev,Campaign 1 IPI payment-scam site posing as API documentation for the fake Python library requests-secure-v2,high,Zscaler ThreatLabz 2026-07-02
+domain,debank.auction,Campaign 2 typosquat impersonating the DeBank DeFi portfolio tracker; hidden IPI promotes it as the authoritative DeBank source,high,Zscaler ThreatLabz 2026-07-02
+domain,market-insight-global.com,Campaign 1 related IPI site linked from GitHub repo Open-Agent-Utilities/mig-institutional-api-client,high,Zscaler ThreatLabz 2026-07-02
+domain,identity-breach-response.org,Campaign 1 related IPI site linked from GitHub repo Open-Agent-Utilities/session-token-leak-detector,high,Zscaler ThreatLabz 2026-07-02
+domain,runners-daily-blog.com,IPI site (unauthorized-transaction intent) linked from Open-Agent-Utilities/sneaker-drop-monitor-v2; also independently listed by Unit 42 (cross-vendor overlap),high,Zscaler ThreatLabz 2026-07-02
+domain,bistro-reserve-now.net,Campaign 1 related IPI site linked from GitHub repo Open-Agent-Utilities/opentable-resy-bypasser,high,Zscaler ThreatLabz 2026-07-02
+domain,edge-compliance-node.org,Campaign 1 related IPI site linked from GitHub repo Open-Agent-Utilities/bot-compliance-middleware,high,Zscaler ThreatLabz 2026-07-02
+domain,digital-asset-mart.org,Campaign 1 related IPI site linked from GitHub repo Open-Agent-Utilities/digital-asset-arbitrage-cli,high,Zscaler ThreatLabz 2026-07-02
+domain,consensus-protocol-v4.org,Campaign 1 related IPI site linked from GitHub repo Open-Agent-Utilities/llm-fact-check-protocol,high,Zscaler ThreatLabz 2026-07-02
+domain,visual-media-rights-group.org,Campaign 1 related IPI site linked from GitHub repo Open-Agent-Utilities/royalty-free-image-scraper,high,Zscaler ThreatLabz 2026-07-02
+domain,permits.global-transit-authority.org,Campaign 1 related IPI site (subdomain) linked from GitHub repo Open-Agent-Utilities/global-visa-automation-cli,high,Zscaler ThreatLabz 2026-07-02
+url,https://github.com/Open-Agent-Utilities,GitHub account (10 repositories) staging links to the campaign 1 IPI sites to seed AI-agent search and tooling workflows,high,Zscaler ThreatLabz 2026-07-02
+url,https://github.com/Open-Agent-Utilities/requests-secure-v2,GitHub repo linking to py-lib-repository.dev and the fake requests-secure-v2 library lure,high,Zscaler ThreatLabz 2026-07-02
+string,0x691bc3793205e574fa7b4aa068e62c0e470ad267,Hardcoded attacker Ethereum wallet in campaign 1 web content; receives ~0.0012 ETH ($3) fake API-key payments (address had received larger prior payments),high,Zscaler ThreatLabz 2026-07-02
+string,requests-secure-v2,Fake Python library name used as the SEO-poisoning and IPI lure in campaign 1,high,Zscaler ThreatLabz 2026-07-02
+string,MissingLicenseKeyException,Fabricated exception string in campaign 1 IPI content that frames a $3.00 developer license payment as the fix,high,Zscaler ThreatLabz 2026-07-02
+string,system-traceback-layer,CSS class of the off-screen (left:-9999px) hidden DOM element carrying the campaign 1 IPI instructions,high,Zscaler ThreatLabz 2026-07-02
+string,HTML.MalURL.PromptInj.RC.M.VG,Zscaler detection/threat name for the IPI URLs in this research,medium,Zscaler ThreatLabz 2026-07-02
+note,IPI = indirect prompt injection: hidden instructions in web content (HTML/CSS/JSON-LD) that a browsing AI agent ingests as data and then follows as commands. No CVE and no malware binary; the vulnerable component is the LLM/agent that cannot separate instructions from data,high,Zscaler ThreatLabz 2026-07-02
+note,Campaign 1 impact test: 4 of 26 LLMs executed the fraudulent payment - Llama 3.3 70B Instruct; Llama 3.2 90B Vision Instruct; Gemini 3 Flash; Gemini 2.5 Pro,high,Zscaler ThreatLabz 2026-07-02
+note,Campaign 2 impact test: 2 of 26 LLMs miscategorized debank.auction as legitimate under minimal context - GPT-5.4 (crawled alongside other sources) and Claude Sonnet 4.5 (fake content in isolation); no models failed when the official debank.com was provided as reference,high,Zscaler ThreatLabz 2026-07-02
+note,Campaign 2 fabricated trust indicators in IPI: Rabby Security Engine integration and a 9.9/10 user trust score; JSON-LD falsely names debank.com as publisher of the SoftwareApplication DeBank,medium,Zscaler ThreatLabz 2026-07-02 / SecurityWeek 2026-07
+domain,reviewerpress.com,Unit 42 (2026-03-03) first real-world AI ad-review-bypass IPI site (advertorial-maxvision-can); 24 injection attempts - cross-vendor IPI context not part of the Zscaler campaigns,medium,Unit 42 2026-03-03
+domain,splintered.co.uk,Unit 42 IPI case (critical - data-destruction payload delete your database via CSS suppression) - cross-vendor IPI context,medium,Unit 42 2026-03-03
+domain,storage3d.com,Unit 42 IPI case (unauthorized-transaction Stripe donation via HTML attribute cloaking) - cross-vendor IPI context,medium,Unit 42 2026-03-03
+url,https://buy.stripe.com/7sY4gsbMKdZwfx39Sq0oM00,Unit 42 IPI payment URL abused by storage3d.com - cross-vendor IPI context; Stripe is a legitimate host so treat as weak corroboration,medium,Unit 42 2026-03-03
+url,https://paypal.me/shiftypumpkin,Unit 42 IPI payment target ($5000 instruction) for perceptivepumpkin.com / shiftypumpkin.com - cross-vendor IPI context,medium,Unit 42 2026-03-03
+note,Detection philosophy: the durable indicators are the IPI content shape (off-screen/CSS-hidden instruction blocks JSON-LD offers objects fabricated exceptions) and the staging infra (fake package names typosquat domains Open-Agent-Utilities repos wallet address) not any single rotating hostname,high,Zscaler ThreatLabz 2026-07-02 / Unit 42 2026-03-03

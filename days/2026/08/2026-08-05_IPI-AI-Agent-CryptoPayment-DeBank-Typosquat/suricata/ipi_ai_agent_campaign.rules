@@ -1,0 +1,22 @@
+# Indirect Prompt Injection (IPI) targeting AI agents - Zscaler ThreatLabz July 2026
+# Author: Jarmi
+# Reference: https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents
+#
+# Visibility caveats:
+#  * sid 2026080501-2026080503 fire on DNS and the TLS ClientHello SNI - visible on raw traffic.
+#  * sid 2026080504-2026080507 inspect HTTP request/response bodies and REQUIRE TLS inspection
+#    (decrypting proxy / MITM) or replayed cleartext proxy logs; the campaign sites are HTTPS.
+#  * sid 2026080505 (github Open-Agent-Utilities) matches a path on a legitimate host (github.com):
+#    treat as weak corroboration scoped to a suspected AI-agent / developer host, not a verdict.
+#  * IPI has no binary payload; the durable signal is the content shape (sid 2026080506/2026080507).
+#
+# Campaign markers: debank.auction ; py-lib-repository.dev ; requests-secure-v2 ;
+#   MissingLicenseKeyException ; system-traceback-layer ; wallet 0x691bc3793205e574fa7b4aa068e62c0e470ad267
+
+alert dns any any -> any any (msg:"IPI-AI DNS query for DeBank typosquat debank.auction"; dns.query; content:"debank.auction"; nocase; classtype:domain-c2; sid:2026080501; rev:1;)
+alert dns any any -> any any (msg:"IPI-AI DNS query for fake-library IPI host py-lib-repository.dev"; dns.query; content:"py-lib-repository.dev"; nocase; classtype:domain-c2; sid:2026080502; rev:1;)
+alert tls any any -> any any (msg:"IPI-AI TLS SNI to IPI campaign host (debank.auction or py-lib-repository.dev)"; tls.sni; pcre:"/(debank\.auction|py-lib-repository\.dev)$/i"; classtype:domain-c2; sid:2026080503; rev:1;)
+alert http any any -> any any (msg:"IPI-AI HTTP request to DeBank typosquat debank.auction (needs TLS inspection)"; flow:established,to_server; http.host; content:"debank.auction"; nocase; classtype:domain-c2; sid:2026080504; rev:1;)
+alert http any any -> any any (msg:"IPI-AI agent fetch of attacker Open-Agent-Utilities GitHub repos (weak - legit host github.com)"; flow:established,to_server; http.uri; content:"/Open-Agent-Utilities/"; nocase; classtype:trojan-activity; sid:2026080505; rev:1;)
+alert http any any -> any any (msg:"IPI-AI payment-scam content marker MissingLicenseKeyException in response (needs TLS inspection)"; flow:established,to_client; http.response_body; content:"MissingLicenseKeyException"; nocase; classtype:trojan-activity; sid:2026080506; rev:1;)
+alert http any any -> any any (msg:"IPI-AI hardcoded attacker ETH wallet in web content (needs TLS inspection)"; flow:established,to_client; http.response_body; content:"0x691bc3793205e574fa7b4aa068e62c0e470ad267"; nocase; classtype:trojan-activity; sid:2026080507; rev:1;)
