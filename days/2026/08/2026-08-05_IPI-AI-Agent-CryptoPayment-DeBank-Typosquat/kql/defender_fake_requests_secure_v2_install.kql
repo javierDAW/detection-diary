@@ -1,0 +1,18 @@
+// Title: Installation Attempt of the Fake requests-secure-v2 Python Package
+// Id: 8b1c6e42-0f39-4d7a-bb0c-5a9e1d3f7c22
+// MITRE: T1204 (User Execution), T1036.005 (Match Legitimate Name or Location)
+// Reference: https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents
+// Author: Jarmi
+// Date: 2026-08-05
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: A defensive internal mirror that shadows the name for blocking.
+//           requests-secure-v2 is not a real package; a genuine install attempt
+//           means an agent or user followed the injected instruction.
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where ProcessCommandLine has "requests-secure-v2"
+| where ProcessCommandLine has_any ("pip install","pip3 install","pip download",
+        "uv pip install","uv add","poetry add","pipenv install","-m pip install")
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine,
+          InitiatingProcessFileName, InitiatingProcessCommandLine
+| sort by Timestamp desc

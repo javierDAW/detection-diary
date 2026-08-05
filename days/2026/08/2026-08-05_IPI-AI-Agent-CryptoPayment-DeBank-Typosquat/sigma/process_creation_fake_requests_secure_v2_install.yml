@@ -1,0 +1,51 @@
+title: Installation Attempt of the Fake requests-secure-v2 Python Package
+id: f83679c2-7b13-46a4-b401-a9de19a9c441
+status: experimental
+description: |
+  Detects a package-manager invocation that tries to install the fake Python
+  library requests-secure-v2, the lure at the centre of the Zscaler ThreatLabz
+  July 2026 indirect-prompt-injection payment scam. There is no such legitimate
+  package; the name exists only to seed SEO-poisoned search results and to make
+  an AI coding agent (or a developer) land on py-lib-repository[.]dev, where the
+  hidden IPI instructions frame a $3.00 crypto payment as the fix for a fabricated
+  MissingLicenseKeyException. Any attempt to install this name - by pip, uv,
+  poetry, pipenv or python -m pip - is therefore a reliable signal that an agent
+  or user acted on the injected instruction. Covers Windows and Linux command
+  lines.
+references:
+  - https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents
+  - https://attack.mitre.org/techniques/T1204/
+  - https://attack.mitre.org/techniques/T1036/005/
+author: Jarmi
+date: 2026/08/05
+tags:
+  - attack.execution
+  - attack.t1204
+  - attack.defense-evasion
+  - attack.t1036.005
+logsource:
+  category: process_creation
+detection:
+  selection_installer:
+    CommandLine|contains:
+      - 'pip install'
+      - 'pip3 install'
+      - 'pip download'
+      - 'uv pip install'
+      - 'uv add'
+      - 'poetry add'
+      - 'pipenv install'
+      - '-m pip install'
+  selection_package:
+    CommandLine|contains: 'requests-secure-v2'
+  condition: selection_installer and selection_package
+falsepositives:
+  - A local mirror or internal proxy that shadows this name for blocking or
+    research; confirm the resolved index and destination host
+fields:
+  - CommandLine
+  - Image
+  - ParentImage
+  - User
+
+level: high

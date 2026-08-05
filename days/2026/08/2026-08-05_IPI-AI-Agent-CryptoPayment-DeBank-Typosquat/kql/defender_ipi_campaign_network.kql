@@ -1,0 +1,25 @@
+// Title: AI-Agent / Developer Host Contacting IPI Campaign Infrastructure
+// Id: 3d2a1f90-6c47-4b8e-9a51-2e7c4b0d9f11
+// MITRE: T1583.001 (Domains), T1608.006 (SEO Poisoning)
+// Reference: https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents
+// Author: Jarmi
+// Date: 2026-08-05
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: Threat-intel or sandbox hosts deliberately visiting the reported
+//           sites. Scope RemoteUrl matching to AI-agent runners and developer
+//           devices; exclude known research endpoints.
+let ipi_domains = dynamic([
+  "py-lib-repository.dev","debank.auction","market-insight-global.com",
+  "identity-breach-response.org","runners-daily-blog.com","bistro-reserve-now.net",
+  "edge-compliance-node.org","digital-asset-mart.org","consensus-protocol-v4.org",
+  "visual-media-rights-group.org"]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| extend Host = tostring(parse_url(RemoteUrl).Host)
+| where RemoteUrl has_any (ipi_domains)
+    or Host in~ (ipi_domains)
+    or Host endswith ".global-transit-authority.org"
+    or RemoteUrl has "/Open-Agent-Utilities/"
+| project Timestamp, DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName,
+          InitiatingProcessCommandLine, RemoteUrl, RemoteIP, Host
+| sort by Timestamp desc

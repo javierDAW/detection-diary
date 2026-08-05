@@ -1,0 +1,36 @@
+// Title: AI Agent Visits IPI Payment-Scam Host Then Reaches a Crypto / Card Payment Endpoint
+// Id: c47f9a30-2b6d-4e15-8f7a-1c0b9e6d5a44
+// MITRE: T1657 (Financial Theft), T1204 (User Execution)
+// Reference: https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents
+// Author: Jarmi
+// Date: 2026-08-05
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: Legitimate developers may hit Stripe/payment hosts; the value is the
+//           SEQUENCE - the same device touched an IPI campaign host, then a
+//           payment/on-chain endpoint within 10 minutes. Tune payment_hosts and
+//           the window to the environment. Stripe hosts are legitimate, so this
+//           is a pivot, not a standalone verdict.
+let ipi_domains = dynamic([
+  "py-lib-repository.dev","market-insight-global.com","identity-breach-response.org",
+  "runners-daily-blog.com","bistro-reserve-now.net","edge-compliance-node.org",
+  "digital-asset-mart.org","consensus-protocol-v4.org","visual-media-rights-group.org"]);
+let payment_hosts = dynamic(["buy.stripe.com","checkout.stripe.com","mainnet.infura.io",
+  "rpc.ankr.com","cloudflare-eth.com","api.etherscan.io"]);
+let ipi_hits =
+    DeviceNetworkEvents
+    | where Timestamp > ago(30d)
+    | extend Host = tostring(parse_url(RemoteUrl).Host)
+    | where Host in~ (ipi_domains) or Host endswith ".global-transit-authority.org"
+    | project IpiTime = Timestamp, DeviceName, IpiHost = Host;
+let pay_hits =
+    DeviceNetworkEvents
+    | where Timestamp > ago(30d)
+    | extend Host = tostring(parse_url(RemoteUrl).Host)
+    | where Host in~ (payment_hosts)
+    | project PayTime = Timestamp, DeviceName, PayHost = Host,
+              PayProc = InitiatingProcessFileName;
+ipi_hits
+| join kind=inner pay_hits on DeviceName
+| where PayTime between (IpiTime .. (IpiTime + 10m))
+| project DeviceName, IpiHost, IpiTime, PayHost, PayTime, PayProc
+| sort by IpiTime desc

@@ -1,3 +1,20 @@
+## 2026.08.05 — Day 100 — Indirect prompt injection vs AI web agents (Zscaler): crypto-payment scam + DeBank typosquat
+
+### Added
+- `days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/` — Zscaler ThreatLabz (2026-07-02) documented two in-the-wild indirect-prompt-injection (IPI) campaigns against browsing AI agents: a payment scam posing as API docs for the fake `requests-secure-v2` Python library (SEO poisoning + JSON-LD and off-screen CSS, ~0.0012 ETH to a hardcoded wallet) and the `debank[.]auction` DeBank typosquat. In test, 4/26 LLMs paid and 2/26 misclassified the typosquat. Unattributed; no CVE and no binary — the agent that cannot separate instructions from data is the vulnerable component.
+- Sigma (3): `proxy_ipi_campaign_hosts_and_repos.yml` — egress to the 11 campaign domains and the Open-Agent-Utilities repos; `dns_query_ipi_typosquat_and_fakelib.yml` — resolution of the campaign domains; `process_creation_fake_requests_secure_v2_install.yml` — install of the fake package.
+- KQL (3): campaign-infra contact; fake-package install; IPI-host-then-payment sequence pivot.
+- YARA (1 file, 2 rules): campaign-1 payment-scam markers; campaign-2 DeBank-typosquat markers.
+- Suricata (1 file, 7 sids): DNS + TLS SNI + HTTP host/URI + response-body content markers.
+- PEAK hunts (3): agent acted on the fake-library lure; agent egress to IPI infra + hidden content; agent payment and RAG/context poisoning.
+- `iocs.csv` (28 entries) — 11 domains, the Open-Agent-Utilities GitHub account, the ETH wallet, and content strings; plus Unit 42 cross-vendor overlap rows. No `kev.md` (no CVE in scope).
+- `kill_chain.svg` — template A, canonical palette, acc-other; agent-journey vs attacker-content lanes.
+
+### Pedagogy
+- The vulnerable component is the agent, not a CVE: IPI needs no software flaw; the controls are architectural (spotlighting, instruction hierarchy) and operational (least-privilege agent scopes, spend caps, approval gates).
+- Hunt the content shape and the staging — hidden instruction blocks, JSON-LD `offers`, the fake package name, the shared GitHub account, the reused wallet — not rotating hostnames.
+- Susceptibility is model- and context-dependent; supplying a known-good reference (real `debank.com`) eliminated the typosquat misclassification in testing.
+
 ## 2026.08.04 — Day 99 — ByteToCrypt: ByteToBreach's Linux ransomware (datastore-run, not ESXi-aware)
 
 ### Added

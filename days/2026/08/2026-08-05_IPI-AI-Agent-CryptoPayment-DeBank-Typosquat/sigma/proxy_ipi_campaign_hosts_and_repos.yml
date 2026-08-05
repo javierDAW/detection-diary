@@ -1,0 +1,58 @@
+title: Outbound Web Request to Indirect-Prompt-Injection Campaign Hosts or the Open-Agent-Utilities GitHub Account
+id: a6102f8d-78ca-4324-9b71-9f632a08c53c
+status: experimental
+description: |
+  Detects an outbound HTTP/HTTPS request from a host (typically an AI-agent
+  runner, developer workstation, or crawler) to one of the Zscaler ThreatLabz
+  indirect-prompt-injection (IPI) campaign domains, or to the attacker's
+  Open-Agent-Utilities GitHub account that stages links to those sites. The
+  July 2026 campaigns hid instructions in web content (fake requests-secure-v2
+  API docs at py-lib-repository[.]dev, and the debank[.]auction DeBank
+  typosquat) so a browsing AI agent would follow them - in campaign 1 issuing a
+  ~0.0012 ETH payment to a hardcoded wallet. Because the sites are reached
+  through SEO poisoning and agent tool-use rather than email, egress telemetry
+  from agent/dev hosts is the best network chokepoint. Scope to AI-agent egress
+  ranges to cut noise. This is an atomic IOC rule; pair it with the content and
+  process rules in this folder.
+references:
+  - https://www.zscaler.com/blogs/security-research/indirect-prompt-injection-web-content-targets-ai-agents
+  - https://unit42.paloaltonetworks.com/ai-agent-prompt-injection/
+  - https://attack.mitre.org/techniques/T1583/001/
+  - https://attack.mitre.org/techniques/T1608/006/
+author: Jarmi
+date: 2026/08/05
+tags:
+  - attack.resource-development
+  - attack.t1583.001
+  - attack.t1608.006
+logsource:
+  category: proxy
+detection:
+  selection_ipi_hosts:
+    c-uri-host:
+      - 'py-lib-repository.dev'
+      - 'debank.auction'
+      - 'market-insight-global.com'
+      - 'identity-breach-response.org'
+      - 'runners-daily-blog.com'
+      - 'bistro-reserve-now.net'
+      - 'edge-compliance-node.org'
+      - 'digital-asset-mart.org'
+      - 'consensus-protocol-v4.org'
+      - 'visual-media-rights-group.org'
+  selection_ipi_subdomain:
+    c-uri-host|endswith: '.global-transit-authority.org'
+  selection_repo:
+    c-uri|contains: '/Open-Agent-Utilities/'
+  condition: selection_ipi_hosts or selection_ipi_subdomain or selection_repo
+falsepositives:
+  - Threat-intel analysts or crawlers deliberately visiting the reported sites;
+    scope to production AI-agent and developer egress and exclude known research
+    hosts <add_known_research_hosts>
+fields:
+  - c-uri
+  - c-uri-host
+  - src_ip
+  - c-useragent
+
+level: high
