@@ -110,6 +110,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Sandworm overlap](./sandworm-overlap/) | 1 |
 | [Shahid Kaveh Group](./shahid-kaveh-group/) | 1 |
 | [Shai-Hulud](./shai-hulud/) | 1 |
+| [Shai-Hulud (keyv/cacheable wave, unattributed operator)](./shai-hulud-keyv-cacheable-wave-unattributed-operator/) | 1 |
 | [Silent Ransom Group (SRG)](./silent-ransom-group-srg/) | 1 |
 | [Silver Fox](./silver-fox/) | 1 |
 | [SourTrade](./sourtrade/) | 1 |
@@ -163,6 +164,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)](./unattributed-e-crime-bumblebee-adaptixc2-akira/) | 1 |
 | [Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)](./unattributed-fake-invitation-phish-kit-operator-any-run-tracked/) | 1 |
 | [Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)](./unattributed-ip6-arpa-reverse-dns-phishing-operator-infoblox-tracked/) | 1 |
+| [Unattributed macOS ClickFix TDS operator](./unattributed-macos-clickfix-tds-operator/) | 1 |
 | [Unattributed ransomware-aligned IAB (TTP overlap with Akira / Storm-1567 affiliate ecosystem)](./unattributed-ransomware-aligned-iab-ttp-overlap-with-akira-storm-1567-affiliate-ecosystem/) | 1 |
 | [Unattributed vulnerability research (Qualys TRU, AI-assisted discovery)](./unattributed-vulnerability-research-qualys-tru-ai-assisted-discovery/) | 1 |
 | [Unattributed vulnerability research (SaiFlow); affected vendor: XCharge](./unattributed-vulnerability-research-saiflow-affected-vendor-xcharge/) | 1 |

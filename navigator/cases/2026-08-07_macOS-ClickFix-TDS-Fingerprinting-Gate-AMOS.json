@@ -1,0 +1,160 @@
+{
+  "name": "2026-08-07 — 2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side browser-fingerprinting gate — clusters: Unattributed macOS ClickFix TDS operator",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1608",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1189",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1480",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1204.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1059.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1553.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1497.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1622",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1656",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1555.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1555.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side brows"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

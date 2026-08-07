@@ -4,11 +4,12 @@
 
 # Techniques: T1105
 
-13 day(s) covering this technique.
+14 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-07 | Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side browser-fingerprinting gate | Unattributed macOS ClickFix TDS operator | [`2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/`](../../days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/) |
 | 2026-08-03 | OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments | OctLurk/SilkLurk operator (unattributed, Chinese-speaking) | [`2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/`](../../days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/) |
 | 2026-08-01 | SourTrade: malvertising that assembles a unique Windows executable inside the victim's browser | SourTrade | [`2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/`](../../days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/) |
 | 2026-07-30 | Joyfill npm Compromise: an On-Import RAT With Blockchain Dead-Drop C2 and a Python Credential Stealer | Joyfill npm compromise (StepSecurity-tracked, unattributed) | [`2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/`](../../days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/) |

@@ -1,3 +1,38 @@
+## 2026.08.07 — Day 102 — Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a browser-fingerprinting gate
+
+### Added
+- `days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/` — Microsoft Threat Intelligence (2026-08-05) tracked a macOS ClickFix operation of 250+ algorithmically named `file<word><word>` front-end domains that moved, on the same infrastructure, from openly serving the Terminal command in page HTML to hiding it behind a server-side browser-fingerprinting TDS gate. A ~2.5 KB JS profiler reads navigator/screen/WebGL/timezone/iframe/touch, runs devtools + `canPlayType` tripwires, tags the submission `mode:"php"`, and the server serves the lure only to qualifying Macs; the chain ends in AMOS/MacSync credential theft. First repo case on macOS ClickFix and on a TDS cloaking gate.
+- Sigma (3): `01_macos_terminal_curl_pipe_shell.yml` — browser/Terminal-parented curl on `/curl/` piped to a shell; `02_macos_clickfix_native_tool_sequence.yml` — `xattr -c`/`base64 -d`/`chmod +x` staging; `03_macos_infostealer_keychain_copy.yml` — non-Apple read of `login.keychain-db`/browser stores.
+- KQL (3): macOS curl-pipe-shell; egress to IOC domains + `/curl/` paths; `osascript` password prompt / Keychain access.
+- YARA (1 file, 2 rules): fingerprinting-gate JS (`mode:"php"`, `canPlayType` tripwire, WebGL/touch probes) and the ClickFix lure HTML.
+- Suricata (1 file, 6 sids): `/curl/<id>` staging GET, `mode=php` POST, curl-UA fetch, DNS + TLS-SNI for front-end domains.
+- PEAK hunts (3): hunt the gate by page-body artifacts; browse-then-Terminal curl chain; macOS credential collection + HTTP POST exfil.
+- `iocs.csv` (24 entries) — 17 front-end domains, `/curl/<id>` path, `mode:"php"`/`canPlayType`/WebGL gate artifacts, AMOS/MacSync notes. No CVE in scope → no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, `acc-other` accent; victim browser-to-Terminal lane vs. operator domain-gen/TDS/staging/collection lane.
+
+### Pedagogy
+- A TDS gate turns "is this domain malicious?" into a per-request, environment-conditioned question — a benign/decoy response is not proof of safety; cluster on infrastructure behaviour.
+- Anti-analysis is now anti-analyst: the gate probes for open devtools and instrumented browsers, so your analysis environment is part of the fingerprint.
+- ClickFix sidesteps quarantine/Gatekeeper/notarization by starting from a pasted Terminal command; durable macOS detection lives in native-tool process chains, not signature state.
+- Block on shared staging and `/curl/` paths, not on disposable front-end domains.
+## 2026.08.06 — Day 101 — Keyv/Cacheable npm worm (third-wave Shai-Hulud): Bun loader, IDE hooks, dead-man's switch
+
+### Added
+- `days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/` — Socket/SafeDep/Aikido/Wiz (2026-08-04) tracked a self-propagating npm worm (Shai-Hulud family, unattributed operator) that hijacked the `keyv` and `cacheable` families after the "Jaredwray" maintainer account was compromised, then republished trojanized versions across ~9 orgs (SafeDep ~1,684 versions / ~420 names). Each malicious release adds a `preinstall` hook (`node setup.mjs`) that downloads a standalone Bun 1.3.13 runtime and runs a ~728 KB Bun bundle harvesting cloud/CI/dev credentials; it plants `.claude`/`.vscode` autostart hooks and a host-level `gh-token-monitor` token-revocation dead-man's switch. Poisoned `keyv@6.0.0` shipped valid OIDC/SLSA provenance. No CVE (package compromise, not a software vulnerability).
+- Sigma (3): `01_proc_creation_npm_preinstall_setupmjs_to_bun.yml` — `node setup.mjs` and `bun` from a `bun-dl-*` temp path; `02_file_event_deadmans_switch_and_repo_autostart_hooks.yml` — `gh-token-monitor`, `.claude`/`.vscode` hooks, payload files; `03_network_connection_install_time_imds_and_npm_oidc.yml` — install-time `node`/`bun` to IMDS or npm OIDC token exchange.
+- KQL (3): loader-chain (`DeviceProcessEvents`); persistence files (`DeviceFileEvents`); IMDS/OIDC/Bun-download network (`DeviceNetworkEvents`).
+- YARA (1 file, 2 rules): the Stage-1 `setup.mjs` Bun loader; the `gh-token-monitor` dead-man's-switch watcher script.
+- Suricata (1 file, 6 sids): npm OIDC token-exchange / token / whoami paths, Bun 1.3.13 release fetch, GitHub exfil-repo creation and GraphQL `createCommitOnBranch` (TLS-inspection/proxy).
+- PEAK hunts (3): preinstall→Bun loader chain; dead-man's switch + repo autostart hooks; install-time credential access + republish burst.
+- `iocs.csv` (46 entries) — 3 SHA-256 (loader x2, payload), tarball SHA-512, affected package versions, persistence paths, npm/GitHub/Bun endpoints, IMDS behavioral IPs. No `kev.md` (no CVE in scope).
+- `kill_chain.svg` — template A, canonical palette, supply-chain accent; left = developer/CI host + npm registry, right = maintainer-account/OIDC/provenance/exfil infrastructure.
+
+### Pedagogy
+- Provenance attests build integrity, not source integrity: a signed, verifiable SLSA attestation shipped for malware because the source it built from was already trojanized.
+- A token-revocation dead-man's switch inverts IR — enumerate and remove persistence before rotating or revoking any credential, or "rotate everything now" detonates a remote handler.
+- IDE and AI-agent workspace trust is an execution path: `.claude` SessionStart and `.vscode` folderOpen hooks run on opening a cloned repo, with no `npm install` and unaffected by `--ignore-scripts`.
+- Blast radius follows dependency depth: foundational transitive packages (`eslint`→`file-entry-cache`→`flat-cache`→`keyv`) mean most victims never named the package — hunt by resolved lockfile version.
+
 ## 2026.08.05 — Day 100 — Indirect prompt injection vs AI web agents (Zscaler): crypto-payment scam + DeBank typosquat
 
 ### Added

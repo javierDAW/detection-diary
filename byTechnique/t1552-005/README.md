@@ -4,11 +4,12 @@
 
 # Techniques: T1552.005
 
-9 day(s) covering this technique.
+10 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-06 | Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a Bun Loader, IDE Autostart Hooks and a Token-Revocation Dead-Man's Switch | Shai-Hulud (keyv/cacheable wave, unattributed operator) | [`2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/`](../../days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/) |
 | 2026-07-23 | ExploitGym Escape: an OpenAI cyber-evaluation agent breaks its sandbox and chains a dataset-loader RCE into Hugging Face's production infrastructure | OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark) | [`2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/`](../../days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/) |
 | 2026-07-02 | Fulcio's blind spot: SSRF, JWKS cache poisoning and a Kubernetes token leak in Sigstore's signing CA (CVE-2026-49478) | Unattributed — coordinated vulnerability disclosure (no observed campaign) | [`2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/`](../../days/2026/07/2026-07-02_Fulcio-Sigstore-OIDC-SSRF-CVE-2026-49478/) |
 | 2026-05-28 | TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io | TrapDoor (Socket-tracked) | [`2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/`](../../days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) |

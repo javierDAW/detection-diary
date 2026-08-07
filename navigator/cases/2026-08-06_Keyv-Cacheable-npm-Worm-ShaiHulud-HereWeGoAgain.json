@@ -1,0 +1,160 @@
+{
+  "name": "2026-08-06 — 2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a Bun Loader, IDE Autostart Hooks and a Token-Revocation Dead-Man's Switch — clusters: Shai-Hulud (keyv/cacheable wave, unattributed operator)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1204.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1546.016",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1543.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1543.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1552.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1528",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1550.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1608",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1606",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1567.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1573",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1070.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -1,0 +1,44 @@
+title: Non-Apple Process Accessing the macOS Login Keychain or Browser Credential Store
+id: 4448bf50-ec64-4c41-81ab-dd6cbd676df6
+status: experimental
+description: |
+  Detects the collection step of macOS infostealers such as Atomic Stealer
+  (AMOS) or MacSync delivered by the ClickFix TDS chain. The stealer reads or
+  copies the login Keychain database (login.keychain-db) and browser credential
+  stores. A process that is not one of Apple's known Keychain/security binaries
+  reading or copying login.keychain-db, or a copy/read of a browser Login Data
+  store, is a high-confidence credential-access indicator. Pair with the
+  curl-to-shell execution rule to attribute it to the ClickFix chain.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/08/05/macos-clickfix-campaign-learned-hide/
+  - https://www.microsoft.com/en-us/security/blog/2026/05/06/clickfix-campaign-uses-fake-macos-utilities-lures-deliver-infostealers/
+author: Jarmi
+date: 2026/08/07
+tags:
+  - attack.credential-access
+  - attack.t1555.001
+  - attack.t1555.003
+  - attack.t1539
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_read:
+    Image|endswith:
+      - '/cp'
+      - '/ditto'
+      - '/cat'
+      - '/sqlite3'
+  selection_target:
+    CommandLine|contains:
+      - 'login.keychain-db'
+      - '/Library/Keychains/'
+      - '/Login Data'
+      - '/Cookies.binarycookies'
+  condition: selection_read and selection_target
+falsepositives:
+  - Backup and migration tools (e.g. Time Machine helpers, Migration Assistant)
+    can read Keychain and browser data; scope by parent process lineage and by
+    the ClickFix curl-to-shell precursor on the same host
+
+level: high

@@ -4,11 +4,12 @@
 
 # Techniques: T1583.001
 
-14 day(s) covering this technique.
+15 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-07 | Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side browser-fingerprinting gate | Unattributed macOS ClickFix TDS operator | [`2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/`](../../days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/) |
 | 2026-08-05 | Indirect prompt injection against AI web agents: crypto-payment scam and DeBank typosquat (Zscaler ThreatLabz) | Unattributed IPI operator | [`2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/`](../../days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/) |
 | 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-17 | Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting Indictment | Media Land LLC / ML.Cloud LLC | [`2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/`](../../days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/) |

@@ -4,9 +4,10 @@
 
 # Techniques: T1606
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-06 | Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a Bun Loader, IDE Autostart Hooks and a Token-Revocation Dead-Man's Switch | Shai-Hulud (keyv/cacheable wave, unattributed operator) | [`2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/`](../../days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/) |
 | 2026-05-20 | Storm-2949 — From SSPR-Abused Identity to Cloud-Wide Breach across Microsoft 365 and Azure | Storm-2949 | [`2026-05-20_Storm-2949-Cloud-Identity-SSPR/`](../../days/2026/05/2026-05-20_Storm-2949-Cloud-Identity-SSPR/) |

@@ -1,0 +1,50 @@
+title: Shai-Hulud keyv/cacheable Dead-Man's-Switch and Repo Autostart Hook Files Written
+id: 7c9678f8-2664-4046-95bd-fa4597b6cf88
+status: experimental
+description: |
+  Detects the persistence artifacts dropped by the Stage-2 payload of the keyv/cacheable npm
+  worm (Socket/SafeDep 2026-08-04). The payload installs a host-level token-revocation
+  dead-man's switch - a watcher script at ~/.local/bin/gh-token-monitor.sh, state files under
+  ~/.config/gh-token-monitor/, a macOS LaunchAgent com.user.gh-token-monitor.plist or a Linux
+  systemd user unit gh-token-monitor.service - and plants repository autostart hooks in
+  .claude/settings.json (a SessionStart hook) and .vscode/tasks.json (a folderOpen task) that
+  re-run the loader when a developer or AI coding agent opens the cloned source. It also drops
+  the loader/payload files setup.mjs, Math_Symbol.js and math_init.js. A write to any of these
+  by node, bun, npm or a shell outside a legitimate install/upgrade is the tell.
+references:
+  - https://socket.dev/blog/popular-npm-packages-in-the-keyv-and-cacheable-namespaces-compromised-in-active-supply-chain
+  - https://thehackernews.com/2026/08/keyv-linked-npm-worm-poisons-hundreds.html
+  - https://attack.mitre.org/techniques/T1543/001/
+  - https://attack.mitre.org/techniques/T1546/016/
+author: Jarmi
+date: 2026/08/06
+tags:
+  - attack.persistence
+  - attack.t1543.001
+  - attack.t1543.002
+  - attack.t1546.016
+logsource:
+  category: file_event
+detection:
+  selection_switch:
+    TargetFilename|contains:
+      - 'gh-token-monitor'
+      - 'com.user.gh-token-monitor'
+  selection_repo_hooks:
+    TargetFilename|contains:
+      - '.claude/settings.json'
+      - '.claude\settings.json'
+      - '.vscode/tasks.json'
+      - '.vscode\tasks.json'
+  selection_payload:
+    TargetFilename|endswith:
+      - '\setup.mjs'
+      - '/setup.mjs'
+      - '\Math_Symbol.js'
+      - '/Math_Symbol.js'
+      - '\math_init.js'
+      - '/math_init.js'
+  condition: selection_switch or selection_repo_hooks or selection_payload
+falsepositives:
+  - A project that legitimately maintains .claude/settings.json or .vscode/tasks.json; scope the payload filenames and the gh-token-monitor artifacts, which have no benign use, and confirm the writing process for the config hooks
+level: high

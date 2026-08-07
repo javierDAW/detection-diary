@@ -1,0 +1,46 @@
+title: macOS ClickFix curl Retrieving a /curl Staging Path Piped Into a Shell
+id: 9cf444f5-fc84-46b2-b0bb-3d3a688828bc
+status: experimental
+description: |
+  Detects the ClickFix execution step on macOS. A qualifying victim pastes an
+  obfuscated one-liner into Terminal that uses curl to fetch a next-stage
+  script from a /curl/<id> staging path and pipes it directly into a Unix
+  shell. The combination of curl, a /curl/ URL path, and a pipe into
+  zsh/sh/bash started from an interactive terminal or a browser-descended
+  process is a high-signal ClickFix pattern. Threshold (rate of such
+  executions) belongs in SIEM aggregation, not the rule.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/08/05/macos-clickfix-campaign-learned-hide/
+  - https://thehackernews.com/2026/08/over-250-clickfix-domains-use-browser.html
+author: Jarmi
+date: 2026/08/07
+tags:
+  - attack.execution
+  - attack.t1204.004
+  - attack.t1059.004
+  - attack.command-and-control
+  - attack.t1105
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_curl:
+    Image|endswith: '/curl'
+  selection_path:
+    CommandLine|contains: '/curl/'
+  selection_pipe:
+    CommandLine|contains:
+      - '| zsh'
+      - '|zsh'
+      - '| sh'
+      - '|sh'
+      - '| bash'
+      - '|bash'
+  condition: selection_curl and (selection_path or selection_pipe)
+falsepositives:
+  - Developers or automation that legitimately pipe a remote install script
+    into a shell (e.g. package-manager bootstrap); scope by parent process and
+    known-good hosts via an allow-list, and by the /curl/ path artifact
+  - Internal tooling that happens to host content under a /curl/ path
+
+level: high

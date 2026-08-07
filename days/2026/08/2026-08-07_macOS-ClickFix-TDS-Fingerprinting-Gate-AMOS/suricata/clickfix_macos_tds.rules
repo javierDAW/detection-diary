@@ -1,0 +1,29 @@
+# Suricata 7.x -- macOS ClickFix TDS fingerprinting gate + staging
+# Author: Jarmi
+# Date:   2026-08-07
+# Reference:
+#   https://www.microsoft.com/en-us/security/blog/2026/08/05/macos-clickfix-campaign-learned-hide/
+#   https://thehackernews.com/2026/08/over-250-clickfix-domains-use-browser.html
+# Caveat: most of the chain rides HTTPS. HTTP-body rules below only fire on any
+#   cleartext span (proxy TLS-inspection or plain-HTTP staging); the DNS and
+#   TLS-SNI rules cover the encrypted case. Front-end domains rotate; the
+#   /curl/<id> staging path is the more durable network artifact.
+# Vars: uses default $HOME_NET / $EXTERNAL_NET.
+
+# 1) Next-stage retrieval from the /curl/<id> staging path (cleartext span)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ClickFix macOS staging retrieval GET /curl/<id>"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/curl/"; startswith; fast_pattern; classtype:trojan-activity; sid:3102001; rev:1;)
+
+# 2) Fingerprint submission carrying the mode=php artifact (cleartext span)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ClickFix macOS fingerprint submission mode php artifact"; flow:established,to_server; http.method; content:"POST"; http.request_body; content:"mode"; content:"php"; distance:0; within:16; classtype:trojan-activity; sid:3102002; rev:1;)
+
+# 3) macOS one-liner fetching staged script with a curl User-Agent (cleartext span)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"ClickFix macOS curl fetch of staged script"; flow:established,to_server; http.method; content:"GET"; http.user_agent; content:"curl/"; startswith; http.uri; content:"/curl/"; classtype:trojan-activity; sid:3102003; rev:1;)
+
+# 4) DNS lookup for a known ClickFix front-end domain (survives HTTPS)
+alert dns $HOME_NET any -> any any (msg:"ClickFix macOS front-end domain DNS lookup"; dns.query; content:"filecopperbasket.sbs"; nocase; classtype:trojan-activity; sid:3102004; rev:1;)
+
+# 5) TLS SNI to a known ClickFix front-end domain (survives HTTPS)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"ClickFix macOS front-end domain TLS SNI"; flow:established,to_server; tls.sni; content:"apricotfilepoint.com"; nocase; classtype:trojan-activity; sid:3102005; rev:1;)
+
+# 6) TLS SNI to a no-file-token ClickFix front-end (survives HTTPS)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"ClickFix macOS no-file-token front-end TLS SNI"; flow:established,to_server; tls.sni; content:"cloudsendhub.com"; nocase; classtype:trojan-activity; sid:3102006; rev:1;)

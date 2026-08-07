@@ -1,0 +1,14 @@
+// Title: Shai-Hulud keyv/cacheable loader - npm preinstall node setup.mjs then Bun runtime
+// Id: d4444990-d264-438e-ae07-686eb6184d18
+// MITRE: T1204.003 (Malicious Package), T1059.007 (JavaScript), T1195.002 (Compromise Software Supply Chain)
+// Reference: https://socket.dev/blog/popular-npm-packages-in-the-keyv-and-cacheable-namespaces-compromised-in-active-supply-chain
+// Author: Jarmi
+// Date: 2026-08-06
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents)
+// FP notes: A project that legitimately ships setup.mjs and runs Bun from a temp dir triggers the first branches; confirm the source package/version and that the parent is an expected install. The node->setup.mjs and bun-from-bun-dl chains are high-signal during install.
+DeviceProcessEvents
+| where (InitiatingProcessCommandLine has "preinstall" and ProcessCommandLine has "setup.mjs")
+    or (FileName in~ ("node.exe","node") and ProcessCommandLine has "setup.mjs")
+    or (FileName in~ ("bun.exe","bun") and (ProcessCommandLine has "bun-dl-" or FolderPath has "bun-dl-" or ProcessCommandLine has "Math_Symbol.js" or ProcessCommandLine has "math_init.js"))
+| project Timestamp, DeviceName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, AccountName
+| order by Timestamp asc

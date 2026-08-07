@@ -1,0 +1,44 @@
+title: Install-Time node/bun Process Hitting Cloud IMDS or npm OIDC Token Exchange (Shai-Hulud Collector)
+id: 6572eb09-d07d-448c-a9b8-ed8d3d98a51a
+status: experimental
+description: |
+  Detects the Stage-2 credential collector and self-propagation traffic of the keyv/cacheable
+  npm worm (Socket/SafeDep 2026-08-04). During a package install the payload queries the cloud
+  instance metadata service (169.254.169.254 for IAM security credentials, and the ECS task
+  endpoint 169.254.170.2) and mints fresh npm publish credentials through the OIDC
+  trusted-publishing token-exchange endpoint before republishing packages. A node or bun
+  process reaching the link-local metadata addresses, or any process reaching the npm OIDC
+  token-exchange path, during or right after an install is high-signal: build tooling has no
+  reason to read IAM credentials from IMDS. The link-local IPs are behavioral, not blockable;
+  correlate with the install window in the SIEM.
+references:
+  - https://socket.dev/blog/popular-npm-packages-in-the-keyv-and-cacheable-namespaces-compromised-in-active-supply-chain
+  - https://www.wiz.io/blog/keyv-and-cacheable-npm-supply-chain-attack
+  - https://attack.mitre.org/techniques/T1552/005/
+  - https://attack.mitre.org/techniques/T1528/
+author: Jarmi
+date: 2026/08/06
+tags:
+  - attack.credential-access
+  - attack.t1552.005
+  - attack.t1528
+  - attack.command-and-control
+logsource:
+  category: network_connection
+detection:
+  selection_proc:
+    Image|endswith:
+      - '\node.exe'
+      - '/node'
+      - '\bun.exe'
+      - '/bun'
+  selection_imds:
+    DestinationIp:
+      - '169.254.169.254'
+      - '169.254.170.2'
+  selection_oidc:
+    DestinationHostname|contains: 'registry.npmjs.org'
+  condition: selection_proc and (selection_imds or selection_oidc)
+falsepositives:
+  - Node applications that legitimately read cloud metadata at runtime (SDK credential chains); the discriminator is that the process is a build/CI/dev install child, not a running service, and that it clusters with an npm install
+level: high

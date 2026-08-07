@@ -4,11 +4,12 @@
 
 # Techniques: T1657
 
-12 day(s) covering this technique.
+13 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-06 | Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a Bun Loader, IDE Autostart Hooks and a Token-Revocation Dead-Man's Switch | Shai-Hulud (keyv/cacheable wave, unattributed operator) | [`2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/`](../../days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/) |
 | 2026-08-05 | Indirect prompt injection against AI web agents: crypto-payment scam and DeBank typosquat (Zscaler ThreatLabz) | Unattributed IPI operator | [`2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/`](../../days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/) |
 | 2026-07-19 | INC Ransom Hits Georgia's City of Acworth: Municipal Double Extortion and the GOLD IONIC Playbook | INC Ransom | [`2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/`](../../days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/) |
 | 2026-07-15 | O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-resistant persistence | O-UNC-066 | [`2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/`](../../days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/) |

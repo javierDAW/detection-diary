@@ -1,0 +1,214 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Keyv/Cacheable npm worm kill chain</title>
+<desc id="d">Two lanes. Left: developer and CI host plus the npm registry - a trojanized keyv/cacheable version installed via a package.json preinstall hook, a Stage-1 Bun loader in setup.mjs that downloads a standalone Bun 1.3.13 runtime, a ~728 KB Stage-2 Bun bundle, credential collection from cloud IMDS, Vault, Kubernetes and npm and GitHub tokens, self-propagation that republishes trojanized packages through stolen npm OIDC identity, persistence via .claude and .vscode autostart hooks and a gh-token-monitor dead-man's switch, and impact. Right: attacker infrastructure - the compromised maintainer account, the Bun runtime download host, npm OIDC trusted publishing, sigstore provenance minting via Fulcio and Rekor, GitHub exfiltration repositories named Shai-Hulud Here We Go Again, and a DNS-based DomainSender. Detection anchors: node setup.mjs spawning bun from a bun-dl temp dir, writes to the repo hooks and the dead-man's switch, install-time node or bun reaching IMDS or the npm OIDC token exchange, and a republish burst from our own identity.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Keyv/Cacheable npm Worm - Third-Wave Shai-Hulud Supply-Chain Compromise</text>
+<text class="meta" x="20" y="58">Vendor: Socket / SafeDep / Aikido - Date: 2026-08-04 - Cluster: Shai-Hulud (unattributed) - Day 101</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="106">DEVELOPER / CI HOST + npm REGISTRY - install and host tells</text>
+<text class="laneLabelR" x="460" y="106">ATTACKER INFRASTRUCTURE and TRUSTED-PUBLISHING ABUSE</text>
+
+<!-- LEFT STAGES -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="146">Malicious npm install (preinstall)</text>
+<text class="sub" x="42" y="170">Trojanized keyv/cacheable version installed</text>
+<text class="sub" x="42" y="186">package.json scripts.preinstall = node setup.mjs</text>
+<text class="sub" x="42" y="202">T1195.002 / T1204.003</text>
+<text class="mono" x="42" y="228">keyv@6.0.0 ; +setup.mjs +Math_Symbol.js</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="296">Stage-1 Bun loader (setup.mjs)</text>
+<text class="sub" x="42" y="320">Downloads standalone Bun 1.3.13 to bun-dl-*</text>
+<text class="sub" x="42" y="336">Runs Stage-2 under bun, not node</text>
+<text class="sub" x="42" y="352">T1059.007 / T1105 / T1204.003</text>
+<text class="mono" x="42" y="378">execFileSync(bun, Math_Symbol.js)</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="446">Stage-2 payload (~728 KB Bun bundle)</text>
+<text class="sub" x="42" y="470">basE91 polymorphic strings; modular</text>
+<text class="sub" x="42" y="486">[collector] [dispatcher] [provenance] [publish]</text>
+<text class="sub" x="42" y="502">T1027 / T1140</text>
+<text class="mono" x="42" y="528">sha256 9fc2570b...1bcc</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="596">Credential collection (critical)</text>
+<text class="sub" x="42" y="620">IMDS 169.254.169.254 IAM creds; Vault; K8s</text>
+<text class="sub" x="42" y="636">npm + GitHub tokens; TruffleHog regex sweep</text>
+<text class="sub" x="42" y="652">T1552.005 / T1552.001 / T1528</text>
+<text class="mono" x="42" y="678">reads GH Actions runner memory + env</text>
+
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="746">Self-propagation (worm)</text>
+<text class="sub" x="42" y="770">whoami -&gt; search maintainer -&gt; OIDC token</text>
+<text class="sub" x="42" y="786">Repackage tarball + preinstall, PUT to npm</text>
+<text class="sub" x="42" y="802">T1195.002 / T1608</text>
+<text class="mono" x="42" y="828">1,684 versions / 420 names / 9 orgs</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="896">Persistence</text>
+<text class="sub" x="42" y="920">.claude SessionStart + .vscode folderOpen</text>
+<text class="sub" x="42" y="936">gh-token-monitor dead-man's switch</text>
+<text class="sub" x="42" y="952">T1546.016 / T1543.001 / T1543.002</text>
+<text class="mono" x="42" y="978">LaunchAgent com.user.gh-token-monitor</text>
+
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1046">Impact / blast radius</text>
+<text class="sub" x="42" y="1070">Cloud, CI, npm, GitHub secrets exposed</text>
+<text class="sub" x="42" y="1086">Revocation triggers eval of remote handler</text>
+<text class="sub" x="42" y="1102">T1567.001 / T1657</text>
+<text class="mono" x="42" y="1128">revoke, don't rotate; remove switch first</text>
+
+<!-- RIGHT OPS -->
+<rect class="opK" x="460" y="125" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="151">Maintainer account compromised</text>
+<text class="sub" x="472" y="175">npm account 'Jaredwray' (keyv+cacheable)</text>
+<text class="sub" x="472" y="191">Force-push main; delete v6.0.0 tag</text>
+<text class="sub" x="472" y="207">commit d8c850c7800e (github-actions[bot])</text>
+<text class="sub" x="472" y="223">T1078 / T1195.002</text>
+<text class="mono" x="472" y="250">green verified badge; controller unknown</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="321">Bun runtime host</text>
+<text class="sub" x="472" y="345">github.com/oven-sh/bun/releases/download</text>
+<text class="sub" x="472" y="361">bun-v1.3.13 ; no checksum/sig verify</text>
+<text class="sub" x="472" y="377">Legitimate host abused</text>
+<text class="sub" x="472" y="393">T1105 / T1553</text>
+<text class="mono" x="472" y="420">removes bun-dl-* after exec (T1070.004)</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="491">npm OIDC trusted publishing</text>
+<text class="sub" x="472" y="515">/-/npm/v1/oidc/token/exchange/package/</text>
+<text class="sub" x="472" y="531">Mints a publish credential per target</text>
+<text class="sub" x="472" y="547">/-/whoami ; /-/npm/v1/tokens</text>
+<text class="sub" x="472" y="563">T1528 / T1550.001</text>
+<text class="mono" x="472" y="590">stolen npm identity -&gt; republish</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="661">sigstore provenance minting</text>
+<text class="sub" x="472" y="685">DSSE attestation + Fulcio cert + Rekor</text>
+<text class="sub" x="472" y="701">Fresh verifiable SLSA provenance</text>
+<text class="sub" x="472" y="717">Provenance attests build, not source</text>
+<text class="sub" x="472" y="733">T1195.002 / T1606</text>
+<text class="mono" x="472" y="760">keyv@6.0.0 shipped a passing attestation</text>
+
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="831">GitHub exfil repos</text>
+<text class="sub" x="472" y="855">POST /user/repos ; GraphQL createCommit</text>
+<text class="sub" x="472" y="871">546 repos 'Shai-Hulud: Here We Go Again'</text>
+<text class="sub" x="472" y="887">results/ directory per repo</text>
+<text class="sub" x="472" y="903">T1567.001 / T1102</text>
+<text class="mono" x="472" y="930">AES-256-GCM ciphertext only</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="1001">DomainSender (DNS)</text>
+<text class="sub" x="472" y="1025">Resolves destinations via DNS + healthcheck</text>
+<text class="sub" x="472" y="1041">No fixed C2 host</text>
+<text class="sub" x="472" y="1057">Operator public key embedded (encrypted)</text>
+<text class="sub" x="472" y="1073">T1071.004 / T1573</text>
+<text class="mono" x="472" y="1100">12-byte IV + 16-byte tag envelope</text>
+
+<!-- LEFT VERTICAL FLOW -->
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<!-- CROSS-LANE -->
+<path class="arrowX" d="M460,200 L425,190" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,360 L425,345" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,560 L425,600" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,720 L425,760" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,890 L425,910" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,1050 L425,1070" marker-end="url(#ah)"/>
+
+<!-- FOOTER -->
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Detection anchors</text>
+<text class="footerT" x="34" y="1222">1) node setup.mjs spawning bun from bun-dl-*    2) writes to .claude/.vscode hooks + gh-token-monitor</text>
+<text class="footerT" x="34" y="1240">3) install-time node/bun reaching IMDS or the npm OIDC token exchange    4) npm republish burst from our identity</text>
+<text class="footerT" x="34" y="1258">Provenance attests build integrity, not source integrity - a signed, verifiable attestation shipped for malware.</text>
+</svg>

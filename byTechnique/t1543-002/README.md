@@ -4,10 +4,11 @@
 
 # Techniques: T1543.002
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-06 | Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a Bun Loader, IDE Autostart Hooks and a Token-Revocation Dead-Man's Switch | Shai-Hulud (keyv/cacheable wave, unattributed operator) | [`2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/`](../../days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/) |
 | 2026-05-14 | Mini Shai-Hulud Mega-Campaign: TeamPCP Poisons 170+ npm/PyPI Packages via GitHub Actions OIDC Hijack and SLSA Provenance Forgery | TeamPCP | [`2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/`](../../days/2026/05/2026-05-14_Mini-Shai-Hulud-TeamPCP-Mega-Campaign/) |
 | 2026-05-02 | Nexcorium — Mirai variant exploiting CVE-2024-3721 on TBK DVR-4104/-4216 (FortiGuard Labs, April 2026) | Nexcorium · Nexus Team | [`2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/`](../../days/2026/05/2026-05-02_Nexcorium-TBK-DVR-CVE-2024-3721/) |

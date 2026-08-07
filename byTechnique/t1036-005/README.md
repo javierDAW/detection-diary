@@ -4,11 +4,12 @@
 
 # Techniques: T1036.005
 
-11 day(s) covering this technique.
+12 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-07 | Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side browser-fingerprinting gate | Unattributed macOS ClickFix TDS operator | [`2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/`](../../days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/) |
 | 2026-08-05 | Indirect prompt injection against AI web agents: crypto-payment scam and DeBank typosquat (Zscaler ThreatLabz) | Unattributed IPI operator | [`2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/`](../../days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/) |
 | 2026-08-03 | OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments | OctLurk/SilkLurk operator (unattributed, Chinese-speaking) | [`2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/`](../../days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/) |
 | 2026-07-25 | CrashStealer: A Notarized macOS Infostealer Wears Apple's Own Crash Reporter | CrashStealer (unattributed developer/operator) | [`2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/`](../../days/2026/07/2026-07-25_CrashStealer-Werkbit-macOS-Notarized-Gatekeeper-Bypass/) |
