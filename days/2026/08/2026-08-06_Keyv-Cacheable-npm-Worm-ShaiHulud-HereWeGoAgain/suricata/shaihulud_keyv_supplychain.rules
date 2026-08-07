@@ -1,0 +1,30 @@
+# Suricata 7.x - keyv/cacheable npm worm (third-wave Shai-Hulud), Socket/SafeDep 2026-08-04.
+# Author: Jarmi
+# Reference: https://socket.dev/blog/popular-npm-packages-in-the-keyv-and-cacheable-namespaces-compromised-in-active-supply-chain
+# Date: 2026-08-06
+#
+# This campaign has NO fixed plain-HTTP C2. Stage-1 fetches Bun over HTTPS from GitHub, and the
+# collector talks to registry.npmjs.org (npm OIDC + tokens) and to GitHub (repo creation + GraphQL
+# commits) over TLS, with a DomainSender resolving extra destinations via DNS. All destinations are
+# LEGITIMATE hosts, so these rules are written for environments with TLS interception or an HTTP
+# egress proxy where the request line/headers/body are visible; they key on the specific abused URI
+# paths and methods, NOT on the hostnames alone. In pure-TLS environments, hunt these in
+# endpoint/proxy telemetry instead. HOME_NET = your dev/CI/workstation ranges. Tune before enforcing.
+#
+# sid 3050601 - npm OIDC trusted-publishing token-exchange (worm mints a publish credential per target)
+alert http $HOME_NET any -> any any (msg:"SHAIHULUD keyv npm worm OIDC publish token exchange"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/-/npm/v1/oidc/token/exchange/package/"; nocase; classtype:trojan-activity; sid:3050601; rev:1;)
+#
+# sid 3050602 - npm token enumeration endpoint queried by the collector
+alert http $HOME_NET any -> any any (msg:"SHAIHULUD keyv npm worm npm token enumeration"; flow:established,to_server; http.uri; content:"/-/npm/v1/tokens"; nocase; classtype:trojan-activity; sid:3050602; rev:1;)
+#
+# sid 3050603 - npm whoami identity check before self-propagation
+alert http $HOME_NET any -> any any (msg:"SHAIHULUD keyv npm worm npm whoami identity check"; flow:established,to_server; http.uri; content:"/-/whoami"; nocase; http.host; content:"registry.npmjs.org"; nocase; classtype:trojan-activity; sid:3050603; rev:1;)
+#
+# sid 3050604 - Stage-1 fetch of the standalone Bun 1.3.13 runtime from GitHub releases
+alert http $HOME_NET any -> any any (msg:"SHAIHULUD keyv npm worm Bun 1.3.13 runtime download"; flow:established,to_server; http.uri; content:"/oven-sh/bun/releases/download/bun-v1.3.13/"; nocase; classtype:trojan-activity; sid:3050604; rev:1;)
+#
+# sid 3050605 - GitHubSender creates an exfiltration/staging repository via the REST API
+alert http $HOME_NET any -> any any (msg:"SHAIHULUD keyv npm worm GitHub exfil repo creation"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/user/repos"; nocase; http.host; content:"api.github.com"; nocase; classtype:trojan-activity; sid:3050605; rev:1;)
+#
+# sid 3050606 - GitHubSender commits stolen findings via the GraphQL createCommitOnBranch mutation
+alert http $HOME_NET any -> any any (msg:"SHAIHULUD keyv npm worm GitHub GraphQL createCommitOnBranch"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/graphql"; nocase; http.request_body; content:"createCommitOnBranch"; nocase; classtype:trojan-activity; sid:3050606; rev:1;)

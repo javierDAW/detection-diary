@@ -1,5 +1,5 @@
 # detection-diary blocklist — md5
-# generated 2026-08-05 09:03 UTC
+# generated 2026-08-07 07:36 UTC
 # defensive/educational — validate before blocking; indicators decay
 04194f8ddd0518fd8005f0e87ae96335
 082d49ef9f14e6811d68c7e0e82e5069

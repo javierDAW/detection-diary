@@ -1,0 +1,17 @@
+// Title: Shai-Hulud keyv/cacheable collector - install-time node/bun reaching IMDS, npm OIDC or Bun release
+// Id: db554618-6858-4552-94e5-60a4a694b0fd
+// MITRE: T1552.005 (Cloud Instance Metadata API), T1528 (Steal Application Access Token), T1105 (Ingress Tool Transfer)
+// Reference: https://www.wiz.io/blog/keyv-and-cacheable-npm-supply-chain-attack
+// Author: Jarmi
+// Date: 2026-08-06
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: Node services that legitimately read cloud metadata at runtime exist; the discriminator is that the process is a build/CI/dev install child clustered with an npm install. The IMDS link-local IPs are behavioral, not blockable. Validate the Bun version/path context.
+let imds = dynamic(["169.254.169.254","169.254.170.2"]);
+DeviceNetworkEvents
+| where InitiatingProcessFileName in~ ("node.exe","node","bun.exe","bun")
+| where RemoteIP in (imds)
+    or RemoteUrl has "registry.npmjs.org/-/npm/v1/oidc/token/exchange"
+    or RemoteUrl has "registry.npmjs.org/-/npm/v1/tokens"
+    or (RemoteUrl has "github.com/oven-sh/bun/releases/download" and RemoteUrl has "bun-v1.3.13")
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessCommandLine, RemoteIP, RemoteUrl, RemotePort, InitiatingProcessAccountName
+| order by Timestamp asc

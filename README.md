@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**100 cases** · **167 actors/clusters** · **358 ATT&CK techniques** · **16 platforms** · **83 sectors** · 2026-04-28 -> 2026-08-05
+**102 cases** · **169 actors/clusters** · **362 ATT&CK techniques** · **16 platforms** · **83 sectors** · 2026-04-28 -> 2026-08-07
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/"><img src="days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/kill_chain.svg" alt="2026-08-07 kill chain" width="240"></a><br><sub><b>2026-08-07</b><br>Unattributed macOS ClickFix TDS operator</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/"><img src="days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/kill_chain.svg" alt="2026-08-06 kill chain" width="240"></a><br><sub><b>2026-08-06</b><br>Shai-Hulud (keyv/cacheable wave, unattributed operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/"><img src="days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/kill_chain.svg" alt="2026-08-05 kill chain" width="240"></a><br><sub><b>2026-08-05</b><br>Unattributed IPI operator</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/"><img src="days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/kill_chain.svg" alt="2026-08-04 kill chain" width="240"></a><br><sub><b>2026-08-04</b><br>ByteToBreach</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/"><img src="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/kill_chain.svg" alt="2026-08-03 kill chain" width="240"></a><br><sub><b>2026-08-03</b><br>OctLurk/SilkLurk operator (unattributed, Chinese-speaking)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/"><img src="days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/kill_chain.svg" alt="2026-08-04 kill chain" width="240"></a><br><sub><b>2026-08-04</b><br>ByteToBreach</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/"><img src="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/kill_chain.svg" alt="2026-08-03 kill chain" width="240"></a><br><sub><b>2026-08-03</b><br>OctLurk/SilkLurk operator (unattributed, Chinese-speaking)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/"><img src="days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/kill_chain.svg" alt="2026-08-02 kill chain" width="240"></a><br><sub><b>2026-08-02</b><br>Certighost (CVE-2026-54121)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/"><img src="days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/kill_chain.svg" alt="2026-08-01 kill chain" width="240"></a><br><sub><b>2026-08-01</b><br>SourTrade</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/"><img src="days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/kill_chain.svg" alt="2026-07-31 kill chain" width="240"></a><br><sub><b>2026-07-31</b><br>V25 / Generation 26 XMRig botnet</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

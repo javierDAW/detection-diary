@@ -1,5 +1,111 @@
 [
  {
+  "date": "2026-08-07",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS",
+  "title": "Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side browser-fingerprinting gate",
+  "clusters": [
+   "Unattributed macOS ClickFix TDS operator"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "macos"
+  ],
+  "sectors": [
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1608",
+   "T1189",
+   "T1480",
+   "T1204.004",
+   "T1059.004",
+   "T1553.001",
+   "T1497.001",
+   "T1622",
+   "T1105",
+   "T1140",
+   "T1027",
+   "T1036.005",
+   "T1656",
+   "T1555.001",
+   "T1555.003",
+   "T1539",
+   "T1005",
+   "T1041"
+  ],
+  "tech_count": 19,
+  "tldr": "Microsoft Threat Intelligence (published 2026-08-05) tracked a macOS ClickFix operation of 250+ algorithmically named front-end domains that, over several weeks on the *same* infrastructure, moved from openly serving the malicious Terminal command in page HTML to hiding it behind a server-side browser-fingerprinting gate. A ~2.5 KB JavaScript profiler reads `navigator`, `screen`, `window`, WebGL G",
+  "thumb": "thumbs/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS.svg",
+  "case_rel": "../days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Unattributed macOS ClickFix TDS operator",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "cloaked clickfix: a macos amos/macsync campaign hides behind a server-side browser-fingerprinting gate unattributed macos clickfix tds operator unknown macos cross-sector t1583.001 t1608 t1189 t1480 t1204.004 t1059.004 t1553.001 t1497.001 t1622 t1105 t1140 t1027 t1036.005 t1656 t1555.001 t1555.003 t1539 t1005 t1041 other "
+ },
+ {
+  "date": "2026-08-06",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain",
+  "title": "Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a Bun Loader, IDE Autostart Hooks and a Token-Revocation Dead-Man's Switch",
+  "clusters": [
+   "Shai-Hulud (keyv/cacheable wave, unattributed operator)"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "linux",
+   "macos",
+   "windows",
+   "cloud-multi",
+   "supply-chain"
+  ],
+  "sectors": [
+   "technology",
+   "software-development",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1078",
+   "T1204.003",
+   "T1059.007",
+   "T1546.016",
+   "T1543.001",
+   "T1543.002",
+   "T1552.005",
+   "T1552.001",
+   "T1528",
+   "T1550.001",
+   "T1608",
+   "T1606",
+   "T1567.001",
+   "T1573",
+   "T1027",
+   "T1140",
+   "T1070.004",
+   "T1657"
+  ],
+  "tech_count": 19,
+  "tldr": "On 2026-08-04 a self-propagating npm worm — a third-wave Shai-Hulud (Mini Shai-Hulud family) variant — hijacked the widely used `keyv` and `cacheable` package families after the maintainer account \"Jaredwray\" was compromised, then used stolen npm tokens and OIDC trusted publishing to republish trojanized versions across at least nine organizations. Socket, SafeDep, Aikido and Wiz tracked it the sa",
+  "thumb": "thumbs/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain.svg",
+  "case_rel": "../days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Shai-Hulud (keyv/cacheable wave, unattributed operator)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "keyv/cacheable npm worm: a third-wave shai-hulud supply-chain compromise with a bun loader, ide autostart hooks and a token-revocation dead-man's switch shai-hulud (keyv/cacheable wave, unattributed operator) unknown linux macos windows cloud-multi supply-chain technology software-development cross-sector t1195.002 t1078 t1204.003 t1059.007 t1546.016 t1543.001 t1543.002 t1552.005 t1552.001 t1528 t1550.001 t1608 t1606 t1567.001 t1573 t1027 t1140 t1070.004 t1657 supply chain "
+ },
+ {
   "date": "2026-08-05",
   "year": "2026",
   "month": "2026-08",

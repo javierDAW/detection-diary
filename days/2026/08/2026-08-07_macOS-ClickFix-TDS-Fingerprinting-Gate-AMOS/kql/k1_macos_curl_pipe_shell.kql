@@ -1,0 +1,19 @@
+// Title:       macOS ClickFix -- curl retrieving a /curl staging path piped into a shell
+// Id:          k1-clickfix-macos-curl-pipe-shell
+// MITRE:       T1204.004, T1059.004, T1105
+// Reference:   https://www.microsoft.com/en-us/security/blog/2026/08/05/macos-clickfix-campaign-learned-hide/
+//              https://thehackernews.com/2026/08/over-250-clickfix-domains-use-browser.html
+// Author:      Jarmi
+// Date:        2026-08-07
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceProcessEvents, macOS onboarded devices)
+// FP notes:    Legitimate remote-install one-liners exist; the /curl/ path plus a
+//              browser/Terminal parent within a short window of web browsing raises
+//              confidence. Add first-party bootstrap hosts to the allow-list below.
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FileName =~ "curl" or InitiatingProcessFileName in~ ("Terminal","zsh","bash","sh")
+| where ProcessCommandLine has "/curl/"
+    or ProcessCommandLine has_any ("| zsh","|zsh","| sh","|sh","| bash","|bash")
+| where ProcessCommandLine !has_any (dynamic(["<add_known_install_host>"]))
+| project Timestamp, DeviceName, AccountName, InitiatingProcessFileName, FileName, ProcessCommandLine, InitiatingProcessCommandLine
+| sort by Timestamp desc

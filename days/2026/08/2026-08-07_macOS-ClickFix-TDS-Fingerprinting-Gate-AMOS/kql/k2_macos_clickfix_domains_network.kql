@@ -1,0 +1,20 @@
+// Title:       macOS ClickFix -- egress to gate front-end domains and /curl staging paths
+// Id:          k2-clickfix-macos-domains-network
+// MITRE:       T1583.001, T1189, T1041
+// Reference:   https://www.microsoft.com/en-us/security/blog/2026/08/05/macos-clickfix-campaign-learned-hide/
+// Author:      Jarmi
+// Date:        2026-08-07
+// Tested on:   Microsoft Defender XDR advanced hunting (DeviceNetworkEvents, macOS onboarded devices)
+// FP notes:    Front-end domains are disposable and rotate; refresh the IOC list and
+//              prefer the /curl/ path artifact, which survives domain rotation. A benign
+//              or decoy response from one of these domains does not mean it is safe.
+let IOCDomains = dynamic([
+  "filecopperbasket.sbs","filevelvettractor.sbs","fileoceanhammer.sbs","filemarblegarden.sbs",
+  "filerubyfolder.sbs","filecedarwallet.online","filecrimsonsignal.online","apricotfilepoint.com",
+  "applefilevault.com","bananafastfile.com","cloudfilebridge.com","lemonfilewave.com",
+  "limefilescope.com","mangocloudfile.com","orangesmartfile.com","syncdatavault.com","cloudsendhub.com"]);
+DeviceNetworkEvents
+| where Timestamp > ago(14d)
+| where RemoteUrl has_any (IOCDomains) or RemoteUrl has "/curl/"
+| project Timestamp, DeviceName, InitiatingProcessFileName, RemoteUrl, RemoteIP, RemotePort
+| sort by Timestamp desc

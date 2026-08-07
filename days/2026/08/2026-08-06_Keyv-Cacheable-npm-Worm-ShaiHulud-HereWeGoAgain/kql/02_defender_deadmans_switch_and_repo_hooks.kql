@@ -1,0 +1,16 @@
+// Title: Shai-Hulud keyv/cacheable persistence - dead-man's switch, repo autostart hooks, payload files
+// Id: 5710a8db-e06a-4778-9637-4c4f981e8b63
+// MITRE: T1543.001 (Launch Agent), T1543.002 (Systemd Service), T1546.016 (Installer Packages)
+// Reference: https://socket.dev/blog/popular-npm-packages-in-the-keyv-and-cacheable-namespaces-compromised-in-active-supply-chain
+// Author: Jarmi
+// Date: 2026-08-06
+// Tested on: Microsoft Defender XDR (DeviceFileEvents)
+// FP notes: Projects that legitimately maintain .claude/settings.json or .vscode/tasks.json exist; the gh-token-monitor artifacts and the payload filenames have no benign use. Confirm the writing process for the config-hook branch.
+DeviceFileEvents
+| where FileName in~ ("setup.mjs","Math_Symbol.js","math_init.js","gh-token-monitor.sh","gh-token-monitor.service","com.user.gh-token-monitor.plist","tasks.json","settings.json")
+| where FileName in~ ("setup.mjs","Math_Symbol.js","math_init.js","gh-token-monitor.sh","gh-token-monitor.service","com.user.gh-token-monitor.plist")
+    or (FileName =~ "settings.json" and FolderPath has ".claude")
+    or (FileName =~ "tasks.json" and FolderPath has ".vscode")
+    or FolderPath has "gh-token-monitor"
+| project Timestamp, DeviceName, ActionType, FileName, FolderPath, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName
+| order by Timestamp asc

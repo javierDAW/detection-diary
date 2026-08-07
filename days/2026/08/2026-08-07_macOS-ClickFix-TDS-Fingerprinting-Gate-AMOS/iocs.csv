@@ -1,0 +1,25 @@
+type,value,context,confidence,source
+domain,applefilevault[.]com,ClickFix front-end domain serving the fingerprinting gate,high,Microsoft Threat Intelligence
+domain,apricotfilepoint[.]com,ClickFix front-end; observed serving both the lure and an Urban VPN Proxy decoy page,high,Microsoft Threat Intelligence
+domain,bananafastfile[.]com,ClickFix front-end domain (file token in the middle),high,Microsoft Threat Intelligence
+domain,cloudfilebridge[.]com,ClickFix front-end domain,high,Microsoft Threat Intelligence
+domain,filecedarwallet[.]online,ClickFix front-end domain,high,Microsoft Threat Intelligence
+domain,filecopperbasket[.]sbs,ClickFix front-end domain (file plus dictionary words),high,Microsoft Threat Intelligence
+domain,filecrimsonsignal[.]online,ClickFix front-end domain,high,Microsoft Threat Intelligence
+domain,filemarblegarden[.]sbs,ClickFix front-end domain,high,Microsoft Threat Intelligence
+domain,fileoceanhammer[.]sbs,ClickFix front-end domain,high,Microsoft Threat Intelligence
+domain,filerubyfolder[.]sbs,ClickFix front-end domain,high,Microsoft Threat Intelligence
+domain,filevelvettractor[.]sbs,ClickFix front-end domain,high,Microsoft Threat Intelligence
+domain,lemonfilewave[.]com,ClickFix front-end domain (in Microsoft advanced-hunting query),high,Microsoft Threat Intelligence
+domain,limefilescope[.]com,ClickFix front-end domain (in Microsoft advanced-hunting query),high,Microsoft Threat Intelligence
+domain,mangocloudfile[.]com,ClickFix front-end domain (in Microsoft advanced-hunting query),high,Microsoft Threat Intelligence
+domain,orangesmartfile[.]com,ClickFix front-end domain (file token at the end),high,Microsoft Threat Intelligence
+domain,syncdatavault[.]com,ClickFix front-end domain (no file token),high,Microsoft Threat Intelligence
+domain,cloudsendhub[.]com,ClickFix front-end domain (no file token),high,Microsoft Threat Intelligence
+url,/curl/<hex-id>,Staging path that returns the next-stage macOS script; more durable than the rotating front-end domains,high,Microsoft Threat Intelligence
+string,"mode:""php""",Tag applied to the submitted browser fingerprint by the gate JS,high,Microsoft Threat Intelligence
+string,"canPlayType(""video/mp4"")",Prototype-tamper tripwire in the gate JS repurposed to flag instrumented or stealth browsers,medium,Microsoft Threat Intelligence
+string,WEBGL_debug_renderer_info,WebGL GPU probe used to separate real Apple hardware from virtualized or emulated environments,medium,Microsoft Threat Intelligence
+note,file<word><word> domain family,Algorithmic naming pattern combining the token file with dictionary words; a hunting pivot not a signature,high,Microsoft Threat Intelligence
+note,Atomic Stealer (AMOS),End-of-chain macOS infostealer observed through the gate; harvests Keychain browser and wallet data; no payload hashes published in this report,high,Microsoft Threat Intelligence
+note,MacSync,Second macOS infostealer distributed by the wider domain cluster,medium,Microsoft Threat Intelligence

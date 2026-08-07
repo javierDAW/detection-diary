@@ -1,0 +1,41 @@
+title: macOS ClickFix Native-Tool Abuse Clearing Quarantine and Marking a Payload Executable
+id: 6a6e304f-1a2a-4934-b428-661402809c3b
+status: experimental
+description: |
+  Detects the macOS ClickFix post-download staging step in which the chain
+  decodes/decompresses a staged blob and prepares the payload for execution
+  using native utilities: xattr -c (strip the com.apple.quarantine attribute),
+  base64 -d, and chmod +x against a path in a user-writable directory. Any one
+  of these is common in isolation; this rule fires on the quarantine-clear and
+  make-executable primitives that are load-bearing for ClickFix, which starts
+  from a pasted command rather than a downloaded app bundle. Correlate the
+  matches in SIEM within a short window per host for confirmation.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/08/05/macos-clickfix-campaign-learned-hide/
+author: Jarmi
+date: 2026/08/07
+tags:
+  - attack.defense-evasion
+  - attack.t1553.001
+  - attack.t1140
+  - attack.t1027
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_xattr:
+    Image|endswith: '/xattr'
+    CommandLine|contains: '-c'
+  selection_chmod:
+    Image|endswith: '/chmod'
+    CommandLine|contains: '+x'
+  selection_b64:
+    Image|endswith: '/base64'
+    CommandLine|contains: '-d'
+  condition: selection_xattr or selection_chmod or selection_b64
+falsepositives:
+  - Software installers and build scripts legitimately use chmod +x and, less
+    often, xattr -c; scope by parent process (Terminal/curl-descended) and by
+    a user-writable target path such as /tmp, /private/tmp, or ~/Library
+
+level: medium
