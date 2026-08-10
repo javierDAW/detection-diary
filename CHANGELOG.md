@@ -1,3 +1,21 @@
+## 2026.08.10 — Day 103 — CaptiveCrunch: Midnight Blizzard (Storm-2945) captive-portal AitM
+
+### Added
+- `days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/` — Microsoft Threat Intelligence (2026-07-31) exposed Storm-2945, a Midnight Blizzard (Russia/SVR) sub-cluster, compromising hotel/conference captive-portal networks and manipulating DNS/HTTP to position adversary-in-the-middle against travellers, delivering the CornFlake Go RAT, the ChocoShell in-memory PowerShell stealer and Entra device code phishing.
+- Sigma (3): `proc_cornflake_svchost32_masquerade.yml` — svchost32 image / svchost.exe from AppData; `reg_cornflake_cloud_sync_service.yml` — fake "Cloud Sync Service" registration; `proc_chocoshell_browser_remote_debug_theft.yml` — Chromium `--remote-debugging-port` cookie theft.
+- KQL (3): `captivecrunch_network_ioc.kql` — doppelganger domains / actor IPs; `cornflake_service_and_dropper.kql` — svchost32 process + service; `device_code_phish_signin.kql` — Entra deviceCode sign-ins from actor infra.
+- YARA (1 file, 2 rules): CornFlake service/API strings; ChocoShell C2 pixel/polyfill/event URIs + CDP theft.
+- Suricata (1 file, 9 sids): DNS + TLS-SNI on the four M365 doppelgangers; ChocoShell `/t/pixel.gif`, `/cdn/chunks/polyfill-7e2b.min.js`, `/t/event`; egress to hardcoded C2.
+- PEAK hunts (3): connectivity-check-then-download; CornFlake persistence masquerade; anomalous Entra device code / OAuth.
+- `iocs.csv` (25 entries) — 2 hashes, 4 domains, 6 IPs, C2 URIs, paths, regkeys; span 2026-02-27 to 2026-07-23. No CVE in scope — no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, acc-espionage accent; victim vs Storm-2945 infrastructure lanes with IOC anchors.
+
+### Pedagogy
+- Untrusted transit networks are an attack surface: a hostile network position injects fake updates and device-code prompts.
+- Remove persistence before rotating credentials — a live operator with a self-healing watchdog re-implants on token revocation.
+- Device code phishing needs no malware; the durable signal is the anomalous deviceCode grant plus the device registration that follows.
+- App-Bound Encryption is not a cookie safe: Storm-2945 bypasses it via SYSTEM-token DPAPI and DevTools Network.getAllCookies.
+
 ## 2026.08.07 — Day 102 — Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a browser-fingerprinting gate
 
 ### Added

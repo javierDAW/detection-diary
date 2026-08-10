@@ -1,0 +1,19 @@
+// Title: CornFlake RAT svchost32 Dropper and Fake Cloud Sync Service
+// Id: 93dabc6a-ec89-4930-9eb8-4bf6a4785b29
+// MITRE: T1036.005, T1543.003, T1547.001
+// Reference: https://www.microsoft.com/en-us/security/blog/2026/07/31/captivecrunch-midnight-blizzard-targets-travelers-worldwide-for-malware-delivery-and-credential-theft/
+// Author: Jarmi
+// Date: 2026-08-10
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents, DeviceRegistryEvents)
+// FP notes: Legitimate svchost.exe only runs from System32/SysWOW64; AppData paths are anomalous.
+let proc_hits = DeviceProcessEvents
+    | where FolderPath endswith @"\svchost32\svchost32.exe"
+        or (FileName == "svchost.exe" and FolderPath has @"\AppData\")
+    | project Timestamp, DeviceName, DeviceId, Signal = "process", FileName, FolderPath, InitiatingProcessFileName, AccountName = AccountName, ReportId;
+let reg_hits = DeviceRegistryEvents
+    | where RegistryKey has @"\Services\svchost32"
+    | where (RegistryValueName == "DisplayName" and RegistryValueData == "Cloud Sync Service")
+        or (RegistryValueName == "Description" and RegistryValueData == "Synchronizes files with the cloud storage provider")
+    | project Timestamp, DeviceName, DeviceId, Signal = "registry", FileName = RegistryValueName, FolderPath = RegistryValueData, InitiatingProcessFileName, AccountName = InitiatingProcessAccountName, ReportId;
+union proc_hits, reg_hits
+| sort by Timestamp desc

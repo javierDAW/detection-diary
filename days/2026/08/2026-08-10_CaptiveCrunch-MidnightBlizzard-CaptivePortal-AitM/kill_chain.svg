@@ -1,0 +1,211 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">CaptiveCrunch kill chain - Storm-2945 captive-portal AitM</title>
+<desc id="d">Two lanes. Left: a victim Windows host on a compromised hotel captive portal - joining the manipulated Wi-Fi, receiving a fake update or device code prompt via ClickFix, running the CornFlake Go RAT dropper that copies to AppData as svchost32 and registers a Cloud Sync Service, then the ChocoShell in-memory PowerShell stealer with UAC bypass and SYSTEM token, credential and token theft, and Entra device code phishing. Right: Storm-2945 infrastructure - the compromised captive-portal ecosystem and DNS resolvers, doppelganger M365 domains, an adversary-in-the-middle proxy with device code redirect, the ChocoShell C2 at 213.145.86.112, the unauthenticated FruitStone operator panel, and exfiltration of cloud credentials and tokens for SVR espionage. Detection anchors: connectivity-check then executable write, svchost32 Cloud Sync Service masquerade, browser remote-debugging cookie theft, and anomalous Entra device code grants.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">CaptiveCrunch - Storm-2945 (Midnight Blizzard) captive-portal AitM</text>
+<text class="meta" x="20" y="58">Vendor: Microsoft MSTIC - Date: 2026-07-31 - Cluster: Storm-2945 (Russia / SVR) - Day 103</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="106">VICTIM HOST on compromised hotel network - on-disk and identity tells</text>
+<text class="laneLabelR" x="460" y="106">STORM-2945 INFRASTRUCTURE and IN-MEMORY TOOLING</text>
+
+<!-- LEFT STAGES -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="146">Join compromised captive portal</text>
+<text class="sub" x="42" y="170">Hotel / conference guest Wi-Fi</text>
+<text class="sub" x="42" y="186">DNS and HTTP manipulated (AitM)</text>
+<text class="sub" x="42" y="202">T1557 / T1584</text>
+<text class="mono" x="42" y="228">DNS resolvers 38.146.28.132 107.189.26.194</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="296">Fake update or device code (ClickFix)</text>
+<text class="sub" x="42" y="320">Connectivity check answered by actor</text>
+<text class="sub" x="42" y="336">M365 doppelganger or paste-run prompt</text>
+<text class="sub" x="42" y="352">T1189 / T1204.004 / T1566.002</text>
+<text class="mono" x="42" y="378">ms365-device.com  owa-ms365.com</text>
+
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="446">CornFlake dropper runs (critical)</text>
+<text class="sub" x="42" y="470">Fake progress window (winupdate)</text>
+<text class="sub" x="42" y="486">Copies to AppData, svchost masquerade</text>
+<text class="sub" x="42" y="502">T1036.005 / T1204.004</text>
+<text class="mono" x="42" y="528">%APPDATA%\svchost32\svchost32.exe</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="596">Persistence: Cloud Sync Service</text>
+<text class="sub" x="42" y="620">Service svchost32 + Run key + task</text>
+<text class="sub" x="42" y="636">Self-healing watchdog restores it</text>
+<text class="sub" x="42" y="652">T1543.003 / T1547.001 / T1053.005</text>
+<text class="mono" x="42" y="678">sync.dat (hot-reconfig C2 and targets)</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="746">ChocoShell stealer + UAC bypass (critical)</text>
+<text class="sub" x="42" y="770">AMSI disabled; VM / sandbox timing check</text>
+<text class="sub" x="42" y="786">SilentCleanup / COM / sdclt; SYSTEM token</text>
+<text class="sub" x="42" y="802">T1548.002 / T1562.001 / T1134.001</text>
+<text class="mono" x="42" y="828">213.145.86.112  /t/pixel.gif?m=</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="896">Credential and token theft</text>
+<text class="sub" x="42" y="920">Cookies / passwords (ABE bypass via CDP)</text>
+<text class="sub" x="42" y="936">M365 .tbres tokens; Wi-Fi keys</text>
+<text class="sub" x="42" y="952">T1555.003 / T1539 / T1552.001</text>
+<text class="mono" x="42" y="978">Network.getAllCookies  netsh wlan show</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1046">Device code phishing to Entra</text>
+<text class="sub" x="42" y="1070">Victim authenticates operator session</text>
+<text class="sub" x="42" y="1086">Device registration; M365 collection</text>
+<text class="sub" x="42" y="1102">T1528 / T1041</text>
+<text class="mono" x="42" y="1128">deviceCode grant from actor IP</text>
+
+<!-- RIGHT OPS -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">1</text>
+<text class="label" x="502" y="151">Captive-portal ecosystem</text>
+<text class="sub" x="472" y="175">Shared equipment and mgmt systems</text>
+<text class="sub" x="472" y="191">Multi-venue access, not one hotel</text>
+<text class="sub" x="472" y="207">T1584 Compromise Infrastructure</text>
+<text class="mono" x="472" y="237">DNS resolver 38.146.28.132</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">2</text>
+<text class="label" x="502" y="321">Doppelganger domains</text>
+<text class="sub" x="472" y="345">ms365-device.com  ms365-live.com</text>
+<text class="sub" x="472" y="361">m365-owa.com  owa-ms365.com</text>
+<text class="sub" x="472" y="377">T1583.001 Domains</text>
+<text class="mono" x="472" y="407">M365 / OWA sign-in spoof</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">3</text>
+<text class="label" x="502" y="491">AitM proxy + device code</text>
+<text class="sub" x="472" y="515">Relay victim to microsoft.com</text>
+<text class="sub" x="472" y="531">Steal session; register device</text>
+<text class="sub" x="472" y="547">T1557 / T1528</text>
+<text class="mono" x="472" y="577">device code redirect since 2026-07-16</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">4</text>
+<text class="label" x="502" y="661">ChocoShell C2</text>
+<text class="sub" x="472" y="685">213.145.86.112 over HTTPS</text>
+<text class="sub" x="472" y="701">pixel / polyfill / event URIs</text>
+<text class="sub" x="472" y="717">T1071.001 / T1573.002</text>
+<text class="mono" x="472" y="747">/cdn/chunks/polyfill-7e2b.min.js</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">5</text>
+<text class="label" x="502" y="831">FruitStone C2 panel</text>
+<text class="sub" x="472" y="855">CloudSync Console (HTML / JS SPA)</text>
+<text class="sub" x="472" y="871">No authentication on any function</text>
+<text class="sub" x="472" y="887">T1090 / T1608.001</text>
+<text class="mono" x="472" y="917">builds svchost32.exe payloads</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">6</text>
+<text class="label" x="502" y="1001">Exfiltration and collection</text>
+<text class="sub" x="472" y="1025">Cloud creds and M365 / AAD tokens</text>
+<text class="sub" x="472" y="1041">GZip + Base64 JSON over C2</text>
+<text class="sub" x="472" y="1057">T1041 / T1560.001</text>
+<text class="mono" x="472" y="1087">SVR espionage objectives</text>
+
+<!-- LEFT INTRA-LANE ARROWS -->
+<path class="arrow" d="M60,255 L60,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,405 L60,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,555 L60,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,705 L60,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,855 L60,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,1005 L60,1020" marker-end="url(#ah)"/>
+
+<!-- RIGHT INTRA-LANE ARROWS -->
+<path class="arrowR" d="M490,280 L490,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,450 L490,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,620 L490,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,790 L490,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,960 L490,975" marker-end="url(#ah)"/>
+
+<!-- CROSS-LANE ARROWS (facing edges 425 <-> 460) -->
+<path class="arrowX" d="M460,195 L425,195" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,355 L425,355" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,1075 L460,1055" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Durable detection anchors</text>
+<text class="footerT" x="34" y="1222">1) connectivity-check then EXE write  2) svchost32 Cloud Sync Service masquerade  3) browser --remote-debugging-port cookie theft</text>
+<text class="footerT" x="34" y="1240">4) anomalous Entra deviceCode grant then device registration  5) egress to 213.145.86.112 /t/pixel.gif and doppelganger M365 domains</text>
+<text class="footerT" x="34" y="1258">No CVE in scope - network compromise + social engineering + token theft; not a patchable vulnerability</text>
+</svg>

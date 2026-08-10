@@ -1,0 +1,17 @@
+// Title: Entra Device Code Phishing from Storm-2945 Infrastructure
+// Id: aa3e0d94-e216-40d3-8629-f85a6afa2b8c
+// MITRE: T1528, T1566.002, T1557
+// Reference: https://www.microsoft.com/en-us/security/blog/2026/07/31/captivecrunch-midnight-blizzard-targets-travelers-worldwide-for-malware-delivery-and-credential-theft/
+// Author: Jarmi
+// Date: 2026-08-10
+// Tested on: Microsoft Sentinel (SigninLogs)
+// FP notes: Device code flow is legitimate for input-constrained devices (smart TVs, IoT, CLI
+//           tooling). Prioritise sign-ins whose IP matches actor infrastructure or that are
+//           geographically inconsistent with the user's normal locations.
+let actor_ips = dynamic(["31.57.243.154","38.146.28.75","38.146.28.132","104.194.159.150","107.189.26.194","213.145.86.112"]);
+SigninLogs
+| where AuthenticationProtocol == "deviceCode"
+| where IPAddress in (actor_ips)
+| extend City = tostring(LocationDetails.city), Country = tostring(LocationDetails.countryOrRegion)
+| project TimeGenerated, UserPrincipalName, AppDisplayName, IPAddress, City, Country, ResultType, AuthenticationProtocol, ClientAppUsed, CorrelationId
+| sort by TimeGenerated desc

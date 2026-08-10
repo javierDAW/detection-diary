@@ -1,0 +1,15 @@
+# CaptiveCrunch / Storm-2945 (Midnight Blizzard) network detections
+# Author: Jarmi
+# Date: 2026-08-10
+# Reference: https://www.microsoft.com/en-us/security/blog/2026/07/31/captivecrunch-midnight-blizzard-targets-travelers-worldwide-for-malware-delivery-and-credential-theft/
+# Notes: Indicators decay - revalidate the domains/IPs/URIs before deploying inline. No custom vars.
+#        213.145.86.112 is ChocoShell C2; 107.189.26.194 doubled as DNS resolver / C2.
+alert dns $HOME_NET any -> any any (msg:"CaptiveCrunch AitM DNS query ms365-device.com"; dns.query; content:"ms365-device.com"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:2026081001; rev:1;)
+alert dns $HOME_NET any -> any any (msg:"CaptiveCrunch AitM DNS query ms365-live.com"; dns.query; content:"ms365-live.com"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:2026081002; rev:1;)
+alert dns $HOME_NET any -> any any (msg:"CaptiveCrunch AitM DNS query m365-owa.com"; dns.query; content:"m365-owa.com"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:2026081003; rev:1;)
+alert dns $HOME_NET any -> any any (msg:"CaptiveCrunch AitM DNS query owa-ms365.com"; dns.query; content:"owa-ms365.com"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:2026081004; rev:1;)
+alert tls $HOME_NET any -> any any (msg:"CaptiveCrunch AitM TLS SNI M365 doppelganger domain"; flow:to_server,established; tls.sni; pcre:"/^(ms365-device|ms365-live|m365-owa|owa-ms365)\.com$/i"; classtype:trojan-activity; sid:2026081005; rev:1;)
+alert http $HOME_NET any -> any any (msg:"ChocoShell C2 beacon URI /t/pixel.gif"; flow:to_server,established; http.method; content:"GET"; http.uri; content:"/t/pixel.gif?m="; classtype:trojan-activity; sid:2026081006; rev:1;)
+alert http $HOME_NET any -> any any (msg:"ChocoShell second-stage module fetch polyfill-7e2b.min.js"; flow:to_server,established; http.uri; content:"/cdn/chunks/polyfill-7e2b.min.js"; classtype:trojan-activity; sid:2026081007; rev:1;)
+alert http $HOME_NET any -> any any (msg:"ChocoShell C2 exfil POST /t/event"; flow:to_server,established; http.method; content:"POST"; http.uri; content:"/t/event"; classtype:trojan-activity; sid:2026081008; rev:1;)
+alert tcp $HOME_NET any -> [213.145.86.112,107.189.26.194] any (msg:"ChocoShell C2 connection to hardcoded IP"; flow:to_server,established; classtype:trojan-activity; sid:2026081009; rev:1;)

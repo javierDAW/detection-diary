@@ -1,0 +1,36 @@
+title: ChocoShell Browser Remote-Debugging Cookie Theft
+id: 59e41bbf-51d3-4e2c-a6a0-012285b04a3d
+status: experimental
+description: |
+  Detects the ChocoShell in-memory PowerShell stealer's App-Bound Encryption bypass path, in
+  which it launches a Chromium browser (Chrome, Edge, Brave) with a --remote-debugging-port
+  and a scratch --user-data-dir / --restore-last-session so it can issue Network.getAllCookies
+  over the Chrome DevTools Protocol and read cookies in plaintext without touching DPAPI. A
+  browser process spawned with a remote-debugging port from a non-interactive parent is
+  high-signal. Tune expected developer/debugging hosts in SIEM.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/07/31/captivecrunch-midnight-blizzard-targets-travelers-worldwide-for-malware-delivery-and-credential-theft/
+  - https://attack.mitre.org/techniques/T1539/
+author: Jarmi
+date: 2026/08/10
+tags:
+  - attack.credential-access
+  - attack.t1539
+  - attack.t1555.003
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_browser:
+    Image|endswith:
+      - '\chrome.exe'
+      - '\msedge.exe'
+      - '\brave.exe'
+  selection_flag:
+    CommandLine|contains: '--remote-debugging-port'
+  condition: selection_browser and selection_flag
+falsepositives:
+  - Web developers and automated UI testing (Selenium, Puppeteer, Playwright) legitimately use
+    --remote-debugging-port; scope by parent process and by host role.
+
+level: high

@@ -1,0 +1,37 @@
+title: CornFlake Fake Cloud Sync Service Registration
+id: 655a65b3-5eec-403b-8f1f-19e103e66092
+status: experimental
+description: |
+  Detects the persistence service that the CornFlake RAT registers under the name svchost32
+  with the display name "Cloud Sync Service" and description "Synchronizes files with the
+  cloud storage provider" to blend with legitimate host services. Matches the Services
+  registry hive writes for that display name / description pair. Pair with the svchost32
+  AppData image path for high confidence.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/07/31/captivecrunch-midnight-blizzard-targets-travelers-worldwide-for-malware-delivery-and-credential-theft/
+  - https://attack.mitre.org/techniques/T1543/003/
+author: Jarmi
+date: 2026/08/10
+tags:
+  - attack.persistence
+  - attack.defense-evasion
+  - attack.t1543.003
+  - attack.t1036.004
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_key:
+    TargetObject|contains: '\SYSTEM\CurrentControlSet\Services\svchost32'
+  selection_display:
+    TargetObject|endswith: '\DisplayName'
+    Details: 'Cloud Sync Service'
+  selection_desc:
+    TargetObject|endswith: '\Description'
+    Details: 'Synchronizes files with the cloud storage provider'
+  condition: selection_key and (selection_display or selection_desc)
+falsepositives:
+  - No known legitimate service uses the svchost32 key name with this exact display name and
+    description pair; treat matches as high-signal.
+
+level: high

@@ -121,6 +121,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Storm-1575](./storm-1575/) | 1 |
 | [Storm-1747](./storm-1747/) | 1 |
 | [Storm-1849](./storm-1849/) | 1 |
+| [Storm-2945](./storm-2945/) | 1 |
 | [Storm-2949](./storm-2949/) | 1 |
 | [SwimSnake](./swimsnake/) | 1 |
 | [T-APT-17](./t-apt-17/) | 1 |

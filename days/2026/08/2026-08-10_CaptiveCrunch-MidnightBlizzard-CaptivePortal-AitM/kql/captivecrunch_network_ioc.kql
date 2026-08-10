@@ -1,0 +1,15 @@
+// Title: CaptiveCrunch / Storm-2945 Network Infrastructure Connectivity
+// Id: 568c239d-3f81-4e48-bf77-009869a24fb4
+// MITRE: T1071.001, T1557, T1583.001
+// Reference: https://www.microsoft.com/en-us/security/blog/2026/07/31/captivecrunch-midnight-blizzard-targets-travelers-worldwide-for-malware-delivery-and-credential-theft/
+// Author: Jarmi
+// Date: 2026-08-10
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: Indicators decay - revalidate the doppelganger domains and IPs before alerting.
+//           213.145.86.112 and 107.189.26.194 also served as ChocoShell C2 / DNS resolver.
+let ioc_domains = dynamic(["ms365-device.com","ms365-live.com","m365-owa.com","owa-ms365.com"]);
+let ioc_ips = dynamic(["31.57.243.154","38.146.28.75","38.146.28.132","104.194.159.150","107.189.26.194","213.145.86.112"]);
+DeviceNetworkEvents
+| where RemoteUrl has_any (ioc_domains) or RemoteIP in (ioc_ips)
+| project Timestamp, DeviceName, DeviceId, RemoteUrl, RemoteIP, RemotePort, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName, ReportId
+| sort by Timestamp desc

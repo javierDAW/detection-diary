@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-08-07 07:36 UTC
+# generated 2026-08-10 07:40 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -216,6 +216,7 @@ line.completely.workers.dev
 loginportal-aws.com
 lunarohub.info
 lunavo.club
+m365-owa.com
 mail.authorized-logins.net
 mail.t-w.dev
 mailes.upd-domain-goloro.com
@@ -230,6 +231,8 @@ minaro.club
 mindflowbase.info
 ml.cloud
 mortarora.digital
+ms365-device.com
+ms365-live.com
 msiidentity.com
 mueleer.com
 muurfzqprzmdkzoibxaz.supabase.co
@@ -256,6 +259,7 @@ orange-cell-1353.hellohiall.workers.dev
 orangesmartfile.com
 orientstrategypartners.digital
 ovh1kn1tcqw5kp.org
+owa-ms365.com
 pamconj.com
 panel.securehubcloud.com
 parixaxj.com

@@ -1,0 +1,37 @@
+title: CornFlake RAT svchost32 Masquerade in AppData
+id: 5bd5e7f7-d13a-4041-a2a1-0238236ebd47
+status: experimental
+description: |
+  Detects execution of the CornFlake Go RAT used by Storm-2945 (Midnight Blizzard) in the
+  CaptiveCrunch campaign. On first run CornFlake copies itself to
+  %APPDATA%\svchost32\svchost32.exe and re-launches from that path, masquerading as the
+  legitimate system svchost.exe which only ever runs from System32/SysWOW64. Any process
+  image named svchost32.exe, or a real svchost.exe launched from a user-writable AppData
+  path, is high-signal. Tune out legitimate svchost.exe under System32/SysWOW64 in SIEM.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/07/31/captivecrunch-midnight-blizzard-targets-travelers-worldwide-for-malware-delivery-and-credential-theft/
+  - https://attack.mitre.org/techniques/T1036/005/
+author: Jarmi
+date: 2026/08/10
+tags:
+  - attack.defense-evasion
+  - attack.persistence
+  - attack.t1036.005
+  - attack.t1543.003
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_name:
+    Image|endswith: '\svchost32.exe'
+  selection_appdata:
+    Image|endswith: '\svchost.exe'
+    Image|contains:
+      - '\AppData\Roaming\'
+      - '\AppData\Local\'
+  condition: selection_name or selection_appdata
+falsepositives:
+  - Third-party tools that ship a binary literally named svchost32.exe are rare; validate the
+    signer and parent process. Legitimate svchost.exe never runs from an AppData path.
+
+level: high

@@ -1,0 +1,26 @@
+type,value,context,confidence,source
+sha256,918fa52ae45ed60ba7cc8bdc99c3cbe9ab92e0375ec31fc05d0d4513be11c593,CornFlake Go RAT (Windows) - Storm-2945 primary persistent implant; first seen 2026-07-03,high,Microsoft Threat Intelligence 2026-07-31
+sha256,be99857449d2856dd5a84e21c8a3d5e0e01456adb44062ddec5a6b4970d8d42c,ChocoShell in-memory PowerShell credential stealer; first seen 2026-07-10,high,Microsoft Threat Intelligence 2026-07-31
+domain,ms365-device.com,CaptiveCrunch device code flow redirect / M365 doppelganger; first seen 2026-07-23,high,Microsoft Threat Intelligence 2026-07-31
+domain,ms365-live.com,CaptiveCrunch device code flow redirect / M365 doppelganger; first seen 2026-05-14,high,Microsoft Threat Intelligence 2026-07-31
+domain,m365-owa.com,CaptiveCrunch AitM infrastructure (OWA doppelganger); first seen 2026-07-20,high,Microsoft Threat Intelligence 2026-07-31
+domain,owa-ms365.com,CaptiveCrunch AitM infrastructure (OWA doppelganger); first seen 2026-07-16,high,Microsoft Threat Intelligence 2026-07-31
+ipv4,31.57.243.154,CaptiveCrunch AitM infrastructure; first seen 2026-07-16,high,Microsoft Threat Intelligence 2026-07-31
+ipv4,38.146.28.75,CaptiveCrunch AitM infrastructure; first seen 2026-07-01,high,Microsoft Threat Intelligence 2026-07-31
+ipv4,38.146.28.132,CaptiveCrunch DNS resolver used for captive portal traffic manipulation; first seen 2026-07-15,high,Microsoft Threat Intelligence 2026-07-31
+ipv4,104.194.159.150,CaptiveCrunch AitM infrastructure; first seen 2026-04-28,high,Microsoft Threat Intelligence 2026-07-31
+ipv4,107.189.26.194,ChocoShell C2 and CaptiveCrunch DNS resolver (dual role); first seen 2026-02-27,high,Microsoft Threat Intelligence 2026-07-31
+ipv4,213.145.86.112,ChocoShell hardcoded HTTPS C2; first seen 2026-07-01,high,Microsoft Threat Intelligence 2026-07-31
+url,https://213.145.86.112/t/pixel.gif?m=,ChocoShell C2 beacon URI disguised as a tracking pixel; status appended in m= parameter,high,Microsoft Threat Intelligence 2026-07-31
+url,https://213.145.86.112/cdn/chunks/polyfill-7e2b.min.js,ChocoShell second-stage module fetch (Base64 decoded and run in-memory via ScriptBlock::Create),high,Microsoft Threat Intelligence 2026-07-31
+url,https://213.145.86.112/t/event,ChocoShell exfiltration endpoint (POST GZip + Base64 JSON),high,Microsoft Threat Intelligence 2026-07-31
+path,%APPDATA%\svchost32\svchost32.exe,CornFlake self-copy and persistence binary masquerading as system svchost,high,Microsoft Threat Intelligence 2026-07-31
+path,sync.dat,CornFlake runtime config file enabling hot reconfiguration of C2 and collection targets,medium,Microsoft Threat Intelligence 2026-07-31
+regkey,HKLM\SYSTEM\CurrentControlSet\Services\svchost32,CornFlake persistence service (DisplayName Cloud Sync Service),high,Microsoft Threat Intelligence 2026-07-31
+regkey,HKCU\Environment\windir,ChocoShell SilentCleanup UAC-bypass staging value (cleaned after ~2 seconds),medium,Microsoft Threat Intelligence 2026-07-31
+string,Cloud Sync Service,CornFlake fake service display name; description Synchronizes files with the cloud storage provider,high,Microsoft Threat Intelligence 2026-07-31
+note,CornFlake is a Go Windows RAT: keylog / clipboard / screenshot / audio / video / browser creds / file exfil / USB monitor / remote shell; ECDH P-256 + JSON C2,informational,Microsoft Threat Intelligence 2026-07-31
+note,ChocoShell steals Chromium and Firefox cookies/passwords (ABE bypass via CDP Network.getAllCookies + SYSTEM token impersonation) plus M365/Azure AD .tbres tokens and Wi-Fi keys,informational,Microsoft Threat Intelligence 2026-07-31
+note,FruitStone is the operator C2 panel (single-page HTML/JS CloudSync Console) with no authentication on its functions; no file hash published,informational,Microsoft Threat Intelligence 2026-07-31
+note,No CVE in scope - initial captive portal compromise vector unconfirmed; abuse of legitimate device code OAuth flow and DNS/HTTP traffic manipulation rather than a software vulnerability,informational,Microsoft Threat Intelligence 2026-07-31
+note,ClickFix landings also include Android instructions to download an APK; no APK hash/domain published,informational,Microsoft Threat Intelligence 2026-07-31
