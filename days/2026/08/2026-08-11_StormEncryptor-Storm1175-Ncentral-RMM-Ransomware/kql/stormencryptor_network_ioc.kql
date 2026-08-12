@@ -1,0 +1,13 @@
+// Title: Storm-1175 / StormEncryptor Network IOC Connectivity
+// Id: 5a286a29-a972-4e94-8560-7855f6cddac8
+// MITRE: T1190, T1572
+// Reference: https://www.rapid7.com/blog/post/etr-cve-2026-18577-n-able-n-central-authentication-bypass-exploited-in-the-wild/
+// Author: Jarmi
+// Date: 2026-08-11
+// Tested on: Microsoft Defender XDR (DeviceNetworkEvents)
+// FP notes: N-able-published IPs; revalidate freshness before alerting inline - indicators decay.
+let ioc_ips = dynamic(["173.249.252.200","87.249.138.34","37.19.210.32","37.153.90.88","92.118.112.181","68.235.46.214"]);
+DeviceNetworkEvents
+| where RemoteIP in (ioc_ips)
+| project Timestamp, DeviceName, DeviceId, RemoteIP, RemotePort, InitiatingProcessFileName, InitiatingProcessFolderPath, ReportId
+| sort by Timestamp desc

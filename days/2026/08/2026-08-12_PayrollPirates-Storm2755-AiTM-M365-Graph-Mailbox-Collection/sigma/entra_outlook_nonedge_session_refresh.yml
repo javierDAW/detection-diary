@@ -1,0 +1,44 @@
+title: Entra Outlook Client Sign-in With Non-Edge User Agent (AiTM Session Refresh)
+id: 297379be-b863-40ca-8e53-26a98aedc481
+status: experimental
+description: >
+  Detects Microsoft Entra ID sign-ins that report the Microsoft Outlook client
+  application but carry a Firefox or Python user agent instead of the expected
+  Edge user agent. In the Payroll Pirates (Storm-2755 overlap) AiTM campaign,
+  centralized automation refreshes each stolen session at roughly eight-hour
+  intervals from rotating residential proxies, reporting Outlook with
+  Firefox 131.0 / 151.0 or Python Requests user agents. Threshold, cadence and
+  SessionID-reuse correlation are pushed to SIEM aggregation (see description):
+  alert is highest fidelity when the same SessionID recurs across multiple ASNs
+  and geographies within a short window.
+references:
+    - https://arcticwolf.com/resources/blog/payroll-pirates-strange-new-tides-in-business-email-compromise/
+    - https://attack.mitre.org/techniques/T1550/004/
+author: Jarmi
+date: 2026/08/12
+tags:
+    - attack.defense-evasion
+    - attack.lateral-movement
+    - attack.t1550.004
+    - attack.t1539
+logsource:
+    product: azure
+    service: signinlogs
+detection:
+    selection_app:
+        AppDisplayName: 'Microsoft Outlook'
+    selection_ua:
+        UserAgent|contains:
+            - 'Firefox/131.0'
+            - 'Firefox/151.0'
+            - 'Firefox/'
+            - 'python-requests'
+            - 'Python Requests'
+    filter_expected:
+        UserAgent|contains: 'Edg/'
+    condition: selection_app and selection_ua and not filter_expected
+falsepositives:
+    - Legitimate third-party mail clients or scripts that authenticate as the
+      Outlook first-party app id in unusual environments; validate against the
+      eight-hour cadence and SessionID reuse across ASNs before escalating.
+level: medium

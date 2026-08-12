@@ -1,0 +1,211 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Payroll Pirates kill chain - AiTM M365 takeover (Storm-2755 overlap)</title>
+<desc id="d">Two lanes. Left: a victim Microsoft 365 identity from a voicemail-themed phishing lure and multi-stage redirect, through a browser-fingerprinting and geolocation gate that sets an rcfh_country cookie, an adversary-in-the-middle relay of the genuine Microsoft sign-in that captures session tokens even with MFA, automated session refresh every eight hours from rotating residential proxies with the same SessionID, Microsoft Graph reconnaissance of payroll and finance users, and coordinated mailbox collection with selective inbox-hiding rules. Right: the Payroll Pirates automation and infrastructure - the Google Meet, Google Ads and Amazon S3 redirect chain, the OpenResty and Express AiTM proxy with its PHP fingerprinting component, the anyIP residential proxy pool, the axios Graph automation, and the coordinated collection aimed at diverting payroll. Detection anchors: one SessionID across multiple ASNs at an eight-hour cadence, error 90014 on OfficeHome, the anomalous Outlook application and undocumented API pairing for MailItemsAccessed, and Graph enumeration of finance roles.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Payroll Pirates - AiTM M365 takeover (Storm-2755 overlap)</text>
+<text class="meta" x="20" y="58">Vendor: Arctic Wolf Labs - Date: 2026-08-06 - Cluster: Payroll Pirates - Day 105</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="106">VICTIM IDENTITY - Entra / M365 sign-in and mailbox tells</text>
+<text class="laneLabelR" x="460" y="106">PAYROLL PIRATES AUTOMATION and INFRASTRUCTURE</text>
+
+<!-- LEFT STAGES -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="146">Voicemail lure + redirect chain</text>
+<text class="sub" x="42" y="170">Fake voicemail portal; Microsoft branding</text>
+<text class="sub" x="42" y="186">Google Meet / Ads / S3 hops</text>
+<text class="sub" x="42" y="202">T1566.002 / T1204.001</text>
+<text class="mono" x="42" y="228">Subject: ATTN: Review messages. Ref id:</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="296">Fingerprint + geolocation gate</text>
+<text class="sub" x="42" y="320">JS reads navigator/screen/WebGL</text>
+<text class="sub" x="42" y="336">api.country.is -> rcfh_country cookie</text>
+<text class="sub" x="42" y="352">T1497.001 / T1656</text>
+<text class="mono" x="42" y="378">/st_58200519/class_identifier.php</text>
+
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="446">AiTM relay of Microsoft sign-in (critical)</text>
+<text class="sub" x="42" y="470">Proxy relays genuine login; MFA passes</text>
+<text class="sub" x="42" y="486">Attacker domain prepended to MS URLs</text>
+<text class="sub" x="42" y="502">T1557</text>
+<text class="mono" x="42" y="528">error 90014 on OfficeHome (no nonce)</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="596">Session token theft (critical)</text>
+<text class="sub" x="42" y="620">Auth code + ID token to proxy callback</text>
+<text class="sub" x="42" y="636">Session captured without breaking MFA</text>
+<text class="sub" x="42" y="652">T1539</text>
+<text class="mono" x="42" y="678">tokens survive password reset</text>
+
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="746">Automated 8-hour session refresh</text>
+<text class="sub" x="42" y="770">Outlook client, Firefox/Python UA</text>
+<text class="sub" x="42" y="786">Same SessionID, rotating ASN/geo</text>
+<text class="sub" x="42" y="802">T1550.004 / T1090.002 / T1078.004</text>
+<text class="mono" x="42" y="828">non-interactive sign-ins every ~8h</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="896">Graph reconnaissance (finance)</text>
+<text class="sub" x="42" y="920">Enumerate payroll/HR/finance users</text>
+<text class="sub" x="42" y="936">axios/1.18.1 user agent</text>
+<text class="sub" x="42" y="952">T1087.003</text>
+<text class="mono" x="42" y="978">graph.microsoft.com/v1.0/users?$top=999</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1046">Mailbox collection + hiding</text>
+<text class="sub" x="42" y="1070">MailItemsAccessed Bind (content read)</text>
+<text class="sub" x="42" y="1086">Subset: rules move mail to Deleted</text>
+<text class="sub" x="42" y="1102">T1114.002 / T1564.008 / T1070.008</text>
+<text class="mono" x="42" y="1128">Outlook appId + undocumented API id</text>
+
+<!-- RIGHT OPS -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">1</text>
+<text class="label" x="502" y="151">Redirect infrastructure</text>
+<text class="sub" x="472" y="175">Google Meet linkredirect + Ads clk</text>
+<text class="sub" x="472" y="191">Amazon S3 HTML staging object</text>
+<text class="sub" x="472" y="207">T1583.001 (trusted-service abuse)</text>
+<text class="mono" x="472" y="237">adservice.google.com.ph/ddm/clk</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">2</text>
+<text class="label" x="502" y="321">AiTM proxy (OpenResty/Express)</text>
+<text class="sub" x="472" y="345">idp. redirector -> auth proxy</text>
+<text class="sub" x="472" y="361">Microsoft-themed subdomains</text>
+<text class="sub" x="472" y="377">T1557</text>
+<text class="mono" x="472" y="407">msonline.logicalineonline.com</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">3</text>
+<text class="label" x="502" y="491">Fingerprinting PHP component</text>
+<text class="sub" x="472" y="515">Filters sandboxes / researchers</text>
+<text class="sub" x="472" y="531">Stores country for proxy matching</text>
+<text class="sub" x="472" y="547">server: openresty/1.31.1.1</text>
+<text class="mono" x="472" y="577">x-powered-by: PHP/8.2.32</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">4</text>
+<text class="label" x="502" y="661">Residential proxy pool</text>
+<text class="sub" x="472" y="685">anyIP exit nodes; geo-matched</text>
+<text class="sub" x="472" y="701">Defeats impossible-travel checks</text>
+<text class="sub" x="472" y="717">T1090.002</text>
+<text class="mono" x="472" y="747">rotating ISP/mobile-carrier IPs</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">5</text>
+<text class="label" x="502" y="831">Graph automation</text>
+<text class="sub" x="472" y="855">Central controller drives sessions</text>
+<text class="sub" x="472" y="871">Bursts across tenants in seconds</text>
+<text class="sub" x="472" y="887">T1087.003 / T1114.002</text>
+<text class="mono" x="472" y="917">axios/1.18.1 ; Defender recon alert</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">6</text>
+<text class="label" x="502" y="1001">Collection -> payroll diversion</text>
+<text class="sub" x="472" y="1025">Invoices, payments, banking, benefits</text>
+<text class="sub" x="472" y="1041">Hands-on rules from hosting ASN</text>
+<text class="sub" x="472" y="1057">AS27176 Datawagon LLC</text>
+<text class="mono" x="472" y="1087">objective: reroute salary payments</text>
+
+<!-- LEFT INTRA-LANE ARROWS -->
+<path class="arrow" d="M60,255 L60,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,405 L60,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,555 L60,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,705 L60,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,855 L60,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,1005 L60,1020" marker-end="url(#ah)"/>
+
+<!-- RIGHT INTRA-LANE ARROWS -->
+<path class="arrowR" d="M490,280 L490,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,450 L490,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,620 L490,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,790 L490,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,960 L490,975" marker-end="url(#ah)"/>
+
+<!-- CROSS-LANE ARROWS (facing edges 425 <-> 460) -->
+<path class="arrowX" d="M460,487 L425,487" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,712 L425,712" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,1075 L460,1052" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Durable detection anchors</text>
+<text class="footerT" x="34" y="1222">1) one SessionID across multiple ASNs at ~8h cadence  2) error 90014 on OfficeHome  3) Outlook client with Firefox/Python user agent</text>
+<text class="footerT" x="34" y="1240">4) MailItemsAccessed with Outlook appId 5d661950 + undocumented API id c999ed3e  5) Graph enumeration of payroll/HR/finance roles</text>
+<text class="footerT" x="34" y="1258">No CVE in scope - AiTM session theft + abuse of legitimate M365/Graph functionality; not a patchable vulnerability</text>
+</svg>

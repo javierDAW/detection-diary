@@ -1,5 +1,109 @@
 [
  {
+  "date": "2026-08-12",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection",
+  "title": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coordinated mailbox collection (Storm-2755 overlap)",
+  "clusters": [
+   "Payroll Pirates"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "cloud-multi"
+  ],
+  "sectors": [
+   "healthcare",
+   "education",
+   "manufacturing",
+   "government",
+   "professional-services"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1566.002",
+   "T1204.001",
+   "T1656",
+   "T1557",
+   "T1497.001",
+   "T1539",
+   "T1550.004",
+   "T1078.004",
+   "T1090.002",
+   "T1087.003",
+   "T1114.002",
+   "T1564.008",
+   "T1070.008"
+  ],
+  "tech_count": 14,
+  "tldr": "Arctic Wolf Labs published (2026-08-06) an active, widespread email-driven **adversary-in-the-middle (AiTM)** campaign that takes over **Microsoft 365** accounts to locate the people who run financial workflows and quietly read their mail. Voicemail-themed lures ride a six-stage redirect chain through Google and Amazon S3 to an AiTM reverse proxy that relays the genuine Microsoft sign-in and steal",
+  "thumb": "thumbs/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection.svg",
+  "case_rel": "../days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "Payroll Pirates",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "payroll pirates: aitm microsoft 365 takeover with graph reconnaissance and coordinated mailbox collection (storm-2755 overlap) payroll pirates unknown cloud-multi healthcare education manufacturing government professional-services t1583.001 t1566.002 t1204.001 t1656 t1557 t1497.001 t1539 t1550.004 t1078.004 t1090.002 t1087.003 t1114.002 t1564.008 t1070.008 identity / cloud / saas "
+ },
+ {
+  "date": "2026-08-11",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware",
+  "title": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ locker via the N-able N-central RMM auth bypass",
+  "clusters": [
+   "Storm-1175"
+  ],
+  "country": "China",
+  "platforms": [
+   "windows",
+   "network-edge"
+  ],
+  "sectors": [
+   "managed-services",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1190",
+   "T1072",
+   "T1219",
+   "T1572",
+   "T1543.003",
+   "T1036.005",
+   "T1046",
+   "T1003.001",
+   "T1567",
+   "T1486",
+   "T1657"
+  ],
+  "tech_count": 11,
+  "tldr": "On 2026-08-10 Microsoft Threat Intelligence detailed **StormEncryptor**, a previously undocumented C++ ransomware deployed by **Storm-1175**, a China-based, financially motivated actor formerly known for deploying **Medusa** ransomware. The intrusions were preceded by exploitation of an **authentication-bypass flaw in N-able N-central** (**CVE-2026-18577**), a widely used RMM platform; after takin",
+  "thumb": "thumbs/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware.svg",
+  "case_rel": "../days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Storm-1175",
+  "cve_count": 2,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-18577",
+    "due": "2026-08-06",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-18556",
+    "due": "2026-08-07",
+    "ransom": false
+   }
+  ],
+  "q": "stormencryptor: storm-1175 (former medusa affiliate) pivots to a custom c++ locker via the n-able n-central rmm auth bypass storm-1175 china windows network-edge managed-services cross-sector t1190 t1072 t1219 t1572 t1543.003 t1036.005 t1046 t1003.001 t1567 t1486 t1657 ransomware / e-crime cve-2026-18577 cve-2026-18556"
+ },
+ {
   "date": "2026-08-10",
   "year": "2026",
   "month": "2026-08",

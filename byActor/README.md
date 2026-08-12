@@ -95,6 +95,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Opportunistic OCPP / EV-charging exploitation (unattributed)](./opportunistic-ocpp-ev-charging-exploitation-unattributed/) | 1 |
 | [Opportunistic WordPress mass-exploitation (unattributed)](./opportunistic-wordpress-mass-exploitation-unattributed/) | 1 |
 | [Opportunistic medical-imaging scanners](./opportunistic-medical-imaging-scanners/) | 1 |
+| [Payroll Pirates](./payroll-pirates/) | 1 |
 | [Pheno](./pheno/) | 1 |
 | [Punk Spider](./punk-spider/) | 1 |
 | [QLNX](./qlnx/) | 1 |
@@ -117,6 +118,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Spirals](./spirals/) | 1 |
 | [Static Tundra](./static-tundra/) | 1 |
 | [Storm-0784](./storm-0784/) | 1 |
+| [Storm-1175](./storm-1175/) | 1 |
 | [Storm-1567](./storm-1567/) | 1 |
 | [Storm-1575](./storm-1575/) | 1 |
 | [Storm-1747](./storm-1747/) | 1 |

@@ -1,0 +1,19 @@
+// Title: Storm-1175 Recon, Credential Access and StormEncryptor Impact
+// Id: a6f73609-a121-4923-8dd3-0ee7345ab94e
+// MITRE: T1046, T1003.001, T1219, T1486
+// Reference: https://www.bleepingcomputer.com/news/security/new-stormencryptor-ransomware-used-by-former-medusa-affiliate/
+// Author: Jarmi
+// Date: 2026-08-11
+// Tested on: Microsoft Defender XDR (DeviceProcessEvents, DeviceFileEvents)
+// FP notes: RMM tools (AnyDesk/SimpleHelp) and Advanced IP Scanner can be sanctioned; scope by asset.
+let tools = DeviceProcessEvents
+    | where FileName in~ ("AnyDesk.exe","SimpleHelp.exe","Remote Access.exe","advanced_ip_scanner.exe","advanced_port_scanner.exe","mimikatz.exe")
+        or ProcessCommandLine has "sekurlsa" or ProcessCommandLine has "lsadump"
+    | project Timestamp, DeviceName, DeviceId, Signal = "tooling", FileName, ProcessCommandLine, InitiatingProcessFileName, ReportId;
+let impact = DeviceFileEvents
+    | where FileName endswith ".encrypted" or FileName =~ "!!!README_FIRST!!!.txt"
+    | summarize EncEvents = count(), Dirs = dcount(FolderPath), FirstSeen = min(Timestamp), LastSeen = max(Timestamp) by DeviceName, DeviceId
+    | where EncEvents > 25
+    | extend Signal = "encryption_burst";
+union (tools), (impact)
+| sort by Timestamp desc

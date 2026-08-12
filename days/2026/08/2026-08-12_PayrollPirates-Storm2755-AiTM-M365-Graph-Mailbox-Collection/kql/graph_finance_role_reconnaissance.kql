@@ -1,0 +1,21 @@
+// Title: Payroll Pirates - Microsoft Graph Reconnaissance For Finance/HR Roles
+// Id: 332f9e20-cadd-4b23-996d-9dee7026b390
+// MITRE: T1087.003, T1087.004
+// Reference: https://arcticwolf.com/resources/blog/payroll-pirates-strange-new-tides-in-business-email-compromise/
+// Author: Jarmi
+// Date: 2026-08-12
+// Tested on: Microsoft Defender XDR (CloudAppEvents)
+// FP notes: broad tenant-wide user enumeration (users?$top=999) also occurs from legitimate
+//           IAM tooling - correlate the axios/1.18.1 user agent and finance-term searches with
+//           an anomalous source ASN. Replace <add_known_iam_service_principals> with approved apps.
+let recon_terms = dynamic(["payroll","hr","finance","human resources","benefits","banking"]);
+CloudAppEvents
+| where Timestamp > ago(7d)
+| where RawEventData has "graph.microsoft.com"
+| extend Raw = parse_json(RawEventData)
+| extend UA = tostring(Raw.UserAgent), Uri = tostring(Raw.RequestUri), Actor = tostring(Raw.UserId)
+| where UA startswith "axios/" or Uri has "/v1.0/users" or Uri has "/v1.0/me"
+| where Uri has_any (recon_terms) or Uri has "$top=999"
+| where Actor !in ("<add_known_iam_service_principals>")
+| project Timestamp, Actor, UA, Uri, IPAddress
+| order by Timestamp desc

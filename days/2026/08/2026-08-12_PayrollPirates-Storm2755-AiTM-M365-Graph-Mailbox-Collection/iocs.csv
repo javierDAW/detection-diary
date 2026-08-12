@@ -1,0 +1,26 @@
+type,value,context,confidence,source
+domain,idp.keyreniao.com,AiTM redirector (HTTP 302 to auth proxy); Hostinger; short-lived,high,Arctic Wolf Labs 2026-08-06
+domain,idp.korminel.com,AiTM redirector; idp. subdomain naming pattern,high,Arctic Wolf Labs 2026-08-06
+domain,idp.kualabemo.com,AiTM redirector; idp. subdomain naming pattern,high,Arctic Wolf Labs 2026-08-06
+domain,mslogin.milocaroline.com,AiTM authentication proxy; Microsoft-themed subdomain,high,Arctic Wolf Labs 2026-08-06
+domain,msonline.logicalineonline.com,AiTM authentication proxy; Microsoft-themed subdomain,high,Arctic Wolf Labs 2026-08-06
+domain,msauth.monlinelogicaline.com,AiTM authentication proxy; Microsoft-themed subdomain,high,Arctic Wolf Labs 2026-08-06
+domain,office.ofrecie.com,AiTM proxy; misspelled office. subdomain variant,high,Arctic Wolf Labs 2026-08-06
+domain,api.country.is,Free geolocation API abused by the fingerprint stage to set rcfh_country cookie,medium,Arctic Wolf Labs 2026-08-06
+path,/st_58200519/class_identifier.php,Fingerprinting endpoint served by the AiTM proxy,high,Arctic Wolf Labs 2026-08-06
+url,/https://login.microsoftonline.com/common/GetCredentialType,URL-rewrite tell: Microsoft path prepended by attacker proxy domain,high,Arctic Wolf Labs 2026-08-06
+string,rcfh_country,Cookie storing victim country code (7-day expiry) set by fingerprint stage,high,Arctic Wolf Labs 2026-08-06
+string,openresty/1.31.1.1,server response header on AiTM proxy root and fingerprint endpoint,medium,Arctic Wolf Labs 2026-08-06
+string,PHP/8.2.32,x-powered-by header on the fingerprinting PHP component,low,Arctic Wolf Labs 2026-08-06
+string,5d661950-3475-41cd-a2c3-d671a3162bc1,MailItemsAccessed ClientAppId (Microsoft Outlook) in anomalous pairing,high,Arctic Wolf Labs 2026-08-06
+string,c999ed3e-27ae-4cb3-b3a2-46b056af63d3,MailItemsAccessed API ID (not documented publicly) in anomalous pairing,high,Arctic Wolf Labs 2026-08-06
+string,axios/1.18.1,User agent used for Microsoft Graph reconnaissance of finance/HR roles,medium,Arctic Wolf Labs 2026-08-06
+string,Firefox/131.0,Anomalous Outlook client user agent during 8-hour session refresh,medium,Arctic Wolf Labs 2026-08-06
+string,Firefox/151.0,Anomalous Outlook client user agent (recent activity),medium,Arctic Wolf Labs 2026-08-06
+string,ATTN: Review messages. Ref id:,Voicemail-themed phishing email subject pattern,medium,Arctic Wolf Labs 2026-08-06
+note,errorCode 90014 + appDisplayName OfficeHome,Rare Entra sign-in failure (missing nonce) strongly associated with the AiTM proxy,high,Arctic Wolf Labs 2026-08-06
+note,Redirect chain: meet.google.com/linkredirect -> google.com/url -> adservice.google.com.ph/ddm/clk -> S3 (amazonaws.com) -> AiTM proxy,Six-stage redirect abusing trusted services to evade reputation filters,high,Arctic Wolf Labs 2026-08-06
+note,anyIP residential proxy exit nodes; geo-matched to victim country,Session sign-ins originate from residential ISP/mobile carrier IPs flagged as proxies,high,Arctic Wolf Labs 2026-08-06
+note,AS27176 Datawagon LLC,Hosting ASN used for interactive hands-on inbox-rule creation sign-ins,medium,Arctic Wolf Labs 2026-08-06
+note,Storm-2755 (Payroll Pirate) and Storm-2657 overlap,Activity cluster attribution: financially motivated payroll-diversion tradecraft,medium,Microsoft / Arctic Wolf Labs 2026
+note,Domains rotate and are typically under 10 days old on Hostinger,Network indicators decay; enrich with a newly-registered-domain feed before blocking,high,Arctic Wolf Labs 2026-08-06

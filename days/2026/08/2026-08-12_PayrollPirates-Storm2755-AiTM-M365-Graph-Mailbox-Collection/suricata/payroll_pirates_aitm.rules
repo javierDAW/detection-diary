@@ -1,0 +1,25 @@
+# Payroll Pirates (Storm-2755 overlap) - AiTM M365 phishing network rules
+# Author: Jarmi
+# Date: 2026-08-12
+# Reference: https://arcticwolf.com/resources/blog/payroll-pirates-strange-new-tides-in-business-email-compromise/
+#
+# CAVEAT: The AiTM proxy and Microsoft sign-in flow run over HTTP/2 + TLS, so the
+# http.* rules below require TLS interception/decryption to fire. The dns.query and
+# tls.sni rules operate pre-decrypt and are the most broadly deployable. Domains rotate
+# and are typically <10 days old on Hostinger - pair these with a newly-registered-domain
+# feed. No custom flowbits/vars are used.
+
+# 1) Fingerprint stage: DNS lookup of the free geolocation API used before proxy redirect
+alert dns any any -> any any (msg:"PAYROLL PIRATES AiTM fingerprint geolocation lookup api.country.is"; dns.query; content:"api.country.is"; nocase; isdataat:!1,relative; classtype:trojan-activity; sid:2026081201; rev:1;)
+
+# 2) TLS SNI of known AiTM redirector/proxy second-level domains (rotating; enrich with NRD feed)
+alert tls any any -> any any (msg:"PAYROLL PIRATES AiTM proxy/redirector TLS SNI (known campaign domains)"; tls.sni; pcre:"/(milocaroline|logicalineonline|monlinelogicaline|keyreniao|korminel|kualabemo|ofrecie)\./i"; classtype:trojan-activity; sid:2026081202; rev:1;)
+
+# 3) HTTP fingerprinting endpoint path (requires TLS inspection)
+alert http any any -> any any (msg:"PAYROLL PIRATES AiTM fingerprinting endpoint class_identifier.php"; flow:established,to_server; http.uri; content:"/st_58200519/class_identifier.php"; nocase; classtype:trojan-activity; sid:2026081203; rev:1;)
+
+# 4) Proxy root response headers: OpenResty frontend + Express backend on a Microsoft-impersonating page (requires TLS inspection)
+alert http any any -> any any (msg:"PAYROLL PIRATES AiTM proxy response headers openresty + x-powered-by Express"; flow:established,to_client; http.header; content:"openresty/1.31.1.1"; nocase; http.header; content:"x-powered-by|3a 20|Express"; nocase; classtype:trojan-activity; sid:2026081204; rev:1;)
+
+# 5) URL-rewriting tell: full login.microsoftonline.com URL embedded inside a non-Microsoft host path (requires TLS inspection)
+alert http any any -> any any (msg:"PAYROLL PIRATES AiTM URL rewrite login.microsoftonline.com embedded in proxy path"; flow:established,to_server; http.uri; content:"/https|3a 2f 2f|login.microsoftonline.com/common/"; nocase; classtype:trojan-activity; sid:2026081205; rev:1;)

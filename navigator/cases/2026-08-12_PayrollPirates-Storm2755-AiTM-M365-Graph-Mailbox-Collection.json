@@ -1,0 +1,125 @@
+{
+  "name": "2026-08-12 — 2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coordinated mailbox collection (Storm-2755 overlap) — clusters: Payroll Pirates",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1204.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1656",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1557",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1497.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1550.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1090.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1087.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1114.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1564.008",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    },
+    {
+      "techniqueID": "T1070.008",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coord"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

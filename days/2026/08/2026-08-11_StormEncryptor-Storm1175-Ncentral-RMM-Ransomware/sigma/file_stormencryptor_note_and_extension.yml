@@ -1,0 +1,31 @@
+title: StormEncryptor Ransom Note and Encrypted File Extension
+id: 1bc7ca6d-a13f-477c-afec-d80ee9d7481b
+status: experimental
+description: |
+  Detects the on-disk impact of the StormEncryptor locker used by Storm-1175: creation of the ransom
+  note !!!README_FIRST!!!.txt dropped into every scanned directory, or files renamed with the
+  .encrypted extension. A burst of either across many directories on one host is a strong
+  encryption-in-progress signal. Push volume and rate thresholds (many events per host per minute)
+  to SIEM aggregation; a single event may be a lure or a researcher sample.
+references:
+  - https://www.bleepingcomputer.com/news/security/new-stormencryptor-ransomware-used-by-former-medusa-affiliate/
+  - https://thehackernews.com/2026/08/china-linked-hackers-deploy-new.html
+  - https://attack.mitre.org/techniques/T1486/
+author: Jarmi
+date: 2026/08/11
+tags:
+  - attack.impact
+  - attack.t1486
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_note:
+    TargetFilename|endswith: '\!!!README_FIRST!!!.txt'
+  selection_ext:
+    TargetFilename|endswith: '.encrypted'
+  condition: selection_note or selection_ext
+falsepositives:
+  - Files that legitimately end in .encrypted (some backup or vault products); confirm the note pair.
+
+level: high

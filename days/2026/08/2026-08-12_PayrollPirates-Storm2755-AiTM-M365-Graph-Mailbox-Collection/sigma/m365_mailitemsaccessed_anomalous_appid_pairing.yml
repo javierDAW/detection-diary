@@ -1,0 +1,33 @@
+title: M365 MailItemsAccessed With Anomalous Outlook App and API ID Pairing
+id: 822cf53b-7723-42c3-b456-982ef873f258
+status: experimental
+description: >
+  Detects Exchange Online MailItemsAccessed events whose ClientAppId is the
+  Microsoft Outlook first-party id (5d661950-3475-41cd-a2c3-d671a3162bc1) paired
+  with API id c999ed3e-27ae-4cb3-b3a2-46b056af63d3, which is not documented
+  publicly. Arctic Wolf found no legitimate instances of this pairing across its
+  global telemetry, making it a high-fidelity indicator of the Payroll Pirates
+  (Storm-2755 overlap) coordinated mailbox-collection activity. Access type Bind
+  confirms message content was retrieved rather than merely enumerated. Requires
+  MailItemsAccessed auditing (E3/E5 or equivalent) to be enabled.
+references:
+    - https://arcticwolf.com/resources/blog/payroll-pirates-strange-new-tides-in-business-email-compromise/
+    - https://attack.mitre.org/techniques/T1114/002/
+author: Jarmi
+date: 2026/08/12
+tags:
+    - attack.collection
+    - attack.t1114.002
+logsource:
+    product: m365
+    service: exchange
+detection:
+    selection:
+        Operation: 'MailItemsAccessed'
+        ClientAppId: '5d661950-3475-41cd-a2c3-d671a3162bc1'
+        AppId: 'c999ed3e-27ae-4cb3-b3a2-46b056af63d3'
+    condition: selection
+falsepositives:
+    - None known for this specific ClientAppId + AppId pairing; if observed,
+      validate whether a new Microsoft service legitimately uses the API id.
+level: high

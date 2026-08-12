@@ -1,0 +1,19 @@
+type,value,context,confidence,source
+sha256,c19ded65e822bb43ad0381c58abf33b7c8890f7bcc7125058a0c849c7e1a6054,StormEncryptor C++ Win64 locker; Microsoft Defender detection Ransom:Win64/StormEncryptor; first seen 2026-08-02,high,Microsoft Threat Intelligence 2026-08-10
+cve,CVE-2026-18577,N-able N-central authentication bypass used by Storm-1175 for initial access; exploited in the wild since 2026-08-01; on CISA KEV,high,N-able advisory 2026-08-02 / CISA KEV 2026-08-03
+cve,CVE-2026-18556,Earlier N-central authentication bypass; CVE-2026-18577 is the incomplete-fix follow-on; on CISA KEV,high,Rapid7 ETR 2026-08-04 / CISA KEV 2026-08-04
+ipv4,173.249.252.200,N-able-published Storm-1175 / N-central exploitation IP (inbound and C2),medium,N-able advisory 2026-08-02 (via Rapid7)
+ipv4,87.249.138.34,N-able-published Storm-1175 / N-central exploitation IP (inbound and C2),medium,N-able advisory 2026-08-02 (via Rapid7)
+ipv4,37.19.210.32,N-able-published Storm-1175 / N-central exploitation IP (inbound and C2),medium,N-able advisory 2026-08-02 (via Rapid7)
+ipv4,37.153.90.88,N-able-published Storm-1175 / N-central exploitation IP (inbound and C2),medium,N-able advisory 2026-08-02 (via Rapid7)
+ipv4,92.118.112.181,N-able-published Storm-1175 / N-central exploitation IP (inbound and C2),medium,N-able advisory 2026-08-02 (via Rapid7)
+ipv4,68.235.46.214,N-able-published Storm-1175 / N-central exploitation IP (inbound and C2),medium,N-able advisory 2026-08-02 (via Rapid7)
+path,%USERPROFILE%\Documents\svchost.exe,Suspicious svchost.exe planted in a user Documents folder post-exploitation (masquerade),high,N-able advisory 2026-08-02
+regkey,HKLM\SYSTEM\CurrentControlSet\Services\Cloudflared,Cloudflare Tunnel (cloudflared) registered as a Windows service for persistent remote access,high,N-able advisory 2026-08-02 / Rapid7 2026-08-04
+string,.encrypted,File extension appended by StormEncryptor to encrypted files,high,Microsoft Threat Intelligence 2026-08-10
+string,!!!README_FIRST!!!.txt,StormEncryptor ransom note dropped into every scanned directory; 3-day contact deadline then data leak,high,Microsoft Threat Intelligence 2026-08-10
+note,AnyDesk,Legitimate remote-management tool used hands-on-keyboard by Storm-1175 after access,high,Microsoft Threat Intelligence 2026-08-10
+note,SimpleHelp,Legitimate remote-management tool used as alternative to AnyDesk by Storm-1175,high,Microsoft Threat Intelligence 2026-08-10
+note,Advanced IP Scanner,Network discovery tool run by Storm-1175 to enumerate reachable hosts,high,Microsoft Threat Intelligence 2026-08-10
+note,Mimikatz,Used to dump credentials from the LSASS process,high,Microsoft Threat Intelligence 2026-08-10
+note,cloudflared,Cloudflare Tunnel client abused for persistent outbound remote access after N-central exploitation,high,N-able advisory 2026-08-02

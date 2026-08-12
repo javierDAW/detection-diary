@@ -1,0 +1,104 @@
+{
+  "name": "2026-08-11 — 2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ locker via the N-able N-central RMM auth bypass — clusters: Storm-1175",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    },
+    {
+      "techniqueID": "T1072",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    },
+    {
+      "techniqueID": "T1572",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    },
+    {
+      "techniqueID": "T1003.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    },
+    {
+      "techniqueID": "T1567",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    },
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ lock"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

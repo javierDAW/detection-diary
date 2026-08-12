@@ -1,0 +1,12 @@
+# StormEncryptor / Storm-1175 (former Medusa affiliate) network detections
+# Author: Jarmi
+# Date: 2026-08-11
+# Reference: https://www.rapid7.com/blog/post/etr-cve-2026-18577-n-able-n-central-authentication-bypass-exploited-in-the-wild/
+# Notes: Indicators decay - revalidate the IPs before deploying inline. cloudflared SNI rules are
+#        high-noise where Cloudflare Tunnel is sanctioned; scope with pass rules or by asset group.
+#        N-able-published exploitation/C2 IPs listed inline (no custom vars).
+alert tcp [173.249.252.200,87.249.138.34,37.19.210.32,37.153.90.88,92.118.112.181,68.235.46.214] any -> $HOME_NET any (msg:"Storm-1175 N-central exploitation inbound from N-able-published IP"; flow:to_server; classtype:trojan-activity; sid:2026081101; rev:1;)
+alert tcp $HOME_NET any -> [173.249.252.200,87.249.138.34,37.19.210.32,37.153.90.88,92.118.112.181,68.235.46.214] any (msg:"Storm-1175 outbound C2 to N-able-published IP"; flow:to_server,established; classtype:trojan-activity; sid:2026081102; rev:1;)
+alert tls $HOME_NET any -> any any (msg:"Cloudflared quick tunnel SNI trycloudflare.com (Storm-1175 persistence)"; flow:to_server,established; tls.sni; content:"trycloudflare.com"; nocase; endswith; classtype:trojan-activity; sid:2026081103; rev:1;)
+alert tls $HOME_NET any -> any any (msg:"Cloudflared named tunnel SNI argotunnel.com (Storm-1175 persistence)"; flow:to_server,established; tls.sni; content:"argotunnel.com"; nocase; endswith; classtype:trojan-activity; sid:2026081104; rev:1;)
+alert dns $HOME_NET any -> any any (msg:"Cloudflared tunnel DNS query argotunnel.com (Storm-1175 persistence)"; dns.query; content:"argotunnel.com"; nocase; endswith; classtype:trojan-activity; sid:2026081105; rev:1;)

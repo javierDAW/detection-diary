@@ -1,3 +1,39 @@
+## 2026.08.12 — Day 105 — Payroll Pirates: AiTM M365 takeover with Graph reconnaissance (Storm-2755 overlap)
+
+### Added
+- `days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/` — Arctic Wolf Labs (2026-08-06) tracked an active, widespread email-driven AiTM campaign taking over Microsoft 365 accounts to locate finance-workflow personnel and collect their mail; overlaps Microsoft's Storm-2755 "Payroll Pirate" cluster (and Storm-2657). Voicemail lure -> six-stage redirect (Google Meet/Ads/S3) -> OpenResty/Express AiTM proxy -> session-token theft; automation refreshes sessions every ~8h over rotating residential proxies, uses Graph to enumerate payroll/HR/finance users, and collects mail via an undocumented Outlook app + API pairing.
+- Sigma (3): `entra_outlook_nonedge_session_refresh.yml` — Outlook client with Firefox/Python (not Edge) UA; `entra_officehome_error_90014.yml` — OfficeHome sign-in error 90014 (nonce-less AiTM callback); `m365_mailitemsaccessed_anomalous_appid_pairing.yml` — MailItemsAccessed with the anomalous Outlook app + undocumented API ID.
+- KQL (3): `entra_session_id_across_asns.kql` — one SessionID across >=3 ASNs; `m365_mailitemsaccessed_anomalous_pairing.kql` — Bind mail access with the unique app/API pairing; `graph_finance_role_reconnaissance.kql` — axios Graph enumeration of finance/HR roles.
+- YARA (1 file, 2 rules): `payroll_pirates_aitm_kit.yar` — captured fingerprint JS (rcfh_country/api.country.is/class_identifier.php) and proxied Microsoft sign-in page (URL rewrite + openresty).
+- Suricata (1 file, 5 sids): `payroll_pirates_aitm.rules` — DNS api.country.is, TLS SNI of known proxy domains, fingerprint path, OpenResty/Express response headers, login.microsoftonline.com URL-rewrite (TLS-inspection caveats).
+- PEAK hunts (3): eight-hour session refresh; Graph finance reconnaissance; coordinated mailbox collection + inbox hiding.
+- `iocs.csv` (25 entries) — domains/path/strings/notes from Arctic Wolf 2026-08-06; no CVE in scope, so no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, `acc-identity-cloud` accent, victim-identity vs operator-automation lanes, IOC anchors.
+
+### Pedagogy
+- AiTM steals sessions, not passwords: revoke sessions + enable CAE; a password reset alone leaves stolen tokens valid.
+- Ingest non-interactive Entra sign-ins — the 8-hour token-refresh cadence lives almost entirely there.
+- The durable signal is correlated identity + session + mailbox telemetry (SessionID across ASNs, error 90014, Graph finance recon, the app/API mail pairing), not the rotating domains.
+- Absence of a CVE is not absence of severity: identity/SaaS abuse and social engineering aimed at payroll diversion.
+
+## 2026.08.11 — Day 104 — StormEncryptor (Storm-1175, ex-Medusa) via N-able N-central RMM
+
+### Added
+- `days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/` — Microsoft Threat Intelligence (2026-08-10) details StormEncryptor, a custom C++ Win64 locker from the China-based, financially motivated Storm-1175 (a former Medusa affiliate), likely reached via the N-able N-central RMM auth-bypass CVE-2026-18577 (Take Control pivot to managed endpoints, cloudflared + svchost-in-Documents persistence, AnyDesk/SimpleHelp, Advanced IP Scanner, Mimikatz). Tuesday crime-economy #3, slot-broken by active KEV exploitation.
+- Sigma (3): `proc_svchost_masquerade_documents.yml` — svchost.exe from a Documents path; `proc_cloudflared_tunnel_run.yml` — cloudflared tunnel run/--token; `file_stormencryptor_note_and_extension.yml` — !!!README_FIRST!!!.txt / .encrypted impact.
+- KQL (3): `ncentral_takecontrol_persistence.kql` — svchost + cloudflared persistence; `stormencryptor_network_ioc.kql` — N-able-published IPs; `stormencryptor_recon_creds_impact.kql` — recon/RMM tooling, LSASS dump, encryption burst.
+- YARA (1 file, 2 rules): StormEncryptor locker (PE, .encrypted + note) + broad note/extension artifact heuristic.
+- Suricata (1 file, 5 sids): N-able-published exploitation/C2 IPs (inbound + outbound) + cloudflared tunnel SNI/DNS (argotunnel.com, trycloudflare.com).
+- PEAK hunts (3): Take Control → endpoint execution; cloudflared + svchost-in-Documents persistence; recon → cred-dump → encryption sequence.
+- `iocs.csv` (18 entries) — SHA-256, two CVEs, six IPs, path, regkey, strings, tooling. `kev.md` — 2/2 CVEs on CISA KEV (CVE-2026-18577 added 2026-08-03, CVE-2026-18556 added 2026-08-04).
+- `kill_chain.svg` — template A, canonical palette, acc-ransomware accent, victim-estate vs Storm-1175 lanes, IOC anchors.
+
+### Pedagogy
+- Patch exposed management planes first: a KEV-listed auth bypass on an RMM server is estate-wide execution, not one-host risk.
+- RMM is initial access, not just management; endpoint controls that trust the agent let attacker code arrive "from management."
+- Remove persistence (Cloudflared service, Documents svchost.exe) before rotating credentials against a high-tempo, hands-on operator.
+- KEV presence is a remediation deadline, not a data point; the .encrypted/README note is the last, loudest signal — catch the recon-to-cred-dump upstream.
+
 ## 2026.08.10 — Day 103 — CaptiveCrunch: Midnight Blizzard (Storm-2945) captive-portal AitM
 
 ### Added

@@ -1,0 +1,19 @@
+// Title: Payroll Pirates - MailItemsAccessed Anomalous Outlook App + API ID Pairing
+// Id: 26ec74ad-94a8-4bca-a496-f6c36bb810e5
+// MITRE: T1114.002
+// Reference: https://arcticwolf.com/resources/blog/payroll-pirates-strange-new-tides-in-business-email-compromise/
+// Author: Jarmi
+// Date: 2026-08-12
+// Tested on: Microsoft Defender XDR (CloudAppEvents)
+// FP notes: no legitimate instances of this ClientAppId + AppId pairing were identified.
+//           Access type Bind confirms message content was retrieved. Requires MailItemsAccessed
+//           auditing to be enabled on the mailbox (E3/E5 or equivalent).
+CloudAppEvents
+| where Timestamp > ago(30d)
+| where ActionType == "MailItemsAccessed"
+| extend Raw = parse_json(RawEventData)
+| extend ClientAppId = tostring(Raw.ClientAppId), ApiId = tostring(Raw.AppId), AccessType = tostring(Raw.MailAccessType)
+| where ClientAppId == "5d661950-3475-41cd-a2c3-d671a3162bc1"
+| where ApiId == "c999ed3e-27ae-4cb3-b3a2-46b056af63d3"
+| project Timestamp, AccountDisplayName, AccountObjectId, ClientAppId, ApiId, AccessType, IPAddress, UserAgent
+| order by Timestamp desc

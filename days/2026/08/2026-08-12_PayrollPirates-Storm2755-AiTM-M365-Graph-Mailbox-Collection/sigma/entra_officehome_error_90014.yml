@@ -1,0 +1,33 @@
+title: Entra OfficeHome Sign-in Failure Error 90014 (AiTM Nonce-less Callback)
+id: 2870299f-8938-4e4c-ba25-5037eb3adaf7
+status: experimental
+description: >
+  Detects Microsoft Entra ID sign-in events for the first-party OfficeHome
+  application that fail with error code 90014 (a required request parameter is
+  missing). In the Payroll Pirates AiTM campaign the reverse proxy sometimes
+  starts the OAuth authorization flow without the nonce that binds an ID token
+  to the authentication session, so Microsoft processes MFA but rejects the
+  callback with 90014. This error is exceedingly rare for legitimate OfficeHome
+  authentications and is strongly associated with campaign activity, especially
+  when paired with implausible browser/OS combinations. Note: not present in
+  every confirmed intrusion; treat as one signal to correlate, not a sole verdict.
+references:
+    - https://arcticwolf.com/resources/blog/payroll-pirates-strange-new-tides-in-business-email-compromise/
+    - https://learn.microsoft.com/en-us/entra/identity-platform/reference-error-codes
+author: Jarmi
+date: 2026/08/12
+tags:
+    - attack.credential-access
+    - attack.t1557
+logsource:
+    product: azure
+    service: signinlogs
+detection:
+    selection:
+        AppDisplayName: 'OfficeHome'
+        ResultType: '90014'
+    condition: selection
+falsepositives:
+    - Rare legitimate client bugs or aborted authentication flows; corroborate
+      with residential-proxy source IPs and user-agent/OS mismatches.
+level: medium

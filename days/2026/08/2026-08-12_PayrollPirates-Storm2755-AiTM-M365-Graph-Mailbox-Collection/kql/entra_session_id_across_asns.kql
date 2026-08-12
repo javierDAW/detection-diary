@@ -1,0 +1,28 @@
+// Title: Payroll Pirates - Single Session Reused Across Multiple ASNs (AiTM refresh)
+// Id: 516a7eeb-a275-41fe-8614-082c374c9549
+// MITRE: T1550.004, T1539
+// Reference: https://arcticwolf.com/resources/blog/payroll-pirates-strange-new-tides-in-business-email-compromise/
+// Author: Jarmi
+// Date: 2026-08-12
+// Tested on: Microsoft Sentinel (SigninLogs, AADNonInteractiveUserSignInLogs)
+// FP notes: legitimate roaming/VPN users can shift ASN; require Outlook + non-Edge UA and
+//           at least 3 distinct ASNs for the same SessionId within the window. Much of this
+//           activity is non-interactive - ensure that telemetry is ingested.
+let lookback = 24h;
+union SigninLogs, AADNonInteractiveUserSignInLogs
+| where TimeGenerated > ago(lookback)
+| where AppDisplayName == "Microsoft Outlook"
+| extend UA = tostring(UserAgent)
+| where UA has "Firefox" or UA has "python" or UA has "Requests"
+| where UA !has "Edg/"
+| where isnotempty(SessionId)
+| summarize
+    ASNs = make_set(AutonomousSystemNumber, 20),
+    Geos = make_set(Location, 20),
+    IPs = dcount(IPAddress),
+    Signins = count(),
+    FirstSeen = min(TimeGenerated),
+    LastSeen = max(TimeGenerated)
+    by SessionId, UserPrincipalName
+| where array_length(ASNs) >= 3
+| order by Signins desc

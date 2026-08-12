@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-08-10 07:40 UTC
+# generated 2026-08-12 07:51 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -37,6 +37,7 @@ advisory-tracker.com
 alteira.digital
 angelxc.digital
 api.anthropic.com
+api.country.is
 api.openai.com
 api.securehubcloud.com
 api.trongrid.io
@@ -187,6 +188,9 @@ human-check.top
 ideabpl1h.dea.epc.mnc003.mcc520.3gppnetwork.org
 ideabpl1h.epc.mnc019.mcc425.3gppnetwork.org
 identity-breach-response.org
+idp.keyreniao.com
+idp.korminel.com
+idp.kualabemo.com
 ignite-spark.digital
 image.update-kaspersky.workers.dev
 insight-radiant.digital
@@ -233,7 +237,10 @@ ml.cloud
 mortarora.digital
 ms365-device.com
 ms365-live.com
+msauth.monlinelogicaline.com
 msiidentity.com
+mslogin.milocaroline.com
+msonline.logicalineonline.com
 mueleer.com
 muurfzqprzmdkzoibxaz.supabase.co
 mvwmh7pxxd33375gj9wwjhcmbk.darijo-bosanac-dl.workers.dev
@@ -251,6 +258,7 @@ noxani.info
 nwitassistnow.com
 obmlink.com
 oeannon.com
+office.ofrecie.com
 oneclickme.site
 open-box-rpps.jeff-1fd.workers.dev
 openclawcli.vercel.app
