@@ -4,11 +4,12 @@
 
 # Platforms: linux
 
-40 day(s) covering this platform.
+41 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-13 | Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap | Unattributed (opportunistic mass exploitation) | [`2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/`](../../days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/) |
 | 2026-08-06 | Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a Bun Loader, IDE Autostart Hooks and a Token-Revocation Dead-Man's Switch | Shai-Hulud (keyv/cacheable wave, unattributed operator) | [`2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/`](../../days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/) |
 | 2026-08-04 | ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-by-datastore blast radius | ByteToBreach | [`2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/`](../../days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/) |
 | 2026-08-03 | OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments | OctLurk/SilkLurk operator (unattributed, Chinese-speaking) | [`2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/`](../../days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/) |

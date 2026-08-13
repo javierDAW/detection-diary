@@ -4,11 +4,12 @@
 
 # Techniques: T1505.003
 
-9 day(s) covering this technique.
+10 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-13 | Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap | Unattributed (opportunistic mass exploitation) | [`2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/`](../../days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/) |
 | 2026-07-21 | Spirals ransomware: IIS web shell to full-network encryption in under 24 hours, 23 backup/database/hypervisor services killed on the way | Spirals | [`2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/`](../../days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/) |
 | 2026-07-10 | Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE) | Cavern Manticore | [`2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/`](../../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/) |
 | 2026-07-05 | OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-exhaustion DoS across medical imaging | Opportunistic medical-imaging scanners | [`2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/`](../../days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/) |

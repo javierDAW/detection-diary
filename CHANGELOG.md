@@ -1,3 +1,21 @@
+## 2026.08.13 — Day 106 — Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes()
+
+### Added
+- `days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/` — watchTowr Labs (2026-06-29) detailed a pre-auth OS command-injection RCE (CVSS 9.6) in Progress Kemp LoadMaster's `/accessv2` management API; eSentire TRU saw in-the-wild attempts the same day and CISA added CVE-2026-8037 to KEV on 2026-08-07 (BOD 26-04 due 2026-08-10). The `escape_quotes()` sanitizer leaves a `malloc` buffer uninitialized and unterminated, so a four-quote `apiuser` plus a `g0..g60` heap spray drives `__sprintf_chk` into attacker bytes that reach `system()` as root. Opportunistic, unattributed, largely unsuccessful; MOVEit WAF shares the code.
+- Sigma (3): `proc_loadmaster_access_spawns_shell.yml` — access service forking a shell; `net_loadmaster_access_outbound.yml` — unexpected egress from the access service; `file_loadmaster_access_drops_file.yml` — access writing to /tmp,/dev/shm.
+- KQL (3): `accessv2_exploit_request_commonseclog.kql` — /accessv2 four-quote/spray body in WAF logs; `loadmaster_appliance_new_egress.kql` — new public egress from the appliance; `loadmaster_access_spawns_shell.kql` — access spawns shell (MDE for Linux).
+- YARA (1 file, 2 rules): `kemp_loadmaster_cve_2026_8037.yar` — captured exploitation request and public PoC/exploit tooling.
+- Suricata (1 file, 5 sids): `kemp_loadmaster_cve_2026_8037.rules` — four-quote body, spray body, source-IP reputation, oversized spray shape, appliance egress heuristic.
+- PEAK hunts (3): /accessv2 exploitation attempts; appliance post-exploitation; credential and backend pivot fallout.
+- `iocs.csv` (15 entries) — CVE-2026-8037/33691, three source IPs, endpoint and strings. `kev.md` — 1/2 CVEs on CISA KEV (CVE-2026-8037 added 2026-08-07, due 2026-08-10).
+- `kill_chain.svg` — template A, canonical palette, `acc-edge-network` accent, victim-appliance vs opportunistic-attacker lanes, IOC anchors.
+
+### Pedagogy
+- Two latent memory-safety bugs (uninitialized `malloc` + missing null terminator) compose into pre-auth RCE; audit for the shape, not each defect alone.
+- The durable fix is architectural: `execve(argv[])` instead of building a shell string for `system()`.
+- Edge appliances terminate TLS and front the backend pool, so root on them is worse than root on a random host.
+- On KEV means a federal remediation deadline; rebuild a compromised appliance from a known-good image before rotating its credentials.
+
 ## 2026.08.12 — Day 105 — Payroll Pirates: AiTM M365 takeover with Graph reconnaissance (Storm-2755 overlap)
 
 ### Added

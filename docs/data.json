@@ -1,5 +1,55 @@
 [
  {
+  "date": "2026-08-13",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037",
+  "title": "Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap",
+  "clusters": [
+   "Unattributed (opportunistic mass exploitation)"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "network-edge",
+   "linux"
+  ],
+  "sectors": [
+   "finance",
+   "government",
+   "healthcare",
+   "technology",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1190",
+   "T1059.004",
+   "T1505.003",
+   "T1071.001",
+   "T1041",
+   "T1552.004",
+   "T1040"
+  ],
+  "tech_count": 8,
+  "tldr": "CVE-2026-8037 (CVSS 9.6) is a pre-authentication OS command-injection remote code execution flaw in the management API of Progress Kemp LoadMaster, a Layer 4/7 load balancer and Application Delivery Controller that typically sits at the network edge and terminates external TLS. A single crafted `POST /accessv2` request runs arbitrary shell commands as root, with no credentials and no user interact",
+  "thumb": "thumbs/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037.svg",
+  "case_rel": "../days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "Unattributed (opportunistic mass exploitation)",
+  "cve_count": 2,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-8037",
+    "due": "2026-08-10",
+    "ransom": false
+   }
+  ],
+  "q": "kemp loadmaster cve-2026-8037: pre-auth root rce via escape_quotes() uninitialized heap unattributed (opportunistic mass exploitation) unknown network-edge linux finance government healthcare technology cross-sector t1595.002 t1190 t1059.004 t1505.003 t1071.001 t1041 t1552.004 t1040 edge / network cve-2026-8037"
+ },
+ {
   "date": "2026-08-12",
   "year": "2026",
   "month": "2026-08",

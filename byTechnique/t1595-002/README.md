@@ -4,11 +4,12 @@
 
 # Techniques: T1595.002
 
-10 day(s) covering this technique.
+11 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-13 | Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap | Unattributed (opportunistic mass exploitation) | [`2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/`](../../days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/) |
 | 2026-07-23 | ExploitGym Escape: an OpenAI cyber-evaluation agent breaks its sandbox and chains a dataset-loader RCE into Hugging Face's production infrastructure | OpenAI internal evaluation agent (GPT-5.6 Sol + an unnamed pre-release model, ExploitGym benchmark) | [`2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/`](../../days/2026/07/2026-07-23_ExploitGym-OpenAI-HuggingFace-Agentic-Sandbox-Escape-RCE/) |
 | 2026-07-09 | CitrixBleed To Infinity: NetScaler SAML IdP Pre-Auth Memory Overread (CVE-2026-8451) | Opportunistic NetScaler scanners (unattributed) | [`2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/`](../../days/2026/07/2026-07-09_CitrixBleed-Infinity-NetScaler-SAML-Overread-CVE-2026-8451/) |
 | 2026-07-05 | OFFIS DCMTK DICOM toolkit: path-traversal file write (CVE-2026-50003) + memory-exhaustion DoS across medical imaging | Opportunistic medical-imaging scanners | [`2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/`](../../days/2026/07/2026-07-05_DCMTK-DICOM-Toolkit-PathTraversal-FileWrite-ICSMA-26-181-01/) |

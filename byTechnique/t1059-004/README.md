@@ -4,11 +4,12 @@
 
 # Techniques: T1059.004
 
-13 day(s) covering this technique.
+14 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-13 | Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap | Unattributed (opportunistic mass exploitation) | [`2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/`](../../days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/) |
 | 2026-08-07 | Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side browser-fingerprinting gate | Unattributed macOS ClickFix TDS operator | [`2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/`](../../days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/) |
 | 2026-07-13 | UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH | UAT-7810 | [`2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/`](../../days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/) |
 | 2026-06-27 | Lantronix EDS5000 BRIDGE:BREAK: Root Command Injection in a Serial-to-IP OT Bridge (CVE-2025-67038) | Unattributed — CVE-2025-67038 exploitation | [`2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/`](../../days/2026/06/2026-06-27_Lantronix-EDS5000-BRIDGEBREAK-CVE-2025-67038-OT-Bridge/) |

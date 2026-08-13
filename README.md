@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**105 cases** · **172 actors/clusters** · **368 ATT&CK techniques** · **16 platforms** · **83 sectors** · 2026-04-28 -> 2026-08-12
+**106 cases** · **173 actors/clusters** · **368 ATT&CK techniques** · **16 platforms** · **83 sectors** · 2026-04-28 -> 2026-08-13
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/"><img src="days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/kill_chain.svg" alt="2026-08-13 kill chain" width="240"></a><br><sub><b>2026-08-13</b><br>Unattributed (opportunistic mass exploitation)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/"><img src="days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/kill_chain.svg" alt="2026-08-12 kill chain" width="240"></a><br><sub><b>2026-08-12</b><br>Payroll Pirates</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/"><img src="days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/kill_chain.svg" alt="2026-08-11 kill chain" width="240"></a><br><sub><b>2026-08-11</b><br>Storm-1175</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/"><img src="days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/kill_chain.svg" alt="2026-08-10 kill chain" width="240"></a><br><sub><b>2026-08-10</b><br>Storm-2945</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/"><img src="days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/kill_chain.svg" alt="2026-08-10 kill chain" width="240"></a><br><sub><b>2026-08-10</b><br>Storm-2945</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/"><img src="days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/kill_chain.svg" alt="2026-08-07 kill chain" width="240"></a><br><sub><b>2026-08-07</b><br>Unattributed macOS ClickFix TDS operator</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/"><img src="days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/kill_chain.svg" alt="2026-08-06 kill chain" width="240"></a><br><sub><b>2026-08-06</b><br>Shai-Hulud (keyv/cacheable wave, unattributed operator)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/"><img src="days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/kill_chain.svg" alt="2026-08-05 kill chain" width="240"></a><br><sub><b>2026-08-05</b><br>Unattributed IPI operator</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

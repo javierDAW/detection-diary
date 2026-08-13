@@ -4,7 +4,7 @@
 
 # INDEX
 
-**105 cases** · **172 actors/clusters** · **368 ATT&CK techniques** · **16 platforms** · **83 sectors** · 2026-04-28 -> 2026-08-12
+**106 cases** · **173 actors/clusters** · **368 ATT&CK techniques** · **16 platforms** · **83 sectors** · 2026-04-28 -> 2026-08-13
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/"><img src="days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/kill_chain.svg" alt="2026-08-13 kill chain" width="240"></a><br><sub><b>2026-08-13</b><br>Unattributed (opportunistic mass exploitation)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/"><img src="days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/kill_chain.svg" alt="2026-08-12 kill chain" width="240"></a><br><sub><b>2026-08-12</b><br>Payroll Pirates</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/"><img src="days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/kill_chain.svg" alt="2026-08-11 kill chain" width="240"></a><br><sub><b>2026-08-11</b><br>Storm-1175</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/"><img src="days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/kill_chain.svg" alt="2026-08-10 kill chain" width="240"></a><br><sub><b>2026-08-10</b><br>Storm-2945</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/"><img src="days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/kill_chain.svg" alt="2026-08-10 kill chain" width="240"></a><br><sub><b>2026-08-10</b><br>Storm-2945</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/"><img src="days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/kill_chain.svg" alt="2026-08-07 kill chain" width="240"></a><br><sub><b>2026-08-07</b><br>Unattributed macOS ClickFix TDS operator</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/"><img src="days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/kill_chain.svg" alt="2026-08-06 kill chain" width="240"></a><br><sub><b>2026-08-06</b><br>Shai-Hulud (keyv/cacheable wave, unattributed operator)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/"><img src="days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/kill_chain.svg" alt="2026-08-05 kill chain" width="240"></a><br><sub><b>2026-08-05</b><br>Unattributed IPI operator</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/"><img src="days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/kill_chain.svg" alt="2026-08-05 kill chain" width="240"></a><br><sub><b>2026-08-05</b><br>Unattributed IPI operator</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/"><img src="days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/kill_chain.svg" alt="2026-08-04 kill chain" width="240"></a><br><sub><b>2026-08-04</b><br>ByteToBreach</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/"><img src="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/kill_chain.svg" alt="2026-08-03 kill chain" width="240"></a><br><sub><b>2026-08-03</b><br>OctLurk/SilkLurk operator (unattributed, Chinese-speaking)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/"><img src="days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/kill_chain.svg" alt="2026-08-02 kill chain" width="240"></a><br><sub><b>2026-08-02</b><br>Certighost (CVE-2026-54121)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/"><img src="days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/kill_chain.svg" alt="2026-08-02 kill chain" width="240"></a><br><sub><b>2026-08-02</b><br>Certighost (CVE-2026-54121)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/"><img src="days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/kill_chain.svg" alt="2026-08-01 kill chain" width="240"></a><br><sub><b>2026-08-01</b><br>SourTrade</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/"><img src="days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/kill_chain.svg" alt="2026-07-31 kill chain" width="240"></a><br><sub><b>2026-07-31</b><br>V25 / Generation 26 XMRig botnet</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/"><img src="days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/kill_chain.svg" alt="2026-07-30 kill chain" width="240"></a><br><sub><b>2026-07-30</b><br>Joyfill npm compromise (StepSecurity-tracked, unattributed)</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-08</b> — 10 case(s)</summary>
+<details><summary><b>2026-08</b> — 11 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-08-13 | [Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap](days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/) | Unattributed (opportunistic mass exploitation) | network-edge, linux |
 | 2026-08-12 | [Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coordinated mailbox collection (Storm-2755 overlap)](days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/) | Payroll Pirates | cloud-multi |
 | 2026-08-11 | [StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ locker via the N-able N-central RMM auth bypass](days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/) | Storm-1175 | windows, network-edge |
 | 2026-08-10 | [CaptiveCrunch: Midnight Blizzard (Storm-2945) turns hotel captive portals into an AitM malware and credential-theft channel](days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/) | Storm-2945 | windows, network-edge, cloud-multi |
