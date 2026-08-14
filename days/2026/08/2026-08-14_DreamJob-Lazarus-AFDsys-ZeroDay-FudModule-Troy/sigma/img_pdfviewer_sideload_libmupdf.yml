@@ -1,0 +1,41 @@
+title: PDF Viewer Side-Loading libmupdf.dll (Lazarus Operation Dream Job)
+id: 91fed155-8e8e-4b16-93a6-26a6d901404e
+status: experimental
+description: |
+  Detects a PDF/MuPDF viewer image-loading libmupdf.dll from a user-writable
+  path (Downloads, Temp, profile). In Lazarus' 2026 Operation Dream Job wave a
+  legitimately-signed PDF viewer side-loads a malicious libmupdf.dll that shows
+  a decoy job description and loads the MISTPEN downloader in memory. Legitimate
+  MuPDF-based viewers ship libmupdf.dll inside their install directory, so a load
+  from a user-writable path next to a viewer binary is high-signal. Pair with a
+  code-signing check on the loaded module in the SIEM (the malicious DLL is
+  unsigned or invalidly signed).
+references:
+  - https://research.checkpoint.com/2026/shattering-the-dream-when-a-job-offer-becomes-a-zero-day-attack/
+  - https://thehackernews.com/2026/08/lazarus-exploits-windows-zero-day-to.html
+author: Jarmi
+date: 2026/08/14
+tags:
+  - attack.defense-evasion
+  - attack.t1574.002
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection_img:
+    ImageLoaded|endswith: '\libmupdf.dll'
+  selection_path:
+    ImageLoaded|contains:
+      - '\Users\'
+      - '\Downloads\'
+      - '\AppData\Local\Temp\'
+      - '\Temp\'
+  filter_installdir:
+    ImageLoaded|contains:
+      - '\Program Files\'
+      - '\Program Files (x86)\'
+  condition: selection_img and selection_path and not filter_installdir
+falsepositives:
+  - Portable MuPDF-based viewers run from a Downloads or Temp folder by users; validate the module signature and the parent viewer path.
+
+level: high

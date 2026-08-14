@@ -1,0 +1,36 @@
+title: Network Connection to Lazarus Dream Job C2 (Enveil Impersonation)
+id: c9751dcd-4a5f-401f-a62b-cf8f14493a60
+status: experimental
+description: |
+  Detects host connections or DNS lookups to the SecurityPDF/Troy C2
+  infrastructure from Lazarus' 2026 Operation Dream Job wave: the Enveil
+  impersonation domains and the reported C2 IP addresses. Indicators decay; the
+  IPs in particular should be re-validated before long-term blocking. Domain
+  matches are anchored on the exact hostnames used by the fake-Enveil
+  SecurityPDF distribution and Troy backdoor.
+references:
+  - https://cybersecuritynews.com/windows-afd-sys-zero-day-exploited/
+  - https://research.checkpoint.com/2026/shattering-the-dream-when-a-job-offer-becomes-a-zero-day-attack/
+author: Jarmi
+date: 2026/08/14
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection_domain:
+    DestinationHostname:
+      - 'envell.xyz'
+      - 'enveil.online'
+      - 'uxtramine.org'
+  selection_ip:
+    DestinationIp:
+      - '135.181.67.203'
+      - '135.181.185.158'
+  condition: selection_domain or selection_ip
+falsepositives:
+  - Security researchers or sandboxes intentionally resolving these indicators; decayed IP reassignment (re-validate before blocking).
+
+level: high

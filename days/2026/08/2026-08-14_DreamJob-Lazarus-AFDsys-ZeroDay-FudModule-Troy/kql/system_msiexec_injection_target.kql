@@ -1,0 +1,15 @@
+// Title: SYSTEM msiexec.exe With Anomalous Parent (FudModule Injection Target)
+// Id: 8f31d6b0-4e12-4a77-bb90-2d7c4e015a6b
+// MITRE: T1055.001 (Process Injection: DLL Injection), T1562.001 (Impair Defenses)
+// Reference: https://cybersecuritynews.com/windows-afd-sys-zero-day-exploited/
+// Author: Jarmi
+// Date: 2026-08-14
+// Tested on: Defender XDR DeviceProcessEvents
+// FP notes: SYSTEM msiexec.exe with no MSI on the command line and a non-installer parent is anomalous. FudModule injects MISTPEN here post-LPE. Baseline software-deployment tooling.
+DeviceProcessEvents
+| where FileName =~ "msiexec.exe"
+| where AccountName in~ ("system","local system")
+| where InitiatingProcessFileName !in~ ("services.exe","msiexec.exe","svchost.exe")
+| where ProcessCommandLine !has ".msi" and ProcessCommandLine !has "/i " and ProcessCommandLine !has "/x " and ProcessCommandLine !has "/qn" and ProcessCommandLine !has "/quiet"
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessParentFileName, ProcessCommandLine, AccountName
+| sort by Timestamp desc

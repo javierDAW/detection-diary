@@ -1,0 +1,14 @@
+// Title: PDF Viewer Side-Loading libmupdf.dll (Lazarus Operation Dream Job)
+// Id: 2c9f1a84-7b30-4d21-9f6e-1a0c5b7d9e42
+// MITRE: T1574.002 (DLL Side-Loading)
+// Reference: https://research.checkpoint.com/2026/shattering-the-dream-when-a-job-offer-becomes-a-zero-day-attack/
+// Author: Jarmi
+// Date: 2026-08-14
+// Tested on: Defender XDR DeviceImageLoadEvents
+// FP notes: Legit MuPDF viewers ship libmupdf.dll inside Program Files. A load from a user-writable path next to a viewer, especially unsigned, is high-signal.
+DeviceImageLoadEvents
+| where FileName =~ "libmupdf.dll"
+| where FolderPath has_any (@"\Users\", @"\Downloads\", @"\AppData\Local\Temp\", @"\Temp\")
+| where FolderPath !has @"\Program Files"
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, FolderPath, InitiatingProcessAccountName
+| sort by Timestamp desc

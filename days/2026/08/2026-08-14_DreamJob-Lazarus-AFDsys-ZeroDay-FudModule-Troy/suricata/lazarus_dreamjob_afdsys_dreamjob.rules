@@ -1,0 +1,17 @@
+# Suricata 7.x rules - Lazarus Operation Dream Job 2026 (AFD.sys zero-day wave) C2
+# Author: Jarmi
+# Notes: sids 1-3 match DNS lookups for the Enveil-impersonation domains used by
+# the SecurityPDF sites and the Troy backdoor C2. sid 4 flags outbound TLS/TCP to
+# the two reported C2 IPs (indicators decay; re-validate before long-term block).
+# sid 5 is a broad TLS-SNI heuristic for the same domains on the wire. Reference:
+# Check Point Research 2026-08-12.
+
+alert dns $HOME_NET any -> any any (msg:"Lazarus DreamJob C2 DNS lookup envell.xyz"; dns.query; content:"envell.xyz"; nocase; isdataat:!1,relative; classtype:trojan-activity; reference:url,research.checkpoint.com/2026/shattering-the-dream-when-a-job-offer-becomes-a-zero-day-attack/; sid:2026081401; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"Lazarus DreamJob C2 DNS lookup enveil.online"; dns.query; content:"enveil.online"; nocase; isdataat:!1,relative; classtype:trojan-activity; reference:url,research.checkpoint.com/2026/shattering-the-dream-when-a-job-offer-becomes-a-zero-day-attack/; sid:2026081402; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"Lazarus DreamJob C2 DNS lookup uxtramine.org"; dns.query; content:"uxtramine.org"; nocase; isdataat:!1,relative; classtype:trojan-activity; reference:url,research.checkpoint.com/2026/shattering-the-dream-when-a-job-offer-becomes-a-zero-day-attack/; sid:2026081403; rev:1;)
+
+alert tcp $HOME_NET any -> [135.181.67.203,135.181.185.158] any (msg:"Lazarus DreamJob SecurityPDF/Troy C2 IP connection (decays)"; flow:to_server,established; classtype:trojan-activity; reference:url,cybersecuritynews.com/windows-afd-sys-zero-day-exploited/; sid:2026081404; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"Lazarus DreamJob C2 TLS SNI (Enveil impersonation)"; flow:to_server,established; tls.sni; pcre:"/(?:^|\.)(?:envell\.xyz|enveil\.online|uxtramine\.org)$/i"; classtype:trojan-activity; reference:url,research.checkpoint.com/2026/shattering-the-dream-when-a-job-offer-becomes-a-zero-day-attack/; sid:2026081405; rev:1;)

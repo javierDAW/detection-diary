@@ -1,0 +1,17 @@
+// Title: Lazarus Dream Job C2 Indicators and Graph/OneDrive Beacons
+// Id: b57e2c19-9a44-4f83-8c61-6e0af3d21b7c
+// MITRE: T1071.001 (Web Protocols), T1102.002 (Web Service: Bidirectional Comm)
+// Reference: https://research.checkpoint.com/2026/shattering-the-dream-when-a-job-offer-becomes-a-zero-day-attack/
+// Author: Jarmi
+// Date: 2026-08-14
+// Tested on: Defender XDR DeviceNetworkEvents
+// FP notes: Indicators decay - re-validate IPs before blocking. The Graph/OneDrive branch is a hunt heuristic (MISTPEN abuses Graph API from a non-browser process); expect benign hits, pivot on the initiating process.
+let c2_domains = dynamic(["envell.xyz","enveil.online","uxtramine.org"]);
+let c2_ips = dynamic(["135.181.67.203","135.181.185.158"]);
+let graph_hosts = dynamic(["graph.microsoft.com","onedrive.live.com","1drv.ms"]);
+let known_web = dynamic(["msedge.exe","chrome.exe","firefox.exe","onedrive.exe","teams.exe","outlook.exe","olk.exe"]);
+DeviceNetworkEvents
+| where (RemoteUrl has_any (c2_domains)) or (RemoteIP in (c2_ips))
+    or (RemoteUrl has_any (graph_hosts) and InitiatingProcessFileName !in~ (known_web))
+| project Timestamp, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, RemoteUrl, RemoteIP, RemotePort
+| sort by Timestamp desc
