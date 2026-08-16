@@ -4,11 +4,12 @@
 
 # Techniques: T1102.002
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-05-15 | EtherRAT + TukTuk → The Gentlemen Ransomware — blockchain C2 meets AI-generated framework in an enterprise intrusion | The Gentlemen RaaS · EtherRAT (DPRK-linked, UNC5342 toolchain overlap) · TukTuk (AI-generated framework) | [`2026-05-15_EtherRAT-TukTuk-Gentlemen/`](../../days/2026/05/2026-05-15_EtherRAT-TukTuk-Gentlemen/) |
 | 2026-05-11 | UAT-8302 — China-nexus government espionage with shared APT arsenal | UAT-8302 · Jewelbug · REF7707 · CL-STA-0049 · LongNosedGoblin · UNC5174 · UAT-6382 · Earth Estries · Erudite Mogwai | [`2026-05-11_UAT-8302-China-Government-Espionage/`](../../days/2026/05/2026-05-11_UAT-8302-China-Government-Espionage/) |

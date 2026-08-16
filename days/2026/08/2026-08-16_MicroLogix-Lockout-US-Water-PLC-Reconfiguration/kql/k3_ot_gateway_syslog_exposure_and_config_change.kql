@@ -1,0 +1,34 @@
+// Title: Internet-facing OT ports and cellular gateway configuration change in syslog
+// Id: k3-micrologix-lockout-gateway-exposure
+// MITRE: T1133, T1590.005, T1595.001, T0886, T0812
+// Reference: https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions
+// Author: Jarmi
+// Date: 2026-08-16
+// Tested on: Microsoft Sentinel (Syslog table, CEF-style firewall and cellular gateway forwarding)
+// FP notes: Field maintenance windows generate gateway logins and config exports. Correlate with the change calendar.
+//           Any accepted inbound flow to 44818/502/102 from a non-RFC1918 source is an exposure finding regardless of intent.
+let lookback = 30d;
+let ot_port_pattern = @"dpt=(44818|502|102|2222|9191)";
+let private_source = @"src=(10\.|192\.168\.|172\.(1[6-9]|2[0-9]|3[01])\.)";
+let exposure =
+    Syslog
+    | where TimeGenerated > ago(lookback)
+    | where SyslogMessage matches regex ot_port_pattern
+    | where SyslogMessage matches regex "(accept|allow|permit|ACCEPT|ALLOW|PERMIT)"
+    | where not(SyslogMessage matches regex private_source)
+    | extend Signal = "external_flow_to_ot_port"
+    | project TimeGenerated, Computer, Facility, Signal, SyslogMessage;
+let gateway_admin =
+    Syslog
+    | where TimeGenerated > ago(lookback)
+    | where SyslogMessage has_any ("ACEmanager", "AirLink", "NetCloud", "Cradlepoint", "template applied",
+                                  "config export", "configuration saved", "firmware update", "reboot requested")
+    | extend Signal = "gateway_management_event"
+    | project TimeGenerated, Computer, Facility, Signal, SyslogMessage;
+union exposure, gateway_admin
+| summarize Events = count(),
+            FirstSeen = min(TimeGenerated),
+            LastSeen = max(TimeGenerated),
+            Sample = any(SyslogMessage)
+    by Computer, Signal, bin(TimeGenerated, 1d)
+| order by TimeGenerated desc, Events desc

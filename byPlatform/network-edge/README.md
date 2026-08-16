@@ -4,11 +4,12 @@
 
 # Platforms: network-edge
 
-31 day(s) covering this platform.
+32 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-16 | MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities | Unattributed WWS PLC Reconfiguration Cluster | [`2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/`](../../days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/) |
 | 2026-08-13 | Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap | Unattributed (opportunistic mass exploitation) | [`2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/`](../../days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/) |
 | 2026-08-11 | StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ locker via the N-able N-central RMM auth bypass | Storm-1175 | [`2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/`](../../days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/) |
 | 2026-08-10 | CaptiveCrunch: Midnight Blizzard (Storm-2945) turns hotel captive portals into an AitM malware and credential-theft channel | Storm-2945 | [`2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/`](../../days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/) |

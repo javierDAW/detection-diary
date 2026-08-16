@@ -1,0 +1,45 @@
+title: Connection To OT Engineering Protocol Port From Non Engineering Process
+id: c2c4e523-395e-481b-8324-d30ca6a4fc6d
+status: experimental
+description: |
+  Detects a process opening a network connection to an OT engineering or fieldbus port - EtherNet/IP (44818), Modbus TCP (502),
+  S7comm (102) or EtherNet/IP implicit messaging (2222) - where the initiating image is not an approved engineering client.
+  In the July 2026 water-sector campaign the actor reached MicroLogix 1100/1400 controllers directly over EtherNet/IP on cellular
+  WAN links; on the enterprise side the equivalent artifact is a scripting host, a browser, or an unknown binary speaking to a controller.
+  Frequency-based suppression of the approved engineering clients belongs in SIEM aggregation.
+references:
+  - https://www.forescout.com/blog/ot-security-analysis-exposed-devices-attacked-in-us-water-systems/
+  - https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions
+author: Jarmi
+date: 2026/08/16
+tags:
+  - attack.discovery
+  - attack.t1046
+  - attack.lateral-movement
+  - attack.t1210
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection_port:
+    DestinationPort:
+      - 44818
+      - 502
+      - 102
+      - 2222
+    Initiated: true
+  filter_engineering_clients:
+    Image|endswith:
+      - '\RSLogix500.exe'
+      - '\RSLogix5000.exe'
+      - '\LogixDesigner.exe'
+      - '\RSLinx.exe'
+      - '\RSLinxNG.exe'
+      - '\RSLinxClassic.exe'
+  condition: selection_port and not filter_engineering_clients
+falsepositives:
+  - SCADA or historian collectors polling controllers from a server that is not in the engineering client list
+  - OT asset-discovery and vulnerability-management scanners
+  - Vendor diagnostic utilities used during commissioning
+
+level: high

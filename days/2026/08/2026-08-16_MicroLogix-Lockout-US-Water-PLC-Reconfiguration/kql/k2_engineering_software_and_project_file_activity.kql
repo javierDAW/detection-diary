@@ -1,0 +1,39 @@
+// Title: Rockwell engineering client execution correlated with PLC project artifact writes
+// Id: k2-micrologix-lockout-engineering-and-project-files
+// MITRE: T1204.002, T1005, T0845, T0843, T0889
+// Reference: https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-097a
+// Author: Jarmi
+// Date: 2026-08-16
+// Tested on: Microsoft Defender XDR (advanced hunting)
+// FP notes: Legitimate engineering sessions produce the same pair. Value comes from the host set and the hour:
+//           an engineering client on a host that is not in the OT asset register, or project writes outside working hours,
+//           are the rows worth triage. Off-hours boundaries below are placeholders - align them with the plant shift pattern.
+let lookback = 30d;
+let correlation_window = 30m;
+let engineering_images = dynamic(["rslogix500.exe", "rslogix5000.exe", "logixdesigner.exe",
+                                  "rslinx.exe", "rslinxng.exe", "rslinxclassic.exe"]);
+let project_extensions = dynamic([".rss", ".slc", ".acd", ".l5k", ".l5x", ".apb"]);
+let work_start_hour = 6;
+let work_end_hour = 19;
+let engineering_runs =
+    DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where tolower(FileName) in (engineering_images)
+    | project RunTime = Timestamp, DeviceId, DeviceName, AccountName,
+              EngineeringImage = FileName, EngineeringCmd = ProcessCommandLine;
+let project_writes =
+    DeviceFileEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType in ("FileCreated", "FileModified", "FileRenamed")
+    | extend Ext = tolower(strcat(".", extract(@"\.([A-Za-z0-9]+)$", 1, FileName)))
+    | where Ext in (project_extensions)
+    | project WriteTime = Timestamp, DeviceId, ProjectFile = FileName, ProjectPath = FolderPath,
+              ProjectSha256 = SHA256, WritingProcess = InitiatingProcessFileName;
+engineering_runs
+| join kind=inner (project_writes) on DeviceId
+| where WriteTime between (RunTime .. (RunTime + correlation_window))
+| extend WriteHour = datetime_part("hour", WriteTime)
+| extend OffHours = WriteHour < work_start_hour or WriteHour > work_end_hour
+| project RunTime, WriteTime, OffHours, DeviceName, AccountName, EngineeringImage,
+          ProjectFile, ProjectPath, ProjectSha256, WritingProcess, EngineeringCmd
+| order by OffHours desc, WriteTime desc

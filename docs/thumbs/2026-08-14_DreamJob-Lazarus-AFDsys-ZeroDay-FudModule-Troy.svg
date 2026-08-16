@@ -1,0 +1,218 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Operation Dream Job: Lazarus AFD.sys zero-day kill chain</title>
+<desc id="d">Two-lane diagram. Left lane, the victim Windows host: a Lazarus Dream Job recruiter lure and SEO-poisoned SecurityPDF site; user opens a malicious PDF or installs a trojanized viewer; DLL side-loading of libmupdf.dll shows a decoy and loads the in-memory MISTPEN downloader (Graph API and OneDrive, AES); the critical AFD.sys use-after-free CVE-2026-68820 elevates to SYSTEM; the critical FudModule 3.1 kernel rootkit kills the NT Kernel Logger, blinds 90-plus ETW providers and resets Smart App Control; MISTPEN is re-injected into a SYSTEM msiexec.exe and the Troy and ForestTiger backdoors collect and exfiltrate. Right lane, Lazarus infrastructure: Operation Dream Job social engineering, Enveil impersonation sites, OneDrive and Graph module staging, an ML-KEM post-quantum handshake protecting FudModule, hijacked Roundcube and WordPress relays running RelayShell via CVE-2025-49113, and ForestTiger and Troy C2 on 135.181.67.203 and 135.181.185.158. Detection anchors: the libmupdf.dll side-load, Graph beacons from non-browser processes, telemetry going dark, and SYSTEM msiexec anomalies.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-malware-re" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820)</text>
+<text class="meta" x="20" y="58">Vendor: Check Point Research  Date: 2026-08-12  Cluster: Lazarus (DPRK)  Day 107</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="104">VICTIM HOST (Windows 11)</text>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelR" x="460" y="104">LAZARUS INFRASTRUCTURE</text>
+
+<!-- LEFT STAGES -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="74" y="144">Dream Job recruiter lure</text>
+<text class="sub" x="40" y="168">Fake job offer (Lockheed / Enveil) via LinkedIn</text>
+<text class="sub" x="40" y="184">SEO-poisoned SecurityPDF download sites</text>
+<text class="sub" x="40" y="200">T1566.002 / T1608.006</text>
+<text class="mono" x="40" y="226">envell.xyz  enveil.online  uxtramine.org</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="74" y="294">Malicious file executed</text>
+<text class="sub" x="40" y="318">Encrypted ZIP: signed viewer + libmupdf.dll</text>
+<text class="sub" x="40" y="334">or trojanized SecurityPDF.exe (fake Enveil)</text>
+<text class="sub" x="40" y="350">T1204.002</text>
+<text class="mono" x="40" y="376">marker: sumatrapdf reader!!!!!!!!!!!!</text>
+
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="74" y="444">DLL side-loading</text>
+<text class="sub" x="40" y="468">Signed PDF viewer loads libmupdf.dll</text>
+<text class="sub" x="40" y="484">Decoy job description; decrypt in memory</text>
+<text class="sub" x="40" y="500">T1574.002</text>
+<text class="mono" x="40" y="526">libmupdf.dll  (user-writable path)</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="74" y="594">MISTPEN in-memory downloader</text>
+<text class="sub" x="40" y="618">Graph API + OneDrive module pulls (AES)</text>
+<text class="sub" x="40" y="634">Recon + screenshots; validate target</text>
+<text class="sub" x="40" y="650">T1102.002 / T1113 / T1082</text>
+<text class="mono" x="40" y="676">GetInfo / Pv / OneScreenCapture / LPE</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="74" y="744">AFD.sys UAF -&gt; SYSTEM</text>
+<text class="sub" x="40" y="768">CVE-2026-68820 use-after-free race (CWE-416)</text>
+<text class="sub" x="40" y="784">Kernel LPE; in-box driver, no BYOVD</text>
+<text class="sub" x="40" y="800">T1068  (KEV zero-day)</text>
+<text class="mono" x="40" y="826">AFD.sys  =&gt;  NT AUTHORITY\SYSTEM</text>
+
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="74" y="894">FudModule 3.1 kernel rootkit</text>
+<text class="sub" x="40" y="918">Kills NT Kernel Logger; blinds 90+ ETW</text>
+<text class="sub" x="40" y="934">Smart App Control policy reset (DKOM)</text>
+<text class="sub" x="40" y="950">T1014 / T1562.006 / T1562.001</text>
+<text class="mono" x="40" y="976">NtSetSystemInformation(0xA4,0x10000000)</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="74" y="1044">Troy / ForestTiger backdoors</text>
+<text class="sub" x="40" y="1068">MISTPEN re-injected into SYSTEM msiexec.exe</text>
+<text class="sub" x="40" y="1084">Troy: 17 commands; collect + exfil</text>
+<text class="sub" x="40" y="1100">T1055.001 / T1005 / T1041</text>
+<text class="mono" x="40" y="1126">backdoor  =&gt;  hijacked-server C2</text>
+
+<!-- RIGHT OPS -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="504" y="149">Operation Dream Job (Lazarus/DPRK)</text>
+<text class="sub" x="470" y="173">Social engineering: fake recruiters</text>
+<text class="sub" x="470" y="189">Target: defense / aerospace / aviation</text>
+<text class="sub" x="470" y="205">Victims: FR, DE, BR, IN</text>
+<text class="sub" x="470" y="221">Check Point Research 2026-08-12</text>
+<text class="mono" x="470" y="251">cluster: Lazarus (UNC2970 lineage)</text>
+<text class="mono" x="470" y="269">attribution: high</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="504" y="319">Enveil impersonation sites (SEO)</text>
+<text class="sub" x="470" y="343">Top-ranked fake "Enveil SecurityPDF"</text>
+<text class="sub" x="470" y="359">Splits lure delivery from viewer delivery</text>
+<text class="sub" x="470" y="375">Hosts SecurityPDF + Troy C2</text>
+<text class="sub" x="470" y="391">T1608.006</text>
+<text class="mono" x="470" y="421">envell.xyz  /  enveil.online</text>
+<text class="mono" x="470" y="439">uxtramine.org</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="504" y="489">OneDrive / Graph module staging</text>
+<text class="sub" x="470" y="513">MISTPEN pulls modules from OneDrive</text>
+<text class="sub" x="470" y="529">AES-encrypted; blends into M365 traffic</text>
+<text class="sub" x="470" y="545">Modules: recon, screenshot, LPE loader</text>
+<text class="sub" x="470" y="561">T1102.002 / T1105 / T1573.001</text>
+<text class="mono" x="470" y="591">graph.microsoft.com  /  1drv.ms</text>
+<text class="mono" x="470" y="609">non-browser beacon = anchor</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="504" y="659">ML-KEM post-quantum handshake</text>
+<text class="sub" x="470" y="683">LPE loader derives an ML-KEM key</text>
+<text class="sub" x="470" y="699">Decrypts + runs the FudModule blob</text>
+<text class="sub" x="470" y="715">Frustrates passive / HNDL analysis</text>
+<text class="sub" x="470" y="731">T1573.002</text>
+<text class="mono" x="470" y="761">post-quantum key encapsulation</text>
+<text class="mono" x="470" y="779">FudModule ts 2026-07-07</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="504" y="829">Hijacked Roundcube / WordPress</text>
+<text class="sub" x="470" y="853">Roundcube CVE-2025-49113 + leaked creds</text>
+<text class="sub" x="470" y="869">RelayShell PHP web shell (file relay)</text>
+<text class="sub" x="470" y="885">~17 relay nodes; ExpressVPN egress</text>
+<text class="sub" x="470" y="901">T1584.004 / T1090</text>
+<text class="mono" x="470" y="931">RelayShell  =&gt;  file-based C2</text>
+<text class="mono" x="470" y="949">patch your own Roundcube</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="504" y="999">ForestTiger / Troy C2</text>
+<text class="sub" x="470" y="1023">C2 over legit hijacked web servers</text>
+<text class="sub" x="470" y="1039">Direct SecurityPDF / Troy C2 IPs</text>
+<text class="sub" x="470" y="1055">Indicators decay - re-validate</text>
+<text class="sub" x="470" y="1071">T1071.001</text>
+<text class="mono" x="470" y="1101">135.181.67.203</text>
+<text class="mono" x="470" y="1119">135.181.185.158</text>
+
+<!-- vertical flow left lane -->
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<!-- cross-lane relations -->
+<path class="arrowX" d="M460,175 L425,187" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,520 L425,620" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,700 L425,760" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,1075 L460,1045" marker-end="url(#ah)"/>
+
+<!-- FOOTER -->
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="32" y="1198">Detection anchors</text>
+<text class="footerT" x="32" y="1218">1) libmupdf.dll side-loaded by a signed PDF viewer from a user-writable path (T1574.002).</text>
+<text class="footerT" x="32" y="1236">2) Telemetry going dark: NT Kernel Logger stop, 90+ ETW providers blinded, EDR silent = FudModule.</text>
+<text class="footerT" x="32" y="1254">3) SYSTEM msiexec.exe with a non-installer parent; Graph/OneDrive beacon from a non-browser process.</text>
+</svg>

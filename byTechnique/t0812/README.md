@@ -4,9 +4,10 @@
 
 # Techniques: T0812
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-16 | MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities | Unattributed WWS PLC Reconfiguration Cluster | [`2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/`](../../days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/) |
 | 2026-07-26 | XCharge C6 EV Chargers: CCS2 Plug-In Root Shell via Exposed SSH/Telnet, Default Credentials, and Firmware Integrity Bypass (CVE-2026-9037, CVE-2026-9038, CVE-2026-9039) | Unattributed vulnerability research (SaiFlow); affected vendor: XCharge | [`2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/`](../../days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/) |

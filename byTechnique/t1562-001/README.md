@@ -4,11 +4,12 @@
 
 # Techniques: T1562.001
 
-20 day(s) covering this technique.
+21 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-08-10 | CaptiveCrunch: Midnight Blizzard (Storm-2945) turns hotel captive portals into an AitM malware and credential-theft channel | Storm-2945 | [`2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/`](../../days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/) |
 | 2026-08-04 | ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-by-datastore blast radius | ByteToBreach | [`2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/`](../../days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/) |
 | 2026-07-31 | XMRig Covert Ops: fileless Monero miner abusing Linux PAM (pam_rootok) for a forensic smokescreen | V25 / Generation 26 XMRig botnet | [`2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/`](../../days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/) |

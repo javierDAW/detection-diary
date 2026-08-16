@@ -4,11 +4,12 @@
 
 # Techniques: T1587.001
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-07-13 | UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH | UAT-7810 | [`2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/`](../../days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/) |
 | 2026-07-12 | NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arrest) | NoName057(16) | [`2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/`](../../days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/) |
 | 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |

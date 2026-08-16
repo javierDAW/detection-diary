@@ -4,9 +4,10 @@
 
 # Techniques: T0826
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-16 | MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities | Unattributed WWS PLC Reconfiguration Cluster | [`2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/`](../../days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/) |
 | 2026-06-06 | OCPP EV-Charging Attack Surface - ABB Terra AC Heap Overflow (CVE-2025-5517) and the OCPP WebSocket Missing-Auth Class | Opportunistic OCPP / EV-charging exploitation (unattributed) | [`2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/`](../../days/2026/06/2026-06-06_OCPP-EVCharging-ABB-TerraAC-CVE-2025-5517/) |

@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.08.11)). Generated 2026-08-14._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.08.14)). Generated 2026-08-16._
 
 **3 of 3 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 

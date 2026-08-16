@@ -4,11 +4,12 @@
 
 # Techniques: T1014
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-07-16 | Forgotten UEFI shims undermining Secure Boot: ESET's 11 Microsoft-signed bootloaders | UEFI shim trust-chain disclosure (ESET Research) | [`2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/`](../../days/2026/07/2026-07-16_ESET-11-UEFI-Shims-SecureBoot-Bypass-CVE-2026-8863-CVE-2026-10797/) |
 | 2026-06-12 | LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment | LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap) | [`2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/`](../../days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/) |
 | 2026-06-07 | Secure Boot 2011 certificate expiry (KEK June 24, 2026) — the frozen-DBX window that makes BlackLotus-class bootkits permanently exploitable | Bootkit ecosystem (BlackLotus / Bootkitty / PKfail / Bombshell) exploiting frozen Secure Boot trust | [`2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/`](../../days/2026/06/2026-06-07_SecureBoot-2011-Cert-Expiry-Bootkit-Exposure/) |

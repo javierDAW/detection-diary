@@ -1,0 +1,24 @@
+# MicroLogix Lockout - July/August 2026 US water and wastewater PLC reconfiguration campaign
+# Author: Jarmi
+# Date: 2026-08-16
+# Reference: https://www.forescout.com/blog/ot-security-analysis-exposed-devices-attacked-in-us-water-systems/
+# Reference: https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions
+#
+# Custom variables expected in suricata.yaml (define before deploying):
+#   HOME_NET            - the OT cell containing the controllers
+#   EXTERNAL_NET        - everything outside the plant, including the cellular carrier path
+#   ENGINEERING_HOSTS   - approved engineering workstations and SCADA collectors (allowlist)
+#   PLC_NET             - controller address range
+# All rules are alert-only. In an OT network, never deploy these inline without a validated failure mode.
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 44818 (msg:"OT ENIP EtherNet/IP List Identity request from external source"; flow:to_server,established; content:"|63 00|"; depth:2; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-recon; reference:url,www.forescout.com/blog/ot-security-analysis-exposed-devices-attacked-in-us-water-systems/; sid:2026081601; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET 44818 (msg:"OT ENIP session registration from external source - engineering protocol reachable from the internet"; flow:to_server,established; content:"|65 00|"; depth:2; threshold:type limit, track by_src, count 1, seconds 300; classtype:attempted-admin; reference:url,www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions; sid:2026081602; rev:1;)
+
+alert tcp !$ENGINEERING_HOSTS any -> $PLC_NET 44818 (msg:"OT CIP Set_Attribute_Single write to controller from non-engineering host - possible configuration or password change"; flow:to_server,established; content:"|70 00|"; depth:2; content:"|10|"; distance:0; within:64; threshold:type limit, track by_src, count 1, seconds 60; classtype:attempted-admin; reference:url,www.rockwellautomation.com/en-nl/trust-center/security-advisories/advisory.SD1790.html; sid:2026081603; rev:1;)
+
+alert tcp !$ENGINEERING_HOSTS any -> $PLC_NET 502 (msg:"OT Modbus write function code to controller from non-engineering host"; flow:to_server,established; content:"|00 00|"; offset:2; depth:2; byte_test:1,>,4,7; threshold:type limit, track by_src, count 1, seconds 60; classtype:attempted-admin; reference:url,www.cve.org/CVERecord?id=CVE-2017-16740; sid:2026081604; rev:1;)
+
+alert http $EXTERNAL_NET any -> $HOME_NET 9191 (msg:"OT cellular gateway ACEmanager administration interface reachable from external network"; flow:to_server,established; http.method; content:"GET"; http.uri; content:"/admin"; nocase; classtype:policy-violation; reference:url,www.forescout.com/research-labs/sierra21/; sid:2026081605; rev:1;)
+
+alert tcp $EXTERNAL_NET any -> $HOME_NET [44818,502,102,2222] (msg:"OT engineering port sweep from a single external source"; flow:to_server; flags:S; threshold:type threshold, track by_src, count 10, seconds 120; classtype:attempted-recon; reference:url,www.cisa.gov/news-events/alerts/2026/07/30/cisa-urges-water-and-wastewater-systems-sector-protect-ot-against-activity-targeting-plcs; sid:2026081606; rev:1;)

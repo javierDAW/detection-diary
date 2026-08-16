@@ -4,11 +4,12 @@
 
 # Techniques: T1574.002
 
-8 day(s) covering this technique.
+9 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-08-03 | OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments | OctLurk/SilkLurk operator (unattributed, Chinese-speaking) | [`2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/`](../../days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/) |
 | 2026-07-10 | Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE) | Cavern Manticore | [`2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/`](../../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/) |
 | 2026-07-07 | KongTuke / Woodgnat: Backdoor.Mistic (MTLBackdoor) — an initial access broker's ClickFix-to-ransomware pipeline | Woodgnat | [`2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/`](../../days/2026/07/2026-07-07_KongTuke-Mistic-MTLBackdoor-IAB-ClickFix/) |

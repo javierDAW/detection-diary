@@ -69,6 +69,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Joyfill npm compromise (StepSecurity-tracked, unattributed)](./joyfill-npm-compromise-stepsecurity-tracked-unattributed/) | 1 |
 | [Kali365](./kali365/) | 1 |
 | [Kyber](./kyber/) | 1 |
+| [Lazarus Group](./lazarus-group/) | 1 |
 | [LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)](./linkpro-unattributed-vshell-vnt-toolchain-unc5174-overlap/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
 | [Luna Moth](./luna-moth/) | 1 |
@@ -165,6 +166,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed (Montana Empire operator)](./unattributed-montana-empire-operator/) | 1 |
 | [Unattributed (opportunistic mass exploitation)](./unattributed-opportunistic-mass-exploitation/) | 1 |
 | [Unattributed IPI operator](./unattributed-ipi-operator/) | 1 |
+| [Unattributed WWS PLC Reconfiguration Cluster](./unattributed-wws-plc-reconfiguration-cluster/) | 1 |
 | [Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)](./unattributed-e-crime-bumblebee-adaptixc2-akira/) | 1 |
 | [Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)](./unattributed-fake-invitation-phish-kit-operator-any-run-tracked/) | 1 |
 | [Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)](./unattributed-ip6-arpa-reverse-dns-phishing-operator-infoblox-tracked/) | 1 |

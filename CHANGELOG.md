@@ -1,3 +1,37 @@
+## 2026.08.16 — Day 108 — MicroLogix Lockout: reconfiguration of exposed Rockwell PLCs at US water utilities
+
+### Added
+- `days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/` — unattributed actor reconfigured internet-facing Rockwell/Allen-Bradley MicroLogix 1100 and 1400 controllers at 30+ Minnesota community water systems on 26-27 July 2026, with similar incidents in at least twelve states. Controller passwords and IP addresses were changed and at one victim the project file was modified, producing loss of view and control, pressure loss and flooding; FBI/EPA PSA 2026-07-30, CISA alert 2026-07-30, LevelBlue SpiderLabs 2026-08-04, Forescout Vedere Labs 2026-08-05. No CVE was confirmed as the access vector — exposure and weak controller authentication were the vulnerability.
+- Sigma (3): `01_engineering_software_execution_outside_ews.yml` — Rockwell engineering client execution for inventory drift; `02_ot_engineering_protocol_connection.yml` — connections to tcp/44818, 502, 102 and udp/2222 from non-approved processes; `03_plc_project_file_written_outside_repository.yml` — .RSS/.SLC/.ACD/.L5K/.L5X artifacts staged outside the sanctioned repository.
+- KQL (3): `k1_ethernetip_sessions_from_unexpected_sources.kql` — rarity ranking of OT engineering sessions; `k2_engineering_software_and_project_file_activity.kql` — engineering client launch joined to project artifact writes with off-hours weighting; `k3_ot_gateway_syslog_exposure_and_config_change.kql` — external flows to OT ports plus cellular gateway management events.
+- YARA (1 file, 2 rules): Rockwell SLC 500 / MicroLogix project artifacts staged outside the repository; generic EtherNet/IP-CIP reconnaissance tooling.
+- Suricata (1 file, 6 sids): external List Identity and session registration on 44818, CIP Set_Attribute write from a non-engineering host, Modbus write function codes, ACEmanager exposed on 9191, and an engineering-port sweep threshold.
+- PEAK hunts (3): H1 external sessions on OT engineering ports; H2 controller state drift against the approved engineering baseline; H3 shared integrator design as a fleet-wide exposure.
+- `iocs.csv` (26 entries) — exposure strings, ports, project-artifact paths, campaign notes and 3 CVEs; no attacker infrastructure has been published. `kev.md` — 1/3 CVEs on CISA KEV (CVE-2021-22681, added 2026-03-05, due 2026-03-26; it does not affect the MicroLogix families attacked here).
+- `kill_chain.svg` — template A, canonical palette with the ot-ics accent, victim-utility lane against the enabling-conditions lane, IOC anchors on banner strings and controller state.
+
+### Pedagogy
+- Exposure is the vulnerability: an unauthenticated engineering protocol answering on the public internet needs no CVE and no ICS malware to become a cyber-physical incident.
+- Two configuration writes — a password and an IP address — are a complete denial-of-view and denial-of-control primitive on a legacy controller.
+- Once controller identity is seized the device stops being a telemetry source; detection has to live upstream in firewall, carrier, gateway and engineering-workstation data.
+- Reused integrator network designs convert a single exposed template into a fleet-wide compromise across independent utilities.
+
+## 2026.08.14 — Day 107 — Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820), FudModule 3.1 and the Troy backdoor
+
+### Added
+- `days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/` — Lazarus Group chained a Dream Job lure to an AFD.sys use-after-free LPE zero-day (CVE-2026-68820) to load the FudModule 3.1 data-only rootkit and the 17-command Troy backdoor against defense, aerospace and aviation targets in FR, DE, BR and IN; Check Point Research 2026-08-12. Three CVEs in scope, all on CISA KEV.
+- Sigma (3): `img_pdfviewer_sideload_libmupdf.yml` — libmupdf.dll side-load from the PDF viewer; `proc_system_msiexec_anomalous_parent.yml` — SYSTEM msiexec.exe with an anomalous parent as the FudModule host; `net_lazarus_dreamjob_c2.yml` — campaign C2 egress.
+- KQL (3): `pdfviewer_sideload_libmupdf.kql`, `system_msiexec_injection_target.kql`, `lazarus_dreamjob_c2_indicators.kql` — same three anchors in Defender XDR form.
+- YARA (1 file, 2 rules): Troy backdoor and the weaponised security-PDF component.
+- Suricata (1 file, 5 sids): Dream Job C2 and hijacked-relay traffic.
+- PEAK hunts (3): H1 PDF side-load foothold; H2 kernel integrity tamper (ETW blinding, Smart App Control reset); H3 hijacked C2 relays.
+- `iocs.csv` (54 entries). `kev.md` — 3/3 CVEs on CISA KEV.
+- `kill_chain.svg` — template A, canonical palette, victim lane against Lazarus infrastructure.
+
+### Pedagogy
+- A use-after-free in an in-box driver defeats the whole BYOVD detection surface: no vulnerable driver ever touches disk, so driver-centric rules stay silent.
+- FudModule 3.1 is data-only DKOM — the detection question moves from "find the malicious driver" to "notice the telemetry going quiet".
+- Post-quantum key exchange (ML-KEM) in offensive tooling defeats passive capture and harvest-now-decrypt-later analysis of the payload blob.
 ## 2026.08.13 — Day 106 — Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes()
 
 ### Added

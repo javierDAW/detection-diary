@@ -4,11 +4,12 @@
 
 # Techniques: T1573.001
 
-9 day(s) covering this technique.
+10 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-12 | NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arrest) | NoName057(16) | [`2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/`](../../days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/) |
 | 2026-07-10 | Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE) | Cavern Manticore | [`2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/`](../../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/) |

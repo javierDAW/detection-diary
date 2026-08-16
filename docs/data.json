@@ -1,5 +1,140 @@
 [
  {
+  "date": "2026-08-16",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration",
+  "title": "MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities",
+  "clusters": [
+   "Unattributed WWS PLC Reconfiguration Cluster"
+  ],
+  "country": "Undetermined (Iran-nexus working hypothesis; adjacent pro-Russia hacktivist claims in Canada)",
+  "platforms": [
+   "ot-ics",
+   "network-edge"
+  ],
+  "sectors": [
+   "water",
+   "wastewater",
+   "government",
+   "energy"
+  ],
+  "techniques": [
+   "T1590.005",
+   "T1595.001",
+   "T1595.002",
+   "T1046",
+   "T1133",
+   "T1078.001",
+   "T1531",
+   "T0846",
+   "T0888",
+   "T0886",
+   "T0812",
+   "T0859",
+   "T0845",
+   "T0843",
+   "T0836",
+   "T0889",
+   "T0855",
+   "T0829",
+   "T0827",
+   "T0826",
+   "T0879"
+  ],
+  "tech_count": 21,
+  "tldr": "Between 26 and 27 July 2026 an unattributed actor reconfigured internet-facing Rockwell Automation / Allen-Bradley MicroLogix 1100 and 1400 controllers at more than 30 Minnesota community water systems, and the same pattern was then reported by water and wastewater utilities in at least twelve US states. The technique was not ICS malware and not a zero-day: the actor reached controllers that answe",
+  "thumb": "thumbs/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration.svg",
+  "case_rel": "../days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Unattributed WWS PLC Reconfiguration Cluster",
+  "cve_count": 3,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2021-22681",
+    "due": "2026-03-26",
+    "ransom": false
+   }
+  ],
+  "q": "micrologix lockout: coordinated reconfiguration of internet-exposed rockwell plcs at us water utilities unattributed wws plc reconfiguration cluster undetermined (iran-nexus working hypothesis; adjacent pro-russia hacktivist claims in canada) ot-ics network-edge water wastewater government energy t1590.005 t1595.001 t1595.002 t1046 t1133 t1078.001 t1531 t0846 t0888 t0886 t0812 t0859 t0845 t0843 t0836 t0889 t0855 t0829 t0827 t0826 t0879 ot / ics cve-2021-22681"
+ },
+ {
+  "date": "2026-08-14",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy",
+  "title": "Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor",
+  "clusters": [
+   "Lazarus Group"
+  ],
+  "country": "North Korea (DPRK)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "defense",
+   "aerospace",
+   "aviation",
+   "government"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1204.002",
+   "T1608.006",
+   "T1584.004",
+   "T1587.001",
+   "T1574.002",
+   "T1140",
+   "T1027",
+   "T1105",
+   "T1102.002",
+   "T1071.001",
+   "T1573.001",
+   "T1573.002",
+   "T1068",
+   "T1014",
+   "T1562.001",
+   "T1562.006",
+   "T1055.001",
+   "T1082",
+   "T1113",
+   "T1005",
+   "T1041",
+   "T1090"
+  ],
+  "tech_count": 23,
+  "tldr": "Check Point Research disclosed on 2026-08-12 that the North Korea-linked **Lazarus Group** exploited **CVE-2026-68820**, a use-after-free race condition in the Windows `AFD.sys` (Ancillary Function Driver for WinSock) kernel driver, as a **zero-day** to elevate to SYSTEM and launch an updated **FudModule 3.1** kernel-mode rootkit. The activity is a fresh wave of **Operation Dream Job** — fake recr",
+  "thumb": "thumbs/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy.svg",
+  "case_rel": "../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "Lazarus Group",
+  "cve_count": 3,
+  "kev_count": 3,
+  "kev_cves": [
+   {
+    "cve": "CVE-2024-38193",
+    "due": "2024-09-03",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2025-49113",
+    "due": "2026-03-13",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-68820",
+    "due": "2026-08-25",
+    "ransom": false
+   }
+  ],
+  "q": "operation dream job: lazarus afd.sys zero-day (cve-2026-68820) to system, fudmodule 3.1, and the troy backdoor lazarus group north korea (dprk) windows defense aerospace aviation government t1566.002 t1204.002 t1608.006 t1584.004 t1587.001 t1574.002 t1140 t1027 t1105 t1102.002 t1071.001 t1573.001 t1573.002 t1068 t1014 t1562.001 t1562.006 t1055.001 t1082 t1113 t1005 t1041 t1090 malware / re cve-2024-38193 cve-2025-49113 cve-2026-68820"
+ },
+ {
   "date": "2026-08-13",
   "year": "2026",
   "month": "2026-08",

@@ -4,9 +4,10 @@
 
 # Techniques: T1608.006
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-08-05 | Indirect prompt injection against AI web agents: crypto-payment scam and DeBank typosquat (Zscaler ThreatLabz) | Unattributed IPI operator | [`2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/`](../../days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/) |

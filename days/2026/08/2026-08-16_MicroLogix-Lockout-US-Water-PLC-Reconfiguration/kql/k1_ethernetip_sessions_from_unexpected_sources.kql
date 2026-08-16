@@ -1,0 +1,34 @@
+// Title: OT engineering protocol sessions from unexpected sources
+// Id: k1-micrologix-lockout-ethernetip-sessions
+// MITRE: T1046, T1133, T0886, T0888
+// Reference: https://www.forescout.com/blog/ot-security-analysis-exposed-devices-attacked-in-us-water-systems/
+// Author: Jarmi
+// Date: 2026-08-16
+// Tested on: Microsoft Defender XDR (advanced hunting)
+// FP notes: SCADA collectors, historian pollers and OT asset-discovery scanners are expected talkers.
+//           Add their device IDs to the allowlist below before promoting this to a scheduled rule.
+//           Ranking is by rarity: the interesting rows are the ones with the fewest devices and sessions.
+let lookback = 30d;
+let ot_ports = dynamic([44818, 502, 102, 2222]);
+let approved_engineering_devices = dynamic(["<add_known_engineering_workstation_device_id>"]);
+let approved_collectors = dynamic(["<add_known_scada_collector_device_id>"]);
+DeviceNetworkEvents
+| where Timestamp > ago(lookback)
+| where RemotePort in (ot_ports)
+| where ActionType in ("ConnectionSuccess", "ConnectionAttempt", "InboundConnectionAccepted")
+| where DeviceId !in (approved_engineering_devices)
+| where DeviceId !in (approved_collectors)
+| extend Protocol = case(RemotePort == 44818, "EtherNet/IP explicit",
+                         RemotePort == 2222,  "EtherNet/IP implicit",
+                         RemotePort == 502,   "Modbus TCP",
+                         RemotePort == 102,   "S7comm",
+                         "other")
+| summarize Sessions = count(),
+            Devices = dcount(DeviceId),
+            DeviceList = make_set(DeviceName, 25),
+            Processes = make_set(InitiatingProcessFileName, 25),
+            FirstSeen = min(Timestamp),
+            LastSeen = max(Timestamp)
+    by RemoteIP, RemotePort, Protocol
+| extend WindowHours = datetime_diff('hour', LastSeen, FirstSeen)
+| order by Devices asc, Sessions asc

@@ -4,9 +4,10 @@
 
 # Techniques: T0859
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-16 | MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities | Unattributed WWS PLC Reconfiguration Cluster | [`2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/`](../../days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/) |
 | 2026-06-19 | Iran-Nexus ATG Cyber-Physical Campaign: Fuel Monitor Manipulation via Internet-Exposed Veeder-Root Consoles | Iran-nexus (unattributed) | [`2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/`](../../days/2026/06/2026-06-19_ATGFuelMonitor-IranNexus-CyberPhysical/) |

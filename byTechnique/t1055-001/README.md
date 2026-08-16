@@ -4,9 +4,10 @@
 
 # Techniques: T1055.001
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-05-12 | Qilin EDR Killer — msimg32.dll four-stage loader and BYOVD chain | Qilin · Agenda · Warlock | [`2026-05-12_Qilin-EDR-Killer-msimg32/`](../../days/2026/05/2026-05-12_Qilin-EDR-Killer-msimg32/) |

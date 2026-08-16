@@ -4,11 +4,12 @@
 
 # Platforms: ot-ics
 
-8 day(s) covering this platform.
+9 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-16 | MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities | Unattributed WWS PLC Reconfiguration Cluster | [`2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/`](../../days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/) |
 | 2026-07-26 | XCharge C6 EV Chargers: CCS2 Plug-In Root Shell via Exposed SSH/Telnet, Default Credentials, and Firmware Integrity Bypass (CVE-2026-9037, CVE-2026-9038, CVE-2026-9039) | Unattributed vulnerability research (SaiFlow); affected vendor: XCharge | [`2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/`](../../days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/) |
 | 2026-07-11 | AIS & GNSS Spoofing at Sea: Maritime Positioning Deception (IFC June-2026 Surge + SeaSpoofFinder) | Multiple GNSS/AIS spoofing operators | [`2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/`](../../days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/) |
 | 2026-07-04 | FUXA SCADA/HMI: dot-segment path-normalization auth bypass (CVE-2026-13207) leaks every OT role | Opportunistic ICS/OT scanners | [`2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/`](../../days/2026/07/2026-07-04_FUXA-SCADA-HMI-PathNorm-AuthBypass-CVE-2026-13207/) |

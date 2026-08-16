@@ -4,9 +4,10 @@
 
 # Techniques: T1590.005
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-16 | MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities | Unattributed WWS PLC Reconfiguration Cluster | [`2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/`](../../days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/) |
 | 2026-07-18 | Bad Connection: STA1/STA2 SS7 and Diameter Signalling Surveillance — and Iran's Wartime Use of the Same Playbook | STA1 · STA2 | [`2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/`](../../days/2026/07/2026-07-18_STA1-STA2-SS7-Diameter-Telecom-Signaling-Surveillance/) |

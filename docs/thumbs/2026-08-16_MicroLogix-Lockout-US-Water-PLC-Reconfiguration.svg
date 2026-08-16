@@ -1,0 +1,223 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">MicroLogix Lockout kill chain - US water utility PLC reconfiguration, July-August 2026</title>
+<desc id="d">Two-lane diagram. The left lane follows a victim water utility: an internet-facing MicroLogix 1100 or 1400 controller reachable on EtherNet/IP over a cellular link; an unauthenticated List Identity read that fingerprints the fleet; the critical controller password change and IP address rewrite that seize device identity and cause loss of view; project upload and ladder logic modification; the critical physical consequence of pressure loss, flooding and disabled well and treatment controls at Braham and Plymouth Minnesota; and recovery through manual operation, factory reset per Rockwell advisory SD1790 and a validated program restore. The right lane holds the actor side enabling conditions: internet wide scanning of engineering ports, the cellular carrier path that bypasses every IT control, the critical reuse of one integrator network design across many utilities, end of life hardware with no patch path, underground circulation of engineering knowledge, and adjacent pro Russia hacktivist claims against Canadian water systems. Detection anchors are the external EtherNet/IP session and the CIP write that changes controller identity or program, both marked by cross lane arrows.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-ot-ics" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">MicroLogix Lockout - reconfiguration of exposed PLCs at US water utilities</text>
+<text class="meta" x="20" y="58">Vendors: FBI/EPA + CISA + Forescout Vedere Labs + LevelBlue SpiderLabs - Dates: 2026-07-30 / 2026-08-04 / 2026-08-05 - Cluster: unattributed - Day 108</text>
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="30" y="106">VICTIM WATER UTILITY - controller, process and recovery</text>
+<text class="laneLabelR" x="460" y="106">ENABLING CONDITIONS - exposure, access path and supply</text>
+<!-- LEFT STAGES -->
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/><text class="badgeText" x="50" y="144">1</text>
+<text class="label" x="72" y="146">Internet-facing controller on cellular WAN</text>
+<text class="sub" x="42" y="170">MicroLogix 1100 / 1400 at wells, towers, lift stations</text>
+<text class="sub" x="42" y="186">EtherNet/IP answers on TCP 44818, no authentication</text>
+<text class="sub" x="42" y="202">T1133 / T0886 - path never crosses the IT perimeter</text>
+<text class="mono" x="42" y="228">Vendor ID: Rockwell Automation/Allen-Bradley</text>
+<text class="mono" x="42" y="246">Product name: 1766 (1400) / 1763 (1100)</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/><text class="badgeText" x="50" y="294">2</text>
+<text class="label" x="72" y="296">Unauthenticated identity read</text>
+<text class="sub" x="42" y="320">List Identity returns vendor, product, firmware, serial</text>
+<text class="sub" x="42" y="336">Fleet triaged from the banner alone, no process touched</text>
+<text class="sub" x="42" y="352">T1595.002 / T0888 - reconnaissance is free here</text>
+<text class="mono" x="42" y="378">4407 devices on 44818 (Shodan, 2026-08-03)</text>
+<text class="mono" x="42" y="396">22 of them in cities that reported incidents</text>
+
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/><text class="badgeText" x="50" y="444">3</text>
+<text class="label" x="72" y="446">Controller password set or changed (critical)</text>
+<text class="sub" x="42" y="470">Operators can no longer go online with RSLogix 500</text>
+<text class="sub" x="42" y="486">Legitimate configuration write, no payload, no file</text>
+<text class="sub" x="42" y="502">T1531 / T0812 / T0859 - identity seized</text>
+<text class="mono" x="42" y="528">Recovery only via factory reset (SD1790)</text>
+<text class="mono" x="42" y="546">Default or absent password was the precondition</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/><text class="badgeText" x="50" y="594">4</text>
+<text class="label" x="72" y="596">Controller IP address rewritten (critical)</text>
+<text class="sub" x="42" y="620">SCADA and HMI polling breaks instantly</text>
+<text class="sub" x="42" y="636">Device disappears from the process graph</text>
+<text class="sub" x="42" y="652">T0836 / T0829 - loss of view</text>
+<text class="mono" x="42" y="678">No endpoint telemetry survives this point</text>
+<text class="mono" x="42" y="696">Firewall and carrier flow logs are the evidence</text>
+
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/><text class="badgeText" x="50" y="744">5</text>
+<text class="label" x="72" y="746">Project upload and logic modification</text>
+<text class="sub" x="42" y="770">Program pulled from the controller, then written back</text>
+<text class="sub" x="42" y="786">Ladder-logic discrepancies noticed across several sites</text>
+<text class="sub" x="42" y="802">T0845 / T0843 / T0889 - modify program</text>
+<text class="mono" x="42" y="828">Artifacts: *.RSS *.SLC *.ACD *.L5K *.L5X</text>
+<text class="mono" x="42" y="846">AA26-097A line also altered Add-On Instructions</text>
+
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/><text class="badgeText" x="50" y="894">6</text>
+<text class="label" x="72" y="896">Physical consequence (critical)</text>
+<text class="sub" x="42" y="920">Wells, treatment plant, towers and lift stations</text>
+<text class="sub" x="42" y="936">Pressure loss, flooding, boil-water notices</text>
+<text class="sub" x="42" y="952">T0855 / T0827 / T0826 / T0879 - loss of control</text>
+<text class="mono" x="42" y="978">Braham MN: well and plant controls disabled</text>
+<text class="mono" x="42" y="996">Plymouth MN: 2 towers + 14 lift stations offline</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/><text class="badgeText" x="50" y="1044">7</text>
+<text class="label" x="72" y="1046">Manual operation and validated restore</text>
+<text class="sub" x="42" y="1070">Plant runs on documented manual procedure</text>
+<text class="sub" x="42" y="1086">Factory reset, then re-download a known-good project</text>
+<text class="sub" x="42" y="1102">Validate the backup before restoring it</text>
+<text class="mono" x="42" y="1128">Rockwell advisory SD1790 is the recovery path</text>
+<text class="mono" x="42" y="1146">Key switch back to RUN only after a rung-level diff</text>
+
+<!-- RIGHT OPS -->
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/><text class="badgeText" x="480" y="149">A</text>
+<text class="label" x="502" y="151">Internet-wide scanning of engineering ports</text>
+<text class="sub" x="472" y="175">TCP 44818, 502, 102 and UDP 2222 swept continuously</text>
+<text class="sub" x="472" y="191">EtherNet/IP is the second most attacked OT protocol</text>
+<text class="sub" x="472" y="207">No exploit needed - the protocol answers by design</text>
+<text class="sub" x="472" y="223">T1590.005 / T1595.001</text>
+<text class="mono" x="472" y="251">Exposure fell 47% since March 2020 (7814 -> 4169)</text>
+<text class="mono" x="472" y="269">65% US, 12% Canada, 3% Spain (2026-08-03)</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/><text class="badgeText" x="480" y="319">B</text>
+<text class="label" x="502" y="321">Cellular carrier path as the access layer</text>
+<text class="sub" x="472" y="345">Over 70% of US exposed controllers on mobile networks</text>
+<text class="sub" x="472" y="361">Field modems place OT assets outside every IT control</text>
+<text class="sub" x="472" y="377">No EDR, no identity provider, no enterprise firewall</text>
+<text class="sub" x="472" y="393">Private APN or ZTNA is the only structural fix</text>
+<text class="mono" x="472" y="421">19 of 22 hosts in affected cities on one carrier</text>
+<text class="mono" x="472" y="439">Sierra Wireless ACEmanager exposed on tcp/9191</text>
+
+<rect class="opK" x="460" y="465" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="485" r="14"/><text class="badgeText" x="480" y="489">C</text>
+<text class="label" x="502" y="491">Shared integrator design multiplies success (critical)</text>
+<text class="sub" x="472" y="515">FBI: similar third-party configurations across victims</text>
+<text class="sub" x="472" y="531">One working method reproduced against many utilities</text>
+<text class="sub" x="472" y="547">Eagan MN: 15 controllers, adjacent addresses</text>
+<text class="sub" x="472" y="563">Similar serials, uniform firmware, one GPS pair</text>
+<text class="mono" x="472" y="591">Compromise the template, compromise every customer</text>
+<text class="mono" x="472" y="609">Vendor config audit belongs in the threat model</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/><text class="badgeText" x="480" y="659">D</text>
+<text class="label" x="502" y="661">End-of-life hardware, no patch path</text>
+<text class="sub" x="472" y="685">MicroLogix 1100 discontinued on 2022-04-30</text>
+<text class="sub" x="472" y="701">Weak authentication, logging and access control</text>
+<text class="sub" x="472" y="717">CVE-2017-16740 fits 19 of 22 hosts by firmware</text>
+<text class="sub" x="472" y="733">Modbus TCP precondition never confirmed</text>
+<text class="mono" x="472" y="761">CVE-2021-22681 on KEV does NOT affect MicroLogix</text>
+<text class="mono" x="472" y="779">No CVE confirmed as the vector of this campaign</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/><text class="badgeText" x="480" y="829">E</text>
+<text class="label" x="502" y="831">Engineering knowledge from underground supply</text>
+<text class="sub" x="472" y="855">RSLogix 500 / 5000 courses and manuals circulated</text>
+<text class="sub" x="472" y="871">Project archives, HMI screenshots, network diagrams</text>
+<text class="sub" x="472" y="887">Lowers the barrier below ICS-malware capability</text>
+<text class="sub" x="472" y="903">Legitimate tooling is all the actor ever needed</text>
+<text class="mono" x="472" y="931">Studio 5000, EcoStruxure, TIA Portal in AA26-097A</text>
+<text class="mono" x="472" y="949">Leased third-party infrastructure for the sessions</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/><text class="badgeText" x="480" y="999">F</text>
+<text class="label" x="502" y="1001">Adjacent hacktivist claims, same exposure</text>
+<text class="sub" x="472" y="1025">NoName057(16): Ontario water system, 2026-07-23</text>
+<text class="sub" x="472" y="1041">Z-Pentest: Saint-Noel QC drinking water, confirmed</text>
+<text class="sub" x="472" y="1057">Screenshot-driven publicity, lower capability</text>
+<text class="sub" x="472" y="1073">Same pool of exposed HMIs and weak remote access</text>
+<text class="mono" x="472" y="1101">Attribution of the US wave remains unresolved</text>
+<text class="mono" x="472" y="1119">Iran-nexus is a hypothesis, not a conclusion</text>
+
+<!-- FLOW -->
+<path class="arrow" d="M60,255 L60,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,405 L60,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,555 L60,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,705 L60,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,855 L60,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M60,1005 L60,1020" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,280 L490,295" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,450 L490,465" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,620 L490,635" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,790 L490,805" marker-end="url(#ah)"/>
+<path class="arrowR" d="M490,960 L490,975" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,200 L425,200" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,470 L425,470" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,640 L460,640" marker-end="url(#ah)"/>
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1200">Durable detection anchors</text>
+<text class="footerT" x="34" y="1222">1) accepted inbound flow to tcp/44818, 502, 102 or udp/2222 from a non-allowlisted source  2) CIP write that changes controller identity</text>
+<text class="footerT" x="34" y="1240">3) program checksum drift against the approved offline baseline  4) gateway admin login, config export or firmware change on the access path</text>
+<text class="footerT" x="34" y="1258">No CVE confirmed as the vector - exposure and weak controller authentication were the vulnerability; KEV entry CVE-2021-22681 does not affect MicroLogix</text>
+</svg>

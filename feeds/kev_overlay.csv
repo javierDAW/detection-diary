@@ -166,3 +166,9 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware,2026-08-11,CVE-2026-18577,yes,2026-08-03,2026-08-06,Unknown,N-able N-central Authentication Bypass Using an Alternate Path or Channel Vulnerability,N-able,N-central
 2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037,2026-08-13,CVE-2026-33691,no,,,,,,
 2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037,2026-08-13,CVE-2026-8037,yes,2026-08-07,2026-08-10,Unknown,Progress LoadMaster Command Injection Vulnerability,Progress,LoadMaster
+2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy,2026-08-14,CVE-2024-38193,yes,2024-08-13,2024-09-03,Unknown,Microsoft Windows Ancillary Function Driver for WinSock Privilege Escalation Vulnerability,Microsoft,Windows
+2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy,2026-08-14,CVE-2025-49113,yes,2026-02-20,2026-03-13,Unknown,RoundCube Webmail Deserialization of Untrusted Data Vulnerability,Roundcube,Webmail
+2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy,2026-08-14,CVE-2026-68820,yes,2026-08-11,2026-08-25,Unknown,Microsoft Windows Ancillary Function Driver for WinSock Use-After-Free Vulnerability,Microsoft,Windows Ancillary Function Driver for WinSock 
+2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration,2026-08-16,CVE-2016-5645,no,,,,,,
+2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration,2026-08-16,CVE-2017-16740,no,,,,,,
+2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration,2026-08-16,CVE-2021-22681,yes,2026-03-05,2026-03-26,Unknown,Rockwell Multiple Products Insufficient Protected Credentials Vulnerability,Rockwell,Multiple Products

@@ -1,0 +1,76 @@
+{
+  "name": "2026-08-16 — 2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities — clusters: Unattributed WWS PLC Reconfiguration Cluster",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1590.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLC"
+    },
+    {
+      "techniqueID": "T1595.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLC"
+    },
+    {
+      "techniqueID": "T1595.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLC"
+    },
+    {
+      "techniqueID": "T1046",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLC"
+    },
+    {
+      "techniqueID": "T1133",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLC"
+    },
+    {
+      "techniqueID": "T1078.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLC"
+    },
+    {
+      "techniqueID": "T1531",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLC"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

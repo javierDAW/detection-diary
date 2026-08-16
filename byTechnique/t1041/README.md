@@ -4,11 +4,12 @@
 
 # Techniques: T1041
 
-28 day(s) covering this technique.
+29 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-08-13 | Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap | Unattributed (opportunistic mass exploitation) | [`2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/`](../../days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/) |
 | 2026-08-10 | CaptiveCrunch: Midnight Blizzard (Storm-2945) turns hotel captive portals into an AitM malware and credential-theft channel | Storm-2945 | [`2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/`](../../days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/) |
 | 2026-08-07 | Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side browser-fingerprinting gate | Unattributed macOS ClickFix TDS operator | [`2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/`](../../days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/) |

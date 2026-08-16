@@ -1,0 +1,47 @@
+title: Rockwell PLC Engineering Software Execution
+id: 3d8321d0-8981-4770-a266-2041ca947e22
+status: experimental
+description: |
+  Detects execution of Rockwell Automation engineering and communication clients (RSLogix 500, RSLogix 5000 / Studio 5000 Logix Designer, RSLinx).
+  In an OT estate these binaries belong on a small, known set of engineering workstations. The value of this rule is inventory drift:
+  any host outside the approved engineering-workstation list running these images is either shadow engineering or an intrusion.
+  Threshold and allowlisting belong in SIEM aggregation - compare the resulting host set against the asset register and alert only on new hosts.
+  Motivated by the July 2026 US water-sector campaign in which internet-exposed MicroLogix 1100/1400 controllers were reconfigured
+  and, at one victim, had project files modified.
+references:
+  - https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions
+  - https://www.forescout.com/blog/ot-security-analysis-exposed-devices-attacked-in-us-water-systems/
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-097a
+author: Jarmi
+date: 2026/08/16
+tags:
+  - attack.execution
+  - attack.t1204.002
+  - attack.discovery
+  - attack.t1046
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    Image|endswith:
+      - '\RSLogix500.exe'
+      - '\RSLogix5000.exe'
+      - '\LogixDesigner.exe'
+      - '\RSLinx.exe'
+      - '\RSLinxNG.exe'
+      - '\RSLinxClassic.exe'
+  selection_product:
+    Product|contains:
+      - 'RSLogix'
+      - 'Studio 5000'
+      - 'RSLinx'
+  filter_known_ews:
+    ComputerName|startswith: '<add_known_engineering_workstation_prefix>'
+  condition: (selection_image or selection_product) and not filter_known_ews
+falsepositives:
+  - Legitimate engineering work on an approved engineering workstation that is missing from the allowlist
+  - Integrator or vendor laptops connected for scheduled maintenance
+  - Training or simulation installations (LogixPro, emulation) on office endpoints
+
+level: medium

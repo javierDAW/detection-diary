@@ -4,11 +4,12 @@
 
 # Techniques: T1046
 
-17 day(s) covering this technique.
+18 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-16 | MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities | Unattributed WWS PLC Reconfiguration Cluster | [`2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/`](../../days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/) |
 | 2026-08-11 | StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ locker via the N-able N-central RMM auth bypass | Storm-1175 | [`2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/`](../../days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/) |
 | 2026-08-03 | OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments | OctLurk/SilkLurk operator (unattributed, Chinese-speaking) | [`2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/`](../../days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/) |
 | 2026-07-19 | INC Ransom Hits Georgia's City of Acworth: Municipal Double Extortion and the GOLD IONIC Playbook | INC Ransom | [`2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/`](../../days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/) |

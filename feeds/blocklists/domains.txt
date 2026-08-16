@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-08-13 07:24 UTC
+# generated 2026-08-16 14:48 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -135,6 +135,8 @@ encryption-plug-in-signal.com-ae.net
 endpoint-api-v1.com
 engineclaritynode.digital
 enrollms.com
+enveil.online
+envell.xyz
 ep-lively-cherry-a80bmwii.eastus2.azure.neon.tech
 ep6pheij.com
 epc.mnc019.mcc425.3gppnetwork.org
@@ -371,6 +373,7 @@ us-east-prod.com
 us-west-login.com
 us-west-prod.com
 uslogin-prodsg.com
+uxtramine.org
 v5rjsdqogstopr.org
 vashiro.info
 vefbdzzuaadnascpeqcn.supabase.co

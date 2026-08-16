@@ -1,0 +1,47 @@
+title: Rockwell PLC Project File Written Outside Project Repository
+id: 7ffce852-37ea-47ba-9ff4-a665b5d8cd14
+status: experimental
+description: |
+  Detects creation of Rockwell PLC project artifacts (.RSS and .SLC for SLC 500 / MicroLogix, .ACD, .L5K and .L5X for Logix)
+  in user-writable staging locations such as Downloads, Desktop, Temp or ProgramData instead of the sanctioned project repository.
+  In the July 2026 US water-sector campaign at least one victim discovered modified PLC project files after noticing ladder-logic
+  discrepancies across several sites; in the related AA26-097A activity the actors uploaded project files from controllers, modified
+  control logic and downloaded it back. A project artifact appearing outside the repository is the earliest host-side evidence of that workflow.
+references:
+  - https://www.fbi.gov/investigate/cyber/alerts/2026/malicious-cyber-actors-targeting-water-and-wastewater-sector-internet--facing-programmable-logic-controllers-causing-operational-disruptions
+  - https://www.cisa.gov/news-events/cybersecurity-advisories/aa26-097a
+author: Jarmi
+date: 2026/08/16
+tags:
+  - attack.collection
+  - attack.t1005
+  - attack.impact
+  - attack.t1565.001
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_ext:
+    TargetFilename|endswith:
+      - '.RSS'
+      - '.SLC'
+      - '.ACD'
+      - '.L5K'
+      - '.L5X'
+      - '.APB'
+  selection_path:
+    TargetFilename|contains:
+      - '\Downloads\'
+      - '\Desktop\'
+      - '\AppData\Local\Temp\'
+      - '\ProgramData\'
+      - '\Users\Public\'
+  filter_repository:
+    TargetFilename|startswith: '<add_known_project_repository_path>'
+  condition: selection_ext and selection_path and not filter_repository
+falsepositives:
+  - Engineers exporting a project for offline review or vendor support
+  - Backup or synchronisation tooling staging project archives through a temporary directory
+  - Software installation packages that ship sample projects
+
+level: medium
