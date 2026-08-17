@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-08-16 14:48 UTC
+# generated 2026-08-17 08:07 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -34,6 +34,8 @@ abc.haijing88.com
 acceptable-use-policy-calendly.de
 acuitycore.digital
 advisory-tracker.com
+afghanistanupdates.site
+afghantelecom.site
 alteira.digital
 angelxc.digital
 api.anthropic.com
@@ -43,6 +45,8 @@ api.securehubcloud.com
 api.trongrid.io
 api.vpns.robovpn.com
 applefilevault.com
+appstoore.duckdns.org
+appstoore.solutions
 apricotfilepoint.com
 aquaclaude-09494-9099403-docviewer.clear90489058903-document.workers.dev
 arweave.net
@@ -77,6 +81,7 @@ bytetobreach.online
 bytetobreach.xyz
 calm-wildflower-1349.hellohiall.workers.dev
 campainter.digital
+caprispine.health
 carrolc.com
 celebratieinvitiee.de
 chat.openai.com
@@ -114,6 +119,7 @@ dataroutehub.digital
 datasyncengine.digital
 ddjidd564.github.io
 debank.auction
+defence.cdga.site
 defs.updater-worelos.com
 deploypasskey.com
 dexarionrte.info
@@ -255,6 +261,8 @@ netkorava.digital
 newsprojects.online
 nexlisa.info
 nfcrackatm.com
+nic-support.site
+nicservice.org
 nordexastudio.info
 noxani.info
 nwitassistnow.com
@@ -315,6 +323,7 @@ savanhe.digital
 sendgrid.us-west-prod.com
 sendgrid.uslogin-prodsg.com
 server.cubatiendaalimentos.com.mx
+servicesindia.services
 setpasskey.com
 setupsso.com
 sgnlapp.info
@@ -383,16 +392,24 @@ visual-media-rights-group.org
 vnc.kcii2.com
 vngz3ntdrb.us-east1.gcp.clickhouse.cloud
 vnt.wherewego.top
+vpn01.afghantelecom.site
 w3xasv14culvnqj.top
 w5fb5r3txrsvga7zot9uz54k.darijo-bosanac-dl.workers.dev
 webmail.t-w.dev
 webnity.site
 werkbit.io
 worldsol.site
+www.afghanistanupdates.site
+www.appstoore.solutions
+www.caprispine.health
+www.nicservice.org
+www.servicesindia.services
 www.tor-browser.io
+www.zala-aer.info
 xcent.online
 yj6jurm5qqkye5.org
 yuntaro.digital
+zala-aer.info
 zenmap.pro
 zenovapc.site
 zuvex.club

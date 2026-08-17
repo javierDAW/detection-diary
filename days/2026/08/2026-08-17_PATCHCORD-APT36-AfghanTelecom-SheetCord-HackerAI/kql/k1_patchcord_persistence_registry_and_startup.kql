@@ -1,0 +1,37 @@
+// Title: PATCHCORD cluster persistence - Run key value names and Startup VBScript
+// Id: 1a2f7c40-0e21-4a6c-9a6b-2f1d0c9b7e01
+// MITRE: T1547.001 (Registry Run Keys / Startup Folder), T1547.009 (Shortcut Modification), T1059.005 (Visual Basic)
+// Reference: https://www.acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/
+// Author: Jarmi
+// Date: 2026-08-17
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceRegistryEvents, DeviceFileEvents)
+// FP notes: The two named Run values have no legitimate owner and should be zero-volume. The Startup-folder VBScript branch
+//           will surface legacy line-of-business logon scripts - baseline those by hash and path before enabling as an alert.
+let lookback = 30d;
+let named_values = dynamic(["BeaconBrowserHijack", "SystemHelper"]);
+let reg_persistence =
+    DeviceRegistryEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType in ("RegistryValueSet", "RegistryKeyCreated")
+    | where RegistryKey has @"CurrentVersion\Run"
+    | where RegistryValueName in~ (named_values)
+        or RegistryValueData has_any ("tms_launcher.exe", "node_service.exe", "system-agent.exe", "nhpcfuelconservationservice.exe")
+    | project Timestamp, DeviceId, DeviceName, Signal = "run_key", InitiatingProcessAccountName,
+              InitiatingProcessFileName, InitiatingProcessCommandLine,
+              Detail = strcat(RegistryValueName, " = ", RegistryValueData);
+let file_persistence =
+    DeviceFileEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType in ("FileCreated", "FileModified", "FileRenamed")
+    | where FileName in~ ("SystemHelper.vbs", "temp_update.vbs")
+        or (FolderPath has @"\Start Menu\Programs\Startup" and FileName endswith ".vbs")
+        or FileName endswith ".lnk.backup"
+    | project Timestamp, DeviceId, DeviceName, Signal = "file_artifact", InitiatingProcessAccountName,
+              InitiatingProcessFileName, InitiatingProcessCommandLine,
+              Detail = FolderPath;
+union reg_persistence, file_persistence
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Signals = make_set(Signal, 8),
+            Details = make_set(Detail, 16), Writers = make_set(InitiatingProcessFileName, 8)
+        by DeviceId, DeviceName, InitiatingProcessAccountName
+| extend BothPersistenceClasses = array_length(Signals) > 1
+| sort by BothPersistenceClasses desc, LastSeen desc

@@ -1,3 +1,21 @@
+## 2026.08.17 — Day 109 — PATCHCORD: Afghan telecom lures, three implants, three C2 transports
+
+### Added
+- `days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/` — Acronis TRU (2026-08-13) documented an active espionage cluster against Afghan telecom providers and South Asian critical infrastructure, delivered by sector-branded Inno Setup installers impersonating Afghan Telecom's internal Transport Management System and VPN client. Infrastructure pivoting on one server surfaced two further implants that share the browser-shortcut-hijack persistence but move C2 onto Google Sheets and GitHub Gists. Attributed to APT36 / Transparent Tribe with moderate confidence.
+- Sigma (3): `01_patchcord_cluster_run_key_persistence.yml` — HKCU Run value names BeaconBrowserHijack and SystemHelper; `02_browser_shortcut_hijack_artifacts.yml` — `.lnk.backup` residue plus temp_update.vbs and SystemHelper.vbs; `03_shortcut_launched_implant_spawns_shell.yml` — browser path as argument to a binary in AppData, reg.exe and wscript helpers.
+- KQL (3): `k1` unions registry and file persistence and flags hosts with both classes; `k2` joins browsers launched by untrusted parents to hidden shell activity within ten minutes; `k3` covers atomic infrastructure plus Sheets and Gists calls from non-browser processes.
+- YARA (1 file, 3 rules): PATCHCORD (`Beacon/1.0.0`, `/api.jsp`, `It's Work!`), SHEETCORD (Go symbols, Sheets API, VBScript helpers), HACKERAI C2 Agent (`performJunkOperations`, `[LOG] Agent Started`, Gist endpoints).
+- Suricata (1 file, 5 sids): beacon User-Agent, `/api.jsp?clientId=` tasking poll, JSON fingerprint POST to the C2 root, `appstoore` DNS, and direct contact with the two C2 addresses.
+- PEAK hunts (3): H1 estate-wide browser shortcut integrity; H2 cloud services used as C2 by processes with no business there; H3 sector-themed installers plus the internet-facing SSH access path.
+- `iocs.csv` (57 entries) — 13 hashes across three implant families and their droppers, 17 domains spanning ten months of rotation, 2 addresses, both Run values, Startup and shortcut paths, beacon strings and 2 CVEs. `kev.md` — 1/2 CVEs on CISA KEV (CVE-2021-4034 PwnKit, added 2022-06-27, known ransomware use; CVE-2024-6387 regreSSHion not listed).
+- `kill_chain.svg` — template A, canonical palette, espionage accent; victim endpoint left, operator infrastructure right, IOC anchors on the shortcut hijack, the in-memory shellcode opcode and the cloud C2 migration.
+
+### Pedagogy
+- Persistence that impersonates a user habit beats persistence that impersonates a system component: a rewritten browser `.lnk` needs no service, no scheduled task and no elevation, and most estates filter `.lnk` writes out of telemetry as noise.
+- An infection marker is a gift — the implant checks its own Run value to avoid double-persisting, which hands defenders a zero-false-positive, one-line estate sweep.
+- Three C2 transports in one cluster is a coverage argument: blocking the domain covers one of three, so process attribution on TLS egress is the transferable control.
+- Copy the vendor's attribution hedge forward. Acronis says moderate confidence and refuses to attribute on the SuperShell and SilverFox infrastructure overlap; shared open-source frameworks and hosting fingerprints are the two commonest sources of bad public attribution.
+
 ## 2026.08.16 — Day 108 — MicroLogix Lockout: reconfiguration of exposed Rockwell PLCs at US water utilities
 
 ### Added

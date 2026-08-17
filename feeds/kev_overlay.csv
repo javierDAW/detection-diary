@@ -172,3 +172,5 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration,2026-08-16,CVE-2016-5645,no,,,,,,
 2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration,2026-08-16,CVE-2017-16740,no,,,,,,
 2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration,2026-08-16,CVE-2021-22681,yes,2026-03-05,2026-03-26,Unknown,Rockwell Multiple Products Insufficient Protected Credentials Vulnerability,Rockwell,Multiple Products
+2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI,2026-08-17,CVE-2021-4034,yes,2022-06-27,2022-07-18,Known,Red Hat Polkit Out-of-Bounds Read and Write Vulnerability,Red Hat,Polkit
+2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI,2026-08-17,CVE-2024-6387,no,,,,,,

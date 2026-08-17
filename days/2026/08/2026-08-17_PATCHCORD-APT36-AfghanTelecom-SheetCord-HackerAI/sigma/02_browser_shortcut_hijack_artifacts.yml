@@ -1,0 +1,54 @@
+title: Browser Shortcut Hijack Artifacts (PATCHCORD Cluster)
+id: 8efb85de-e955-4c59-a17a-947be903072a
+status: experimental
+description: |
+  Detects the file-system residue of the browser shortcut hijacking persistence used by PATCHCORD, SHEETCORD and the
+  HACKERAI C2 Agent (Acronis TRU, 2026-08-13). Before rewriting a browser .lnk to point at itself, PATCHCORD copies the original
+  shortcut and appends '.backup' to the filename, leaving artefacts such as 'Google Chrome.lnk.backup' in the Taskbar pinned
+  folder, Quick Launch, Start Menu or Desktop. SHEETCORD instead drops the helper scripts temp_update.vbs (to rewrite shortcuts)
+  and SystemHelper.vbs (Startup-folder persistence).
+  None of these names belong to Microsoft, Google or Mozilla shipping code, so a single hit is worth a full triage of the host.
+  This rule looks only at file creation; pair it with the registry rule in this folder to confirm the pair of persistence writes.
+references:
+  - https://www.acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/
+  - https://attack.mitre.org/techniques/T1547/009/
+  - https://attack.mitre.org/techniques/T1059/005/
+author: Jarmi
+date: 2026/08/17
+tags:
+  - attack.persistence
+  - attack.t1547.009
+  - attack.t1547.001
+  - attack.defense-evasion
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_lnk_backup:
+    TargetFilename|endswith: '.lnk.backup'
+  selection_browser_lnk_backup:
+    TargetFilename|contains:
+      - 'chrome.lnk'
+      - 'firefox.lnk'
+      - 'msedge.lnk'
+      - 'Google Chrome.lnk'
+      - 'Microsoft Edge.lnk'
+      - 'Mozilla Firefox.lnk'
+      - 'Brave.lnk'
+      - 'Opera.lnk'
+      - 'Vivaldi.lnk'
+  selection_helper_scripts:
+    TargetFilename|endswith:
+      - '\temp_update.vbs'
+      - '\SystemHelper.vbs'
+  selection_startup_vbs:
+    TargetFilename|contains|all:
+      - '\Start Menu\Programs\Startup\'
+      - '.vbs'
+  condition: (selection_lnk_backup and selection_browser_lnk_backup) or selection_helper_scripts or selection_startup_vbs
+falsepositives:
+  - Backup, migration or user-state roaming tooling that snapshots shortcuts with a .backup suffix
+  - Legacy line-of-business deployments that legitimately place a VBScript in the per-user Startup folder (allowlist by hash and path)
+  - Browser repair utilities that recreate pinned shortcuts
+
+level: high

@@ -1,0 +1,70 @@
+title: Shortcut-Launched Implant Spawning Hidden Shell or Script Host
+id: 6ab46990-fbaf-4648-b591-e394eb1da06b
+status: experimental
+description: |
+  Detects the execution shape that follows a hijacked browser shortcut in the PATCHCORD cluster (Acronis TRU, 2026-08-13).
+  When the user clicks the rewritten .lnk, the implant runs first with the real browser path passed as a quoted argument and the
+  working directory forced to C:\Windows\System32, then launches the genuine browser via ShellExecuteW so nothing looks wrong.
+  Two observable consequences follow: a non-browser parent process whose command line embeds a browser executable path, and the
+  operator's tasking, which is executed as 'cmd.exe /c' (PATCHCORD) or 'powershell -Command' with script-block wrapping (SHEETCORD),
+  spawned hidden with CREATE_NO_WINDOW. SHEETCORD also shells out to reg.exe to register its Run value and to wscript to apply
+  temp_update.vbs. Aggregate by host in the SIEM: a single browser launch is normal, a browser launched by an unsigned binary in
+  a user-writable directory is not.
+references:
+  - https://www.acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/
+  - https://attack.mitre.org/techniques/T1547/009/
+  - https://attack.mitre.org/techniques/T1059/003/
+author: Jarmi
+date: 2026/08/17
+tags:
+  - attack.execution
+  - attack.t1059.003
+  - attack.t1059.001
+  - attack.t1059.005
+  - attack.persistence
+  - attack.t1547.009
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_browser_arg_from_user_dir:
+    CommandLine|contains:
+      - '\Application\chrome.exe'
+      - '\Microsoft\Edge\Application\msedge.exe'
+      - '\Mozilla Firefox\firefox.exe'
+    Image|contains:
+      - '\AppData\Local\'
+      - '\AppData\Roaming\'
+      - '\Users\Public\'
+  selection_reg_run_systemhelper:
+    Image|endswith: '\reg.exe'
+    CommandLine|contains|all:
+      - 'CurrentVersion\Run'
+      - 'SystemHelper'
+  selection_wscript_helper:
+    Image|endswith:
+      - '\wscript.exe'
+      - '\cscript.exe'
+    CommandLine|contains:
+      - 'temp_update.vbs'
+      - 'SystemHelper.vbs'
+  selection_named_implants:
+    Image|endswith:
+      - '\tms_launcher.exe'
+      - '\node_service.exe'
+      - '\system-agent.exe'
+      - '\nhpcfuelconservationservice.exe'
+      - '\MDEB_Update_Setup.exe'
+      - '\TMS_AfghanTelecom.exe'
+      - '\AFTEL_VPN_Setup.exe'
+  filter_browser_self_update:
+    ParentImage|contains:
+      - '\Google\Update\'
+      - '\Microsoft\EdgeUpdate\'
+  condition: (selection_browser_arg_from_user_dir or selection_reg_run_systemhelper or selection_wscript_helper or selection_named_implants) and not filter_browser_self_update
+falsepositives:
+  - Browser launcher shims, kiosk wrappers and profile-switching utilities installed per-user under AppData
+  - Enterprise scripts that set Run values through reg.exe with an unrelated value name (excluded by the SystemHelper string)
+  - Portable browser distributions run from a user directory
+
+level: high

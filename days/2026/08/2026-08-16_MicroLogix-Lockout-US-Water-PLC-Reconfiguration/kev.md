@@ -1,6 +1,6 @@
 # CISA KEV status — 2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration
 
-_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.08.14)). Generated 2026-08-16._
+_Cross-referenced against the CISA Known Exploited Vulnerabilities catalog (live (catalogVersion 2026.08.14)). Generated 2026-08-17._
 
 **1 of 3 CVE(s) in this case are on the CISA KEV list (confirmed exploited in the wild).**
 

@@ -1,0 +1,195 @@
+{
+  "name": "2026-08-17 — 2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover story — clusters: APT36",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1547.009",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1059.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1059.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1059.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1620",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1497.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1622",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1132.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1057",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1082",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1033",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1102.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1571",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1555.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1588.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    },
+    {
+      "techniqueID": "T1567",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PATCHCORD: three implants, three C2 transports and one Afghan telecom cover stor"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -1,0 +1,38 @@
+// Title: Browser started by an unsigned binary in a user-writable directory (shortcut hijack shape)
+// Id: 2b3e8d51-1f32-4b7d-8b7c-3a2e1dac8f12
+// MITRE: T1547.009 (Shortcut Modification), T1059.003 (Windows Command Shell), T1059.001 (PowerShell)
+// Reference: https://www.acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/
+// Author: Jarmi
+// Date: 2026-08-17
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceProcessEvents)
+// FP notes: Per-user browser installs, kiosk shims and profile switchers legitimately launch browsers from AppData.
+//           Rank by whether the same parent also spawned a hidden cmd.exe or powershell within the correlation window.
+let lookback = 30d;
+let window = 10m;
+let browser_images = dynamic(["chrome.exe", "msedge.exe", "firefox.exe", "brave.exe", "opera.exe", "vivaldi.exe"]);
+let suspicious_parents =
+    DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where FileName in~ (browser_images)
+    | where isnotempty(InitiatingProcessFolderPath)
+    | where InitiatingProcessFolderPath has_any (@"\AppData\Local\", @"\AppData\Roaming\", @"\Users\Public\")
+    | where InitiatingProcessFileName !in~ (browser_images)
+    | where InitiatingProcessFolderPath !has @"\Google\Update\" and InitiatingProcessFolderPath !has @"\EdgeUpdate\"
+    | project ParentTime = Timestamp, DeviceId, DeviceName, AccountName,
+              ImplantPath = InitiatingProcessFolderPath, ImplantName = InitiatingProcessFileName,
+              ImplantSha256 = InitiatingProcessSHA256, BrowserLaunched = FileName;
+let hidden_shells =
+    DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where FileName in~ ("cmd.exe", "powershell.exe", "wscript.exe", "reg.exe")
+    | where ProcessCommandLine has_any ("/c ", "-Command", "temp_update.vbs", "SystemHelper")
+    | project ShellTime = Timestamp, DeviceId, ShellParent = InitiatingProcessFileName,
+              ShellParentPath = InitiatingProcessFolderPath, ShellCommandLine = ProcessCommandLine;
+suspicious_parents
+| join kind=leftouter (hidden_shells) on DeviceId
+| where isnull(ShellTime) or (ShellTime between (ParentTime .. (ParentTime + window)) and ShellParentPath =~ ImplantPath)
+| summarize BrowsersLaunched = make_set(BrowserLaunched, 8), ShellCommands = make_set(ShellCommandLine, 12),
+            FirstSeen = min(ParentTime), LastSeen = max(ParentTime), Launches = count()
+        by DeviceId, DeviceName, AccountName, ImplantPath, ImplantName, ImplantSha256
+| extend TaskingObserved = array_length(ShellCommands) > 0
+| sort by TaskingObserved desc, Launches desc

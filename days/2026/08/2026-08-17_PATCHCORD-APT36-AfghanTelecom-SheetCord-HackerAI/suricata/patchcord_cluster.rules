@@ -1,0 +1,23 @@
+# PATCHCORD cluster network detection - Acronis TRU 2026-08-13
+# Author: Jarmi
+# Date: 2026-08-17
+# Reference: https://www.acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/
+#
+# Custom variables expected in suricata.yaml (define these before deploying):
+#   HOME_NET            - your internal address space
+#   EXTERNAL_NET        - everything outside HOME_NET
+#   HTTP_PORTS          - should include 8080; PATCHCORD beacons to the C2 over TCP 8080
+#
+# sid range 6260001-6260005 reserved for this case.
+# Rules 1-3 are behavioural (user agent, tasking URI, registration POST) and survive domain rotation.
+# Rules 4-5 are atomic infrastructure and decay; re-validate the address and domain set before relying on them.
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PATCHCORD implant beacon User-Agent Beacon/1.0.0"; flow:established,to_server; http.user_agent; content:"Beacon/1.0.0"; depth:12; isdataat:!1,relative; classtype:trojan-activity; reference:url,acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/; metadata:created_at 2026_08_17, attack_target Client_Endpoint, mitre_technique T1071_001; sid:6260001; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PATCHCORD tasking poll to /api.jsp with session clientId"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/api.jsp"; startswith; content:"clientId="; distance:0; within:64; classtype:trojan-activity; reference:url,acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/; metadata:created_at 2026_08_17, mitre_technique T1071_001; sid:6260002; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"PATCHCORD host fingerprint registration POST to C2 root"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/"; depth:1; isdataat:!1,relative; http.request_body; content:"hostname"; content:"username"; distance:0; content:"processId"; distance:0; classtype:trojan-activity; reference:url,acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/; metadata:created_at 2026_08_17, mitre_technique T1082; sid:6260003; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"PATCHCORD cluster lure or C2 domain resolution"; dns.query; content:"appstoore"; nocase; endswith; classtype:trojan-activity; reference:url,acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/; metadata:created_at 2026_08_17, mitre_technique T1583_001; sid:6260004; rev:1;)
+
+alert tcp $HOME_NET any -> [46.30.188.13,108.187.42.63] any (msg:"PATCHCORD cluster C2 infrastructure contact (Acronis TRU 2026-08-13)"; flow:to_server; threshold:type limit, track by_src, count 1, seconds 300; classtype:trojan-activity; reference:url,acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/; metadata:created_at 2026_08_17, mitre_technique T1571; sid:6260005; rev:1;)

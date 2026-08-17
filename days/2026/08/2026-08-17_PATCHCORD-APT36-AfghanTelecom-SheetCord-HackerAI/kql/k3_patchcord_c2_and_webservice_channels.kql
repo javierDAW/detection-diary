@@ -1,0 +1,45 @@
+// Title: PATCHCORD cluster C2 - hardcoded infrastructure and web-service tasking channels
+// Id: 3c4f9e62-2a43-4c8e-9c8d-4b3f2ebd9023
+// MITRE: T1071.001 (Web Protocols), T1102.002 (Bidirectional Communication), T1571 (Non-Standard Port), T1567 (Exfiltration Over Web Service)
+// Reference: https://www.acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/
+// Author: Jarmi
+// Date: 2026-08-17
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes: sheets.googleapis.com and gist.githubusercontent.com are ubiquitous in developer estates. The atomic IOC branch is
+//           high confidence; the web-service branch is only meaningful when the calling process is not a browser or a known
+//           developer toolchain, so filter with <add_known_developer_process_names> for your environment before alerting.
+let lookback = 45d;
+let c2_ips = dynamic(["46.30.188.13", "108.187.42.63"]);
+let c2_domains = dynamic([
+    "appstoore.solutions", "www.appstoore.solutions", "appstoore.duckdns.org",
+    "afghantelecom.site", "vpn01.afghantelecom.site",
+    "afghanistanupdates.site", "www.afghanistanupdates.site",
+    "caprispine.health", "www.caprispine.health",
+    "servicesindia.services", "www.servicesindia.services",
+    "zala-aer.info", "www.zala-aer.info",
+    "nicservice.org", "www.nicservice.org",
+    "nic-support.site", "defence.cdga.site", "defence.cgda.site"]);
+let known_dev_processes = dynamic(["code.exe", "node.exe", "python.exe", "git.exe", "<add_known_developer_process_names>"]);
+let atomic_hits =
+    DeviceNetworkEvents
+    | where Timestamp > ago(lookback)
+    | where RemoteIP in (c2_ips) or RemoteUrl has_any (c2_domains)
+    | project Timestamp, DeviceId, DeviceName, Branch = "atomic_ioc", InitiatingProcessFileName,
+              InitiatingProcessFolderPath, RemoteIP, RemotePort, RemoteUrl;
+let webservice_channels =
+    DeviceNetworkEvents
+    | where Timestamp > ago(lookback)
+    | where RemoteUrl has_any ("sheets.googleapis.com", "gist.githubusercontent.com", "api.github.com/gists")
+    | where InitiatingProcessFileName !endswith "chrome.exe"
+    | where InitiatingProcessFileName !endswith "msedge.exe"
+    | where InitiatingProcessFileName !endswith "firefox.exe"
+    | where InitiatingProcessFileName !in~ (known_dev_processes)
+    | where InitiatingProcessFolderPath has_any (@"\AppData\Local\", @"\AppData\Roaming\", @"\Users\Public\", @"\Temp\")
+    | project Timestamp, DeviceId, DeviceName, Branch = "webservice_c2", InitiatingProcessFileName,
+              InitiatingProcessFolderPath, RemoteIP, RemotePort, RemoteUrl;
+union atomic_hits, webservice_channels
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Connections = count(),
+            Ports = make_set(RemotePort, 12), Destinations = make_set(RemoteUrl, 20), Addresses = make_set(RemoteIP, 12)
+        by DeviceId, DeviceName, Branch, InitiatingProcessFileName, InitiatingProcessFolderPath
+| extend NonStandardPort = Ports has 8080 or Ports has 4444
+| sort by Branch asc, Connections desc

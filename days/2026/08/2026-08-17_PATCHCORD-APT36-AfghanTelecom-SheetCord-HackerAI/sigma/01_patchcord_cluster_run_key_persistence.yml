@@ -1,0 +1,52 @@
+title: PATCHCORD and SHEETCORD Run Key Persistence Value Names
+id: 0acd1b16-aea4-4d62-af9d-c95412c780a3
+status: experimental
+description: |
+  Detects creation of the HKCU Run key value names used by the PATCHCORD cluster attributed with moderate confidence to APT36
+  (Transparent Tribe) by Acronis TRU on 2026-08-13. PATCHCORD writes its own image path to the value name BeaconBrowserHijack
+  using RegSetValueExW; the Go successor SHEETCORD writes the value name SystemHelper by shelling out to reg.exe.
+  Both value names are attacker-chosen strings with no legitimate software owner, so this is a high-fidelity single-event rule.
+  The generic tail of the rule also catches any Run value whose data points at a user-writable staging directory used by the
+  Inno Setup droppers - that half is noisier and is intended for SIEM-side aggregation and allowlisting, not for direct paging.
+references:
+  - https://www.acronis.com/en/tru/posts/patchcord-new-malware-cluster-targets-afghan-telecom-and-south-asian-critical-infrastructure/
+  - https://thehackernews.com/2026/08/new-patchcord-backdoor-targets-afghan.html
+  - https://attack.mitre.org/techniques/T1547/001/
+author: Jarmi
+date: 2026/08/17
+tags:
+  - attack.persistence
+  - attack.t1547.001
+  - attack.defense-evasion
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_run_key:
+    TargetObject|contains: '\Software\Microsoft\Windows\CurrentVersion\Run\'
+  selection_value_name:
+    TargetObject|endswith:
+      - '\BeaconBrowserHijack'
+      - '\SystemHelper'
+  selection_data_staging:
+    Details|contains:
+      - '\AppData\Local\Temp\'
+      - '\AppData\Roaming\'
+      - '\Users\Public\'
+  selection_data_image:
+    Details|contains:
+      - 'tms_launcher.exe'
+      - 'node_service.exe'
+      - 'system-agent.exe'
+      - 'nhpcfuelconservationservice.exe'
+  filter_known_installers:
+    Image|endswith:
+      - '\msiexec.exe'
+      - '\TrustedInstaller.exe'
+  condition: selection_run_key and (selection_value_name or selection_data_image or selection_data_staging) and not filter_known_installers
+falsepositives:
+  - Portable applications and updaters that legitimately register a Run value pointing into AppData (matches only the broad staging branch, never the two named values)
+  - Software packaging or application virtualisation agents that stage executables under AppData before registering autorun
+  - Endpoint management tooling that writes Run values on behalf of a user profile
+
+level: high

@@ -1,0 +1,236 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">PATCHCORD cluster kill chain - APT36 against Afghan telecom and South Asian critical infrastructure</title>
+<desc id="d">Two-lane diagram. The left lane follows the victim endpoint: a sector-branded Inno Setup installer impersonating Afghan Telecom, the PATCHCORD C/C++ implant, the critical browser shortcut hijack persistence, registration and the api.jsp tasking loop, the critical in-memory shellcode opcode, the Go successor SHEETCORD with Startup folder persistence, and an anti-analysis variant. The right lane follows the operator: a single command and control server at 46.30.188.13, ten months of rotating lookalike domain fronts, a critical exposed staging directory holding open-source frameworks and exploit tooling, the AI-assisted HACKERAI C2 Agent on GitHub Gists, the critical migration of command and control onto Google Sheets and GitHub, and a moderate-confidence attribution note. Detection anchors are the two registry Run value names, the lnk backup residue, the Beacon slash one point zero point zero user agent, and non-browser processes calling cloud services.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">PATCHCORD cluster: Afghan telecom lures, three implants, three C2 paths</text>
+<text class="meta" x="20" y="58">Vendor: Acronis TRU (Virtusio, Pontiroli, Singha) - Date: 2026-08-13 - Cluster: APT36 / Transparent Tribe (moderate) - Day 109</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="32" y="105">VICTIM ENDPOINT - what an IR team can observe</text>
+<text class="laneLabelR" x="462" y="105">OPERATOR INFRASTRUCTURE - passive DNS, certs, open dir</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="76" y="144">Sector-branded installer executed</text>
+<text class="sub" x="40" y="168">Telecom_TMS.zip -&gt; TMS_AfghanTelecom.exe (Inno Setup 6.7.0)</text>
+<text class="sub" x="40" y="184">Delphi 12.0, .NET Reactor; publisher metadata = Afghan Telecom</text>
+<text class="sub" x="40" y="200">AppPublisherUrl points at the genuine AFTEL request portal</text>
+<text class="mono" x="40" y="226">sha256 cf7184c0dfe882dc6e3016f16e4ede32b75d7648...</text>
+<text class="mono" x="40" y="244">overlay at 0x00136200 -&gt; TMS_Launcher.exe (147 KB)</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="76" y="294">PATCHCORD implant initialises</text>
+<text class="sub" x="40" y="318">64-bit MSVC C/C++; console window hidden immediately</text>
+<text class="sub" x="40" y="334">Checks its own Run value first - it doubles as infection marker</text>
+<text class="sub" x="40" y="350">Reads Windows ProductName from HKLM CurrentVersion</text>
+<text class="mono" x="40" y="376">tms_launcher.exe d46ee94d6a27ff9f02cff6fb57780aca...</text>
+<text class="mono" x="40" y="394">HKCU\...\Run\BeaconBrowserHijack = implant path</text>
+
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="76" y="444">Browser shortcut hijack (persistence)</text>
+<text class="sub" x="40" y="468">Five .lnk locations: taskbar, Quick Launch, Start Menu, desktops</text>
+<text class="sub" x="40" y="484">Original copied to &lt;name&gt;.lnk.backup, then target rewritten</text>
+<text class="sub" x="40" y="500">Real browser path kept as argument; icon preserved - looks normal</text>
+<text class="mono" x="40" y="526">resolved via IShellLinkW + IPersistFile (no re-hijack)</text>
+<text class="mono" x="40" y="544">working directory forced to C:\Windows\System32</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="76" y="594">Registration and tasking loop</text>
+<text class="sub" x="40" y="618">JSON: hostname, username, OS version, PID, image path, name</text>
+<text class="sub" x="40" y="634">POST to C2 root returns clientId= plus a 36-char UUID</text>
+<text class="sub" x="40" y="650">GET /api.jsp?clientId=... on TCP 8080; HTML comment wrapper</text>
+<text class="mono" x="40" y="676">InternetOpenW user agent: Beacon/1.0.0 (30 s timeouts)</text>
+<text class="mono" x="40" y="694">response "It's Work!" = terminate and exit the loop</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="76" y="744">Opcode 0x1C - in-memory shellcode</text>
+<text class="sub" x="40" y="768">Custom Base64 alphabet decode, then XOR with a session key</text>
+<text class="sub" x="40" y="784">VirtualAlloc -&gt; copy -&gt; VirtualProtect -&gt; CreateThread</text>
+<text class="sub" x="40" y="800">Never written to disk; Metasploit staged on the same server</text>
+<text class="mono" x="40" y="826">0x1D: cmd.exe /c hidden, anon pipe, 60 s hard timeout</text>
+<text class="mono" x="40" y="844">0x1E: hook / unhook / status / restore the shortcut hijack</text>
+
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="76" y="894">SHEETCORD - the Go successor</text>
+<text class="sub" x="40" y="918">Tasking via powershell -Command with script-block wrapping</text>
+<text class="sub" x="40" y="934">SystemHelper.vbs dropped into the per-user Startup folder</text>
+<text class="sub" x="40" y="950">Six browsers hijacked by generating temp_update.vbs</text>
+<text class="mono" x="40" y="976">Run value SystemHelper written by shelling out to reg.exe</text>
+<text class="mono" x="40" y="994">system-agent.exe 959bbb09cd86ce3930406bf1cf32776c...</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="76" y="1044">Anti-analysis variant (March 2026)</text>
+<text class="sub" x="40" y="1068">Device handles: VBoxGuest, VBoxTrayIPC, vmci, HGFS</text>
+<text class="sub" x="40" y="1084">IsDebuggerPresent plus the PEB BeingDebugged flag</text>
+<text class="sub" x="40" y="1100">Process list includes sysmon.exe, x64dbg.exe, wireshark.exe</text>
+<text class="mono" x="40" y="1126">on any hit: randomised sleep 30-90 s, never exits</text>
+<text class="mono" x="40" y="1144">requires &gt;1 CPU and &gt;=2 GB RAM before running</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">A</text>
+<text class="label" x="506" y="149">One server behind every front</text>
+<text class="sub" x="470" y="173">46.30.188.13 - AS199959, Gwy IT Pty Ltd, Netherlands</text>
+<text class="sub" x="470" y="189">Single nginx serving /download across all domain fronts</text>
+<text class="sub" x="470" y="205">TCP 8080 tasking, TCP 443 SuperShell panel, TCP 4444 msf</text>
+<text class="sub" x="470" y="221">Live and responding at the time of publication</text>
+<text class="mono" x="470" y="251">Let's Encrypt certificates rotated three times</text>
+<text class="mono" x="470" y="269">each SAN bundle leaked another slice of the domain set</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">B</text>
+<text class="label" x="506" y="319">Ten months of rotating lookalikes</text>
+<text class="sub" x="470" y="343">appstoore.duckdns.org (Dec 2025) - the earliest front</text>
+<text class="sub" x="470" y="359">appstoore.solutions (Jan 2026) - hardcoded in PATCHCORD</text>
+<text class="sub" x="470" y="375">afghantelecom.site and caprispine.health (May 2026)</text>
+<text class="sub" x="470" y="391">afghanistanupdates.site, servicesindia.services (Jun 2026)</text>
+<text class="mono" x="470" y="421">nic-support.site (13 Jul 2026) served SHEETCORD</text>
+<text class="mono" x="470" y="439">only nicservice.org was retired - the rest stayed up</text>
+
+<rect class="opK" x="460" y="465" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">C</text>
+<text class="label" x="506" y="489">Exposed staging directory</text>
+<text class="sub" x="470" y="513">Campaign lures plus four archives never seen on VirusTotal</text>
+<text class="sub" x="470" y="529">GateSentinel, Nim-Backdoor, antnium, four Python listeners</text>
+<text class="sub" x="470" y="545">HackBrowserData, hydra.restore, rockyou_2025_05.txt</text>
+<text class="sub" x="470" y="561">Exploit tooling for regreSSHion and PwnKit</text>
+<text class="mono" x="470" y="591">CVE-2024-6387 and CVE-2021-4034 staged, not confirmed used</text>
+<text class="mono" x="470" y="609">Routers_backup.zip, Sessions_Backup.zip, iOS call history</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">D</text>
+<text class="label" x="506" y="659">HACKERAI C2 Agent (AI-assisted)</text>
+<text class="sub" x="470" y="683">defence.cgda.site, first observed 8 September 2025</text>
+<text class="sub" x="470" y="699">Tasking and exfiltration over GitHub Gists</text>
+<text class="sub" x="470" y="715">Hardcoded personal access token left inside the binary</text>
+<text class="sub" x="470" y="731">Stalling loop over the strings foo, bar, baz + randomSleep</text>
+<text class="mono" x="470" y="761">clear-text debug string: [LOG] Agent Started</text>
+<text class="mono" x="470" y="779">double XOR with the same 0xAB key - a no-op</text>
+
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">E</text>
+<text class="label" x="506" y="829">C2 moved onto services nobody blocks</text>
+<text class="sub" x="470" y="853">SHEETCORD: Google Sheets API v4, one tab per victim</text>
+<text class="sub" x="470" y="869">GCP service account credentials embedded in the binary</text>
+<text class="sub" x="470" y="885">HACKERAI: GitHub Gist upload and download functions</text>
+<text class="sub" x="470" y="901">Detection anchor is the calling process, not the domain</text>
+<text class="mono" x="470" y="931">sheets.googleapis.com - allowlisted in most estates</text>
+<text class="mono" x="470" y="949">gist.githubusercontent.com - same problem, same fix</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">F</text>
+<text class="label" x="506" y="999">Attribution - moderate confidence</text>
+<text class="sub" x="470" y="1023">Targeting: AFTEL, Salaam Telecom, Afghan MCIT, Indian NIC</text>
+<text class="sub" x="470" y="1039">HackBrowserData reused from earlier APT36 operations</text>
+<text class="sub" x="470" y="1055">GateSentinel tied to APT36 by Bitdefender, March 2026</text>
+<text class="sub" x="470" y="1071">Sheets C2 lineage matches the documented SHEETCREEP RAT</text>
+<text class="mono" x="470" y="1101">SuperShell / SilverFox overlap deliberately NOT used</text>
+<text class="mono" x="470" y="1119">second SuperShell host: 108.187.42.63 (AS138995)</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<path class="arrowX" d="M425,337 L460,372" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,637 L460,660" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<path class="arrowX" d="M425,937 L460,900" marker-end="url(#ah)" marker-start="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1198">Detection anchors that outlive the infrastructure</text>
+<text class="footerT" x="34" y="1218">1. Run value names BeaconBrowserHijack and SystemHelper - attacker-chosen, zero legitimate volume, one-line estate sweep.</text>
+<text class="footerT" x="34" y="1236">2. Browser .lnk resolving to a non-browser target, with a .lnk.backup beside it; plus temp_update.vbs and SystemHelper.vbs.</text>
+<text class="footerT" x="34" y="1254">3. Non-browser process in AppData calling sheets.googleapis.com or GitHub Gists on a stable interval - the caller is the signal.</text>
+</svg>
