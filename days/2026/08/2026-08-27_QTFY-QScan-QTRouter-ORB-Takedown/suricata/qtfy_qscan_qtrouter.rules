@@ -1,0 +1,36 @@
+# QTFY (QT, QTCYBER) QScan and QTRouter network detection - FBI/NSA/CNMF advisory JCSA-20260826-01 (2026-08-26)
+# Author: Jarmi
+# Date: 2026-08-27
+# Reference: https://www.ic3.gov/CSA/2026/260826.pdf
+#
+# Custom variables expected in suricata.yaml (define these before deploying):
+#   HOME_NET            - your internal address space
+#   EXTERNAL_NET        - everything outside HOME_NET
+#
+# sid range 6270001-6270011 reserved for this case.
+# Rules 1-4 (DNS), 5-7 (TLS SNI) and 8 (HTTP user agent) key on domains the DoJ seized on 2026-08-26: after that date they detect
+# past or residual contact and not live command and control. Rules 9-10 are atomic IP lists that decay as leased servers rotate;
+# re-validate against the live advisory CSV. Rule 10 is informational (inbound scanning). Rule 11 is a Lumen-derived heuristic on
+# commercial egress node names.
+
+alert dns $HOME_NET any -> any any (msg:"QTFY infrastructure DNS lookup qt-proxy.org (QScan task and result hosts)"; dns.query; content:"qt-proxy.org"; nocase; endswith; classtype:trojan-activity; reference:url,ic3.gov/CSA/2026/260826.pdf; metadata:created_at 2026_08_27, mitre_technique T1071_004; sid:6270001; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"QTFY infrastructure DNS lookup qt-team.com (earlier QScan hosts)"; dns.query; content:"qt-team.com"; nocase; endswith; classtype:trojan-activity; reference:url,ic3.gov/CSA/2026/260826.pdf; metadata:created_at 2026_08_27, mitre_technique T1071_004; sid:6270002; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"QTFY infrastructure DNS lookup qtproxy.xyz (QTRouter administration)"; dns.query; content:"qtproxy.xyz"; nocase; endswith; classtype:trojan-activity; reference:url,ic3.gov/CSA/2026/260826.pdf; metadata:created_at 2026_08_27, mitre_technique T1071_004; sid:6270003; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"QTFY advisory-listed actor-controlled domain lookup"; dns.query; pcre:"/(^|\.)(anticonstitutionally\.sbs|categorystore\.net|ccgv\.me|fastsecurey\.info|instantmessagehub\.tech|onlion\.shop|oraclelabs\.biz|qtcyber\.com|wintel\.biz|worldswar\.online)$/i"; classtype:trojan-activity; reference:url,ic3.gov/CSA/2026/260826.pdf; metadata:created_at 2026_08_27, mitre_technique T1583_001; sid:6270004; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"QTFY TLS SNI qtproxy.xyz (QTRouter administration plane)"; tls.sni; content:"qtproxy.xyz"; nocase; endswith; classtype:trojan-activity; reference:url,ic3.gov/CSA/2026/260826.pdf; metadata:created_at 2026_08_27, mitre_technique T1071_001; sid:6270005; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"QTFY TLS SNI qt-proxy.org (QScan task and result hosts)"; tls.sni; content:"qt-proxy.org"; nocase; endswith; classtype:trojan-activity; reference:url,ic3.gov/CSA/2026/260826.pdf; metadata:created_at 2026_08_27, mitre_technique T1071_001; sid:6270006; rev:1;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"QTFY TLS SNI qt-team.com (earlier QScan hosts)"; tls.sni; content:"qt-team.com"; nocase; endswith; classtype:trojan-activity; reference:url,ic3.gov/CSA/2026/260826.pdf; metadata:created_at 2026_08_27, mitre_technique T1071_001; sid:6270007; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"QTFY Go-http-client login traffic to qtproxy.xyz admin host (Lumen)"; flow:established,to_server; http.user_agent; content:"Go-http-client"; startswith; http.host; content:"qtproxy.xyz"; endswith; classtype:trojan-activity; reference:url,lumen.com/blog/en-us/the-infrastructure-quartermaster-inside-a-china-nexus-state-enablement-model; metadata:created_at 2026_08_27, mitre_technique T1071_001; sid:6270008; rev:1;)
+
+alert ip $HOME_NET any -> [1.32.216.171,5.183.179.133,23.95.220.192,31.169.126.162,39.104.208.77,45.95.2.119,45.202.210.27,47.76.131.175,94.156.236.183,103.201.131.121,106.14.184.69,154.64.238.222,154.64.238.247,194.104.10.58,206.119.167.207] any (msg:"QTFY QScan servers or actor-controlled host contact (advisory JCSA-20260826-01)"; threshold:type limit, track by_src, count 1, seconds 300; classtype:trojan-activity; reference:url,ic3.gov/CSA/2026/260826.pdf; metadata:created_at 2026_08_27, mitre_technique T1571; sid:6270009; rev:1;)
+
+alert ip [1.32.216.3,1.32.216.4,1.32.216.33,1.32.216.126,1.32.216.226,27.124.24.220,27.124.24.237,38.14.63.179,38.14.63.235,45.196.221.138,45.196.221.149,45.196.221.152,45.202.210.32,134.122.150.22,134.122.150.25,134.122.150.27,134.122.150.73,134.122.151.19,134.122.194.135,134.122.194.137,154.64.238.222,154.64.238.247] any -> $HOME_NET any (msg:"QTFY QScan worker inbound probe (informational, advisory JCSA-20260826-01)"; threshold:type limit, track by_src, count 1, seconds 3600; classtype:attempted-recon; reference:url,ic3.gov/CSA/2026/260826.pdf; metadata:created_at 2026_08_27, mitre_technique T1595_002; sid:6270010; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"QTFY Fast Labyrinth commercial egress node name under yotocloud.com (Lumen)"; dns.query; content:".yotocloud.com"; nocase; endswith; pcre:"/^(flanycast|flnode)-/i"; classtype:trojan-activity; reference:url,lumen.com/blog/en-us/the-infrastructure-quartermaster-inside-a-china-nexus-state-enablement-model; metadata:created_at 2026_08_27, mitre_technique T1090_003; sid:6270011; rev:1;)

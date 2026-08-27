@@ -4,11 +4,12 @@
 
 # Platforms: iot
 
-7 day(s) covering this platform.
+8 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-27 | QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model | QTFY | [`2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/`](../../days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/) |
 | 2026-07-26 | XCharge C6 EV Chargers: CCS2 Plug-In Root Shell via Exposed SSH/Telnet, Default Credentials, and Firmware Integrity Bypass (CVE-2026-9037, CVE-2026-9038, CVE-2026-9039) | Unattributed vulnerability research (SaiFlow); affected vendor: XCharge | [`2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/`](../../days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/) |
 | 2026-07-13 | UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH | UAT-7810 | [`2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/`](../../days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/) |
 | 2026-07-11 | AIS & GNSS Spoofing at Sea: Maritime Positioning Deception (IFC June-2026 Surge + SeaSpoofFinder) | Multiple GNSS/AIS spoofing operators | [`2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/`](../../days/2026/07/2026-07-11_AIS-GNSS-Spoofing-Maritime-Deception/) |

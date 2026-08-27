@@ -174,3 +174,17 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration,2026-08-16,CVE-2021-22681,yes,2026-03-05,2026-03-26,Unknown,Rockwell Multiple Products Insufficient Protected Credentials Vulnerability,Rockwell,Multiple Products
 2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI,2026-08-17,CVE-2021-4034,yes,2022-06-27,2022-07-18,Known,Red Hat Polkit Out-of-Bounds Read and Write Vulnerability,Red Hat,Polkit
 2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI,2026-08-17,CVE-2024-6387,no,,,,,,
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2018-13379,yes,2021-11-03,2022-05-03,Known,Fortinet FortiOS SSL VPN Path Traversal Vulnerability,Fortinet,FortiOS
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2019-10068,yes,2022-03-25,2022-04-15,Unknown,Kentico Xperience Deserialization of Untrusted Data Vulnerability,Kentico,Xperience
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2019-11510,yes,2021-11-03,2022-05-03,Known,Ivanti Pulse Connect Secure Arbitrary File Read Vulnerability,Ivanti,Pulse Connect Secure
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2019-19781,yes,2021-11-03,2022-05-03,Known,"Citrix ADC, Gateway, and SD-WAN WANOP Appliance Code Execution Vulnerability",Citrix,"Application Delivery Controller (ADC), Gateway, and SD-WAN WANOP Appliance"
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2020-5902,yes,2021-11-03,2022-05-03,Known,F5 BIG-IP Traffic Management User Interface (TMUI) Remote Code Execution Vulnerability,F5,BIG-IP
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2021-26855,yes,2021-11-03,2022-05-03,Known,Microsoft Exchange Server Remote Code Execution Vulnerability,Microsoft,Exchange Server
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2021-44228,yes,2021-12-10,2021-12-24,Known,Apache Log4j2 Remote Code Execution Vulnerability,Apache,Log4j2
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2023-22515,yes,2023-10-05,2023-10-13,Known,Atlassian Confluence Data Center and Server Broken Access Control Vulnerability,Atlassian,Confluence Data Center and Server
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2024-24919,yes,2024-05-30,2024-06-20,Known,Check Point Quantum Security Gateways Information Disclosure Vulnerability,Check Point,Quantum Security Gateways
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2024-8190,yes,2024-09-13,2024-10-04,Unknown,Ivanti Cloud Services Appliance OS Command Injection Vulnerability,Ivanti,Cloud Services Appliance
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2024-8963,yes,2024-09-19,2024-10-10,Unknown,Ivanti Cloud Services Appliance (CSA) Path Traversal Vulnerability,Ivanti,Cloud Services Appliance (CSA)
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2024-9380,yes,2024-10-09,2024-10-30,Unknown,Ivanti Cloud Services Appliance (CSA) OS Command Injection Vulnerability,Ivanti,Cloud Services Appliance (CSA)
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2025-31161,yes,2025-04-07,2025-04-28,Known,CrushFTP Authentication Bypass Vulnerability,CrushFTP,CrushFTP
+2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2026-1731,yes,2026-02-13,2026-02-16,Known,BeyondTrust Remote Support (RS) and Privileged Remote Access (PRA) OS Command Injection Vulnerability,BeyondTrust,Remote Support (RS) and Privileged Remote Access (PRA)

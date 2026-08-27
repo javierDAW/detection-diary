@@ -1,0 +1,44 @@
+title: Outbound Connection to QTFY QScan Servers or Actor-Controlled Hosts
+id: 5012a1dc-806c-4cca-9f5a-93d166499a91
+status: experimental
+description: |
+  Detects outbound network connections from an internal host to IPv4 addresses that advisory JCSA-20260826-01 lists as QScan task and result
+  servers (the mq-task and mq-result hosts) or as actor-controlled infrastructure with activity in 2026, including the Proxy Platform
+  Management and Proxy Pool Management System servers. The addresses are leased and rotate, so this is a retrospective and
+  short-horizon rule: re-validate the list against the live advisory CSV before relying on it, and treat a hit as a lead to scope with
+  process and DNS context rather than as proof of compromise on its own.
+references:
+  - https://www.ic3.gov/CSA/2026/260826.pdf
+  - https://www.ic3.gov/CSA/2026/QTFY_IOC_Infrastructure.csv
+author: Jarmi
+date: 2026/08/27
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.t1090.003
+logsource:
+  category: network_connection
+detection:
+  selection:
+    DestinationIp:
+      - '1.32.216.171'
+      - '5.183.179.133'
+      - '23.95.220.192'
+      - '31.169.126.162'
+      - '39.104.208.77'
+      - '45.95.2.119'
+      - '45.202.210.27'
+      - '47.76.131.175'
+      - '94.156.236.183'
+      - '103.201.131.121'
+      - '106.14.184.69'
+      - '154.64.238.222'
+      - '154.64.238.247'
+      - '194.104.10.58'
+      - '206.119.167.207'
+  condition: selection
+falsepositives:
+  - Address reuse by unrelated tenants after the leased servers were released
+  - Security tooling that deliberately contacts advisory indicators
+
+level: high

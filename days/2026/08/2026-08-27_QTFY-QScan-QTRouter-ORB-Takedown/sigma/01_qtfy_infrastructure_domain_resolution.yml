@@ -1,0 +1,61 @@
+title: QTFY Infrastructure Domain Resolution
+id: dcfd8a93-0c9c-4d45-bf43-8c8b89930564
+status: experimental
+description: |
+  Detects DNS resolution of domains that the FBI, NSA and Cyber National Mission Force list as actor-controlled by the QTFY group
+  (aliases QT and QTCYBER) in advisory JCSA-20260826-01 of 2026-08-26. The set covers the QScan task and result hostnames
+  (mq-task and mq-result under qt-proxy.org and qt-team.com), the QTRouter administration hosts under qtproxy.xyz, and the other
+  domains the advisory lists with a last_seen in 2026. The DoJ seized the core domains on 2026-08-26, so a hit after that date
+  reaches the law enforcement banner rather than operator infrastructure; the rule is therefore mainly a retrospective detection
+  of past contact. Some listed domains are historical and may have changed hands, so triage the resolving host before escalating.
+references:
+  - https://www.ic3.gov/CSA/2026/260826.pdf
+  - https://www.lumen.com/blog/en-us/the-infrastructure-quartermaster-inside-a-china-nexus-state-enablement-model
+  - https://www.justice.gov/opa/pr/justice-department-and-fbi-seize-platforms-operated-and-used-china-state-sponsored-hackers
+author: Jarmi
+date: 2026/08/27
+tags:
+  - attack.command-and-control
+  - attack.t1071.004
+  - attack.resource-development
+  - attack.t1583.001
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection_exact:
+    QueryName:
+      - 'anticonstitutionally.sbs'
+      - 'categorystore.net'
+      - 'ccgv.me'
+      - 'fastsecurey.info'
+      - 'instantmessagehub.tech'
+      - 'onlion.shop'
+      - 'oraclelabs.biz'
+      - 'qt-proxy.org'
+      - 'qt-team.com'
+      - 'qtcyber.com'
+      - 'qtproxy.xyz'
+      - 'wintel.biz'
+      - 'worldswar.online'
+  selection_subdomain:
+    QueryName|endswith:
+      - '.anticonstitutionally.sbs'
+      - '.categorystore.net'
+      - '.ccgv.me'
+      - '.fastsecurey.info'
+      - '.instantmessagehub.tech'
+      - '.onlion.shop'
+      - '.oraclelabs.biz'
+      - '.qt-proxy.org'
+      - '.qt-team.com'
+      - '.qtcyber.com'
+      - '.qtproxy.xyz'
+      - '.wintel.biz'
+      - '.worldswar.online'
+  condition: selection_exact or selection_subdomain
+falsepositives:
+  - Domains listed with old first_seen dates (for example ccgv.me, categorystore.net, wintel.biz) may have served unrelated sites in earlier years; check registration history for the date of the query
+  - Security research and threat intelligence tooling that resolves indicators from the advisory
+
+level: high

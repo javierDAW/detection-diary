@@ -4,7 +4,7 @@
 
 # INDEX
 
-**109 cases** · **176 actors/clusters** · **379 ATT&CK techniques** · **16 platforms** · **85 sectors** · 2026-04-28 -> 2026-08-17
+**110 cases** · **177 actors/clusters** · **380 ATT&CK techniques** · **16 platforms** · **85 sectors** · 2026-04-28 -> 2026-08-27
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/"><img src="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/kill_chain.svg" alt="2026-08-27 kill chain" width="240"></a><br><sub><b>2026-08-27</b><br>QTFY</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/"><img src="days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/kill_chain.svg" alt="2026-08-17 kill chain" width="240"></a><br><sub><b>2026-08-17</b><br>APT36</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/"><img src="days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/kill_chain.svg" alt="2026-08-16 kill chain" width="240"></a><br><sub><b>2026-08-16</b><br>Unattributed WWS PLC Reconfiguration Cluster</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/"><img src="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/kill_chain.svg" alt="2026-08-14 kill chain" width="240"></a><br><sub><b>2026-08-14</b><br>Lazarus Group</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/"><img src="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/kill_chain.svg" alt="2026-08-14 kill chain" width="240"></a><br><sub><b>2026-08-14</b><br>Lazarus Group</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/"><img src="days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/kill_chain.svg" alt="2026-08-13 kill chain" width="240"></a><br><sub><b>2026-08-13</b><br>Unattributed (opportunistic mass exploitation)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/"><img src="days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/kill_chain.svg" alt="2026-08-12 kill chain" width="240"></a><br><sub><b>2026-08-12</b><br>Payroll Pirates</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/"><img src="days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/kill_chain.svg" alt="2026-08-11 kill chain" width="240"></a><br><sub><b>2026-08-11</b><br>Storm-1175</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/"><img src="days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/kill_chain.svg" alt="2026-08-11 kill chain" width="240"></a><br><sub><b>2026-08-11</b><br>Storm-1175</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/"><img src="days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/kill_chain.svg" alt="2026-08-10 kill chain" width="240"></a><br><sub><b>2026-08-10</b><br>Storm-2945</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/"><img src="days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/kill_chain.svg" alt="2026-08-07 kill chain" width="240"></a><br><sub><b>2026-08-07</b><br>Unattributed macOS ClickFix TDS operator</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/"><img src="days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/kill_chain.svg" alt="2026-08-06 kill chain" width="240"></a><br><sub><b>2026-08-06</b><br>Shai-Hulud (keyv/cacheable wave, unattributed operator)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/"><img src="days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/kill_chain.svg" alt="2026-08-06 kill chain" width="240"></a><br><sub><b>2026-08-06</b><br>Shai-Hulud (keyv/cacheable wave, unattributed operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/"><img src="days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/kill_chain.svg" alt="2026-08-05 kill chain" width="240"></a><br><sub><b>2026-08-05</b><br>Unattributed IPI operator</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/"><img src="days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/kill_chain.svg" alt="2026-08-04 kill chain" width="240"></a><br><sub><b>2026-08-04</b><br>ByteToBreach</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/"><img src="days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/kill_chain.svg" alt="2026-08-03 kill chain" width="240"></a><br><sub><b>2026-08-03</b><br>OctLurk/SilkLurk operator (unattributed, Chinese-speaking)</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-08</b> — 14 case(s)</summary>
+<details><summary><b>2026-08</b> — 15 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-08-27 | [QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model](days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/) | QTFY | network-edge, iot, linux |
 | 2026-08-17 | [PATCHCORD: three implants, three C2 transports and one Afghan telecom cover story](days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/) | APT36 | windows, linux |
 | 2026-08-16 | [MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities](days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/) | Unattributed WWS PLC Reconfiguration Cluster | ot-ics, network-edge |
 | 2026-08-14 | [Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor](days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) | Lazarus Group | windows |

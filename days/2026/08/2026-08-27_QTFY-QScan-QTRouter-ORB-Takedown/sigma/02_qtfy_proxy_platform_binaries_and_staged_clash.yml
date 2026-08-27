@@ -1,0 +1,89 @@
+title: QTFY Proxy Platform Management Binary or Staged Clash Proxy on Linux
+id: ed89657c-a6ae-488b-9794-250fe6844ad0
+status: experimental
+description: |
+  Detects Linux process creation matching the file names or SHA-256 hashes the FBI, NSA and Cyber National Mission Force published for
+  the QTFY Proxy Platform Management components (agent_linux_*, client_linux_* and c_client_* binaries across 386, amd64, arm, arm64, mips,
+  mipsle, mips64, mips64le, armhf, powerpc, ppc64le, riscv32, riscv64 and s390x) in advisory JCSA-20260826-01. A second branch flags a Clash
+  proxy client launched from a world-writable directory, the proxy client that QTRouter uses to chain nodes; that branch is a behavioural
+  heuristic and not an advisory indicator. Operators can rename binaries, so the hash branch is exact but short-lived while the name
+  branch is broad.
+references:
+  - https://www.ic3.gov/CSA/2026/260826.pdf
+  - https://www.ic3.gov/CSA/2026/QTFY_IOC_Files.csv
+author: Jarmi
+date: 2026/08/27
+tags:
+  - attack.command-and-control
+  - attack.t1090.003
+  - attack.defense-evasion
+  - attack.t1036.005
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection_name:
+    Image|contains:
+      - '/agent_linux_'
+      - '/client_linux_'
+      - '/c_client_'
+  selection_hash:
+    Hashes|contains:
+      - '0cf8ed7064d3d4827f841451c661d788d4cf7d067901e35a7a019f1c9d5ef656'
+      - 'c46944343b7e33c0f88ca9583b8145a4735d6e9780f9df1777b4c59887b56a35'
+      - '5fb500afd83fb64f64a2789abc66f0a158d915167e1def6ba56d9543dd9de3d7'
+      - 'c337b92789987efe8ae0afcd56da948b38aa4b0e5859f2d51a61e2bc152c1feb'
+      - 'a617e06c27d3514c57fd83711c75846d798e3ecefd5a0246b5ac9a191392e98a'
+      - 'bea44e8cbf35c240c9cddc88284b6f8f94129e4e0a42a85e2603406980b83990'
+      - 'c73bd1c498a147e71e345a99f5f85e3442243c2a7b7cb65f0d00a72acc0a87e7'
+      - '92e9c9c36d469d56fbeba052d3062b77cd869c6df8f10faafd184717c557a245'
+      - 'ed24ea239799e470c66d160eb7b097ab1d7627fc6c51236d6169da920f5b3b5c'
+      - '5653a062a37d8a650c9a603cee0e7744af128bad28be8916c9de9ac16f1a82e5'
+      - '2d29f9f75e40e5b58cb4379d44ff7b511620e8dea584ffaf4db6a7597ee23562'
+      - 'b3b32e592a73d46566c51ed18c07155ad3d980142f1a4c32c4e9728208c02fce'
+      - '239b9f5677b66d3dc69e003028d041c09440330dd367763e68c0a56454afd91a'
+      - 'dc0624c316667b89aa88afa716933235584a27d14b2a08606e43a657a95db991'
+      - '86881181d7244a8e9d45f5fe1e2b7f4c3e8bd6cd1e6383c92693ee956c4d87fb'
+      - 'dbcd1588caae92b7525aac096b7ec8c543b5ab8c4c95dfb33051d42c351e19b3'
+      - 'ad2fae2894432da7b82fec0d5d3a75b5ffa1b84a50ad67477b6063a1769a3846'
+      - '0d48039b416a236f6e0e0fd702b5a824e8c7118af597c81271c64bd6b0adfec2'
+      - '5c0708b7a7a7ca00188b40df6b80f4875b2e430b2b0c38b68dd9428bfcb98d09'
+      - 'ba20494fe5a12955a408f076c3677bf8ae600c890554b9906049b8cd07206cfb'
+      - '08dc78ae82d9c480420f7cfa797334c8976077a02df5f6b4cee3072ed4a197f9'
+      - 'ce8832b4681e63118c159f379de82f8c97adc62a81c19cae903d1ba0e5629cf1'
+      - '996b3aedb34426184ca4f8141daec29a0c5785b11e7eea47559f2e0ef1e6180a'
+      - 'ab745ad10ffcbf65acdf171cd47d20aed581ac07304570d96caffacc6ece2651'
+      - 'ef1b84fa1f3087415ba1e798b018f35c675de1032723579e38d81f79dcc37878'
+      - 'bb1428134f6f587d63a3092ef125a7a2ac50fda3ee71b830bf725f20956b0d3f'
+      - '26c9b561e431d033aa16f94580bfa7ace390a1c9c6834a0ee1a6b0a9a306485c'
+      - '7bba7912b7fc01795b3a0503d0e546087990124a2256b083c1c5a498a205a721'
+      - 'ea89a969d7a4e4b9c3da24577fe2d633f74c4f25fd1494905063b40b57aeca31'
+      - '00b0045e9e28b89946e7e839ac910f1f2e6f3c28937839aff3b0b41008c80188'
+      - '32876e31b1ef1b300ab4cb65ce647b110b6b801bc4e46aad3e43d406b96a6f33'
+      - '27eb761a029d5ee4cee1d6a1ad3b60400b91723b6927cdc0032d97d8c9e636a3'
+      - '12b1f2078fcdcf792e5482308acaea8cc617c58d51019edd4a381fef52329dec'
+      - '6547c0f20c7770bb228b9b0ac61a6d2e16e74afad37b62bcecc7e69b51354a87'
+      - '4a7a9354c5764a0977a004f3bf590db8c86ea747d170bf9a1541b8c7cfcf4009'
+      - 'c7abdd66dae9f0e190361d7a39a73128e9d7dc3da338c02f3d93488786813eb3'
+      - 'dd014653fce1fe5f19d1b0e1ad5f254118ca6d002e29c549ecb15029ed0a381e'
+      - '9759492bc73a1704d6d71c6f40ab5321a095f9ab2ae5ca069dd4f7b3a98235fa'
+      - '69a20babb22ffb372733900cb2e6739598b316aecdbc0394ce8029717ee13089'
+      - '5329f26cc11cba660382f58f388d2dad50e10e2ba37d0d6002622c8061b211b2'
+      - '6decf77b1a3595374a15a014bbb9ac9774f67dca7df59ccf4b734a68d9e35224'
+      - 'e939954618ec089485eff4de098f6c5ce4d672acfd03150f5f0b38bbecbba664'
+      - 'c1381b35c21aec9e74e8d42b60c4733abd23fd012c75ab0e9101e37c9be62a7a'
+      - '7a4c87677d7892b66c30c82ea72893bd29cfe793fade45222b4cf853b877d300'
+      - 'd810f1253ee4bee05ca96a70a9c293f2839fb00b2aa238861f7b89e3a66bd357'
+  selection_clash:
+    Image|endswith: '/clash'
+  selection_tmp:
+    Image|startswith:
+      - '/tmp/'
+      - '/var/tmp/'
+      - '/dev/shm/'
+  condition: selection_name or selection_hash or (selection_clash and selection_tmp)
+falsepositives:
+  - Legitimate Clash users running the client from a temporary directory on a developer workstation
+  - Internal software that happens to ship binaries named client_linux_<arch>; baseline by path and signature before alerting at scale
+
+level: medium

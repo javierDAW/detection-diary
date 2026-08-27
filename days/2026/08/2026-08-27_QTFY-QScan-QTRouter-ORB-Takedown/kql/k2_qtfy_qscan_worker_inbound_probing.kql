@@ -1,0 +1,41 @@
+// Title: QTFY QScan worker inbound probing against perimeter devices
+// Id: e348f2b5-5f7d-4a07-ae67-4f85c24504ea
+// MITRE: T1595.002 (Vulnerability Scanning), T1190 (Exploit Public-Facing Application)
+// Reference: https://www.ic3.gov/CSA/2026/260826.pdf
+// Author: Jarmi
+// Date: 2026-08-27
+// Tested on: Microsoft Sentinel (CommonSecurityLog, CEF firewall and VPN gateway feeds)
+// FP notes: Worker addresses are leased cloud ranges that rotate on a roughly 30-day cycle and may be reassigned to unrelated tenants. A hit is a scanning signal; it becomes an incident only if the same source reaches an exploitable edge service or authenticates.
+let lookback = 90d;
+let qscan_workers = dynamic([
+    "1.32.216.3",
+    "1.32.216.4",
+    "1.32.216.33",
+    "1.32.216.126",
+    "1.32.216.226",
+    "27.124.24.220",
+    "27.124.24.237",
+    "38.14.63.179",
+    "38.14.63.235",
+    "45.196.221.138",
+    "45.196.221.149",
+    "45.196.221.152",
+    "45.202.210.32",
+    "134.122.150.22",
+    "134.122.150.25",
+    "134.122.150.27",
+    "134.122.150.73",
+    "134.122.151.19",
+    "134.122.194.135",
+    "134.122.194.137",
+    "154.64.238.222",
+    "154.64.238.247"
+]);
+CommonSecurityLog
+| where TimeGenerated > ago(lookback)
+| where SourceIP in (qscan_workers)
+| summarize FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated), Events = count(),
+            DestIPs = dcount(DestinationIP), DestPorts = make_set(DestinationPort, 25),
+            Actions = make_set(DeviceAction, 5), Devices = make_set(DeviceProduct, 5)
+        by SourceIP
+| sort by Events desc

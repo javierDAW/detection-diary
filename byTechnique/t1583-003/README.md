@@ -4,11 +4,12 @@
 
 # Techniques: T1583.003
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-27 | QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model | QTFY | [`2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/`](../../days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/) |
 | 2026-07-17 | Yalishanda Unmasked: DOJ Unseals the Media Land / ML.Cloud Bulletproof Hosting Indictment | Media Land LLC / ML.Cloud LLC | [`2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/`](../../days/2026/07/2026-07-17_MediaLand-MLCloud-Bulletproof-Hosting-Indictment/) |
 | 2026-07-13 | UAT-7810 & the LapDogs ORB: LONGLEASH, DOGLEASH and JARLEASH | UAT-7810 | [`2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/`](../../days/2026/07/2026-07-13_UAT-7810-LapDogs-ORB-LongLeash-DogLeash-JarLeash/) |
 | 2026-07-12 | NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arrest) | NoName057(16) | [`2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/`](../../days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/) |

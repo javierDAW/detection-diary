@@ -101,6 +101,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Pheno](./pheno/) | 1 |
 | [Punk Spider](./punk-spider/) | 1 |
 | [QLNX](./qlnx/) | 1 |
+| [QTFY](./qtfy/) | 1 |
 | [Qilin](./qilin/) | 1 |
 | [Qilin ransomware affiliate (Check Point CPR, medium confidence)](./qilin-ransomware-affiliate-check-point-cpr-medium-confidence/) | 1 |
 | [Quasar Linux](./quasar-linux/) | 1 |

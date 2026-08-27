@@ -4,11 +4,12 @@
 
 # Platforms: linux
 
-42 day(s) covering this platform.
+43 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-08-27 | QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model | QTFY | [`2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/`](../../days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/) |
 | 2026-08-17 | PATCHCORD: three implants, three C2 transports and one Afghan telecom cover story | APT36 | [`2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/`](../../days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/) |
 | 2026-08-13 | Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap | Unattributed (opportunistic mass exploitation) | [`2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/`](../../days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/) |
 | 2026-08-06 | Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a Bun Loader, IDE Autostart Hooks and a Token-Revocation Dead-Man's Switch | Shai-Hulud (keyv/cacheable wave, unattributed operator) | [`2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/`](../../days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/) |

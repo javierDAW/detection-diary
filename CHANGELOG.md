@@ -1,3 +1,22 @@
+## 2026.08.27 — Day 110 — QTFY: FBI and DoJ seize the QScan and QTRouter platforms
+
+### Added
+- `days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/` — the DoJ seized the domains behind QScan, a distributed scanning and exploitation platform, and QTRouter, an obfuscation network of compromised IoT devices, commercial proxies and leased servers; the FBI, NSA and CNMF advisory JCSA-20260826-01 and Lumen Black Lotus Labs (all 2026-08-26) attribute both to QTFY (QT, QTCYBER), a Nanjing enabling contractor. Recovery entry written 2026-10-19 for the week of 2026-08-24; sources cite later revisions (DoJ 2026-08-28, advisory 2026-09-02).
+- Sigma (3): `01_qtfy_infrastructure_domain_resolution.yml` — DNS for the 13 advisory domains active in 2026; `02_qtfy_proxy_platform_binaries_and_staged_clash.yml` — management binaries by name or hash, Clash in a temp directory; `03_qtfy_outbound_to_qscan_and_actor_hosts.yml` — outbound to the QScan servers and actor-controlled addresses.
+- KQL (3): `k1` 365-day DNS and network contact per device; `k2` perimeter probing from QScan worker addresses; `k3` advisory hashes, name pattern and staged Clash on Linux.
+- YARA (1 file, 2 rules): hard-coded QTFY domains in ELF files and in downloader scripts, derived from the DoJ statement and not from a reversed sample.
+- Suricata (1 file, 11 sids 6270001-6270011): DNS, TLS SNI, Go-http-client to the admin host, IP contact, inbound worker probe, yotocloud egress names.
+- PEAK hunts (3): H1 retrospective DNS, proxy and flow hunt; H2 edge product exposure and web shells for the 14 CVEs; H3 ORB-aware access baselining and abuse of own small devices.
+- `iocs.csv` (149 entries) — 45 advisory SHA-256 values (verified by three independent extractions), actor-controlled and QScan infrastructure active in 2026, Lumen relay names and 14 CVEs. `kev.md` — 14/14 CVEs on CISA KEV.
+- `kill_chain.svg` — template A, canonical palette with the espionage accent; targeted-organisation lane against the QTFY platform lane, anchors on historical DNS and flow, edge egress and the management binaries.
+- Maintenance: `generate_kev_overlay.py` now labels a cached catalog with its catalogVersion instead of the raw fetch error.
+
+### Pedagogy
+- Hunt the enabler, not the intrusion set: one relay platform fronts many customers, so platform-anchored detection covers all of them.
+- After a takedown the indicators are historical the same day; the logs become an evidence archive and the question is who contacted the infrastructure before it went dark.
+- Relay networks built from nearby compromised devices defeat source blocking; use behavioural baselines and egress allow-lists on edge appliances.
+- Pin advisory indicators to a revision date: this advisory was corrected on 2026-09-02 and its CSV mixes expiry dates with activity dates.
+
 ## 2026.08.17 — Day 109 — PATCHCORD: Afghan telecom lures, three implants, three C2 transports
 
 ### Added

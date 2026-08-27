@@ -1,5 +1,128 @@
 [
  {
+  "date": "2026-08-27",
+  "year": "2026",
+  "month": "2026-08",
+  "slug": "2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown",
+  "title": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model",
+  "clusters": [
+   "QTFY"
+  ],
+  "country": "China (PRC state-enabling contractor, Nanjing)",
+  "platforms": [
+   "network-edge",
+   "iot",
+   "linux"
+  ],
+  "sectors": [
+   "government",
+   "defense",
+   "telecommunications",
+   "education",
+   "energy",
+   "healthcare",
+   "finance",
+   "aerospace"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1583.003",
+   "T1587",
+   "T1595.002",
+   "T1190",
+   "T1505.003",
+   "T1078",
+   "T1584.008",
+   "T1090.003",
+   "T1071.001",
+   "T1071.004",
+   "T1572"
+  ],
+  "tech_count": 12,
+  "tldr": "On **2026-08-26** the US Department of Justice announced court-authorised seizures of the domains behind **QScan**, a distributed vulnerability-scanning and exploitation platform, and **QTRouter**, an obfuscation network built from compromised IoT devices, commercial proxy nodes and leased servers. The FBI, NSA and Cyber National Mission Force published advisory **JCSA-20260826-01** the same day, ",
+  "thumb": "thumbs/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown.svg",
+  "case_rel": "../days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "QTFY",
+  "cve_count": 14,
+  "kev_count": 14,
+  "kev_cves": [
+   {
+    "cve": "CVE-2021-44228",
+    "due": "2021-12-24",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2019-10068",
+    "due": "2022-04-15",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2018-13379",
+    "due": "2022-05-03",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2019-11510",
+    "due": "2022-05-03",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2019-19781",
+    "due": "2022-05-03",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2020-5902",
+    "due": "2022-05-03",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2021-26855",
+    "due": "2022-05-03",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2023-22515",
+    "due": "2023-10-13",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2024-24919",
+    "due": "2024-06-20",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2024-8190",
+    "due": "2024-10-04",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2024-8963",
+    "due": "2024-10-10",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2024-9380",
+    "due": "2024-10-30",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2025-31161",
+    "due": "2025-04-28",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-1731",
+    "due": "2026-02-16",
+    "ransom": true
+   }
+  ],
+  "q": "qtfy: the fbi and doj seize the qscan and qtrouter platforms behind a chinese state-enabling relay model qtfy china (prc state-enabling contractor, nanjing) network-edge iot linux government defense telecommunications education energy healthcare finance aerospace t1583.001 t1583.003 t1587 t1595.002 t1190 t1505.003 t1078 t1584.008 t1090.003 t1071.001 t1071.004 t1572 espionage / apt cve-2021-44228 cve-2019-10068 cve-2018-13379 cve-2019-11510 cve-2019-19781 cve-2020-5902 cve-2021-26855 cve-2023-22515 cve-2024-24919 cve-2024-8190 cve-2024-8963 cve-2024-9380 cve-2025-31161 cve-2026-1731"
+ },
+ {
   "date": "2026-08-17",
   "year": "2026",
   "month": "2026-08",

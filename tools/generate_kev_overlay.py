@@ -65,7 +65,7 @@ def load_kev():
     except Exception as e:
         if CACHE.is_file():
             data = json.loads(CACHE.read_text(encoding="utf-8"))
-            src = f"cache (fetch failed: {e})"
+            src = f"cached copy, catalogVersion {data.get('catalogVersion','?')}; live fetch unavailable"
         else:
             print(f"FATAL: cannot fetch KEV and no cache at {CACHE}: {e}", file=sys.stderr)
             sys.exit(2)

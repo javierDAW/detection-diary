@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-08-17 08:07 UTC
+# generated 2026-10-19 08:30 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -38,6 +38,7 @@ afghanistanupdates.site
 afghantelecom.site
 alteira.digital
 angelxc.digital
+anticonstitutionally.sbs
 api.anthropic.com
 api.country.is
 api.openai.com
@@ -83,6 +84,8 @@ calm-wildflower-1349.hellohiall.workers.dev
 campainter.digital
 caprispine.health
 carrolc.com
+categorystore.net
+ccgv.me
 celebratieinvitiee.de
 chat.openai.com
 cheapoca.biz
@@ -127,6 +130,7 @@ digital-asset-mart.org
 direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion
 dns.multitoconference.com
 dns.ssentialserv.xyz
+docker-hub.qt-team.com
 dotlor.site
 download-center.online
 download.robovpn.com
@@ -150,6 +154,8 @@ ev2sirbd269o5j.org
 ewujsfb1dp5ran.org
 f3nq6re4nmjwbr8ks5g2qu.darijo-bosanac-dl.workers.dev
 fasterscommunications.com
+fastlink.ws
+fastsecurey.info
 fererro.digital
 festiveparty.us
 filecedarwallet.online
@@ -205,9 +211,12 @@ insight-radiant.digital
 insightcores.digital
 insightmetrix.digital
 insightorbithub.digital
+instantmessagehub.tech
 ip-api.com
 ip-scanner.org
 join-secure-call.ai-ae.io
+jump.qt-proxy.org
+jump.qt-team.com
 junora.digital
 k135neflez.westus3.azure.clickhouse.cloud
 kalviorix.info
@@ -243,6 +252,10 @@ minaro.club
 mindflowbase.info
 ml.cloud
 mortarora.digital
+mq-result.qt-proxy.org
+mq-result.qt-team.com
+mq-task.qt-proxy.org
+mq-task.qt-team.com
 ms365-device.com
 ms365-live.com
 msauth.monlinelogicaline.com
@@ -270,9 +283,11 @@ obmlink.com
 oeannon.com
 office.ofrecie.com
 oneclickme.site
+onlion.shop
 open-box-rpps.jeff-1fd.workers.dev
 openclawcli.vercel.app
 opmanager.pro
+oraclelabs.biz
 orange-cell-1353.hellohiall.workers.dev
 orangesmartfile.com
 orientstrategypartners.digital
@@ -297,6 +312,10 @@ pulsewave-glow.digital
 purelogicbox.org
 pustou.site
 py-lib-repository.dev
+qt-proxy.org
+qt-team.com
+qtcyber.com
+qtproxy.xyz
 qumoro.site
 quorivamesh.digital
 r3brqw3d.b0ats.top
@@ -320,6 +339,7 @@ s3.tebi.io
 saidozdemir.com
 sapience-flare.digital
 savanhe.digital
+securelink.qtproxy.xyz
 sendgrid.us-west-prod.com
 sendgrid.uslogin-prodsg.com
 server.cubatiendaalimentos.com.mx
@@ -398,11 +418,14 @@ w5fb5r3txrsvga7zot9uz54k.darijo-bosanac-dl.workers.dev
 webmail.t-w.dev
 webnity.site
 werkbit.io
+wintel.biz
 worldsol.site
+worldswar.online
 www.afghanistanupdates.site
 www.appstoore.solutions
 www.caprispine.health
 www.nicservice.org
+www.qtproxy.xyz
 www.servicesindia.services
 www.tor-browser.io
 www.zala-aer.info

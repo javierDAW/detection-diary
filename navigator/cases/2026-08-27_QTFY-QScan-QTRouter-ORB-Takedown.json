@@ -1,0 +1,111 @@
+{
+  "name": "2026-08-27 — 2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model — clusters: QTFY",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1583.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1587",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1595.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1505.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1584.008",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1090.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1071.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    },
+    {
+      "techniqueID": "T1572",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese st"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

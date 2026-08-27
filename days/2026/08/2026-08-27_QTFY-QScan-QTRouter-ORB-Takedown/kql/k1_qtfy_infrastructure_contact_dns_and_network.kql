@@ -1,0 +1,62 @@
+// Title: QTFY infrastructure contact - DNS and network events by device
+// Id: 7eef472b-b277-4997-9a3d-6621731842d1
+// MITRE: T1071.001 (Web Protocols), T1071.004 (DNS), T1090.003 (Multi-hop Proxy)
+// Reference: https://www.ic3.gov/CSA/2026/260826.pdf
+// Author: Jarmi
+// Date: 2026-08-27
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceNetworkEvents, DeviceEvents)
+// FP notes: Seized domains now resolve to a law enforcement banner, so recent hits show contact attempts rather than live C2. Re-validate the IP list against the advisory CSV; leased servers rotate.
+let lookback = 365d;
+let qtfy_domains = dynamic([
+    "anticonstitutionally.sbs",
+    "categorystore.net",
+    "ccgv.me",
+    "fastsecurey.info",
+    "instantmessagehub.tech",
+    "onlion.shop",
+    "oraclelabs.biz",
+    "qt-proxy.org",
+    "qt-team.com",
+    "qtcyber.com",
+    "qtproxy.xyz",
+    "wintel.biz",
+    "worldswar.online"
+]);
+let qtfy_ips = dynamic([
+    "1.32.216.171",
+    "5.183.179.133",
+    "23.95.220.192",
+    "31.169.126.162",
+    "39.104.208.77",
+    "45.95.2.119",
+    "45.202.210.27",
+    "47.76.131.175",
+    "94.156.236.183",
+    "103.201.131.121",
+    "106.14.184.69",
+    "154.64.238.222",
+    "154.64.238.247",
+    "194.104.10.58",
+    "206.119.167.207"
+]);
+let network_hits =
+    DeviceNetworkEvents
+    | where Timestamp > ago(lookback)
+    | where RemoteIP in (qtfy_ips)
+        or RemoteUrl has_any (qtfy_domains)
+    | project Timestamp, DeviceId, DeviceName, Signal = "network", RemoteIP, RemoteUrl,
+              InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessCommandLine;
+let dns_hits =
+    DeviceEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType == "DnsQueryResponse"
+    | extend DnsName = tostring(parse_json(AdditionalFields).DnsQueryString)
+    | where DnsName has_any (qtfy_domains)
+    | project Timestamp, DeviceId, DeviceName, Signal = "dns", RemoteIP = "", RemoteUrl = DnsName,
+              InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessCommandLine;
+union network_hits, dns_hits
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Events = count(),
+            Signals = make_set(Signal), Targets = make_set(coalesce(RemoteUrl, RemoteIP), 15),
+            Processes = make_set(InitiatingProcessFolderPath, 10)
+        by DeviceId, DeviceName
+| sort by FirstSeen asc
