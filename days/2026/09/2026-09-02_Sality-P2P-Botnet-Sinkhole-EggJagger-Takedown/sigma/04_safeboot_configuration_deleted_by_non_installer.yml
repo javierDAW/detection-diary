@@ -1,0 +1,34 @@
+title: Safe Mode Boot Configuration Deleted by a Non-Installer Process
+id: f007993a-9132-40f0-80be-11db02919cb7
+status: experimental
+description: |
+  Detects deletion of keys or values under the SafeBoot control set by a process that is not a known installer. Sality, per the
+  2011 Symantec analysis, deletes the SafeBoot subkeys and values under HKCU and HKLM CurrentControlSet\Control\SafeBoot to
+  stop the machine from booting into Safe Mode where security software could be cleaned. The behaviour is also used by other
+  malware, so the rule is a generic defence-evasion detection that covers the historical Sality behaviour; it is not a 2026
+  Sality indicator and the CrowdStrike report does not mention it.
+references:
+  - https://git.vbrandl.net/vbrandl/masterthesis/raw/branch/master/references/2011_sality-story-of-peer-to-peer-11-en.pdf
+  - https://attack.mitre.org/techniques/T1562/009/
+author: Jarmi
+date: 2026/09/02
+tags:
+  - attack.defense-evasion
+  - attack.t1562.009
+logsource:
+  category: registry_delete
+  product: windows
+detection:
+  selection:
+    TargetObject|contains: '\Control\SafeBoot\'
+  filter_installers:
+    Image|endswith:
+      - '\msiexec.exe'
+      - '\TrustedInstaller.exe'
+      - '\svchost.exe'
+  condition: selection and not filter_installers
+falsepositives:
+  - Endpoint security or disk-encryption tooling that legitimately edits Safe Mode boot entries during install or repair
+  - Administrator scripts that remove third-party driver entries from the SafeBoot list
+
+level: medium

@@ -1,0 +1,30 @@
+title: Historical Sality Kernel Driver Service amsint32 Installed
+id: ede718ad-a1fa-4c0b-83dc-373618ebc662
+status: experimental
+description: |
+  Detects installation of a service named amsint32. The 2011 Symantec analysis of Sality documents amsint32 as the service name of
+  the kernel driver that terminates security processes, filters packets and can block SMTP traffic, and notes the name was stable
+  across variants at that time. Whether 2026 builds still use the name is not confirmed by the CrowdStrike report, so this rule is a
+  legacy-variant detection with low expected volume: a hit means a Sality-family driver or a deliberately named lookalike, and
+  warrants immediate triage.
+references:
+  - https://git.vbrandl.net/vbrandl/masterthesis/raw/branch/master/references/2011_sality-story-of-peer-to-peer-11-en.pdf
+author: Jarmi
+date: 2026/09/02
+tags:
+  - attack.persistence
+  - attack.t1543.003
+  - attack.defense-evasion
+  - attack.t1562.001
+logsource:
+  product: windows
+  service: system
+detection:
+  selection:
+    EventID: 7045
+    ServiceName: 'amsint32'
+  condition: selection
+falsepositives:
+  - Unknown legitimate software that happens to use the same service name; none is documented
+
+level: medium

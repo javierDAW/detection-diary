@@ -1,0 +1,19 @@
+// Title: Peer-to-peer style UDP fan-out from non-network processes (Sality behaviour hunt)
+// Id: a243682b-bb70-4179-a156-2ef394da8841
+// MITRE: T1095 (Non-Application Layer Protocol), T1071 (Application Layer Protocol)
+// Reference: https://www.crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/
+// Author: Jarmi
+// Date: 2026-09-02
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes: Sality contacts its peers about every 40 minutes over UDP. Voice, video, game, VPN and torrent clients also fan out over UDP; baseline and exclude them in the placeholder list before alerting.
+let lookback = 7d;
+let known_udp_processes = dynamic(["<add_known_udp_processes>"]);
+DeviceNetworkEvents
+| where Timestamp > ago(lookback)
+| where Protocol =~ "Udp" and RemoteIPType == "Public"
+| where InitiatingProcessFileName !in~ (known_udp_processes)
+| summarize Peers = dcount(RemoteIP), Cycles = dcount(bin(Timestamp, 40m)), Events = count(),
+            FirstSeen = min(Timestamp), LastSeen = max(Timestamp)
+        by DeviceId, DeviceName, InitiatingProcessFolderPath, InitiatingProcessSHA256
+| where Peers >= 50 and Cycles >= 20
+| sort by Peers desc

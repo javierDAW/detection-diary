@@ -1,3 +1,21 @@
+## 2026.09.02 — Day 111 — Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P2P botnet
+
+### Added
+- `days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/` — CrowdStrike Counter Adversary Operations, with the DOJ, FBI, DCIS and the Shadowserver Foundation, disrupted the Sality P2P botnet on 2026-08-31 (blog and DOJ release 2026-09-01) by invalidating its super peers and sinkholing the peer lists; the operator is named SALTY SPIDER and no attribution is made. Recovery entry written 2026-10-19 for the week of 2026-08-31.
+- Sigma (4): `01_sality_sinkhole_lighthouse_contact.yml` — connection to the lighthouse address; `02_sality_url_pack_payload_requests.yml` — proxy host plus path match for the last URL packs; `03_sality_legacy_driver_service_amsint32.yml` — 2011 driver service name; `04_safeboot_configuration_deleted_by_non_installer.yml` — SafeBoot deletion by a non-installer.
+- KQL (3): `k1` sinkhole and URL pack contact per device; `k2` legacy host artefacts needing two signal classes; `k3` UDP fan-out across 40-minute cycles from non-network processes.
+- YARA (1 file, 3 rules): v3 and v4 `IPFILTERDRIVER` plus embedded RSA key prefix anchors from the CrowdStrike rules, and a low-confidence legacy string rule.
+- Suricata (1 file, 6 sids 6280001-6280006): sinkhole UDP contact, v3 and v4 URL pack requests, v4 domain DNS, legacy user agent.
+- PEAK hunts (3): H1 sinkhole contact as an infection signal; H2 file-infector and removable-media artefacts; H3 P2P behaviour baseline and a clipboard integrity canary.
+- `iocs.csv` (33 entries) — sinkhole address, 9 payload URLs and hosts, YARA anchors and labelled 2011 legacy artefacts; CrowdStrike published no hashes. `kev.md` — 4/4 secondary-finding CVEs on CISA KEV (SonicWall SMA 1000, PaperCut NG/MF).
+- `kill_chain.svg` — template A, canonical palette with the malware-re accent; infected-endpoint lane against the operation lane, anchors on the sinkhole and the peer list.
+
+### Pedagogy
+- A P2P botnet has no server to seize: the disruption attacked the peer list, the one structure every bot trusted and nobody authenticated.
+- The operator signed payloads but not peers, which let defenders join the mesh without being able to push code.
+- A sinkhole turns victims into sensors: contact with the lighthouse is a near-zero-false-positive infection signal that exists only while the operation runs; never block it.
+- A takedown is not a clean-up, and the best public host-level description is from 2011: label legacy behaviour as legacy.
+
 ## 2026.08.27 — Day 110 — QTFY: FBI and DoJ seize the QScan and QTRouter platforms
 
 ### Added

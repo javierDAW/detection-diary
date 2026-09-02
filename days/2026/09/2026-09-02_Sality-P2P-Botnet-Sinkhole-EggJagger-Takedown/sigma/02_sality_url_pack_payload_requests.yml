@@ -1,0 +1,49 @@
+title: Sality URL Pack Payload Download from Published Hosts and Paths
+id: d17d554f-e562-485f-b819-8ef58bb0f64c
+status: experimental
+description: |
+  Detects web requests for the payload URLs in the last Sality v3 (URL pack version 25202) and v4 (URL pack version 31010)
+  published by CrowdStrike on 2026-09-01. Both host and path must match, because several of the v3 hosts are compromised or
+  free-hosted third-party sites that serve legitimate content on other paths. Sality tasking is signed with embedded RSA keys and
+  delivered through URL packs, so these URLs are payload locations, not command-and-control. The operation took the payload
+  URLs down in coordination with law enforcement, so a hit after 2026-08-31 more likely reflects a bot retrying a dead URL than a new
+  download; either way it identifies an infected host.
+references:
+  - https://www.crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/
+author: Jarmi
+date: 2026/09/02
+tags:
+  - attack.command-and-control
+  - attack.t1105
+  - attack.t1071.001
+logsource:
+  category: proxy
+detection:
+  selection_host:
+    cs-host:
+      - 'theunforgiven.p8.hu'
+      - 'painelwebradiodigital.awardspace.info'
+      - 'sgwebdesigner.free.fr'
+      - 'www.yonelco.com'
+      - 'pozdravizbeograda.com'
+      - 'highclass.atspace.com'
+      - 'situluimihai.3x.ro'
+      - 'gatheredovertime.com'
+      - 'imagebucket.biz'
+  selection_path:
+    c-uri|endswith:
+      - '/img/top.gif'
+      - '/v3/readme.pdf'
+      - '/left.gif'
+      - '/icon.png'
+      - '/readme.pdf'
+      - '/styles.gif'
+      - '/top.png'
+      - '/nb4'
+      - '/nv4'
+  condition: selection_host and selection_path
+falsepositives:
+  - Legitimate visitors to the free-hosted or compromised sites who happen to request an image or document with one of the listed file names
+  - Proxy logs that record only the host: use the host-only KQL hunt in this folder and review the requested path manually
+
+level: high

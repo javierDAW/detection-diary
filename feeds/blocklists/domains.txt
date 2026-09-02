@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-10-19 08:30 UTC
+# generated 2026-10-19 08:41 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -184,6 +184,7 @@ ftps.upd-domain-goloro.com
 fullnode.mainnet.aptoslabs.com
 g8way.io
 gatewayrvcenter.com
+gatheredovertime.com
 getceptionparty.de
 getsession.org
 git-tanstack.com
@@ -197,6 +198,7 @@ gruta.com.mx
 hanzoa.digital
 hcgos.com
 hekeroyot.com
+highclass.atspace.com
 hospitalinstallation.com
 human-check.top
 ideabpl1h.dea.epc.mnc003.mcc520.3gppnetwork.org
@@ -207,6 +209,7 @@ idp.korminel.com
 idp.kualabemo.com
 ignite-spark.digital
 image.update-kaspersky.workers.dev
+imagebucket.biz
 insight-radiant.digital
 insightcores.digital
 insightmetrix.digital
@@ -293,6 +296,7 @@ orangesmartfile.com
 orientstrategypartners.digital
 ovh1kn1tcqw5kp.org
 owa-ms365.com
+painelwebradiodigital.awardspace.info
 pamconj.com
 panel.securehubcloud.com
 parixaxj.com
@@ -303,6 +307,7 @@ permits.global-transit-authority.org
 php.authorized-logins.net
 polvexa.site
 power-sync-services.com
+pozdravizbeograda.com
 praxnova.info
 predictcore.digital
 prism-west-candy.glitch.me
@@ -347,10 +352,12 @@ servicesindia.services
 setpasskey.com
 setupsso.com
 sgnlapp.info
+sgwebdesigner.free.fr
 signalmetrics.digital
 singtelcom.site
 sitemap.tor-browser.io
 sitemaps.tor-browser.io
+situluimihai.3x.ro
 sobeamora.digital
 socifiapp.com
 solventa.club
@@ -372,6 +379,7 @@ t.me/DDosiabot
 telecom.webredirect.org
 tenderi.digital
 thaivex.digital
+theunforgiven.p8.hu
 thirdmetrics.com
 thomphon.com
 tk.mowell.tech
@@ -428,6 +436,7 @@ www.nicservice.org
 www.qtproxy.xyz
 www.servicesindia.services
 www.tor-browser.io
+www.yonelco.com
 www.zala-aer.info
 xcent.online
 yj6jurm5qqkye5.org

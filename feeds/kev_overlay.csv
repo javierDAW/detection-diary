@@ -188,3 +188,7 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2024-9380,yes,2024-10-09,2024-10-30,Unknown,Ivanti Cloud Services Appliance (CSA) OS Command Injection Vulnerability,Ivanti,Cloud Services Appliance (CSA)
 2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2025-31161,yes,2025-04-07,2025-04-28,Known,CrushFTP Authentication Bypass Vulnerability,CrushFTP,CrushFTP
 2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown,2026-08-27,CVE-2026-1731,yes,2026-02-13,2026-02-16,Known,BeyondTrust Remote Support (RS) and Privileged Remote Access (PRA) OS Command Injection Vulnerability,BeyondTrust,Remote Support (RS) and Privileged Remote Access (PRA)
+2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown,2026-09-02,CVE-2026-81578,yes,2026-08-31,2026-09-14,Unknown,PaperCut NG/MF Missing Authentication for Critical Function Vulnerability,PaperCut,NG/MF
+2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown,2026-09-02,CVE-2026-82078,yes,2026-08-31,2026-09-14,Unknown,PaperCut NG/MF Unsafe Reflection Vulnerability,PaperCut,NG/MF
+2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown,2026-09-02,CVE-2026-83548,yes,2026-09-02,2026-09-05,Unknown,SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability,SonicWall,SMA1000 Appliances
+2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown,2026-09-02,CVE-2026-83549,yes,2026-09-02,2026-09-05,Unknown,SonicWall SMA1000 Appliances OS Command Injection Vulnerability,SonicWall,SMA1000 Appliances

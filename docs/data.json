@@ -1,5 +1,71 @@
 [
  {
+  "date": "2026-09-02",
+  "year": "2026",
+  "month": "2026-09",
+  "slug": "2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown",
+  "title": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P2P botnet",
+  "clusters": [
+   "SALTY SPIDER"
+  ],
+  "country": "Not attributed to a country (CrowdStrike names the operator SALTY SPIDER; no individual or state is named)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "cross-sector",
+   "finance",
+   "defense"
+  ],
+  "techniques": [
+   "T1091",
+   "T1204.002",
+   "T1027",
+   "T1055",
+   "T1543.003",
+   "T1562.001",
+   "T1562.009",
+   "T1095",
+   "T1105",
+   "T1071.001",
+   "T1565.002",
+   "T1498"
+  ],
+  "tech_count": 12,
+  "tldr": "On **2026-08-31** CrowdStrike's Counter Adversary Operations team, working with the US Department of Justice, the FBI, the Defense Criminal Investigative Service and the Shadowserver Foundation, disrupted **Sality**, a peer-to-peer botnet that began in 2003 as a file-infecting virus. Instead of seizing a command server, which the botnet does not have, the team abused the protocol itself: it invali",
+  "thumb": "thumbs/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown.svg",
+  "case_rel": "../days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/",
+  "category": "malware-re",
+  "cat_label": "Malware / RE",
+  "cat_color": "#556070",
+  "actor": "SALTY SPIDER",
+  "cve_count": 4,
+  "kev_count": 4,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-83548",
+    "due": "2026-09-05",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-83549",
+    "due": "2026-09-05",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-81578",
+    "due": "2026-09-14",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-82078",
+    "due": "2026-09-14",
+    "ransom": false
+   }
+  ],
+  "q": "sality: crowdstrike and law enforcement poison the peer lists of a 23-year-old p2p botnet salty spider not attributed to a country (crowdstrike names the operator salty spider; no individual or state is named) windows cross-sector finance defense t1091 t1204.002 t1027 t1055 t1543.003 t1562.001 t1562.009 t1095 t1105 t1071.001 t1565.002 t1498 malware / re cve-2026-83548 cve-2026-83549 cve-2026-81578 cve-2026-82078"
+ },
+ {
   "date": "2026-08-27",
   "year": "2026",
   "month": "2026-08",

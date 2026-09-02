@@ -1,0 +1,28 @@
+title: Sality Sinkhole Contact - Connection to the CrowdStrike Lighthouse Address
+id: c8ac2ee5-1984-4f54-9bdc-8b56907eb673
+status: experimental
+description: |
+  Detects any connection from an internal host to 188.166.101.148, the defender-operated sinkhole ("lighthouse") that CrowdStrike
+  Counter Adversary Operations inserted into the Sality v3 and v4 peer lists during the disruption of 2026-08-31. The address is not
+  attacker infrastructure: a bot only reaches it because it is infected and its peer list was poisoned, and the traffic is UDP.
+  A hit is therefore a high-fidelity indicator of a live Sality infection on the source host. Blocking the address does not
+  help; it prevents the notification path that Shadowserver uses to tell owners about infected machines.
+references:
+  - https://www.crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/
+  - https://www.justice.gov/usao-cdca/pr/sality-malware-disrupted-international-cyber-takedown
+author: Jarmi
+date: 2026/09/02
+tags:
+  - attack.command-and-control
+  - attack.t1095
+logsource:
+  category: network_connection
+detection:
+  selection:
+    DestinationIp: '188.166.101.148'
+  condition: selection
+falsepositives:
+  - Security researchers or monitoring tools that deliberately probe the sinkhole address
+  - Threat intelligence platforms that actively test published indicators from the CrowdStrike report
+
+level: high

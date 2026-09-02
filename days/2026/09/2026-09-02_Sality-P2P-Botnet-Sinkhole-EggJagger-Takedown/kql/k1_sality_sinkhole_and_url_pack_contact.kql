@@ -1,0 +1,30 @@
+// Title: Sality sinkhole and URL pack contact per device
+// Id: e77d3c24-0f8f-4102-8e26-b16295919bcc
+// MITRE: T1095 (Non-Application Layer Protocol), T1105 (Ingress Tool Transfer)
+// Reference: https://www.crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/
+// Author: Jarmi
+// Date: 2026-09-02
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes: The sinkhole address is defender-operated, so a hit means infection, not attacker contact. Several URL pack hosts are compromised or free-hosted third-party sites: review the requested path before treating a host-only match as an infection.
+let lookback = 90d;
+let sinkhole = "188.166.101.148";
+let pack_hosts = dynamic([
+    "theunforgiven.p8.hu",
+    "painelwebradiodigital.awardspace.info",
+    "sgwebdesigner.free.fr",
+    "www.yonelco.com",
+    "pozdravizbeograda.com",
+    "highclass.atspace.com",
+    "situluimihai.3x.ro",
+    "gatheredovertime.com",
+    "imagebucket.biz"
+]);
+DeviceNetworkEvents
+| where Timestamp > ago(lookback)
+| where RemoteIP == sinkhole or RemoteUrl has_any (pack_hosts)
+| extend Signal = iff(RemoteIP == sinkhole, "sinkhole_contact", "url_pack_host")
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Events = count(),
+            Signals = make_set(Signal), Remote = make_set(coalesce(RemoteUrl, RemoteIP), 15),
+            Procs = make_set(InitiatingProcessFolderPath, 10), Protocols = make_set(Protocol)
+        by DeviceId, DeviceName
+| sort by FirstSeen asc

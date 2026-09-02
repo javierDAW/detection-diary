@@ -1,0 +1,111 @@
+{
+  "name": "2026-09-02 — 2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P2P botnet — clusters: SALTY SPIDER",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1091",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1055",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1562.009",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1095",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1565.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    },
+    {
+      "techniqueID": "T1498",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

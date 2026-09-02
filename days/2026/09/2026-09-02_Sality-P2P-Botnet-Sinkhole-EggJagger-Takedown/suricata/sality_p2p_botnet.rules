@@ -1,0 +1,25 @@
+# Sality P2P botnet network detection - CrowdStrike Counter Adversary Operations 2026-09-01
+# Author: Jarmi
+# Date: 2026-09-02
+# Reference: https://www.crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/
+#
+# Custom variables expected in suricata.yaml (define these before deploying):
+#   HOME_NET            - your internal address space
+#   EXTERNAL_NET        - everything outside HOME_NET
+#
+# sid range 6280001-6280006 reserved for this case.
+# Rule 1 matches the defender-operated sinkhole address: a hit identifies an infected host. Rules 2-4 match payload URLs from the last
+# Sality URL packs; the operation took them down, so hits are retries by bots. Rule 5 covers the two v4 payload domains. Rule 6 is a
+# legacy 2011 user agent and is low confidence for 2026 builds.
+
+alert udp $HOME_NET any -> 188.166.101.148 any (msg:"SALITY sinkhole lighthouse contact - infected host (CrowdStrike 2026-09-01)"; threshold:type limit, track by_src, count 1, seconds 3600; classtype:trojan-activity; reference:url,crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/; metadata:created_at 2026_09_02, mitre_technique T1095; sid:6280001; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"SALITY v3 URL pack payload request (host and path from last pack 25202)"; flow:established,to_server; http.method; content:"GET"; http.host; pcre:"/^(theunforgiven\.p8\.hu|painelwebradiodigital\.awardspace\.info|sgwebdesigner\.free\.fr|www\.yonelco\.com|pozdravizbeograda\.com|highclass\.atspace\.com|situluimihai\.3x\.ro)$/i"; http.uri; pcre:"/^\/(img\/top\.gif|v3\/readme\.pdf|left\.gif|icon\.png|readme\.pdf|styles\.gif|top\.png)$/"; classtype:trojan-activity; reference:url,crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/; metadata:created_at 2026_09_02, mitre_technique T1105; sid:6280002; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"SALITY v4 URL pack payload request gatheredovertime.com/nb4 (pack 31010)"; flow:established,to_server; http.host; content:"gatheredovertime.com"; nocase; endswith; http.uri; content:"/nb4"; startswith; isdataat:!1,relative; classtype:trojan-activity; reference:url,crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/; metadata:created_at 2026_09_02, mitre_technique T1105; sid:6280003; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"SALITY v4 URL pack payload request imagebucket.biz/nv4 (pack 31010)"; flow:established,to_server; http.host; content:"imagebucket.biz"; nocase; endswith; http.uri; content:"/nv4"; startswith; isdataat:!1,relative; classtype:trojan-activity; reference:url,crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/; metadata:created_at 2026_09_02, mitre_technique T1105; sid:6280004; rev:1;)
+
+alert dns $HOME_NET any -> any any (msg:"SALITY v4 payload domain lookup (gatheredovertime.com or imagebucket.biz)"; dns.query; pcre:"/(^|\.)(gatheredovertime\.com|imagebucket\.biz)$/i"; classtype:trojan-activity; reference:url,crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/; metadata:created_at 2026_09_02, mitre_technique T1071_004; sid:6280005; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"SALITY legacy user agent KUKU v3.09 exp (2011-era builds)"; flow:established,to_server; http.user_agent; content:"KUKU v3.09 exp"; startswith; classtype:trojan-activity; reference:url,git.vbrandl.net/vbrandl/masterthesis/raw/branch/master/references/2011_sality-story-of-peer-to-peer-11-en.pdf; metadata:created_at 2026_09_02, mitre_technique T1071_001; sid:6280006; rev:1;)

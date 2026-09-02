@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**110 cases** · **177 actors/clusters** · **380 ATT&CK techniques** · **16 platforms** · **85 sectors** · 2026-04-28 -> 2026-08-27
+**111 cases** · **178 actors/clusters** · **380 ATT&CK techniques** · **16 platforms** · **85 sectors** · 2026-04-28 -> 2026-09-02
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/"><img src="days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/kill_chain.svg" alt="2026-09-02 kill chain" width="240"></a><br><sub><b>2026-09-02</b><br>SALTY SPIDER</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/"><img src="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/kill_chain.svg" alt="2026-08-27 kill chain" width="240"></a><br><sub><b>2026-08-27</b><br>QTFY</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/"><img src="days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/kill_chain.svg" alt="2026-08-17 kill chain" width="240"></a><br><sub><b>2026-08-17</b><br>APT36</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/"><img src="days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/kill_chain.svg" alt="2026-08-16 kill chain" width="240"></a><br><sub><b>2026-08-16</b><br>Unattributed WWS PLC Reconfiguration Cluster</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/"><img src="days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/kill_chain.svg" alt="2026-08-16 kill chain" width="240"></a><br><sub><b>2026-08-16</b><br>Unattributed WWS PLC Reconfiguration Cluster</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/"><img src="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/kill_chain.svg" alt="2026-08-14 kill chain" width="240"></a><br><sub><b>2026-08-14</b><br>Lazarus Group</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/"><img src="days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/kill_chain.svg" alt="2026-08-13 kill chain" width="240"></a><br><sub><b>2026-08-13</b><br>Unattributed (opportunistic mass exploitation)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/"><img src="days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/kill_chain.svg" alt="2026-08-12 kill chain" width="240"></a><br><sub><b>2026-08-12</b><br>Payroll Pirates</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

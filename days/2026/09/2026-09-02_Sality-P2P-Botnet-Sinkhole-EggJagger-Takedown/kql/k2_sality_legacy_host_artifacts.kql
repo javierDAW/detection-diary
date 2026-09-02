@@ -1,0 +1,31 @@
+// Title: Sality legacy host artifacts - driver service, SafeBoot deletion and autorun.inf
+// Id: 280aa639-ce38-4941-96dc-1cda2b43ccda
+// MITRE: T1543.003 (Windows Service), T1562.009 (Safe Mode Boot), T1091 (Replication Through Removable Media)
+// Reference: https://www.crowdstrike.com/en-us/blog/inside-sality-botnet-disruption-operation/
+// Author: Jarmi
+// Date: 2026-09-02
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceEvents, DeviceRegistryEvents, DeviceFileEvents)
+// FP notes: These are 2011-era Sality behaviours and low-volume by design. autorun.inf creation is noisy on estates that still use removable media; the device summary only alerts when at least two signal classes appear on one host.
+let lookback = 30d;
+let svc = DeviceEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType == "ServiceInstalled"
+    | extend ServiceName = tostring(parse_json(AdditionalFields).ServiceName)
+    | where ServiceName =~ "amsint32"
+    | project Timestamp, DeviceId, DeviceName, Signal = "driver_service", Detail = ServiceName;
+let safeboot = DeviceRegistryEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType in ("RegistryKeyDeleted", "RegistryValueDeleted")
+    | where RegistryKey has @"\Control\SafeBoot\"
+    | where InitiatingProcessFileName !in~ ("msiexec.exe", "TrustedInstaller.exe", "svchost.exe")
+    | project Timestamp, DeviceId, DeviceName, Signal = "safeboot_deleted", Detail = strcat(InitiatingProcessFileName, " -> ", RegistryKey);
+let autorun = DeviceFileEvents
+    | where Timestamp > ago(lookback)
+    | where FileName =~ "autorun.inf" and ActionType in ("FileCreated", "FileModified")
+    | where FolderPath matches regex @"^[A-Za-z]:\\autorun\.inf$"
+    | where FolderPath !startswith "C:"
+    | project Timestamp, DeviceId, DeviceName, Signal = "autorun_inf", Detail = strcat(InitiatingProcessFileName, " -> ", FolderPath);
+union svc, safeboot, autorun
+| summarize FirstSeen = min(Timestamp), Signals = make_set(Signal), SignalClasses = dcount(Signal), Details = make_set(Detail, 10) by DeviceId, DeviceName
+| where SignalClasses >= 2 or Signals has "driver_service"
+| sort by FirstSeen asc
