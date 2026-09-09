@@ -54,6 +54,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Embargo](./embargo/) | 1 |
 | [Erudite Mogwai](./erudite-mogwai/) | 1 |
 | [EtherRAT (DPRK-linked, UNC5342 toolchain overlap)](./etherrat-dprk-linked-unc5342-toolchain-overlap/) | 1 |
+| [F5 activity c05d5254 (PoisonedRefresh)](./f5-activity-c05d5254-poisonedrefresh/) | 1 |
 | [First VPN Service (1vpns.com)](./first-vpn-service-1vpns-com/) | 1 |
 | [FrostyNeighbor](./frostyneighbor/) | 1 |
 | [G1027](./g1027/) | 1 |

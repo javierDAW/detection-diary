@@ -1,3 +1,21 @@
+## 2026.09.09 — Day 112 — PoisonedRefresh: a memory-only web shell inside F5 BIG-IP APM
+
+### Added
+- `days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/` — Sophos X-Ops published its analysis (2026-09-07) of a Linux implant in the Apache server of F5 BIG-IP APM appliances, which Sophos detects as Linux/Agnt-IC, ESET names PoisonedRefresh and F5 tracks as c05d5254; it follows CVE-2025-53521 and patches PHP in memory so that three webtop scripts carry a web shell while the files on disk stay unchanged. No actor, victim or delivery method is public. Recovery entry written 2026-10-19 for the week of 2026-09-07.
+- Sigma (4): `01_httpd_worker_spawning_shell_on_bigip.yml` — Apache parent starting a shell; `02_bigip_compromise_files_under_run.yml` — F5 indicator files under `/run`; `03_http_201_css_from_webtop_php_script.yml` — 201 answers from the webtop scripts; `04_selinux_set_permissive_or_disabled_by_command.yml` — `setenforce 0` or permissive domains.
+- KQL (2): `k1` forwarded syslog correlation of run-file, socket and SELinux signals; `k2` POSTs to webtop scripts and device-info reconnaissance in CEF logs.
+- YARA (1 file, 3 rules): RC4 key in an ELF (medium), shell constants in memory (medium), socket and token strings in memory (low); Sophos published no rules, so all are built from published key material.
+- Suricata (1 file, 4 sids 6290001-6290004): POST to webtop scripts, `BSOHAzPB` body prefix, 201 with `text/css`, device-info request.
+- PEAK hunts (3): H1 memory versus disk on Apache workers; H2 web layer; H3 control-plane audit trail.
+- `iocs.csv` (29 entries) — one SHA256, two SHA1 relayed from ESET (medium), key material, paths and log artefacts; no network indicators exist. `kev.md` — 5/5 CVEs on CISA KEV (CVE-2025-53521 plus Cisco FMC and PaperCut secondary findings).
+- `kill_chain.svg` — template A, canonical palette with the edge-network accent; appliance lane against the public-knowledge lane, anchors on the run files, request prefix and 201 answer.
+
+### Pedagogy
+- File integrity monitoring answers "did the file change", not "does the process run the code on disk": three scripts stay byte-identical while memory differs.
+- A patch removes the door, not the intruder; review exposure by "ever below a fixed release", not by current version.
+- Appliances need an out-of-band integrity check (sys-eicheck, qkview, vendor support) because no agent runs on the box.
+- A report that lists its unknowns (delivery, socket client, victims, actor) is more useful than one that fills the gaps.
+
 ## 2026.09.02 — Day 111 — Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P2P botnet
 
 ### Added

@@ -4,10 +4,11 @@
 
 # Techniques: T1554
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-09-09 | PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM | F5 activity c05d5254 (PoisonedRefresh) | [`2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/`](../../days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/) |
 | 2026-07-30 | Joyfill npm Compromise: an On-Import RAT With Blockchain Dead-Drop C2 and a Python Credential Stealer | Joyfill npm compromise (StepSecurity-tracked, unattributed) | [`2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/`](../../days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/) |
 | 2026-05-28 | TrapDoor — Cross-Ecosystem Crypto and AI-Developer Credential Stealer Across npm, PyPI and Crates.io | TrapDoor (Socket-tracked) | [`2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/`](../../days/2026/05/2026-05-28_TrapDoor-CrossEcosystem-Crypto-AI-Stealer/) |

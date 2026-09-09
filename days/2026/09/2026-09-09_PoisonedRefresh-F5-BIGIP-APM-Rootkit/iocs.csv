@@ -1,0 +1,30 @@
+type,value,context,confidence,source
+sha256,26bd5b0722d1dbab5db749a063c49bc8638653ac2addfead7a9cb3d6d57bccc9,Second-stage PoisonedRefresh ELF analysed by Sophos (detection Linux/Agnt-IC); the only hash Sophos publishes,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+sha1,e5066c2490197ffbe0e916bc232114a61cb09a16,"PoisonedRefresh sample listed as an ESET indicator; relayed by one secondary summary, not checked against the ESET post",medium,ESET via Ampcus Cyber summary 2026-09-15
+sha1,7a2fc3510b502d8fdc2548f907af08308840851c,"PoisonedRefresh sample listed as an ESET indicator; relayed by one secondary summary, not checked against the ESET post",medium,ESET via Ampcus Cyber summary 2026-09-15
+string,TrswBWIl90Z5e38n,RC4 key (16 bytes) used to hide operational strings in the second-stage implant,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+string,BSOHAzPB,Magic prefix the PHP web shell looks for at the start of the raw request body (php://input),high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+string,wSLjN1beuR,Key for the small stream cipher that decrypts the web shell payload; patched into PHP at runtime,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+string,Kzwd6jM5,Authentication token expected on the local UNIX socket before the shell is bound to /bin/bash,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+path,/run/bigtlog.pipe,Local AF_UNIX socket created by the implant; no TCP listener is opened,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit""; F5 K000160486 (as relayed by Dark Reading, THN, SOCRadar)"
+path,/run/bigstart.ltm,File written by a bash utility call (base64 echoed to a file) and then executed; F5 compromise indicator,high,"F5 K000160486 (as relayed by Dark Reading, THN, SOCRadar)"
+path,/usr/sbin/httpd,Apache binary that the installer prepends with the implant (0x5430-byte prefix); compare with a known-good copy of the same release,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+path,/usr/bin/umount,Binary used as the installer sample and infected in install images; compare with a known-good copy of the same release,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit""; F5 K000160486 (as relayed by Dark Reading, THN, SOCRadar)"
+path,/mnt/tm_install/,BIG-IP install-image path the installer searches in order to persist across upgrades,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+path,apm_css.php3,Webtop script whose in-memory copy gets the web shell prepended; the file on disk is unchanged,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+path,full_wt.php3,Webtop script whose in-memory copy gets the web shell prepended; the file on disk is unchanged,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+path,webtop_popup_css.php3,Webtop script whose in-memory copy gets the web shell prepended; the file on disk is unchanged,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+string,HTTP 201 with Content-Type text/css; charset=utf-8,Response the web shell returns so that its exchange resembles stylesheet traffic,high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+string,/mgmt/shared/identified-devices/config/device-info,REST path that Defused reported the actor targeting after the CVE-2025-53521 reclassification; returns hostname and machine ID,medium,Dark Reading 2026-03-30; SOCRadar
+string,"httpd_t, mount_t, apd_t",SELinux domains reported as made permissive by the installer,medium,ESET via Ampcus Cyber summary 2026-09-15
+string,f5hubblelcdadmin,"Local account reported in restjavad-audit entries for bash through iControl REST; single secondary source, confirm against F5 K000160486",low,ESET via Ampcus Cyber summary 2026-09-15
+cve,CVE-2025-53521,F5 BIG-IP APM unauthenticated RCE used as the likely entry; KEV since 2026-03-27,high,F5 K000156741; CISA KEV
+cve,CVE-2026-20079,"Cisco Secure Firewall Management Center authentication bypass, exploitation confirmed by Talos in September (secondary finding)",high,Help Net Security 2026-09-10 citing Cisco Talos
+cve,CVE-2026-20316,"Cisco FMC hard-coded low-privilege credentials, exploited since July (secondary finding)",high,Help Net Security 2026-09-10 citing Cisco Talos
+cve,CVE-2026-81578,PaperCut NG/MF flaw used in the AI-agent campaign (secondary finding),high,BleepingComputer 2026-09-10 citing GreyNoise
+cve,CVE-2026-82078,PaperCut NG/MF flaw used in the AI-agent campaign (secondary finding),high,BleepingComputer 2026-09-10 citing GreyNoise
+domain,cdn.bloom.io,"Resource host loaded by Teams in the Barracuda blob-URL phishing chain (secondary finding); may be a legitimate service abused, review before blocking",low,Barracuda via Help Net Security 2026-09-10
+note,No network indicators,"Sophos, ESET (as relayed) and F5 publish no IP addresses or domains for this implant; the local socket is invisible to the network",high,"Sophos X-Ops ""Dissecting a PHP web server rootkit""; F5 K000160486 (as relayed by Dark Reading, THN, SOCRadar)"
+note,Attribution,"No actor is named; Sophos states it lacks the evidence, F5 tracks the activity as c05d5254, ESET names it PoisonedRefresh",high,"Sophos X-Ops ""Dissecting a PHP web server rootkit"""
+note,Truncated hash,A third ESET SHA1 in the secondary summary is 38 characters long and was not recorded,medium,ESET via Ampcus Cyber summary 2026-09-15
+note,Exposure,Shadowserver reported 795 internet-exposed endpoints vulnerable to CVE-2025-53521 as of 2026-09-07 per BleepingComputer; Security Affairs words the same figure as at disclosure,medium,BleepingComputer 2026-09-08

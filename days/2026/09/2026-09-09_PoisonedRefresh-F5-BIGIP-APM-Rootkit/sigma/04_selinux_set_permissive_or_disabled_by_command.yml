@@ -1,0 +1,39 @@
+title: SELinux Set Permissive or Disabled by setenforce or semanage on a Linux Appliance
+id: 192aee48-ecfd-4ad0-80e3-48b138d3f934
+status: experimental
+description: |
+  Detects setenforce 0, or semanage permissive -a for the httpd_t, mount_t or apd_t domains. Both ESET (via Help Net Security and
+  The Hacker News) and F5 describe the PoisonedRefresh installer weakening SELinux before it rewrites /usr/sbin/httpd and the
+  umount binary. The exact mechanism differs between published summaries (disabling enforcement versus making specific domains
+  permissive), so the rule covers both commands. On a managed appliance neither command is part of normal operation; verify
+  with getenforce and semanage permissive -l on the host.
+references:
+  - https://www.sophos.com/en-us/blog/dissecting-a-php-web-server-rootkit
+  - https://my.f5.com/manage/s/article/K000160486
+author: Jarmi
+date: 2026/09/09
+tags:
+  - attack.defense-evasion
+  - attack.t1562.001
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection_setenforce:
+    Image|endswith: '/setenforce'
+    CommandLine|contains: ' 0'
+  selection_semanage:
+    Image|endswith: '/semanage'
+    CommandLine|contains|all:
+      - 'permissive'
+      - '-a'
+    CommandLine|contains:
+      - 'httpd_t'
+      - 'mount_t'
+      - 'apd_t'
+  condition: selection_setenforce or selection_semanage
+falsepositives:
+  - Administrators temporarily setting SELinux permissive while troubleshooting under an F5 support case
+  - Vendor scripts that run semanage during a software upgrade
+
+level: high

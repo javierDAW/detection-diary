@@ -1,0 +1,31 @@
+title: F5 BIG-IP Compromise Indicator Files Created Under /run
+id: 7f76ab4a-334e-4fc2-bd21-72b152d4c93e
+status: experimental
+description: |
+  Detects creation of /run/bigtlog.pipe or /run/bigstart.ltm. F5 lists both paths as indicators of compromise for the
+  PoisonedRefresh implant (F5 article K000160486): the first is the local UNIX socket the implant binds for its interactive
+  shell, the second is a file that a "run util bash" iControl REST call writes base64 into and then executes. Neither name belongs
+  to a stock BIG-IP release. The implant is memory-resident, so these files may be the only disk artefacts of a live intrusion.
+references:
+  - https://www.sophos.com/en-us/blog/dissecting-a-php-web-server-rootkit
+  - https://my.f5.com/manage/s/article/K000160486
+author: Jarmi
+date: 2026/09/09
+tags:
+  - attack.persistence
+  - attack.t1505.003
+  - attack.command-and-control
+  - attack.t1059.004
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection:
+    TargetFilename|endswith:
+      - '/run/bigtlog.pipe'
+      - '/run/bigstart.ltm'
+  condition: selection
+falsepositives:
+  - None expected on a stock appliance; a hit should be treated as a confirmed indicator until F5 support states otherwise
+
+level: critical

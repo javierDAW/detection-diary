@@ -1,5 +1,78 @@
 [
  {
+  "date": "2026-09-09",
+  "year": "2026",
+  "month": "2026-09",
+  "slug": "2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit",
+  "title": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM",
+  "clusters": [
+   "F5 activity c05d5254 (PoisonedRefresh)"
+  ],
+  "country": "Unattributed (no actor, country or victim named by Sophos, ESET or F5)",
+  "platforms": [
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "cross-sector",
+   "government",
+   "finance",
+   "telecom"
+  ],
+  "techniques": [
+   "T1190",
+   "T1554",
+   "T1037.004",
+   "T1562.001",
+   "T1027",
+   "T1014",
+   "T1505.003",
+   "T1573.001",
+   "T1001",
+   "T1071.001",
+   "T1059.004",
+   "T1595.002"
+  ],
+  "tech_count": 12,
+  "tldr": "On **2026-09-07** Sophos X-Ops published the analysis of a Linux implant that sits inside the Apache web server of F5 **BIG-IP Access Policy Manager (APM)** appliances, which Sophos detects as **Linux/Agnt-IC**, ESET calls **PoisonedRefresh** and F5 tracks as activity **c05d5254**. It is the post-exploitation stage that follows the unauthenticated remote code execution **CVE-2025-53521**, which F5",
+  "thumb": "thumbs/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit.svg",
+  "case_rel": "../days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "F5 activity c05d5254 (PoisonedRefresh)",
+  "cve_count": 5,
+  "kev_count": 5,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-53521",
+    "due": "2026-03-30",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-20316",
+    "due": "2026-08-01",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-20079",
+    "due": "2026-09-12",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-81578",
+    "due": "2026-09-14",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-82078",
+    "due": "2026-09-14",
+    "ransom": false
+   }
+  ],
+  "q": "poisonedrefresh: a memory-only web shell hidden inside f5 big-ip apm f5 activity c05d5254 (poisonedrefresh) unattributed (no actor, country or victim named by sophos, eset or f5) linux network-edge cross-sector government finance telecom t1190 t1554 t1037.004 t1562.001 t1027 t1014 t1505.003 t1573.001 t1001 t1071.001 t1059.004 t1595.002 edge / network cve-2025-53521 cve-2026-20316 cve-2026-20079 cve-2026-81578 cve-2026-82078"
+ },
+ {
   "date": "2026-09-02",
   "year": "2026",
   "month": "2026-09",

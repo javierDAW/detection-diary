@@ -4,11 +4,12 @@
 
 # Platforms: network-edge
 
-33 day(s) covering this platform.
+34 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-09-09 | PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM | F5 activity c05d5254 (PoisonedRefresh) | [`2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/`](../../days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/) |
 | 2026-08-27 | QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model | QTFY | [`2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/`](../../days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/) |
 | 2026-08-16 | MicroLogix Lockout: coordinated reconfiguration of internet-exposed Rockwell PLCs at US water utilities | Unattributed WWS PLC Reconfiguration Cluster | [`2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/`](../../days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/) |
 | 2026-08-13 | Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap | Unattributed (opportunistic mass exploitation) | [`2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/`](../../days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/) |

@@ -1,0 +1,27 @@
+// Title: F5 BIG-IP forwarded syslog - bash via iControl REST, run-file execution and SELinux changes
+// Id: 10c543ab-96d9-4b4d-bd94-78daa9f25b72
+// MITRE: T1059.004 (Unix Shell), T1562.001 (Impair Defenses), T1190 (Exploit Public-Facing Application)
+// Reference: https://www.sophos.com/en-us/blog/dissecting-a-php-web-server-rootkit ; F5 K000160486
+// Author: Jarmi
+// Date: 2026-09-09
+// Tested on: Microsoft Sentinel, Syslog table fed by BIG-IP remote syslog (restjavad-audit, auditd and audit logs)
+// FP notes: Administrators and F5 support legitimately use "run util bash" and setenforce during troubleshooting. Alert only when a hit combines two signal classes on one appliance, or when it references /run/bigstart.ltm.
+let lookback = 30d;
+let appliances = dynamic(["<add_known_bigip_hostnames>"]);
+Syslog
+| where TimeGenerated > ago(lookback)
+| where Computer in~ (appliances)
+| extend Msg = tostring(SyslogMessage)
+| extend Signal = case(
+    Msg has "bigstart.ltm", "run_file_execution",
+    Msg has "bigtlog.pipe", "socket_file_reference",
+    Msg has "util bash" and Msg has_any ("base64", "echo"), "icontrol_bash_base64",
+    Msg has "restjavad-audit" and Msg has "localhost" and Msg has "bash", "icontrol_bash_from_localhost",
+    Msg has_any ("setenforce 0", "enforcing=0", "MAC_STATUS") , "selinux_state_change",
+    Msg has "semanage" and Msg has "permissive" and Msg has_any ("httpd_t", "mount_t", "apd_t"), "selinux_domain_permissive",
+    "")
+| where Signal != ""
+| summarize FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated), Hits = count(),
+            Signals = make_set(Signal), SignalClasses = dcount(Signal), Sample = take_any(Msg) by Computer
+| where SignalClasses >= 2 or Signals has_any ("run_file_execution", "socket_file_reference")
+| sort by FirstSeen asc

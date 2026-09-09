@@ -4,11 +4,12 @@
 
 # Techniques: T1505.003
 
-11 day(s) covering this technique.
+12 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-09-09 | PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM | F5 activity c05d5254 (PoisonedRefresh) | [`2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/`](../../days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/) |
 | 2026-08-27 | QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model | QTFY | [`2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/`](../../days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/) |
 | 2026-08-13 | Kemp LoadMaster CVE-2026-8037: pre-auth root RCE via escape_quotes() uninitialized heap | Unattributed (opportunistic mass exploitation) | [`2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/`](../../days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/) |
 | 2026-07-21 | Spirals ransomware: IIS web shell to full-network encryption in under 24 hours, 23 backup/database/hypervisor services killed on the way | Spirals | [`2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/`](../../days/2026/07/2026-07-21_Spirals-Ransomware-Backup-Hypervisor-KillChain/) |

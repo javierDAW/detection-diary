@@ -4,11 +4,12 @@
 
 # Techniques: T1573.001
 
-10 day(s) covering this technique.
+11 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-09-09 | PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM | F5 activity c05d5254 (PoisonedRefresh) | [`2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/`](../../days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/) |
 | 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-07-12 | NoName057(16) & DDoSia: The Volunteer DDoS Botnet (2026 Campaign + Palencia Arrest) | NoName057(16) | [`2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/`](../../days/2026/07/2026-07-12_NoName057-DDoSia-Hacktivist-DDoS-Volunteer-Botnet/) |

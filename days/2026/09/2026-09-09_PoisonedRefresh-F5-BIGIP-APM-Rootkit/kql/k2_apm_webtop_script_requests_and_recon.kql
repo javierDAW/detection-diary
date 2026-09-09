@@ -1,0 +1,21 @@
+// Title: BIG-IP APM webtop script POSTs and device-info reconnaissance in reverse proxy or WAF logs
+// Id: 6a678acb-b5e5-4745-8e29-fcc0f3569edd
+// MITRE: T1505.003 (Web Shell), T1595.002 (Vulnerability Scanning), T1190 (Exploit Public-Facing Application)
+// Reference: https://www.sophos.com/en-us/blog/dissecting-a-php-web-server-rootkit ; https://www.darkreading.com/application-security/f5-big-ip-vulnerability-reclassified-rce-exploitation
+// Author: Jarmi
+// Date: 2026-09-09
+// Tested on: Microsoft Sentinel, CommonSecurityLog (CEF) from a WAF or reverse proxy in front of the APM virtual server
+// FP notes: Stock APM webtops request these scripts with GET to fetch styles; the signal is POST, and the /mgmt/ path should never be reachable from the internet. Map RequestURL, RequestMethod and SourceIP to your CEF mapping; response status is not a standard column, so check AdditionalExtensions for it.
+let lookback = 30d;
+let webtop = dynamic(["apm_css.php3", "full_wt.php3", "webtop_popup_css.php3"]);
+CommonSecurityLog
+| where TimeGenerated > ago(lookback)
+| extend Url = tostring(RequestURL), Method = toupper(tostring(RequestMethod))
+| extend Hit = case(
+    Method == "POST" and Url has_any (webtop), "webtop_script_post",
+    Url has "/mgmt/shared/identified-devices/config/device-info", "device_info_recon",
+    "")
+| where Hit != ""
+| summarize FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated), Requests = count(),
+            Kinds = make_set(Hit), Targets = make_set(DestinationIP, 10) by SourceIP
+| sort by Requests desc

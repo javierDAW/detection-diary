@@ -1,0 +1,36 @@
+title: Apache httpd Worker Spawning a Shell on an F5 BIG-IP APM Appliance
+id: 91f59f4e-cdab-46f2-a948-784001794923
+status: experimental
+description: |
+  Detects /bin/bash or /bin/sh started by an Apache httpd process. Sophos reports that the PoisonedRefresh implant redirects the
+  standard streams of a worker onto its local UNIX socket and then starts /bin/bash, so the shell's parent is the Apache lineage.
+  An interactive shell below the web tier is unusual on an appliance, but this rule is a behavioural lead, not a verdict:
+  feed it from auditd execve records or from the appliance's syslog forwarding and baseline it for your release before alerting.
+references:
+  - https://www.sophos.com/en-us/blog/dissecting-a-php-web-server-rootkit
+  - https://my.f5.com/manage/s/article/K000160486
+author: Jarmi
+date: 2026/09/09
+tags:
+  - attack.execution
+  - attack.t1059.004
+  - attack.persistence
+  - attack.t1505.003
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection_parent:
+    ParentImage|endswith:
+      - '/httpd'
+      - '/apache2'
+  selection_child:
+    Image|endswith:
+      - '/bash'
+      - '/sh'
+  condition: selection_parent and selection_child
+falsepositives:
+  - Management or monitoring scripts that start a shell below httpd on a given release; baseline before alerting
+  - Administrators testing PHP or CGI handlers from a diagnostic page
+
+level: high

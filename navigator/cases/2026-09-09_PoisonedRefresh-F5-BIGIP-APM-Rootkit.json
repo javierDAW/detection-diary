@@ -1,0 +1,111 @@
+{
+  "name": "2026-09-09 — 2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM — clusters: F5 activity c05d5254 (PoisonedRefresh)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1190",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1554",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1037.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1014",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1505.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1573.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1059.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    },
+    {
+      "techniqueID": "T1595.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

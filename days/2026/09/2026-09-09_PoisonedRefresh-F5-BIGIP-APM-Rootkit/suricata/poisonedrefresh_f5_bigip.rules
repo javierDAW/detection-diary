@@ -1,0 +1,11 @@
+# Title: PoisonedRefresh - F5 BIG-IP APM rootkit web layer (network detections)
+# Author: Jarmi
+# Date: 2026-09-09
+# Reference: https://www.sophos.com/en-us/blog/dissecting-a-php-web-server-rootkit
+# Variables: $HOME_NET must include the BIG-IP APM virtual server addresses; $EXTERNAL_NET is everything else.
+# Visibility: the HTTP rules need decrypted traffic (TLS termination or inline decryption); on encrypted-only taps they never fire.
+# The implant opens no TCP listener, so there is no network signature for its local socket.
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"JARMI PoisonedRefresh POST to BIG-IP APM webtop script"; flow:to_server,established; http.method; content:"POST"; http.uri; content:".php3"; pcre:"/\/(?:apm_css|full_wt|webtop_popup_css)\.php3/i"; classtype:web-application-attack; sid:6290001; rev:1; metadata:created_at 2026_09_09, confidence medium;)
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"JARMI PoisonedRefresh web shell request body prefix BSOHAzPB"; flow:to_server,established; http.method; content:"POST"; http.request_body; content:"BSOHAzPB"; startswith; classtype:trojan-activity; sid:6290002; rev:1; metadata:created_at 2026_09_09, confidence high;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI PoisonedRefresh HTTP 201 response with CSS content type"; flow:to_client,established; http.stat_code; content:"201"; http.content_type; content:"text/css"; startswith; classtype:trojan-activity; sid:6290003; rev:1; metadata:created_at 2026_09_09, confidence medium;)
+alert http $EXTERNAL_NET any -> $HOME_NET any (msg:"JARMI F5 BIG-IP device-info reconnaissance request from external source"; flow:to_server,established; http.uri; content:"/mgmt/shared/identified-devices/config/device-info"; nocase; classtype:attempted-recon; sid:6290004; rev:1; metadata:created_at 2026_09_09, confidence medium;)

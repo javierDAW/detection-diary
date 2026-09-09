@@ -4,11 +4,12 @@
 
 # Techniques: T1071.001
 
-50 day(s) covering this technique.
+51 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-09-09 | PoisonedRefresh: a memory-only web shell hidden inside F5 BIG-IP APM | F5 activity c05d5254 (PoisonedRefresh) | [`2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/`](../../days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/) |
 | 2026-09-02 | Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P2P botnet | SALTY SPIDER | [`2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/`](../../days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/) |
 | 2026-08-27 | QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model | QTFY | [`2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/`](../../days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/) |
 | 2026-08-17 | PATCHCORD: three implants, three C2 transports and one Afghan telecom cover story | APT36 | [`2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/`](../../days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/) |

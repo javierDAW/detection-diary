@@ -192,3 +192,8 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown,2026-09-02,CVE-2026-82078,yes,2026-08-31,2026-09-14,Unknown,PaperCut NG/MF Unsafe Reflection Vulnerability,PaperCut,NG/MF
 2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown,2026-09-02,CVE-2026-83548,yes,2026-09-02,2026-09-05,Unknown,SonicWall SMA1000 Appliances Server-Side Request Forgery Vulnerability,SonicWall,SMA1000 Appliances
 2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown,2026-09-02,CVE-2026-83549,yes,2026-09-02,2026-09-05,Unknown,SonicWall SMA1000 Appliances OS Command Injection Vulnerability,SonicWall,SMA1000 Appliances
+2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit,2026-09-09,CVE-2025-53521,yes,2026-03-27,2026-03-30,Unknown,F5 BIG-IP Stack-Based Buffer Overflow Vulnerability,F5,BIG-IP
+2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit,2026-09-09,CVE-2026-20079,yes,2026-09-09,2026-09-12,Unknown,Cisco Firewall Management Center Authentication Bypass Using an Alternate Path or Channel Vulnerability,Cisco,Secure Firewall Management Center (FMC) and Security Cloud Control (SCC) Firewall Management
+2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit,2026-09-09,CVE-2026-20316,yes,2026-07-29,2026-08-01,Known,Cisco Secure Firewall Management Center Use of Hard-coded Password Vulnerability,Cisco,Secure Firewall Management Center (FMC)
+2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit,2026-09-09,CVE-2026-81578,yes,2026-08-31,2026-09-14,Unknown,PaperCut NG/MF Missing Authentication for Critical Function Vulnerability,PaperCut,NG/MF
+2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit,2026-09-09,CVE-2026-82078,yes,2026-08-31,2026-09-14,Unknown,PaperCut NG/MF Unsafe Reflection Vulnerability,PaperCut,NG/MF

@@ -1,0 +1,35 @@
+title: HTTP 201 Response With a CSS Content Type From a Webtop PHP Script
+id: f45f7755-bead-458b-94ff-998dd779eab5
+status: experimental
+description: |
+  Detects requests to the three BIG-IP APM webtop scripts apm_css.php3, full_wt.php3 and webtop_popup_css.php3 that return HTTP 201.
+  A stylesheet request is a GET that answers 200 or 304; Sophos reports that the PoisonedRefresh web shell answers its
+  encrypted POST requests with status 201 and the header "Content-Type: text/css; charset=utf-8" so that the exchange resembles
+  asset traffic. Run it on the log source that records response status for the APM virtual server (reverse proxy, WAF or the
+  appliance request log). Matching on status alone is weak, so the rule requires one of the three script names.
+references:
+  - https://www.sophos.com/en-us/blog/dissecting-a-php-web-server-rootkit
+  - https://my.f5.com/manage/s/article/K000160486
+author: Jarmi
+date: 2026/09/09
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.t1001
+  - attack.persistence
+  - attack.t1505.003
+logsource:
+  category: webserver
+detection:
+  selection_script:
+    cs-uri-stem|endswith:
+      - '/apm_css.php3'
+      - '/full_wt.php3'
+      - '/webtop_popup_css.php3'
+  selection_status:
+    sc-status: 201
+  condition: selection_script and selection_status
+falsepositives:
+  - Custom APM webtop customisations that legitimately return 201 from one of these scripts (not seen in stock releases)
+
+level: high

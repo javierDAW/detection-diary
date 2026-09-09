@@ -1,0 +1,232 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">PoisonedRefresh kill chain - F5 BIG-IP APM rootkit with a memory-only PHP web shell</title>
+<desc id="d">Two-lane kill chain. Left lane, the BIG-IP APM appliance: 1 an exposed APM virtual server with an access policy, 2 unauthenticated remote code execution through CVE-2025-53521, which is on the CISA KEV list, 3 an installer named umount that runs as root, weakens SELinux and prepends an implant to /usr/sbin/httpd, 4 persistence inside BIG-IP install images, 5 a second stage that hooks the Apache start-up and hides strings with RC4, 6 a web shell injected into memory for three webtop PHP scripts while the files on disk stay unchanged, 7 a local UNIX socket at /run/bigtlog.pipe that binds a bash shell. Right lane, the operator and the defenders: A reconnaissance against the device-info REST endpoint, B the entry and delivery steps that are not public, C web shell tasking by HTTP POST answered with 201 and a CSS content type, D three vendor names for one implant, E no attribution, F the defender response of memory capture, F5 checks and rebuild. Critical stages are shown in red.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-edge-network" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">PoisonedRefresh: a memory-only web shell inside F5 BIG-IP APM</text>
+<text class="meta" x="20" y="58">Vendor: Sophos X-Ops + ESET + F5 - Date: 2026-09-09 - Cluster: F5 activity c05d5254 (unattributed) - Day 112</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="32" y="105">BIG-IP APM APPLIANCE (what defenders see)</text>
+<text class="laneLabelR" x="462" y="105">OPERATOR AND DEFENDER VIEW (what is public)</text>
+
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="76" y="144">Exposed APM virtual server with an access policy</text>
+<text class="sub" x="40" y="168">Condition for CVE-2025-53521: APM policy on a virtual server</text>
+<text class="sub" x="40" y="184">Affected 15.1.0-15.1.10, 16.1.0-.6, 17.1.0-.2, 17.5.0-.1</text>
+<text class="sub" x="40" y="200">Fixed in 15.1.10.8, 16.1.6.1, 17.1.3, 17.5.1.3</text>
+<text class="mono" x="40" y="226">T1190 Exploit Public-Facing Application</text>
+<text class="mono" x="40" y="244">Shadowserver: 795 exposed endpoints (2026-09-07)</text>
+
+<rect class="stageK" x="30" y="270" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="76" y="294">Unauthenticated RCE: CVE-2025-53521 (on KEV)</text>
+<text class="sub" x="40" y="318">Published 2025-10-15 as DoS; reclassified RCE 9.8 on 2026-03-27</text>
+<text class="sub" x="40" y="334">Exploited in the wild; KEV added 2026-03-27, due 2026-03-30</text>
+<text class="sub" x="40" y="350">How the installer reaches the box is not public</text>
+<text class="mono" x="40" y="376">T1190  CWE-121 stack-based buffer overflow</text>
+<text class="mono" x="40" y="394">F5 K000156741 advisory, K000160486 IOCs</text>
+
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="76" y="444">Installer 'umount' runs as root and weakens SELinux</text>
+<text class="sub" x="40" y="468">Prepends a 0x5430-byte implant to /usr/sbin/httpd</text>
+<text class="sub" x="40" y="484">Infects umount, httpd and rc.local inside install images</text>
+<text class="sub" x="40" y="500">SELinux disabled or httpd_t mount_t apd_t made permissive</text>
+<text class="mono" x="40" y="526">T1554  T1562.001  T1037.004</text>
+<text class="mono" x="40" y="544">path /mnt/tm_install/</text>
+
+<rect class="stage" x="30" y="570" width="395" height="135"/>
+<circle class="badge" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="76" y="594">Persistence across upgrades</text>
+<text class="sub" x="40" y="618">Install-image copies are rewritten, so an upgrade can re-seed</text>
+<text class="sub" x="40" y="634">Sophos and ESET describe it; no advisory says a fix removes it</text>
+<text class="sub" x="40" y="650">A restart removes only the running copy</text>
+<text class="mono" x="40" y="676">T1554 Compromise Host Software Binary</text>
+<text class="mono" x="40" y="694">sys-eicheck fails when umount or httpd changed</text>
+
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="76" y="744">Stage 2 hooks the Apache start-up</text>
+<text class="sub" x="40" y="768">Own ELF loader reads /proc/self/exe; RC4 hides the strings</text>
+<text class="sub" x="40" y="784">__libc_start_main wrapper runs before main() in each worker</text>
+<text class="sub" x="40" y="800">apr_dso_load hook waits until libphp is loaded</text>
+<text class="mono" x="40" y="826">T1027  T1014  RC4 key TrswBWIl90Z5e38n</text>
+<text class="mono" x="40" y="844">SHA256 26bd5b0722d1dbab...d57bccc9</text>
+
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="76" y="894">Memory-only web shell in three webtop scripts</text>
+<text class="sub" x="40" y="918">Patches open, close, mmap in libphp via /proc/self/maps</text>
+<text class="sub" x="40" y="934">apm_css.php3, full_wt.php3, webtop_popup_css.php3 get the shell</text>
+<text class="sub" x="40" y="950">prepended when PHP maps them; files on disk are unchanged</text>
+<text class="mono" x="40" y="976">T1505.003 Web Shell  T1573.001</text>
+<text class="mono" x="40" y="994">POST body prefix BSOHAzPB then eval()</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="76" y="1044">Local socket /run/bigtlog.pipe binds /bin/bash</text>
+<text class="sub" x="40" y="1068">Started by an apr_time_now trigger after server start-up</text>
+<text class="sub" x="40" y="1084">Token Kzwd6jM5; no TCP listener; fork() for more sessions</text>
+<text class="sub" x="40" y="1100">Sophos found no client component for the socket</text>
+<text class="mono" x="40" y="1126">T1059.004 Unix Shell</text>
+<text class="mono" x="40" y="1144">ls -l /run/bigtlog.pipe /run/bigstart.ltm</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">A</text>
+<text class="label" x="506" y="149">Fingerprinting of exposed devices</text>
+<text class="sub" x="470" y="173">Defused honeypots saw requests for the device-info REST path</text>
+<text class="sub" x="470" y="189">/mgmt/shared/identified-devices/config/device-info</text>
+<text class="sub" x="470" y="205">Returns hostname and machine ID; seen after 2026-03-27</text>
+<text class="mono" x="470" y="251">T1595.002  T1082</text>
+<text class="mono" x="470" y="269">Suricata sid 6290004, KQL k2</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">B</text>
+<text class="label" x="506" y="319">Entry and delivery: the part that is not public</text>
+<text class="sub" x="470" y="343">Exploit request and the way umount lands are not described</text>
+<text class="sub" x="470" y="359">F5 lists bash through iControl REST from localhost, with a</text>
+<text class="sub" x="470" y="375">base64 string echoed to a file and run as bigstart.ltm</text>
+<text class="mono" x="470" y="421">restjavad-audit  auditd  audit logs</text>
+<text class="mono" x="470" y="439">KQL k1 correlates two signal classes</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">C</text>
+<text class="label" x="506" y="489">Three names for one implant</text>
+<text class="sub" x="470" y="513">F5 tracks activity c05d5254 and published IOCs in March</text>
+<text class="sub" x="470" y="529">ESET analysed related samples in April: PoisonedRefresh</text>
+<text class="sub" x="470" y="545">Sophos detection Linux/Agnt-IC; analysis dated 7 September</text>
+<text class="mono" x="470" y="591">single Sophos sample, SHA256 only</text>
+<text class="mono" x="470" y="609">ESET SHA1s relayed by a secondary summary</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">D</text>
+<text class="label" x="506" y="659">Attribution: none</text>
+<text class="sub" x="470" y="683">Sophos: not enough evidence to name an actor</text>
+<text class="sub" x="470" y="699">ESET had not settled attribution (per The Hacker News)</text>
+<text class="sub" x="470" y="715">No victim named and no victim count published</text>
+<text class="mono" x="470" y="761">confidence: high (family), none (actor)</text>
+<text class="mono" x="470" y="779">edge-device focus is not attribution</text>
+
+<rect class="opK" x="460" y="805" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">E</text>
+<text class="label" x="506" y="829">Web shell tasking over HTTP</text>
+<text class="sub" x="470" y="853">POST to a webtop script; body is BSOHAzPB plus encrypted code</text>
+<text class="sub" x="470" y="869">Stream cipher key wSLjN1beuR, payload run with eval()</text>
+<text class="sub" x="470" y="885">Answer: HTTP 201, Content-Type text/css; charset=utf-8</text>
+<text class="mono" x="470" y="931">Suricata sids 6290001-6290003</text>
+<text class="mono" x="470" y="949">Sigma 03: webserver 201 plus script name</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">F</text>
+<text class="label" x="506" y="999">Defender response</text>
+<text class="sub" x="470" y="1023">Patching is necessary but does not prove a clean device</text>
+<text class="sub" x="470" y="1039">Capture memory and a qkview, run sys-eicheck, open an F5 case</text>
+<text class="sub" x="470" y="1055">If unsure, rebuild from known-good media and rotate secrets</text>
+<text class="mono" x="470" y="1101">UK NCSC: investigate whenever the update was applied</text>
+<text class="mono" x="470" y="1119">Sigma 01-04, YARA x3, PEAK H1-H3</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<path class="arrowX" d="M425,187 L460,202" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,337 L460,372" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<path class="arrowX" d="M425,487 L460,542" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,937 L460,882" marker-end="url(#ah)" marker-start="url(#ah)"/>
+<path class="arrowX" d="M425,1087 L460,1052" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1198">Detection anchors: /run/bigtlog.pipe, /run/bigstart.ltm, BSOHAzPB body prefix, 201 text/css, httpd and umount integrity</text>
+<text class="footerT" x="34" y="1218">Rules in this folder: Sigma 01-04, KQL k1-k2, YARA poisonedrefresh_f5_bigip.yar (3 rules), Suricata sids 6290001-6290004, PEAK hunts H1-H3.</text>
+<text class="footerT" x="34" y="1236">The web shell lives only in memory: file integrity monitoring on the three .php3 scripts is blind, so compare memory with disk and run sys-eicheck.</text>
+<text class="footerT" x="34" y="1254">No network indicators were published; hashes are one SHA256 from Sophos and two SHA1 relayed from ESET (medium confidence).</text>
+</svg>

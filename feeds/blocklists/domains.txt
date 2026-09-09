@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-10-19 08:41 UTC
+# generated 2026-10-19 08:57 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -86,6 +86,7 @@ caprispine.health
 carrolc.com
 categorystore.net
 ccgv.me
+cdn.bloom.io
 celebratieinvitiee.de
 chat.openai.com
 cheapoca.biz
