@@ -197,3 +197,5 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit,2026-09-09,CVE-2026-20316,yes,2026-07-29,2026-08-01,Known,Cisco Secure Firewall Management Center Use of Hard-coded Password Vulnerability,Cisco,Secure Firewall Management Center (FMC)
 2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit,2026-09-09,CVE-2026-81578,yes,2026-08-31,2026-09-14,Unknown,PaperCut NG/MF Missing Authentication for Critical Function Vulnerability,PaperCut,NG/MF
 2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit,2026-09-09,CVE-2026-82078,yes,2026-08-31,2026-09-14,Unknown,PaperCut NG/MF Unsafe Reflection Vulnerability,PaperCut,NG/MF
+2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents,2026-09-15,CVE-2026-76460,yes,2026-09-16,2026-09-19,Unknown,Cisco Identity Services Engine Incorrect Use of Privileged APIs Vulnerability,Cisco,Identity Services Engine
+2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents,2026-09-15,CVE-2026-87886,yes,2026-09-16,2026-09-19,Unknown,Acronis Backup Incorrect Default Permissions Vulnerability,Acronis,Backup

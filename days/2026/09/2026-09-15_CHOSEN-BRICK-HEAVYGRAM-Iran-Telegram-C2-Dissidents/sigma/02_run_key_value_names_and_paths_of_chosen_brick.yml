@@ -1,0 +1,39 @@
+title: Run Key Persistence Matching CHOSEN BRICK Value Names and Staging Paths
+id: db8c25fc-0dfc-4c5e-8639-ff2c73392880
+status: experimental
+description: |
+  Detects an HKCU Run value named winappx, SMQDService, Default_SSH or MicDriver whose data points into one of the staging folders
+  named in the FBI analysis: ProgramData\MicrosoftDistribution\sysmain, ProgramData\SMQDServicePackages, ProgramData\ssh-cache-default
+  or ProgramData\Drivers\MicDriver. The advisory warns that names, directories and value names may change, so this rule is a
+  known-sample detection; the behavioural rules in this folder cover variants. Both conditions are required to keep the false
+  positive rate low, because winappx and MicDriver are short names that other software could use.
+references:
+  - https://www.ic3.gov/CSA/2026/260915.pdf
+  - https://www.ic3.gov/CSA/2026/260915-2.pdf
+author: Jarmi
+date: 2026/09/15
+tags:
+  - attack.persistence
+  - attack.t1547.001
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_key:
+    TargetObject|contains: '\CurrentVersion\Run\'
+    TargetObject|endswith:
+      - '\winappx'
+      - '\SMQDService'
+      - '\Default_SSH'
+      - '\MicDriver'
+  selection_data:
+    Details|contains:
+      - 'MicrosoftDistribution\sysmain'
+      - 'SMQDServicePackages'
+      - 'ssh-cache-default'
+      - 'Drivers\MicDriver'
+  condition: selection_key and selection_data
+falsepositives:
+  - Unlikely; a hit should be treated as a confirmed indicator until the binary is shown to be benign
+
+level: high

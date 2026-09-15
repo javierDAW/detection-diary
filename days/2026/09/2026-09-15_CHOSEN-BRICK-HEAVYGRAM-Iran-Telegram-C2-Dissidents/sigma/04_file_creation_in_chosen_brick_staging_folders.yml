@@ -1,0 +1,35 @@
+title: Files Created in CHOSEN BRICK Staging Folders Under ProgramData
+id: 6e1b9500-e911-478f-b9a7-6dedef1d7121
+status: experimental
+description: |
+  Detects file creation in the ProgramData folders listed in the FBI analysis of HEAVYGRAM (CHOSEN BRICK): SMQDServicePackages,
+  ssh-cache-default, MicrosoftDistribution\sysmain, Drivers\MicDriver and Drivers\Whatsapp, plus the per-user SMQDService folder.
+  The dropper unpacks a PyInstaller bundle with .pyd files, a rantom.txt file and an executable into these folders. Folder names
+  are sample-specific and may change, so a miss does not clear a host; a hit is a high-fidelity indicator for these samples.
+references:
+  - https://www.ic3.gov/CSA/2026/260915.pdf
+  - https://www.ic3.gov/CSA/2026/260915-2.pdf
+author: Jarmi
+date: 2026/09/15
+tags:
+  - attack.execution
+  - attack.t1204.002
+  - attack.persistence
+  - attack.t1547.001
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection:
+    TargetFilename|contains:
+      - '\ProgramData\SMQDServicePackages\'
+      - '\ProgramData\ssh-cache-default\'
+      - '\ProgramData\MicrosoftDistribution\sysmain\'
+      - '\ProgramData\Drivers\MicDriver\'
+      - '\ProgramData\Drivers\Whatsapp\'
+      - '\AppData\Roaming\SMQDService\'
+  condition: selection
+falsepositives:
+  - None expected for the sample-specific folder names
+
+level: high

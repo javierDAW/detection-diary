@@ -1,0 +1,153 @@
+{
+  "name": "2026-09-15 — 2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Telegram bots against dissidents and journalists — clusters: Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1589",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1566.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1547.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1480.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1102.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1113",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1123",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1114.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1528",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1560.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1090.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    },
+    {
+      "techniqueID": "T1485",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Te"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

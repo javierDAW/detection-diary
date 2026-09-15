@@ -1,0 +1,29 @@
+title: Process Launched From a Windows Directory Whose Name Ends in a Space
+id: 588eb612-8daa-48ca-8eeb-14a1f8652cf2
+status: experimental
+description: |
+  Detects a process image under "C:\Windows \" (the directory name has a trailing space), which is not the real Windows folder.
+  The joint NCSC, FBI and AIVD advisory of 2026-09-15 states that the most common drop location for CHOSEN BRICK (FBI name HEAVYGRAM)
+  is "C:\Windows \SysWOW64", a non-standard path the actor creates, and the FBI analysis says the RuntimeSSH implant has a function
+  that drops files into C:\Windows and SysWOW64. A look-alike directory can slip past loose path checks that only compare the C:\Windows prefix.
+  Normal software has no reason to run from this path, so any hit deserves triage regardless of the binary's name.
+references:
+  - https://www.ic3.gov/CSA/2026/260915.pdf
+  - https://www.ic3.gov/CSA/2026/260915-2.pdf
+author: Jarmi
+date: 2026/09/15
+tags:
+  - attack.defense-evasion
+  - attack.t1036.005
+  - attack.execution
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|contains: 'C:\Windows \'
+  condition: selection
+falsepositives:
+  - None expected; a legitimate product that creates a directory named "Windows " should be investigated as a tooling defect
+
+level: high

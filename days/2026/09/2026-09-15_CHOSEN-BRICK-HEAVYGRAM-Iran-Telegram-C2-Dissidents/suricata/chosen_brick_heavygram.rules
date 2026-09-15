@@ -1,0 +1,15 @@
+# Title: CHOSEN BRICK / HEAVYGRAM - Telegram Bot API C2 and Vultr object-storage staging (network detections)
+# Author: Jarmi
+# Date: 2026-09-15
+# Reference: https://www.ic3.gov/CSA/2026/260915.pdf ; https://www.ic3.gov/CSA/2026/260915-2.pdf
+# Variables: $HOME_NET = internal ranges, $EXTERNAL_NET = everything else.
+# Visibility: the Pictory download is listed with an https URL, so the HTTP rules only fire on decrypted traffic; the DNS and SNI rules work on encrypted taps.
+# Caution: api.telegram.org and the object-storage hosts are legitimate services. The advisory says to investigate unexpected
+# traffic to them rather than block it. Rules 6300005 and 6300006 are hunting-grade and noisy by design; they are rate-limited.
+# Only the micbucket host and the Pictory download URL are actor-specific; Telegram bot identifiers are per victim and none are published.
+alert dns $HOME_NET any -> any any (msg:"JARMI CHOSEN BRICK DNS query for micbucket.ams1.vultrobjects.com"; dns.query; content:"micbucket.ams1.vultrobjects.com"; nocase; classtype:trojan-activity; sid:6300001; rev:1; metadata:created_at 2026_09_15, confidence medium;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI CHOSEN BRICK TLS SNI micbucket.ams1.vultrobjects.com"; tls.sni; content:"micbucket.ams1.vultrobjects.com"; nocase; classtype:trojan-activity; sid:6300002; rev:1; metadata:created_at 2026_09_15, confidence medium;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI CHOSEN BRICK fake Pictory installer download from Vultr object storage"; flow:to_server,established; http.method; content:"GET"; http.host; content:"vultrobjects.com"; endswith; http.uri; content:"/downloads/pictory/Pictory_premium_ver9.0.4.exe"; classtype:trojan-activity; sid:6300003; rev:1; metadata:created_at 2026_09_15, confidence high;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI CHOSEN BRICK HEAVYGRAM bucket name fragment on ams1 Vultr object storage"; flow:to_server,established; http.host; content:"ams1.vultrobjects.com"; http.uri; content:"ppmppnf12uyt4r5tifjdfh"; classtype:trojan-activity; sid:6300004; rev:1; metadata:created_at 2026_09_15, confidence low;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI Telegram Bot API request over cleartext HTTP from an internal host (hunting)"; flow:to_server,established; http.host; content:"api.telegram.org"; http.uri; content:"/bot"; startswith; threshold:type limit, track by_src, count 1, seconds 3600; classtype:policy-violation; sid:6300005; rev:1; metadata:created_at 2026_09_15, confidence low;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI TLS SNI api.telegram.org from an internal host (hunting, noisy)"; tls.sni; content:"api.telegram.org"; nocase; threshold:type limit, track by_src, count 1, seconds 3600; classtype:policy-violation; sid:6300006; rev:1; metadata:created_at 2026_09_15, confidence low;)

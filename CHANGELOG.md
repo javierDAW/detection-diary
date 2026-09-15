@@ -1,3 +1,21 @@
+## 2026.09.15 — Day 113 — CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Telegram bots against dissidents and journalists
+
+### Added
+- `days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/` — the UK NCSC, FBI and Dutch AIVD published a joint advisory on 2026-09-15 on CHOSEN BRICK, Windows malware used by Iranian state actors since at least 2025 against dissidents, activists and journalists; the FBI technical update calls it HEAVYGRAM, attributes it to MOIS and publishes 12 sample hashes, mutexes, paths and Run keys. Control runs through the Telegram Bot API with one bot per victim. Recovery entry written 2026-10-19 for the week of 2026-09-14.
+- Sigma (5): `01_process_launched_from_windows_space_directory.yml` — process under `C:\Windows ` with a trailing space; `02_run_key_value_names_and_paths_of_chosen_brick.yml` — Run value plus staging path; `03_defender_exclusions_for_chosen_brick_staging_folders.yml` — exclusion naming a staging folder; `04_file_creation_in_chosen_brick_staging_folders.yml` — ProgramData staging folders; `05_telegram_bot_api_or_object_storage_from_programdata_binary.yml` — Telegram or storage egress from a ProgramData binary.
+- KQL (3): `k1` persistence, exclusions and look-alike directory per device; `k2` egress to Telegram and object storage by initiating process; `k3` the 12 known SHA-256 values and collection tooling.
+- YARA (1 file, 3 rules): mutexes plus Telegram API names in memory (medium), stage-1 dropper names (low), staging folder references (low); neither agency attached its signatures.
+- Suricata (1 file, 6 sids 6300001-6300006): actor bucket DNS and SNI, Pictory download, bucket fragment and two rate-limited Telegram hunting rules.
+- PEAK hunts (3): H1 egress by initiating process; H2 host artefacts; H3 guided check of personal devices and account tokens for people at risk.
+- `iocs.csv` (74 entries) — 12 SHA-256, SHA-1 and MD5 values extracted three times from the FBI PDF, mutexes, Run values, paths, bucket and URLs; legitimate services are notes, not blocklist domains. `kev.md` — 2/2 secondary-finding CVEs on CISA KEV (Cisco ISE, Acronis).
+- `kill_chain.svg` — template A, canonical palette with the espionage accent; target lane against the operator and public-record lane, anchors on the look-alike directory, Run values and ProgramData-to-Telegram traffic.
+
+### Pedagogy
+- A legitimate service is a command channel when the process is wrong: pivot on the initiating binary and folder, not the destination.
+- A look-alike directory (`C:\Windows ` with a space) is a cheap trick with a one-line detection.
+- One bot per victim removes the pivot between hosts; evidence must be collected from each device.
+- In transnational repression the person's accounts and safety are the scope of the incident, not only the endpoint.
+
 ## 2026.09.09 — Day 112 — PoisonedRefresh: a memory-only web shell inside F5 BIG-IP APM
 
 ### Added

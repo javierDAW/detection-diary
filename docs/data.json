@@ -1,5 +1,67 @@
 [
  {
+  "date": "2026-09-15",
+  "year": "2026",
+  "month": "2026-09",
+  "slug": "2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents",
+  "title": "CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Telegram bots against dissidents and journalists",
+  "clusters": [
+   "Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)"
+  ],
+  "country": "Iran (MOIS per the FBI; the NCSC and AIVD say Iranian state actors)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "media",
+   "civil-society",
+   "government"
+  ],
+  "techniques": [
+   "T1589",
+   "T1566.003",
+   "T1204.002",
+   "T1036.005",
+   "T1547.001",
+   "T1480.002",
+   "T1562.001",
+   "T1102.002",
+   "T1113",
+   "T1123",
+   "T1114.001",
+   "T1005",
+   "T1528",
+   "T1560.001",
+   "T1041",
+   "T1567.002",
+   "T1090.002",
+   "T1485"
+  ],
+  "tech_count": 18,
+  "tldr": "On **2026-09-15** the UK NCSC, the US FBI and the Dutch AIVD published a joint advisory on **CHOSEN BRICK**, a Windows malware family that Iranian state cyber actors have used since at least 2025 against dissidents, activists and journalists in the UK, US and Netherlands, and the FBI published a technical update under its own name for the same malware, **HEAVYGRAM**, with **12 sample hashes, four ",
+  "thumb": "thumbs/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents.svg",
+  "case_rel": "../days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)",
+  "cve_count": 2,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-76460",
+    "due": "2026-09-19",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-87886",
+    "due": "2026-09-19",
+    "ransom": false
+   }
+  ],
+  "q": "chosen brick / heavygram: iranian state actors steer windows implants through telegram bots against dissidents and journalists iranian state cyber actors (chosen brick / heavygram, mois per fbi) iran (mois per the fbi; the ncsc and aivd say iranian state actors) windows media civil-society government t1589 t1566.003 t1204.002 t1036.005 t1547.001 t1480.002 t1562.001 t1102.002 t1113 t1123 t1114.001 t1005 t1528 t1560.001 t1041 t1567.002 t1090.002 t1485 espionage / apt cve-2026-76460 cve-2026-87886"
+ },
+ {
   "date": "2026-09-09",
   "year": "2026",
   "month": "2026-09",

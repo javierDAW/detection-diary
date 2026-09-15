@@ -1,0 +1,17 @@
+// Title: Telegram Bot API and object-storage egress from binaries under ProgramData
+// Id: db3a15fa-54e2-4af9-aab8-440931f7b6bf
+// MITRE: T1102.002 (Bidirectional Communication), T1567.002 (Exfiltration to Cloud Storage), T1041 (Exfiltration Over C2 Channel)
+// Reference: https://www.ic3.gov/CSA/2026/260915.pdf ; https://www.ic3.gov/CSA/2026/260915-2.pdf
+// Author: Jarmi
+// Date: 2026-09-15
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceNetworkEvents)
+// FP notes: The advisory states that Telegram and the cloud storage services are legitimate and should be investigated, not blocked. Telegram Desktop installed per machine, or backup agents that use object storage, can appear; baseline by InitiatingProcessFolderPath.
+let lookback = 30d;
+let services = dynamic(["api.telegram.org", "vultrobjects.com", "storjshare.io", "backblazeb2.com", "iproyal.com", "lightningproxies.net"]);
+DeviceNetworkEvents
+| where Timestamp > ago(lookback)
+| where RemoteUrl has_any (services)
+| where InitiatingProcessFolderPath startswith @"C:\ProgramData\" or InitiatingProcessFolderPath startswith @"C:\Users\All Users\"
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Connections = count(), Hosts = make_set(RemoteUrl, 10),
+            Sample = take_any(InitiatingProcessCommandLine) by DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessSHA256
+| sort by Connections desc

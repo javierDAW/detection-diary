@@ -66,6 +66,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [INC Ransom](./inc-ransom/) | 1 |
 | [Icarus](./icarus/) | 1 |
 | [Iran-nexus (unattributed)](./iran-nexus-unattributed/) | 1 |
+| [Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)](./iranian-state-cyber-actors-chosen-brick-heavygram-mois-per-fbi/) | 1 |
 | [JADEPUFFER](./jadepuffer/) | 1 |
 | [Jewelbug](./jewelbug/) | 1 |
 | [Joyfill npm compromise (StepSecurity-tracked, unattributed)](./joyfill-npm-compromise-stepsecurity-tracked-unattributed/) | 1 |

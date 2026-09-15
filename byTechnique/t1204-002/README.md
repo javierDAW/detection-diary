@@ -4,11 +4,12 @@
 
 # Techniques: T1204.002
 
-20 day(s) covering this technique.
+21 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-09-15 | CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Telegram bots against dissidents and journalists | Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI) | [`2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/`](../../days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/) |
 | 2026-09-02 | Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P2P botnet | SALTY SPIDER | [`2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/`](../../days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/) |
 | 2026-08-17 | PATCHCORD: three implants, three C2 transports and one Afghan telecom cover story | APT36 | [`2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/`](../../days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/) |
 | 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |

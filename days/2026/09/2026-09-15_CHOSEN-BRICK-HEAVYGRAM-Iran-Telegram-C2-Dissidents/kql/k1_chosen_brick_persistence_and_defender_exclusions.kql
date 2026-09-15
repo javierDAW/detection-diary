@@ -1,0 +1,29 @@
+// Title: CHOSEN BRICK persistence - Run key values, Defender exclusions and the "C:\Windows \" look-alike directory
+// Id: c0d7b1e2-3dbf-4a4d-9c5c-e3f7e5b0138f
+// MITRE: T1547.001 (Registry Run Keys), T1562.001 (Impair Defenses), T1036.005 (Match Legitimate Name or Location)
+// Reference: https://www.ic3.gov/CSA/2026/260915.pdf ; https://www.ic3.gov/CSA/2026/260915-2.pdf
+// Author: Jarmi
+// Date: 2026-09-15
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceRegistryEvents, DeviceProcessEvents)
+// FP notes: Run value names winappx and MicDriver are short and can collide with other software; the query requires a staging-folder path in the value data. Defender exclusions are common admin practice, so only exclusions that name the listed staging folders are returned.
+let lookback = 90d;
+let staging = dynamic(["MicrosoftDistribution\\sysmain", "SMQDServicePackages", "ssh-cache-default", "Drivers\\MicDriver"]);
+let runkeys = DeviceRegistryEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType == "RegistryValueSet"
+    | where RegistryKey has @"\CurrentVersion\Run"
+    | where RegistryValueName in~ ("winappx", "SMQDService", "Default_SSH", "MicDriver")
+    | where RegistryValueData has_any (staging)
+    | project Timestamp, DeviceId, DeviceName, Signal = "run_key", Detail = strcat(RegistryValueName, " = ", RegistryValueData);
+let exclusions = DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where ProcessCommandLine has "Add-MpPreference" and ProcessCommandLine has "ExclusionPath"
+    | where ProcessCommandLine has_any (staging)
+    | project Timestamp, DeviceId, DeviceName, Signal = "defender_exclusion", Detail = ProcessCommandLine;
+let lookalike = DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where FolderPath startswith @"C:\Windows \"
+    | project Timestamp, DeviceId, DeviceName, Signal = "windows_space_directory", Detail = FolderPath;
+union runkeys, exclusions, lookalike
+| summarize FirstSeen = min(Timestamp), Signals = make_set(Signal), SignalClasses = dcount(Signal), Details = make_set(Detail, 10) by DeviceId, DeviceName
+| sort by SignalClasses desc, FirstSeen asc

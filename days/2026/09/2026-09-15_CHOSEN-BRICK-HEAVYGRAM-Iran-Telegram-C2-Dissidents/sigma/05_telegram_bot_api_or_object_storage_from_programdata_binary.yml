@@ -1,0 +1,38 @@
+title: Telegram Bot API or Object Storage Connection From a Binary Under ProgramData
+id: 3eddc2c7-d473-48a6-a7cc-584038c95ae4
+status: experimental
+description: |
+  Detects a network connection to api.telegram.org or to one of the object-storage and proxy services named in the joint advisory
+  (vultrobjects.com, storjshare.io, backblazeb2.com) from an executable that lives under C:\ProgramData. CHOSEN BRICK uses the
+  Telegram Bot API for command and control, with one bot per victim, and exfiltrates to Telegram, Vultr Object Storage or StorjShare.
+  The advisory states these are legitimate services and that traffic to them should be investigated, not blocked outright. The
+  ProgramData image condition keeps the rule away from browsers and installed clients; tune it for software that legitimately
+  runs from ProgramData in your estate.
+references:
+  - https://www.ic3.gov/CSA/2026/260915.pdf
+  - https://www.ic3.gov/CSA/2026/260915-2.pdf
+author: Jarmi
+date: 2026/09/15
+tags:
+  - attack.command-and-control
+  - attack.t1102.002
+  - attack.exfiltration
+  - attack.t1567.002
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection_image:
+    Image|contains: '\ProgramData\'
+  selection_dest:
+    DestinationHostname|endswith:
+      - 'api.telegram.org'
+      - 'vultrobjects.com'
+      - 'storjshare.io'
+      - 'backblazeb2.com'
+  condition: selection_image and selection_dest
+falsepositives:
+  - Self-updating applications installed under ProgramData that use object storage
+  - Legitimate Telegram clients or bots deployed to a shared ProgramData location by an administrator
+
+level: medium

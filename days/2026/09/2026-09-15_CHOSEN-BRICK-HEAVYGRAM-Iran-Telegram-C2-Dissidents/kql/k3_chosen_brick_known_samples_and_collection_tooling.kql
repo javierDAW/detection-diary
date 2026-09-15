@@ -1,0 +1,34 @@
+// Title: CHOSEN BRICK known sample hashes and the collection tooling dropped beside them
+// Id: d80ea298-b518-4e54-9631-b20d2838f7b9
+// MITRE: T1204.002 (Malicious File), T1113 (Screen Capture), T1123 (Audio Capture), T1560.001 (Archive via Utility)
+// Reference: https://www.ic3.gov/CSA/2026/260915.pdf
+// Author: Jarmi
+// Date: 2026-09-15
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceFileEvents, DeviceProcessEvents)
+// FP notes: Rar.exe, chromedriver.exe and createdump.exe are legitimate tools that the actor ships; the query only returns them when they run from the ProgramData\Drivers folders listed in the FBI analysis. Hash matches are high confidence; the other two branches are behavioural.
+let lookback = 90d;
+let known_sha256 = dynamic([
+ "e8b633dcad173eb41ef02686b46779a4a0e53df7f6c63039a798f2db5eb83afc",
+ "9014fe4f16f01c0439b261ade4cf980f460e0dae46b1ec5f58fd9bc0af26e531",
+ "8b595258cff63c4f0ef9648adb54c6ab050bb1d27933ecb3d687d31b51b7ba0c",
+ "4a3b003994112b4dd24ac8b9cc4757f4a12576b57b3cc8f5028d85fbceb7c405",
+ "4908c0bc11a933d83c83935d9468ba8d08bc23529e5ff4d4344d4f0787b84bb6",
+ "0d74156089292eee308017c8e8a7550739ecb6149ff379810f7c54b1dbaabc91",
+ "97c9e2cbe728153a350a280caca6ed38f650014f6d1821b7764aff4704fe12d9",
+ "c2dd678511373dc07e73ef1a580fc3332e640f15ff0d4c1044d4b9f305b6f503",
+ "5d6ad895c126191fa202c412b08fe0dd8b75a72928b1e5e34986a040938384c6",
+ "168a487f0e44ffee975ecd27d3f4000c750e711963a61d6ce244fa390dd17441",
+ "ffeae7c9ed3edabf3646376f50b738b4fbca442154cbfb6252b3aa5845f3d793",
+ "16162647ce3cc5b9043bf114f94e626e84188da10fbf4882960a7ede8ede0868"]);
+let by_hash = DeviceFileEvents
+    | where Timestamp > ago(lookback)
+    | where SHA256 in~ (known_sha256)
+    | project Timestamp, DeviceId, DeviceName, Signal = "known_sample_hash", Detail = strcat(FileName, " ", FolderPath);
+let tooling = DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where FileName in~ ("Rar.exe", "chromedriver.exe", "createdump.exe", "MicDriver.exe")
+    | where FolderPath has @"\ProgramData\Drivers\" or FolderPath has @"\ProgramData\MicrosoftDistribution\" or FolderPath has @"\ProgramData\ssh-cache-default\"
+    | project Timestamp, DeviceId, DeviceName, Signal = "collection_tooling", Detail = strcat(FolderPath, " ", ProcessCommandLine);
+union by_hash, tooling
+| summarize FirstSeen = min(Timestamp), Signals = make_set(Signal), Details = make_set(Detail, 10) by DeviceId, DeviceName
+| sort by FirstSeen asc

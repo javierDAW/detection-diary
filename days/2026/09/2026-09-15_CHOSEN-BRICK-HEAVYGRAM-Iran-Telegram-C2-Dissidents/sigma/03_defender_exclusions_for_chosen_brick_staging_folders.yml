@@ -1,0 +1,35 @@
+title: Microsoft Defender Exclusion Added for CHOSEN BRICK Staging Folders
+id: eb5b2620-b618-4fc2-b5b5-ab4f5e6820c5
+status: experimental
+description: |
+  Detects Add-MpPreference with an exclusion path that names one of the folders the FBI analysis lists for HEAVYGRAM (CHOSEN BRICK):
+  MicrosoftDistribution\sysmain, SMQDServicePackages or ssh-cache-default. The Pictory dropper is reported to add antivirus exclusions
+  for the sysmain folder, the SMQDServicePackages subfolder and the Telegram Desktop downloads folder, and the advisory lists Defender
+  exclusions as the defence-evasion technique. An exclusion that names a Telegram downloads folder alone is common admin hygiene
+  and is not matched here; the staging folder names make the rule specific.
+references:
+  - https://www.ic3.gov/CSA/2026/260915.pdf
+  - https://www.ic3.gov/CSA/2026/260915-2.pdf
+author: Jarmi
+date: 2026/09/15
+tags:
+  - attack.defense-evasion
+  - attack.t1562.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_cmd:
+    CommandLine|contains|all:
+      - 'Add-MpPreference'
+      - 'ExclusionPath'
+  selection_path:
+    CommandLine|contains:
+      - 'MicrosoftDistribution\sysmain'
+      - 'SMQDServicePackages'
+      - 'ssh-cache-default'
+  condition: selection_cmd and selection_path
+falsepositives:
+  - Administrators who deliberately exclude a folder that happens to share one of these names
+
+level: high
