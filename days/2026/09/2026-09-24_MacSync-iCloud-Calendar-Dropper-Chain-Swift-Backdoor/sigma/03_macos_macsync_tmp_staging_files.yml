@@ -1,0 +1,31 @@
+title: MacSync Staging Files in /tmp (.sys- Mach-O and osalogging.zip)
+id: 85fd6d06-351d-425b-8332-e9a086b2d07d
+status: experimental
+description: |
+  Detects creation of a hidden file named /tmp/.sys- followed by 16 characters, or of /tmp/osalogging.zip. In the MacSync chain the
+  stage 3 dropper decrypts a zlib-compressed Mach-O and writes it to /tmp/.sys-<16-digit random value>; Kaspersky describes the value
+  as 16 digits, and the pattern here accepts any 16 letters or digits to survive that ambiguity. The regrab backdoor command
+  archives data into /tmp/osalogging.zip unless the operator supplies another archive_path. /tmp resolves to /private/tmp on macOS,
+  so the match is on the path suffix. A missing hit does not clear a host: the archive path can be changed by the operator.
+references:
+  - https://securelist.com/macsync-new-version/121383/
+author: Jarmi
+date: 2026/09/24
+tags:
+  - attack.defense-evasion
+  - attack.t1564.001
+  - attack.collection
+  - attack.t1560
+logsource:
+  category: file_event
+  product: macos
+detection:
+  selection_sys:
+    TargetFilename|re: '/tmp/\.sys-[0-9A-Za-z]{16}$'
+  selection_zip:
+    TargetFilename|endswith: '/tmp/osalogging.zip'
+  condition: selection_sys or selection_zip
+falsepositives:
+  - Unlikely; the .sys- prefix with a 16 character suffix is not a common naming convention
+
+level: high

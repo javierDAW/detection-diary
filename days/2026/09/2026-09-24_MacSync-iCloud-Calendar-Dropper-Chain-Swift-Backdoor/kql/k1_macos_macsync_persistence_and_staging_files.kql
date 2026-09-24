@@ -1,0 +1,28 @@
+// Title: MacSync persistence and staging artifacts on macOS (Finder-disguised LaunchAgent, install directory, /tmp staging, shell and git hook edits)
+// Id: c8b72418-41c1-49f5-bb86-e88d8755af47
+// MITRE: T1543.001 (Launch Agent), T1546.004 (Unix Shell Configuration Modification), T1564.001 (Hidden Files and Directories), T1036.005 (Match Legitimate Name or Location)
+// Reference: https://securelist.com/macsync-new-version/121383/
+// Author: Jarmi
+// Date: 2026-09-24
+// Tested on: Microsoft Defender XDR advanced hunting, DeviceFileEvents on macOS (not run against live MacSync samples)
+// FP notes: Shell configuration and git hook edits are normal developer activity; the second branch only returns writers that are not on your allow-list, so fill <add_known_shell_config_writers> before alerting. Branch one is specific and can alert on its own.
+let lookback = 90d;
+let macsync_files = DeviceFileEvents
+    | where Timestamp > ago(lookback)
+    | where FolderPath has "LaunchAgents/com.apple.finder.agent"
+        or FolderPath has "/Library/Application Support/System/"
+        or FileName =~ ".repair-run"
+        or FileName =~ ".sysnotif-agent.log"
+        or FileName =~ "osalogging.zip"
+        or (FolderPath has_any ("/tmp/", "/private/tmp/") and FileName matches regex @"^\.sys-[0-9A-Za-z]{16}$")
+    | project Timestamp, DeviceId, DeviceName, Signal = "macsync_artifact", Path = FolderPath, Writer = InitiatingProcessFileName, WriterPath = InitiatingProcessFolderPath;
+let shell_and_hooks = DeviceFileEvents
+    | where Timestamp > ago(lookback)
+    | where ActionType in ("FileCreated", "FileModified")
+    | where FileName in~ (".zshrc", "pre-commit", "post-checkout")
+    | where FileName =~ ".zshrc" or FolderPath has "hooks"
+    | where InitiatingProcessFileName !in~ (dynamic(["<add_known_shell_config_writers>"]))
+    | project Timestamp, DeviceId, DeviceName, Signal = "shell_or_git_hook_write", Path = FolderPath, Writer = InitiatingProcessFileName, WriterPath = InitiatingProcessFolderPath;
+union macsync_files, shell_and_hooks
+| summarize FirstSeen = min(Timestamp), Signals = make_set(Signal), SignalClasses = dcount(Signal), Paths = make_set(Path, 10), Writers = make_set(Writer, 10) by DeviceId, DeviceName
+| sort by SignalClasses desc, FirstSeen asc

@@ -76,6 +76,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)](./linkpro-unattributed-vshell-vnt-toolchain-unc5174-overlap/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
 | [Luna Moth](./luna-moth/) | 1 |
+| [MacSync operator (malware-as-a-service, unattributed)](./macsync-operator-malware-as-a-service-unattributed/) | 1 |
 | [Media Land LLC / ML.Cloud LLC](./media-land-llc-ml-cloud-llc/) | 1 |
 | [Miasma-unattributed](./miasma-unattributed/) | 1 |
 | [Microsoft Defender Security Research (vulnerability disclosure, no threat actor)](./microsoft-defender-security-research-vulnerability-disclosure-no-threat-actor/) | 1 |

@@ -1,0 +1,36 @@
+title: MacSync Backdoor Persistence Artifacts (Finder-Disguised LaunchAgent, Install Directory, Repair Script)
+id: b86ff49f-1feb-4417-86b9-0e4654eec9b2
+status: experimental
+description: |
+  Detects file creation matching the persistence artifacts that Kaspersky documents for the MacSync backdoor: a LaunchAgent whose
+  label is com.apple.finder.agent, the install directory $HOME/Library/Application Support/System (not a default macOS directory),
+  the backup and restore script named .repair-run, and the backdoor log $HOME/Library/Logs/.sysnotif-agent.log. The backdoor is
+  disguised as Finder and re-installs itself from the .repair-run backup, so finding one artifact warrants a sweep for all of them,
+  including .zshrc and the global git pre-commit and post-checkout hooks, which this rule cannot see. A user-level plist with a
+  com.apple.* label is itself an anomaly because Apple's own launch items live under /System and /Library.
+references:
+  - https://securelist.com/macsync-new-version/121383/
+author: Jarmi
+date: 2026/09/24
+tags:
+  - attack.persistence
+  - attack.t1543.001
+  - attack.defense-evasion
+  - attack.t1036.005
+logsource:
+  category: file_event
+  product: macos
+detection:
+  selection_agent:
+    TargetFilename|contains: 'LaunchAgents/com.apple.finder.agent'
+  selection_dir:
+    TargetFilename|contains: '/Library/Application Support/System/'
+  selection_files:
+    TargetFilename|endswith:
+      - '/.repair-run'
+      - '/Library/Logs/.sysnotif-agent.log'
+  condition: selection_agent or selection_dir or selection_files
+falsepositives:
+  - A third-party product that installs into a folder literally named System under Application Support
+
+level: high

@@ -1,0 +1,33 @@
+title: macOS Termination of BTMNotificationAgent or BackgroundTaskManagementAgent
+id: bf955659-947e-497e-9af5-3566709fab68
+status: experimental
+description: |
+  Detects killall or pkill aimed at BTMNotificationAgent, BackgroundTaskManagementAgent or NotificationCenter. Kaspersky reports that
+  a MacSync helper terminates these three processes; Help Net Security's summary of the report describes the purpose as suppressing
+  user alerts. The article lists the process names but not the exact command used, so the rule
+  matches the two common termination utilities against the most specific name, BTMNotificationAgent. Killing NotificationCenter alone
+  is a common troubleshooting step and is deliberately not matched here.
+references:
+  - https://securelist.com/macsync-new-version/121383/
+author: Jarmi
+date: 2026/09/24
+tags:
+  - attack.defense-evasion
+  - attack.t1562
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_tool:
+    Image|endswith:
+      - '/killall'
+      - '/pkill'
+  selection_target:
+    CommandLine|contains:
+      - 'BTMNotificationAgent'
+      - 'BackgroundTaskManagementAgent'
+  condition: selection_tool and selection_target
+falsepositives:
+  - Administrators testing background item management on a test device
+
+level: high

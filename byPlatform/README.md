@@ -17,7 +17,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 8 |
 | [linux](./linux/) | 44 |
-| [macos](./macos/) | 13 |
+| [macos](./macos/) | 14 |
 | [microsoft-365](./microsoft-365/) | 1 |
 | [mobile](./mobile/) | 1 |
 | [network-edge](./network-edge/) | 34 |

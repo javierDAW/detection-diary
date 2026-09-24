@@ -1,0 +1,19 @@
+// Title: MacSync distribution and C2 domains and backdoor URL paths from macOS devices
+// Id: 6b7fd0d1-f23d-4362-9883-302b398f512b
+// MITRE: T1071.001 (Web Protocols), T1105 (Ingress Tool Transfer), T1041 (Exfiltration Over C2 Channel), T1030 (Data Transfer Size Limits)
+// Reference: https://securelist.com/macsync-new-version/121383/
+// Author: Jarmi
+// Date: 2026-09-24
+// Tested on: Microsoft Defender XDR advanced hunting, DeviceNetworkEvents on macOS (not run against live MacSync samples)
+// FP notes: Domain matches are high confidence for the published infrastructure. Path matches need a sensor that records the URL path; if RemoteUrl holds only the host, that branch returns nothing and is not evidence of absence. Operators rotate domains, so the path branch catches successors.
+let lookback = 90d;
+let domains = dynamic(["toria.app", "warpcast.asia", "docsend.appstore.com.mx", "streamyard.appstore.com.mx", "waaako.appstore.com.mx", "apple03cloudstore.com"]);
+DeviceNetworkEvents
+| where Timestamp > ago(lookback)
+| where RemoteUrl has_any (domains)
+    or RemoteUrl matches regex @"/v1/agent/(ping|refresh)"
+    or RemoteUrl matches regex @"/v1/asset/[^/]+(/init)?(\?|$)"
+| extend Branch = iff(RemoteUrl has_any (domains), "published_domain", "backdoor_path")
+| summarize Connections = count(), First = min(Timestamp), Last = max(Timestamp), Urls = make_set(RemoteUrl, 5)
+    by DeviceId, DeviceName, Branch, InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessSHA256
+| sort by Connections desc

@@ -1,0 +1,258 @@
+{
+  "name": "2026-09-24 — 2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCloud calendar and ends in a Finder-disguised backdoor — clusters: MacSync operator (malware-as-a-service, unattributed)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1583.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1608.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1553.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1027.013",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1102",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1059.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1059.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1497.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1622",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1573",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1070.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1564.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1056.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1555.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1555.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1552",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1560",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1030",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1543.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1546.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1562",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    },
+    {
+      "techniqueID": "T1176",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "MacSync: a six-stage macOS dropper chain that hides its commands in a public iCl"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

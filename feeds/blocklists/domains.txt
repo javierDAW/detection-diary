@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-10-19 09:08 UTC
+# generated 2026-10-19 09:21 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -132,6 +132,7 @@ direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion
 dns.multitoconference.com
 dns.ssentialserv.xyz
 docker-hub.qt-team.com
+docsend.appstore.com.mx
 dotlor.site
 download-center.online
 download.robovpn.com
@@ -242,6 +243,7 @@ loginportal-aws.com
 lunarohub.info
 lunavo.club
 m365-owa.com
+macclouddrive.com
 mail.authorized-logins.net
 mail.t-w.dev
 mailes.upd-domain-goloro.com
@@ -360,6 +362,7 @@ singtelcom.site
 sitemap.tor-browser.io
 sitemaps.tor-browser.io
 situluimihai.3x.ro
+slack.apple03cloudstore.com
 sobeamora.digital
 socifiapp.com
 solventa.club
@@ -371,6 +374,7 @@ sslzeromail.run.place
 sss.authorized-logins.net
 star-layer.com
 storage3d.com
+streamyard.appstore.com.mx
 sudsmama.com
 switch-sglogin.com
 syncdatavault.com
@@ -387,6 +391,8 @@ thomphon.com
 tk.mowell.tech
 topbeamora.digital
 tor-browser.io
+toria.app
+toria.apple03cloudstore.com
 torvianet.site
 totok-pro.ae
 totok-pro.ai-ae.io
@@ -425,6 +431,8 @@ vnt.wherewego.top
 vpn01.afghantelecom.site
 w3xasv14culvnqj.top
 w5fb5r3txrsvga7zot9uz54k.darijo-bosanac-dl.workers.dev
+waaako.appstore.com.mx
+warpcast.asia
 webmail.t-w.dev
 webnity.site
 werkbit.io
@@ -446,6 +454,7 @@ yuntaro.digital
 zala-aer.info
 zenmap.pro
 zenovapc.site
+zkcall.net
 zuvex.club
 zuvex.digital
 zx3nkaavlai.map.azionedge.net

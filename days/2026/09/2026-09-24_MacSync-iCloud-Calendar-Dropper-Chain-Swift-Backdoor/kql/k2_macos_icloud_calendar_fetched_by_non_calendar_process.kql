@@ -1,0 +1,22 @@
+// Title: Public iCloud calendar or calendar attachment fetched by a process that is not a calendar client (MacSync stage 2)
+// Id: 17a3906a-32d2-40c5-9322-2fe4150f6dcf
+// MITRE: T1102 (Web Service), T1105 (Ingress Tool Transfer), T1059.004 (Unix Shell)
+// Reference: https://securelist.com/macsync-new-version/121383/
+// Author: Jarmi
+// Date: 2026-09-24
+// Tested on: Microsoft Defender XDR advanced hunting, DeviceNetworkEvents and DeviceProcessEvents on macOS (not run against live MacSync samples)
+// FP notes: caldav.icloud.com is used by every Apple calendar client and by third-party calendar apps. Fill <add_known_calendar_clients> with the process names that your estate uses. RemoteUrl may contain only the host, depending on the sensor, so the process branch is the more precise one.
+let lookback = 30d;
+let net = DeviceNetworkEvents
+    | where Timestamp > ago(lookback)
+    | where RemoteUrl has_any ("caldav.icloud.com", "gateway.icloud.com")
+    | where InitiatingProcessFileName !in~ (dynamic(["<add_known_calendar_clients>"]))
+    | summarize Connections = count(), First = min(Timestamp) by DeviceId, DeviceName, InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessSHA256
+    | extend Signal = "icloud_caldav_from_unexpected_process";
+let cmd = DeviceProcessEvents
+    | where Timestamp > ago(lookback)
+    | where ProcessCommandLine has_any ("caldav.icloud.com/published/", "gateway.icloud.com/caldav/")
+    | summarize Connections = count(), First = min(Timestamp) by DeviceId, DeviceName, InitiatingProcessFileName = FileName, InitiatingProcessFolderPath = FolderPath, InitiatingProcessSHA256 = SHA256
+    | extend Signal = "icloud_calendar_url_in_command_line";
+union net, cmd
+| sort by First asc

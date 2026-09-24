@@ -1,0 +1,35 @@
+title: macOS Application Bundle Process Running xattr -cr to Clear Quarantine
+id: 44aedbfe-499a-423e-a670-50c3f0119667
+status: experimental
+description: |
+  Detects the xattr utility run with -cr by a process that lives inside an application bundle or on a mounted disk image.
+  The MacSync stage 1 loader checks for the com.apple.quarantine attribute and, when present, runs xattr -cr on its own bundle before
+  it decrypts the next-stage URL from its overlay. Removing the quarantine attribute prevents later Gatekeeper prompts for the
+  files that the chain downloads. Legitimate installers sometimes do this for helper tools, so treat a hit as a lead and pair it
+  with the /tmp staging file rule and the stage 2 network rules. The Securelist article does not give the exact xattr arguments
+  beyond -cr.
+references:
+  - https://securelist.com/macsync-new-version/121383/
+author: Jarmi
+date: 2026/09/24
+tags:
+  - attack.defense-evasion
+  - attack.t1553.001
+logsource:
+  category: process_creation
+  product: macos
+detection:
+  selection_image:
+    Image|endswith: '/xattr'
+  selection_args:
+    CommandLine|contains: '-cr'
+  selection_parent:
+    ParentImage|contains:
+      - '.app/Contents/MacOS/'
+      - '/Volumes/'
+  condition: selection_image and selection_args and selection_parent
+falsepositives:
+  - Installer applications that clear quarantine on bundled helper tools
+  - Developer tooling that cleans downloaded application bundles
+
+level: medium

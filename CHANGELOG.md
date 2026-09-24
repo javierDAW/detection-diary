@@ -1,3 +1,21 @@
+## 2026.09.24 — Day 114 — MacSync: a macOS dropper chain that hides its commands in a public iCloud calendar and ends in a Finder-disguised backdoor
+
+### Added
+- `days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/` — Kaspersky Securelist (2026-09-24) analysed a new version of the MacSync macOS stealer, sold as malware-as-a-service: a fake Toria wallet leads into a six-stage chain whose downloader pipes the lines of a public iCloud calendar into `zsh`, followed by a Swift infostealer and an Objective-C backdoor disguised as Finder. No actor, victim count or geography is public. Recovery entry written 2026-10-19 for the week of 2026-09-21.
+- Sigma (5): `01_macos_process_fetching_public_icloud_calendar.yml` — published calendar URL in a command line; `02_macos_xattr_clear_quarantine_from_app_bundle.yml` — `xattr -cr` from an app bundle; `03_macos_macsync_tmp_staging_files.yml` — `/tmp/.sys-` file and `osalogging.zip`; `04_macos_macsync_backdoor_persistence_artifacts.yml` — Finder-disguised LaunchAgent and install paths; `05_macos_kill_of_background_task_notification_agents.yml` — kill of `BTMNotificationAgent`.
+- KQL (3): `k1` persistence and staging artifacts plus shell and git hook writes; `k2` iCloud CalDAV from non-calendar processes; `k3` published domains and backdoor URL paths.
+- YARA (1 file, 3 rules): stage 1 overlay markers (medium), backdoor C2 protocol strings (medium), command names and key-derivation fields (low); built only from Securelist strings, no sample available.
+- Suricata (1 file, 9 sids 6310001-6310009): DNS and SNI for the published domains, backdoor tasking and upload paths, rate-limited cleartext calendar fetch.
+- PEAK hunts (3): H1 quarantine clearing to hidden `/tmp` Mach-O; H2 persistence sweep; H3 calendar fetch, look-alike domains and 90 MB PUT uploads.
+- `iocs.csv` (74 entries) — 21 MD5 values checked in two passes against the Securelist IOC section, 7 domains, 13 URLs, protocol and config strings, paths, two labelled historical domains from the December 2025 campaign; the iCloud hosts are notes and exact URLs, not blocklist domains. No CVE is involved, so no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette with the malware-re accent; macOS victim lane against the operator and infrastructure lane, anchors on the `SONOMAC1` overlay, `/tmp/.sys-*`, the Finder-disguised LaunchAgent and the calendar fetch.
+
+### Pedagogy
+- A legitimate service used as a payload host defeats reputation: pair the process with the destination.
+- Feeding a text file to a shell and letting invalid lines fail turns any free-text field into a carrier.
+- Each stage leaves its own artifact; a hash list is the weakest detection of the set.
+- Redundant persistence needs ordered cleanup: remove the restorer first and verify after a reboot.
+
 ## 2026.09.15 — Day 113 — CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Telegram bots against dissidents and journalists
 
 ### Added
