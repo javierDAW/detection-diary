@@ -4,9 +4,10 @@
 
 # Techniques: T1548.001
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-01 | NetScaler zero-days CVE-2026-88772 and CVE-2026-88771: a DTLS overflow, log poisoning and web shells that a patch does not remove | Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant) | [`2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/`](../../days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/) |
 | 2026-07-24 | RefluXFS: XFS Reflink O_DIRECT Race to Root (CVE-2026-64600) | Unattributed vulnerability research (Qualys TRU, AI-assisted discovery) | [`2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/`](../../days/2026/07/2026-07-24_RefluXFS-XFS-Reflink-ODirect-Race-CVE-2026-64600/) |

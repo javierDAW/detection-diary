@@ -4,9 +4,10 @@
 
 # Techniques: T1027.010
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-01 | NetScaler zero-days CVE-2026-88772 and CVE-2026-88771: a DTLS overflow, log poisoning and web shells that a patch does not remove | Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant) | [`2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/`](../../days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/) |
 | 2026-07-03 | From Bing search to NTDS.dit: BumbleBee sideloads, AdaptixC2 drives, Akira encrypts (DFIR Report x Swisscom) | Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira) | [`2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/`](../../days/2026/07/2026-07-03_BumbleBee-AdaptixC2-Akira-SEO-to-NTDS/) |

@@ -4,11 +4,12 @@
 
 # Techniques: T1005
 
-19 day(s) covering this technique.
+20 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-01 | NetScaler zero-days CVE-2026-88772 and CVE-2026-88771: a DTLS overflow, log poisoning and web shells that a patch does not remove | Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant) | [`2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/`](../../days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/) |
 | 2026-09-24 | MacSync: a six-stage macOS dropper chain that hides its commands in a public iCloud calendar and ends in a Finder-disguised backdoor | MacSync operator (malware-as-a-service, unattributed) | [`2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/`](../../days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/) |
 | 2026-09-15 | CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Telegram bots against dissidents and journalists | Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI) | [`2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/`](../../days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/) |
 | 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |

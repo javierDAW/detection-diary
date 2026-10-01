@@ -1,3 +1,19 @@
+## 2026.10.01 — Day 115 — NetScaler ADC/Gateway zero-days CVE-2026-88772 and CVE-2026-88771 (WHIPSHOT, SLAPSHOT)
+
+### Added
+- `days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/` — Mandiant/GTIG (2026-09-29), Unit 42 (2026-09-30) and Rapid7 (2026-09-28) on a DTLS pre-auth memory overflow and a default-configuration command injection in NetScaler ADC and Gateway, exploited since early September by a suspected state-sponsored cluster and later by others. Source conflicts are documented, not resolved.
+- Sigma (6): `01`–`06` — web shells in VPN script directories; SUID `/bin/sh`; `.uxdport`/`.uxdlock`; Python Base64 `exec` with uxd files; masqueraded 404 with large body; Base64-only User-Agent.
+- KQL (3): DTLS failure then NSPPE crash; `pitboss` log poisoning; asset requests and published IPs.
+- YARA (1 file, 5 rules): WHIPSHOT, SLAPSHOT, `httpd.conf` PHP handlers, `NSC_` header web shells, `.ctxs.receiver` markers.
+- Suricata (1 file, 9 sids): DTLS exposure hunting, `NSC_`/`X-UX` headers, Base64 User-Agent, poison marker, CSS alias, published IPs, DNS lead.
+- PEAK hunts (3): DTLS precursors and crashes; appliance persistence; log poisoning and configuration theft.
+- `iocs.csv` (60 entries) — CVEs, IPs, 4 SHA-256 values, paths, strings, notes. `kev.md` — CVE-2026-88771 and CVE-2026-88772 on CISA KEV (added 2026-09-27); also lists the Zammad pair added 2026-10-02.
+- `kill_chain.svg` — template A, canonical palette, `edge-network` accent, five cross-lane anchors.
+
+### Pedagogy
+- A patch ends the bug, not the intrusion: plan compromise assessment and secret rotation separately.
+- With no EDR on the appliance, read-only file, mode and log checks are the evidence.
+- Mitigations are per-CVE: disabling DTLS does not cover the default-configuration injection.
 ## 2026.09.24 — Day 114 — MacSync: a macOS dropper chain that hides its commands in a public iCloud calendar and ends in a Finder-disguised backdoor
 
 ### Added

@@ -1,5 +1,84 @@
 [
  {
+  "date": "2026-10-01",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT",
+  "title": "NetScaler zero-days CVE-2026-88772 and CVE-2026-88771: a DTLS overflow, log poisoning and web shells that a patch does not remove",
+  "clusters": [
+   "Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "network-edge"
+  ],
+  "sectors": [
+   "government",
+   "finance",
+   "technology",
+   "education",
+   "legal-and-professional-services",
+   "telecommunications"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1592",
+   "T1190",
+   "T1499.004",
+   "T1059.004",
+   "T1059.006",
+   "T1027.010",
+   "T1548.001",
+   "T1505.003",
+   "T1036.008",
+   "T1071.001",
+   "T1573.001",
+   "T1572",
+   "T1090.001",
+   "T1005",
+   "T1560.001",
+   "T1070"
+  ],
+  "tech_count": 17,
+  "tldr": "On 2026-09-27 Citrix confirmed that two critical flaws in NetScaler ADC and NetScaler Gateway, **CVE-2026-88772** (a pre-authentication DTLS memory overflow that needs DTLS configured) and **CVE-2026-88771** (a pre-authentication command injection in the default configuration), were already being exploited, and CISA added both to its KEV catalog the same day. Mandiant and Google Threat Intelligenc",
+  "thumb": "thumbs/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT.svg",
+  "case_rel": "../days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)",
+  "cve_count": 7,
+  "kev_count": 5,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-8037",
+    "due": "2026-08-10",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-88771",
+    "due": "2026-09-30",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-88772",
+    "due": "2026-09-30",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-102489",
+    "due": "2026-10-05",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-102490",
+    "due": "2026-10-05",
+    "ransom": false
+   }
+  ],
+  "q": "netscaler zero-days cve-2026-88772 and cve-2026-88771: a dtls overflow, log poisoning and web shells that a patch does not remove unattributed netscaler zero-day operators (suspected state-sponsored per mandiant) unknown network-edge government finance technology education legal-and-professional-services telecommunications t1595.002 t1592 t1190 t1499.004 t1059.004 t1059.006 t1027.010 t1548.001 t1505.003 t1036.008 t1071.001 t1573.001 t1572 t1090.001 t1005 t1560.001 t1070 edge / network cve-2026-8037 cve-2026-88771 cve-2026-88772 cve-2026-102489 cve-2026-102490"
+ },
+ {
   "date": "2026-09-24",
   "year": "2026",
   "month": "2026-09",

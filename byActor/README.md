@@ -172,6 +172,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed (Montana Empire operator)](./unattributed-montana-empire-operator/) | 1 |
 | [Unattributed (opportunistic mass exploitation)](./unattributed-opportunistic-mass-exploitation/) | 1 |
 | [Unattributed IPI operator](./unattributed-ipi-operator/) | 1 |
+| [Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)](./unattributed-netscaler-zero-day-operators-suspected-state-sponsored-per-mandiant/) | 1 |
 | [Unattributed WWS PLC Reconfiguration Cluster](./unattributed-wws-plc-reconfiguration-cluster/) | 1 |
 | [Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)](./unattributed-e-crime-bumblebee-adaptixc2-akira/) | 1 |
 | [Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)](./unattributed-fake-invitation-phish-kit-operator-any-run-tracked/) | 1 |

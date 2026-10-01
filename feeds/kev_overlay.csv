@@ -199,3 +199,10 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit,2026-09-09,CVE-2026-82078,yes,2026-08-31,2026-09-14,Unknown,PaperCut NG/MF Unsafe Reflection Vulnerability,PaperCut,NG/MF
 2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents,2026-09-15,CVE-2026-76460,yes,2026-09-16,2026-09-19,Unknown,Cisco Identity Services Engine Incorrect Use of Privileged APIs Vulnerability,Cisco,Identity Services Engine
 2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents,2026-09-15,CVE-2026-87886,yes,2026-09-16,2026-09-19,Unknown,Acronis Backup Incorrect Default Permissions Vulnerability,Acronis,Backup
+2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT,2026-10-01,CVE-2026-102489,yes,2026-10-02,2026-10-05,Unknown,Zammad GmbH Zammad Session Fixation Vulnerability,Zammad GmbH,Zammad
+2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT,2026-10-01,CVE-2026-102490,yes,2026-10-02,2026-10-05,Unknown,Zammad GmbH Zammad Improper Privilege Management Vulnerability,Zammad GmbH,Zammad
+2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT,2026-10-01,CVE-2026-10747,no,,,,,,
+2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT,2026-10-01,CVE-2026-8037,yes,2026-08-07,2026-08-10,Unknown,Progress LoadMaster Command Injection Vulnerability,Progress,LoadMaster
+2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT,2026-10-01,CVE-2026-8451,no,,,,,,
+2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT,2026-10-01,CVE-2026-88771,yes,2026-09-27,2026-09-30,Unknown,Citrix NetScaler Improper Input Validation Vulnerability,Citrix,NetScaler
+2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT,2026-10-01,CVE-2026-88772,yes,2026-09-27,2026-09-30,Unknown,Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability,Citrix,NetScaler
