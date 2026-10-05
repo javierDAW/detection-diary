@@ -1,0 +1,57 @@
+title: Web Proxy Request to TA419 Phishing Domains
+id: 7555bb9a-b60d-4706-b53c-53b4da828dc2
+status: experimental
+description: |
+  Detects web requests whose host is one of the TA419 first-stage or second-stage domains from the Proofpoint report. Use it on proxy,
+  secure web gateway or Zscaler-style logs. A hit on a first-stage host means the user followed the shortened link that the actor
+  sends after a reply; a hit on a second-stage host means the user reached the Microsoft sign-in relay page.
+references:
+  - https://www.proofpoint.com/us/blog/threat-insight/hallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy
+author: Jarmi
+date: 2026/10/05
+tags:
+  - attack.initial-access
+  - attack.t1566.002
+  - attack.t1204.001
+logsource:
+  category: proxy
+detection:
+  selection_host:
+    cs-host|endswith:
+      - '.driftshare.co'
+      - '.quickfly.online'
+      - '.cirrushare.co'
+      - '.goshshare.online'
+      - '.synchvault.co'
+      - '.msfile.online'
+      - '.winsync.cloud'
+      - '.sharehub.space'
+      - '.globalfileshareplatform.com'
+      - '.smartsyncbox.com'
+      - '.mypublicshare.com'
+      - '.cloudsyncpulse.com'
+      - '.onecloudfilesync.com'
+      - '.publicsharefile.cloud'
+      - '.fileswiftonline.cloud'
+  selection_exact:
+    cs-host:
+      - 'driftshare.co'
+      - 'quickfly.online'
+      - 'cirrushare.co'
+      - 'goshshare.online'
+      - 'synchvault.co'
+      - 'msfile.online'
+      - 'winsync.cloud'
+      - 'sharehub.space'
+      - 'globalfileshareplatform.com'
+      - 'smartsyncbox.com'
+      - 'mypublicshare.com'
+      - 'cloudsyncpulse.com'
+      - 'onecloudfilesync.com'
+      - 'publicsharefile.cloud'
+      - 'fileswiftonline.cloud'
+  condition: selection_host or selection_exact
+falsepositives:
+  - Security researchers and URL-scanning services that fetch the published indicators
+
+level: high

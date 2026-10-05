@@ -4,7 +4,7 @@
 
 # INDEX
 
-**115 cases** · **182 actors/clusters** · **388 ATT&CK techniques** · **16 platforms** · **86 sectors** · 2026-04-28 -> 2026-10-01
+**116 cases** · **183 actors/clusters** · **389 ATT&CK techniques** · **16 platforms** · **87 sectors** · 2026-04-28 -> 2026-10-05
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/"><img src="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/kill_chain.svg" alt="2026-10-05 kill chain" width="240"></a><br><sub><b>2026-10-05</b><br>TA419</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/"><img src="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/kill_chain.svg" alt="2026-10-01 kill chain" width="240"></a><br><sub><b>2026-10-01</b><br>Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/"><img src="days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/kill_chain.svg" alt="2026-09-24 kill chain" width="240"></a><br><sub><b>2026-09-24</b><br>MacSync operator (malware-as-a-service, unattributed)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/"><img src="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/kill_chain.svg" alt="2026-09-15 kill chain" width="240"></a><br><sub><b>2026-09-15</b><br>Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/"><img src="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/kill_chain.svg" alt="2026-09-15 kill chain" width="240"></a><br><sub><b>2026-09-15</b><br>Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/"><img src="days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/kill_chain.svg" alt="2026-09-09 kill chain" width="240"></a><br><sub><b>2026-09-09</b><br>F5 activity c05d5254 (PoisonedRefresh)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/"><img src="days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/kill_chain.svg" alt="2026-09-02 kill chain" width="240"></a><br><sub><b>2026-09-02</b><br>SALTY SPIDER</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/"><img src="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/kill_chain.svg" alt="2026-08-27 kill chain" width="240"></a><br><sub><b>2026-08-27</b><br>QTFY</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/"><img src="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/kill_chain.svg" alt="2026-08-27 kill chain" width="240"></a><br><sub><b>2026-08-27</b><br>QTFY</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/"><img src="days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/kill_chain.svg" alt="2026-08-17 kill chain" width="240"></a><br><sub><b>2026-08-17</b><br>APT36</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/"><img src="days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/kill_chain.svg" alt="2026-08-16 kill chain" width="240"></a><br><sub><b>2026-08-16</b><br>Unattributed WWS PLC Reconfiguration Cluster</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/"><img src="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/kill_chain.svg" alt="2026-08-14 kill chain" width="240"></a><br><sub><b>2026-08-14</b><br>Lazarus Group</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/"><img src="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/kill_chain.svg" alt="2026-08-14 kill chain" width="240"></a><br><sub><b>2026-08-14</b><br>Lazarus Group</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/"><img src="days/2026/08/2026-08-13_KempLoadMaster-EscapeQuotes-PreAuth-RCE-CVE-2026-8037/kill_chain.svg" alt="2026-08-13 kill chain" width="240"></a><br><sub><b>2026-08-13</b><br>Unattributed (opportunistic mass exploitation)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/"><img src="days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/kill_chain.svg" alt="2026-08-12 kill chain" width="240"></a><br><sub><b>2026-08-12</b><br>Payroll Pirates</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/"><img src="days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/kill_chain.svg" alt="2026-08-11 kill chain" width="240"></a><br><sub><b>2026-08-11</b><br>Storm-1175</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-10</b> — 1 case(s)</summary>
+<details><summary><b>2026-10</b> — 2 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-10-05 | [TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB adversary-in-the-middle page that steals Microsoft sessions](days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/) | TA419 | cloud-multi |
 | 2026-10-01 | [NetScaler zero-days CVE-2026-88772 and CVE-2026-88771: a DTLS overflow, log poisoning and web shells that a patch does not remove](days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/) | Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant) | network-edge |
 
 </details>

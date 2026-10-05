@@ -1,0 +1,20 @@
+// Title: TA419 first-stage and second-stage domains in endpoint network events and Safe Links clicks
+// Id: 9d600946-29df-42a7-bd65-1acb9a56a0e2
+// MITRE: T1566.002 (Phishing: Spearphishing Link), T1204.001 (User Execution: Malicious Link), T1557 (Adversary-in-the-Middle)
+// Reference: https://www.proofpoint.com/us/blog/threat-insight/hallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy
+// Author: Jarmi
+// Date: 2026-10-05
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceNetworkEvents, UrlClickEvents); not run against a tenant that received this campaign
+// FP notes: Researchers and sandboxes resolve published indicators. The first click is on a URL shortener, so the shortener URL appears in UrlClickEvents while the actor domain appears only in the redirect chain seen by the endpoint; correlate both tables by user and time.
+let lookback = 90d;
+let domains = dynamic(["driftshare.co", "quickfly.online", "cirrushare.co", "goshshare.online", "synchvault.co", "msfile.online", "winsync.cloud", "sharehub.space", "globalfileshareplatform.com", "smartsyncbox.com", "mypublicshare.com", "cloudsyncpulse.com", "onecloudfilesync.com", "publicsharefile.cloud", "fileswiftonline.cloud"]);
+let net = DeviceNetworkEvents
+    | where Timestamp > ago(lookback)
+    | where RemoteUrl has_any (domains)
+    | project Timestamp, Source = "DeviceNetworkEvents", AccountName = InitiatingProcessAccountName, DeviceName, Detail = RemoteUrl, InitiatingProcessFileName;
+let clicks = UrlClickEvents
+    | where Timestamp > ago(lookback)
+    | where Url has_any (domains)
+    | project Timestamp, Source = "UrlClickEvents", AccountName = AccountUpn, DeviceName = "", Detail = Url, InitiatingProcessFileName = "";
+union net, clicks
+| sort by Timestamp asc

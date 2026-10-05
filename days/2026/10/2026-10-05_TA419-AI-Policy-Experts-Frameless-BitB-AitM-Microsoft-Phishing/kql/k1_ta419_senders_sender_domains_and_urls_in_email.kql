@@ -1,0 +1,23 @@
+// Title: TA419 sender addresses, lookalike sender domains and phishing URLs in inbound email
+// Id: 9863bcc7-69e3-4728-8bdf-4d0b46be7585
+// MITRE: T1566.002 (Phishing: Spearphishing Link), T1598 (Phishing for Information), T1656 (Impersonation)
+// Reference: https://www.proofpoint.com/us/blog/threat-insight/hallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy
+// Author: Jarmi
+// Date: 2026-10-05
+// Tested on: Microsoft Defender XDR advanced hunting (EmailEvents, EmailUrlInfo); not run against a tenant that received this campaign
+// FP notes: The free-mail addresses are attacker accounts on legitimate services, so the match is on the full address. The first message contains no link by design (reply-first gate), so the sender match is the primary signal; the URL match only fires after the actor has replied to the target.
+let lookback = 90d;
+let senders = dynamic(["leparker@mail.com", "hcrediker@mail.com", "hcrediker@outlook.com"]);
+let senderDomains = dynamic(["tw-koryu.org", "heritiages.org", "heritiage.org", "shinjirou.info"]);
+let urlDomains = dynamic(["driftshare.co", "quickfly.online", "cirrushare.co", "goshshare.online", "synchvault.co", "msfile.online", "winsync.cloud", "sharehub.space", "globalfileshareplatform.com", "smartsyncbox.com", "mypublicshare.com", "cloudsyncpulse.com", "onecloudfilesync.com", "publicsharefile.cloud", "fileswiftonline.cloud"]);
+let bySender = EmailEvents
+    | where Timestamp > ago(lookback)
+    | where SenderFromAddress in~ (senders) or SenderFromDomain in~ (senderDomains) or SenderMailFromDomain in~ (senderDomains)
+    | project Timestamp, NetworkMessageId, RecipientEmailAddress, SenderFromAddress, SenderDisplayName, Subject, DeliveryAction, DeliveryLocation, Signal = "sender";
+let byUrl = EmailUrlInfo
+    | where Timestamp > ago(lookback)
+    | where UrlDomain has_any (urlDomains)
+    | join kind=inner (EmailEvents | where Timestamp > ago(lookback)) on NetworkMessageId
+    | project Timestamp, NetworkMessageId, RecipientEmailAddress, SenderFromAddress, SenderDisplayName, Subject, DeliveryAction, DeliveryLocation, Signal = "url";
+union bySender, byUrl
+| sort by Timestamp asc

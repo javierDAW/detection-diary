@@ -1,0 +1,67 @@
+title: DNS Query for TA419 Phishing and Lookalike Domains
+id: 848a7dc6-8adc-4888-ad1a-2e037d15c85c
+status: experimental
+description: |
+  Detects DNS queries for the first-stage redirect, second-stage adversary-in-the-middle and lookalike sender domains that Proofpoint
+  published for the China-aligned cluster TA419 (post dated 2026-10-01). The first-seen dates run from December 2025 to July 2026 and
+  Proofpoint publishes no takedown status, so a hit on a domain that is no longer live still shows that a user opened or a mail system
+  processed a link or a sender from this campaign. Match both the exact name and sub-domains.
+references:
+  - https://www.proofpoint.com/us/blog/threat-insight/hallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy
+author: Jarmi
+date: 2026/10/05
+tags:
+  - attack.initial-access
+  - attack.t1566.002
+  - attack.credential-access
+  - attack.t1557
+logsource:
+  category: dns_query
+detection:
+  selection_exact:
+    QueryName:
+      - 'driftshare.co'
+      - 'quickfly.online'
+      - 'cirrushare.co'
+      - 'goshshare.online'
+      - 'synchvault.co'
+      - 'msfile.online'
+      - 'winsync.cloud'
+      - 'sharehub.space'
+      - 'globalfileshareplatform.com'
+      - 'smartsyncbox.com'
+      - 'mypublicshare.com'
+      - 'cloudsyncpulse.com'
+      - 'onecloudfilesync.com'
+      - 'publicsharefile.cloud'
+      - 'fileswiftonline.cloud'
+      - 'tw-koryu.org'
+      - 'heritiages.org'
+      - 'heritiage.org'
+      - 'shinjirou.info'
+  selection_sub:
+    QueryName|endswith:
+      - '.driftshare.co'
+      - '.quickfly.online'
+      - '.cirrushare.co'
+      - '.goshshare.online'
+      - '.synchvault.co'
+      - '.msfile.online'
+      - '.winsync.cloud'
+      - '.sharehub.space'
+      - '.globalfileshareplatform.com'
+      - '.smartsyncbox.com'
+      - '.mypublicshare.com'
+      - '.cloudsyncpulse.com'
+      - '.onecloudfilesync.com'
+      - '.publicsharefile.cloud'
+      - '.fileswiftonline.cloud'
+      - '.tw-koryu.org'
+      - '.heritiages.org'
+      - '.heritiage.org'
+      - '.shinjirou.info'
+  condition: selection_exact or selection_sub
+falsepositives:
+  - Security researchers, mail-security sandboxes and threat-intelligence crawlers that resolve the published indicators
+
+level: high

@@ -1,3 +1,19 @@
+## 2026.10.05 — Day 116 — TA419 impersonates AI policy experts with a Frameless BitB adversary-in-the-middle page
+
+### Added
+- `days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/` — Proofpoint (2026-10-01) on TA419, a China-aligned espionage cluster that impersonates AI policy figures with a reply-first lure and a modified Frameless BitB page that relays the Microsoft sign-in and takes the session cookie. Report-date and persona-name conflicts between sources are documented, not resolved; no victim count or post-compromise activity is published.
+- Sigma (4): `01`–`04` — DNS and proxy hits on the 19 published domains; kit script paths from a non-Microsoft host; the shared self-signed certificate subject in Zeek x509.
+- KQL (4): published senders and URLs in email; domains in endpoint and click telemetry; same Entra session ID from a second IP and ASN; expert display names from free-mail accounts.
+- YARA (1 file, 2 rules): saved phishing page or script with kit markers; exported lure email with campaign senders or text.
+- Suricata (1 file, 6 sids): DNS for two domain groups, TLS SNI, certificate subject, `observe.js` request, the single VPS address.
+- PEAK hunts (3): reply-first impersonation; redirect chain and kit paths; Entra session replay after a relayed MFA sign-in.
+- `iocs.csv` (42 entries) — 3 senders, 19 domains, 1 IP, certificate hash and subject, kit paths, lure strings, 9 notes. `kev.md` — 1/1 CVE on CISA KEV (the Cisco SD-WAN secondary finding).
+- `kill_chain.svg` — template A, canonical palette, `espionage` accent, six cross-lane anchors.
+
+### Pedagogy
+- A link-free first email moves detection from content to sender, display name and reply pattern.
+- MFA that a proxy can relay is not phishing resistance; origin-bound methods are.
+- The Entra session ID shared by interactive and non-interactive sign-ins is the thread that shows the replay.
 ## 2026.10.01 — Day 115 — NetScaler ADC/Gateway zero-days CVE-2026-88772 and CVE-2026-88771 (WHIPSHOT, SLAPSHOT)
 
 ### Added

@@ -1,0 +1,30 @@
+// Title: Adversary-in-the-middle session replay - same Entra session ID used from a second IP after an MFA sign-in (OfficeHome)
+// Id: f10ef9c9-9140-457c-8736-d36461e3b3c7
+// MITRE: T1557 (Adversary-in-the-Middle), T1539 (Steal Web Session Cookie), T1550.004 (Use Alternate Authentication Material: Web Session Cookie), T1078.004 (Valid Accounts: Cloud Accounts)
+// Reference: https://www.proofpoint.com/us/blog/threat-insight/hallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy
+// Author: Jarmi
+// Date: 2026-10-05
+// Tested on: Microsoft Sentinel (SigninLogs, AADNonInteractiveUserSignInLogs); not run against a tenant that received this campaign
+// FP notes: Proofpoint says the TA419 kit drives the first-party OfficeHome client (4765445b-32c6-49b0-83e6-1d93765276ca) and relays MFA, so the interactive sign-in succeeds from the victim's own network. A different IP on the same session ID afterwards is the replay signal. VPN split tunnels, mobile network handover and corporate proxies with several egress addresses also produce it: tune with the known egress ranges below. This is a generic AiTM pattern, not a TA419-only detection.
+let lookback = 30d;
+let window = 2h;
+let officeHome = "4765445b-32c6-49b0-83e6-1d93765276ca";
+let knownEgress = dynamic(["<add_known_corporate_egress_ips>"]);
+SigninLogs
+| where TimeGenerated > ago(lookback)
+| where ResultType == 0
+| extend SessionId = tostring(SessionId)
+| where isnotempty(SessionId)
+| join kind=inner (
+    AADNonInteractiveUserSignInLogs
+    | where TimeGenerated > ago(lookback)
+    | where ResultType == 0
+    | extend SessionId = tostring(SessionId)
+    | project ReplayTime = TimeGenerated, UserPrincipalName, SessionId, ReplayIP = IPAddress, ReplayAsn = tostring(AutonomousSystemNumber), ReplayApp = AppDisplayName, ReplayResource = ResourceDisplayName
+) on UserPrincipalName, SessionId
+| where AppId == officeHome and AuthenticationRequirement == "multiFactorAuthentication"
+| where ReplayTime between (TimeGenerated .. (TimeGenerated + window))
+| where ReplayIP != IPAddress and ReplayAsn != tostring(AutonomousSystemNumber)
+| where IPAddress !in (knownEgress) and ReplayIP !in (knownEgress)
+| project InteractiveTime = TimeGenerated, UserPrincipalName, SessionId, InteractiveIP = IPAddress, InteractiveAsn = tostring(AutonomousSystemNumber), ReplayTime, ReplayIP, ReplayAsn, ReplayApp, ReplayResource
+| sort by InteractiveTime asc

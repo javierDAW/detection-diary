@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-10-19 09:47 UTC
+# generated 2026-10-19 09:58 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -92,12 +92,14 @@ chat.openai.com
 cheapoca.biz
 check.git-service.com
 cirevia1.digital
+cirrushare.co
 cj06y9v4xab.com
 claude.ai
 clear90489058903-document.workers.dev
 cloudcaravan.info
 cloudfilebridge.com
 cloudsendhub.com
+cloudsyncpulse.com
 coachcybersecurity.com
 cognitionnodehub.digital
 cognitionpipeline.digital
@@ -137,6 +139,7 @@ dotlor.site
 download-center.online
 download.robovpn.com
 dra1.je211.epc.mnc003.mcc234.3gppnetwork.org
+driftshare.co
 drivelivelime.com
 e5469cec-124a-c84f-abaa-docviewer.clear90489058903-document.workers.dev
 eaggcz2fj7yzqdzx97i96.darijo-bosanac-dl.workers.dev
@@ -168,6 +171,7 @@ filenest.info
 filenest.osc-fr1.scalingo.io
 fileoceanhammer.sbs
 filerubyfolder.sbs
+fileswiftonline.cloud
 filevelvettractor.sbs
 financemachinelearning.com
 fixupcount.s3.dualstack.ap-northeast-1.amazonaws.com
@@ -190,9 +194,11 @@ gatheredovertime.com
 getceptionparty.de
 getsession.org
 git-tanstack.com
+globalfileshareplatform.com
 globalretailbrands.com.au
 gmslb.net
 goldsky.arweave.net
+goshshare.online
 grande-luna.top
 greatness-marketing.top
 greensite.digital
@@ -200,6 +206,8 @@ gruta.com.mx
 hanzoa.digital
 hcgos.com
 hekeroyot.com
+heritiage.org
+heritiages.org
 highclass.atspace.com
 hospitalinstallation.com
 human-check.top
@@ -266,6 +274,7 @@ mq-task.qt-team.com
 ms365-device.com
 ms365-live.com
 msauth.monlinelogicaline.com
+msfile.online
 msiidentity.com
 mslogin.milocaroline.com
 msonline.logicalineonline.com
@@ -273,6 +282,7 @@ mueleer.com
 muurfzqprzmdkzoibxaz.supabase.co
 mvwmh7pxxd33375gj9wwjhcmbk.darijo-bosanac-dl.workers.dev
 mxprodesign.com
+mypublicshare.com
 namefuture.site
 nameprod.site
 nano.upscale-kolo.com
@@ -290,6 +300,7 @@ obmlink.com
 oeannon.com
 office.ofrecie.com
 oneclickme.site
+onecloudfilesync.com
 onlion.shop
 open-box-rpps.jeff-1fd.workers.dev
 openclawcli.vercel.app
@@ -317,6 +328,7 @@ predictcore.digital
 prism-west-candy.glitch.me
 progamevl.ru
 prolega.site
+publicsharefile.cloud
 pulsewave-glow.digital
 purelogicbox.org
 pustou.site
@@ -325,6 +337,7 @@ qt-proxy.org
 qt-team.com
 qtcyber.com
 qtproxy.xyz
+quickfly.online
 qumoro.site
 quorivamesh.digital
 r3brqw3d.b0ats.top
@@ -357,12 +370,15 @@ setpasskey.com
 setupsso.com
 sgnlapp.info
 sgwebdesigner.free.fr
+sharehub.space
+shinjirou.info
 signalmetrics.digital
 singtelcom.site
 sitemap.tor-browser.io
 sitemaps.tor-browser.io
 situluimihai.3x.ro
 slack.apple03cloudstore.com
+smartsyncbox.com
 sobeamora.digital
 socifiapp.com
 solventa.club
@@ -378,6 +394,7 @@ streamyard.appstore.com.mx
 sudsmama.com
 switch-sglogin.com
 syncdatavault.com
+synchvault.co
 syscodeapi.digital
 t-w.dev
 t.m-kosche.com
@@ -405,6 +422,7 @@ transoe.site
 treasuresland.cc
 trustconnect.digital
 tvviewreach.digital
+tw-koryu.org
 ukrguard.org
 ukrvarta.online
 unable.download
@@ -436,6 +454,7 @@ warpcast.asia
 webmail.t-w.dev
 webnity.site
 werkbit.io
+winsync.cloud
 wintel.biz
 worldsol.site
 worldswar.online

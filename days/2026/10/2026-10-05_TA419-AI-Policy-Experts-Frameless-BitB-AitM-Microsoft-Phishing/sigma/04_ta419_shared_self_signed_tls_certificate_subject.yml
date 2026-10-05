@@ -1,0 +1,30 @@
+title: Self-Signed TLS Certificate With the TA419 Sending-Server Subject
+id: 5a821e13-6ff3-42e5-a186-85246e2c63d3
+status: experimental
+description: |
+  Detects a TLS certificate whose subject contains both "Castro Inc" and "Millsstad", the subject of the shared self-signed certificate
+  that Proofpoint reports on TA419 sending servers (SHA-256 b314a1499cd728ca3e54b7150661fd0c7d2279065fe3f570f0f66c395d744460, first
+  seen February 2026). Proofpoint says the certificate sat on a high ephemeral port of VPS hosts. TLS 1.3 hides the certificate, so the
+  rule only fires on Zeek x509 logs from sensors that see the handshake in clear, or on certificate-transparency-style scanner exports
+  loaded as x509 records. Matching infrastructure should be reviewed, not blocked blindly, because the certificate is self-signed
+  and its subject can be reused.
+references:
+  - https://www.proofpoint.com/us/blog/threat-insight/hallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy
+author: Jarmi
+date: 2026/10/05
+tags:
+  - attack.resource-development
+  - attack.t1583.003
+logsource:
+  product: zeek
+  service: x509
+detection:
+  selection:
+    certificate.subject|contains|all:
+      - 'Castro Inc'
+      - 'Millsstad'
+  condition: selection
+falsepositives:
+  - Unrelated test certificates that reuse the same generated subject
+
+level: medium

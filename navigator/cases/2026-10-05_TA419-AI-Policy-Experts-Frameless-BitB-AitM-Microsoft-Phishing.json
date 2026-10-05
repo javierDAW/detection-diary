@@ -1,0 +1,111 @@
+{
+  "name": "2026-10-05 — 2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB adversary-in-the-middle page that steals Microsoft sessions — clusters: TA419",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1656",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1598",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1583.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1588.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1204.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1557",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1111",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1539",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1550.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB ad"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

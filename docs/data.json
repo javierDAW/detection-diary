@@ -1,5 +1,58 @@
 [
  {
+  "date": "2026-10-05",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing",
+  "title": "TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB adversary-in-the-middle page that steals Microsoft sessions",
+  "clusters": [
+   "TA419"
+  ],
+  "country": "China-aligned (per Proofpoint)",
+  "platforms": [
+   "cloud-multi"
+  ],
+  "sectors": [
+   "think-tanks",
+   "education",
+   "legal-and-professional-services",
+   "defense",
+   "government"
+  ],
+  "techniques": [
+   "T1656",
+   "T1598",
+   "T1583.001",
+   "T1583.003",
+   "T1588.002",
+   "T1566.002",
+   "T1204.001",
+   "T1557",
+   "T1111",
+   "T1539",
+   "T1550.004",
+   "T1078.004"
+  ],
+  "tech_count": 12,
+  "tldr": "Proofpoint published research on 2026-10-01 (page metadata 2026-09-30) on **TA419**, a China-aligned, espionage-motivated cluster that has phished people at US and Japan-based think tanks, defence contractors, universities and law firms since at least April 2025. Since 8 July 2026 it has impersonated real AI policy figures, among them a former White House OSTP leader and an economist, and in Febru",
+  "thumb": "thumbs/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing.svg",
+  "case_rel": "../days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "TA419",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-76504",
+    "due": "2026-10-03",
+    "ransom": false
+   }
+  ],
+  "q": "ta419 impersonates ai policy experts: a reply-first lure and a frameless bitb adversary-in-the-middle page that steals microsoft sessions ta419 china-aligned (per proofpoint) cloud-multi think-tanks education legal-and-professional-services defense government t1656 t1598 t1583.001 t1583.003 t1588.002 t1566.002 t1204.001 t1557 t1111 t1539 t1550.004 t1078.004 espionage / apt cve-2026-76504"
+ },
+ {
   "date": "2026-10-01",
   "year": "2026",
   "month": "2026-10",

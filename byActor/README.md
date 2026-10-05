@@ -134,6 +134,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Storm-2949](./storm-2949/) | 1 |
 | [SwimSnake](./swimsnake/) | 1 |
 | [T-APT-17](./t-apt-17/) | 1 |
+| [TA419](./ta419/) | 1 |
 | [TEMP.Veles](./temp-veles/) | 1 |
 | [Talos Cluster 1 (Tas9er Godzilla)](./talos-cluster-1-tas9er-godzilla/) | 1 |
 | [Talos Cluster 10 (vManage credential extractor)](./talos-cluster-10-vmanage-credential-extractor/) | 1 |

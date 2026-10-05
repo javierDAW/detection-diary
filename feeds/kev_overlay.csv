@@ -206,3 +206,4 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT,2026-10-01,CVE-2026-8451,no,,,,,,
 2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT,2026-10-01,CVE-2026-88771,yes,2026-09-27,2026-09-30,Unknown,Citrix NetScaler Improper Input Validation Vulnerability,Citrix,NetScaler
 2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT,2026-10-01,CVE-2026-88772,yes,2026-09-27,2026-09-30,Unknown,Citrix NetScaler Improper Restriction of Operations within the Bounds of a Memory Buffer Vulnerability,Citrix,NetScaler
+2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing,2026-10-05,CVE-2026-76504,yes,2026-09-30,2026-10-03,Unknown,Cisco Catalyst SD-WAN Manager Hex Encoding Vulnerability,Cisco,Catalyst SD-WAN Manager

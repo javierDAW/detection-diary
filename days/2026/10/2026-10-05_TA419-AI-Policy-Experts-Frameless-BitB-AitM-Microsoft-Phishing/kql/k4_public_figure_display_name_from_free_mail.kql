@@ -1,0 +1,20 @@
+// Title: Public-figure display names on first-contact email from free-mail providers (reply-first impersonation)
+// Id: 888d3bcb-75cd-4a66-85fc-8ae5f5c66385
+// MITRE: T1656 (Impersonation), T1598 (Phishing for Information), T1566.002 (Phishing: Spearphishing Link)
+// Reference: https://www.proofpoint.com/us/blog/threat-insight/hallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy
+// Author: Jarmi
+// Date: 2026-10-05
+// Tested on: Microsoft Defender XDR advanced hunting (EmailEvents); not run against a tenant that received this campaign
+// FP notes: Genuine people use free-mail accounts for personal correspondence. The query is a triage list for high-value recipients (policy, research, legal staff), not an alert. Replace the name list with experts that your organisation's staff actually correspond with.
+let lookback = 60d;
+let freeMail = dynamic(["mail.com", "outlook.com", "gmail.com", "yahoo.com", "proton.me", "protonmail.com", "icloud.com"]);
+let impersonated = dynamic(["Lynne Parker", "Lynne Edwards Parker", "Heidi Crebo-Rediker", "<add_known_expert_display_names>"]);
+EmailEvents
+| where Timestamp > ago(lookback)
+| where EmailDirection == "Inbound"
+| where SenderFromDomain in~ (freeMail)
+| where SenderDisplayName has_any (impersonated)
+| join kind=leftouter (EmailUrlInfo | summarize UrlCount = count() by NetworkMessageId) on NetworkMessageId
+| extend HasLink = coalesce(UrlCount, 0) > 0
+| project Timestamp, RecipientEmailAddress, SenderDisplayName, SenderFromAddress, Subject, HasLink, DeliveryAction
+| sort by Timestamp asc

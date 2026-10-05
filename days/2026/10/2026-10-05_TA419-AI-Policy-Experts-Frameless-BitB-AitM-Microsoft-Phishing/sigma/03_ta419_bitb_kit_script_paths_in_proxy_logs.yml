@@ -1,0 +1,37 @@
+title: Frameless BitB Kit Script Paths Requested From an Unknown Host
+id: e4917ef2-8964-4b95-b403-4d0a941833de
+status: experimental
+description: |
+  Detects requests for /secondary/observe.js, which Proofpoint describes as the TA419 telemetry and automation module that reports the
+  victim's sign-in position, accepts the "Keep me signed in" prompt and submits one-time codes, and for the pair /secondary/script.js
+  and /primary/script.js, the adapted Frameless BitB drivers. The paths are generic enough to appear on legitimate sites, so the
+  observe.js match is rated higher than the script pair. Treat a hit as a lead: open the page in an isolated browser and look for a
+  fake OneDrive listing, a Cloudflare Turnstile check and a simulated browser window. Proofpoint does not publish a captured sample,
+  so these strings come from its description of the kit.
+references:
+  - https://www.proofpoint.com/us/blog/threat-insight/hallucinating-credibility-china-aligned-ta419-impersonates-its-way-us-ai-policy
+author: Jarmi
+date: 2026/10/05
+tags:
+  - attack.credential-access
+  - attack.t1557
+  - attack.t1111
+logsource:
+  category: proxy
+detection:
+  selection_observe:
+    c-uri|endswith: '/secondary/observe.js'
+  selection_pair:
+    c-uri|endswith:
+      - '/secondary/script.js'
+      - '/primary/script.js'
+  filter_known_hosts:
+    cs-host|endswith:
+      - '.microsoft.com'
+      - '.office.com'
+      - '.live.com'
+  condition: (selection_observe or selection_pair) and not filter_known_hosts
+falsepositives:
+  - Internal or third-party web applications that serve scripts under the same paths; add the hosts to the filter after review
+
+level: medium

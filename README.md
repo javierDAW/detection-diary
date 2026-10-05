@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**115 cases** · **182 actors/clusters** · **388 ATT&CK techniques** · **16 platforms** · **86 sectors** · 2026-04-28 -> 2026-10-01
+**116 cases** · **183 actors/clusters** · **389 ATT&CK techniques** · **16 platforms** · **87 sectors** · 2026-04-28 -> 2026-10-05
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/"><img src="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/kill_chain.svg" alt="2026-10-05 kill chain" width="240"></a><br><sub><b>2026-10-05</b><br>TA419</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/"><img src="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/kill_chain.svg" alt="2026-10-01 kill chain" width="240"></a><br><sub><b>2026-10-01</b><br>Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/"><img src="days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/kill_chain.svg" alt="2026-09-24 kill chain" width="240"></a><br><sub><b>2026-09-24</b><br>MacSync operator (malware-as-a-service, unattributed)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/"><img src="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/kill_chain.svg" alt="2026-09-15 kill chain" width="240"></a><br><sub><b>2026-09-15</b><br>Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/"><img src="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/kill_chain.svg" alt="2026-09-15 kill chain" width="240"></a><br><sub><b>2026-09-15</b><br>Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/"><img src="days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/kill_chain.svg" alt="2026-09-09 kill chain" width="240"></a><br><sub><b>2026-09-09</b><br>F5 activity c05d5254 (PoisonedRefresh)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/"><img src="days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/kill_chain.svg" alt="2026-09-02 kill chain" width="240"></a><br><sub><b>2026-09-02</b><br>SALTY SPIDER</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/"><img src="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/kill_chain.svg" alt="2026-08-27 kill chain" width="240"></a><br><sub><b>2026-08-27</b><br>QTFY</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->
