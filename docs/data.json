@@ -1,5 +1,68 @@
 [
  {
+  "date": "2026-10-15",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig",
+  "title": "AhsayCBS backup console zero-days CVE-2026-105133 and CVE-2026-105134: SYSTEM code execution, JSP web shells and a fake Edge miner service",
+  "clusters": [
+   "Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "managed-service-providers",
+   "technology"
+  ],
+  "techniques": [
+   "T1190",
+   "T1505.003",
+   "T1059.001",
+   "T1059.003",
+   "T1105",
+   "T1608.001",
+   "T1543.003",
+   "T1036.004",
+   "T1036.005",
+   "T1564",
+   "T1124",
+   "T1496.001",
+   "T1571",
+   "T1552",
+   "T1021.004"
+  ],
+  "tech_count": 15,
+  "tldr": "Two flaws in **AhsayCBS**, the central management console of Ahsay's backup software, were published in NVD on 2026-10-04 and chained into unauthenticated remote code execution as SYSTEM: an authentication bypass in the `checkSysPwd` function (CVE-2026-105133) and a command injection in the Replication Receiver endpoint `/rps/api/json/UpdateReceivers.do` (CVE-2026-105134). Huntress saw the first e",
+  "thumb": "thumbs/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig.svg",
+  "case_rel": "../days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)",
+  "cve_count": 3,
+  "kev_count": 3,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-104935",
+    "due": "2026-10-16",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-105133",
+    "due": "2026-10-17",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-105134",
+    "due": "2026-10-17",
+    "ransom": false
+   }
+  ],
+  "q": "ahsaycbs backup console zero-days cve-2026-105133 and cve-2026-105134: system code execution, jsp web shells and a fake edge miner service unattributed ahsaycbs exploitation (huntress and bitdefender reports) unknown windows managed-service-providers technology t1190 t1505.003 t1059.001 t1059.003 t1105 t1608.001 t1543.003 t1036.004 t1036.005 t1564 t1124 t1496.001 t1571 t1552 t1021.004 other cve-2026-104935 cve-2026-105133 cve-2026-105134"
+ },
+ {
   "date": "2026-10-05",
   "year": "2026",
   "month": "2026-10",

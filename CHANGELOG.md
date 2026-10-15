@@ -1,3 +1,19 @@
+## 2026.10.15 — Day 117 — AhsayCBS backup console CVE-2026-105133 and CVE-2026-105134: SYSTEM RCE, JSP web shells and a fake Edge miner service
+
+### Added
+- `days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/` — Huntress (2026-10-08, updated 10-12) and Bitdefender MDR (2026-10-15) on two chained flaws in the AhsayCBS backup management console exploited from 2026-10-07: JSP web shells, a miner behind a fake `MicrosoftEdgeUpdateSvc` service, credential search and OpenSSH. No actor is named and no ransomware or backup theft is reported. Conflicts on affected versions, patch dates and severity between sources are documented, not resolved.
+- Sigma (8): `01`–`08` — children of the service wrapper; fake Edge update service; Edge-named binaries outside Program Files; staging host and file names; WinRing0 from Temp; Task Manager-aware script blocks; JSP and script files written by the service; OpenSSH installed by PowerShell.
+- KQL (4): service children; published hashes, addresses and staging hosts; fake service and SSH server (event 7045); JSP and Public-folder staging.
+- YARA (1 file, 2 rules): Task Manager-aware service script; XMRig configuration with the Kryptex pool.
+- Suricata (1 file, 9 sids): exploit endpoint hunting, DNS and SNI for the OSS bucket and pages.dev host, pool DNS and address, published addresses, Stratum login.
+- PEAK hunts (3): exposure and endpoint requests; post-exploitation artefacts; reachable credentials and recovery points.
+- `iocs.csv` (46 entries) — CVEs, 3 SHA-256 values, 11 IPs, bucket, pages.dev host and pool, paths, strings, 9 notes. `kev.md` — 3/3 CVEs on CISA KEV (the two Ahsay CVEs and the Ivanti Connect Secure CVE from the secondary finding).
+- `kill_chain.svg` — template A, canonical palette, `other` accent, six cross-lane anchors.
+
+### Pedagogy
+- A backup console is a tier-0 system: restrict its interface and track its build number.
+- A first fix can fail: verify the installed build, not the advisory title.
+- A miner on a server is a receipt for the access that put it there; rebuild, then rotate.
 ## 2026.10.05 — Day 116 — TA419 impersonates AI policy experts with a Frameless BitB adversary-in-the-middle page
 
 ### Added

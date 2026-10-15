@@ -172,6 +172,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
 | [Unattributed (Montana Empire operator)](./unattributed-montana-empire-operator/) | 1 |
 | [Unattributed (opportunistic mass exploitation)](./unattributed-opportunistic-mass-exploitation/) | 1 |
+| [Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)](./unattributed-ahsaycbs-exploitation-huntress-and-bitdefender-reports/) | 1 |
 | [Unattributed IPI operator](./unattributed-ipi-operator/) | 1 |
 | [Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)](./unattributed-netscaler-zero-day-operators-suspected-state-sponsored-per-mandiant/) | 1 |
 | [Unattributed WWS PLC Reconfiguration Cluster](./unattributed-wws-plc-reconfiguration-cluster/) | 1 |
