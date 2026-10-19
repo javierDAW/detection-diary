@@ -1,3 +1,19 @@
+## 2026.10.19 — Day 118 — ARMORY CASTLE exploits BeyondTrust Remote Support zero-day CVE-2026-102764: SAWFLY, SUID root, vault dumps and the BARECLAW tunnel
+
+### Added
+- `days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/` — Google Threat Intelligence Group (2026-10-15) on ARMORY CASTLE (formerly UNC5221, suspected PRC-nexus) exploiting an unauthenticated file-operation flaw in BeyondTrust Remote Support from late August 2026, then deploying a PHP web shell, SUID root persistence, vault dumps and a SOCKS5-over-WebSocket tunneler behind HAProxy. Source conflicts on dates, versions, score and victim scale are listed, not resolved; GTIG publishes no network IOCs.
+- Sigma (9): `01`–`09` — SUID shell copy as `dbus-authd` (file and command line); `bt-secrets` vault dumps; deleted `bt-secrets` logs; NOPASSWD in the sudoers template; BARECLAW execution; HAProxy tunnel route; web requests for the published paths; Jump Item roles raised to Administrator.
+- KQL (4): command artefacts in forwarded syslog; proxy and firewall requests for the published paths; control-plane audit events; syslog forwarding gaps.
+- YARA (1 file, 4 rules): SAWFLY, BARECLAW (both adapted from GTIG's published rules), the persistence script, the HAProxy route.
+- Suricata (1 file, 5 sids): staging path, trigger parameter, web shell name, tunnel path upgrade, token query string.
+- PEAK hunts (3): exposure and request markers; appliance persistence and vault-dump artefacts; control-plane abuse and credential rotation order.
+- `iocs.csv` (31 entries) — CVE, 2 SHA-256 values, paths, strings and commands, 9 analyst notes. `kev.md` — 1/1 CVE on CISA KEV (added 2026-10-16, due 2026-10-19).
+- `kill_chain.svg` — template A, canonical palette, `espionage` accent, six cross-lane anchors.
+
+### Pedagogy
+- A remote-support broker is a tier-0 system: restrict its interfaces and log in front of it.
+- Patching does not remove root persistence: preserve, rebuild, then rotate credentials in order.
+- Logs on the box are the actor's logs; forward them and watch for gaps.
 ## 2026.10.15 — Day 117 — AhsayCBS backup console CVE-2026-105133 and CVE-2026-105134: SYSTEM RCE, JSP web shells and a fake Edge miner service
 
 ### Added

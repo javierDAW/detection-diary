@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**117 cases** · **184 actors/clusters** · **393 ATT&CK techniques** · **16 platforms** · **88 sectors** · 2026-04-28 -> 2026-10-15
+**118 cases** · **185 actors/clusters** · **395 ATT&CK techniques** · **16 platforms** · **88 sectors** · 2026-04-28 -> 2026-10-19
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/"><img src="days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/kill_chain.svg" alt="2026-10-19 kill chain" width="240"></a><br><sub><b>2026-10-19</b><br>ARMORY CASTLE (formerly UNC5221)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/"><img src="days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/kill_chain.svg" alt="2026-10-15 kill chain" width="240"></a><br><sub><b>2026-10-15</b><br>Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/"><img src="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/kill_chain.svg" alt="2026-10-05 kill chain" width="240"></a><br><sub><b>2026-10-05</b><br>TA419</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/"><img src="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/kill_chain.svg" alt="2026-10-01 kill chain" width="240"></a><br><sub><b>2026-10-01</b><br>Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/"><img src="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/kill_chain.svg" alt="2026-10-01 kill chain" width="240"></a><br><sub><b>2026-10-01</b><br>Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/"><img src="days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/kill_chain.svg" alt="2026-09-24 kill chain" width="240"></a><br><sub><b>2026-09-24</b><br>MacSync operator (malware-as-a-service, unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/"><img src="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/kill_chain.svg" alt="2026-09-15 kill chain" width="240"></a><br><sub><b>2026-09-15</b><br>Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/"><img src="days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/kill_chain.svg" alt="2026-09-09 kill chain" width="240"></a><br><sub><b>2026-09-09</b><br>F5 activity c05d5254 (PoisonedRefresh)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

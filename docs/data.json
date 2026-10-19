@@ -1,5 +1,62 @@
 [
  {
+  "date": "2026-10-19",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW",
+  "title": "ARMORY CASTLE exploits BeyondTrust Remote Support zero-day CVE-2026-102764: SAWFLY web shell, SUID root, vault dumps and the BARECLAW tunnel",
+  "clusters": [
+   "ARMORY CASTLE (formerly UNC5221)"
+  ],
+  "country": "China-nexus (suspected, per GTIG)",
+  "platforms": [
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "technology",
+   "government",
+   "legal-and-professional-services"
+  ],
+  "techniques": [
+   "T1190",
+   "T1505.003",
+   "T1132.002",
+   "T1573.001",
+   "T1027",
+   "T1548.001",
+   "T1548.003",
+   "T1555",
+   "T1070.002",
+   "T1070.004",
+   "T1037",
+   "T1098",
+   "T1078",
+   "T1219",
+   "T1005",
+   "T1090",
+   "T1572"
+  ],
+  "tech_count": 17,
+  "tldr": "Google Threat Intelligence Group (GTIG, Mandiant) reported on 2026-10-15 that **ARMORY CASTLE**, formerly tracked as UNC5221 and described as a suspected PRC-nexus espionage actor, exploited **CVE-2026-102764** in BeyondTrust Remote Support (formerly Bomgar) as a zero-day from late August 2026. The flaw lets an unauthenticated remote attacker perform file operations on the appliance; the actor use",
+  "thumb": "thumbs/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW.svg",
+  "case_rel": "../days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "ARMORY CASTLE (formerly UNC5221)",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-102764",
+    "due": "2026-10-19",
+    "ransom": false
+   }
+  ],
+  "q": "armory castle exploits beyondtrust remote support zero-day cve-2026-102764: sawfly web shell, suid root, vault dumps and the bareclaw tunnel armory castle (formerly unc5221) china-nexus (suspected, per gtig) linux network-edge technology government legal-and-professional-services t1190 t1505.003 t1132.002 t1573.001 t1027 t1548.001 t1548.003 t1555 t1070.002 t1070.004 t1037 t1098 t1078 t1219 t1005 t1090 t1572 espionage / apt cve-2026-102764"
+ },
+ {
   "date": "2026-10-15",
   "year": "2026",
   "month": "2026-10",
