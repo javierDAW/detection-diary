@@ -57,3 +57,12 @@ output/
 
 # Local .git safety backups created during repo recovery (never commit)
 .git.bak-*/
+
+# Transfer / recovery leftovers (never commit)
+*.bundle
+*.orig
+*.rej
+*.tmp
+.fuse_hidden*
+.bash_test.txt
+docs/thumbs/.*
