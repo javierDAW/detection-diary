@@ -1,0 +1,21 @@
+// Title: First-seen remote-access tools on executive, partner and assistant endpoints
+// Id: eb22706f-4530-4435-9808-7dbe5f8a102f
+// MITRE: T1219 (Remote Access Software), T1566.004 (Spearphishing Voice)
+// Reference: https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+// Author: Jarmi
+// Date: 2026-10-20
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant
+// FP notes: Replace the device list with your executive, partner and assistant endpoints. Sanctioned help-desk tools must be excluded. The tool list comes from GuidePoint GRIT and the FBI notice it cites; the Zoho Assist file name is not published, so the match is on a name fragment.
+let high_value = dynamic(["<add_high_value_device_names>"]);
+let tools = dynamic(["quickassist.exe", "anydesk.exe", "atera", "splashtop", "syncro", "zohoassist", "zoho_assist", "za_connect"]);
+let baseline = DeviceProcessEvents
+    | where Timestamp between (ago(90d) .. ago(1d))
+    | where tolower(FileName) has_any (tools)
+    | distinct DeviceName, FileName;
+DeviceProcessEvents
+| where Timestamp > ago(1d)
+| where DeviceName in~ (high_value)
+| where tolower(FileName) has_any (tools)
+| join kind=leftanti baseline on DeviceName, FileName
+| project Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessParentFileName
+| sort by Timestamp asc

@@ -1,0 +1,33 @@
+title: WinSCP Remote Transfer Command Line on a Windows Endpoint
+id: 806ce9cc-96a0-469c-87b9-58492476dcc2
+status: experimental
+description: |
+  Detects WinSCP started with a protocol URL, a command or a script. KELA lists WinSCP among the file-movement tools; GuidePoint GRIT did not see WinSCP
+  in the chats. The sources conflict, so use a hit as a lead. Alert only on hosts where WinSCP is not an approved tool, and prefer first-seen aggregation
+  per host in the SIEM.
+references:
+  - https://www.kelacyber.com/blog/silent-ransom-group-chat-leak-analyzed/
+author: Jarmi
+date: 2026/10/20
+tags:
+  - attack.exfiltration
+  - attack.t1048
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_name:
+    - Image|endswith: '\winscp.exe'
+    - OriginalFileName: 'winscp.exe'
+  selection_args:
+    CommandLine|contains:
+      - 'sftp://'
+      - 'scp://'
+      - 'ftp://'
+      - '/command'
+      - '/script='
+  condition: selection_name and selection_args
+falsepositives:
+  - Administrators and developers who use WinSCP for approved transfers
+
+level: low

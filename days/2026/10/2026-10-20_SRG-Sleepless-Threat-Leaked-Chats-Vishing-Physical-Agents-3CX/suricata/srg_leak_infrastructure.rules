@@ -1,0 +1,18 @@
+# Title: Silent Ransom Group leaked-chat infrastructure (GuidePoint GRIT appendix) - DNS, TLS SNI and IP rules
+# Author: Jarmi
+# Date: 2026-10-20
+# Reference: https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+# Variables: $HOME_NET is your internal address space; $EXTERNAL_NET is everything else.
+# Scope: GuidePoint calls every indicator retrospective, so each address and domain may have been reassigned or abandoned. A hit needs the time of the
+# connection and the holder of the address then. The Rocket.Chat servers are actor-internal; the pretext domains served phishing and mail in 2025.
+# The rules cover infrastructure only. The access method (a phone call and a legitimate remote-access tool) has no network signature of its own.
+alert dns $HOME_NET any -> any any (msg:"JARMI SRG leak DNS query for Rocket.Chat server aim6umein3kee.com"; dns.query; content:"aim6umein3kee.com"; nocase; endswith; classtype:trojan-activity; sid:6360001; rev:1; metadata:created_at 2026_10_20, confidence medium;)
+alert dns $HOME_NET any -> any any (msg:"JARMI SRG leak DNS query for Sleepless Rocket.Chat server slplsskdj2836v2jjsx.com"; dns.query; content:"slplsskdj2836v2jjsx.com"; nocase; endswith; classtype:trojan-activity; sid:6360002; rev:1; metadata:created_at 2026_10_20, confidence medium;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI SRG leak TLS SNI aim6umein3kee.com"; tls.sni; content:"aim6umein3kee.com"; nocase; endswith; classtype:trojan-activity; sid:6360003; rev:1; metadata:created_at 2026_10_20, confidence medium;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI SRG leak TLS SNI slplsskdj2836v2jjsx.com"; tls.sni; content:"slplsskdj2836v2jjsx.com"; nocase; endswith; classtype:trojan-activity; sid:6360004; rev:1; metadata:created_at 2026_10_20, confidence medium;)
+alert dns $HOME_NET any -> any any (msg:"JARMI SRG leak DNS query for a 2025 pretext domain (sokolovsky-law, ominetdata, develevenor, funconnect)"; dns.query; pcre:"/(^|\.)(sokolovsky-law|ominetdata|develevenor|funconnect)\.com$/i"; classtype:trojan-activity; sid:6360005; rev:1; metadata:created_at 2026_10_20, confidence medium;)
+alert tcp $HOME_NET any -> [199.217.98.21,216.203.20.157] any (msg:"JARMI SRG leak connection to a rented SSH staging server"; flow:to_server; classtype:trojan-activity; sid:6360006; rev:1; metadata:created_at 2026_10_20, confidence low;)
+alert tcp $HOME_NET any -> 45.32.232.133 2895 (msg:"JARMI SRG leak connection to the Sleepless RDP host on port 2895"; flow:to_server; classtype:trojan-activity; sid:6360007; rev:1; metadata:created_at 2026_10_20, confidence low;)
+alert ip $HOME_NET any -> [87.251.67.222,87.251.67.223,66.179.31.122] any (msg:"JARMI SRG leak connection to a server or RDP host with an unstated role"; classtype:trojan-activity; sid:6360008; rev:1; metadata:created_at 2026_10_20, confidence low;)
+alert dns $HOME_NET any -> any any (msg:"JARMI Quick Assist service lookup (context for IT-impersonation vishing review, not an alert on its own)"; dns.query; content:"remoteassistance.support.services.microsoft.com"; nocase; endswith; classtype:policy-violation; sid:6360009; rev:1; metadata:created_at 2026_10_20, confidence low;)
+alert dns $HOME_NET any -> any any (msg:"JARMI SRG leak DNS query for an unconfirmed Sleepless brand domain"; dns.query; pcre:"/(^|\.)(sleepless\.co|sleeplessthreat\.com|threatactorsneversleep\.com)$/i"; classtype:trojan-activity; sid:6360010; rev:1; metadata:created_at 2026_10_20, confidence low;)

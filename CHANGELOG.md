@@ -1,3 +1,20 @@
+## 2026.10.20 — Day 119 — Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off
+
+### Added
+- `days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/` — The Record (2026-10-08), KELA (2026-10-13) and GuidePoint GRIT (2026-10-15) on a leaked archive of 5,692 internal chat messages attributed to Silent Ransom Group (Luna Moth, Chatty Spider, UNC3753): extortion-only, malware-free, phone call plus a legitimate remote tool, with US-based agents for in-person access. Claims, vendor conflicts and indicators are recorded as unverified and retrospective.
+- Sigma (7): `01`–`07` — Quick Assist launch; AnyDesk or Zoho Assist; rclone transfer verbs; WinSCP remote transfer; DNS for the published domains; connections to the published IPs; Quick Assist service lookup.
+- KQL (5): first-seen remote tools on high-value endpoints; USB mount then execution from the drive; rclone and WinSCP to public addresses; look-alike IT sender domains; published domains and IPs.
+- YARA (1 file, 2 rules): published domain strings in text artefacts; staging hosts in transfer configurations (no sample exists).
+- Suricata (1 file, 10 sids): DNS, TLS SNI and IP rules for the published infrastructure, Quick Assist lookup context.
+- PEAK hunts (3): first-seen remote tools; callback phishing and look-alike domains; USB insertion and unescorted visitors.
+- `iocs.csv` (25 entries) — 9 domains, 6 IPv4, 3 lookalike patterns, 1 context host, 6 analyst notes. `kev.md` — 1/2 CVEs on CISA KEV (secondary findings only).
+- `kill_chain.svg` — template A, canonical palette, `ransomware` accent, five cross-lane anchors.
+
+### Pedagogy
+- A tool is not an indicator; the first run of a tool on a host that never ran it is.
+- Out-of-band verification (ticket or directory callback) defeats the whole workflow.
+- Read leaks as unverified intelligence: three vendors disagree on tools, counts and dates.
+
 ## 2026.10.19 — Day 118 — ARMORY CASTLE exploits BeyondTrust Remote Support zero-day CVE-2026-102764: SAWFLY, SUID root, vault dumps and the BARECLAW tunnel
 
 ### Added

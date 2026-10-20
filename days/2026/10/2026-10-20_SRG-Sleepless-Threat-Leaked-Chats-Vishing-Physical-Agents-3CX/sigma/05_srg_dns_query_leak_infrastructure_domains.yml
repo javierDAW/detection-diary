@@ -1,0 +1,34 @@
+title: DNS Query for Silent Ransom Group Leak Infrastructure Domains
+id: e97873b9-d8c6-4dd9-ad5c-d70a4042998d
+status: experimental
+description: |
+  Detects DNS queries for the Rocket.Chat servers, the pretext domains and the unconfirmed brand domains in GuidePoint GRIT Appendix A. GuidePoint marks the
+  list as retrospective: infrastructure may have been reassigned or abandoned, and the three brand domains are discussed but their registration is not confirmed.
+  The Rocket.Chat servers are actor-internal, so a victim endpoint querying them would be unusual and worth a ticket. Re-validate before blocking.
+references:
+  - https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+author: Jarmi
+date: 2026/10/20
+tags:
+  - attack.command-and-control
+  - attack.resource-development
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection:
+    QueryName|endswith:
+      - 'aim6umein3kee.com'
+      - 'slplsskdj2836v2jjsx.com'
+      - 'sokolovsky-law.com'
+      - 'ominetdata.com'
+      - 'develevenor.com'
+      - 'funconnect.com'
+      - 'sleeplessthreat.com'
+      - 'threatactorsneversleep.com'
+  condition: selection
+falsepositives:
+  - Domains that were reassigned to a new owner after the leak
+  - Researchers resolving the published indicators
+
+level: medium

@@ -1,0 +1,32 @@
+title: AnyDesk or Zoho Assist Executed on an Endpoint (IT-Impersonation Vishing Tool)
+id: 3b1bc6f8-03ed-4b91-8be8-5f221ac7df35
+status: experimental
+description: |
+  Detects AnyDesk and Zoho Assist execution. GuidePoint GRIT names AnyDesk and Zoho among the tools in the leaked Silent Ransom Group chats, and the
+  FBI notice cited by GuidePoint lists AnyDesk, Zoho Assist, Syncro, Atera and Splashtop. The Zoho Assist install path is not published in the source,
+  so that selector matches a path containing both strings and needs tuning. Use first-seen aggregation per host in the SIEM rather than every execution,
+  and exclude the sanctioned remote-support tool of your own help desk.
+references:
+  - https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+author: Jarmi
+date: 2026/10/20
+tags:
+  - attack.initial-access
+  - attack.command-and-control
+  - attack.t1219
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_anydesk:
+    Image|endswith: '\anydesk.exe'
+  selection_zoho:
+    Image|contains|all:
+      - 'zoho'
+      - 'assist'
+  condition: selection_anydesk or selection_zoho
+falsepositives:
+  - Sanctioned remote support by an IT team that uses these products
+  - Vendors who administer a system remotely under contract
+
+level: medium

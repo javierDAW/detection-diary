@@ -1,0 +1,24 @@
+title: DNS Query for the Microsoft Quick Assist Service
+id: 8777733e-02be-4186-84fe-aa4b42628d18
+status: experimental
+description: |
+  Detects a DNS query for the Quick Assist service host. It is a companion to rule 01 for environments where process creation is not logged on every endpoint,
+  and it only shows that a Quick Assist session was started or joined. Treat it as informational context for a vishing report, not as an alert on its own.
+references:
+  - https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+author: Jarmi
+date: 2026/10/20
+tags:
+  - attack.command-and-control
+  - attack.t1219
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection:
+    QueryName|endswith: 'remoteassistance.support.services.microsoft.com'
+  condition: selection
+falsepositives:
+  - Any sanctioned Quick Assist use, which is common in help desks
+
+level: informational

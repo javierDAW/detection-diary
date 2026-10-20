@@ -1,0 +1,32 @@
+title: Network Connection to Silent Ransom Group Leak Infrastructure IP Addresses
+id: 1eb2c2ef-e3d2-43bc-adc2-523851994883
+status: experimental
+description: |
+  Detects outbound connections to the IP addresses in GuidePoint GRIT Appendix A: an RDP host on port 2895, two SSH staging servers, two servers delivered
+  in September 2025 with an unstated role and an RDP host for a social-media account. GuidePoint calls the list retrospective, so the hosts may have changed
+  hands. Use the hit with the time of the connection and the process, and check who held the address then.
+references:
+  - https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+author: Jarmi
+date: 2026/10/20
+tags:
+  - attack.command-and-control
+  - attack.exfiltration
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    Initiated: 'true'
+    DestinationIp:
+      - '45.32.232.133'
+      - '199.217.98.21'
+      - '216.203.20.157'
+      - '87.251.67.222'
+      - '87.251.67.223'
+      - '66.179.31.122'
+  condition: selection
+falsepositives:
+  - Address reassigned to an unrelated tenant at a hosting provider
+
+level: low

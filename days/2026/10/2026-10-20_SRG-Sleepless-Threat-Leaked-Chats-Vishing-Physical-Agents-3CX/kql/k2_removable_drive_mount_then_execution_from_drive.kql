@@ -1,0 +1,23 @@
+// Title: USB drive mounted, then a process runs from that drive
+// Id: ef7885cc-2cc1-4b3b-ab5e-16b9599b9e87
+// MITRE: T1200 (Hardware Additions), T1091 (Replication Through Removable Media), T1052.001 (Exfiltration over USB)
+// Reference: https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+// Author: Jarmi
+// Date: 2026-10-20
+// Tested on: Microsoft Defender XDR advanced hunting; the DriveLetter field name in AdditionalFields is assumed from the UsbDriveMounted event and must be checked in your tenant
+// FP notes: Software installers on USB sticks are common in some teams. The pattern that matters is a mount during office hours on an executive or partner endpoint, followed by an unfamiliar executable or a remote-access tool within a short window. GuidePoint says the chats discuss a USB drive used to deliver the access tool, and The Record reports a law firm letter describing files copied to a flash drive.
+let window = 30m;
+let mounts = DeviceEvents
+    | where Timestamp > ago(14d)
+    | where ActionType == "UsbDriveMounted"
+    | extend DriveLetter = tostring(parse_json(AdditionalFields).DriveLetter)
+    | where isnotempty(DriveLetter)
+    | project MountTime = Timestamp, DeviceId, DeviceName, DriveLetter;
+DeviceProcessEvents
+| where Timestamp > ago(14d)
+| where FolderPath matches regex @"^[D-Zd-z]:\\"
+| join kind=inner mounts on DeviceId
+| where Timestamp between (MountTime .. MountTime + window)
+| where toupper(substring(FolderPath, 0, 2)) == toupper(DriveLetter)
+| project MountTime, Timestamp, DeviceName, AccountName, FileName, FolderPath, ProcessCommandLine, SHA256
+| sort by Timestamp asc

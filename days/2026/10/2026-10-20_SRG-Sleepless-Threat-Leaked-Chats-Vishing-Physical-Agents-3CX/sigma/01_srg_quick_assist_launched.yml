@@ -1,0 +1,29 @@
+title: Quick Assist Launched on an Endpoint (IT-Impersonation Vishing Tool)
+id: 18fc6d4a-f8d6-4dbb-bd93-f89d0f688491
+status: experimental
+description: |
+  Detects the launch of Microsoft Quick Assist. GuidePoint GRIT lists Quick Assist among the remote-access tools named in the leaked Silent Ransom Group
+  chats, and the FBI notice cited by KELA names it too. The rule cannot tell a help-desk session from a vishing session; the value is the first-seen
+  logic. Aggregate in the SIEM: alert when a host that has never run Quick Assist in the last 90 days runs it, and raise priority for executive,
+  partner and assistant endpoints. A sanctioned help desk that uses Quick Assist should be excluded by source ticket or by the technician workstation list.
+references:
+  - https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+author: Jarmi
+date: 2026/10/20
+tags:
+  - attack.initial-access
+  - attack.command-and-control
+  - attack.t1219
+  - attack.t1566.004
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection:
+    Image|endswith: '\quickassist.exe'
+  condition: selection
+falsepositives:
+  - Sanctioned help-desk sessions that use Quick Assist
+  - Family members or colleagues helping a user, on personal devices
+
+level: medium

@@ -1,0 +1,15 @@
+// Title: Connections to the infrastructure published from the Silent Ransom Group leak
+// Id: 75434e69-8ad0-4ff0-be6f-e5b0303f9b30
+// MITRE: T1583.001 (Domains), T1071 (Application Layer Protocol), T1219 (Remote Access Software)
+// Reference: https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+// Author: Jarmi
+// Date: 2026-10-20
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant
+// FP notes: GuidePoint GRIT marks the list as retrospective; the hosts may have been reassigned. A hit needs the time of connection and the address holder at that time before it is treated as contact with the group.
+let domains = dynamic(["aim6umein3kee.com", "slplsskdj2836v2jjsx.com", "sokolovsky-law.com", "ominetdata.com", "develevenor.com", "funconnect.com", "sleeplessthreat.com", "threatactorsneversleep.com"]);
+let ips = dynamic(["45.32.232.133", "199.217.98.21", "216.203.20.157", "87.251.67.222", "87.251.67.223", "66.179.31.122"]);
+DeviceNetworkEvents
+| where Timestamp > ago(180d)
+| where RemoteIP in (ips) or RemoteUrl has_any (domains)
+| project Timestamp, DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName, RemoteIP, RemotePort, RemoteUrl
+| sort by Timestamp asc

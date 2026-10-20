@@ -1,0 +1,16 @@
+// Title: Rclone or WinSCP connections to public addresses
+// Id: 9efb219e-5bcd-4e55-855e-da4a632d5b7b
+// MITRE: T1567.002 (Exfiltration to Cloud Storage), T1048 (Exfiltration Over Alternative Protocol)
+// Reference: https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+// Author: Jarmi
+// Date: 2026-10-20
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant
+// FP notes: Backup and migration jobs use these tools. KELA names Rclone and WinSCP, while GuidePoint GRIT saw Google Drive accounts and rented SSH servers instead, so this query is a data-movement lead rather than a group signature. Add your approved servers to the exclusion list.
+let approved_hosts = dynamic(["<add_approved_transfer_hosts>"]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where InitiatingProcessFileName in~ ("rclone.exe", "winscp.exe", "winscp.com")
+| where RemoteIPType == "Public"
+| where RemoteUrl !in~ (approved_hosts) and RemoteIP !in (approved_hosts)
+| summarize Connections = count(), FirstSeen = min(Timestamp), LastSeen = max(Timestamp) by DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName, RemoteIP, RemotePort, RemoteUrl
+| sort by Connections desc

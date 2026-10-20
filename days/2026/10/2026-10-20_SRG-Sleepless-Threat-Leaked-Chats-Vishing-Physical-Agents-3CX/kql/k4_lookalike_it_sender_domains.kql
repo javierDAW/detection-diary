@@ -1,0 +1,16 @@
+// Title: Inbound mail from domains that combine your organisation name with IT, helpdesk or support words
+// Id: 425f3d00-762d-40ee-b0e6-d468ae3c33a9
+// MITRE: T1583.001 (Domains), T1566.004 (Spearphishing Voice), T1585.003 (Cloud Accounts)
+// Reference: https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+// Author: Jarmi
+// Date: 2026-10-20
+// Tested on: Microsoft Defender XDR advanced hunting (EmailEvents); not run against a live tenant
+// FP notes: Set org_terms to your firm names and common abbreviations. GuidePoint GRIT describes lookalike domains ending in -it.com, it-.com or -law.com (specific firm names were withheld), so the regex covers the combination of your name and IT-themed words rather than any published domain.
+let org_terms = dynamic(["<add_org_name_terms>"]);
+EmailEvents
+| where Timestamp > ago(30d)
+| where SenderFromDomain matches regex @"(?i)(it|helpdesk|help-desk|support|desk|tech)[-.]?[a-z0-9-]*\.com$|[a-z0-9-]*-(it|law)\.com$"
+| where SenderFromDomain has_any (org_terms)
+| where SenderFromDomain !endswith ".microsoft.com"
+| summarize Messages = count(), FirstSeen = min(Timestamp), Recipients = dcount(RecipientEmailAddress) by SenderFromDomain, SenderFromAddress
+| sort by Recipients desc

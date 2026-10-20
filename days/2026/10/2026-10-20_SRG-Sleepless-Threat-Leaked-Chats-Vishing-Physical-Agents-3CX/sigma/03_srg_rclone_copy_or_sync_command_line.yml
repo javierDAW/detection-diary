@@ -1,0 +1,33 @@
+title: Rclone Copy or Sync Command Line on a Windows Endpoint
+id: f3ef58bb-062b-4b77-b745-33b3c46c798a
+status: experimental
+description: |
+  Detects rclone run with a transfer verb. KELA reports that WinSCP and Rclone are the file-movement tools in its summary of the leaked Silent Ransom Group
+  material, but GuidePoint GRIT found no Rclone or WinSCP use in the chats and names Google Drive accounts and rented SSH servers for staging. The sources
+  conflict, so treat a hit as a data-movement lead, not as proof of this group. A renamed binary is caught by the original file name.
+references:
+  - https://www.kelacyber.com/blog/silent-ransom-group-chat-leak-analyzed/
+  - https://www.guidepointsecurity.com/blog/silent-ransom-group-leaked-chats/
+author: Jarmi
+date: 2026/10/20
+tags:
+  - attack.exfiltration
+  - attack.t1567.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_name:
+    - Image|endswith: '\rclone.exe'
+    - OriginalFileName: 'rclone.exe'
+  selection_verb:
+    CommandLine|contains:
+      - ' copy '
+      - ' sync '
+      - ' move '
+      - ' copyto '
+  condition: selection_name and selection_verb
+falsepositives:
+  - Administrators who use rclone for backups or migrations
+
+level: medium
