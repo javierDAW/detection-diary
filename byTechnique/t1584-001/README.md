@@ -4,10 +4,11 @@
 
 # Techniques: T1584.001
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-21 | ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domain-validated certificates for Google names | Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06) | [`2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/`](../../days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/) |
 | 2026-06-03 | ip6.arpa Reverse-DNS Phishing — wildcard A records on IPv6 reverse zones evade reputation and blocklists | Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked) | [`2026-06-03_ip6arpa-Reverse-DNS-Phishing/`](../../days/2026/06/2026-06-03_ip6arpa-Reverse-DNS-Phishing/) |
 | 2026-05-26 | VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConnect IAB Operation | VENOMOUS#HELPER (Securonix) · STAC6405 (Sophos) | [`2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/`](../../days/2026/05/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/) |

@@ -4,11 +4,12 @@
 
 # Platforms: windows
 
-69 day(s) covering this platform.
+70 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-20 | Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat | [`2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/`](../../days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/) |
 | 2026-10-15 | AhsayCBS backup console zero-days CVE-2026-105133 and CVE-2026-105134: SYSTEM code execution, JSP web shells and a fake Edge miner service | Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports) | [`2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/`](../../days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/) |
 | 2026-09-15 | CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Telegram bots against dissidents and journalists | Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI) | [`2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/`](../../days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/) |
 | 2026-09-02 | Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P2P botnet | SALTY SPIDER | [`2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/`](../../days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/) |

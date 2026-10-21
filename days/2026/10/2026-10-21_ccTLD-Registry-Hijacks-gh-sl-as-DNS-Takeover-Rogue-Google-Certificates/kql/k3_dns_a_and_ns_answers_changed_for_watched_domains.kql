@@ -1,0 +1,19 @@
+// Title: A and NS answers for watched domains that differ from the previous 30 days (Sentinel DNS analytics)
+// Id: 4836b7be-2605-42c3-bff9-cbb18d3d5b3e
+// MITRE: T1584.002 (Compromise Infrastructure: DNS Server), T1584.001 (Compromise Infrastructure: Domains)
+// Reference: https://dev.to/ntctech/a-cctld-hijack-turns-authoritative-dns-into-certificate-evidence-561p
+// Author: Jarmi
+// Date: 2026-10-21
+// Tested on: Microsoft Sentinel DnsEvents table (Windows DNS Server or DNS analytics connector); not run against a live workspace
+// FP notes: Planned migrations, failover and geo-DNS change answers legitimately. Recursive resolver logs show what clients were told, not what the registry delegated; confirm delegation externally with dig +trace and the registry's own whois or RDAP record before acting.
+let watched = dynamic(["<add_known_brand_domain_1>", "<add_known_brand_domain_2>", "<add_known_regional_cctld_domain>"]);
+let baseline = DnsEvents
+    | where TimeGenerated between (ago(37d) .. ago(7d))
+    | where Name has_any (watched) and QueryType in ("A", "AAAA", "NS")
+    | summarize by Name, QueryType, IPAddresses;
+DnsEvents
+| where TimeGenerated > ago(7d)
+| where Name has_any (watched) and QueryType in ("A", "AAAA", "NS")
+| join kind=leftanti baseline on Name, QueryType, IPAddresses
+| summarize FirstSeen = min(TimeGenerated), Clients = dcount(ClientIP) by Name, QueryType, IPAddresses
+| sort by FirstSeen asc

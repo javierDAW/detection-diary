@@ -1,0 +1,46 @@
+title: NS or CAA Record Added or Changed on a Windows DNS Server Through dnscmd or PowerShell
+id: 85ff670f-5d23-4a89-b9ce-12736b139684
+status: experimental
+description: |
+  Detects command lines that add, change or delete NS or CAA records on a Windows DNS Server (dnscmd /recordadd or /recorddelete with NS or CAA, and the
+  Add-DnsServerResourceRecord, Set-DnsServerResourceRecord and Remove-DnsServerResourceRecord cmdlets with NS or CAA). The 2026 ccTLD hijacks changed
+  authoritative records at the registry, which no endpoint rule can see; this rule covers the same technique inside your own zones, where an attacker or a
+  careless change can redirect delegation or rewrite the CAA policy that limits certificate issuance. Expect admin activity; correlate with a change ticket.
+references:
+  - https://attack.mitre.org/techniques/T1584/002/
+  - https://blog.google/security/chromes-response-to-recent-cctld-registry-hijacks/
+author: Jarmi
+date: 2026/10/21
+tags:
+  - attack.resource-development
+  - attack.t1584.002
+  - attack.defense-evasion
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_dnscmd:
+    Image|endswith: '\dnscmd.exe'
+    CommandLine|contains:
+      - '/recordadd'
+      - '/recorddelete'
+  selection_dnscmd_type:
+    CommandLine|contains:
+      - ' NS '
+      - ' CAA '
+  selection_ps:
+    CommandLine|contains:
+      - 'Add-DnsServerResourceRecord'
+      - 'Set-DnsServerResourceRecord'
+      - 'Remove-DnsServerResourceRecord'
+  selection_ps_type:
+    CommandLine|contains:
+      - ' -NS'
+      - ' -Caa'
+      - ' -CAA'
+  condition: (selection_dnscmd and selection_dnscmd_type) or (selection_ps and selection_ps_type)
+falsepositives:
+  - Planned delegation or CAA changes by DNS administrators with a change ticket
+  - Automation that maintains child zone delegations
+
+level: medium

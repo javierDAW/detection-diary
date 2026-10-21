@@ -4,7 +4,7 @@
 
 # INDEX
 
-**118 cases** · **185 actors/clusters** · **395 ATT&CK techniques** · **16 platforms** · **88 sectors** · 2026-04-28 -> 2026-10-19
+**120 cases** · **187 actors/clusters** · **402 ATT&CK techniques** · **16 platforms** · **89 sectors** · 2026-04-28 -> 2026-10-21
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/"><img src="days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/kill_chain.svg" alt="2026-10-21 kill chain" width="240"></a><br><sub><b>2026-10-21</b><br>Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/"><img src="days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/kill_chain.svg" alt="2026-10-20 kill chain" width="240"></a><br><sub><b>2026-10-20</b><br>Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/"><img src="days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/kill_chain.svg" alt="2026-10-19 kill chain" width="240"></a><br><sub><b>2026-10-19</b><br>ARMORY CASTLE (formerly UNC5221)</sub></td>
+</tr>
+<tr>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/"><img src="days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/kill_chain.svg" alt="2026-10-15 kill chain" width="240"></a><br><sub><b>2026-10-15</b><br>Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/"><img src="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/kill_chain.svg" alt="2026-10-05 kill chain" width="240"></a><br><sub><b>2026-10-05</b><br>TA419</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/"><img src="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/kill_chain.svg" alt="2026-10-01 kill chain" width="240"></a><br><sub><b>2026-10-01</b><br>Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)</sub></td>
 </tr>
 <tr>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/"><img src="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/kill_chain.svg" alt="2026-10-01 kill chain" width="240"></a><br><sub><b>2026-10-01</b><br>Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/"><img src="days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/kill_chain.svg" alt="2026-09-24 kill chain" width="240"></a><br><sub><b>2026-09-24</b><br>MacSync operator (malware-as-a-service, unattributed)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/"><img src="days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/kill_chain.svg" alt="2026-09-15 kill chain" width="240"></a><br><sub><b>2026-09-15</b><br>Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)</sub></td>
+<td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/"><img src="days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/kill_chain.svg" alt="2026-09-09 kill chain" width="240"></a><br><sub><b>2026-09-09</b><br>F5 activity c05d5254 (PoisonedRefresh)</sub></td>
 </tr>
 <tr>
-<td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/"><img src="days/2026/09/2026-09-09_PoisonedRefresh-F5-BIGIP-APM-Rootkit/kill_chain.svg" alt="2026-09-09 kill chain" width="240"></a><br><sub><b>2026-09-09</b><br>F5 activity c05d5254 (PoisonedRefresh)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/"><img src="days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/kill_chain.svg" alt="2026-09-02 kill chain" width="240"></a><br><sub><b>2026-09-02</b><br>SALTY SPIDER</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/"><img src="days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/kill_chain.svg" alt="2026-08-27 kill chain" width="240"></a><br><sub><b>2026-08-27</b><br>QTFY</sub></td>
-</tr>
-<tr>
 <td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/"><img src="days/2026/08/2026-08-17_PATCHCORD-APT36-AfghanTelecom-SheetCord-HackerAI/kill_chain.svg" alt="2026-08-17 kill chain" width="240"></a><br><sub><b>2026-08-17</b><br>APT36</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/"><img src="days/2026/08/2026-08-16_MicroLogix-Lockout-US-Water-PLC-Reconfiguration/kill_chain.svg" alt="2026-08-16 kill chain" width="240"></a><br><sub><b>2026-08-16</b><br>Unattributed WWS PLC Reconfiguration Cluster</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/"><img src="days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/kill_chain.svg" alt="2026-08-14 kill chain" width="240"></a><br><sub><b>2026-08-14</b><br>Lazarus Group</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,12 @@
 
 ## All cases by month
 
-<details><summary><b>2026-10</b> — 4 case(s)</summary>
+<details><summary><b>2026-10</b> — 6 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-10-21 | [ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domain-validated certificates for Google names](days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/) | Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06) | cloud-multi |
+| 2026-10-20 | [Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off](days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/) | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat | windows |
 | 2026-10-19 | [ARMORY CASTLE exploits BeyondTrust Remote Support zero-day CVE-2026-102764: SAWFLY web shell, SUID root, vault dumps and the BARECLAW tunnel](days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/) | ARMORY CASTLE (formerly UNC5221) | linux, network-edge |
 | 2026-10-15 | [AhsayCBS backup console zero-days CVE-2026-105133 and CVE-2026-105134: SYSTEM code execution, JSP web shells and a fake Edge miner service](days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/) | Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports) | windows |
 | 2026-10-05 | [TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB adversary-in-the-middle page that steals Microsoft sessions](days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/) | TA419 | cloud-multi |

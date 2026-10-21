@@ -1,0 +1,55 @@
+{
+  "name": "2026-10-21 — 2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domain-validated certificates for Google names — clusters: Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1584.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domai"
+    },
+    {
+      "techniqueID": "T1584.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domai"
+    },
+    {
+      "techniqueID": "T1588.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domai"
+    },
+    {
+      "techniqueID": "T1608.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domai"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

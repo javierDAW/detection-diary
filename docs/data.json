@@ -1,5 +1,102 @@
 [
  {
+  "date": "2026-10-21",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates",
+  "title": "ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domain-validated certificates for Google names",
+  "clusters": [
+   "Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06)"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "internet-infrastructure"
+  ],
+  "techniques": [
+   "T1584.001",
+   "T1584.002",
+   "T1588.004",
+   "T1608.003"
+  ],
+  "tech_count": 4,
+  "tldr": "Google's Chrome Secure Web and Networking Team disclosed on 2026-10-06 that attackers compromised third-party registry operators for the country-code TLDs .gh (Ghana), .sl (Sierra Leone) and .as (American Samoa), changed authoritative DNS records and obtained unauthorized HTTPS certificates for several Google domains and for other organisations. Press analysis of Certificate Transparency (CT) data",
+  "thumb": "thumbs/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates.svg",
+  "case_rel": "../days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "cctld registry hijacks on .gh, .sl and .as: authoritative dns takeover and domain-validated certificates for google names unattributed cctld registry hijack operator (google disclosure 2026-10-06) unknown cloud-multi technology internet-infrastructure t1584.001 t1584.002 t1588.004 t1608.003 other "
+ },
+ {
+  "date": "2026-10-20",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX",
+  "title": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off",
+  "clusters": [
+   "Silent Ransom Group (SRG)",
+   "Luna Moth",
+   "Chatty Spider",
+   "UNC3753",
+   "Sleepless Threat"
+  ],
+  "country": "Russia-linked (per The Record); operators not identified",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "legal",
+   "finance",
+   "insurance",
+   "healthcare",
+   "defense"
+  ],
+  "techniques": [
+   "T1589.002",
+   "T1591.004",
+   "T1593.001",
+   "T1583.001",
+   "T1585.003",
+   "T1650",
+   "T1566.004",
+   "T1684.001",
+   "T1219",
+   "T1200",
+   "T1091",
+   "T1199",
+   "T1005",
+   "T1052.001",
+   "T1567.002",
+   "T1657"
+  ],
+  "tech_count": 16,
+  "tldr": "An archive of 5,692 internal chat messages attributed to Silent Ransom Group (SRG, also Luna Moth, Chatty Spider, UNC3753) surfaced on a .onion site in early October 2026, and three outlets analysed it within nine days: The Record (2026-10-08), KELA (2026-10-13) and GuidePoint GRIT (2026-10-15). The chats cover 2025-08-27 to 2026-09-29 and describe an extortion-only crew that uses a phone call and",
+  "thumb": "thumbs/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX.svg",
+  "case_rel": "../days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Silent Ransom Group (SRG)",
+  "cve_count": 2,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-104935",
+    "due": "2026-10-16",
+    "ransom": false
+   }
+  ],
+  "q": "silent ransom group leaked chats: 3cx callback funnel, it-impersonation vishing, in-person agents and the sleepless threat spin-off silent ransom group (srg) luna moth chatty spider unc3753 sleepless threat russia-linked (per the record); operators not identified windows legal finance insurance healthcare defense t1589.002 t1591.004 t1593.001 t1583.001 t1585.003 t1650 t1566.004 t1684.001 t1219 t1200 t1091 t1199 t1005 t1052.001 t1567.002 t1657 ransomware / e-crime cve-2026-104935"
+ },
+ {
   "date": "2026-10-19",
   "year": "2026",
   "month": "2026-10",

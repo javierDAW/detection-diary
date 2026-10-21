@@ -4,11 +4,12 @@
 
 # Techniques: T1657
 
-14 day(s) covering this technique.
+15 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-20 | Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat | [`2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/`](../../days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/) |
 | 2026-08-11 | StormEncryptor: Storm-1175 (former Medusa affiliate) pivots to a custom C++ locker via the N-able N-central RMM auth bypass | Storm-1175 | [`2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/`](../../days/2026/08/2026-08-11_StormEncryptor-Storm1175-Ncentral-RMM-Ransomware/) |
 | 2026-08-06 | Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a Bun Loader, IDE Autostart Hooks and a Token-Revocation Dead-Man's Switch | Shai-Hulud (keyv/cacheable wave, unattributed operator) | [`2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/`](../../days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/) |
 | 2026-08-05 | Indirect prompt injection against AI web agents: crypto-payment scam and DeBank typosquat (Zscaler ThreatLabz) | Unattributed IPI operator | [`2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/`](../../days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/) |

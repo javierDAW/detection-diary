@@ -1,0 +1,239 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Silent Ransom Group leaked-chat kill chain - callback and targeted vishing, remote tool, in-person agents, exfiltration and extortion</title>
+<desc id="d">Two-lane kill chain. Left lane, the victim organisation: 1 target research on named people at large US law firms, 2 pretext infrastructure with look-alike domains and a 3CX PBX, 3 contact by callback email or a call to a named executive, 4 a remote session with a legitimate tool, 5 a physical fallback with an agent on site and a USB drive, 6 collection and exfiltration to Google Drive and rented SSH servers, 7 extortion through CHAT, OFFER, CONTRACT and GOLD. Stages 3 to 6 are critical. Right lane, the operator side: roles, retrospective infrastructure, agent plans, claimed money versus on-chain figures, the Sleepless Threat spin-off and the conflicts between KELA, GuidePoint and The Record. Detection anchors are the first-seen remote tool, the USB mount, look-alike sender domains and the published infrastructure.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-ransomware" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Silent Ransom Group leaked chats: vishing, remote tool, agents</text>
+<text class="meta" x="20" y="58">Vendors: KELA, GuidePoint GRIT, The Record - Date: 2026-10-20 - Cluster: Silent Ransom Group (Luna Moth, UNC3753) - Day 119</text>
+
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="32" y="105">VICTIM: LAW FIRM AND OTHER TARGETS (WINDOWS ENDPOINTS)</text>
+<text class="laneLabelR" x="462" y="105">OPERATOR SIDE (LEAKED CHATS, UNVERIFIED)</text>
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="76" y="144">Target research: named people at large US law firms</text>
+<text class="sub" x="40" y="168">Roster of 20 firms, 2026-07-30 to 2026-09-04</text>
+<text class="sub" x="40" y="184">Partners, COOs, CIOs, GC; 13 cyber or privacy partners</text>
+<text class="sub" x="40" y="200">Endpoint counts and security products noted per firm</text>
+<text class="mono" x="40" y="226">T1589.002  T1591.004  T1593.001</text>
+<text class="mono" x="40" y="244">GuidePoint GRIT</text>
+
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="76" y="294">Pretext infrastructure: look-alike IT and law domains</text>
+<text class="sub" x="40" y="318">-it.com, it-.com, -law.com patterns; mailboxes issued</text>
+<text class="sub" x="40" y="334">Google Voice numbers and Gmail accounts per firm</text>
+<text class="sub" x="40" y="350">3CX PBX on a rented VPS in the Netherlands</text>
+<text class="mono" x="40" y="376">T1583.001  T1585.003  T1650</text>
+<text class="mono" x="40" y="394">sokolovsky-law[.]com  ominetdata[.]com</text>
+
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="76" y="444">Contact: callback email or call to a named executive</text>
+<text class="sub" x="40" y="468">MAIN: bulk email, PDF with a support number (degraded by June)</text>
+<text class="sub" x="40" y="484">TRG/SPR: scheduled call, then hand-off to a specialist</text>
+<text class="sub" x="40" y="500">No malware, no exploit, no link needed</text>
+<text class="mono" x="40" y="526">T1566.004</text>
+<text class="mono" x="40" y="544">Sigma n/a  hunts H2  KQL k4</text>
+
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="76" y="594">Remote session with a legitimate tool</text>
+<text class="sub" x="40" y="618">AnyDesk, Zoho, Quick Assist (GuidePoint); Zoom, Teams (KELA)</text>
+<text class="sub" x="40" y="634">FBI list adds Syncro, Atera, Splashtop</text>
+<text class="sub" x="40" y="650">Operator takes control of the executive endpoint</text>
+<text class="mono" x="40" y="676">T1219  T1684.001</text>
+<text class="mono" x="40" y="694">Sigma 01-02, 07  KQL k1</text>
+
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="76" y="744">Physical fallback: agent on site, USB, pretext</text>
+<text class="sub" x="40" y="768">Agent poses as IT and uses a remote tool on the machine</text>
+<text class="sub" x="40" y="784">USB drive discussed for delivering the tool</text>
+<text class="sub" x="40" y="800">NY firm letter: files copied to a flash drive</text>
+<text class="mono" x="40" y="826">T1200  T1091  T1199 (planned)  T1052.001</text>
+<text class="mono" x="40" y="844">KQL k2  hunt H3  Windows 6416</text>
+
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="76" y="894">Collection and exfiltration</text>
+<text class="sub" x="40" y="918">Google Drive accounts (100 GB), SSH servers (600 GB each)</text>
+<text class="sub" x="40" y="934">KELA lists Rclone and WinSCP; GuidePoint saw neither</text>
+<text class="sub" x="40" y="950">Files read from shares and the endpoint, or copied to USB</text>
+<text class="mono" x="40" y="976">T1005  T1567.002  T1052.001</text>
+<text class="mono" x="40" y="994">Sigma 03-04, 06  KQL k3  Suricata 6360006</text>
+
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="76" y="1044">Extortion: CHAT, OFFER, CONTRACT, GOLD</text>
+<text class="sub" x="40" y="1068">Calls and voicemails to executives and assistants</text>
+<text class="sub" x="40" y="1084">Median 5.5x from first offer to payment, 10 days</text>
+<text class="sub" x="40" y="1100">Counsel and FBI contact, preserve evidence, no deletion trust</text>
+<text class="mono" x="40" y="1126">T1657</text>
+<text class="mono" x="40" y="1144">Claimed USD 206.95M, 27 of 50 orgs (unverified)</text>
+
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">A</text>
+<text class="label" x="506" y="149">Operators and roles (GuidePoint personas)</text>
+<text class="sub" x="470" y="173">Henry: lead operator and recruiter, about 3,382 messages</text>
+<text class="sub" x="470" y="189">Adrian: principal and ledger; James: infrastructure lead</text>
+<text class="sub" x="470" y="205">Spectrum: English-only field lead, silent after 2026-05-07</text>
+<text class="sub" x="470" y="221">Agents: about 10 to 15 US helpers; 1 in 10 recruits usable</text>
+<text class="mono" x="470" y="251">Telegram job ads, about USD 200 per advert</text>
+<text class="mono" x="470" y="269">forged ID about USD 1,300</text>
+
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">B</text>
+<text class="label" x="506" y="319">Operator infrastructure (retrospective)</text>
+<text class="sub" x="470" y="343">Rocket.Chat: aim6umein3kee[.]com; Sleepless from 2026-09-02</text>
+<text class="sub" x="470" y="359">RDP 45.32.232.133:2895; SSH 199.217.98.21, 216.203.20.157</text>
+<text class="sub" x="470" y="375">87.251.67.222-223 role not stated; 66.179.31.122 RDP</text>
+<text class="sub" x="470" y="391">Bitcoin: 62 (KELA) or 65 (GuidePoint) addresses, unpublished</text>
+<text class="mono" x="470" y="421">Sigma 05-06; YARA 2 rules</text>
+<text class="mono" x="470" y="439">Suricata 6360001-6360010</text>
+
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">D</text>
+<text class="label" x="506" y="659">Agents and coercion plans (unverified)</text>
+<text class="sub" x="470" y="683">Pretexts: delivery, cloned access card, cleaning contractor</text>
+<text class="sub" x="470" y="699">Telegram ads disguised as courier, promoter, security jobs</text>
+<text class="sub" x="470" y="715">Coercion and military-contact ideas: plans, no evidence</text>
+<text class="sub" x="470" y="731">The Record could not verify the most extreme schemes</text>
+<text class="mono" x="470" y="761">Hunt H3  physical controls</text>
+<text class="mono" x="470" y="779">no Enterprise ATT&amp;CK technique for most of it</text>
+
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">F</text>
+<text class="label" x="506" y="999">The money: claims versus chain</text>
+<text class="sub" x="470" y="1023">Ledger claim USD 206.95M across 27 organisations</text>
+<text class="sub" x="470" y="1039">Apr 13.55M, May 78.9M, Jun 25.5M, Jul none, Aug 21M, Sep 68M</text>
+<text class="sub" x="470" y="1055">Crystal Intelligence: wallets in chats got about 37 BTC</text>
+<text class="sub" x="470" y="1071">Gap between claim and chain is unexplained; all unverified</text>
+<text class="mono" x="470" y="1101">50 organisations, 2026-02-06 to 2026-09-24</text>
+<text class="mono" x="470" y="1119">10 of USD 10M or more = USD 166.0M</text>
+
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">C</text>
+<text class="label" x="506" y="489">Sleepless Threat spin-off and aliases</text>
+<text class="sub" x="470" y="513">Planned relaunch under a new brand from April 2026</text>
+<text class="sub" x="470" y="529">Sleepless Rocket.Chat server from 2026-09-02</text>
+<text class="sub" x="470" y="545">Brand domains discussed; registration not confirmed</text>
+<text class="sub" x="470" y="561">Aliases: SRG, Luna Moth, Chatty Spider, UNC3753</text>
+<text class="mono" x="470" y="591">sleepless[.]co  sleeplessthreat[.]com</text>
+<text class="mono" x="470" y="609">threatactorsneversleep[.]com</text>
+
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">E</text>
+<text class="label" x="506" y="829">Source conflicts and caveats</text>
+<text class="sub" x="470" y="853">Tools differ: KELA Rclone and WinSCP, GuidePoint neither</text>
+<text class="sub" x="470" y="869">Authenticity unverified (KELA); GRIT moderate-to-high link</text>
+<text class="sub" x="470" y="885">Leak date 10-06 / 10-07 / 10-08 depending on source</text>
+<text class="sub" x="470" y="901">Indicators retrospective; sources read as page summaries</text>
+<text class="mono" x="470" y="931">See README conflict table</text>
+<text class="mono" x="470" y="949">no hashes, no sample, no CVE, no kev.md</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+
+<path class="arrowX" d="M425,187 L460,202" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,337 L460,372" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,487 L460,542" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,787 L460,712" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,937 L460,882" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,1087 L460,1052" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1198">Detection anchors: first-seen remote tool, USB mount, look-alike IT sender domains, published infrastructure</text>
+<text class="footerT" x="34" y="1218">Rules in this folder: Sigma 01-07, KQL k1-k5, YARA srg_leak_infrastructure_strings.yar (2 rules), Suricata sids 6360001-6360010, PEAK hunts H1-H3.</text>
+<text class="footerT" x="34" y="1236">No sample, no CVE, no hashes: the access is a call plus a legitimate tool. All figures are the operators claims or vendor readings, unverified.</text>
+<text class="footerT" x="34" y="1254">Verify by callback to a directory number or a ticket before any install or code read-out; log USB, telephony and visitors.</text>
+</svg>

@@ -1,0 +1,15 @@
+# Title: Google and YouTube names under the hijacked .gh, .sl and .as ccTLDs - DNS and TLS rules
+# Author: Jarmi
+# Date: 2026-10-21
+# Reference: https://blog.google/security/chromes-response-to-recent-cctld-registry-hijacks/
+# Variables: $HOME_NET is your internal address space; $EXTERNAL_NET is everything else.
+# Scope: the hijack happened at the registry and the CAs validated attacker DNS, so no signature sees the takeover itself. These rules only (a) log clients that
+# resolve or connect to the seven named hostnames, to scope exposure for 2026-09-22 to 2026-10-01, and (b) flag a Google-brand SNI under a country-code
+# TLD whose certificate issuer is not Google Trust Services. The issuer rules see the certificate only in TLS 1.2 or earlier and in TLS 1.3 only if you
+# decrypt; with TLS 1.3 and no decryption they stay silent. TLS inspection proxies re-sign traffic and will trigger the issuer rules: allow-list their CA.
+alert dns $HOME_NET any -> any any (msg:"JARMI ccTLD hijack DNS query for a Google or YouTube name under .gh, .sl or .as (exposure scoping)"; dns.query; pcre:"/^(google|youtube)\.(com\.)?(gh|sl|as)$/i"; classtype:policy-violation; sid:6370001; rev:1; metadata:created_at 2026_10_21, confidence low;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI ccTLD hijack TLS SNI for a Google or YouTube name under .gh, .sl or .as (exposure scoping)"; tls.sni; pcre:"/^(www\.)?(google|youtube)\.(com\.)?(gh|sl|as)$/i"; classtype:policy-violation; sid:6370002; rev:1; metadata:created_at 2026_10_21, confidence low;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI ccTLD hijack Google or YouTube SNI under .gh, .sl or .as with a Lets Encrypt certificate"; tls.sni; pcre:"/^(www\.)?(google|youtube)\.(com\.)?(gh|sl|as)$/i"; tls.cert_issuer; content:"Let's Encrypt"; classtype:bad-unknown; sid:6370003; rev:1; metadata:created_at 2026_10_21, confidence medium;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI ccTLD hijack Google or YouTube SNI under .gh, .sl or .as with a ZeroSSL certificate"; tls.sni; pcre:"/^(www\.)?(google|youtube)\.(com\.)?(gh|sl|as)$/i"; tls.cert_issuer; content:"ZeroSSL"; classtype:bad-unknown; sid:6370004; rev:1; metadata:created_at 2026_10_21, confidence medium;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI Google-brand country-code SNI with a certificate issuer other than Google Trust Services"; tls.sni; pcre:"/^(www\.)?(google|youtube)\.(com\.)?[a-z]{2}$/i"; tls.cert_issuer; content:!"Google Trust Services"; classtype:bad-unknown; sid:6370005; rev:1; metadata:created_at 2026_10_21, confidence low;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI Cloudflare-issued certificate for a Google-brand country-code SNI under .gh, .sl or .as"; tls.sni; pcre:"/^(www\.)?(google|youtube)\.(com\.)?(gh|sl|as)$/i"; tls.cert_issuer; content:"Cloudflare"; classtype:bad-unknown; sid:6370006; rev:1; metadata:created_at 2026_10_21, confidence low;)

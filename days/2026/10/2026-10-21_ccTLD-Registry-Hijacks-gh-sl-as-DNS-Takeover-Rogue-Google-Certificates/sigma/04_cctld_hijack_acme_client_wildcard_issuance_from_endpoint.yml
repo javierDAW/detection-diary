@@ -1,0 +1,42 @@
+title: ACME Client Requesting a Wildcard Certificate From an Unexpected Host
+id: 1acf1ccf-2e69-46ba-b82e-bac9a73b3c74
+status: experimental
+description: |
+  Detects ACME clients (certbot, acme.sh, win-acme wacs.exe, lego, Posh-ACME) started with a wildcard name or a DNS challenge on a host that is not an approved
+  issuance system. In the 2026 ccTLD hijacks the wildcards for the hijacked names were requested by the actor from its own systems, so this rule does not see
+  that activity; it covers the mirror case on your estate, where a compromised server or an insider mints a certificate for your own domains. Tune with an
+  allow-list of approved issuance hosts in the SIEM.
+references:
+  - https://thehackernews.com/2026/10/attackers-hijack-gh-sl-and-as.html
+  - https://blog.google/security/chromes-response-to-recent-cctld-registry-hijacks/
+author: Jarmi
+date: 2026/10/21
+tags:
+  - attack.resource-development
+  - attack.t1588.004
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_client:
+    Image|endswith:
+      - '\wacs.exe'
+      - '\lego.exe'
+      - '\certbot.exe'
+  selection_ps:
+    CommandLine|contains:
+      - 'New-PACertificate'
+      - 'acme.sh'
+  selection_flags:
+    CommandLine|contains:
+      - ' *.'
+      - '"*.'
+      - '--dns'
+      - '--preferred-challenges dns'
+      - 'dns-01'
+  condition: (selection_client or selection_ps) and selection_flags
+falsepositives:
+  - Approved certificate automation hosts
+  - Lab or test systems requesting staging certificates
+
+level: low

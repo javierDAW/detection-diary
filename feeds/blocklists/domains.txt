@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-10-19 10:16 UTC
+# generated 2026-10-21 07:36 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -36,6 +36,7 @@ acuitycore.digital
 advisory-tracker.com
 afghanistanupdates.site
 afghantelecom.site
+aim6umein3kee.com
 alteira.digital
 angelxc.digital
 anticonstitutionally.sbs
@@ -129,6 +130,7 @@ debank.auction
 defence.cdga.site
 defs.updater-worelos.com
 deploypasskey.com
+develevenor.com
 dexarionrte.info
 digital-asset-mart.org
 direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion
@@ -189,6 +191,7 @@ forthlira.digital
 frontforce.org
 ftps.upd-domain-goloro.com
 fullnode.mainnet.aptoslabs.com
+funconnect.com
 g8way.io
 gatewayrvcenter.com
 gatheredovertime.com
@@ -301,6 +304,7 @@ nwitassistnow.com
 obmlink.com
 oeannon.com
 office.ofrecie.com
+ominetdata.com
 oneclickme.site
 onecloudfilesync.com
 onlion.shop
@@ -380,9 +384,13 @@ sitemap.tor-browser.io
 sitemaps.tor-browser.io
 situluimihai.3x.ro
 slack.apple03cloudstore.com
+sleepless.co
+sleeplessthreat.com
+slplsskdj2836v2jjsx.com
 smartsyncbox.com
 sobeamora.digital
 socifiapp.com
+sokolovsky-law.com
 solventa.club
 spicynagets.shop
 splintered.co.uk
@@ -407,6 +415,7 @@ thaivex.digital
 theunforgiven.p8.hu
 thirdmetrics.com
 thomphon.com
+threatactorsneversleep.com
 tk.mowell.tech
 topbeamora.digital
 tor-browser.io

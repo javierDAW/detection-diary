@@ -1,3 +1,20 @@
+## 2026.10.21 — Day 120 — ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domain-validated certificates for Google names
+
+### Added
+- `days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/` — Google's Chrome team (2026-10-06) and press CT analysis (BleepingComputer, The Hacker News, iTnews) on attackers who compromised third-party registry operators for .gh, .sl and .as, changed authoritative DNS and obtained unauthorized certificates for Google and other brands (logged 2026-09-22 to 2026-09-27). Unattributed; no actor, nameserver, IP, entry method or CVE published; counts conflict (12 versus 32).
+- Sigma (4): `01`–`04` — DNS query and connection to the seven named hostnames (exposure scoping); NS or CAA change through dnscmd or PowerShell; ACME client with wildcard or DNS challenge on an unapproved host.
+- KQL (3): endpoints that reached the named hostnames in the 2026-09-22 to 2026-10-01 window; remote IP drift against a 30-day baseline; A and NS answer drift (Sentinel DnsEvents).
+- YARA (1 file, 2 rules): the seven hostnames in text artefacts; certificate dump with those SANs and a Lets Encrypt or ZeroSSL issuer (no sample exists).
+- Suricata (1 file, 6 sids): DNS and SNI exposure scoping; non-Google issuer on Google-brand country-code SNI (TLS 1.2 or decrypted only).
+- PEAK hunts (3): unexpected certificate issuance across the domain portfolio (CT); delegation and CAA drift; client exposure review for the hijack window.
+- `iocs.csv` (20 entries) — hostnames stored as `string` so the blocklist feed does not list Google, issuers, dates and analyst notes; no network IOC. `kev.md` — not applicable (no CVE).
+- `kill_chain.svg` — template A, canonical palette, `other` accent, six cross-lane anchors.
+
+### Pedagogy
+- A certificate is only as strong as the DNS the CA reads; the registrar and registry account are tier-0.
+- CAA cannot stop issuance during a live hijack; it limits cached-validation reuse afterwards.
+- CT is the free audit log: watch every domain, including parked ccTLD names, because issuance can follow a hijack within 90 minutes.
+
 ## 2026.10.20 — Day 119 — Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off
 
 ### Added

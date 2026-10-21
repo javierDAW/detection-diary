@@ -1,0 +1,139 @@
+{
+  "name": "2026-10-20 — 2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off — clusters: Silent Ransom Group (SRG), Luna Moth, Chatty Spider, UNC3753, Sleepless Threat",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1589.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1591.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1593.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1585.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1650",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1566.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1684.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1200",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1091",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1199",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1052.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1567.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing,"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

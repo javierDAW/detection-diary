@@ -1,0 +1,36 @@
+title: DNS Query for Google or YouTube Names Under the Hijacked .gh, .sl and .as ccTLDs
+id: 0c726580-d185-43ba-a27e-13ccd29852df
+status: experimental
+description: |
+  Detects Windows hosts resolving the seven Google and YouTube hostnames under .gh, .sl and .as that Google's ccTLD registry hijack disclosure (2026-10-06)
+  and press reporting tie to unauthorized certificates issued between 2026-09-22 and 2026-09-27. The names are legitimate Google properties, so a query is
+  not malicious by itself; the rule is an exposure-scoping tool. Run it over logs from 2026-09-22 to 2026-10-01 (the revocation window) and treat hits in that
+  window as hosts that may have been served by attacker-controlled infrastructure. Outside the window a hit is expected background traffic.
+references:
+  - https://blog.google/security/chromes-response-to-recent-cctld-registry-hijacks/
+  - https://thehackernews.com/2026/10/attackers-hijack-gh-sl-and-as.html
+author: Jarmi
+date: 2026/10/21
+tags:
+  - attack.resource-development
+  - attack.t1584.001
+  - attack.t1584.002
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection:
+    QueryName:
+      - 'google.com.gh'
+      - 'youtube.com.gh'
+      - 'google.sl'
+      - 'google.com.sl'
+      - 'youtube.sl'
+      - 'google.as'
+      - 'youtube.as'
+  condition: selection
+falsepositives:
+  - Normal browsing to Google ccTLD sites outside the 2026-09-22 to 2026-10-01 window
+  - Security researchers resolving the published names
+
+level: low

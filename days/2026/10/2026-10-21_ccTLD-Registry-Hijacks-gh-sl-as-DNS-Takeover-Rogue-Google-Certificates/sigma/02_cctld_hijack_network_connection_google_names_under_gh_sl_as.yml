@@ -1,0 +1,35 @@
+title: Network Connection to Google or YouTube Names Under the Hijacked .gh, .sl and .as ccTLDs
+id: a106729d-8b5b-4668-b97b-90b413a5ef37
+status: experimental
+description: |
+  Detects outbound connections whose destination hostname is one of the seven Google and YouTube names under .gh, .sl and .as named in public reporting on
+  the 2026 ccTLD registry hijacks. The destination hostname field is only populated when the sensor records it (Sysmon with DNS-resolved hostname enrichment,
+  EDR network telemetry). Use it with the dns_query rule to scope which endpoints reached the names during 2026-09-22 to 2026-10-01. A connection is a lead
+  for review of the certificate chain and the destination IP address, not proof of interception.
+references:
+  - https://thehackernews.com/2026/10/attackers-hijack-gh-sl-and-as.html
+  - https://blog.google/security/chromes-response-to-recent-cctld-registry-hijacks/
+author: Jarmi
+date: 2026/10/21
+tags:
+  - attack.resource-development
+  - attack.t1584.001
+logsource:
+  category: network_connection
+  product: windows
+detection:
+  selection:
+    DestinationHostname:
+      - 'google.com.gh'
+      - 'youtube.com.gh'
+      - 'google.sl'
+      - 'google.com.sl'
+      - 'youtube.sl'
+      - 'google.as'
+      - 'youtube.as'
+  condition: selection
+falsepositives:
+  - Normal browsing to Google ccTLD sites outside the exposure window
+  - Monitoring tools that probe these names
+
+level: low

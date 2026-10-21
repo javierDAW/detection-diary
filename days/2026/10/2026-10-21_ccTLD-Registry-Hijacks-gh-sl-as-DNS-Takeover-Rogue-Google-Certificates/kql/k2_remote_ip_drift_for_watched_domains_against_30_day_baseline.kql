@@ -1,0 +1,19 @@
+// Title: Remote IP addresses for watched domains that were not seen in the previous 30 days
+// Id: 158558a9-0242-4a03-811a-a4b28232f9b7
+// MITRE: T1584.002 (Compromise Infrastructure: DNS Server), T1584.001 (Compromise Infrastructure: Domains)
+// Reference: https://blog.google/security/chromes-response-to-recent-cctld-registry-hijacks/
+// Author: Jarmi
+// Date: 2026-10-21
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant
+// FP notes: CDN and anycast domains rotate addresses legitimately; run it for domains with a stable provider (your own brand domains, regional and parked ccTLD names) and expect noise on large CDNs. The watch list is a placeholder to fill from your registrar inventory.
+let watched = dynamic(["<add_known_brand_domain_1>", "<add_known_brand_domain_2>", "<add_known_regional_cctld_domain>"]);
+let baseline = DeviceNetworkEvents
+    | where Timestamp between (ago(37d) .. ago(7d))
+    | where RemoteUrl has_any (watched)
+    | summarize by RemoteUrl, RemoteIP;
+DeviceNetworkEvents
+| where Timestamp > ago(7d)
+| where RemoteUrl has_any (watched)
+| join kind=leftanti baseline on RemoteUrl, RemoteIP
+| summarize FirstSeen = min(Timestamp), Devices = dcount(DeviceName), Connections = count() by RemoteUrl, RemoteIP
+| sort by FirstSeen asc

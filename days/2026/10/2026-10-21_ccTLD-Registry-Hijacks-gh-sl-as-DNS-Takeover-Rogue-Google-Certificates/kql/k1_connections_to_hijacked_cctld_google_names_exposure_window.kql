@@ -1,0 +1,14 @@
+// Title: Endpoints that reached the Google and YouTube names under .gh, .sl and .as during the hijack exposure window
+// Id: 5648ee74-492f-48dd-bb24-c34604e735de
+// MITRE: T1584.001 (Compromise Infrastructure: Domains), T1584.002 (Compromise Infrastructure: DNS Server), T1588.004 (Digital Certificates)
+// Reference: https://blog.google/security/chromes-response-to-recent-cctld-registry-hijacks/
+// Author: Jarmi
+// Date: 2026-10-21
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant
+// FP notes: The names are legitimate Google properties. A hit means the endpoint may have been served by attacker infrastructure only if it connected between the first hijack (2026-09-22) and the last revocation (2026-10-01); read the remote IP address and the certificate chain from a proxy or packet capture before calling it an incident. Hijack and revocation dates come from press reporting of CT data, not from a registry statement.
+let names = dynamic(["google.com.gh", "youtube.com.gh", "google.sl", "google.com.sl", "youtube.sl", "google.as", "youtube.as"]);
+DeviceNetworkEvents
+| where Timestamp between (datetime(2026-09-22) .. datetime(2026-10-02))
+| where RemoteUrl has_any (names)
+| project Timestamp, DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName, RemoteIP, RemotePort, RemoteUrl
+| sort by Timestamp asc

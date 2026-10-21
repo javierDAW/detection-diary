@@ -40,7 +40,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Cavern Manticore](./cavern-manticore/) | 1 |
 | [Certighost (CVE-2026-54121)](./certighost-cve-2026-54121/) | 1 |
 | [Chaotic Eclipse / Nightmare-Eclipse](./chaotic-eclipse-nightmare-eclipse/) | 1 |
-| [Chatty Spider](./chatty-spider/) | 1 |
+| [Chatty Spider](./chatty-spider/) | 2 |
 | [Cloud-Insider-Recruitment-unattributed](./cloud-insider-recruitment-unattributed/) | 1 |
 | [CloudZ](./cloudz/) | 1 |
 | [Cordial Spider (CrowdStrike)](./cordial-spider-crowdstrike/) | 1 |
@@ -76,7 +76,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Lazarus Group](./lazarus-group/) | 1 |
 | [LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)](./linkpro-unattributed-vshell-vnt-toolchain-unc5174-overlap/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
-| [Luna Moth](./luna-moth/) | 1 |
+| [Luna Moth](./luna-moth/) | 2 |
 | [MacSync operator (malware-as-a-service, unattributed)](./macsync-operator-malware-as-a-service-unattributed/) | 1 |
 | [Media Land LLC / ML.Cloud LLC](./media-land-llc-ml-cloud-llc/) | 1 |
 | [Miasma-unattributed](./miasma-unattributed/) | 1 |
@@ -120,8 +120,9 @@ Source of truth: each day's `README.md` frontmatter.
 | [Shahid Kaveh Group](./shahid-kaveh-group/) | 1 |
 | [Shai-Hulud](./shai-hulud/) | 1 |
 | [Shai-Hulud (keyv/cacheable wave, unattributed operator)](./shai-hulud-keyv-cacheable-wave-unattributed-operator/) | 1 |
-| [Silent Ransom Group (SRG)](./silent-ransom-group-srg/) | 1 |
+| [Silent Ransom Group (SRG)](./silent-ransom-group-srg/) | 2 |
 | [Silver Fox](./silver-fox/) | 1 |
+| [Sleepless Threat](./sleepless-threat/) | 1 |
 | [SourTrade](./sourtrade/) | 1 |
 | [Spirals](./spirals/) | 1 |
 | [Static Tundra](./static-tundra/) | 1 |
@@ -162,7 +163,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UAT-8616](./uat-8616/) | 1 |
 | [UEFI shim trust-chain disclosure (ESET Research)](./uefi-shim-trust-chain-disclosure-eset-research/) | 1 |
 | [UNC1151](./unc1151/) | 1 |
-| [UNC3753](./unc3753/) | 1 |
+| [UNC3753](./unc3753/) | 2 |
 | [UNC5174](./unc5174/) | 1 |
 | [UNC5691](./unc5691/) | 1 |
 | [UNC6671 (GTIG / Mandiant)](./unc6671-gtig-mandiant/) | 1 |
@@ -177,6 +178,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed IPI operator](./unattributed-ipi-operator/) | 1 |
 | [Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)](./unattributed-netscaler-zero-day-operators-suspected-state-sponsored-per-mandiant/) | 1 |
 | [Unattributed WWS PLC Reconfiguration Cluster](./unattributed-wws-plc-reconfiguration-cluster/) | 1 |
+| [Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06)](./unattributed-cctld-registry-hijack-operator-google-disclosure-2026-10-06/) | 1 |
 | [Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)](./unattributed-e-crime-bumblebee-adaptixc2-akira/) | 1 |
 | [Unattributed fake-invitation phish-kit operator (ANY.RUN-tracked)](./unattributed-fake-invitation-phish-kit-operator-any-run-tracked/) | 1 |
 | [Unattributed ip6.arpa Reverse-DNS Phishing Operator (Infoblox-tracked)](./unattributed-ip6-arpa-reverse-dns-phishing-operator-infoblox-tracked/) | 1 |

@@ -4,9 +4,10 @@
 
 # Actors: Luna Moth
 
-1 day(s) covering this actor.
+2 day(s) covering this actor.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-20 | Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat | [`2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/`](../../days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/) |
 | 2026-06-24 | SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US Law Firms | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 | [`2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/`](../../days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/) |

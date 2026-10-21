@@ -4,11 +4,12 @@
 
 # Techniques: T1567.002
 
-11 day(s) covering this technique.
+12 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-20 | Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat | [`2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/`](../../days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/) |
 | 2026-09-15 | CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Telegram bots against dissidents and journalists | Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI) | [`2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/`](../../days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/) |
 | 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |
 | 2026-06-24 | SRG / Luna Moth Fast Flux DNS Infrastructure: Vishing-to-Extortion Against US Law Firms | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 | [`2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/`](../../days/2026/06/2026-06-24_SRG-LunaMoth-FastFlux-LawFirm-Extortion/) |
