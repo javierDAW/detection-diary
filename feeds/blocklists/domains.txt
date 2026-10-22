@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-10-21 07:36 UTC
+# generated 2026-10-22 12:18 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -158,6 +158,7 @@ envell.xyz
 ep-lively-cherry-a80bmwii.eastus2.azure.neon.tech
 ep6pheij.com
 epc.mnc019.mcc425.3gppnetwork.org
+eth-mainnet-alchemy.com
 ev2sirbd269o5j.org
 ewujsfb1dp5ran.org
 f3nq6re4nmjwbr8ks5g2qu.darijo-bosanac-dl.workers.dev
@@ -287,6 +288,8 @@ mueleer.com
 muurfzqprzmdkzoibxaz.supabase.co
 mvwmh7pxxd33375gj9wwjhcmbk.darijo-bosanac-dl.workers.dev
 mxprodesign.com
+my-github.com
+my-gitlab.com
 mypublicshare.com
 namefuture.site
 nameprod.site

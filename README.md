@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**120 cases** · **187 actors/clusters** · **402 ATT&CK techniques** · **16 platforms** · **89 sectors** · 2026-04-28 -> 2026-10-21
+**121 cases** · **188 actors/clusters** · **402 ATT&CK techniques** · **16 platforms** · **89 sectors** · 2026-04-28 -> 2026-10-22
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/"><img src="days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/kill_chain.svg" alt="2026-10-22 kill chain" width="240"></a><br><sub><b>2026-10-22</b><br>Unattributed GhostAction operator (Fake Font / PolinRider naming overlap)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/"><img src="days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/kill_chain.svg" alt="2026-10-21 kill chain" width="240"></a><br><sub><b>2026-10-21</b><br>Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/"><img src="days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/kill_chain.svg" alt="2026-10-20 kill chain" width="240"></a><br><sub><b>2026-10-20</b><br>Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/"><img src="days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/kill_chain.svg" alt="2026-10-19 kill chain" width="240"></a><br><sub><b>2026-10-19</b><br>ARMORY CASTLE (formerly UNC5221)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/"><img src="days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/kill_chain.svg" alt="2026-10-19 kill chain" width="240"></a><br><sub><b>2026-10-19</b><br>ARMORY CASTLE (formerly UNC5221)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/"><img src="days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/kill_chain.svg" alt="2026-10-15 kill chain" width="240"></a><br><sub><b>2026-10-15</b><br>Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/"><img src="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/kill_chain.svg" alt="2026-10-05 kill chain" width="240"></a><br><sub><b>2026-10-05</b><br>TA419</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/"><img src="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/kill_chain.svg" alt="2026-10-01 kill chain" width="240"></a><br><sub><b>2026-10-01</b><br>Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

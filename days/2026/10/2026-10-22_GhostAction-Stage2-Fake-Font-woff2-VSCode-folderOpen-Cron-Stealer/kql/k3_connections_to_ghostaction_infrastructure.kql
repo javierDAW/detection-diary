@@ -1,0 +1,15 @@
+// Title: Connections to the GhostAction look-alike domains and the reported exfiltration IP address
+// Id: 33b2508b-c1f8-41ee-9ebc-12d29131d855
+// MITRE: T1041 (Exfiltration Over C2 Channel), T1567 (Exfiltration Over Web Service), T1528 (Steal Application Access Token)
+// Reference: https://thehackernews.com/2026/10/ghostaction-attackers-plant-credential.html
+// Author: Jarmi
+// Date: 2026-10-22
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant
+// FP notes: Indicators are retrospective (registered 2026-10-09, stage 2 seen about 2026-10-15) and may be offline; a clean result proves little. Port 8443 was reported for token exfiltration and 8080 for the stage 2 stealer, but the sources disagree on which host used which, so the query does not filter on port.
+let badIp = "193.32.204.199";
+let badDomains = dynamic(["my-github.com", "my-gitlab.com"]);
+DeviceNetworkEvents
+| where Timestamp > ago(30d)
+| where RemoteIP == badIp or RemoteUrl has_any (badDomains)
+| project Timestamp, DeviceName, InitiatingProcessAccountName, InitiatingProcessFileName, InitiatingProcessCommandLine, RemoteIP, RemotePort, RemoteUrl
+| sort by Timestamp desc

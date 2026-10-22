@@ -1,5 +1,52 @@
 [
  {
+  "date": "2026-10-22",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer",
+  "title": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launched by a VS Code folderOpen task, with cron persistence",
+  "clusters": [
+   "Unattributed GhostAction operator (Fake Font / PolinRider naming overlap)"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "supply-chain",
+   "linux",
+   "macos",
+   "windows"
+  ],
+  "sectors": [
+   "technology",
+   "software-development"
+  ],
+  "techniques": [
+   "T1566.002",
+   "T1528",
+   "T1195.001",
+   "T1552.001",
+   "T1552.004",
+   "T1204.002",
+   "T1059.007",
+   "T1059.004",
+   "T1036.008",
+   "T1053.003",
+   "T1041",
+   "T1567"
+  ],
+  "tech_count": 12,
+  "tldr": "On 2026-10-19 OpenSourceMalware (Paul McCarty), reported by The Hacker News, described a second stage of the GhostAction campaign. After a phishing wave on 2026-10-09 stole GitHub OAuth tokens through a look-alike `my-github.com`, and GitHub began blocking the malicious workflow, the operator committed three files to 94 repositories of 66 owners: a `.vscode/tasks.json` with `runOn: folderOpen`, a ",
+  "thumb": "thumbs/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer.svg",
+  "case_rel": "../days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Unattributed GhostAction operator (Fake Font / PolinRider naming overlap)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "ghostaction stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launched by a vs code folderopen task, with cron persistence unattributed ghostaction operator (fake font / polinrider naming overlap) unknown supply-chain linux macos windows technology software-development t1566.002 t1528 t1195.001 t1552.001 t1552.004 t1204.002 t1059.007 t1059.004 t1036.008 t1053.003 t1041 t1567 supply chain "
+ },
+ {
   "date": "2026-10-21",
   "year": "2026",
   "month": "2026-10",

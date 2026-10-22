@@ -1,0 +1,31 @@
+title: Node.js Executes a .woff2 File as a Script on Linux or macOS
+id: 2d30a1b3-d1bb-429a-8b2a-7b11dc7b269c
+status: experimental
+description: |
+  Linux and macOS counterpart of the Windows rule: node started with a .woff2 path on the command line, typically as a child of a VS Code or Cursor
+  task runner when a repository folder is opened. The fake font keeps the real Font Awesome name (fa-solid-400.woff2) so name matching alone is weak;
+  the signal is the interpreter. Treat a hit as a lead and compare the file header with the WOFF2 magic bytes (wOF2).
+references:
+  - https://thehackernews.com/2026/10/ghostaction-attackers-plant-credential.html
+author: Jarmi
+date: 2026/10/22
+tags:
+  - attack.execution
+  - attack.t1059.007
+  - attack.defense-evasion
+  - attack.t1036.008
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection_img:
+    Image|endswith:
+      - '/node'
+      - '/nodejs'
+  selection_cmd:
+    CommandLine|contains: '.woff2'
+  condition: selection_img and selection_cmd
+falsepositives:
+  - Font tooling that receives a .woff2 path as a data argument
+
+level: high

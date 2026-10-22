@@ -1,0 +1,15 @@
+# Title: GhostAction stage 1 and stage 2 - look-alike domains and reported exfiltration endpoint
+# Author: Jarmi
+# Date: 2026-10-22
+# Reference: https://thehackernews.com/2026/10/ghostaction-attackers-plant-credential.html
+# Variables: $HOME_NET is your internal address space; $EXTERNAL_NET is everything else.
+# Scope: indicators are retrospective (my-github.com registered 2026-10-09; 193.32.204.199 reported for stage 1 exfiltration). They may already be dead, and the
+# source does not name the stage 2 server, only "the same server" on TCP/8080 in plain HTTP. Port 8443 (token exfiltration) and 8080 (stealer) come from different
+# parts of the reporting. Rules are scoping aids, not proof of compromise. TLS SNI is visible even with TLS 1.3 unless ECH is used.
+alert dns $HOME_NET any -> any any (msg:"JARMI GhostAction DNS query for my-github.com (phishing, OAuth proxy, exfiltration)"; dns.query; content:"my-github.com"; nocase; endswith; classtype:trojan-activity; sid:6380001; rev:1; metadata:created_at 2026_10_22, confidence medium;)
+alert dns $HOME_NET any -> any any (msg:"JARMI GhostAction DNS query for my-gitlab.com (naming pivot, no confirmed link)"; dns.query; content:"my-gitlab.com"; nocase; endswith; classtype:policy-violation; sid:6380002; rev:1; metadata:created_at 2026_10_22, confidence low;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI GhostAction TLS SNI my-github.com"; tls.sni; content:"my-github.com"; nocase; endswith; classtype:trojan-activity; sid:6380003; rev:1; metadata:created_at 2026_10_22, confidence medium;)
+alert ip $HOME_NET any -> 193.32.204.199 any (msg:"JARMI GhostAction traffic to reported stage 1 exfiltration IP 193.32.204.199"; classtype:trojan-activity; sid:6380004; rev:1; metadata:created_at 2026_10_22, confidence medium;)
+alert tcp $HOME_NET any -> 193.32.204.199 8443 (msg:"JARMI GhostAction connection to 193.32.204.199 on TCP/8443 (token exfiltration)"; flow:to_server,established; classtype:trojan-activity; sid:6380005; rev:1; metadata:created_at 2026_10_22, confidence medium;)
+alert http $HOME_NET any -> $EXTERNAL_NET 8080 (msg:"JARMI GhostAction plain HTTP POST to an external host on TCP/8080 (stage 2 stealer exfiltration pattern, hunt lead)"; flow:to_server,established; http.method; content:"POST"; classtype:policy-violation; sid:6380006; rev:1; metadata:created_at 2026_10_22, confidence low;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI GhostAction HTTP Host my-github.com"; flow:to_server,established; http.host; content:"my-github.com"; nocase; endswith; classtype:trojan-activity; sid:6380007; rev:1; metadata:created_at 2026_10_22, confidence medium;)

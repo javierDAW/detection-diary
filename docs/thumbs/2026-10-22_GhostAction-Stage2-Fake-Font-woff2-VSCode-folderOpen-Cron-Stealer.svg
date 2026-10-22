@@ -1,0 +1,225 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">GhostAction stage 2 - fake font stealer, VS Code folderOpen task, cron persistence</title>
+<desc id="d">Two-lane kill chain. Left lane: 1 phishing email from my-github.com, 2 reverse proxy captures password and 2FA, 3 OAuth device flow token and stage 1 workflow exfiltration to 193.32.204.199, 4 stage 2 files committed to 94 repositories, 5 developer opens the repository and VS Code runs node on a fake font, 6 cron every five minutes and plain HTTP exfiltration on TCP 8080, 7 credentials stolen. Right lane: indicators, OAuth abuse detail, stage 1 timeline, scope, detection anchors, attribution conflicts and hardening. Critical stages are the OAuth grant, the planted files and the workspace trust prompt.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">GhostAction stage 2: fake font stealer launched by a VS Code task</text>
+<text class="meta" x="20" y="58">Vendors: OpenSourceMalware, The Hacker News, GitGuardian - Date: 2026-10-22 - Cluster: Unattributed - Day 121</text>
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="32" y="105">VICTIM SIDE: MAINTAINERS, REPOSITORIES, DEVELOPERS</text>
+<text class="laneLabelR" x="462" y="105">OPERATOR, INDICATORS AND DEFENDER VIEW</text>
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="76" y="144">Phishing email from a look-alike GitHub domain</text>
+<text class="sub" x="40" y="168">noreply@my-github.com, fake login alert from Moscow</text>
+<text class="sub" x="40" y="184">Domain registered 2026-10-09, same day GitHub blocks</text>
+<text class="sub" x="40" y="200">the stage 1 workflow</text>
+<text class="mono" x="40" y="226">T1566.002</text>
+<text class="mono" x="40" y="244">my-github.com  Sigma 04  Suricata 6380001-3</text>
+<rect class="stageK" x="30" y="270" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="76" y="294">Reverse proxy captures password and 2FA code</text>
+<text class="sub" x="40" y="318">Phishing kit sits between victim and GitHub</text>
+<text class="sub" x="40" y="334">Session and one-time code harvested live</text>
+<text class="sub" x="40" y="350">Victim sees a normal GitHub login</text>
+<text class="mono" x="40" y="376">T1528</text>
+<text class="mono" x="40" y="394">Hunt H3  account security log</text>
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="76" y="444">OAuth device flow grant and stage 1 workflow</text>
+<text class="sub" x="40" y="468">Injected JavaScript approves repo, workflow, read:org</text>
+<text class="sub" x="40" y="484">Token sent to my-github.com on TCP/8443</text>
+<text class="sub" x="40" y="500">Workflow sends secrets to 193.32.204.199</text>
+<text class="mono" x="40" y="526">T1528  T1552.001  T1041</text>
+<text class="mono" x="40" y="544">Suricata 6380004-5  KQL k3</text>
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="76" y="594">Stage 2: three files committed to 94 repositories</text>
+<text class="sub" x="40" y="618">tasks.json (folderOpen), fake fa-solid-400.woff2,</text>
+<text class="sub" x="40" y="634">second workflow (8 names, gist fallback)</text>
+<text class="sub" x="40" y="650">66 owners; 65 of 79 live repos idle over a year</text>
+<text class="mono" x="40" y="676">T1195.001  about 2026-10-15</text>
+<text class="mono" x="40" y="694">Sigma 05  YARA 2 rules  Hunt H1 H2</text>
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="76" y="744">Developer opens the repo and trusts the workspace</text>
+<text class="sub" x="40" y="768">VS Code or Cursor runs the folderOpen task</text>
+<text class="sub" x="40" y="784">node executes the .woff2 file as JavaScript</text>
+<text class="sub" x="40" y="800">Restricted Mode would block the task</text>
+<text class="mono" x="40" y="826">T1204.002  T1059.007  T1036.008</text>
+<text class="mono" x="40" y="844">Sigma 01-02  KQL k1 k2</text>
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="76" y="894">Cron every five minutes and plain HTTP exfiltration</text>
+<text class="sub" x="40" y="918">Cron job runs attacker-supplied code</text>
+<text class="sub" x="40" y="934">Data sent over HTTP on TCP/8080 to the same server</text>
+<text class="sub" x="40" y="950">Server address for stage 2 not published</text>
+<text class="mono" x="40" y="976">T1053.003  T1059.004  T1041</text>
+<text class="mono" x="40" y="994">Sigma 03  Suricata 6380006</text>
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="76" y="1044">Credentials stolen and fallback to a secret gist</text>
+<text class="sub" x="40" y="1068">AWS, PyPI, npm, Git, Kubernetes, SSH keys, AI API keys</text>
+<text class="sub" x="40" y="1084">Workflow posts findings, or uploads a secret gist</text>
+<text class="sub" x="40" y="1100">Cleaning without revoking the token invites stage 2</text>
+<text class="mono" x="40" y="1126">T1552.001  T1552.004  T1567</text>
+<text class="mono" x="40" y="1144">Hunt H3  rotate secrets first</text>
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">A</text>
+<text class="label" x="506" y="149">Indicators (retrospective, may be offline)</text>
+<text class="sub" x="470" y="173">my-github.com (phishing, proxy, exfiltration)</text>
+<text class="sub" x="470" y="189">my-gitlab.com (pivot, no confirmed link)</text>
+<text class="sub" x="470" y="205">193.32.204.199 and noreply@my-github.com</text>
+<text class="sub" x="470" y="221">No file hash published for the fake font</text>
+<text class="mono" x="470" y="251">Source: THN 2026-10-19, OpenSourceMalware</text>
+<text class="mono" x="470" y="269">iocs.csv 24 rows</text>
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">B</text>
+<text class="label" x="506" y="319">OAuth device flow abuse</text>
+<text class="sub" x="470" y="343">Script loads /login/device and fills the user code</text>
+<text class="sub" x="470" y="359">Adds authorize=1 and posts the approval</text>
+<text class="sub" x="470" y="375">Scopes: repo, workflow, read:org</text>
+<text class="sub" x="470" y="391">No consent screen shown to the victim</text>
+<text class="mono" x="470" y="421">Detect: new OAuth grants in audit log</text>
+<text class="mono" x="470" y="439">Hunt H3</text>
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">C</text>
+<text class="label" x="506" y="489">Stage 1 timeline (GitGuardian, OSM)</text>
+<text class="sub" x="470" y="513">2026-10-08 to 09: spike, 28,000 repos in 20 minutes</text>
+<text class="sub" x="470" y="529">2026-10-09: GitHub starts blocking the workflow</text>
+<text class="sub" x="470" y="545">2026-10-10 and 12: waves extract no secrets</text>
+<text class="sub" x="470" y="561">About 2026-10-15: stage 2 appears</text>
+<text class="mono" x="470" y="591">Stage 2 date is inferred from the report</text>
+<text class="mono" x="470" y="609">Sources read as page summaries</text>
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">D</text>
+<text class="label" x="506" y="659">Scope as reported</text>
+<text class="sub" x="470" y="683">94 repositories, 66 owners with stage 2</text>
+<text class="sub" x="470" y="699">15 deleted, renamed or private; 79 accessible</text>
+<text class="sub" x="470" y="715">65 of 79 without commits for over a year</text>
+<text class="sub" x="470" y="731">Targets: AWS, PyPI, npm, Git, k8s, SSH, AI keys</text>
+<text class="mono" x="470" y="761">Counts from OpenSourceMalware via THN</text>
+<text class="mono" x="470" y="779">Not independently reproduced</text>
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">E</text>
+<text class="label" x="506" y="829">Detection anchors in this folder</text>
+<text class="sub" x="470" y="853">node reading a .woff2 file (Sigma 01-02, KQL k1)</text>
+<text class="sub" x="470" y="869">tasks.json with folderOpen after git (KQL k2)</text>
+<text class="sub" x="470" y="885">crontab started by node (Sigma 03)</text>
+<text class="sub" x="470" y="901">Domains, IP, ports 8443 and 8080 (Suricata)</text>
+<text class="mono" x="470" y="931">Sigma 01-05  KQL k1-k3  YARA 2 rules</text>
+<text class="mono" x="470" y="949">Suricata sids 6380001-6380007</text>
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">F</text>
+<text class="label" x="506" y="999">Attribution, conflicts and hardening</text>
+<text class="sub" x="470" y="1023">Low confidence: Fake Font name overlap (DPRK lure)</text>
+<text class="sub" x="470" y="1039">Port conflict: 8443 tokens versus 8080 stealer</text>
+<text class="sub" x="470" y="1055">Revoke tokens first; keep workspace trust on</text>
+<text class="sub" x="470" y="1071">Set task.allowAutomaticTasks off; audit npm bindings</text>
+<text class="mono" x="470" y="1101">Related: SlugFest, npm trusted publishing</text>
+<text class="mono" x="470" y="1119">GitHub changes dated 2026-10-02</text>
+
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+
+<path class="arrowX" d="M425,187 L460,202" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,337 L460,372" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,487 L460,542" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,637 L460,712" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,937 L460,882" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,1087 L460,1052" marker-end="url(#ah)"/>
+
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1198">Detection anchors: node on a font file, folderOpen task from git, crontab from node, look-alike domains</text>
+<text class="footerT" x="34" y="1218">Rules in this folder: Sigma 01-05, KQL k1-k3, YARA 2 rules, Suricata sids 6380001-6380007, PEAK hunts H1-H3.</text>
+<text class="footerT" x="34" y="1236">No hash, no CVE, no confirmed actor. Indicators are retrospective; counts and dates are as reported by researchers.</text>
+<text class="footerT" x="34" y="1254">Act: revoke tokens from a clean device first, then clean repos; rotate secrets; keep VS Code Restricted Mode for untrusted code.</text>
+</svg>

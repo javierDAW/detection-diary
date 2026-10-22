@@ -1,0 +1,23 @@
+// Title: .vscode/tasks.json written by git, then node or a shell started by the editor within 10 minutes
+// Id: c49b7346-bde6-49ad-b6e2-83fcf6733a11
+// MITRE: T1195.001 (Compromise Software Dependencies and Development Tools), T1204.002 (User Execution: Malicious File), T1059.007 (JavaScript)
+// Reference: https://www.webpronews.com/vs-code-tasks-become-silent-killers-in-fresh-npm-and-go-package-hijacks/
+// Author: Jarmi
+// Date: 2026-10-22
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant
+// FP notes: Many repositories ship a legitimate tasks.json and developers open them daily. The useful signal is the sequence: a tasks.json arrives through git clone or pull, then node starts from the editor with no user typing. Allow-list the repositories you own and review the rest.
+let tasksWritten = DeviceFileEvents
+    | where Timestamp > ago(30d)
+    | where FileName =~ "tasks.json" and FolderPath has ".vscode"
+    | where InitiatingProcessFileName in~ ("git.exe", "git", "git-remote-https.exe", "git-remote-https")
+    | project DeviceId, DeviceName, TaskTime = Timestamp, FolderPath;
+let editorNode = DeviceProcessEvents
+    | where Timestamp > ago(30d)
+    | where FileName in~ ("node.exe", "node", "nodejs")
+    | where InitiatingProcessFileName has_any ("Code", "Cursor", "code", "cursor")
+    | project DeviceId, NodeTime = Timestamp, ProcessCommandLine, InitiatingProcessFileName;
+tasksWritten
+| join kind=inner editorNode on DeviceId
+| where NodeTime between (TaskTime .. TaskTime + 10m)
+| project TaskTime, NodeTime, DeviceName, FolderPath, ProcessCommandLine, InitiatingProcessFileName
+| sort by TaskTime desc

@@ -1,0 +1,111 @@
+{
+  "name": "2026-10-22 — 2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launched by a VS Code folderOpen task, with cron persistence — clusters: Unattributed GhostAction operator (Fake Font / PolinRider naming overlap)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1528",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1195.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1552.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1059.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1036.008",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1053.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    },
+    {
+      "techniqueID": "T1567",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launche"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -1,0 +1,29 @@
+title: Node.js Process Starts crontab to Install a Scheduled Job
+id: 36df7fe0-a32d-4946-bd6c-3a5f522df579
+status: experimental
+description: |
+  GhostAction stage 2 installs a cron job that runs attacker-supplied code every five minutes. The exact crontab line has not been published, so this
+  rule keys on the behaviour: a node process starting crontab. Legitimate Node applications rarely edit the user crontab at runtime, but deployment
+  scripts can; baseline them first. Pair with a review of crontab -l for lines that fetch and run remote content.
+references:
+  - https://thehackernews.com/2026/10/ghostaction-attackers-plant-credential.html
+author: Jarmi
+date: 2026/10/22
+tags:
+  - attack.persistence
+  - attack.t1053.003
+logsource:
+  category: process_creation
+  product: linux
+detection:
+  selection:
+    ParentImage|endswith:
+      - '/node'
+      - '/nodejs'
+    Image|endswith: '/crontab'
+  condition: selection
+falsepositives:
+  - Deployment or provisioning scripts written in Node that manage cron entries
+  - Developer tooling that schedules local jobs
+
+level: medium

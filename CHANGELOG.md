@@ -1,3 +1,20 @@
+## 2026.10.22 — Day 121 — GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launched by a VS Code folderOpen task, with cron persistence
+
+### Added
+- `days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/` — OpenSourceMalware (2026-10-19, via The Hacker News) on the second stage of GhostAction: after the 2026-10-09 phishing wave and GitHub's block of the stage 1 workflow, three files were committed to 94 repositories of 66 owners (`tasks.json` with `runOn: folderOpen`, a stealer disguised as `fa-solid-400.woff2`, a second CI workflow with a gist fallback), giving cron persistence and plain HTTP exfiltration on TCP/8080. Unattributed; no hash, CVE or stage 2 server published; indicators are retrospective.
+- Sigma (5): `01`–`05` — node executing a .woff2 file (Windows, Linux and macOS); crontab started from node; DNS for my-github.com and my-gitlab.com; workflow files with the reported names.
+- KQL (3): node on a .woff2 file; tasks.json written by git then node from the editor; contact with the domains and IP address.
+- YARA (1 file, 2 rules): non-WOFF2 file with JavaScript tokens; tasks.json that runs node on a .woff2 path (no sample exists).
+- Suricata (1 file, 7 sids 6380001–6380007): DNS, SNI, IP, TCP/8443, POST on 8080, HTTP Host.
+- PEAK hunts (3): folderOpen tasks in cloned repositories; files named as fonts that are not fonts; token and secret exposure after an affected repository was opened.
+- `iocs.csv` (24 entries) — 2 domains, 1 IP address, 1 e-mail, file and workflow paths, 3 related-campaign rows, 4 analyst notes. `kev.md` — not applicable (no CVE).
+- `kill_chain.svg` — template A, canonical palette, `supply-chain` accent, six cross-lane anchors.
+
+### Pedagogy
+- A repository is executable content for whoever opens it; workspace trust and task.allowAutomaticTasks are security controls.
+- Judge a file by its header, not its extension (a real WOFF2 starts with wOF2).
+- Revoke the stolen token before cleaning the repository, or the attacker re-infects.
+
 ## 2026.10.21 — Day 120 — ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domain-validated certificates for Google names
 
 ### Added

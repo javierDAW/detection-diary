@@ -1,0 +1,14 @@
+// Title: node executing a .woff2 file as a script (fake font loader)
+// Id: 8f87f47b-9262-414f-a133-ad52a47cec7a
+// MITRE: T1059.007 (JavaScript), T1036.008 (Masquerade File Type), T1195.001 (Compromise Software Dependencies and Development Tools)
+// Reference: https://thehackernews.com/2026/10/ghostaction-attackers-plant-credential.html
+// Author: Jarmi
+// Date: 2026-10-22
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant
+// FP notes: Font tooling that passes a .woff2 path to node as data. The malicious pattern is node followed directly by a .woff2 path, usually with a parent of Code, Cursor or a shell started by the editor. Compare the file header with the WOFF2 magic bytes before calling it malicious.
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where FileName in~ ("node.exe", "node", "nodejs")
+| where ProcessCommandLine has ".woff2"
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, FolderPath
+| sort by Timestamp desc

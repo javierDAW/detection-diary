@@ -1,0 +1,33 @@
+title: Node.js Executes a .woff2 File as a Script (Fake Font Loader)
+id: 6851fcd0-57bd-4922-85e7-b5930a70662b
+status: experimental
+description: |
+  Detects node running a file whose extension is .woff2. A real web font is never executed; the GhostAction stage 2 payload (public/fonts/fa-solid-400.woff2)
+  and the earlier Fake Font / Contagious Interview lures are JavaScript hidden behind a font name and started by a VS Code task with runOn folderOpen.
+  Expect rare benign hits from font-tooling scripts that pass a .woff2 path to node as data; in those the script path comes first, so review the order of
+  the arguments before escalating.
+references:
+  - https://thehackernews.com/2026/10/ghostaction-attackers-plant-credential.html
+  - https://opensourcemalware.com/blog/dprk-contagious-interview-campaign-fake-font-uses-malicious-vs-code-fonts
+author: Jarmi
+date: 2026/10/22
+tags:
+  - attack.execution
+  - attack.t1059.007
+  - attack.defense-evasion
+  - attack.t1036.008
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_img:
+    Image|endswith:
+      - '\node.exe'
+  selection_cmd:
+    CommandLine|contains: '.woff2'
+  condition: selection_img and selection_cmd
+falsepositives:
+  - Build scripts that pass a .woff2 path to node as data (font subsetting); the script path normally comes first
+  - Developers testing the published indicators
+
+level: high

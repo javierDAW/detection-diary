@@ -1,0 +1,30 @@
+title: DNS Query for the GhostAction Look-alike Domains my-github.com and my-gitlab.com
+id: 06aa1ea8-ac72-4381-a8b6-4ea95bfb2e6c
+status: experimental
+description: |
+  Detects resolution of my-github.com (phishing, OAuth device-flow proxy and token exfiltration, registered 2026-10-09 per OpenSourceMalware via The Hacker News)
+  and my-gitlab.com (naming pivot; researchers found no confirmed link to GhostAction). Both indicators are retrospective: the domains may be dead, so a hit
+  is most useful when searching logs from 2026-10-09 onward for a developer who clicked the lure. Subdomains are matched with endswith.
+references:
+  - https://thehackernews.com/2026/10/ghostaction-attackers-plant-credential.html
+author: Jarmi
+date: 2026/10/22
+tags:
+  - attack.initial-access
+  - attack.t1566.002
+  - attack.credential-access
+  - attack.t1528
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection:
+    QueryName|endswith:
+      - 'my-github.com'
+      - 'my-gitlab.com'
+  condition: selection
+falsepositives:
+  - Researchers resolving the published domains
+  - Threat-intelligence sandboxes
+
+level: high

@@ -1,0 +1,41 @@
+title: Workflow File With a GhostAction Stage 2 Name Written Under .github/workflows
+id: 16eaf0ac-b3a6-47cc-be64-732008a5233e
+status: experimental
+description: |
+  Detects creation of a workflow file under .github/workflows whose name is one of the eight names reported for the second CI workflow of GhostAction
+  stage 2, or one of the two stage 1 names reported by GitGuardian. Names such as lint.yml and audit.yml are common, so a hit is only a lead: confirm the
+  author, the commit and whether the file reads secrets or posts to an external host. Best used on developer endpoints and build agents that clone repositories.
+references:
+  - https://thehackernews.com/2026/10/ghostaction-attackers-plant-credential.html
+  - https://thehackernews.com/2026/10/ghostaction-compromises-about-1900.html
+author: Jarmi
+date: 2026/10/22
+tags:
+  - attack.credential-access
+  - attack.t1552.001
+  - attack.exfiltration
+  - attack.t1041
+logsource:
+  category: file_event
+  product: linux
+detection:
+  selection_dir:
+    TargetFilename|contains: '/.github/workflows/'
+  selection_name:
+    TargetFilename|endswith:
+      - '/lint.yml'
+      - '/ci-check.yml'
+      - '/build-check.yml'
+      - '/repo-health.yml'
+      - '/audit.yml'
+      - '/code-review.yml'
+      - '/test-suite.yml'
+      - '/cache-cleanup.yml'
+      - '/security-audit.yml'
+      - '/github_actions_security.yml'
+  condition: selection_dir and selection_name
+falsepositives:
+  - Legitimate repositories that use the same generic workflow names (lint.yml and audit.yml are common)
+  - Normal git clone and checkout operations that write existing workflow files
+
+level: low

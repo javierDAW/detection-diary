@@ -1,0 +1,25 @@
+type,value,context,confidence,source
+domain,my-github.com,"Look-alike domain: phishing email sender, reverse proxy for password and 2FA, OAuth device-flow abuse and token exfiltration on TCP/8443; registered 2026-10-09; retrospective, may be offline",medium,The Hacker News 2026-10-19 (OpenSourceMalware)
+domain,my-gitlab.com,"Naming pivot registered earlier in 2026; researchers found no confirmed link to GhostAction (different registrar, nameservers, IP and ASN)",low,The Hacker News 2026-10-19 (OpenSourceMalware)
+ipv4,193.32.204.199,my-github.com resolved here; stage 1 workflow exfiltration endpoint; stage 2 plain HTTP on TCP/8080 reportedly to the same server; retrospective,medium,The Hacker News 2026-10-19 (OpenSourceMalware)
+email,noreply@my-github.com,"Sender of the phishing email imitating a GitHub security alert about a login from Moscow, Russia",medium,The Hacker News 2026-10-19 (OpenSourceMalware)
+path,public/fonts/fa-solid-400.woff2,Stage 2 stealer: JavaScript hidden in a fake font file committed to compromised repositories; installs a cron job that runs attacker code every five minutes; no hash published,medium,The Hacker News 2026-10-19 (OpenSourceMalware)
+path,.vscode/tasks.json,Stage 2 launcher: task with runOn folderOpen that runs the fake font with node when the workspace is trusted,medium,The Hacker News 2026-10-19 (OpenSourceMalware)
+string,"""runOn"": ""folderOpen""",Task trigger in .vscode/tasks.json used to auto-run the payload; also used in the January 2026 Fake Font lures,medium,The Hacker News 2026-10-19; OpenSourceMalware 2026-01-28
+path,.github/workflows/lint.yml,Second CI workflow name reported in stage 2 (generic name; verify content),low,The Hacker News 2026-10-19 (OpenSourceMalware)
+path,.github/workflows/ci-check.yml,Second CI workflow name reported in stage 2 (generic name; verify content),low,The Hacker News 2026-10-19 (OpenSourceMalware)
+path,.github/workflows/build-check.yml,Second CI workflow name reported in stage 2 (generic name; verify content),low,The Hacker News 2026-10-19 (OpenSourceMalware)
+path,.github/workflows/repo-health.yml,Second CI workflow name reported in stage 2 (generic name; verify content),low,The Hacker News 2026-10-19 (OpenSourceMalware)
+path,.github/workflows/audit.yml,Second CI workflow name reported in stage 2 (generic name; verify content),low,The Hacker News 2026-10-19 (OpenSourceMalware)
+path,.github/workflows/code-review.yml,Second CI workflow name reported in stage 2 (generic name; verify content),low,The Hacker News 2026-10-19 (OpenSourceMalware)
+path,.github/workflows/test-suite.yml,Second CI workflow name reported in stage 2 (generic name; verify content),low,The Hacker News 2026-10-19 (OpenSourceMalware)
+path,.github/workflows/cache-cleanup.yml,Second CI workflow name reported in stage 2 (generic name; verify content),low,The Hacker News 2026-10-19 (OpenSourceMalware)
+path,.github/workflows/security-audit.yml,Stage 1 malicious workflow name reported by GitGuardian for the wider GhostAction campaign,medium,The Hacker News 2026-10-15 (GitGuardian)
+path,.github/workflows/github_actions_security.yml,Stage 1 malicious workflow name reported by GitGuardian for the wider GhostAction campaign,medium,The Hacker News 2026-10-15 (GitGuardian)
+domain,eth-mainnet-alchemy.com,"Related campaign, NOT GhostAction: January 2026 Fake Font C2 impersonating Alchemy; listed for pivoting only; historical",low,OpenSourceMalware 2026-01-28
+ipv4,166.88.134.62,"Related campaign, NOT GhostAction: socket.io backdoor IP in the June 2026 npm and Go package hijacks (fake font technique); historical",low,JFrog via WebProNews 2026-06-30
+ipv4,198.105.127.210,"Related campaign, NOT GhostAction: socket.io backdoor IP in the June 2026 npm and Go package hijacks (fake font technique); historical",low,JFrog via WebProNews 2026-06-30
+note,TCP/8443 token exfiltration; TCP/8080 plain HTTP stealer exfiltration,"Ports as reported; the sources do not say which host served each, so do not treat a port alone as an indicator",medium,The Hacker News 2026-10-19
+note,Scope: 94 repositories of 66 owners with stage 2; 79 still accessible; 65 of those 79 with no commits for over a year,Counts as reported by OpenSourceMalware via THN; not independently reproduced,medium,The Hacker News 2026-10-19
+note,No file hashes published for the stage 2 fake font,Compute SHA256 from your own copy and add it locally; YARA was not run against a real sample,high,The Hacker News 2026-10-19
+note,Indicators are retrospective,Domain registered 2026-10-09; stage 2 seen about 2026-10-15; re-validate before blocking or presenting as live,high,The Hacker News 2026-10-19
