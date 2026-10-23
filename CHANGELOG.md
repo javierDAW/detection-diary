@@ -1,3 +1,20 @@
+## 2026.10.23 — Day 122 — Plex2Shell: four Plex Media Server flaws chained into unauthenticated RCE through the codec loader, exploited for XMRig and proxy malware
+
+### Added
+- `days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/` — Zach Main's analysis and PoC (2026-10-16) for CVE-2026-96652, -96654, -96655 and -96656 in Plex Media Server (fixed in 1.43.3.10861), exploited from 2026-10-17 on a honeypot to drop an XMRig miner and the `myawesomeproxy` node, and reported by BleepingComputer and Field Effect as added to CISA KEV. Unattributed; no payload hash published; network indicators are retrospective and sources conflict on scores and dates.
+- Sigma (5): `01`–`05` — Plex parent starting a shell or download tool (Linux, Windows); file created in the Codecs folder; payload process names; DNS for proxystream.st.
+- KQL (3): Plex child processes; Codecs folder writes; contact with the attacker, payload and proxy indicators.
+- YARA (1 file, 2 rules): proxy payload names; generic XMRig strings (no sample exists).
+- Suricata (1 file, 7 sids 6390001–6390007): DNS, SNI, payload IP, inbound sources, timeline endpoint, sslip.io.
+- PEAK hunts (3): non-Plex children of the Plex service; libraries in Codecs and altered transcoder options; TCP/32400 exposure in the pre-patch window.
+- `iocs.csv` (23 entries) — 4 CVEs, 4 IP addresses, 1 domain, process names, paths and notes. `kev.md` — generated from a stale cached catalog (2026.10.16, live fetch blocked), so the Plex CVEs show as not listed; a manual note records the press-reported listing.
+- `kill_chain.svg` — template A, canonical palette, `other` accent, six cross-lane anchors.
+
+### Pedagogy
+- A loader that trusts a folder is only as safe as every write primitive that reaches it; four medium bugs made a 9.8 chain.
+- Patching does not evict a library planted before the update; hunt the window between the PoC and the patch.
+- Process lineage (a media server parenting a shell) outlives rotating names, domains and IP addresses.
+
 ## 2026.10.22 — Day 121 — GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launched by a VS Code folderOpen task, with cron persistence
 
 ### Added
