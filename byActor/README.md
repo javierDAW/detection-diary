@@ -178,6 +178,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed GhostAction operator (Fake Font / PolinRider naming overlap)](./unattributed-ghostaction-operator-fake-font-polinrider-naming-overlap/) | 1 |
 | [Unattributed IPI operator](./unattributed-ipi-operator/) | 1 |
 | [Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)](./unattributed-netscaler-zero-day-operators-suspected-state-sponsored-per-mandiant/) | 1 |
+| [Unattributed Plex2Shell exploitation](./unattributed-plex2shell-exploitation/) | 1 |
 | [Unattributed WWS PLC Reconfiguration Cluster](./unattributed-wws-plc-reconfiguration-cluster/) | 1 |
 | [Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06)](./unattributed-cctld-registry-hijack-operator-google-disclosure-2026-10-06/) | 1 |
 | [Unattributed e-crime (BumbleBee -> AdaptixC2 -> Akira)](./unattributed-e-crime-bumblebee-adaptixc2-akira/) | 1 |
