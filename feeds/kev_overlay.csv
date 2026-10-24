@@ -220,3 +220,7 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware,2026-10-23,CVE-2026-96654,no,,,,,,
 2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware,2026-10-23,CVE-2026-96655,no,,,,,,
 2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware,2026-10-23,CVE-2026-96656,no,,,,,,
+2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass,2026-10-24,CVE-2026-113708,no,,,,,,
+2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass,2026-10-24,CVE-2026-113709,no,,,,,,
+2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass,2026-10-24,CVE-2026-42880,no,,,,,,
+2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass,2026-10-24,CVE-2026-77459,no,,,,,,

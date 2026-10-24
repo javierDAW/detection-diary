@@ -4,11 +4,12 @@
 
 # Techniques: T1098
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-24 | Argo CD October 2026 critical batch: Kustomize option injection (CVE-2026-113708), Helm config-home plugin (CVE-2026-113709) and PostDelete hook bypass (CVE-2026-77459) | Unattributed (no exploitation reported) | [`2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/`](../../days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/) |
 | 2026-10-19 | ARMORY CASTLE exploits BeyondTrust Remote Support zero-day CVE-2026-102764: SAWFLY web shell, SUID root, vault dumps and the BARECLAW tunnel | ARMORY CASTLE (formerly UNC5221) | [`2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/`](../../days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/) |
 | 2026-06-04 | Kirki CVE-2026-8206 — unauthenticated admin account takeover via password-reset-to-attacker-email on 150K WordPress sites | Opportunistic WordPress mass-exploitation (unattributed) | [`2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/`](../../days/2026/06/2026-06-04_Kirki-CVE-2026-8206-WP-AccountTakeover/) |
 | 2026-05-03 | BAUXITE / CyberAv3ngers (IRGC-CEC) — Direct-to-PLC tradecraft against Rockwell/Allen-Bradley (CISA AA26-097A, April 2026) | BAUXITE · CyberAv3ngers · Storm-0784 · UNC5691 · Hydro Kitten · Shahid Kaveh Group · G1027 | [`2026-05-03_BAUXITE-CyberAvengers-AA26-097A/`](../../days/2026/05/2026-05-03_BAUXITE-CyberAvengers-AA26-097A/) |

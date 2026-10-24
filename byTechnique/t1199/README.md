@@ -4,11 +4,12 @@
 
 # Techniques: T1199
 
-5 day(s) covering this technique.
+6 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-24 | Argo CD October 2026 critical batch: Kustomize option injection (CVE-2026-113708), Helm config-home plugin (CVE-2026-113709) and PostDelete hook bypass (CVE-2026-77459) | Unattributed (no exploitation reported) | [`2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/`](../../days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/) |
 | 2026-10-20 | Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat | [`2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/`](../../days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/) |
 | 2026-07-31 | XMRig Covert Ops: fileless Monero miner abusing Linux PAM (pam_rootok) for a forensic smokescreen | V25 / Generation 26 XMRig botnet | [`2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/`](../../days/2026/07/2026-07-31_XMRig-Covert-PAM-Fileless-Monero-V25/) |
 | 2026-07-10 | Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE) | Cavern Manticore | [`2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/`](../../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/) |

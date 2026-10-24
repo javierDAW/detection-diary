@@ -4,11 +4,12 @@
 
 # Platforms: cloud-multi
 
-35 day(s) covering this platform.
+36 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-24 | Argo CD October 2026 critical batch: Kustomize option injection (CVE-2026-113708), Helm config-home plugin (CVE-2026-113709) and PostDelete hook bypass (CVE-2026-77459) | Unattributed (no exploitation reported) | [`2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/`](../../days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/) |
 | 2026-10-21 | ccTLD registry hijacks on .gh, .sl and .as: authoritative DNS takeover and domain-validated certificates for Google names | Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06) | [`2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/`](../../days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/) |
 | 2026-10-05 | TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB adversary-in-the-middle page that steals Microsoft sessions | TA419 | [`2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/`](../../days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/) |
 | 2026-08-12 | Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coordinated mailbox collection (Storm-2755 overlap) | Payroll Pirates | [`2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/`](../../days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/) |

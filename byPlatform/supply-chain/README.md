@@ -4,11 +4,12 @@
 
 # Platforms: supply-chain
 
-21 day(s) covering this platform.
+22 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-24 | Argo CD October 2026 critical batch: Kustomize option injection (CVE-2026-113708), Helm config-home plugin (CVE-2026-113709) and PostDelete hook bypass (CVE-2026-77459) | Unattributed (no exploitation reported) | [`2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/`](../../days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/) |
 | 2026-10-22 | GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launched by a VS Code folderOpen task, with cron persistence | Unattributed GhostAction operator (Fake Font / PolinRider naming overlap) | [`2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/`](../../days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/) |
 | 2026-08-06 | Keyv/Cacheable npm Worm: a Third-Wave Shai-Hulud Supply-Chain Compromise with a Bun Loader, IDE Autostart Hooks and a Token-Revocation Dead-Man's Switch | Shai-Hulud (keyv/cacheable wave, unattributed operator) | [`2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/`](../../days/2026/08/2026-08-06_Keyv-Cacheable-npm-Worm-ShaiHulud-HereWeGoAgain/) |
 | 2026-08-05 | Indirect prompt injection against AI web agents: crypto-payment scam and DeBank typosquat (Zscaler ThreatLabz) | Unattributed IPI operator | [`2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/`](../../days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/) |

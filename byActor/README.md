@@ -173,6 +173,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UNK_pyreq2323](./unk-pyreq2323/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
 | [Unattributed (Montana Empire operator)](./unattributed-montana-empire-operator/) | 1 |
+| [Unattributed (no exploitation reported)](./unattributed-no-exploitation-reported/) | 1 |
 | [Unattributed (opportunistic mass exploitation)](./unattributed-opportunistic-mass-exploitation/) | 1 |
 | [Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)](./unattributed-ahsaycbs-exploitation-huntress-and-bitdefender-reports/) | 1 |
 | [Unattributed GhostAction operator (Fake Font / PolinRider naming overlap)](./unattributed-ghostaction-operator-fake-font-polinrider-naming-overlap/) | 1 |

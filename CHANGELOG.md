@@ -1,3 +1,20 @@
+## 2026.10.24 — Day 123 — Argo CD October 2026 critical batch: Kustomize option injection (CVE-2026-113708), Helm config-home plugin (CVE-2026-113709) and PostDelete hook bypass (CVE-2026-77459)
+
+### Added
+- `days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/` — three CVSS 9.9 Argo CD advisories (2026-10-07 to 2026-10-20) that turn repository content into command execution in the repo-server or skip AppProject checks; fixed in 3.3.15, 3.4.10, 3.5.4 and 3.6.0-rc2. No actor, no exploitation reported; GitOps/IaC gap rescue (slot 31, last primary 2026-06-11).
+- Sigma (5): `01`-`05` — git `--upload-pack` with `file://`; shell below kustomize, helm or git; `plugin.yaml` in the repo-server checkout; POST to `manifestsWithFiles`; controller creating RBAC or webhooks.
+- KQL (3): process lineage; upload endpoint callers; kube-audit creates by the controller.
+- YARA (1 file, 2 rules): remote ref option injection input; `helmGlobals.configHome` with `helmCharts`.
+- Suricata (1 file, 3 sids): upload endpoint; repo-server port 8081 and Redis port 6379 from unexpected sources.
+- PEAK hunts (3): repo-server process tree; Kustomization and configuration inventory; PostDelete hooks versus AppProject boundaries.
+- `iocs.csv` (17 entries) — identifiers and behavioural strings, no hashes or network indicators published. `kev.md` — 0/4 CVEs on CISA KEV (cached catalog 2026.10.16).
+- `kill_chain.svg` — template A, canonical palette, supply-chain accent, 7 stages and 6 fact boxes.
+
+### Pedagogy
+- In GitOps, write access to a manifest repository and even `get` on an Application are code-execution privileges next to cluster credentials.
+- A value that starts with a dash is an argument unless a `--` separator stops it: option injection survives inside tool chains.
+- A project boundary only protects the paths that check it; test lifecycle edges such as delete hooks.
+
 ## 2026.10.23 — Day 122 — Plex2Shell: four Plex Media Server flaws chained into unauthenticated RCE through the codec loader, exploited for XMRig and proxy malware
 
 ### Added

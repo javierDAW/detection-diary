@@ -4,11 +4,12 @@
 
 # Platforms: linux
 
-47 day(s) covering this platform.
+48 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-24 | Argo CD October 2026 critical batch: Kustomize option injection (CVE-2026-113708), Helm config-home plugin (CVE-2026-113709) and PostDelete hook bypass (CVE-2026-77459) | Unattributed (no exploitation reported) | [`2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/`](../../days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/) |
 | 2026-10-23 | Plex2Shell: four Plex Media Server flaws chained into unauthenticated RCE through the codec loader, exploited for XMRig and proxy malware and listed on CISA KEV | Unattributed Plex2Shell exploitation | [`2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/`](../../days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/) |
 | 2026-10-22 | GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launched by a VS Code folderOpen task, with cron persistence | Unattributed GhostAction operator (Fake Font / PolinRider naming overlap) | [`2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/`](../../days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/) |
 | 2026-10-19 | ARMORY CASTLE exploits BeyondTrust Remote Support zero-day CVE-2026-102764: SAWFLY web shell, SUID root, vault dumps and the BARECLAW tunnel | ARMORY CASTLE (formerly UNC5221) | [`2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/`](../../days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/) |
