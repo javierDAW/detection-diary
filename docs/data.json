@@ -1,5 +1,47 @@
 [
  {
+  "date": "2026-10-25",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats",
+  "title": "BlackX: an APT41-linked UEFI bootkit built on the BlackLotus Baton Drop exploit, used against Central Asian diplomatic bodies on fully patched Windows",
+  "clusters": [
+   "APT41"
+  ],
+  "country": "China",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government",
+   "diplomacy"
+  ],
+  "techniques": [
+   "T1078",
+   "T1542.003",
+   "T1553.006",
+   "T1014",
+   "T1562.001",
+   "T1574.002",
+   "T1036.005",
+   "T1027",
+   "T1102",
+   "T1071.001"
+  ],
+  "tech_count": 10,
+  "tldr": "On 2026-10-22 Kaspersky GReAT (Georgy Kucherin, Vladimir Nestor, Vasily Berdnikov) published BlackX, a UEFI bootkit used in early 2026 against diplomatic organizations in Tajikistan, Uzbekistan and Turkmenistan. It exploits Baton Drop (CVE-2022-21894), the Secure Boot bypass behind BlackLotus, to enroll Machine Owner Keys and load arbitrary EFI files, then injects a kernel driver (signed with a si",
+  "thumb": "thumbs/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats.svg",
+  "case_rel": "../days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "APT41",
+  "cve_count": 2,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "blackx: an apt41-linked uefi bootkit built on the blacklotus baton drop exploit, used against central asian diplomatic bodies on fully patched windows apt41 china windows government diplomacy t1078 t1542.003 t1553.006 t1014 t1562.001 t1574.002 t1036.005 t1027 t1102 t1071.001 espionage / apt "
+ },
+ {
   "date": "2026-10-24",
   "year": "2026",
   "month": "2026-10",

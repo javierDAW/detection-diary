@@ -14,6 +14,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [ALPHV](./alphv/) | 1 |
 | [AMOS / Atomic macOS Stealer (MaaS)](./amos-atomic-macos-stealer-maas/) | 1 |
 | [APT36](./apt36/) | 1 |
+| [APT41](./apt41/) | 1 |
 | [APT42](./apt42/) | 1 |
 | [ARMORY CASTLE (formerly UNC5221)](./armory-castle-formerly-unc5221/) | 1 |
 | [ARToken (EvilTokens affiliate PhaaS)](./artoken-eviltokens-affiliate-phaas/) | 1 |

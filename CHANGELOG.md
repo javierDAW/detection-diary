@@ -1,3 +1,20 @@
+## 2026.10.25 — Day 125 — BlackX: APT41-linked UEFI bootkit built on the BlackLotus Baton Drop exploit, used against Central Asian diplomats
+
+### Added
+- `days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/` — Kaspersky GReAT (2026-10-22) reports BlackX, a BlackLotus-derived UEFI bootkit that abused CVE-2022-21894 on fully patched Windows to hit diplomatic bodies in Tajikistan, Uzbekistan and Turkmenistan in early 2026; medium-confidence APT41 link. Weekend auto-rescue pick for the firmware slot (#8).
+- Sigma (5): `01`-`05` — `inst.exe` in ProgramData Intel; `googleupdate.exe` with original name `jcef_helper.exe`; driver signed by the Mingyu studio; DNS for `archivetj.com`; `mountvol /s` from a script or ProgramData parent.
+- KQL (3): installer and sideload host; driver certificate and `v8_context_snapshot.bin`; C2 domain and non-Google `googleupdate.exe` cloud traffic.
+- YARA (1 file, 2 rules): installer and loader strings; RAT `TEST.Class1.RunCMD` module and task suffixes.
+- Suricata (1 file, 3 sids): DNS, TLS SNI and HTTP Host for `archivetj.com`.
+- PEAK hunts (3): PCA 2011 revocation posture; installer staging and sideload host; revoked driver certificate and telemetry gaps.
+- `iocs.csv` (20 entries) — paths, strings, certificate serial, C2 domain, no malicious hashes published. `kev.md` — 0/2 CVEs on CISA KEV in the cached catalog (live fetch unavailable).
+- `kill_chain.svg` — template A, canonical palette, espionage accent, 7 stages and 6 fact boxes.
+
+### Pedagogy
+- Patch level is not Secure Boot trust: the DBX revocation state is the control and it is checkable.
+- Certificate expiry is not revocation.
+- Below the OS the host can lie; collect evidence offline.
+
 ## 2026.10.24 — Day 123 — Argo CD October 2026 critical batch: Kustomize option injection (CVE-2026-113708), Helm config-home plugin (CVE-2026-113709) and PostDelete hook bypass (CVE-2026-77459)
 
 ### Added
