@@ -1,0 +1,11 @@
+# Title: AdFection - Candiru C2 and validator domains, Controlium tasking hosts
+# Author: Jarmi
+# Date: 2026-10-26
+# Reference: https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/
+# Variables: $HOME_NET is your internal address space; $EXTERNAL_NET is everything else.
+# Scope: domains are from the Citizen Lab report (Oct 2026). The 2024-2025 Al Jazeera intrusions are old, so hits on C2 and validator domains need history search, not just live alerting.
+# The Controlium rule (sid 6430004) is an exposure signal on ad-tech hosts and will fire on ordinary ad rendering; keep it at low priority or in a dataset-only mode.
+alert dns $HOME_NET any -> any any (msg:"JARMI AdFection DNS query for Candiru C2 domain"; dns.query; pcre:"/(?:fearevolve|jobmarcher|insightenterprisells|plasticbells)\.com$/i"; classtype:trojan-activity; sid:6430001; rev:1; metadata:created_at 2026_10_26, confidence medium;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI AdFection TLS SNI for Candiru C2 domain"; tls.sni; pcre:"/(?:fearevolve|jobmarcher|insightenterprisells|plasticbells)\.com$/i"; classtype:trojan-activity; sid:6430002; rev:1; metadata:created_at 2026_10_26, confidence medium;)
+alert dns $HOME_NET any -> any any (msg:"JARMI AdFection DNS query for Candiru validator or Bindecy-linked domain"; dns.query; pcre:"/(?:keyadapter\.com|sharethere\.net|outdooutcome\.com|suggestutterly\.com|sincereaccertain\.com|beachvibesnow\.com|enjoymultiplecats\.com|icecreamtester\.com|pickarest\.com|infoanalytics\.live)$/i"; classtype:trojan-activity; sid:6430003; rev:1; metadata:created_at 2026_10_26, confidence medium;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI AdFection TLS SNI for Discover-Tech Controlium ad-tasking host"; tls.sni; pcre:"/(?:\.|^)(?:mtrtb\.com|powerium\.net|controlium\.net|myweb3id\.io|platc-tester\.com|tracookiepixel\.xyz)$/i"; classtype:policy-violation; sid:6430004; rev:1; metadata:created_at 2026_10_26, confidence low;)

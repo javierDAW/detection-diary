@@ -1,5 +1,47 @@
 [
  {
+  "date": "2026-10-26",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera",
+  "title": "AdFection: Discover-Tech's Controlium ad platform turned targeted advertising into a zero-click delivery pipeline for Candiru mercenary spyware",
+  "clusters": [
+   "Candiru (Integrity Labs)",
+   "Discover-Tech"
+  ],
+  "country": "Israel",
+  "platforms": [
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "media",
+   "government",
+   "defense"
+  ],
+  "techniques": [
+   "T1189",
+   "T1203",
+   "T1583.008",
+   "T1592",
+   "T1546.015",
+   "T1027",
+   "T1071.001"
+  ],
+  "tech_count": 7,
+  "tldr": "On 2026-10-15 Citizen Lab published AdFection, an investigation of Discover-Tech, an Israeli ad-tech company whose Controlium platform lets mercenary spyware customers push malicious content to chosen people through ordinary real-time ad bidding, so a target is exposed the moment an ad renders, with no click and no message. The team links the platform to Candiru (Integrity Labs) and Bindecy, and t",
+  "thumb": "thumbs/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera.svg",
+  "case_rel": "../days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "Candiru (Integrity Labs)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "adfection: discover-tech's controlium ad platform turned targeted advertising into a zero-click delivery pipeline for candiru mercenary spyware candiru (integrity labs) discover-tech israel windows cloud-multi media government defense t1189 t1203 t1583.008 t1592 t1546.015 t1027 t1071.001 espionage / apt "
+ },
+ {
   "date": "2026-10-25",
   "year": "2026",
   "month": "2026-10",

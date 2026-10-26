@@ -38,6 +38,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [CL-STA-0049](./cl-sta-0049/) | 1 |
 | [CL-STA-1062](./cl-sta-1062/) | 1 |
 | [Calypso APT](./calypso-apt/) | 1 |
+| [Candiru (Integrity Labs)](./candiru-integrity-labs/) | 1 |
 | [Cavern Manticore](./cavern-manticore/) | 1 |
 | [Certighost (CVE-2026-54121)](./certighost-cve-2026-54121/) | 1 |
 | [Chaotic Eclipse / Nightmare-Eclipse](./chaotic-eclipse-nightmare-eclipse/) | 1 |
@@ -52,6 +53,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Dadsec](./dadsec/) | 1 |
 | [DevilNFC](./devilnfc/) | 1 |
 | [Dire Wolf (DireWolf) ransomware group](./dire-wolf-direwolf-ransomware-group/) | 1 |
+| [Discover-Tech](./discover-tech/) | 1 |
 | [Earth Estries](./earth-estries/) | 1 |
 | [Embargo](./embargo/) | 1 |
 | [Erudite Mogwai](./erudite-mogwai/) | 1 |

@@ -1,0 +1,76 @@
+{
+  "name": "2026-10-26 — 2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "AdFection: Discover-Tech's Controlium ad platform turned targeted advertising into a zero-click delivery pipeline for Candiru mercenary spyware — clusters: Candiru (Integrity Labs), Discover-Tech",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1189",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AdFection: Discover-Tech's Controlium ad platform turned targeted advertising in"
+    },
+    {
+      "techniqueID": "T1203",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AdFection: Discover-Tech's Controlium ad platform turned targeted advertising in"
+    },
+    {
+      "techniqueID": "T1583.008",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AdFection: Discover-Tech's Controlium ad platform turned targeted advertising in"
+    },
+    {
+      "techniqueID": "T1592",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AdFection: Discover-Tech's Controlium ad platform turned targeted advertising in"
+    },
+    {
+      "techniqueID": "T1546.015",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AdFection: Discover-Tech's Controlium ad platform turned targeted advertising in"
+    },
+    {
+      "techniqueID": "T1027",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AdFection: Discover-Tech's Controlium ad platform turned targeted advertising in"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "AdFection: Discover-Tech's Controlium ad platform turned targeted advertising in"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

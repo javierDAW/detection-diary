@@ -1,0 +1,26 @@
+title: AdFection Candiru Windows DLL Sample Loaded by SHA256
+id: 05d0b17f-e0ee-47e9-810a-b1dec696ee86
+status: experimental
+description: |
+  Detects the load of the Candiru Windows DLL that Al Jazeera isolated and Citizen Lab analysed (SHA256 255869de...5cc8). Hash rules are brittle and Candiru rebuilds its
+  implants, so this catches only this exact build; it is useful for retro-hunting EDR image-load history and as a seed for similarity searches.
+references:
+  - https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/
+author: Jarmi
+date: 2026/10/26
+tags:
+  - attack.defense-evasion
+  - attack.t1574
+  - attack.persistence
+  - attack.t1546.015
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection:
+    Hashes|contains: 'SHA256=255869DE85E2A171993FC5EB8A556D873A1B8966E040F6F55926F2FA2D595CC8'
+  condition: selection
+falsepositives:
+  - None expected for an exact SHA256 match
+
+level: high

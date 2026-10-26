@@ -4,11 +4,12 @@
 
 # Techniques: T1189
 
-5 day(s) covering this technique.
+6 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-26 | AdFection: Discover-Tech's Controlium ad platform turned targeted advertising into a zero-click delivery pipeline for Candiru mercenary spyware | Candiru (Integrity Labs) · Discover-Tech | [`2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/`](../../days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/) |
 | 2026-08-10 | CaptiveCrunch: Midnight Blizzard (Storm-2945) turns hotel captive portals into an AitM malware and credential-theft channel | Storm-2945 | [`2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/`](../../days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/) |
 | 2026-08-07 | Cloaked ClickFix: a macOS AMOS/MacSync campaign hides behind a server-side browser-fingerprinting gate | Unattributed macOS ClickFix TDS operator | [`2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/`](../../days/2026/08/2026-08-07_macOS-ClickFix-TDS-Fingerprinting-Gate-AMOS/) |
 | 2026-08-01 | SourTrade: malvertising that assembles a unique Windows executable inside the victim's browser | SourTrade | [`2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/`](../../days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/) |

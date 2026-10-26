@@ -1,0 +1,21 @@
+// Title: AdFection - per-user COM InprocServer32 hijack to a user-writable DLL, and the Candiru sample hash
+// Id: 80813233-b7e8-4168-8d62-decdc8afca01
+// MITRE: T1546.015 (Component Object Model Hijacking), T1027 (Obfuscated Files or Information)
+// Reference: https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/
+// Author: Jarmi
+// Date: 2026-10-26
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant.
+// FP notes: Per-user installers register HKCU COM servers legitimately; triage by DLL signer and creation time. The hash match is exact-build only.
+let sample_sha256 = "255869de85e2a171993fc5eb8a556d873a1b8966e040f6f55926f2fa2d595cc8";
+let com_hijack = DeviceRegistryEvents
+    | where Timestamp > ago(180d)
+    | where ActionType == "RegistryValueSet"
+    | where RegistryKey has @"\Software\Classes\CLSID\" and RegistryKey endswith @"\InprocServer32"
+    | where RegistryValueData has_any (@"\AppData\", @"\Temp\", @"\ProgramData\", @"\Users\Public\") and RegistryValueData endswith ".dll"
+    | project Timestamp, DeviceName, Signal = "com_hijack", Detail = strcat(RegistryKey, " = ", RegistryValueData), InitiatingProcessFileName, InitiatingProcessCommandLine;
+let hash_hit = DeviceImageLoadEvents
+    | where Timestamp > ago(730d)
+    | where SHA256 =~ sample_sha256
+    | project Timestamp, DeviceName, Signal = "candiru_sample_hash", Detail = strcat(FolderPath, "\\", FileName), InitiatingProcessFileName, InitiatingProcessCommandLine;
+union com_hijack, hash_hit
+| order by Timestamp desc

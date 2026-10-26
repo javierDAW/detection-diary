@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">AdFection - Discover-Tech ads delivering Candiru zero-click spyware</title>
+<desc id="d">Two-lane kill chain. Left lane: 1 Discover-Tech bids and wins an ad slot, 2 the ad script contacts a NOAS getAd server, 3 eligibility check on IP and advertising ID, 4 tasked script or 1x1 iframe delivered, 5 Candiru validator probes the device, 6 profiling and infection of a Windows host with a COM-hijack DLL, 7 Candiru C2 contact. Right lane: attribution, Controlium control panel, exposed data, indicators, detection anchors and caveats. Critical badges on delivery, infection and C2.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">AdFection: targeted ads as a zero-click spyware pipeline</text>
+<text class="meta" x="20" y="58">Vendor: Citizen Lab - Date: 2026-10-26 - Cluster: Candiru via Discover-Tech (high) - Day 125</text>
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="32" y="105">VICTIM SIDE: AD IMPRESSION TO IMPLANT</text>
+<text class="laneLabelR" x="462" y="105">ACTOR, INFRASTRUCTURE AND DEFENDER VIEW</text>
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="76" y="144">Discover-Tech wins an ad bid</text>
+<text class="sub" x="40" y="168">Real-time bidding places the ad in 75,373 apps and</text>
+<text class="sub" x="40" y="184">120,768 websites (Mar-Jun 2026); ad renders even in background</text>
+<text class="sub" x="40" y="200">Victim only needs the ad to load, no click or message</text>
+<text class="mono" x="40" y="226">T1189  T1583.008</text>
+<text class="mono" x="40" y="244">Hunt H3  Sigma 03</text>
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="76" y="294">Ad script calls a NOAS getAd server</text>
+<text class="sub" x="40" y="318">Script tag sends cookie ID or advertising ID and cookies</text>
+<text class="sub" x="40" y="334">Hosts: noas.mtrtb.com, noas.powerium.net, events.myweb3id.io</text>
+<text class="sub" x="40" y="350">Discover-Tech never hands the malicious code to ad vendors</text>
+<text class="mono" x="40" y="376">/getAd  /jsConfig</text>
+<text class="mono" x="40" y="394">Sigma 03  KQL k3  Suricata 6430004</text>
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="76" y="444">Eligibility check on IP and device ID</text>
+<text class="sub" x="40" y="468">Server decides if this visitor is a tasked target</text>
+<text class="sub" x="40" y="484">Not eligible: 0-byte reply. Eligible: JavaScript, once per target</text>
+<text class="sub" x="40" y="500">Encrypted ad-URL parameters tie the click to the impression IP</text>
+<text class="mono" x="40" y="526">T1592  OpSec V3 per-user key</text>
+<text class="mono" x="40" y="544">Hunt H3</text>
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="76" y="594">Tasked 1x1 iframe or script delivered</text>
+<text class="sub" x="40" y="618">Operator picks Ad URL or Script in the Controlium panel</text>
+<text class="sub" x="40" y="634">Iframe loads a Candiru-linked profiling URL</text>
+<text class="sub" x="40" y="650">sincereaccertain.com distributed via ads from Apr 2025</text>
+<text class="mono" x="40" y="676">T1189  T1203</text>
+<text class="mono" x="40" y="694">Sigma 02  KQL k1</text>
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="76" y="744">Candiru validator probes the device</text>
+<text class="sub" x="40" y="768">Initial device check before any implant is sent</text>
+<text class="sub" x="40" y="784">Fingerprint V1: Apache header order; keyadapter.com, sharethere.net</text>
+<text class="sub" x="40" y="800">303 more domains and 319 IPs in the Citizen Lab appendix</text>
+<text class="mono" x="40" y="826">T1592  T1203</text>
+<text class="mono" x="40" y="844">Sigma 02  Suricata 6430003  Hunt H1</text>
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="76" y="894">Windows host infected, COM-hijack persistence</text>
+<text class="sub" x="40" y="918">Al Jazeera DLL SHA256 255869de...5cc8, 48-byte XOR strings</text>
+<text class="sub" x="40" y="934">Persistence by COM hijack with a different DLL than 2021</text>
+<text class="sub" x="40" y="950">At least 45 Al Jazeera devices in 2024 and 2025</text>
+<text class="mono" x="40" y="976">T1546.015  T1027</text>
+<text class="mono" x="40" y="994">Sigma 04, 05  KQL k2  Hunt H2  YARA 1</text>
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="76" y="1044">Candiru C2 contact</text>
+<text class="sub" x="40" y="1068">Hardcoded C2 fearevolve.com and jobmarcher.com</text>
+<text class="sub" x="40" y="1084">Connectivity check to www.google.com and www.microsoft.com</text>
+<text class="sub" x="40" y="1100">Fingerprint C1: nginx, keep-alive, empty reason phrase</text>
+<text class="mono" x="40" y="1126">T1071.001</text>
+<text class="mono" x="40" y="1144">Sigma 01  Suricata 6430001-2  Hunt H1</text>
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">A</text>
+<text class="label" x="506" y="149">Attribution: Candiru, high confidence</text>
+<text class="sub" x="470" y="173">Al Jazeera sample resembles the 2021 Candiru chain</text>
+<text class="sub" x="470" y="189">Discover-Tech linked to Candiru by OpSec decoder on myipinfo.io</text>
+<text class="sub" x="470" y="205">Bindecy and Intelos also use Controlium; DARK CARTOGRAPHER pending</text>
+<text class="sub" x="470" y="221">Citizen Lab names no government customer</text>
+<text class="mono" x="470" y="251">Citizen Lab 2026-10-15</text>
+<rect class="opK" x="460" y="295" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">B</text>
+<text class="label" x="506" y="319">Controlium: ad-tech panel for mercenaries</text>
+<text class="sub" x="470" y="343">Target by advertising ID, browser ID or IP; tag generator,</text>
+<text class="sub" x="470" y="359">campaign caps, domain and app allowlists, OpSec limits</text>
+<text class="sub" x="470" y="375">Auth0 JWT ignored: backend trusted an unsigned user object</text>
+<text class="sub" x="470" y="391">Exposed /csv-download: 128 days of logs, 120 usernames</text>
+<text class="mono" x="470" y="421">INTEGRITYPRESALE1  INTEGRITYPRESALE2</text>
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">C</text>
+<text class="label" x="506" y="489">Exposed bid data shows reach</text>
+<text class="sub" x="470" y="513">3.77 billion bids, 441.95 million wins, about 109,091 USD</text>
+<text class="sub" x="470" y="529">NOAS-script ads: 718.7 million bids in 161 countries</text>
+<text class="sub" x="470" y="545">Impressions seen on NATO, UN, EU and defence networks</text>
+<text class="sub" x="470" y="561">Confiant: DoD, IAEA, ICC; not proof of compromise</text>
+<text class="mono" x="470" y="591">druid.mtrtb.com  ppv2.mtrtb.com</text>
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">D</text>
+<text class="label" x="506" y="659">Indicators and their limits</text>
+<text class="sub" x="470" y="683">Candiru: fearevolve.com, jobmarcher.com, keyadapter.com</text>
+<text class="sub" x="470" y="699">Controlium: mtrtb.com, powerium.net, myweb3id.io</text>
+<text class="sub" x="470" y="715">Ad-tech domains also serve benign ads: use as exposure signal</text>
+<text class="sub" x="470" y="731">Implant domains are 2024-2025: search long DNS history</text>
+<text class="mono" x="470" y="761">iocs.csv 59 rows  YARA 2 rules</text>
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">E</text>
+<text class="label" x="506" y="829">Detection anchors</text>
+<text class="sub" x="470" y="853">Long-window DNS for C2 and validators (Sigma 01-02, H1)</text>
+<text class="sub" x="470" y="869">Ad domain then validator then C2 in one hour (KQL k3)</text>
+<text class="sub" x="470" y="885">Per-user COM hijack to a user-writable DLL (Sigma 05, H2)</text>
+<text class="sub" x="470" y="901">Exposure map of Controlium lookups (Sigma 03, H3)</text>
+<text class="mono" x="470" y="931">Sigma 01-05  KQL k1-k3  Suricata 6430001-4</text>
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">F</text>
+<text class="label" x="506" y="999">Response and caveats</text>
+<text class="sub" x="470" y="1023">Google, IAB Europe, Beeswax delisted Discover-Tech in Oct 2026</text>
+<text class="sub" x="470" y="1039">Vungle paused access; Eskimi blocked accounts and domains</text>
+<text class="sub" x="470" y="1055">Marczak: at-risk users should block ads or disable ad tracking</text>
+<text class="sub" x="470" y="1071">No CVE or exploit named; mobile exploit chain not published</text>
+<text class="mono" x="470" y="1101">Hunts H1 H2 H3</text>
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,187 L460,202" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,337 L460,372" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,487 L460,542" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,787 L460,737" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,937 L460,882" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,1087 L460,1052" marker-end="url(#ah)"/>
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1198">Detection anchors: Candiru C2 and validator DNS history, ad-then-validator-then-C2 sequence, COM hijack to user DLL, Controlium exposure</text>
+<text class="footerT" x="34" y="1218">Rules in this folder: Sigma 01-05, KQL k1-k3, YARA 2 rules, Suricata sids 6430001-6430004, PEAK hunts H1-H3.</text>
+<text class="footerT" x="34" y="1236">No CVE or exploit published. Implant indicators date from 2024-2025; Controlium hosts are ad-tech and need context.</text>
+<text class="footerT" x="34" y="1254">Act: search long DNS history, map Controlium exposure for at-risk users, block the domains, image any host with a C2 hit.</text>
+</svg>

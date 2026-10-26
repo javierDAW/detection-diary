@@ -1,0 +1,29 @@
+title: AdFection Candiru Windows Implant C2 Domain DNS Query
+id: 1a89c2e1-451b-4843-a061-464aa5e02498
+status: experimental
+description: |
+  Detects a DNS query for the four Candiru command-and-control domains that Citizen Lab fingerprinted (fingerprint C1) and that the Al Jazeera DLL carried as hardcoded
+  C2 (fearevolve.com, jobmarcher.com) plus two sibling C2 domains. The 2024-2025 intrusions are old, so a hit in current telemetry means either a late infection or a
+  reused domain; treat it as high priority either way and search back at least 24 months of DNS history.
+references:
+  - https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/
+author: Jarmi
+date: 2026/10/26
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection:
+    QueryName|endswith:
+      - 'fearevolve.com'
+      - 'jobmarcher.com'
+      - 'insightenterprisells.com'
+      - 'plasticbells.com'
+  condition: selection
+falsepositives:
+  - Sinkholed or parked domains queried by a researcher or a threat-intelligence enrichment job
+
+level: high

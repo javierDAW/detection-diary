@@ -1,0 +1,37 @@
+title: AdFection Candiru Validator or Bindecy Linked Domain DNS Query
+id: 8cbdddef-8512-4d27-9745-276553cc6fd0
+status: experimental
+description: |
+  Detects DNS queries for the two Candiru validator domains named in the Citizen Lab report (keyadapter.com, sharethere.net), the three domains registered 2025-03-18
+  that distributed Candiru profiling URLs through Discover-Tech ads, and the Bindecy-linked domains. Citizen Lab lists 303 more validator domains and 319 IPs in its
+  appendix; load the full appendix into a lookup for production use. Validators are the step between an ad impression and infection, so a hit on a user workstation
+  means the device was probed even if no implant followed.
+references:
+  - https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/
+author: Jarmi
+date: 2026/10/26
+tags:
+  - attack.initial-access
+  - attack.t1189
+  - attack.reconnaissance
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection:
+    QueryName|endswith:
+      - 'keyadapter.com'
+      - 'sharethere.net'
+      - 'outdooutcome.com'
+      - 'suggestutterly.com'
+      - 'sincereaccertain.com'
+      - 'beachvibesnow.com'
+      - 'enjoymultiplecats.com'
+      - 'icecreamtester.com'
+      - 'pickarest.com'
+      - 'infoanalytics.live'
+  condition: selection
+falsepositives:
+  - Domains that were later re-registered by an unrelated party; check passive DNS for the date of the lookup
+
+level: high

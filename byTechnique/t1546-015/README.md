@@ -4,9 +4,10 @@
 
 # Techniques: T1546.015
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-26 | AdFection: Discover-Tech's Controlium ad platform turned targeted advertising into a zero-click delivery pipeline for Candiru mercenary spyware | Candiru (Integrity Labs) · Discover-Tech | [`2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/`](../../days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/) |
 | 2026-08-10 | CaptiveCrunch: Midnight Blizzard (Storm-2945) turns hotel captive portals into an AitM malware and credential-theft channel | Storm-2945 | [`2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/`](../../days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/) |

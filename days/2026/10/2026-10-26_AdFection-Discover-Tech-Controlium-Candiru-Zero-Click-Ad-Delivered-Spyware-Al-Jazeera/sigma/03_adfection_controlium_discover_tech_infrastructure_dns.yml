@@ -1,0 +1,40 @@
+title: AdFection Controlium and Discover-Tech Ad Infrastructure DNS Query
+id: 83a36865-6f1b-44b4-9af5-7fffa340d2d2
+status: experimental
+description: |
+  Detects DNS queries for the Discover-Tech / Controlium ad-delivery and tasking infrastructure (the NOAS getAd servers, event loggers and tracking-pixel hosts). These
+  hosts are ad-tech, not malware, and most queries will come from browsers and apps rendering ordinary ads; the rule is an exposure and triage signal, not a verdict. It
+  becomes a strong signal when the same host also queries a Candiru validator or C2 domain within minutes (see KQL k3). Citizen Lab reports that Google, IAB Europe and
+  Beeswax removed Discover-Tech from their registries in early October 2026, so volume should fall.
+references:
+  - https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/
+author: Jarmi
+date: 2026/10/26
+tags:
+  - attack.initial-access
+  - attack.t1189
+  - attack.resource-development
+  - attack.t1583.008
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection:
+    QueryName|endswith:
+      - 'mtrtb.com'
+      - 'powerium.net'
+      - 'controlium.net'
+      - 'myweb3id.io'
+      - 'platc-tester.com'
+      - 'tracookiepixel.xyz'
+      - 'cookie-sync.xyz'
+      - 'discover-tech.io'
+      - 'adtimizer.co'
+      - 'cookiesurfer.com'
+      - 'volasim.com'
+  condition: selection
+falsepositives:
+  - Ordinary browsing or app use that rendered an ad served through Discover-Tech before it was delisted
+  - Ad-tech researchers and brand-safety scanners
+
+level: medium

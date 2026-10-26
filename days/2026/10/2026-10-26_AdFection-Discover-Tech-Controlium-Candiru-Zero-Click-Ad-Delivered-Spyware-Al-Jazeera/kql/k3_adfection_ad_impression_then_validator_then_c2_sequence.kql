@@ -1,0 +1,21 @@
+// Title: AdFection - temporal signature: Controlium ad domain, then Candiru validator, then C2 on the same device
+// Id: 47c64533-9cef-4a06-b876-196a8c5d8854
+// MITRE: T1189 (Drive-by Compromise), T1203 (Exploitation for Client Execution), T1071.001 (Web Protocols)
+// Reference: https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/
+// Author: Jarmi
+// Date: 2026-10-26
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant.
+// FP notes: Ad-tech domains alone are common. The signal is the ordered sequence inside one hour; a validator hit without a following C2 hit still means the device was probed.
+let controlium = dynamic(["mtrtb.com","powerium.net","controlium.net","myweb3id.io","platc-tester.com","tracookiepixel.xyz","cookie-sync.xyz","discover-tech.io","adtimizer.co","cookiesurfer.com","volasim.com"]);
+let validator = dynamic(["keyadapter.com","sharethere.net","outdooutcome.com","suggestutterly.com","sincereaccertain.com"]);
+let c2 = dynamic(["fearevolve.com","jobmarcher.com","insightenterprisells.com","plasticbells.com"]);
+let ad = DeviceNetworkEvents | where Timestamp > ago(90d) | where RemoteUrl has_any (controlium) | project DeviceId, DeviceName, AdTime = Timestamp, AdUrl = RemoteUrl;
+let val = DeviceNetworkEvents | where Timestamp > ago(90d) | where RemoteUrl has_any (validator) | project DeviceId, ValTime = Timestamp, ValUrl = RemoteUrl;
+let cc = DeviceNetworkEvents | where Timestamp > ago(90d) | where RemoteUrl has_any (c2) | project DeviceId, C2Time = Timestamp, C2Url = RemoteUrl;
+ad
+| join kind=inner val on DeviceId
+| where ValTime between (AdTime .. AdTime + 1h)
+| join kind=leftouter cc on DeviceId
+| where isnull(C2Time) or C2Time between (ValTime .. ValTime + 1h)
+| project DeviceName, AdTime, AdUrl, ValTime, ValUrl, C2Time, C2Url
+| order by AdTime desc

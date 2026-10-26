@@ -1,0 +1,38 @@
+title: COM InprocServer32 Hijack Pointing to a DLL in a User-Writable Path
+id: d54b3cf5-5d98-4a51-aae9-7ffa12596f29
+status: experimental
+description: |
+  Detects a per-user COM class registration (HKCU Software Classes CLSID InprocServer32) whose default value is a DLL in AppData, Temp, ProgramData or Users Public. The
+  Candiru Windows implant in the AdFection case persists through a COM hijack with a different DLL than the 2021 chain, so this is a behaviour-level lead rather than
+  an indicator. Many legitimate per-user shell extensions also register under HKCU, so expect noise and triage by DLL signer, creation time and the process that wrote the key.
+references:
+  - https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/
+  - https://attack.mitre.org/techniques/T1546/015/
+author: Jarmi
+date: 2026/10/26
+tags:
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1546.015
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_key:
+    TargetObject|contains|all:
+      - '\Software\Classes\CLSID\'
+      - '\InprocServer32'
+  selection_path:
+    Details|contains:
+      - '\AppData\'
+      - '\Temp\'
+      - '\ProgramData\'
+      - '\Users\Public\'
+  filter_ext:
+    Details|endswith: '.dll'
+  condition: selection_key and selection_path and filter_ext
+falsepositives:
+  - Per-user installers for productivity and collaboration software that register COM servers under the user profile
+  - Developer machines registering test COM components
+
+level: medium

@@ -13,7 +13,7 @@ Source of truth: each day's `README.md` frontmatter.
 |---|---|
 | [active-directory](./active-directory/) | 2 |
 | [android](./android/) | 5 |
-| [cloud-multi](./cloud-multi/) | 36 |
+| [cloud-multi](./cloud-multi/) | 37 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 9 |
 | [linux](./linux/) | 48 |
@@ -26,4 +26,4 @@ Source of truth: each day's `README.md` frontmatter.
 | [saas](./saas/) | 1 |
 | [supply-chain](./supply-chain/) | 22 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
-| [windows](./windows/) | 73 |
+| [windows](./windows/) | 74 |

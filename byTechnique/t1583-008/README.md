@@ -4,9 +4,10 @@
 
 # Techniques: T1583.008
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-26 | AdFection: Discover-Tech's Controlium ad platform turned targeted advertising into a zero-click delivery pipeline for Candiru mercenary spyware | Candiru (Integrity Labs) · Discover-Tech | [`2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/`](../../days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/) |
 | 2026-08-01 | SourTrade: malvertising that assembles a unique Windows executable inside the victim's browser | SourTrade | [`2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/`](../../days/2026/08/2026-08-01_SourTrade-Browser-Assembled-Malware-Malvertising/) |

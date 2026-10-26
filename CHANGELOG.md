@@ -1,3 +1,20 @@
+## 2026.10.26 — Day 125 — AdFection: Discover-Tech's Controlium ad platform delivering Candiru zero-click spyware
+
+### Added
+- `days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/` — Citizen Lab (2026-10-15) shows how the Israeli ad-tech firm Discover-Tech and its Controlium panel let mercenary customers (Candiru, Bindecy, Intelos) push content to chosen targets through ad bidding; at least 45 Al Jazeera Windows devices were infected by Candiru in 2024-2025. First Candiru case in the repo.
+- Sigma (5): `01`-`05` — Candiru C2 DNS; validator and Bindecy-linked DNS; Controlium ad-tasking DNS (exposure signal); Candiru DLL load by SHA256; HKCU COM InprocServer32 hijack to a user-writable DLL.
+- KQL (3): C2, validator and Bindecy domains over 730 days; COM hijack plus sample hash; ordered ad-domain, validator and C2 sequence.
+- YARA (1 file, 2 rules): decrypted-memory Candiru C2 strings; Controlium getAd tasking script strings.
+- Suricata (1 file, 4 sids): DNS and SNI for C2, validator and Controlium hosts.
+- PEAK hunts (3): long-window DNS lookback; COM hijack persistence; Controlium exposure map.
+- `iocs.csv` (59 entries) — one sample hash, C2 and validator domains, Controlium and Bindecy infrastructure, fingerprints. No CVE in scope, so no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, espionage accent, 7 stages and 6 fact boxes.
+
+### Pedagogy
+- The ad exchange is an access channel: an unclicked ad can be stage one.
+- Targeted delivery hides from scanners, so evidence lives in long DNS and proxy history.
+- Combine weak signals into an ordered sequence (ad domain, validator, C2).
+
 ## 2026.10.25 — Day 125 — BlackX: APT41-linked UEFI bootkit built on the BlackLotus Baton Drop exploit, used against Central Asian diplomats
 
 ### Added

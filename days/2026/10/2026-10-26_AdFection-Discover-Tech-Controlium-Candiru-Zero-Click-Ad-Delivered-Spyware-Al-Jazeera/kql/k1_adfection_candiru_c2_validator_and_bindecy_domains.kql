@@ -1,0 +1,17 @@
+// Title: AdFection - Candiru C2, validator and Bindecy-linked domains contacted from endpoints
+// Id: b7741995-407d-42c9-b036-c7f258931ab1
+// MITRE: T1189 (Drive-by Compromise), T1071.001 (Web Protocols)
+// Reference: https://citizenlab.ca/research/how-discover-tech-turned-targeted-ads-into-a-pipeline-for-spyware/
+// Author: Jarmi
+// Date: 2026-10-26
+// Tested on: Microsoft Defender XDR advanced hunting; not run against a live tenant.
+// FP notes: Parked or re-registered domains; check passive DNS for the date of the lookup. Load the 303 extra validator domains and 319 IPs from the Citizen Lab appendix into the lists before production use.
+let candiru_c2 = dynamic(["fearevolve.com","jobmarcher.com","insightenterprisells.com","plasticbells.com"]);
+let candiru_validator = dynamic(["keyadapter.com","sharethere.net","outdooutcome.com","suggestutterly.com","sincereaccertain.com","d1fcoizt7mje85.cloudfront.net"]);
+let bindecy = dynamic(["beachvibesnow.com","enjoymultiplecats.com","icecreamtester.com","pickarest.com","infoanalytics.live"]);
+DeviceNetworkEvents
+| where Timestamp > ago(730d)
+| where RemoteUrl has_any (candiru_c2) or RemoteUrl has_any (candiru_validator) or RemoteUrl has_any (bindecy) or RemoteIP == "52.174.65.77"
+| extend Role = case(RemoteUrl has_any (candiru_c2), "candiru_c2", RemoteUrl has_any (candiru_validator), "candiru_validator", RemoteUrl has_any (bindecy), "bindecy", "bindecy_ip")
+| project Timestamp, DeviceName, Role, RemoteUrl, RemoteIP, RemotePort, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName
+| order by Timestamp desc

@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-10-25 09:09 UTC
+# generated 2026-10-26 08:16 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -33,6 +33,8 @@ abc.fetish-friends.com
 abc.haijing88.com
 acceptable-use-policy-calendly.de
 acuitycore.digital
+adtimizer.co
+adtimizer.com
 advisory-tracker.com
 afghanistanupdates.site
 afghantelecom.site
@@ -51,6 +53,7 @@ appstoore.duckdns.org
 appstoore.solutions
 apricotfilepoint.com
 aquaclaude-09494-9099403-docviewer.clear90489058903-document.workers.dev
+archer.westeurope.cloudapp.azure.com
 archivetj.com
 arweave.net
 ashx.lhlsjcb.com
@@ -66,9 +69,12 @@ aws.us-east-prod.com
 aws.us-west-login.com
 b6w9m2z5x8q1v3k.top
 bananafastfile.com
+bd-mainserver.herokuapp.com
+beachvibesnow.com
 beacon-net.digital
 beammaybea.digital
 beamoramag.digital
+bidr.io
 bistro-reserve-now.net
 bithill.com
 borjumaniya.store
@@ -103,6 +109,7 @@ cloudcaravan.info
 cloudfilebridge.com
 cloudsendhub.com
 cloudsyncpulse.com
+cn.druid.mtrtb.com
 coachcybersecurity.com
 cognitionnodehub.digital
 cognitionpipeline.digital
@@ -111,11 +118,15 @@ cohezo.io
 com-ae.net
 compliance-protectionoutlook.de
 consensus-protocol-v4.org
+controlium.net
+cookie-sync.xyz
+cookiesurfer.com
 cordinex.io
 cst001.epc.mnc053.mcc234.3gppnetwork.org
 cumm.info
 cwrtwright.com
 d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
+d1fcoizt7mje85.cloudfront.net
 d1hmxkpwby0d4s.org
 dalasu.digital
 darijo-bosanac-dl.workers.dev
@@ -135,6 +146,7 @@ develevenor.com
 dexarionrte.info
 digital-asset-mart.org
 direwolfcdkv5whaz2spehizdg22jsuf5aeje4asmetpbt6ri4jnd4qd.onion
+discover-tech.io
 dns.multitoconference.com
 dns.ssentialserv.xyz
 docker-hub.qt-team.com
@@ -145,6 +157,7 @@ download.robovpn.com
 dra1.je211.epc.mnc003.mcc234.3gppnetwork.org
 driftshare.co
 drivelivelime.com
+druid.mtrtb.com
 e5469cec-124a-c84f-abaa-docviewer.clear90489058903-document.workers.dev
 eaggcz2fj7yzqdzx97i96.darijo-bosanac-dl.workers.dev
 edge-compliance-node.org
@@ -153,6 +166,7 @@ en.cumm.info
 encryption-plug-in-signal.com-ae.net
 endpoint-api-v1.com
 engineclaritynode.digital
+enjoymultiplecats.com
 enrollms.com
 enveil.online
 envell.xyz
@@ -161,11 +175,13 @@ ep6pheij.com
 epc.mnc019.mcc425.3gppnetwork.org
 eth-mainnet-alchemy.com
 ev2sirbd269o5j.org
+events.myweb3id.io
 ewujsfb1dp5ran.org
 f3nq6re4nmjwbr8ks5g2qu.darijo-bosanac-dl.workers.dev
 fasterscommunications.com
 fastlink.ws
 fastsecurey.info
+fearevolve.com
 fererro.digital
 festiveparty.us
 filecedarwallet.online
@@ -200,6 +216,7 @@ gatheredovertime.com
 getceptionparty.de
 getsession.org
 git-tanstack.com
+globaldatapoints.com
 globalfileshareplatform.com
 globalretailbrands.com.au
 gmslb.net
@@ -217,6 +234,7 @@ heritiages.org
 highclass.atspace.com
 hospitalinstallation.com
 human-check.top
+icecreamtester.com
 ideabpl1h.dea.epc.mnc003.mcc520.3gppnetwork.org
 ideabpl1h.epc.mnc019.mcc425.3gppnetwork.org
 identity-breach-response.org
@@ -227,13 +245,17 @@ ignite-spark.digital
 image.update-kaspersky.workers.dev
 imagebucket.biz
 imagefiles-backup.oss-ap-southeast-7.aliyuncs.com
+infinoas.mtrtb.com
+infoanalytics.live
 insight-radiant.digital
 insightcores.digital
+insightenterprisells.com
 insightmetrix.digital
 insightorbithub.digital
 instantmessagehub.tech
 ip-api.com
 ip-scanner.org
+jobmarcher.com
 join-secure-call.ai-ae.io
 jump.qt-proxy.org
 jump.qt-team.com
@@ -241,6 +263,7 @@ junora.digital
 k135neflez.westus3.azure.clickhouse.cloud
 kalviorix.info
 kaztelecom.shop
+keyadapter.com
 koravaje.digital
 ks501oz9nm3v05.org
 kwywztxoo2xdot.org
@@ -254,6 +277,7 @@ leadingfilipinoteams.com
 lemonfilewave.com
 limefilescope.com
 line.completely.workers.dev
+logger.controlium.net
 loginportal-aws.com
 lunarohub.info
 lunavo.club
@@ -285,13 +309,16 @@ msfile.online
 msiidentity.com
 mslogin.milocaroline.com
 msonline.logicalineonline.com
+mtrtb.com
 mueleer.com
 muurfzqprzmdkzoibxaz.supabase.co
 mvwmh7pxxd33375gj9wwjhcmbk.darijo-bosanac-dl.workers.dev
 mxprodesign.com
 my-github.com
 my-gitlab.com
+myipinfo.io
 mypublicshare.com
+myweb3id.io
 namefuture.site
 nameprod.site
 nano.upscale-kolo.com
@@ -302,6 +329,8 @@ nexlisa.info
 nfcrackatm.com
 nic-support.site
 nicservice.org
+noas.mtrtb.com
+noas.powerium.net
 nordexastudio.info
 noxani.info
 nwitassistnow.com
@@ -319,6 +348,7 @@ oraclelabs.biz
 orange-cell-1353.hellohiall.workers.dev
 orangesmartfile.com
 orientstrategypartners.digital
+outdooutcome.com
 ovh1kn1tcqw5kp.org
 owa-ms365.com
 painelwebradiodigital.awardspace.info
@@ -330,9 +360,15 @@ passkeydeploy.com
 passkeyms.com
 permits.global-transit-authority.org
 php.authorized-logins.net
+pickarest.com
+plasticbells.com
+platc-tester.com
 polvexa.site
 power-sync-services.com
+powerium.net
 pozdravizbeograda.com
+ppv2.mtrtb.com
+pqv2.mtrtb.com
 praxnova.info
 predictcore.digital
 prism-west-candy.glitch.me
@@ -364,6 +400,7 @@ riovera.info
 robejj.com
 robovpn-windows-default-rtdb.firebaseio.com
 robovpn.com
+rockhoster.com
 roldco.com
 rotoa-upda-lo.com
 round-cherry-4418.hellohiall.workers.dev
@@ -382,8 +419,10 @@ setupsso.com
 sgnlapp.info
 sgwebdesigner.free.fr
 sharehub.space
+sharethere.net
 shinjirou.info
 signalmetrics.digital
+sincereaccertain.com
 singtelcom.site
 sitemap.tor-browser.io
 sitemaps.tor-browser.io
@@ -407,6 +446,7 @@ star-layer.com
 storage3d.com
 streamyard.appstore.com.mx
 sudsmama.com
+suggestutterly.com
 switch-sglogin.com
 syncdatavault.com
 synchvault.co
@@ -433,6 +473,8 @@ totok-pro.io
 totokapp.info
 toushere.digital
 track-portal.co
+tracker.mtrtb.com
+tracookiepixel.xyz
 trafficmanagerupdate.com
 transoe.site
 treasuresland.cc
@@ -462,6 +504,7 @@ visual-media-rights-group.org
 vnc.kcii2.com
 vngz3ntdrb.us-east1.gcp.clickhouse.cloud
 vnt.wherewego.top
+volasim.com
 vpn01.afghantelecom.site
 w3xasv14culvnqj.top
 w5fb5r3txrsvga7zot9uz54k.darijo-bosanac-dl.workers.dev
