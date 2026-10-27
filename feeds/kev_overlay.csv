@@ -226,3 +226,5 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass,2026-10-24,CVE-2026-77459,no,,,,,,
 2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats,2026-10-25,CVE-2022-21894,no,,,,,,
 2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats,2026-10-25,CVE-2023-24932,no,,,,,,
+2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam,2026-10-27,CVE-2023-27532,yes,2023-08-22,2023-09-12,Known,Veeam Backup & Replication Cloud Connect Missing Authentication for Critical Function Vulnerability,Veeam,Backup & Replication
+2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam,2026-10-27,CVE-2026-0257,yes,2026-05-29,2026-06-01,Known,Palo Alto Networks PAN-OS Authentication Bypass Vulnerability,Palo Alto Networks,PAN-OS

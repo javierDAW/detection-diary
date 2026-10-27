@@ -68,6 +68,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Howling Scorpius](./howling-scorpius/) | 1 |
 | [Hydro Kitten](./hydro-kitten/) | 1 |
 | [INC Ransom](./inc-ransom/) | 1 |
+| [INC Ransom (Tarnished Scorpius)](./inc-ransom-tarnished-scorpius/) | 1 |
 | [Icarus](./icarus/) | 1 |
 | [Iran-nexus (unattributed)](./iran-nexus-unattributed/) | 1 |
 | [Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI)](./iranian-state-cyber-actors-chosen-brick-heavygram-mois-per-fbi/) | 1 |
@@ -110,6 +111,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [QLNX](./qlnx/) | 1 |
 | [QTFY](./qtfy/) | 1 |
 | [Qilin](./qilin/) | 1 |
+| [Qilin (Spikey Scorpius)](./qilin-spikey-scorpius/) | 1 |
 | [Qilin ransomware affiliate (Check Point CPR, medium confidence)](./qilin-ransomware-affiliate-check-point-cpr-medium-confidence/) | 1 |
 | [Quasar Linux](./quasar-linux/) | 1 |
 | [REF7707](./ref7707/) | 1 |

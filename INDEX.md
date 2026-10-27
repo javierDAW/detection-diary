@@ -4,7 +4,7 @@
 
 # INDEX
 
-**125 cases** · **193 actors/clusters** · **402 ATT&CK techniques** · **16 platforms** · **91 sectors** · 2026-04-28 -> 2026-10-26
+**126 cases** · **195 actors/clusters** · **402 ATT&CK techniques** · **16 platforms** · **91 sectors** · 2026-04-28 -> 2026-10-27
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/"><img src="days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/kill_chain.svg" alt="2026-10-27 kill chain" width="240"></a><br><sub><b>2026-10-27</b><br>Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/"><img src="days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/kill_chain.svg" alt="2026-10-26 kill chain" width="240"></a><br><sub><b>2026-10-26</b><br>Candiru (Integrity Labs) · Discover-Tech</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/"><img src="days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/kill_chain.svg" alt="2026-10-25 kill chain" width="240"></a><br><sub><b>2026-10-25</b><br>APT41</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/"><img src="days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/kill_chain.svg" alt="2026-10-24 kill chain" width="240"></a><br><sub><b>2026-10-24</b><br>Unattributed (no exploitation reported)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/"><img src="days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/kill_chain.svg" alt="2026-10-24 kill chain" width="240"></a><br><sub><b>2026-10-24</b><br>Unattributed (no exploitation reported)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/"><img src="days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/kill_chain.svg" alt="2026-10-23 kill chain" width="240"></a><br><sub><b>2026-10-23</b><br>Unattributed Plex2Shell exploitation</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/"><img src="days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/kill_chain.svg" alt="2026-10-22 kill chain" width="240"></a><br><sub><b>2026-10-22</b><br>Unattributed GhostAction operator (Fake Font / PolinRider naming overlap)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/"><img src="days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/kill_chain.svg" alt="2026-10-21 kill chain" width="240"></a><br><sub><b>2026-10-21</b><br>Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/"><img src="days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/kill_chain.svg" alt="2026-10-21 kill chain" width="240"></a><br><sub><b>2026-10-21</b><br>Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/"><img src="days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/kill_chain.svg" alt="2026-10-20 kill chain" width="240"></a><br><sub><b>2026-10-20</b><br>Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/"><img src="days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/kill_chain.svg" alt="2026-10-19 kill chain" width="240"></a><br><sub><b>2026-10-19</b><br>ARMORY CASTLE (formerly UNC5221)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/"><img src="days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/kill_chain.svg" alt="2026-10-15 kill chain" width="240"></a><br><sub><b>2026-10-15</b><br>Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/"><img src="days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/kill_chain.svg" alt="2026-10-15 kill chain" width="240"></a><br><sub><b>2026-10-15</b><br>Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/"><img src="days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/kill_chain.svg" alt="2026-10-05 kill chain" width="240"></a><br><sub><b>2026-10-05</b><br>TA419</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/"><img src="days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/kill_chain.svg" alt="2026-10-01 kill chain" width="240"></a><br><sub><b>2026-10-01</b><br>Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/"><img src="days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/kill_chain.svg" alt="2026-09-24 kill chain" width="240"></a><br><sub><b>2026-09-24</b><br>MacSync operator (malware-as-a-service, unattributed)</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-10</b> — 11 case(s)</summary>
+<details><summary><b>2026-10</b> — 12 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-10-27 | [Qilin and INC ride a forged GlobalProtect cookie (CVE-2026-0257) from the VPN into vCenter, ESXi VMDKs and Veeam](days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/) | Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius) | network-edge, windows, linux |
 | 2026-10-26 | [AdFection: Discover-Tech's Controlium ad platform turned targeted advertising into a zero-click delivery pipeline for Candiru mercenary spyware](days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/) | Candiru (Integrity Labs) · Discover-Tech | windows, cloud-multi |
 | 2026-10-25 | [BlackX: an APT41-linked UEFI bootkit built on the BlackLotus Baton Drop exploit, used against Central Asian diplomatic bodies on fully patched Windows](days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/) | APT41 | windows |
 | 2026-10-24 | [Argo CD October 2026 critical batch: Kustomize option injection (CVE-2026-113708), Helm config-home plugin (CVE-2026-113709) and PostDelete hook bypass (CVE-2026-77459)](days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/) | Unattributed (no exploitation reported) | linux, cloud-multi, supply-chain |

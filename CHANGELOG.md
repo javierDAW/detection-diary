@@ -1,3 +1,20 @@
+## 2026.10.27 — Day 126 — Qilin and INC exploit PAN-OS GlobalProtect CVE-2026-0257 with forged override cookies, then pivot to vCenter, ESXi VMDKs and Veeam
+
+### Added
+- `days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/` — Unit 42 (updated 2026-10-19), Rapid7 and Arctic Wolf show Qilin (Spikey Scorpius) and INC (Tarnished Scorpius) using the GlobalProtect authentication override bypass to get MFA-free VPN sessions, then RDP/SMB/PsExec, LSASS and ntds.dit theft, MEGA exfiltration and, in one case, an ESXi execInstalledOnly change, offline DC VMDK dump and Veeam chain.
+- Sigma (6): `01`-`06` — cookie-method admin login; known exploit client values; comsvcs MiniDump to .odt; ntdsutil IFM; PerfLogs/PSEXESVC execution; esxcli execInstalledOnly off.
+- KQL (3): GlobalProtect logs and known IPs; Qilin post-access techniques; ESXi/vCenter control changes and VPN-pool logins.
+- YARA (1 file, 2 rules): forged-cookie request tooling text; log-clearing PowerShell (no sample).
+- Suricata (1 file, 6 sids): login.esp cookie fields, known IPs, VPN pool to vCenter, MEGA SNI, exposed management ports.
+- PEAK hunts (3): forged-cookie logins; Windows post-access chain; vCenter/ESXi/VMDK/Veeam pivot.
+- `iocs.csv` (46 entries) — IPs, client values, paths, Run-key pattern, ESXi setting. `kev.md` — 2/2 CVEs on CISA KEV (cached catalog 2026.10.16).
+- `kill_chain.svg` — template A, canonical palette, ransomware accent, 7 stages and 6 fact boxes.
+
+### Pedagogy
+- Encrypting a token without signing it is not authentication; a shared certificate leaks the key.
+- A patch does not end an intrusion: kill sessions and rotate secrets.
+- Hunt the chain, and log the hypervisor control plane that EDR cannot see.
+
 ## 2026.10.26 — Day 125 — AdFection: Discover-Tech's Controlium ad platform delivering Candiru zero-click spyware
 
 ### Added

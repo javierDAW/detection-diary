@@ -1,5 +1,69 @@
 [
  {
+  "date": "2026-10-27",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam",
+  "title": "Qilin and INC ride a forged GlobalProtect cookie (CVE-2026-0257) from the VPN into vCenter, ESXi VMDKs and Veeam",
+  "clusters": [
+   "Qilin (Spikey Scorpius)",
+   "INC Ransom (Tarnished Scorpius)"
+  ],
+  "country": "Unattributed (e-crime, multiple affiliates)",
+  "platforms": [
+   "network-edge",
+   "windows",
+   "linux"
+  ],
+  "sectors": [
+   "education",
+   "finance",
+   "healthcare",
+   "manufacturing",
+   "government",
+   "energy",
+   "legal",
+   "retail"
+  ],
+  "techniques": [
+   "T1190",
+   "T1133",
+   "T1556",
+   "T1021.001",
+   "T1021.002",
+   "T1569.002",
+   "T1003.001",
+   "T1003.003",
+   "T1562.001",
+   "T1070.001",
+   "T1567.002",
+   "T1486"
+  ],
+  "tech_count": 12,
+  "tldr": "On 2026-10-19 Unit 42 updated its CVE-2026-0257 advisory to name the Qilin (Spikey Scorpius) and INC (Tarnished Scorpius) ransomware crews as exploiting the Palo Alto Networks GlobalProtect authentication bypass, which lets an unauthenticated attacker open a VPN session without credentials or MFA when authentication override cookies share a certificate with another feature. The flaw was patched on",
+  "thumb": "thumbs/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam.svg",
+  "case_rel": "../days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Qilin (Spikey Scorpius)",
+  "cve_count": 2,
+  "kev_count": 2,
+  "kev_cves": [
+   {
+    "cve": "CVE-2023-27532",
+    "due": "2023-09-12",
+    "ransom": true
+   },
+   {
+    "cve": "CVE-2026-0257",
+    "due": "2026-06-01",
+    "ransom": true
+   }
+  ],
+  "q": "qilin and inc ride a forged globalprotect cookie (cve-2026-0257) from the vpn into vcenter, esxi vmdks and veeam qilin (spikey scorpius) inc ransom (tarnished scorpius) unattributed (e-crime, multiple affiliates) network-edge windows linux education finance healthcare manufacturing government energy legal retail t1190 t1133 t1556 t1021.001 t1021.002 t1569.002 t1003.001 t1003.003 t1562.001 t1070.001 t1567.002 t1486 ransomware / e-crime cve-2023-27532 cve-2026-0257"
+ },
+ {
   "date": "2026-10-26",
   "year": "2026",
   "month": "2026-10",
