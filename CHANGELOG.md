@@ -1,3 +1,20 @@
+## 2026.10.28 — Day 127 — Huntress: Microsoft 365 token spray and replay from 1337 Services hosts, rogue Entra devices, wiped MFA and BEC inbox rules
+
+### Added
+- `days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/` — Huntress (2026-10-22) documents a ten-week campaign (2026-07-14 to 2026-09-22) against 79 organizations: stolen sessions replayed from 193.26.115.0/24 (AS210558, 1337 Services GmbH), 48+ rogue Entra devices, MFA methods wiped and replaced, hiding inbox rules and a payroll-themed BEC message. No actor named. First BEC / identity-to-fraud case since July; Wednesday rotation (#27 primary, #5 secondary).
+- Sigma (5): `01`-`05` — sign-in from the replay block; scripted user agent on Office or Broker app; DESKTOP-hex device registration; MFA method deletion; hiding inbox rules.
+- KQL (3): replay hosts and scripted clients; rogue devices and MFA delete-then-register pairs; inbox rules hiding mail.
+- YARA (1 file, 2 rules): exported sign-in evidence markers; exported hiding-rule data (no sample exists).
+- Suricata (1 file, 3 sids): internal contact with replay addresses; inbound from the /24; device-code page visit.
+- PEAK hunts (3): replayed sessions; devices, MFA and apps; inbox rules and payroll follow-on.
+- `iocs.csv` (41 entries) — replay and relay IPs, client and resource IDs, device-name pattern, inbox rule names. No CVE, so no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, identity-cloud accent, 7 stages and 6 fact boxes.
+
+### Pedagogy
+- MFA protects the login, not the stolen session; revoke sessions before resetting passwords.
+- Persistence (devices, MFA methods) is what survives a reset, so hunt it explicitly.
+- An AADSTS53003 is proof of a valid credential even when the attack failed.
+
 ## 2026.10.27 — Day 126 — Qilin and INC exploit PAN-OS GlobalProtect CVE-2026-0257 with forged override cookies, then pivot to vCenter, ESXi VMDKs and Veeam
 
 ### Added

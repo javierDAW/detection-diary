@@ -1,0 +1,35 @@
+title: Entra ID Sign-in From the 1337 Services Token Replay Hosts
+id: edb75521-074a-450c-b6a9-69fbb7765d75
+status: experimental
+description: |
+  Detects an Entra ID sign-in (interactive or non-interactive) whose source address is one of the replay or relay addresses Huntress published for the July to September 2026
+  Microsoft 365 token spray and replay campaign: the 193.26.115.0/24 block (AS210558, 1337 Services GmbH) and four related addresses. Attackers rotated single addresses, so the
+  /24 is matched as a whole; other 1337 Services ranges are not covered. A successful sign-in means a stolen session or credential worked. A failed sign-in with AADSTS53003 still
+  proves the credential was valid. Field names follow the Sigma azure signinlogs mapping; adjust to your parser.
+references:
+  - https://www.huntress.com/blog/token-replay-spray
+author: Jarmi
+date: 2026/10/28
+tags:
+  - attack.initial-access
+  - attack.t1078.004
+  - attack.defense-evasion
+  - attack.t1550.001
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection_cidr:
+    IPAddress|cidr: '193.26.115.0/24'
+  selection_ip:
+    IPAddress:
+      - '124.198.132.33'
+      - '45.83.31.44'
+      - '192.159.99.172'
+      - '185.238.2.195'
+  condition: selection_cidr or selection_ip
+falsepositives:
+  - A researcher or analyst testing the published addresses from a lab
+  - Address reassignment: hosting ranges change hands, so re-validate old hits
+
+level: high

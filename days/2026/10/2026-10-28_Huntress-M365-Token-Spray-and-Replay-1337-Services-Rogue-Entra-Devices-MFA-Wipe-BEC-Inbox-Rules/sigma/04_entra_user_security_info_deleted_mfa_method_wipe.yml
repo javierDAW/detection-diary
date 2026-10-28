@@ -1,0 +1,31 @@
+title: Entra ID User Authentication Method Deleted
+id: 21108b46-4ddb-4737-a902-00791878d95b
+status: experimental
+description: |
+  Detects deletion of a user's authentication method (security info). In the Huntress campaign the attacker wiped existing MFA methods and registered their own, in 19 organizations within
+  three hours of the first campaign sign-in. The event alone is common (phone changes). The condition cannot express the sequence, so push the pairing to the SIEM: alert when a
+  deletion is followed by a registration of a new method for the same user within three hours from a different IP or ASN than the user's usual one.
+references:
+  - https://www.huntress.com/blog/token-replay-spray
+author: Jarmi
+date: 2026/10/28
+tags:
+  - attack.persistence
+  - attack.t1556.006
+  - attack.t1098.005
+logsource:
+  product: azure
+  service: auditlogs
+detection:
+  selection:
+    OperationName:
+      - 'User deleted security info'
+      - 'Admin deleted security info'
+      - 'User registered security info'
+  condition: selection
+falsepositives:
+  - Users replacing a lost or upgraded phone
+  - Helpdesk-driven MFA resets (Admin deleted security info)
+  - Onboarding that registers a first method
+
+level: medium

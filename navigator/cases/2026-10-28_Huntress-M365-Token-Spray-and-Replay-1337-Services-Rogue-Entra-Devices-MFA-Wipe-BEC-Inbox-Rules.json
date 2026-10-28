@@ -1,0 +1,111 @@
+{
+  "name": "2026-10-28 — 2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Services hosts ends in rogue Entra devices, wiped MFA and BEC inbox rules — clusters: Unattributed (1337 Services GmbH infrastructure)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1557",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1566.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1528",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1550.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1110.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1090.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1098.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1556.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1564.008",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1114.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    },
+    {
+      "techniqueID": "T1534",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Ser"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

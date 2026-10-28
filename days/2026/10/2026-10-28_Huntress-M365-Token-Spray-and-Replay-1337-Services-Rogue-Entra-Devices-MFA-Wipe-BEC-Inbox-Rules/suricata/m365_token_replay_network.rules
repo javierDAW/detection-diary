@@ -1,0 +1,11 @@
+# Title: Microsoft 365 token replay campaign - network-visible signals (1337 Services block and device-code flow)
+# Author: Jarmi
+# Date: 2026-10-28
+# Reference: https://www.huntress.com/blog/token-replay-spray
+# Variables: $HOME_NET internal space; $EXTERNAL_NET everything else.
+# Scope: the replay itself happens in the cloud, so the network sees little. sid 6450001 flags internal hosts talking to the published addresses (AiTM relay or tooling contact);
+# sid 6450002 flags inbound contact from the 193.26.115.0/24 block to on-premises endpoints you publish (hybrid Exchange, ADFS, OWA, VPN); sid 6450003 is a policy signal for the
+# Microsoft device-code page and needs TLS decryption. The block ages: re-validate before blocking. Entra sign-in logs remain the primary source.
+alert ip $HOME_NET any -> [193.26.115.221,193.26.115.199,193.26.115.16,193.26.115.21,193.26.115.72,193.26.115.210,124.198.132.33,45.83.31.44,192.159.99.172,185.238.2.195] any (msg:"JARMI M365 token replay campaign - internal host contacting published replay or relay address"; classtype:trojan-activity; sid:6450001; rev:1; metadata:created_at 2026_10_28, confidence medium;)
+alert tcp 193.26.115.0/24 any -> $HOME_NET [443,993,587,25] (msg:"JARMI M365 token replay campaign - 1337 Services block contacting on-premises mail or identity endpoint"; flow:to_server; classtype:attempted-recon; sid:6450002; rev:1; metadata:created_at 2026_10_28, confidence low;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI Device-code sign-in page visited from internal client (device-code phishing exposure)"; flow:established,to_server; http.method; content:"GET"; http.host; content:"microsoft.com"; endswith; http.uri; content:"/devicelogin"; startswith; classtype:policy-violation; sid:6450003; rev:1; metadata:created_at 2026_10_28, confidence low;)

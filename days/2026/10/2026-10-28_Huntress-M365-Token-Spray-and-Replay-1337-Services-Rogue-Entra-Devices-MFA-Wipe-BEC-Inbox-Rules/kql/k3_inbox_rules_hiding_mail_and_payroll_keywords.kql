@@ -1,0 +1,20 @@
+// Title: Inbox rules that hide mail: punctuation or very short names, RSS and Conversation History folders, payroll keywords
+// Id: 42c66c31-0a15-46c7-9c31-bfc78ab74fdf
+// MITRE: T1564.008 (Hide Artifacts: Email Hiding Rules), T1114.003 (Email Forwarding Rule), T1534 (Internal Spearphishing)
+// Reference: https://www.huntress.com/blog/token-replay-spray
+// Author: Jarmi
+// Date: 2026-10-28
+// Tested on: Microsoft Defender XDR advanced hunting (CloudAppEvents); not run against a tenant that received this campaign
+// FP notes: Users create short-named rules too, and finance teams have real payroll rules. Rules created through the Outlook REST API (not the Outlook client) are the stronger signal; compare the UserAgent field. <add_known_finance_mailboxes> to downgrade expected payroll rules.
+let lookback = 60d;
+let hidingFolders = dynamic(["RSS Feeds", "RSS Subscriptions", "Conversation History"]);
+let keywords = dynamic(["payroll", "direct deposit", "bank", "bonus"]);
+CloudAppEvents
+| where Timestamp > ago(lookback)
+| where ActionType in ("New-InboxRule", "Set-InboxRule", "UpdateInboxRules")
+| extend Params = tostring(RawEventData.Parameters), RuleName = tostring(RawEventData.Item.Name)
+| extend ShortName = strlen(RuleName) between (1 .. 3) or RuleName matches regex @"^[\W_]+$"
+| extend HidingFolder = Params has_any (hidingFolders), PayrollKeyword = Params has_any (keywords)
+| where ShortName or HidingFolder or PayrollKeyword
+| project Timestamp, AccountDisplayName, AccountObjectId, IPAddress, UserAgent, ActionType, RuleName, ShortName, HidingFolder, PayrollKeyword, Params
+| order by Timestamp asc

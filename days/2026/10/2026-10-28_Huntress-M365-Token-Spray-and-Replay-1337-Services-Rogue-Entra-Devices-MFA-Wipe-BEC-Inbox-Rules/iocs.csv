@@ -1,0 +1,42 @@
+type,value,context,confidence,source
+ipv4,193.26.115.221,"Replay host, Build A scripted tooling, phase 1 (2026-07-14 to 2026-08-03); AS210558 1337 Services GmbH",medium,Huntress 2026-10-22
+ipv4,193.26.115.199,"Replay host, Build B browser tooling, phase 1; AS210558",medium,Huntress 2026-10-22
+ipv4,193.26.115.16,"Replay host, Build A, phase 2 (from 2026-08-17, device-code phishing and MFA wipes); AS210558",medium,Huntress 2026-10-22
+ipv4,193.26.115.21,"Replay host, Build A, phase 2 (bare Mozilla/5.0 user agent); AS210558",medium,Huntress 2026-10-22
+ipv4,193.26.115.72,"Replay host, Build A, phase 3 (2026-09-11 to about 2026-09-15); AS210558",medium,Huntress 2026-10-22
+ipv4,193.26.115.210,"Replay host, Build B, phase 4 (2026-09-02 to 2026-09-22) used with an Evoxt relay; AS210558",medium,Huntress 2026-10-22
+ipv4,124.198.132.33,Additional 1337 Services address seen in the campaign,medium,Huntress 2026-10-22
+ipv4,45.83.31.44,Additional 1337 Services address seen in the campaign,medium,Huntress 2026-10-22
+ipv4,192.159.99.172,Additional 1337 Services address seen in the campaign,medium,Huntress 2026-10-22
+ipv4,185.238.2.195,Relay address seen on 2026-07-21 during the first incident,medium,Huntress 2026-10-22
+ipv4,167.148.41.96,Interserver address used for payroll inbox-rule creation,medium,Huntress 2026-10-22
+ipv6,2400:8d60:2::1:841d:5dd,Evoxt Sdn. Bhd. relay used in the final takeover on 2026-09-22,medium,Huntress 2026-10-22
+note,AS210558,"1337 Services GmbH (Hamburg), bring-your-own-IP hosting; all main replay hosts sit in 193.26.115.0/24 but the block is not the only 1337 Services range; blocking one address achieves little",high,Huntress 2026-10-22
+note,193.26.115.0/24,Covers the six main replay hosts; other 1337 Services addresses are not covered; re-validate before blocking,medium,Huntress 2026-10-22
+string,d3590ed6-52b3-4102-aeff-aad2292ab01c,Client app ID Microsoft Office; used by Build A OAuth2:Token requests,high,Huntress 2026-10-22
+string,29d9ed98-a469-4536-ade2-f981bc1d605e,Client app ID Microsoft Authentication Broker; used with device registration and Cmsi:Cmsi,high,Huntress 2026-10-22
+string,4765445b-32c6-49b0-83e6-1d93765276ca,"Client app ID OfficeHome; used by Build B browser tooling (Login:reprocess, OAuth2:Authorize)",high,Huntress 2026-10-22
+string,00000003-0000-0000-c000-000000000000,Resource ID Microsoft Graph targeted by the replayed tokens,high,Huntress 2026-10-22
+string,00000002-0000-0ff1-ce00-000000000000,Resource ID Exchange Online targeted by the replayed tokens,high,Huntress 2026-10-22
+string,00000003-0000-0ff1-ce00-000000000000,Resource ID SharePoint Online targeted by the replayed tokens,high,Huntress 2026-10-22
+string,01cb2876-7ebd-4aa4-9cc9-d28bd4d359a9,Resource ID Device Registration Service used to create rogue devices,high,Huntress 2026-10-22
+string,node,User agent of the scripted Build A replay tooling,medium,Huntress 2026-10-22
+string,Mozilla/5.0,Bare user agent with no product details on host 193.26.115.21,medium,Huntress 2026-10-22
+string,OAuth2:Token,Request type of Build A scripted token replay,medium,Huntress 2026-10-22
+string,Cmsi:Cmsi,Request type seen in device-code and broker sign-ins during phase 2,medium,Huntress 2026-10-22
+string,DESKTOP-54521F46,Example rogue Entra device name (DESKTOP- plus eight uppercase hex characters),medium,Huntress 2026-10-22
+string,DESKTOP-BAF88EF4,Example rogue Entra device name,medium,Huntress 2026-10-22
+string,DESKTOP-CA85907C,Example rogue Entra device name,medium,Huntress 2026-10-22
+string,iPhone 13,Label of an attacker-registered authenticator on the 2026-07-21 account,medium,Huntress 2026-10-22
+string,AADSTS53003,BlockedByConditionalAccess: the credential was valid and policy stopped the sign-in,medium,Huntress 2026-10-22
+string,AADSTS50133,SsoArtifactRevoked: replay of an invalid or revoked session,medium,Huntress 2026-10-22
+string,inbox-rule-name:.,"Inbox rule name: mark as read and delete, all mail",medium,Huntress 2026-10-22
+string,inbox-rule-name:sss,"Inbox rule name: mark as read and delete, all mail",medium,Huntress 2026-10-22
+string,inbox-rule-name:ss,"Inbox rule name: move to RSS Feeds and mark read, for a business partner's domain",medium,Huntress 2026-10-22
+string,inbox-rule-name:iT,"Inbox rule name: move to Conversation History and mark read, all mail",medium,Huntress 2026-10-22
+string,"inbox-rule-name:,.","Inbox rule name: move to Conversation History and mark read, all mail",medium,Huntress 2026-10-22
+string,inbox-rule-name:........,"Inbox rule name: move to RSS Subscriptions and mark read, all mail",medium,Huntress 2026-10-22
+string,inbox-rule-name:s,"Inbox rule name: hide mail on payroll, direct deposit, bank, bonus keywords",medium,Huntress 2026-10-22
+string,inbox-rule-name:d,Inbox rule name: move to Conversation History for one external CPA,medium,Huntress 2026-10-22
+note,Persistence summary,"At least 48 rogue Entra-joined devices; MFA methods wiped and replaced (19 organizations within three hours of first sign-in); 79 victim organizations; 497 successful sign-ins and over 200,000 failed attempts between 2026-07-14 and 2026-09-22; no actor named",high,Huntress 2026-10-22
+note,Containment caveat,A password reset alone leaves attacker devices and MFA methods and does not invalidate the access token (about 90 minutes); revoke sessions and remove devices and methods,high,Huntress 2026-10-22

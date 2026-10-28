@@ -1,0 +1,42 @@
+title: Exchange Online Inbox Rule With Hiding Folder or Payroll Keywords
+id: 3467a993-97a0-4589-a2db-a1e0bf5a2078
+status: experimental
+description: |
+  Detects creation or change of an Exchange Online inbox rule that moves mail to a folder attackers use to hide it (RSS Feeds, RSS Subscriptions, Conversation History) or that matches
+  payroll, direct deposit, bank or bonus keywords. Huntress saw rules named with one to three characters or punctuation only ('.', 'sss', 'iT', ',.', 'd', 's'), four created through the Outlook
+  REST API, and a payroll-themed email to an outside CPA. Rule-name length is not testable in Sigma; add that check in the SIEM. Field names follow the Sigma m365 exchange mapping.
+references:
+  - https://www.huntress.com/blog/token-replay-spray
+author: Jarmi
+date: 2026/10/28
+tags:
+  - attack.defense-evasion
+  - attack.t1564.008
+  - attack.collection
+  - attack.t1114.003
+logsource:
+  product: m365
+  service: exchange
+detection:
+  selection_op:
+    Operation:
+      - 'New-InboxRule'
+      - 'Set-InboxRule'
+      - 'UpdateInboxRules'
+  selection_folder:
+    Parameters|contains:
+      - 'RSS Feeds'
+      - 'RSS Subscriptions'
+      - 'Conversation History'
+  selection_kw:
+    Parameters|contains:
+      - 'payroll'
+      - 'direct deposit'
+      - 'bonus'
+      - 'bank'
+  condition: selection_op and (selection_folder or selection_kw)
+falsepositives:
+  - Users who file newsletters into RSS Feeds
+  - Finance staff with legitimate payroll or bank mail rules
+
+level: high

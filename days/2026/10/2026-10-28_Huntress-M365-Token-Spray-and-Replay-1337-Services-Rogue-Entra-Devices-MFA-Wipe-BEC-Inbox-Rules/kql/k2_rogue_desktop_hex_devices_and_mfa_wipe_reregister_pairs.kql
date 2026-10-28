@@ -1,0 +1,34 @@
+// Title: Rogue DESKTOP-hex devices and MFA method wipe followed by re-registration within three hours
+// Id: 369086ad-b537-4f85-8483-72fb54418abd
+// MITRE: T1098.005 (Device Registration), T1556.006 (Modify Authentication Process: MFA)
+// Reference: https://www.huntress.com/blog/token-replay-spray
+// Author: Jarmi
+// Date: 2026-10-28
+// Tested on: Microsoft Sentinel (AuditLogs, SigninLogs); not run against a tenant that received this campaign
+// FP notes: Phone replacement and helpdesk MFA resets produce the same two events. The signal is the pairing from a new IP shortly after a risky sign-in; Autopilot naming schemes can also match the device regex. <add_known_autopilot_name_prefixes> if your fleet uses hex hostnames.
+let lookback = 60d;
+let pairWindow = 3h;
+let devices = AuditLogs
+    | where TimeGenerated > ago(lookback)
+    | where OperationName in ("Add device", "Add registered owner to device", "Add registered users to device")
+    | mv-expand tr = TargetResources
+    | extend DeviceName = tostring(tr.displayName)
+    | where DeviceName matches regex @"^DESKTOP-[0-9A-F]{8}$"
+    | extend Actor = tostring(InitiatedBy.user.userPrincipalName), ActorIp = tostring(InitiatedBy.user.ipAddress)
+    | project TimeGenerated, Signal = "rogue-device-name", Actor, ActorIp, Detail = DeviceName;
+let mfaDeleted = AuditLogs
+    | where TimeGenerated > ago(lookback)
+    | where OperationName in ("User deleted security info", "Admin deleted security info")
+    | extend Actor = tostring(TargetResources[0].userPrincipalName), ActorIp = tostring(InitiatedBy.user.ipAddress)
+    | project DeleteTime = TimeGenerated, Actor, DeleteIp = ActorIp;
+let mfaRegistered = AuditLogs
+    | where TimeGenerated > ago(lookback)
+    | where OperationName in ("User registered security info", "User registered all required security info")
+    | extend Actor = tostring(TargetResources[0].userPrincipalName), ActorIp = tostring(InitiatedBy.user.ipAddress)
+    | project RegTime = TimeGenerated, Actor, RegIp = ActorIp;
+let pairs = mfaDeleted
+    | join kind=inner mfaRegistered on Actor
+    | where RegTime between (DeleteTime .. (DeleteTime + pairWindow))
+    | project TimeGenerated = RegTime, Signal = "mfa-wipe-then-register", Actor, ActorIp = RegIp, Detail = strcat("deleted from ", DeleteIp);
+union devices, pairs
+| order by TimeGenerated asc

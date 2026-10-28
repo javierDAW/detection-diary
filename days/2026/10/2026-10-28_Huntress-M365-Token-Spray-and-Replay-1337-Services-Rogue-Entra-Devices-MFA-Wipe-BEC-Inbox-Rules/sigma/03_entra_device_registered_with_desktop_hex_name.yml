@@ -1,0 +1,31 @@
+title: Entra ID Device Registered With DESKTOP Plus Eight Hex Characters Name
+id: 90373e87-681f-4ef7-982c-cbdba3adce27
+status: experimental
+description: |
+  Detects an Entra ID audit event that adds a device whose display name is DESKTOP- followed by eight uppercase hexadecimal characters. Huntress found at least 48 rogue Entra-joined
+  devices created through the Device Registration Service during the campaign, with names such as DESKTOP-54521F46. The Windows default is seven alphanumeric characters, but the
+  eight-hex shape is not unique to this actor, so treat a hit as a lead and confirm with the owner and the registering IP. Field names follow the Sigma azure auditlogs mapping.
+references:
+  - https://www.huntress.com/blog/token-replay-spray
+author: Jarmi
+date: 2026/10/28
+tags:
+  - attack.persistence
+  - attack.t1098.005
+logsource:
+  product: azure
+  service: auditlogs
+detection:
+  selection_op:
+    OperationName:
+      - 'Add device'
+      - 'Add registered owner to device'
+      - 'Add registered users to device'
+  selection_name:
+    TargetResources|re: 'DESKTOP-[0-9A-F]{8}'
+  condition: selection_op and selection_name
+falsepositives:
+  - Autopilot or imaging workflows that generate random hex hostnames
+  - Employee devices with a custom naming script
+
+level: medium

@@ -1,0 +1,35 @@
+title: Entra ID Sign-in by Office or Authentication Broker App With Scripted User Agent
+id: 7c50dee8-fe6f-4303-a88d-d02928c9698d
+status: experimental
+description: |
+  Detects Entra ID sign-ins where the client application is Microsoft Office (d3590ed6-52b3-4102-aeff-aad2292ab01c) or the Microsoft Authentication Broker
+  (29d9ed98-a469-4536-ade2-f981bc1d605e) and the user agent is exactly 'node' or a bare 'Mozilla/5.0'. Huntress tied this combination (OAuth2:Token requests against Graph, Exchange,
+  SharePoint and the Device Registration Service) to the scripted Build A replay tooling. Real Office clients send a full product user agent, so a bare value is an anomaly.
+  Severity rises when the source is hosting infrastructure; add that enrichment in the SIEM. Field names follow the Sigma azure signinlogs mapping.
+references:
+  - https://www.huntress.com/blog/token-replay-spray
+author: Jarmi
+date: 2026/10/28
+tags:
+  - attack.credential-access
+  - attack.t1528
+  - attack.defense-evasion
+  - attack.t1550.001
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection_app:
+    AppId:
+      - 'd3590ed6-52b3-4102-aeff-aad2292ab01c'
+      - '29d9ed98-a469-4536-ade2-f981bc1d605e'
+  selection_ua:
+    UserAgent:
+      - 'node'
+      - 'Mozilla/5.0'
+  condition: selection_app and selection_ua
+falsepositives:
+  - Internal Node.js automation that uses the Office client ID with a trimmed user agent
+  - Some legacy scripts send a bare Mozilla/5.0
+
+level: high
