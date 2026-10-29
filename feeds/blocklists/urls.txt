@@ -1,5 +1,5 @@
 # detection-diary blocklist — url
-# generated 2026-10-28 08:47 UTC
+# generated 2026-10-29 08:24 UTC
 # defensive/educational — validate before blocking; indicators decay
 http://154.82.81.205/YD20251001143052.zip
 http://154.82.81.205/YN20250923193706.zip
@@ -27,6 +27,7 @@ http://91.92.242.30/l5ou8r739pc48rwi
 http://91.92.242.30/lamq4uerkruo6ssm
 http://91.92.242.30/q0c7ew2ro8l2cfqp
 http://95.182.100.231:2222/
+http://<domain>/codepy
 http://ams1.vultrobjects.com/desktop-va0r68j-ppmppnf12uyt4r5tifjdfhtron5
 http://endpoint-api-v1.com/d/f1b24e/download
 http://gatheredovertime.com/nb4
@@ -43,6 +44,7 @@ http://sgwebdesigner.free.fr/left.gif
 http://situluimihai.3x.ro/top.png
 http://theunforgiven.p8.hu/img/top.gif
 http://thomphon.com/update.msi
+http://www.litellm.dev/healthcheck
 http://www.yonelco.com/icon.png
 https://1a820b09-95ba-44eb-b350-417e8241b725-00-1lgwuuen9b77p.worf.replit.dev/download
 https://213.145.86.112/cdn/chunks/polyfill-7e2b.min.js
@@ -80,6 +82,7 @@ https://fixupcount.s3.dualstack.ap-northeast-1.amazonaws.com/wehn/rich.png
 https://gateway.icloud.com/caldav/1_MTk1NDMwMDMzNTUxOTU0M0pybtJB186GzhogprwCQUjY3oZNiDFHH8WVo6bmgUtI/attach/4GE4TKNBTGAYDGMZVGUYTSNJUGOAALDAFMDOJBGWNUCYJLZRNDCLCO2YMQ3I64RLGMNXVG3KYBPWQOGYIEI7MPBDDYHECFDYVENTXIYFNDCPOVRMCTYI236RCYZAE63V5U3RTUYGUMO2CO7PKCLWMCXE73M7OPTHSGRWH5DXQ4PCUQU4ELZTLW54JSTK2H7VQ6PD26WOA2R7PPIQ6RTJWDEWP34U3HB4YWMXXC6EJ6PKWILSPYRSDEVY6QGMWSIUN6PR5W35KO3D4QZE7CFPUVBAEKI/Loader.app.tar.gz/YXR0YWNoYXR0YWNoYXR0YRhrE8mQ0E-b_dTUSGStQgTQ0ULFxCanei3Ke-EuEyQL
 https://gist.github.com/H0j3n/a5ef2609b5f2944ac2390a191a534c26
 https://git-tanstack.com/tmp/transformers.pyz
+https://github.com/Berri-AI/litellm
 https://github.com/Open-Agent-Utilities
 https://github.com/Open-Agent-Utilities/requests-secure-v2
 https://github.com/amiteliahu/AIAgentCTF/tree/main/CVE-2026-26030
@@ -117,6 +120,7 @@ https://pastebin.com/yUkbaBH3
 https://paypal.me/shiftypumpkin
 https://pqv2.mtrtb.com/getAd?idfa=test2
 https://rapids-lil-lending-charleston.trycloudflare.com
+https://raw.githubusercontent.com/letters9813/pythonclient-test/main/domain.txt
 https://registry.npmjs.org/-/npm/v1/oidc/token/exchange/package/
 https://registry.npmjs.org/-/npm/v1/tokens
 https://registry.npmjs.org/-/whoami

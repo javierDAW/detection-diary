@@ -1,0 +1,13 @@
+# Title: LiteLLM 1.107.0 compromise - exfiltration domain, dead drop and second-stage fetch
+# Author: Jarmi
+# Date: 2026-10-29
+# Reference: https://www.wiz.io/blog/litellm-compromised-steals-credentials
+# Variables: $HOME_NET internal space; $EXTERNAL_NET everything else.
+# Scope: sid 9690001 DNS lookups for litellm.dev; sid 9690002 TLS SNI for litellm.dev; sid 9690003 plain HTTP POST to /healthcheck on litellm.dev (Microsoft lists the URL as http);
+# sid 9690004 GET of the GitHub dead-drop raw file (needs TLS inspection, low confidence, repository removed); sid 9690005 GET to a /codepy path from a host that ran python (low confidence,
+# generic URI, tune before alerting). Indicators age quickly: the domain and repository were reported in October 2026.
+alert dns $HOME_NET any -> any any (msg:"JARMI LiteLLM 1.107.0 compromise - DNS query for litellm.dev exfiltration domain"; dns.query; content:"litellm.dev"; endswith; nocase; classtype:trojan-activity; sid:9690001; rev:1; metadata:created_at 2026_10_29, confidence high;)
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI LiteLLM 1.107.0 compromise - TLS SNI litellm.dev exfiltration domain"; tls.sni; content:"litellm.dev"; endswith; nocase; classtype:trojan-activity; sid:9690002; rev:1; metadata:created_at 2026_10_29, confidence high;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI LiteLLM 1.107.0 compromise - privcollect HTTP POST to litellm.dev/healthcheck"; flow:established,to_server; http.method; content:"POST"; http.host; content:"litellm.dev"; endswith; http.uri; content:"/healthcheck"; startswith; classtype:trojan-activity; sid:9690003; rev:1; metadata:created_at 2026_10_29, confidence high;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI LiteLLM 1.107.0 compromise - GET of GitHub dead-drop domain.txt (letters9813)"; flow:established,to_server; http.method; content:"GET"; http.host; content:"raw.githubusercontent.com"; http.uri; content:"/letters9813/pythonclient-test/"; startswith; classtype:trojan-activity; sid:9690004; rev:1; metadata:created_at 2026_10_29, confidence low;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI LiteLLM 1.107.0 compromise - second-stage fetch of /codepy from dead-drop domain"; flow:established,to_server; http.method; content:"GET"; http.uri; content:"/codepy"; startswith; endswith; http.user_agent; content:"python"; nocase; classtype:trojan-activity; sid:9690005; rev:1; metadata:created_at 2026_10_29, confidence low;)

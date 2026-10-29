@@ -1,0 +1,38 @@
+title: OpenSSL Public-Key Encryption of privcollect Staging Files (.pc_ paths)
+id: b8e40b87-b68a-4bec-adb1-6dad8becb66d
+status: experimental
+description: |
+  Detects openssl invoked to RSA-encrypt (pkeyutl -encrypt -pubin) a file under a .pc_ staging name, the way the privcollect stealer wraps its AES key before upload. Microsoft lists the
+  same behaviour as an investigation lead ("suspicious OpenSSL command launch"). Benign uses of pkeyutl -encrypt exist in key-management scripts, but the .pc_ filename pattern is campaign
+  specific. Pair with a preceding python or pip process and an outbound POST to litellm.dev for a high-confidence chain.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/10/23/inside-the-litellm-1-107-0-supply-chain-compromise-credential-theft-through-python-startup-hooks/
+author: Jarmi
+date: 2026/10/29
+tags:
+  - attack.collection
+  - attack.t1560
+  - attack.defense-evasion
+  - attack.t1027.013
+logsource:
+  category: process_creation
+detection:
+  selection_img:
+    Image|endswith:
+      - '/openssl'
+      - '\openssl.exe'
+  selection_cmd:
+    CommandLine|contains|all:
+      - 'pkeyutl'
+      - '-encrypt'
+      - '-pubin'
+  selection_pc:
+    CommandLine|contains:
+      - '/.pc_'
+      - '\.pc_'
+      - '.pc_e_'
+  condition: selection_img and selection_cmd and selection_pc
+falsepositives:
+  - Administrators scripting RSA encryption with a temporary file that happens to start with .pc_
+
+level: high

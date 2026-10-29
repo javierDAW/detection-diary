@@ -1,0 +1,27 @@
+title: CI Runner or Build Host Connection to webhook.site (Secret Exfiltration Channel)
+id: 0e3c7d16-4cec-4ef8-95ab-6bf48d30cf11
+status: experimental
+description: |
+  Detects an outbound connection to webhook.site or a subdomain. In the LiteLLM intrusion the attacker pushed throwaway branches (ci-tmp-a351cc, ci-tmp-be33e9) whose workflows posted
+  repository secrets (GH_TOKEN, RELEASE_PLEASE_TOKEN) to webhook.site on 2026-10-10 and 2026-10-12, then deleted the run records. webhook.site is also a common developer testing tool, so scope this
+  rule to CI runners, build agents and servers, not developer laptops, and treat a hit from a runner that has no business with it as a secret-exfiltration lead.
+references:
+  - https://docs.litellm.ai/blog/security-incident-oct-21-2026-attack-chain
+author: Jarmi
+date: 2026/10/29
+tags:
+  - attack.exfiltration
+  - attack.t1567
+  - attack.credential-access
+  - attack.t1552.001
+logsource:
+  category: network_connection
+detection:
+  selection:
+    DestinationHostname|endswith: 'webhook.site'
+  condition: selection
+falsepositives:
+  - Developers testing webhooks from CI or build servers
+  - Integration test suites that call webhook.site on purpose
+
+level: medium

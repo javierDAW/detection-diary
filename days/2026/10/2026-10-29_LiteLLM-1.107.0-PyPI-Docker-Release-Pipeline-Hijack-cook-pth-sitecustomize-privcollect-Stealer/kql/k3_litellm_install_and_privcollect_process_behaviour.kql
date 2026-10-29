@@ -1,0 +1,19 @@
+// Title: Installs of litellm 1.107.0 and privcollect process behaviour (OpenSSL staging, proxy credential table read)
+// Id: 055bab13-d3bc-4b11-bc0a-d81cd74c9ed0
+// MITRE: T1195.001 (Compromise Software Dependencies and Development Tools), T1552.001 (Credentials in Files), T1027.013 (Encrypted/Encoded File)
+// Reference: https://www.microsoft.com/en-us/security/blog/2026/10/23/inside-the-litellm-1-107-0-supply-chain-compromise-credential-theft-through-python-startup-hooks/
+// Author: Jarmi
+// Date: 2026-10-29
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceProcessEvents); not run against an environment that installed the poisoned release
+// FP notes: A pip command that names litellm==1.107.0 shows intent to install, not that the poisoned wheel was served (PyPI quarantined it by 13:23 UTC on 2026-10-21); confirm with the file or hash query. Legitimate exports from the LiteLLM proxy database can look like the inline python -c signal.
+DeviceProcessEvents
+| where Timestamp > ago(45d)
+| extend Signal = case(
+    ProcessCommandLine has_all ("litellm", "1.107.0") and FileName in~ ("pip", "pip3", "pip.exe", "uv", "uv.exe", "python", "python3", "python.exe"), "install-1.107.0",
+    FileName in~ ("openssl", "openssl.exe") and ProcessCommandLine has_all ("pkeyutl", "-encrypt", "-pubin") and ProcessCommandLine has ".pc_", "openssl-pc-staging",
+    FileName in~ ("python", "python3", "python.exe") and ProcessCommandLine has "-c" and ProcessCommandLine has "LiteLLM_CredentialsTable", "proxy-credential-table-read",
+    InitiatingProcessCommandLine has "PRIVCOLLECT_ACTIVE" or ProcessCommandLine has "PRIVCOLLECT_ACTIVE", "privcollect-env-flag",
+    "")
+| where Signal != ""
+| project Timestamp, DeviceName, Signal, FileName, ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, AccountName
+| order by Timestamp asc

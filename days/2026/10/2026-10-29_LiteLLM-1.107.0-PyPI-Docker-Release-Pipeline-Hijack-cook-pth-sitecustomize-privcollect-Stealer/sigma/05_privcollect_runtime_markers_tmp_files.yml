@@ -1,0 +1,29 @@
+title: privcollect Run-Once Marker or Remote Loader Lock File Created in /tmp
+id: 210b09c5-3d03-45db-99da-86b594654372
+status: experimental
+description: |
+  Detects creation of /tmp/.pc_once_72129118c59f5636c0bb (written by cook.py after an upload returns HTTP 200) or /tmp/remote_code_loader.lock (taken by sitecustomize.py before it polls the
+  GitHub dead drop). Either file on a Linux or macOS host or inside a container that ever ran litellm 1.107.0 is direct evidence that the stealer or loader executed. Microsoft notes the
+  marker is not a containment control; absence of the file does not prove the host is clean.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/10/23/inside-the-litellm-1-107-0-supply-chain-compromise-credential-theft-through-python-startup-hooks/
+  - https://www.wiz.io/blog/litellm-compromised-steals-credentials
+author: Jarmi
+date: 2026/10/29
+tags:
+  - attack.execution
+  - attack.t1059.006
+  - attack.credential-access
+  - attack.t1552.001
+logsource:
+  category: file_event
+detection:
+  selection:
+    TargetFilename|contains:
+      - '/tmp/.pc_once_72129118c59f5636c0bb'
+      - '/tmp/remote_code_loader.lock'
+  condition: selection
+falsepositives:
+  - None expected; the names are campaign specific
+
+level: high

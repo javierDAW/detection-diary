@@ -1,0 +1,39 @@
+title: sitecustomize.py Created in site-packages Root by a Package Installer
+id: 27ff3cc4-7ffe-4939-9154-f1b0da309171
+status: experimental
+description: |
+  Detects creation of sitecustomize.py directly in a Python site-packages directory by pip, uv, poetry or a similar installer. The compromised litellm 1.107.0 wheels ship a 25,509
+  byte sitecustomize.py that runs on Linux and macOS, reads a GitHub dead drop (letters9813/pythonclient-test, domain.txt) and may fetch and execute code from http://<domain>/codepy.
+  Legitimate sitecustomize.py files exist (corporate proxy setup, coverage tooling), so this rule is a lead: confirm the hash against the IOC list before acting.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/10/23/inside-the-litellm-1-107-0-supply-chain-compromise-credential-theft-through-python-startup-hooks/
+author: Jarmi
+date: 2026/10/29
+tags:
+  - attack.persistence
+  - attack.t1546.018
+  - attack.command-and-control
+  - attack.t1102.001
+logsource:
+  category: file_event
+detection:
+  selection_file:
+    TargetFilename|endswith:
+      - '\site-packages\sitecustomize.py'
+      - '/site-packages/sitecustomize.py'
+  selection_installer:
+    Image|endswith:
+      - '\pip.exe'
+      - '/pip'
+      - '/pip3'
+      - '/uv'
+      - '\uv.exe'
+      - '/python'
+      - '/python3'
+      - '\python.exe'
+  condition: selection_file and selection_installer
+falsepositives:
+  - Corporate Python images that deliberately install a sitecustomize.py for proxy, certificate or coverage configuration
+  - Test frameworks that generate sitecustomize.py during a run
+
+level: medium

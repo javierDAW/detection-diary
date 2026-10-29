@@ -1,5 +1,56 @@
 [
  {
+  "date": "2026-10-29",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer",
+  "title": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI and container registries through Python startup hooks",
+  "clusters": [
+   "Unattributed (LiteLLM 1.107.0 release-pipeline compromise)"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "supply-chain",
+   "linux",
+   "macos",
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1195.001",
+   "T1078.004",
+   "T1528",
+   "T1552.001",
+   "T1552.004",
+   "T1552.005",
+   "T1555.003",
+   "T1546.018",
+   "T1059.006",
+   "T1027.013",
+   "T1140",
+   "T1102.001",
+   "T1105",
+   "T1041",
+   "T1070"
+  ],
+  "tech_count": 15,
+  "tldr": "On 2026-10-21 an attacker used stolen GitHub CLI OAuth tokens of three LiteLLM engineers to build and publish `litellm==1.107.0` (seven PyPI wheels, 11:39 to 11:40 UTC) and matching GHCR and Docker Hub images from a lookalike fork, `Berri-AI/litellm`. The wheels drop `cook.pth`, `cook.py` and `sitecustomize.py` into `site-packages`, so a credential stealer (\"privcollect\") runs at every Python star",
+  "thumb": "thumbs/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer.svg",
+  "case_rel": "../days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Unattributed (LiteLLM 1.107.0 release-pipeline compromise)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "litellm 1.107.0: a hijacked release pipeline ships a credential stealer to pypi and container registries through python startup hooks unattributed (litellm 1.107.0 release-pipeline compromise) unattributed supply-chain linux macos windows cloud-multi technology cross-sector t1195.001 t1078.004 t1528 t1552.001 t1552.004 t1552.005 t1555.003 t1546.018 t1059.006 t1027.013 t1140 t1102.001 t1105 t1041 t1070 supply chain "
+ },
+ {
   "date": "2026-10-28",
   "year": "2026",
   "month": "2026-10",

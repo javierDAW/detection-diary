@@ -1,0 +1,132 @@
+{
+  "name": "2026-10-29 — 2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI and container registries through Python startup hooks — clusters: Unattributed (LiteLLM 1.107.0 release-pipeline compromise)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1078.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1528",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1552.004",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1552.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1555.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1546.018",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1059.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1027.013",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1140",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1102.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    },
+    {
+      "techniqueID": "T1070",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI "
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

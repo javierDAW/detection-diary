@@ -178,6 +178,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UNK_pyreq2323](./unk-pyreq2323/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
 | [Unattributed (1337 Services GmbH infrastructure)](./unattributed-1337-services-gmbh-infrastructure/) | 1 |
+| [Unattributed (LiteLLM 1.107.0 release-pipeline compromise)](./unattributed-litellm-1-107-0-release-pipeline-compromise/) | 1 |
 | [Unattributed (Montana Empire operator)](./unattributed-montana-empire-operator/) | 1 |
 | [Unattributed (no exploitation reported)](./unattributed-no-exploitation-reported/) | 1 |
 | [Unattributed (opportunistic mass exploitation)](./unattributed-opportunistic-mass-exploitation/) | 1 |

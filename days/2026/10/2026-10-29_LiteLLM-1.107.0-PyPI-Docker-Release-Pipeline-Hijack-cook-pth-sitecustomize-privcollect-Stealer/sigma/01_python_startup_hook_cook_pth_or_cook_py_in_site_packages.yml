@@ -1,0 +1,34 @@
+title: LiteLLM 1.107.0 Python Startup Hook Files cook.pth or cook.py Written to site-packages
+id: 47f45526-8558-4a07-8a8c-ab2c05b237f3
+status: experimental
+description: |
+  Detects creation of cook.pth or cook.py in a Python site-packages directory. The compromised litellm 1.107.0 wheels (published 2026-10-21) drop cook.pth (single line
+  "import cook"), cook.py (the privcollect credential stealer) and sitecustomize.py into the site-packages root, so the stealer runs at every interpreter start, even if litellm is
+  never imported. File names are campaign-specific; a hit on a developer workstation, CI runner or container build host means a pip install of the poisoned release succeeded.
+  Matches both Windows and POSIX separators.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/10/23/inside-the-litellm-1-107-0-supply-chain-compromise-credential-theft-through-python-startup-hooks/
+  - https://www.wiz.io/blog/litellm-compromised-steals-credentials
+author: Jarmi
+date: 2026/10/29
+tags:
+  - attack.persistence
+  - attack.t1546.018
+  - attack.initial-access
+  - attack.t1195.001
+logsource:
+  category: file_event
+detection:
+  selection_win:
+    TargetFilename|endswith:
+      - '\site-packages\cook.pth'
+      - '\site-packages\cook.py'
+  selection_posix:
+    TargetFilename|endswith:
+      - '/site-packages/cook.pth'
+      - '/site-packages/cook.py'
+  condition: selection_win or selection_posix
+falsepositives:
+  - A legitimate internal package that ships a module literally named cook (rare; verify the file hash against the IOC list)
+
+level: high

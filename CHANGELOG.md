@@ -1,3 +1,21 @@
+## 2026.10.29 — Day 128 — LiteLLM 1.107.0: hijacked release pipeline ships a startup-hook credential stealer to PyPI and container registries
+
+### Added
+- `days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/` — On 2026-10-21 stolen GitHub CLI OAuth tokens of three LiteLLM engineers were used to build and publish litellm 1.107.0 (seven PyPI wheels plus GHCR and Docker Hub images) from a lookalike fork; the wheels drop cook.pth, cook.py and sitecustomize.py so the privcollect stealer runs at every Python start. Microsoft (2026-10-23), Wiz and the LiteLLM root-cause post trace it to an admin key leaked in a public repo on 2026-05-27; no actor is named.
+- Sigma (6): `01`-`06` — cook.pth/cook.py in site-packages; sitecustomize.py dropped by an installer; litellm.dev connection; OpenSSL pkeyutl on .pc_ files; /tmp run-once and lock markers; CI runner egress to webhook.site.
+- KQL (3): startup-hook files by name and hash; litellm.dev, dead drop and attacker IPs; install of 1.107.0 and privcollect process behaviour.
+- YARA (1 file, 3 rules): cook.pth hook; loader/stealer markers; tampered pyproject and Dockerfile lines.
+- Suricata (1 file, 5 sids): DNS, SNI, POST /healthcheck, GitHub dead drop, /codepy fetch.
+- PEAK hunts (3): poisoned install and hook files; release-pipeline abuse in the GitHub audit log; stolen credential use in cloud audit logs.
+- `iocs.csv` (50 entries) — domain, dead drop, IPs, six hook-file hashes, seven wheel and six image digests, markers, lookalike org and branches. No CVE, so no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, supply-chain accent, 7 stages and 6 fact boxes.
+
+### Pedagogy
+- A deleted secret is not a revoked secret; rotate on exposure.
+- A two-person release gate only works when the approvers are independent identities.
+- Python .pth and sitecustomize run code at startup: treat site-packages root writes as high-signal.
+- Build from your own tagged commits; never let a workflow input choose the source organization.
+
 ## 2026.10.28 — Day 127 — Huntress: Microsoft 365 token spray and replay from 1337 Services hosts, rogue Entra devices, wiped MFA and BEC inbox rules
 
 ### Added

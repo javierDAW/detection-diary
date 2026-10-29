@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-10-28 08:47 UTC
+# generated 2026-10-29 08:24 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -277,6 +277,7 @@ leadingfilipinoteams.com
 lemonfilewave.com
 limefilescope.com
 line.completely.workers.dev
+litellm.dev
 logger.controlium.net
 loginportal-aws.com
 lunarohub.info
@@ -510,6 +511,7 @@ w3xasv14culvnqj.top
 w5fb5r3txrsvga7zot9uz54k.darijo-bosanac-dl.workers.dev
 waaako.appstore.com.mx
 warpcast.asia
+webhook.site
 webmail.t-w.dev
 webnity.site
 werkbit.io
@@ -520,6 +522,7 @@ worldswar.online
 www.afghanistanupdates.site
 www.appstoore.solutions
 www.caprispine.health
+www.litellm.dev
 www.nicservice.org
 www.qtproxy.xyz
 www.servicesindia.services

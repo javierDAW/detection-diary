@@ -1,0 +1,216 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">LiteLLM 1.107.0 - hijacked release pipeline to startup-hook credential stealer</title>
+<desc id="d">Two-lane kill chain. Left lane: 1 admin key leaked in a public repo, 2 GitHub CLI OAuth token theft via the Agent Platform API, 3 CI secrets exfiltrated to webhook.site, 4 release redirected to the Berri-AI lookalike fork with two tokens passing the gate, 5 poisoned litellm 1.107.0 wheels and images published, 6 cook.pth startup hook executes, 7 privcollect stealer exfiltrates to litellm.dev. Right lane: attribution, artifacts, stolen data, post-exploitation, pipeline lessons and response. Anchors: Sigma 01-06, KQL k1-k3, Suricata 9690001-5, hunts H1-H3.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">LiteLLM 1.107.0: hijacked release pipeline to credential stealer</text>
+<text class="meta" x="20" y="58">Vendor: LiteLLM, Microsoft, Wiz - Date: 2026-10-23 - Cluster: unattributed - Day 128</text>
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="32" y="105">INTRUSION: LEAKED KEY TO VICTIM HOST</text>
+<text class="laneLabelR" x="462" y="105">CONTEXT, PAYLOAD AND DEFENDER VIEW</text>
+<rect class="stage" x="30" y="120" width="395" height="135"/>
+<circle class="badge" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="76" y="144">Admin key leaked in a public repository</text>
+<text class="sub" x="40" y="168">opencode.json with admin key in lite-harness (2026-05-27)</text>
+<text class="sub" x="40" y="184">File deleted in 3 hours; key never revoked</text>
+<text class="sub" x="40" y="200">Commit e10b14a stayed in public history until 2026-10-22</text>
+<text class="mono" x="40" y="226">T1552.001</text>
+<text class="mono" x="40" y="244">Hunt H2  iocs.csv</text>
+<rect class="stage" x="30" y="270" width="395" height="135"/>
+<circle class="badge" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="76" y="294">GitHub CLI OAuth token stolen via API</text>
+<text class="sub" x="40" y="318">2026-10-10: managed_agents API call from 69.48.229.143</text>
+<text class="sub" x="40" y="334">Response returns an organization owner CLI OAuth token</text>
+<text class="sub" x="40" y="350">Unscoped token, no sensitive-action 2FA reauthentication</text>
+<text class="mono" x="40" y="376">T1078.004  T1528</text>
+<text class="mono" x="40" y="394">Hunt H2</text>
+<rect class="stage" x="30" y="420" width="395" height="135"/>
+<circle class="badge" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="76" y="444">CI secrets exfiltrated, tracks erased</text>
+<text class="sub" x="40" y="468">Branches ci-tmp-a351cc and ci-tmp-be33e9 post secrets to webhook.site</text>
+<text class="sub" x="40" y="484">Stolen: GH_TOKEN and RELEASE_PLEASE_TOKEN (2nd, 3rd maintainer)</text>
+<text class="sub" x="40" y="500">Runs deleted in about 3 minutes; commits stay by SHA</text>
+<text class="mono" x="40" y="526">T1552.001  T1041  T1070</text>
+<text class="mono" x="40" y="544">Sigma 06  Hunt H2</text>
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="76" y="594">Release redirected to the Berri-AI lookalike fork</text>
+<text class="sub" x="40" y="618">2026-10-21: source_owner input added to project-releaser (9cf97e9)</text>
+<text class="sub" x="40" y="634">Build from Berri-AI/litellm commit 20535d8f</text>
+<text class="sub" x="40" y="650">Two tokens pass the two-person gate (approval from 199.91.221.39)</text>
+<text class="mono" x="40" y="676">T1195.001</text>
+<text class="mono" x="40" y="694">Hunt H2  iocs.csv</text>
+<rect class="stageK" x="30" y="720" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="76" y="744">Poisoned litellm 1.107.0 published</text>
+<text class="sub" x="40" y="768">7 PyPI wheels 11:39-11:40 UTC; GHCR and Docker Hub images 11:46 UTC</text>
+<text class="sub" x="40" y="784">data = "cook" in pyproject.toml; COPY cook ./cook in Dockerfiles</text>
+<text class="sub" x="40" y="800">Quarantined by 13:23 UTC; about 49,000 downloads</text>
+<text class="mono" x="40" y="826">T1195.001</text>
+<text class="mono" x="40" y="844">YARA 3  KQL k1  Hunt H1</text>
+<rect class="stageK" x="30" y="870" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="76" y="894">Startup hook runs on every Python start</text>
+<text class="sub" x="40" y="918">site-packages gets cook.pth (import cook), cook.py, sitecustomize.py</text>
+<text class="sub" x="40" y="934">Runs even if litellm is never imported</text>
+<text class="sub" x="40" y="950">Markers /tmp/.pc_once_7212... and /tmp/remote_code_loader.lock</text>
+<text class="mono" x="40" y="976">T1546.018  T1059.006</text>
+<text class="mono" x="40" y="994">Sigma 01, 02, 05  KQL k1  YARA 1-2</text>
+<rect class="stageK" x="30" y="1020" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="76" y="1044">privcollect steals and exfiltrates secrets</text>
+<text class="sub" x="40" y="1068">Cloud, SSH, browser, LLM keys, proxy LiteLLM_CredentialsTable</text>
+<text class="sub" x="40" y="1084">AES-256-CBC archive, RSA-4096 key wrap via openssl</text>
+<text class="sub" x="40" y="1100">POST to www.litellm.dev/healthcheck with X-Token header</text>
+<text class="mono" x="40" y="1126">T1552  T1555.003  T1041</text>
+<text class="mono" x="40" y="1144">Sigma 03, 04  KQL k2, k3  Suricata 9690001-3</text>
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">A</text>
+<text class="label" x="506" y="149">Attribution: no actor named</text>
+<text class="sub" x="470" y="173">Microsoft and Wiz name no threat actor</text>
+<text class="sub" x="470" y="189">Startup-hook style resembles March LiteLLM/TeamPCP cases</text>
+<text class="sub" x="470" y="205">Wiz notes signs of LLM-assisted code; stage 2 never seen</text>
+<text class="sub" x="470" y="221">Repo link: Mini-Shai-Hulud 2026-05-14, GhostAction 10-22</text>
+<text class="mono" x="470" y="251">Confidence: mechanics high, actor low</text>
+<rect class="opK" x="460" y="295" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">B</text>
+<text class="label" x="506" y="319">Artifacts and exposure window</text>
+<text class="sub" x="470" y="343">litellm==1.107.0: 7 wheels, sdist with tampered pyproject</text>
+<text class="sub" x="470" y="359">Images: latest, main-latest, main-stable, v1.107.0</text>
+<text class="sub" x="470" y="375">PyPI window 11:39-13:23 UTC, 2026-10-21</text>
+<text class="sub" x="470" y="391">Last known good: 1.106.2; pin by digest</text>
+<text class="mono" x="470" y="421">Hashes of 7 wheels and 6 images in iocs.csv</text>
+<rect class="op" x="460" y="465" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">C</text>
+<text class="label" x="506" y="489">What the stealer takes</text>
+<text class="sub" x="470" y="513">AWS, GCP, Azure CLI tokens; SSH and GPG keys; shell history</text>
+<text class="sub" x="470" y="529">Chrome, Firefox, Edge, Safari credentials and cookies</text>
+<text class="sub" x="470" y="545">OpenAI, Anthropic, Cohere keys; proxy provider credentials</text>
+<text class="sub" x="470" y="561">sitecustomize.py polls a GitHub dead drop hourly</text>
+<text class="mono" x="470" y="591">Dead drop: letters9813/pythonclient-test (removed)</text>
+<rect class="op" x="460" y="635" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">D</text>
+<text class="label" x="506" y="659">Post-exploitation in cloud</text>
+<text class="sub" x="470" y="683">About 4.5 h later: AWS role creds checked from 2 IPs</text>
+<text class="sub" x="470" y="699">GetCallerIdentity then bedrock ListFoundationModels</text>
+<text class="sub" x="470" y="715">168.100.8.57 and 165.227.201.8, 16:20-17:01 UTC</text>
+<text class="sub" x="470" y="731">Pattern fits LLMjacking; some IAM enumeration</text>
+<text class="mono" x="470" y="761">CloudTrail hunt H3</text>
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">E</text>
+<text class="label" x="506" y="829">Pipeline lessons</text>
+<text class="sub" x="470" y="853">Revoke leaked keys; deletion from git is not revocation</text>
+<text class="sub" x="470" y="869">Scoped, expiring tokens; reauthentication for sensitive actions</text>
+<text class="sub" x="470" y="885">Independent approvers; no workflow input picks source owner</text>
+<text class="sub" x="470" y="901">Trusted publishing scoped to one repo; pin by digest and hash</text>
+<text class="mono" x="470" y="931">Build only from your own tagged commits</text>
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">F</text>
+<text class="label" x="506" y="999">Response and caveats</text>
+<text class="sub" x="470" y="1023">Find 1.107.0 in locks, caches, images; hash-match the files</text>
+<text class="sub" x="470" y="1039">Rebuild from verified artifacts; rotate all reachable secrets</text>
+<text class="sub" x="470" y="1055">Block litellm.dev; do not run python in suspect hosts</text>
+<text class="sub" x="470" y="1071">No CVE, so no kev.md</text>
+<text class="mono" x="470" y="1101">Hunts H1 H2 H3</text>
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,187 L460,202" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,637 L460,610" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,787 L460,752" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,937 L460,892" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,1087 L460,1052" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,487 L460,372" marker-end="url(#ah)"/>
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1198">Anchors: cook.pth / cook.py / sitecustomize.py, litellm.dev, .pc_ temp files, webhook.site egress, protection overrides</text>
+<text class="footerT" x="34" y="1218">Rules in this folder: Sigma 01-06, KQL k1-k3, YARA 3 rules, Suricata sids 9690001-9690005, PEAK hunts H1-H3.</text>
+<text class="footerT" x="34" y="1236">No CVE in scope, so no kev.md. Network indicators decay (reported October 2026): re-validate before blocking.</text>
+<text class="footerT" x="34" y="1254">Act: find 1.107.0 and the hook files, isolate, rebuild, rotate every reachable secret, harden the release pipeline.</text>
+</svg>

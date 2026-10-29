@@ -1,0 +1,26 @@
+title: Network Connection to the litellm.dev Lookalike Exfiltration Domain
+id: b1ebec87-f697-4782-849c-9e90e1356014
+status: experimental
+description: |
+  Detects an outbound connection to litellm.dev or any subdomain (www.litellm.dev/healthcheck), the lookalike domain that the privcollect stealer in the compromised litellm 1.107.0
+  release posts its AES-256-CBC encrypted, RSA-4096 wrapped archive to. The real project uses litellm.ai and docs.litellm.ai, not litellm.dev. The domain was reported by Microsoft and
+  Wiz in October 2026; indicators decay, so a hit on an old log is still evidence of past exposure even if the domain no longer resolves.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/10/23/inside-the-litellm-1-107-0-supply-chain-compromise-credential-theft-through-python-startup-hooks/
+author: Jarmi
+date: 2026/10/29
+tags:
+  - attack.exfiltration
+  - attack.t1041
+  - attack.command-and-control
+  - attack.t1102.001
+logsource:
+  category: network_connection
+detection:
+  selection:
+    DestinationHostname|endswith: 'litellm.dev'
+  condition: selection
+falsepositives:
+  - Security researchers testing the published indicator from a sandbox
+
+level: high
