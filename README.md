@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**128 cases** · **197 actors/clusters** · **404 ATT&CK techniques** · **16 platforms** · **91 sectors** · 2026-04-28 -> 2026-10-29
+**129 cases** · **198 actors/clusters** · **404 ATT&CK techniques** · **16 platforms** · **91 sectors** · 2026-04-28 -> 2026-10-30
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/"><img src="days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/kill_chain.svg" alt="2026-10-30 kill chain" width="240"></a><br><sub><b>2026-10-30</b><br>Unattributed (Chinese-nexus indicators, Dream)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/"><img src="days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/kill_chain.svg" alt="2026-10-29 kill chain" width="240"></a><br><sub><b>2026-10-29</b><br>Unattributed (LiteLLM 1.107.0 release-pipeline compromise)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/"><img src="days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/kill_chain.svg" alt="2026-10-28 kill chain" width="240"></a><br><sub><b>2026-10-28</b><br>Unattributed (1337 Services GmbH infrastructure)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/"><img src="days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/kill_chain.svg" alt="2026-10-27 kill chain" width="240"></a><br><sub><b>2026-10-27</b><br>Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/"><img src="days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/kill_chain.svg" alt="2026-10-27 kill chain" width="240"></a><br><sub><b>2026-10-27</b><br>Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/"><img src="days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/kill_chain.svg" alt="2026-10-26 kill chain" width="240"></a><br><sub><b>2026-10-26</b><br>Candiru (Integrity Labs) · Discover-Tech</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/"><img src="days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/kill_chain.svg" alt="2026-10-25 kill chain" width="240"></a><br><sub><b>2026-10-25</b><br>APT41</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/"><img src="days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/kill_chain.svg" alt="2026-10-24 kill chain" width="240"></a><br><sub><b>2026-10-24</b><br>Unattributed (no exploitation reported)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

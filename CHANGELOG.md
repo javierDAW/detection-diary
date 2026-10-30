@@ -1,3 +1,20 @@
+## 2026.10.30 — Day 129 — PHP2Shell: PHP engine memory corruption to RCE (CVE-2026-109618, CVE-2026-109619) and a Dream-reported firewall chain with Fragnesia root
+
+### Added
+- `days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/` — Two PHP engine memory-safety bugs (CVSS 9.2) give unauthenticated RCE; PHP patched 2026-10-21, CISA KEV listing reported 2026-10-26. Dream (2026-10-26) reports a Chinese-nexus operation against a firewall appweb: 24 of 240 targets compromised, reverse SSH tunnel, Fragnesia root; a honeypot report (2026-10-24) confirmed real RCE.
+- Sigma (4): `01`-`04` — shell or downloader below a PHP-serving process; ssh reverse forwards; PHP files written by the web process; authentication files changed by a non-standard process.
+- KQL (3): process lineage and ssh forwards; PHP file creation; Syslog worker-crash bursts.
+- YARA (1 file, 2 rules): generic request-to-exec PHP shell; reverse SSH tunnel script (no sample published).
+- Suricata (1 file, 3 sids): upload-progress trigger field, oversized Set-Cookie, web host curl/wget egress (all hunt leads).
+- PEAK hunts (3): worker children and egress; PHP exposure inventory; tunnels, credentials and root after a foothold.
+- `iocs.csv` (16 entries) — CVEs, settings, fixed versions, campaign scale; no hash, IP or domain was published. `kev.md` — cached KEV copy predates the case; analyst note records the reported 2026-10-26 listing.
+- `kill_chain.svg` — template A, canonical palette, edge-network accent, 7 stages and 6 fact boxes.
+
+### Pedagogy
+- A runtime bug makes every application on it attack surface; inventory PHP inside appliances and images.
+- Unreliable memory-corruption exploits leave crashes and timeouts: crash telemetry is detection data.
+- Patching the entry point does not evict an intruder; tunnels, web shells and stolen credentials survive.
+
 ## 2026.10.29 — Day 128 — LiteLLM 1.107.0: hijacked release pipeline ships a startup-hook credential stealer to PyPI and container registries
 
 ### Added

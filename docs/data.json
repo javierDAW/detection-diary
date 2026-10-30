@@ -1,5 +1,51 @@
 [
  {
+  "date": "2026-10-30",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root",
+  "title": "PHP2Shell (CVE-2026-109618 and CVE-2026-109619): PHP engine memory corruption to unauthenticated RCE, and a Dream-reported firewall chain with Fragnesia root",
+  "clusters": [
+   "Unattributed (Chinese-nexus indicators, Dream)"
+  ],
+  "country": "China (suspected, low confidence)",
+  "platforms": [
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "government",
+   "technology",
+   "telecommunications",
+   "cloud-hosting"
+  ],
+  "techniques": [
+   "T1190",
+   "T1203",
+   "T1059.004",
+   "T1505.003",
+   "T1068",
+   "T1572",
+   "T1133",
+   "T1078",
+   "T1087.002",
+   "T1110.003",
+   "T1552"
+  ],
+  "tech_count": 11,
+  "tldr": "Two memory-safety bugs in the PHP engine itself (both CVSS 9.2, code present since PHP 5.4 in 2012) allow unauthenticated remote code execution through crafted HTTP requests; PHP shipped fixes on 2026-10-21 (8.5.12, 8.4.27, 8.3.36, 8.2.35), proof-of-concept code spread, and CISA added both CVEs to KEV on 2026-10-26 with a federal due date of 2026-10-29. On 2026-10-24 a honeypot run by Adel Karimi ",
+  "thumb": "thumbs/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root.svg",
+  "case_rel": "../days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "Unattributed (Chinese-nexus indicators, Dream)",
+  "cve_count": 4,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "php2shell (cve-2026-109618 and cve-2026-109619): php engine memory corruption to unauthenticated rce, and a dream-reported firewall chain with fragnesia root unattributed (chinese-nexus indicators, dream) china (suspected, low confidence) linux network-edge government technology telecommunications cloud-hosting t1190 t1203 t1059.004 t1505.003 t1068 t1572 t1133 t1078 t1087.002 t1110.003 t1552 edge / network "
+ },
+ {
   "date": "2026-10-29",
   "year": "2026",
   "month": "2026-10",
