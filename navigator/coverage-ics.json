@@ -6,7 +6,7 @@
     "layer": "4.5"
   },
   "domain": "ics-attack",
-  "description": "detection-diary cumulative coverage — 129 cases; score = number of cases featuring the technique.",
+  "description": "detection-diary cumulative coverage — 130 cases; score = number of cases featuring the technique.",
   "sorting": 3,
   "showTacticRowBackground": true,
   "tacticRowBackground": "#2a4a6a",
@@ -50,6 +50,12 @@
       "enabled": true
     },
     {
+      "techniqueID": "T0822",
+      "score": 2,
+      "comment": "2 case(s); first 2026-06-27, last 2026-10-31",
+      "enabled": true
+    },
+    {
       "techniqueID": "T0826",
       "score": 2,
       "comment": "2 case(s); first 2026-06-06, last 2026-08-16",
@@ -77,6 +83,12 @@
       "techniqueID": "T0859",
       "score": 2,
       "comment": "2 case(s); first 2026-06-19, last 2026-08-16",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T0866",
+      "score": 2,
+      "comment": "2 case(s); first 2026-07-26, last 2026-10-31",
       "enabled": true
     },
     {
@@ -116,12 +128,6 @@
       "enabled": true
     },
     {
-      "techniqueID": "T0822",
-      "score": 1,
-      "comment": "1 case(s); first 2026-06-27, last 2026-06-27",
-      "enabled": true
-    },
-    {
       "techniqueID": "T0827",
       "score": 1,
       "comment": "1 case(s); first 2026-08-16, last 2026-08-16",
@@ -149,12 +155,6 @@
       "techniqueID": "T0845",
       "score": 1,
       "comment": "1 case(s); first 2026-08-16, last 2026-08-16",
-      "enabled": true
-    },
-    {
-      "techniqueID": "T0866",
-      "score": 1,
-      "comment": "1 case(s); first 2026-07-26, last 2026-07-26",
       "enabled": true
     },
     {

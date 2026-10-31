@@ -181,6 +181,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed (Chinese-nexus indicators, Dream)](./unattributed-chinese-nexus-indicators-dream/) | 1 |
 | [Unattributed (LiteLLM 1.107.0 release-pipeline compromise)](./unattributed-litellm-1-107-0-release-pipeline-compromise/) | 1 |
 | [Unattributed (Montana Empire operator)](./unattributed-montana-empire-operator/) | 1 |
+| [Unattributed (advisory-only, no actor)](./unattributed-advisory-only-no-actor/) | 1 |
 | [Unattributed (no exploitation reported)](./unattributed-no-exploitation-reported/) | 1 |
 | [Unattributed (opportunistic mass exploitation)](./unattributed-opportunistic-mass-exploitation/) | 1 |
 | [Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)](./unattributed-ahsaycbs-exploitation-huntress-and-bitdefender-reports/) | 1 |

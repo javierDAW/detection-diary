@@ -4,9 +4,10 @@
 
 # Techniques: T0866
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-31 | Hitachi Energy CoreTec (CVE-2026-13162): time-zone command injection plus Dirty Frag root on an OT edge device, with the TRO600 RCE advisory | Unattributed (advisory-only, no actor) | [`2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/`](../../days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/) |
 | 2026-07-26 | XCharge C6 EV Chargers: CCS2 Plug-In Root Shell via Exposed SSH/Telnet, Default Credentials, and Firmware Integrity Bypass (CVE-2026-9037, CVE-2026-9038, CVE-2026-9039) | Unattributed vulnerability research (SaiFlow); affected vendor: XCharge | [`2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/`](../../days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/) |

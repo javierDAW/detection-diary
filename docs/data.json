@@ -1,5 +1,51 @@
 [
  {
+  "date": "2026-10-31",
+  "year": "2026",
+  "month": "2026-10",
+  "slug": "2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE",
+  "title": "Hitachi Energy CoreTec (CVE-2026-13162): time-zone command injection plus Dirty Frag root on an OT edge device, with the TRO600 RCE advisory",
+  "clusters": [
+   "Unattributed (advisory-only, no actor)"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "ot-ics",
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "energy",
+   "utilities",
+   "critical-infrastructure"
+  ],
+  "techniques": [
+   "T1190",
+   "T1078",
+   "T1133",
+   "T1059.004",
+   "T1105",
+   "T1068",
+   "T1548.001",
+   "T1070",
+   "T1021.004",
+   "T0822",
+   "T0866"
+  ],
+  "tech_count": 11,
+  "tldr": "On 2026-10-29 CISA published ICSA-26-302-03 for Hitachi Energy CoreTec 4 and 5: CVE-2026-13162 is an OS command injection (CWE-78, CVSS 4.0 7.7) in the configuration daemon's time-synchronization handler, reachable over the network by an authenticated user with certain roles. The same advisory lists the Linux kernel flaw CVE-2026-43284 (Dirty Frag) for CoreTec 5 3.4.0 and earlier, so a role-holder",
+  "thumb": "thumbs/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE.svg",
+  "case_rel": "../days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Unattributed (advisory-only, no actor)",
+  "cve_count": 6,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "hitachi energy coretec (cve-2026-13162): time-zone command injection plus dirty frag root on an ot edge device, with the tro600 rce advisory unattributed (advisory-only, no actor) unattributed ot-ics linux network-edge energy utilities critical-infrastructure t1190 t1078 t1133 t1059.004 t1105 t1068 t1548.001 t1070 t1021.004 t0822 t0866 ot / ics "
+ },
+ {
   "date": "2026-10-30",
   "year": "2026",
   "month": "2026-10",

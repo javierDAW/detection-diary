@@ -4,11 +4,12 @@
 
 # Techniques: T1105
 
-21 day(s) covering this technique.
+22 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-31 | Hitachi Energy CoreTec (CVE-2026-13162): time-zone command injection plus Dirty Frag root on an OT edge device, with the TRO600 RCE advisory | Unattributed (advisory-only, no actor) | [`2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/`](../../days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/) |
 | 2026-10-29 | LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI and container registries through Python startup hooks | Unattributed (LiteLLM 1.107.0 release-pipeline compromise) | [`2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/`](../../days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/) |
 | 2026-10-23 | Plex2Shell: four Plex Media Server flaws chained into unauthenticated RCE through the codec loader, exploited for XMRig and proxy malware and listed on CISA KEV | Unattributed Plex2Shell exploitation | [`2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/`](../../days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/) |
 | 2026-10-15 | AhsayCBS backup console zero-days CVE-2026-105133 and CVE-2026-105134: SYSTEM code execution, JSP web shells and a fake Edge miner service | Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports) | [`2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/`](../../days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/) |

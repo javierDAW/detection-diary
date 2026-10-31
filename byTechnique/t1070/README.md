@@ -4,11 +4,12 @@
 
 # Techniques: T1070
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-31 | Hitachi Energy CoreTec (CVE-2026-13162): time-zone command injection plus Dirty Frag root on an OT edge device, with the TRO600 RCE advisory | Unattributed (advisory-only, no actor) | [`2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/`](../../days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/) |
 | 2026-10-29 | LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI and container registries through Python startup hooks | Unattributed (LiteLLM 1.107.0 release-pipeline compromise) | [`2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/`](../../days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/) |
 | 2026-10-01 | NetScaler zero-days CVE-2026-88772 and CVE-2026-88771: a DTLS overflow, log poisoning and web shells that a patch does not remove | Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant) | [`2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/`](../../days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/) |
 | 2026-07-28 | Akhter Insider Case: Post-Termination Deletion of ~96 U.S. Government Databases | Akhter twins (convicted insiders) | [`2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/`](../../days/2026/07/2026-07-28_Akhter-Insider-Federal-Database-Deletion-EDVA-Conviction/) |

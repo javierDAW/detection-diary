@@ -1,3 +1,20 @@
+## 2026.10.31 — Day 130 — Hitachi Energy CoreTec: time-zone command injection (CVE-2026-13162) plus Dirty Frag root, and the TRO600 RCE advisory
+
+### Added
+- `days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/` — CISA ICSA-26-302-03 and -02 (2026-10-29): CoreTec 4/5 time-zone handler command injection (CVSS 4.0 7.7) and Dirty Frag LPE for CoreTec 5, plus two TRO600 RCE CVEs. No actor, exploit request or IOC is public and Hitachi knows of no exploitation; primary pages were unreadable, so facts come from Viakoo and OffSeq and the version-scope conflict is recorded.
+- Sigma (4): `01`-`04` — shell with metacharacters under a time-tool parent; esp4/esp6/rxrpc loads or userns+netns; dirtyfrag.conf inventory; su/SUID from temp paths or an `update` binary.
+- KQL (3): Dirty Frag module aliases by non-root; SUID launch after inbound SSH; management-plane access from unlisted sources.
+- YARA (1 file, 2 rules): mitigation-file content (defensive); generic small ELF with xfrm/RxRPC and namespace strings.
+- Suricata (1 file, 3 sids): management sessions outside admin nets, inbound ESP, edge egress with curl/wget (inventory leads, sids 9700001-9700003).
+- PEAK hunts (3): time-zone injection; exposure and version inventory; Dirty Frag traces and credential rotation.
+- `iocs.csv` (15 entries) — CVEs, kernel module aliases, advisory notes. `kev.md` — 0/6 CVEs on cached KEV; cache predates the advisory, analyst note added.
+- `kill_chain.svg` — template A, canonical palette, ot-ics accent, 7 stages and 6 context boxes.
+
+### Pedagogy
+- A low-privilege command injection plus a local privilege escalation is a root path; audit roles like patches.
+- Firmware inherits kernel bugs months late; ask vendors which upstream CVEs a release carries.
+- When sources disagree on affected versions, record the conflict and resolve it from the vendor text.
+
 ## 2026.10.30 — Day 129 — PHP2Shell: PHP engine memory corruption to RCE (CVE-2026-109618, CVE-2026-109619) and a Dream-reported firewall chain with Fragnesia root
 
 ### Added

@@ -4,11 +4,12 @@
 
 # Techniques: T1068
 
-12 day(s) covering this technique.
+13 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-10-31 | Hitachi Energy CoreTec (CVE-2026-13162): time-zone command injection plus Dirty Frag root on an OT edge device, with the TRO600 RCE advisory | Unattributed (advisory-only, no actor) | [`2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/`](../../days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/) |
 | 2026-10-30 | PHP2Shell (CVE-2026-109618 and CVE-2026-109619): PHP engine memory corruption to unauthenticated RCE, and a Dream-reported firewall chain with Fragnesia root | Unattributed (Chinese-nexus indicators, Dream) | [`2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/`](../../days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/) |
 | 2026-10-23 | Plex2Shell: four Plex Media Server flaws chained into unauthenticated RCE through the codec loader, exploited for XMRig and proxy malware and listed on CISA KEV | Unattributed Plex2Shell exploitation | [`2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/`](../../days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/) |
 | 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
