@@ -1,0 +1,24 @@
+// Title: Developer workstation - dependency lock files or package registry configuration written by a process that is not VCS, package manager or editor
+// Id: 9e1a47b3-2c58-4f6d-8b03-a5c7e6d2f914
+// MITRE: T1195.001 (Compromise Software Dependencies and Development Tools), T1554 (Compromise Host Software Binary)
+// Reference: https://hackread.com/binance-devops-engineer-hacked-laptop-billion-theft/ ; https://www.forbes.com/sites/digital-assets/2026/10/30/binances-63-billion-hack-started-with-one-engineers-laptop/
+// Author: Jarmi
+// Date: 2026-11-01
+// Tested on: Microsoft Defender XDR advanced hunting syntax; not run against a live tenant.
+// Scope: one vendor blog speculated about malicious Terraform lock files or registries in the Binance hot-wallet drain (2026-10-29/30); that
+//        claim is UNCORROBORATED and speculative. This query does NOT detect that attack; it is a generic IaC / package-supply-chain lead (confidence low).
+// FP notes: Package managers and IaC tools rewrite these files on every install or init; they are excluded by name. Dependency bots, pre-commit hooks
+//           and corporate bootstrap scripts that write .npmrc or pip.conf belong in <add_known_bootstrap_processes>. node is deliberately NOT
+//           excluded (an install script running under node is the interesting case); expect npm-driven rewrites and baseline them.
+let TargetNames = dynamic([".terraform.lock.hcl", ".terraformrc", "terraform.rc", ".npmrc", ".yarnrc", ".yarnrc.yml", "pip.conf", "pip.ini", ".pypirc", "settings.xml"]);
+let ExpectedWriters = dynamic(["terraform", "terraform.exe", "tofu", "tofu.exe", "terragrunt", "terragrunt.exe", "git", "git.exe",
+                               "npm", "npm.exe", "yarn", "pnpm", "pip", "pip3", "pip.exe", "mvn", "mvn.cmd",
+                               "code", "Code.exe", "vim", "nvim", "nano", "idea64.exe", "notepad.exe", "<add_known_bootstrap_processes>"]);
+DeviceFileEvents
+| where Timestamp > ago(30d)
+| where ActionType in ("FileCreated", "FileModified", "FileRenamed")
+| where FileName in~ (TargetNames)
+| where not(InitiatingProcessFileName in~ (ExpectedWriters))
+| project Timestamp, DeviceName, InitiatingProcessAccountName, FileName, FolderPath, ActionType, SHA256,
+          InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessFolderPath, InitiatingProcessParentFileName
+| sort by Timestamp desc

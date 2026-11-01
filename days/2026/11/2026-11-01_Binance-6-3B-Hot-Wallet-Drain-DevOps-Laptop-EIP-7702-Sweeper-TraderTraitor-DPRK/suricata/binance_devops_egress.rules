@@ -1,0 +1,19 @@
+# Title: Hot-wallet pathway hygiene - cleartext JSON-RPC transaction submission from non-signer hosts, workstation access to kubelet / Docker API ports, and workstation egress to the cloud metadata endpoint
+# Author: Jarmi
+# Date: 2026-11-01
+# Reference: https://www.forbes.com/sites/digital-assets/2026/10/30/binances-63-billion-hack-started-with-one-engineers-laptop/ ; https://gizmodo.com/how-hackers-stole-6-3-billion-from-binance-in-minutes-2000833158 ; https://hackread.com/binance-devops-engineer-hacked-laptop-billion-theft/
+# Variables:
+#   $DEV_WORKSTATIONS  - developer, DevOps and SRE laptop / desktop ranges (including VPN pools).
+#   $PROD_SERVICE_NETS - production cluster node and container ranges, especially services that can request or authorize withdrawals.
+#   $SIGNER_HOSTS      - the only hosts allowed to submit signed transactions to blockchain RPC nodes (signing service, broadcaster).
+#   $EXTERNAL_NET      - standard Suricata variable.
+# Scope: no IP, domain, port, request shape or hash was published for the Binance hot-wallet drain (2026-10-29/30). None of these rules
+# detects that attack. They are policy and behaviour leads (confidence low) for the published first finding: a compromised DevOps laptop
+# reaching a service container that submitted unauthorized withdrawal transactions.
+# Sid 9800001 fires on cleartext HTTP JSON-RPC eth_sendRawTransaction / eth_sendTransaction from any host not in $SIGNER_HOSTS (TLS-terminated
+# RPC is invisible here; place the sensor behind the internal RPC load balancer). Sid 9800002 flags a workstation opening kubelet (10250) or
+# Docker API (2375, 2376) sessions into production. Sid 9800003 flags a workstation talking to 169.254.169.254 on any URI (AWS, GCP and Azure paths differ), which only cloud instances should do;
+# on a cloud-hosted VDI or dev VM, add it to an exception or drop the rule.
+alert http !$SIGNER_HOSTS any -> any any (msg:"JARMI hot-wallet pathway - JSON-RPC transaction submission (eth_sendRawTransaction or eth_sendTransaction) from a host outside SIGNER_HOSTS"; flow:to_server,established; http.method; content:"POST"; http.request_body; content:"\"method\""; content:"eth_send"; distance:0; within:40; pcre:"/eth_send(Raw)?Transaction/P"; classtype:policy-violation; sid:9800001; rev:1; metadata:created_at 2026_11_01, confidence low;)
+alert tcp $DEV_WORKSTATIONS any -> $PROD_SERVICE_NETS [10250,2375,2376] (msg:"JARMI hot-wallet pathway - developer workstation opens a kubelet or Docker API session into production service nets"; flow:to_server,established; threshold:type limit, track by_src, count 1, seconds 3600; classtype:policy-violation; sid:9800002; rev:1; metadata:created_at 2026_11_01, confidence low;)
+alert tcp $DEV_WORKSTATIONS any -> 169.254.169.254 80 (msg:"JARMI hot-wallet pathway - developer workstation connects to the cloud instance metadata endpoint"; flow:to_server,established; threshold:type limit, track by_src, count 1, seconds 3600; classtype:policy-violation; sid:9800003; rev:1; metadata:created_at 2026_11_01, confidence low;)

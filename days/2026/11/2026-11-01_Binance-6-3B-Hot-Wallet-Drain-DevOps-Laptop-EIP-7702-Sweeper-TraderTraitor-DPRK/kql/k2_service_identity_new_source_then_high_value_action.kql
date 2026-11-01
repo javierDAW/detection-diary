@@ -1,0 +1,40 @@
+// Title: Service principal or workload identity signs in from a source IP not seen in the baseline, then performs a high-value control-plane action within 60 minutes
+// Id: 6c3d9a42-81f0-4c5e-a2b7-3e9f05d1c7a8
+// MITRE: T1078.004 (Valid Accounts: Cloud Accounts), T1098 (Account Manipulation), T1552.005 (Cloud Instance Metadata API)
+// Reference: https://www.forbes.com/sites/digital-assets/2026/10/30/binances-63-billion-hack-started-with-one-engineers-laptop/ ; https://gizmodo.com/how-hackers-stole-6-3-billion-from-binance-in-minutes-2000833158
+// Author: Jarmi
+// Date: 2026-11-01
+// Tested on: Microsoft Sentinel syntax (AADServicePrincipalSignInLogs, AzureActivity); not run against a live workspace.
+//            AWS equivalent: AWSCloudTrail where UserIdentityType == "AssumedRole" and SourceIpAddress is new for that role ARN, followed by
+//            secretsmanager:GetSecretValue, kms:Decrypt, kms:Sign, iam:CreateAccessKey or ecs:ExecuteCommand.
+// Scope: Binance did not publish which cloud, identity or credential was used in the 2026-10-29/30 hot-wallet drain. This query does NOT
+//        detect that attack; it is a behaviour lead (confidence low) for a service-container identity reused from an unexpected place.
+// FP notes: Workloads moving to new egress NAT ranges, new regions or new CI runners. Fill <add_known_egress_ranges> and keep the baseline at 14 days.
+let Baseline = 14d;
+let Window = 1d;
+let KnownEgress = dynamic(["<add_known_egress_ranges>"]);
+let HighValueOps = dynamic(["MICROSOFT.KEYVAULT/VAULTS/SECRETS/READ", "MICROSOFT.KEYVAULT/VAULTS/KEYS/SIGN/ACTION",
+                            "MICROSOFT.KEYVAULT/VAULTS/ACCESSPOLICIES/WRITE", "MICROSOFT.AUTHORIZATION/ROLEASSIGNMENTS/WRITE",
+                            "MICROSOFT.CONTAINERSERVICE/MANAGEDCLUSTERS/LISTCLUSTERADMINCREDENTIAL/ACTION",
+                            "MICROSOFT.CONTAINERSERVICE/MANAGEDCLUSTERS/RUNCOMMAND/ACTION"]);
+let Known =
+    AADServicePrincipalSignInLogs
+    | where TimeGenerated between (ago(Baseline + Window) .. ago(Window))
+    | where ResultType == "0"
+    | distinct ServicePrincipalId, IPAddress;
+let NewSource =
+    AADServicePrincipalSignInLogs
+    | where TimeGenerated > ago(Window)
+    | where ResultType == "0"
+    | where not(ipv4_is_in_any_range(IPAddress, KnownEgress))
+    | join kind=leftanti Known on ServicePrincipalId, IPAddress
+    | project SignInTime = TimeGenerated, ServicePrincipalId, ServicePrincipalName, IPAddress, Location, ResourceDisplayName;
+AzureActivity
+| where TimeGenerated > ago(Window)
+| where toupper(OperationNameValue) in (HighValueOps)
+| extend Caller = tostring(Caller)
+| join kind=inner NewSource on $left.Caller == $right.ServicePrincipalId
+| where TimeGenerated between (SignInTime .. SignInTime + 60m)
+| project SignInTime, ActionTime = TimeGenerated, ServicePrincipalName, ServicePrincipalId, IPAddress, Location, CallerIpAddress,
+          OperationNameValue, ActivityStatusValue, ResourceGroup, _ResourceId
+| sort by ActionTime desc

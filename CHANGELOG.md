@@ -1,3 +1,21 @@
+## 2026.11.01 — Day 131 — Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and TraderTraitor attribution
+
+### Added
+- `days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/` — Outflows from Binance wallets on 10 chains began 2026-10-29 20:05 UTC (estimates 5.8-6.36B USD). Binance's first finding is a compromised DevOps laptop reaching a service container that submitted withdrawals; TRM Labs and Blockaid describe an EIP-7702 delegation to a sweeper; TRM (high) and Chainalysis (likely) attribute to TraderTraitor, Binance does not. No IOC or CVE is public, so every rule is a generic lead.
+- Sigma (4): `01`-`04` — cloud/Kubernetes credential harvest from an interpreter; kubectl/docker exec into production from a workstation; Terraform lock or CLI config written outside IaC tooling; container shell reaching the metadata endpoint.
+- KQL (3): credential read then outbound; service identity from a new IP then a high-value action; lock and registry config written by non-VCS processes.
+- YARA (1 file, 2 rules): credential-harvest plus exfil script heuristic; Solidity sweeper-shaped source heuristic (both low confidence).
+- Suricata (1 file, 3 sids): cleartext JSON-RPC send from non-signers; workstation to kubelet/Docker API; workstation to metadata endpoint (sids 9800001-9800003).
+- PEAK hunts (3): workstation-to-withdrawal-container path; EIP-7702 delegation on owned addresses; withdrawal velocity and pre-attack staging.
+- `iocs.csv` (11 entries) — behavioural indicators and context only. No CVE, so no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, crypto-defi accent, Binance-side lane and attacker/chain lane.
+
+### Pedagogy
+- A developer laptop is inside the production trust boundary when it can reach containers that authorize money movement.
+- "No key leaked" is not "no signing authority leaked": audit who can request, approve and broadcast.
+- Monitor eth_getCode on owned addresses like new IAM roles; failed EIP-7702 authorizations are evidence too.
+- During a drain, automation that refills the wallet (deposit sweeps) must be stopped as part of containment.
+
 ## 2026.10.31 — Day 130 — Hitachi Energy CoreTec: time-zone command injection (CVE-2026-13162) plus Dirty Frag root, and the TRO600 RCE advisory
 
 ### Added

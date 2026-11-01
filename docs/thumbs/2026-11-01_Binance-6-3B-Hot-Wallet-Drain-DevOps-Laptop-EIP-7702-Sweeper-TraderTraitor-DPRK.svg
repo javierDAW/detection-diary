@@ -1,0 +1,215 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1280" role="img" aria-labelledby="t d">
+<title id="t">Binance 6.3B hot-wallet drain - DevOps laptop, EIP-7702 sweeper, TraderTraitor attribution</title>
+<desc id="d">Two-lane kill chain. Left lane (Binance side): 1 compromised DevOps engineer laptop, 2 service container submits unauthorized withdrawals, 3 EIP-7702 delegation on hot wallet Binance 14, 4 outflows from 2026-10-29 20:05 UTC across 10 chains, 5 deposit-wallet sweeps keep refilling the hot wallet, 6 pause and freezes, 7 open questions. Right lane (attacker and chain context): Tornado Cash funded operator wallet, code tests, type-4 transaction with 50 authorizations of which one hit, sweeper contract, THORChain laundering, TraderTraitor attribution by TRM and Chainalysis. Detection anchors are generic leads: workstation to container path, cloud credential reads, EIP-7702 delegation monitoring on owned addresses, withdrawal velocity.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1280"/>
+<rect class="acc-crypto-defi" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Binance 6.3B hot-wallet drain: DevOps laptop to EIP-7702 sweeper</text>
+<text class="meta" x="20" y="58">Vendor: TRM Labs, Chainalysis, Blockaid, Binance · Date: 2026-10-30 · Cluster: TraderTraitor (medium) · Day 131</text>
+<rect class="laneL" x="20" y="85" width="410" height="1080"/>
+<rect class="laneR" x="450" y="85" width="410" height="1080"/>
+<text class="laneLabelL" x="34" y="105">Binance side (published facts)</text>
+<text class="laneLabelR" x="464" y="105">Attacker and chain context</text>
+<rect class="stageK" x="30" y="120" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="140" r="14"/>
+<text class="badgeText" x="50" y="145">1</text>
+<text class="label" x="76" y="144">Compromised DevOps engineer laptop</text>
+<text class="sub" x="40" y="168">Binance first finding, 2026-10-30</text>
+<text class="sub" x="40" y="184">Laptop gave access to a service container</text>
+<text class="sub" x="40" y="200">OS, malware and entry vector not published</text>
+<text class="mono" x="40" y="226">T1078  T1199</text>
+<text class="mono" x="40" y="244">Sigma 01 03  KQL k1 k3  YARA 1  Hunt H1</text>
+<rect class="stageK" x="30" y="270" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="290" r="14"/>
+<text class="badgeText" x="50" y="295">2</text>
+<text class="label" x="76" y="294">Service container submits withdrawals</text>
+<text class="sub" x="40" y="318">Unauthorized withdrawal transactions sent</text>
+<text class="sub" x="40" y="334">Teng: not one click, more breach points found</text>
+<text class="sub" x="40" y="350">Binance: no evidence of wallet private key leak</text>
+<text class="mono" x="40" y="376">T1609  T1021</text>
+<text class="mono" x="40" y="394">Sigma 02 04  KQL k2  Suricata 9800002</text>
+<rect class="stageK" x="30" y="420" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="440" r="14"/>
+<text class="badgeText" x="50" y="445">3</text>
+<text class="label" x="76" y="444">EIP-7702 delegation on hot wallet</text>
+<text class="sub" x="40" y="468">Hot wallet Binance 14 ran attacker sweeper code</text>
+<text class="sub" x="40" y="484">Type-4 transaction, delegated EOA (TRM, Blockaid)</text>
+<text class="sub" x="40" y="500">Sweeper operable only by attacker wallet</text>
+<text class="mono" x="40" y="526">T1657</text>
+<text class="mono" x="40" y="544">Hunt H2  eth_getCode 0xef0100 prefix</text>
+<rect class="stageK" x="30" y="570" width="395" height="135"/>
+<circle class="badgeK" cx="50" cy="590" r="14"/>
+<text class="badgeText" x="50" y="595">4</text>
+<text class="label" x="76" y="594">Outflows start 2026-10-29 20:05 UTC</text>
+<text class="sub" x="40" y="618">About 20 minutes, 10 chains, 60+ tokens</text>
+<text class="sub" x="40" y="634">ETH, USDT, USDC, BTC, XRP 233M from 5 wallets</text>
+<text class="sub" x="40" y="650">Estimates 5.8B to 6.36B USD (sources differ)</text>
+<text class="mono" x="40" y="676">T1657</text>
+<text class="mono" x="40" y="694">Hunt H3  outflow velocity vs baseline</text>
+<rect class="stage" x="30" y="720" width="395" height="135"/>
+<circle class="badge" cx="50" cy="740" r="14"/>
+<text class="badgeText" x="50" y="745">5</text>
+<text class="label" x="76" y="744">Deposit sweeps refill the hot wallet</text>
+<text class="sub" x="40" y="768">Sweeps kept running during the attack (Grogan)</text>
+<text class="sub" x="40" y="784">Normal operations fed the drained wallet</text>
+<text class="sub" x="40" y="800">Sweep job state is a containment decision</text>
+<text class="mono" x="40" y="826">T1657</text>
+<text class="mono" x="40" y="844">Hunt H3  sweep job behaviour</text>
+<rect class="stage" x="30" y="870" width="395" height="135"/>
+<circle class="badge" cx="50" cy="890" r="14"/>
+<text class="badgeText" x="50" y="895">6</text>
+<text class="label" x="76" y="894">Pause, freezes and coverage</text>
+<text class="sub" x="40" y="918">Withdrawals paused, deposits normal (10-30)</text>
+<text class="sub" x="40" y="934">Tether and Circle froze large balances</text>
+<text class="sub" x="40" y="950">Binance pledges SAFU and company funds cover</text>
+<text class="mono" x="40" y="976">Response</text>
+<text class="mono" x="40" y="994">Resume date unconfirmed in sources</text>
+<rect class="stage" x="30" y="1020" width="395" height="135"/>
+<circle class="badge" cx="50" cy="1040" r="14"/>
+<text class="badgeText" x="50" y="1045">7</text>
+<text class="label" x="76" y="1044">Open questions</text>
+<text class="sub" x="40" y="1068">Additional breach points not described</text>
+<text class="sub" x="40" y="1084">How signing authority was obtained is unknown</text>
+<text class="sub" x="40" y="1100">Postmortem promised, not yet published</text>
+<text class="mono" x="40" y="1126">Gap</text>
+<text class="mono" x="40" y="1144">No IOC, CVE or address published</text>
+<rect class="op" x="460" y="125" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="145" r="14"/>
+<text class="badgeText" x="480" y="150">1</text>
+<text class="label" x="506" y="149">Operator wallet funded via Tornado Cash</text>
+<text class="sub" x="470" y="173">Small withdrawals, at least 36 hours before</text>
+<text class="sub" x="470" y="189">TRM: preparation began 2026-10-28 or earlier</text>
+<text class="sub" x="470" y="205">No wallet address is public</text>
+<text class="mono" x="470" y="251">Resource staging (TRM)</text>
+<text class="mono" x="470" y="269">Hunt H3  staging window</text>
+<rect class="op" x="460" y="295" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="315" r="14"/>
+<text class="badgeText" x="480" y="320">2</text>
+<text class="label" x="506" y="319">Attack code tested</text>
+<text class="sub" x="470" y="343">TRM saw tests of the attack code beforehand</text>
+<text class="sub" x="470" y="359">Interaction with owned addresses may leave traces</text>
+<text class="sub" x="470" y="375">Contract deployments are chain-visible</text>
+<text class="mono" x="470" y="421">T1587</text>
+<text class="mono" x="470" y="439">Hunt H2 H3</text>
+<rect class="opK" x="460" y="465" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="485" r="14"/>
+<text class="badgeText" x="480" y="490">3</text>
+<text class="label" x="506" y="489">Type-4 tx, 50 authorizations, 1 hit</text>
+<text class="sub" x="470" y="513">Blockaid: one tx, 50 EIP-7702 authorizations</text>
+<text class="sub" x="470" y="529">Consecutive nonces; only 1 of 50 was a hit</text>
+<text class="sub" x="470" y="545">Failed attempts remain on chain</text>
+<text class="mono" x="470" y="591">T1657</text>
+<text class="mono" x="470" y="609">Hunt H2  authorization list scan</text>
+<rect class="opK" x="460" y="635" width="395" height="155"/>
+<circle class="badgeK" cx="480" cy="655" r="14"/>
+<text class="badgeText" x="480" y="660">4</text>
+<text class="label" x="506" y="659">Sweeper drains ETH and tokens</text>
+<text class="sub" x="470" y="683">Roughly 167,464 ETH and 1.6B USDT on Ethereum</text>
+<text class="sub" x="470" y="699">Single transaction near 2.5B USD (Gizmodo)</text>
+<text class="sub" x="470" y="715">Ethlabs: EIP-7702 itself is not broken</text>
+<text class="mono" x="470" y="761">T1657</text>
+<text class="mono" x="470" y="779">YARA 2 (source heuristic, low)</text>
+<rect class="op" x="460" y="805" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="825" r="14"/>
+<text class="badgeText" x="480" y="830">5</text>
+<text class="label" x="506" y="829">Laundering and freezes</text>
+<text class="sub" x="470" y="853">THORChain commingling with the Bitget funds</text>
+<text class="sub" x="470" y="869">ZachXBT and Chainalysis report the overlap</text>
+<text class="sub" x="470" y="885">Nothing at a CEX or bridge per CryptoQuant early</text>
+<text class="mono" x="470" y="931">Sources disagree</text>
+<text class="mono" x="470" y="949">Treat flows as unverified</text>
+<rect class="op" x="460" y="975" width="395" height="155"/>
+<circle class="badgeR" cx="480" cy="995" r="14"/>
+<text class="badgeText" x="480" y="1000">6</text>
+<text class="label" x="506" y="999">Attribution: TraderTraitor (DPRK)</text>
+<text class="sub" x="470" y="1023">TRM: high confidence; Chainalysis: likely</text>
+<text class="sub" x="470" y="1039">WSJ: investigators point to North Korea</text>
+<text class="sub" x="470" y="1055">Binance has not attributed; repo says medium</text>
+<text class="mono" x="470" y="1101">Compare: Bybit 2025</text>
+<text class="mono" x="470" y="1119">Lazarus-family cluster</text>
+<path class="arrow" d="M227,255 L227,270" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,405 L227,420" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,555 L227,570" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,705 L227,720" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,855 L227,870" marker-end="url(#ah)"/>
+<path class="arrow" d="M227,1005 L227,1020" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,202 L425,187" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,372 L425,337" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,542 L425,487" marker-end="url(#ah)"/>
+<path class="arrowX" d="M460,712 L425,637" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,937 L460,882" marker-end="url(#ah)"/>
+<path class="arrowX" d="M425,1087 L460,1052" marker-end="url(#ah)"/>
+<rect class="footer" x="20" y="1175" width="840" height="95"/>
+<text class="footerH" x="34" y="1198">Detection anchors: workstation to container path, cloud credential reads, EIP-7702 delegation on owned addresses, outflow velocity</text>
+<text class="footerT" x="34" y="1218">Rules in this folder: Sigma 01-04, KQL k1-k3, YARA 2 rules, Suricata sids 9800001-9800003, PEAK hunts H1-H3.</text>
+<text class="footerT" x="34" y="1236">No malware, CVE, IP, domain, hash or address is public for this incident. Rules are generic behaviour leads, confidence low.</text>
+<text class="footerT" x="34" y="1254">Act: restrict who can reach withdrawal containers, monitor 7702 delegations on owned EOAs, gate sweeps, require out-of-band approval.</text>
+</svg>

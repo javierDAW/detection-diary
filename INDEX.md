@@ -4,7 +4,7 @@
 
 # INDEX
 
-**130 cases** · **199 actors/clusters** · **404 ATT&CK techniques** · **16 platforms** · **91 sectors** · 2026-04-28 -> 2026-10-31
+**131 cases** · **200 actors/clusters** · **405 ATT&CK techniques** · **16 platforms** · **91 sectors** · 2026-04-28 -> 2026-11-01
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,30 +17,38 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/"><img src="days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/kill_chain.svg" alt="2026-11-01 kill chain" width="240"></a><br><sub><b>2026-11-01</b><br>TraderTraitor</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/"><img src="days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/kill_chain.svg" alt="2026-10-31 kill chain" width="240"></a><br><sub><b>2026-10-31</b><br>Unattributed (advisory-only, no actor)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/"><img src="days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/kill_chain.svg" alt="2026-10-30 kill chain" width="240"></a><br><sub><b>2026-10-30</b><br>Unattributed (Chinese-nexus indicators, Dream)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/"><img src="days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/kill_chain.svg" alt="2026-10-29 kill chain" width="240"></a><br><sub><b>2026-10-29</b><br>Unattributed (LiteLLM 1.107.0 release-pipeline compromise)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/"><img src="days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/kill_chain.svg" alt="2026-10-29 kill chain" width="240"></a><br><sub><b>2026-10-29</b><br>Unattributed (LiteLLM 1.107.0 release-pipeline compromise)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/"><img src="days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/kill_chain.svg" alt="2026-10-28 kill chain" width="240"></a><br><sub><b>2026-10-28</b><br>Unattributed (1337 Services GmbH infrastructure)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/"><img src="days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/kill_chain.svg" alt="2026-10-27 kill chain" width="240"></a><br><sub><b>2026-10-27</b><br>Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/"><img src="days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/kill_chain.svg" alt="2026-10-26 kill chain" width="240"></a><br><sub><b>2026-10-26</b><br>Candiru (Integrity Labs) · Discover-Tech</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/"><img src="days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/kill_chain.svg" alt="2026-10-26 kill chain" width="240"></a><br><sub><b>2026-10-26</b><br>Candiru (Integrity Labs) · Discover-Tech</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/"><img src="days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/kill_chain.svg" alt="2026-10-25 kill chain" width="240"></a><br><sub><b>2026-10-25</b><br>APT41</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/"><img src="days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/kill_chain.svg" alt="2026-10-24 kill chain" width="240"></a><br><sub><b>2026-10-24</b><br>Unattributed (no exploitation reported)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/"><img src="days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/kill_chain.svg" alt="2026-10-23 kill chain" width="240"></a><br><sub><b>2026-10-23</b><br>Unattributed Plex2Shell exploitation</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/"><img src="days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/kill_chain.svg" alt="2026-10-23 kill chain" width="240"></a><br><sub><b>2026-10-23</b><br>Unattributed Plex2Shell exploitation</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/"><img src="days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/kill_chain.svg" alt="2026-10-22 kill chain" width="240"></a><br><sub><b>2026-10-22</b><br>Unattributed GhostAction operator (Fake Font / PolinRider naming overlap)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/"><img src="days/2026/10/2026-10-21_ccTLD-Registry-Hijacks-gh-sl-as-DNS-Takeover-Rogue-Google-Certificates/kill_chain.svg" alt="2026-10-21 kill chain" width="240"></a><br><sub><b>2026-10-21</b><br>Unattributed ccTLD registry hijack operator (Google disclosure 2026-10-06)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/"><img src="days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/kill_chain.svg" alt="2026-10-20 kill chain" width="240"></a><br><sub><b>2026-10-20</b><br>Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat</sub></td>
 </tr>
 </table>
 
 ---
 
 ## All cases by month
+
+<details><summary><b>2026-11</b> — 1 case(s)</summary>
+
+| Date | Case | Clusters | Platforms |
+|---|---|---|---|
+| 2026-11-01 | [Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and TraderTraitor attribution](days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/) | TraderTraitor | cloud-multi, linux, supply-chain |
+
+</details>
 
 <details><summary><b>2026-10</b> — 16 case(s)</summary>
 

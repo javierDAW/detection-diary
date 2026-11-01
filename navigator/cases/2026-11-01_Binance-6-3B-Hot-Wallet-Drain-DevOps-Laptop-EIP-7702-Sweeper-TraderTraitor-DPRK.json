@@ -1,0 +1,69 @@
+{
+  "name": "2026-11-01 — 2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and TraderTraitor attribution — clusters: TraderTraitor",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and T"
+    },
+    {
+      "techniqueID": "T1199",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and T"
+    },
+    {
+      "techniqueID": "T1021",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and T"
+    },
+    {
+      "techniqueID": "T1609",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and T"
+    },
+    {
+      "techniqueID": "T1552.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and T"
+    },
+    {
+      "techniqueID": "T1657",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and T"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

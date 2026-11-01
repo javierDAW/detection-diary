@@ -1,5 +1,45 @@
 [
  {
+  "date": "2026-11-01",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK",
+  "title": "Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and TraderTraitor attribution",
+  "clusters": [
+   "TraderTraitor"
+  ],
+  "country": "North Korea (attributed by TRM Labs and Chainalysis, not by Binance)",
+  "platforms": [
+   "cloud-multi",
+   "linux",
+   "supply-chain"
+  ],
+  "sectors": [
+   "finance",
+   "cryptocurrency"
+  ],
+  "techniques": [
+   "T1078",
+   "T1199",
+   "T1021",
+   "T1609",
+   "T1552.001",
+   "T1657"
+  ],
+  "tech_count": 6,
+  "tldr": "Starting at 20:05 UTC on 2026-10-29, funds left Binance wallets on 10 blockchains in about 20 minutes; estimates of the loss run from 5.8 to 6.36 billion USD depending on the source and the price used. Binance's first finding (2026-10-30) is that a compromised DevOps engineer's laptop gave access to a service container that submitted unauthorized withdrawal transactions, and its CEO later said the",
+  "thumb": "thumbs/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK.svg",
+  "case_rel": "../days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/",
+  "category": "crypto-defi",
+  "cat_label": "Crypto / DeFi",
+  "cat_color": "#d08a1f",
+  "actor": "TraderTraitor",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "binance 6.3b hot-wallet drain: compromised devops laptop, eip-7702 sweeper and tradertraitor attribution tradertraitor north korea (attributed by trm labs and chainalysis, not by binance) cloud-multi linux supply-chain finance cryptocurrency t1078 t1199 t1021 t1609 t1552.001 t1657 crypto / defi "
+ },
+ {
   "date": "2026-10-31",
   "year": "2026",
   "month": "2026-10",
