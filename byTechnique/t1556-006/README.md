@@ -4,11 +4,12 @@
 
 # Techniques: T1556.006
 
-5 day(s) covering this technique.
+6 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-02 | Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, stolen session tokens and rogue MFA devices | Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo) | [`2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/`](../../days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/) |
 | 2026-10-28 | Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Services hosts ends in rogue Entra devices, wiped MFA and BEC inbox rules | Unattributed (1337 Services GmbH infrastructure) | [`2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/`](../../days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/) |
 | 2026-07-15 | O-UNC-066 / Pink: vishing the Entra passkey-enrollment ceremony for phishing-resistant persistence | O-UNC-066 | [`2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/`](../../days/2026/07/2026-07-15_O-UNC-066-Pink-Entra-Passkey-Enrollment-Vishing/) |
 | 2026-06-23 | Cloud Insider Recruitment: Underground Market for SaaS and Cloud Platform Access | Cloud-Insider-Recruitment-unattributed | [`2026-06-23_Cloud-Insider-Recruitment-Intel471/`](../../days/2026/06/2026-06-23_Cloud-Insider-Recruitment-Intel471/) |

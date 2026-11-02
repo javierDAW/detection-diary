@@ -208,6 +208,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Vo1d/Popa proxy operator](./vo1d-popa-proxy-operator/) | 1 |
 | [Void Arachne](./void-arachne/) | 1 |
 | [Warlock](./warlock/) | 1 |
+| [Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo)](./warp-panda-armory-castle-ex-unc5221-clay-typhoon-verdantbamboo/) | 1 |
 | [Woodgnat](./woodgnat/) | 1 |
 | [input_24 phishing kit operator (PoisonSeeds-adjacent)](./input-24-phishing-kit-operator-poisonseeds-adjacent/) | 1 |
 | [namikazesarada010206](./namikazesarada010206/) | 1 |

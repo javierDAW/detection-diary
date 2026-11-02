@@ -1,5 +1,49 @@
 [
  {
+  "date": "2026-11-02",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA",
+  "title": "Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, stolen session tokens and rogue MFA devices",
+  "clusters": [
+   "Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo)"
+  ],
+  "country": "China (vendor-assessed nexus)",
+  "platforms": [
+   "linux",
+   "cloud-multi",
+   "network-edge"
+  ],
+  "sectors": [
+   "legal",
+   "professional-services"
+  ],
+  "techniques": [
+   "T1190",
+   "T1021",
+   "T1078",
+   "T1562.006",
+   "T1070",
+   "T1539",
+   "T1550.001",
+   "T1098.005",
+   "T1556.006",
+   "T1078.004"
+  ],
+  "tech_count": 10,
+  "tldr": "CrowdStrike's 2026 Legal Threat Landscape Report (2026-10-28) says the China-nexus cluster Warp Panda exploited CVE-2026-41709, a Broadcom VMware ESX flaw that lets an admin-level actor perform certain operations without them being logged, as a zero-day in early 2026. CISA added the CVE to KEV on 2026-10-28 (federal due date 2026-11-11, per press). The flaw scores only CVSS 2.7, yet it removes the",
+  "thumb": "thumbs/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA.svg",
+  "case_rel": "../days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo)",
+  "cve_count": 1,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "warp panda and the vmware esx insufficient-logging zero-day (cve-2026-41709): hidden admin operations, stolen session tokens and rogue mfa devices warp panda (armory castle, ex-unc5221, clay typhoon, verdantbamboo) china (vendor-assessed nexus) linux cloud-multi network-edge legal professional-services t1190 t1021 t1078 t1562.006 t1070 t1539 t1550.001 t1098.005 t1556.006 t1078.004 espionage / apt "
+ },
+ {
   "date": "2026-11-01",
   "year": "2026",
   "month": "2026-11",

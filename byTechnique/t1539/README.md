@@ -4,11 +4,12 @@
 
 # Techniques: T1539
 
-15 day(s) covering this technique.
+16 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-02 | Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, stolen session tokens and rogue MFA devices | Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo) | [`2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/`](../../days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/) |
 | 2026-10-05 | TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB adversary-in-the-middle page that steals Microsoft sessions | TA419 | [`2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/`](../../days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/) |
 | 2026-09-24 | MacSync: a six-stage macOS dropper chain that hides its commands in a public iCloud calendar and ends in a Finder-disguised backdoor | MacSync operator (malware-as-a-service, unattributed) | [`2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/`](../../days/2026/09/2026-09-24_MacSync-iCloud-Calendar-Dropper-Chain-Swift-Backdoor/) |
 | 2026-08-12 | Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coordinated mailbox collection (Storm-2755 overlap) | Payroll Pirates | [`2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/`](../../days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/) |

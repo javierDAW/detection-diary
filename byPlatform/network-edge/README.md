@@ -4,11 +4,12 @@
 
 # Platforms: network-edge
 
-39 day(s) covering this platform.
+40 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-02 | Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, stolen session tokens and rogue MFA devices | Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo) | [`2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/`](../../days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/) |
 | 2026-10-31 | Hitachi Energy CoreTec (CVE-2026-13162): time-zone command injection plus Dirty Frag root on an OT edge device, with the TRO600 RCE advisory | Unattributed (advisory-only, no actor) | [`2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/`](../../days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/) |
 | 2026-10-30 | PHP2Shell (CVE-2026-109618 and CVE-2026-109619): PHP engine memory corruption to unauthenticated RCE, and a Dream-reported firewall chain with Fragnesia root | Unattributed (Chinese-nexus indicators, Dream) | [`2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/`](../../days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/) |
 | 2026-10-27 | Qilin and INC ride a forged GlobalProtect cookie (CVE-2026-0257) from the VPN into vCenter, ESXi VMDKs and Veeam | Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius) | [`2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/`](../../days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/) |

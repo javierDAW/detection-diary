@@ -1,3 +1,20 @@
+## 2026.11.02 — Day 132 — Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, session-token theft and rogue MFA devices
+
+### Added
+- `days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/` — CrowdStrike (2026-10-28) says China-nexus Warp Panda exploited an ESX flaw that leaves certain admin operations unlogged, then abused M365 session tokens and rogue MFA devices against US legal-sector targets. The sources publish no IOCs, so all content is generic and low confidence.
+- Sigma (4): `01`-`04` — ESXi SSH/Shell enabled or lockdown disabled; syslog forwarding or audit config changed; Entra security info registered; token-replay risk sign-ins.
+- KQL (3): ESXi syslog gaps plus admin service changes; SessionId reuse across IPs and user agents; MFA method registered after a password reset.
+- YARA (1 file, 2 rules): generic ELF referencing ESXi paths; malware family-name strings (both low confidence).
+- Suricata (1 file, 3 sids): VMware management ports exposed to the internet; ESXi outbound TLS; ESXi querying a non-internal DNS server (sids 9900001-9900003).
+- PEAK hunts (3): ESXi/vCenter logging gaps; vCenter edge pivot and BRICKSTORM family; M365 token replay and rogue MFA.
+- `iocs.csv` (14 entries) — CVE, fixed builds, family names and notes. `kev.md` — 0/1 CVEs in the local cache; press reports KEV on 2026-10-28 (unverified, analyst note).
+- `kill_chain.svg` — template C, canonical palette, espionage accent, three critical stages.
+
+### Pedagogy
+- A low-CVSS logging flaw can be strategically severe because it erodes the evidence trail.
+- Patching cannot restore logs that were never written; compare host logs with an independent source.
+- Session tokens and MFA registrations outlive password resets.
+
 ## 2026.11.01 — Day 131 — Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and TraderTraitor attribution
 
 ### Added
