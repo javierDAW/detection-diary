@@ -1,3 +1,20 @@
+## 2026.11.03 — Day 133 — Synology DSM ransomware: C3RB3R, the .L0CK3D extension and a disputed entry flaw
+
+### Added
+- `days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/` — Synology (2026-10-29) says attackers encrypt NAS data on outdated DSM through a flaw patched in December 2024; The Hacker News (2026-11-03) names the family C3RB3R and the `.L0CK3D` extension, and 360 (second-hand) blames two 2026 CVEs. No IOC, exploit request, victim count or actor is published, so all content is low-confidence behavioral hints.
+- Sigma (3): `01`-`03` — `.L0CK3D`/`.LOCK3D` file on an endpoint; `read-me3.txt` written; scripted client connecting to DSM ports 5000/5001.
+- KQL (3): extension and note on endpoints and UNC paths; write or rename bursts per device and share; DSM management port access outside admin subnets.
+- YARA (1 file, 2 rules): family/extension/note reference in small text files; generic Tor ransom-note wording.
+- Suricata (1 file, 3 sids): external access to DSM 5001 and POST to 5000; SMB access to a name ending `.L0CK3D` (sids 9910001-9910003).
+- PEAK hunts (3): DSM exposure and patch level; client-side traces of the extension and note; snapshot and backup integrity.
+- `iocs.csv` (13 entries) — five CVEs, extension, note name, family and notes. `kev.md` — 0/5 CVEs in the local cache (analyst note: cache predates the notice, unverified).
+- `kill_chain.svg` — template A, canonical palette, ransomware accent, disputed-flaw and not-published lanes.
+
+### Pedagogy
+- A vendor statement can prove exploitation without naming the CVE; hunt patch level and exposure first.
+- When sources cite different flaws, keep both in scope instead of choosing one.
+- A NAS encrypts its own disks: plan visibility through client file events, SMB inspection and snapshot integrity.
+
 ## 2026.11.02 — Day 132 — Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, session-token theft and rogue MFA devices
 
 ### Added

@@ -1,5 +1,41 @@
 [
  {
+  "date": "2026-11-03",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20",
+  "title": "Synology DSM ransomware: C3RB3R (a Cerber variant), the .L0CK3D extension and a disputed entry flaw",
+  "clusters": [
+   "Unattributed (C3RB3R ransomware family)"
+  ],
+  "country": "Unknown",
+  "platforms": [
+   "linux",
+   "network-edge"
+  ],
+  "sectors": [
+   "smb",
+   "consumer",
+   "technology"
+  ],
+  "techniques": [
+   "T1190",
+   "T1486"
+  ],
+  "tech_count": 2,
+  "tldr": "On 2026-10-29 Synology told customers that threat actors are exploiting a vulnerability patched in December 2024 to encrypt data on NAS devices running outdated DSM versions and demand a ransom; The Hacker News (2026-11-03) names the family C3RB3R and the extension `.L0CK3D`, based on customer reports on Reddit. The 360 bulletin of the same day, relayed by Gridinsoft and IT-Connect, calls C3RB3R a",
+  "thumb": "thumbs/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20.svg",
+  "case_rel": "../days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Unattributed (C3RB3R ransomware family)",
+  "cve_count": 5,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "synology dsm ransomware: c3rb3r (a cerber variant), the .l0ck3d extension and a disputed entry flaw unattributed (c3rb3r ransomware family) unknown linux network-edge smb consumer technology t1190 t1486 ransomware / e-crime "
+ },
+ {
   "date": "2026-11-02",
   "year": "2026",
   "month": "2026-11",
