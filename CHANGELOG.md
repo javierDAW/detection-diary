@@ -1,3 +1,20 @@
+## 2026.11.04 — Day 134 — MCPhantom: AI coding agents install deprecated MCP servers, including an unpatched server-puppeteer RCE
+
+### Added
+- `days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/` — Glow Labs (2026-11-02, covered by Help Net Security 2026-11-03) reports that AI coding agents pick archived `@modelcontextprotocol` reference MCP servers from training data in 98% of reviewed sessions (17.3M npm downloads since 2025-07-10); `server-puppeteer` carries an unpatched RCE reachable by prompt injection, with no CVE or GHSA id and no exploitation reported.
+- Sigma (3): `01`-`03` — package runner with `-y` naming a deprecated package; MCP client config file written; shell spawned by a deprecated server process.
+- KQL (3): runner invocations by host and harness; shell children of Node running a deprecated server; MCP config write inventory.
+- YARA (1 file, 2 rules): MCP config text and lockfile/cache text naming deprecated packages.
+- Suricata (1 file, 3 sids): npm registry SNI and DNS inventory from developer and non-developer hosts (sids 9920001-9920003).
+- PEAK hunts (3): deprecated servers in configs and npx cache; Node child processes of MCP servers; install decisions versus deprecation status and approval policy.
+- `iocs.csv` (14 entries) — 12 package names plus two notes; no hash, domain or IP was published. `kev.md` — not generated, the case has no CVE.
+- `kill_chain.svg` — template C, canonical palette, single lane with six stages and two critical stages (package choice, command execution).
+
+### Pedagogy
+- An abandoned dependency is a supply-chain risk even when nobody malicious published it; training data now acts as a dependency selector with no freshness check.
+- Permission scope matters more than the tool name: a web-browsing approval that also covers process start turns prompt injection into command execution.
+- CVE-, manifest- and inventory-based controls miss npx-installed agent tooling; hunt on command lines and client config files instead.
+
 ## 2026.11.03 — Day 133 — Synology DSM ransomware: C3RB3R, the .L0CK3D extension and a disputed entry flaw
 
 ### Added

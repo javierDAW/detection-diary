@@ -1,0 +1,22 @@
+// Title: Shells and LOLBins spawned by node.exe running a deprecated @modelcontextprotocol MCP server (server-puppeteer RCE hint)
+// Id: 3db19a7b-9e0e-4d71-ac51-f44c95580498
+// MITRE: T1059 Command and Scripting Interpreter; T1195.001 Compromise Software Dependencies and Development Tools
+// Reference: https://www.glow.io/blogs/mcphantom-ai-coding-agents-are-installing-vulnerable-deprecated-mcp-servers-from-training-data ; https://www.helpnetsecurity.com/2026/11/03/mcphantom-deprecated-mcp-servers/
+// Author: Jarmi
+// Date: 2026-11-04
+// Tested on: Microsoft Defender XDR advanced hunting syntax only; not run against an affected tenant
+// Confidence: low - Glow Labs describes prompt-injection-driven arbitrary process start via server-puppeteer but published no payload, code path, versions, CVE or GHSA; behavioral hint only
+// FP notes: npx install chains spawn cmd.exe wrappers; puppeteer legitimately spawns chrome/chromium (excluded by design, not listed). Baseline per developer host before alerting.
+let DeprecatedMcp = dynamic(["server-puppeteer","server-github","server-postgres","server-slack","server-brave-search","server-google-maps","server-gitlab","server-gdrive","server-redis","server-aws-kb-retrieval","server-everart"]);
+let SuspiciousChildren = dynamic(["cmd.exe","powershell.exe","pwsh.exe","curl.exe","certutil.exe","bash.exe","sh.exe","wscript.exe","cscript.exe"]);
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where InitiatingProcessFileName =~ "node.exe"
+| where InitiatingProcessCommandLine has_any (DeprecatedMcp)
+| where FileName in~ (SuspiciousChildren)
+// drop the install-time wrapper chain (cmd.exe /c npx ...) after baselining
+| where not(FileName =~ "cmd.exe" and ProcessCommandLine has "npx")
+| project Timestamp, DeviceName, AccountName, FileName, ProcessCommandLine,
+          InitiatingProcessFileName, InitiatingProcessCommandLine,
+          InitiatingProcessParentFileName, SHA256
+| order by Timestamp desc

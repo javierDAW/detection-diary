@@ -1,0 +1,56 @@
+title: Shell or LOLBin Spawned From Deprecated MCP Server Process (server-puppeteer RCE Hint)
+id: f467c54a-20f7-419a-a7b1-e8f221ed2645
+status: experimental
+description: |
+  Behavioral hint for the server-puppeteer RCE described by Glow Labs (MCPhantom, 2026-11): via
+  prompt injection, an attacker makes the agent start an arbitrary process instead of the
+  browser and run any command; the developer's "allow web browsing" approval covers it, so the
+  harness does not stop it. The exact payload, code path and affected versions were NOT
+  published and there is no CVE/GHSA id. This rule flags a command shell, script host or
+  download LOLBin whose parent command line names a deprecated @modelcontextprotocol server
+  (server-puppeteer first). A legitimate puppeteer server should spawn a browser, not a shell.
+  Confidence: low, no technical IOC published; no in-the-wild exploitation reported by Glow Labs.
+  Single-event rule; no threshold aggregation.
+references:
+  - https://www.glow.io/blogs/mcphantom-ai-coding-agents-are-installing-vulnerable-deprecated-mcp-servers-from-training-data
+  - https://www.helpnetsecurity.com/2026/11/03/mcphantom-deprecated-mcp-servers/
+  - https://github.com/modelcontextprotocol/servers-archived
+author: Jarmi
+date: 2026/11/04
+tags:
+  - attack.execution
+  - attack.t1059
+  - attack.initial-access
+  - attack.t1195.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_child:
+    Image|endswith:
+      - '\cmd.exe'
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\wscript.exe'
+      - '\cscript.exe'
+      - '\curl.exe'
+      - '\certutil.exe'
+  selection_parent_pkg:
+    ParentCommandLine|contains:
+      - 'server-puppeteer'
+      - 'server-github'
+      - 'server-postgres'
+      - 'server-slack'
+      - 'server-brave-search'
+      - 'server-google-maps'
+      - 'server-gitlab'
+      - 'server-gdrive'
+      - 'server-redis'
+      - 'server-aws-kb-retrieval'
+      - 'server-everart'
+  condition: selection_child and selection_parent_pkg
+falsepositives:
+  - npx itself may spawn cmd.exe wrappers (npx.cmd) during install; tune by excluding the install-time cmd.exe /c npx chain after baselining.
+  - Unscoped substrings such as server-github may match unrelated community packages; verify the full package name.
+
+level: medium

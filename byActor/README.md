@@ -81,6 +81,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap)](./linkpro-unattributed-vshell-vnt-toolchain-unc5174-overlap/) | 1 |
 | [LongNosedGoblin](./longnosedgoblin/) | 1 |
 | [Luna Moth](./luna-moth/) | 2 |
+| [MCPhantom (Glow Labs research pattern, no threat actor)](./mcphantom-glow-labs-research-pattern-no-threat-actor/) | 1 |
 | [MacSync operator (malware-as-a-service, unattributed)](./macsync-operator-malware-as-a-service-unattributed/) | 1 |
 | [Media Land LLC / ML.Cloud LLC](./media-land-llc-ml-cloud-llc/) | 1 |
 | [Miasma-unattributed](./miasma-unattributed/) | 1 |

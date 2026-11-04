@@ -1,5 +1,43 @@
 [
  {
+  "date": "2026-11-04",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs",
+  "title": "MCPhantom: AI coding agents install deprecated MCP servers from training data, including an unpatched server-puppeteer RCE",
+  "clusters": [
+   "MCPhantom (Glow Labs research pattern, no threat actor)"
+  ],
+  "country": "Not applicable (no actor)",
+  "platforms": [
+   "supply-chain",
+   "windows",
+   "linux",
+   "macos"
+  ],
+  "sectors": [
+   "technology",
+   "software-development"
+  ],
+  "techniques": [
+   "T1195.001",
+   "T1059",
+   "T1204"
+  ],
+  "tech_count": 3,
+  "tldr": "Glow Labs (Nadav Cohen, blog dated 2026-11-02/03, covered by Help Net Security on 2026-11-03) reports that AI coding agents (Claude Code, Cursor, Codex CLI, Claude Cowork, Claude chat) keep installing archived, deprecated `@modelcontextprotocol` reference MCP servers on developer machines. In 98% of the reviewed sessions the agent picked the package from its training data; in 2% the user named it.",
+  "thumb": "thumbs/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs.svg",
+  "case_rel": "../days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "MCPhantom (Glow Labs research pattern, no threat actor)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "mcphantom: ai coding agents install deprecated mcp servers from training data, including an unpatched server-puppeteer rce mcphantom (glow labs research pattern, no threat actor) not applicable (no actor) supply-chain windows linux macos technology software-development t1195.001 t1059 t1204 supply chain "
+ },
+ {
   "date": "2026-11-03",
   "year": "2026",
   "month": "2026-11",

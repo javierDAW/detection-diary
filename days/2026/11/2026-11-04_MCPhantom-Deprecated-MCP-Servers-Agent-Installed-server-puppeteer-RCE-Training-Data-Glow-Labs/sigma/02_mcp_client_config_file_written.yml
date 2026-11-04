@@ -1,0 +1,37 @@
+title: MCP Client Configuration File Created or Modified (MCPhantom Inventory Hint)
+id: 81e2b53b-1f20-43fc-ae06-013c23d46c9c
+status: experimental
+description: |
+  Hunting hint for the MCPhantom pattern (Glow Labs, 2026-11): flags creation or modification of
+  MCP client configuration files on Windows (.mcp.json, .cursor\mcp.json,
+  claude_desktop_config.json). AI coding agents write mcpServers entries into these files when
+  they install an MCP server, and Glow Labs found agents installing archived, deprecated
+  @modelcontextprotocol servers (including server-puppeteer, which has an unpatched RCE).
+  Sigma file_event cannot read file content: on match, open the file and look for
+  "@modelcontextprotocol/server-<name>" entries from the deprecated list (see hunt H1).
+  The file names/locations are generic MCP client knowledge, not published by the sources.
+  Confidence: low, no technical IOC published. Single-event rule; no threshold aggregation.
+references:
+  - https://www.glow.io/blogs/mcphantom-ai-coding-agents-are-installing-vulnerable-deprecated-mcp-servers-from-training-data
+  - https://www.helpnetsecurity.com/2026/11/03/mcphantom-deprecated-mcp-servers/
+  - https://github.com/modelcontextprotocol/servers-archived
+author: Jarmi
+date: 2026/11/04
+tags:
+  - attack.initial-access
+  - attack.t1195.001
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_config:
+    TargetFilename|endswith:
+      - '\.mcp.json'
+      - '\.cursor\mcp.json'
+      - '\claude_desktop_config.json'
+  condition: selection_config
+falsepositives:
+  - Any legitimate MCP server installation or edit by a developer or an approved agent; this is an inventory signal, not a verdict.
+  - Configuration management or dotfile sync tools rewriting the files.
+
+level: low

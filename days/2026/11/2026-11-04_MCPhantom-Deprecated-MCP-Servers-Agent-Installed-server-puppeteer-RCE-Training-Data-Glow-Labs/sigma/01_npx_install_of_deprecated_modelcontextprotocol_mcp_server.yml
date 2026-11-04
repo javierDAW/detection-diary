@@ -1,0 +1,66 @@
+title: Package Runner Launches Deprecated @modelcontextprotocol MCP Server (MCPhantom)
+id: 898e03e6-df74-4261-b429-9f15ab235696
+status: experimental
+description: |
+  Detects npx / npm exec / pnpm dlx / bunx (or node running the npx/npm CLI) launched with an
+  auto-confirm flag (-y / --yes) and an argument naming one of the archived, deprecated
+  @modelcontextprotocol reference MCP servers listed by Glow Labs in the "MCPhantom" research
+  (server-github, server-postgres, server-slack, server-puppeteer, server-brave-search,
+  server-google-maps, server-gitlab, server-gdrive, server-redis, create-server,
+  server-aws-kb-retrieval, server-everart). Glow Labs observed AI coding agents (Claude Code,
+  Cursor, Codex CLI and others) choosing these packages from training data in 98% of sessions.
+  Deprecated packages disappear from npm search but npx still installs them with only a
+  deprecation warning; server-puppeteer carries an unpatched high-severity RCE (no CVE/GHSA id).
+  Confidence: low-to-medium. The package names come from the source; the command-line shape
+  (npx -y <package>) is generic MCP client config knowledge, not a published IOC. No technical
+  exploit IOC published; no in-the-wild exploitation reported by Glow Labs.
+  Single-event rule; no threshold aggregation.
+references:
+  - https://www.glow.io/blogs/mcphantom-ai-coding-agents-are-installing-vulnerable-deprecated-mcp-servers-from-training-data
+  - https://www.helpnetsecurity.com/2026/11/03/mcphantom-deprecated-mcp-servers/
+  - https://github.com/modelcontextprotocol/servers-archived
+  - https://attack.mitre.org/techniques/T1195/001/
+author: Jarmi
+date: 2026/11/04
+tags:
+  - attack.initial-access
+  - attack.t1195.001
+  - attack.execution
+  - attack.t1059
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_runner:
+    CommandLine|contains:
+      - 'npx'
+      - 'npm exec'
+      - 'npm-cli.js'
+      - 'npx-cli.js'
+      - 'pnpm dlx'
+      - 'bunx'
+  selection_autoconfirm:
+    CommandLine|contains:
+      - ' -y '
+      - ' --yes '
+  selection_deprecated_pkg:
+    CommandLine|contains:
+      - '@modelcontextprotocol/server-github'
+      - '@modelcontextprotocol/server-postgres'
+      - '@modelcontextprotocol/server-slack'
+      - '@modelcontextprotocol/server-puppeteer'
+      - '@modelcontextprotocol/server-brave-search'
+      - '@modelcontextprotocol/server-google-maps'
+      - '@modelcontextprotocol/server-gitlab'
+      - '@modelcontextprotocol/server-gdrive'
+      - '@modelcontextprotocol/server-redis'
+      - '@modelcontextprotocol/create-server'
+      - '@modelcontextprotocol/server-aws-kb-retrieval'
+      - '@modelcontextprotocol/server-everart'
+  condition: selection_runner and selection_autoconfirm and selection_deprecated_pkg
+falsepositives:
+  - Developers deliberately pinning an archived reference server for testing in an isolated lab.
+  - Still-maintained @modelcontextprotocol packages are NOT in this list and should not match; review if new package names collide.
+  - Invocations without -y/--yes are missed by design; drop selection_autoconfirm for broader coverage.
+
+level: medium

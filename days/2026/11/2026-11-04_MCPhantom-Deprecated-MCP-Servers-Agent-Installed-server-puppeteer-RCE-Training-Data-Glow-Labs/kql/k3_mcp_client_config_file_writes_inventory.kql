@@ -1,0 +1,17 @@
+// Title: MCP client configuration file writes (.mcp.json, mcp.json, claude_desktop_config.json, .claude.json) for inventory review
+// Id: 0c618c61-a9a7-4d60-a4b9-a719aa4ebdba
+// MITRE: T1195.001 Compromise Software Dependencies and Development Tools
+// Reference: https://www.glow.io/blogs/mcphantom-ai-coding-agents-are-installing-vulnerable-deprecated-mcp-servers-from-training-data ; https://www.helpnetsecurity.com/2026/11/03/mcphantom-deprecated-mcp-servers/
+// Author: Jarmi
+// Date: 2026-11-04
+// Tested on: Microsoft Defender XDR advanced hunting syntax only; not run against an affected tenant
+// Confidence: low - config file names are generic MCP client knowledge, not published by the sources; DeviceFileEvents does not expose content, so inspect hits for deprecated @modelcontextprotocol entries (hunt H1)
+// FP notes: every legitimate MCP server install or edit matches; .claude.json is rewritten often by Claude Code for non-MCP state. Use as an inventory feed, not an alert.
+DeviceFileEvents
+| where Timestamp > ago(30d)
+| where ActionType in ("FileCreated","FileModified","FileRenamed")
+| where FileName in~ (".mcp.json","mcp.json","claude_desktop_config.json",".claude.json")
+| summarize FirstWrite = min(Timestamp), LastWrite = max(Timestamp), Writes = count(),
+            Writers = make_set(InitiatingProcessFileName, 10)
+            by DeviceName, FolderPath, FileName, InitiatingProcessAccountName
+| order by LastWrite desc

@@ -1,0 +1,28 @@
+// Title: Package runner invocations (npx / npm exec / pnpm dlx / bunx) naming deprecated @modelcontextprotocol MCP servers
+// Id: 16f32aae-3978-468b-88af-32badfc32d58
+// MITRE: T1195.001 Compromise Software Dependencies and Development Tools; T1059 Command and Scripting Interpreter
+// Reference: https://www.glow.io/blogs/mcphantom-ai-coding-agents-are-installing-vulnerable-deprecated-mcp-servers-from-training-data ; https://www.helpnetsecurity.com/2026/11/03/mcphantom-deprecated-mcp-servers/ ; https://github.com/modelcontextprotocol/servers-archived
+// Author: Jarmi
+// Date: 2026-11-04
+// Tested on: Microsoft Defender XDR advanced hunting syntax only; not run against an affected tenant
+// Confidence: low - package names come from Glow Labs; the npx/npm command-line shape is generic MCP client knowledge, no technical IOC published
+// FP notes: deliberate lab use of archived reference servers; unscoped substrings (server-github) can match unrelated community packages - verify full name. Still-maintained @modelcontextprotocol packages are not in the list.
+let DeprecatedMcp = dynamic(["server-github","server-postgres","server-slack","server-puppeteer","server-brave-search","server-google-maps","server-gitlab","server-gdrive","server-redis","create-server","server-aws-kb-retrieval","server-everart"]);
+let Runners = dynamic(["npx","npm exec","npm-cli.js","npx-cli.js","pnpm dlx","bunx"]);
+DeviceProcessEvents
+| where Timestamp > ago(30d)
+| where ProcessCommandLine has_any (Runners)
+| where ProcessCommandLine has "@modelcontextprotocol"
+| where ProcessCommandLine has_any (DeprecatedMcp)
+| extend DeprecatedPackage = extract(@"@modelcontextprotocol/([a-z0-9\-]+)", 1, ProcessCommandLine)
+| where DeprecatedPackage in (DeprecatedMcp)
+| extend AgentHarnessHint = case(
+    InitiatingProcessCommandLine has "claude" or InitiatingProcessFileName has "claude", "claude",
+    InitiatingProcessCommandLine has "cursor" or InitiatingProcessFileName has "cursor", "cursor",
+    InitiatingProcessCommandLine has "codex" or InitiatingProcessFileName has "codex", "codex",
+    InitiatingProcessFileName =~ "node.exe", "node",
+    "other")
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Executions = count(),
+            Packages = make_set(DeprecatedPackage, 20), SampleCmd = any(ProcessCommandLine)
+            by DeviceName, AccountName, InitiatingProcessFileName, AgentHarnessHint
+| order by LastSeen desc

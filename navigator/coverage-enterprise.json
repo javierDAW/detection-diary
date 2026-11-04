@@ -6,7 +6,7 @@
     "layer": "4.5"
   },
   "domain": "enterprise-attack",
-  "description": "detection-diary cumulative coverage — 133 cases; score = number of cases featuring the technique.",
+  "description": "detection-diary cumulative coverage — 134 cases; score = number of cases featuring the technique.",
   "sorting": 3,
   "showTacticRowBackground": true,
   "tacticRowBackground": "#2a4a6a",
@@ -614,6 +614,12 @@
       "enabled": true
     },
     {
+      "techniqueID": "T1059",
+      "score": 5,
+      "comment": "5 case(s); first 2026-06-02, last 2026-11-04",
+      "enabled": true
+    },
+    {
       "techniqueID": "T1070",
       "score": 5,
       "comment": "5 case(s); first 2026-07-28, last 2026-11-02",
@@ -659,6 +665,12 @@
       "techniqueID": "T1135",
       "score": 5,
       "comment": "5 case(s); first 2026-05-11, last 2026-07-19",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1195.001",
+      "score": 5,
+      "comment": "5 case(s); first 2026-05-07, last 2026-11-04",
       "enabled": true
     },
     {
@@ -710,12 +722,6 @@
       "enabled": true
     },
     {
-      "techniqueID": "T1059",
-      "score": 4,
-      "comment": "4 case(s); first 2026-06-02, last 2026-07-05",
-      "enabled": true
-    },
-    {
       "techniqueID": "T1070.002",
       "score": 4,
       "comment": "4 case(s); first 2026-05-16, last 2026-10-19",
@@ -755,12 +761,6 @@
       "techniqueID": "T1136.001",
       "score": 4,
       "comment": "4 case(s); first 2026-05-20, last 2026-07-21",
-      "enabled": true
-    },
-    {
-      "techniqueID": "T1195.001",
-      "score": 4,
-      "comment": "4 case(s); first 2026-05-07, last 2026-10-29",
       "enabled": true
     },
     {
@@ -1001,6 +1001,12 @@
       "techniqueID": "T1203",
       "score": 3,
       "comment": "3 case(s); first 2026-07-18, last 2026-10-30",
+      "enabled": true
+    },
+    {
+      "techniqueID": "T1204",
+      "score": 3,
+      "comment": "3 case(s); first 2026-06-15, last 2026-11-04",
       "enabled": true
     },
     {
@@ -1313,12 +1319,6 @@
       "techniqueID": "T1136",
       "score": 2,
       "comment": "2 case(s); first 2026-07-03, last 2026-07-14",
-      "enabled": true
-    },
-    {
-      "techniqueID": "T1204",
-      "score": 2,
-      "comment": "2 case(s); first 2026-06-15, last 2026-08-05",
       "enabled": true
     },
     {

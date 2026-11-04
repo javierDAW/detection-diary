@@ -1,0 +1,130 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1080" role="img" aria-labelledby="t d">
+<title id="t">MCPhantom kill chain - deprecated MCP servers installed by AI coding agents</title>
+<desc id="d">Single-lane chain of six stages: a developer asks an AI agent for an integration, the agent picks a deprecated archived MCP server from training data, installs it with npx without a manifest or CVE, the server persists as a trusted Node process, a prompt injection reaches the agent, and server-puppeteer lets the agent run arbitrary commands. Critical stages are the package choice and the command execution. Detection anchors are the npx command line, MCP client config files and shell children of Node.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1080"/>
+<rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">MCPhantom: deprecated MCP servers installed by AI coding agents</text>
+<text class="meta" x="20" y="58">Vendor: Glow Labs (2026-11-02) · Date: 2026-11-04 · Cluster: none (exposure pattern) · Day 134</text>
+<rect class="laneL" x="20" y="85" width="840" height="890" rx="6"/>
+<text class="laneLabelL" x="640" y="104">DEVELOPER ENDPOINT + AI AGENT HARNESS</text>
+<rect class="stage" x="30" y="100" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="120" r="14"/>
+<text class="badgeText" x="50" y="124">1</text>
+<text class="label" x="75" y="124">Developer asks the agent for an integration  [T1204]</text>
+<text class="sub" x="75" y="150">User asks for 'a GitHub MCP' or similar; in 98% of reviewed sessions the AGENT chooses the package</text>
+<text class="sub" x="75" y="166">Seen in Claude Code, Cursor, Codex CLI, Claude Cowork and Claude chat (Anthropic, OpenAI, xAI)</text>
+<text class="mono" x="75" y="206">trigger: natural-language request, no package name from the user</text>
+<line class="arrow" x1="440" y1="230" x2="440" y2="245" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="245" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="265" r="14"/>
+<text class="badgeText" x="50" y="269">2</text>
+<text class="label" x="75" y="269">Agent picks a deprecated package from training data  [T1195.001]</text>
+<text class="sub" x="75" y="295">Anthropic archived 13 of 20 reference servers; deprecated packages vanish from npm search</text>
+<text class="sub" x="75" y="311">In one session npm said 'This package is deprecated' and the agent installed anyway</text>
+<text class="mono" x="75" y="351">@modelcontextprotocol/server-github|postgres|slack|puppeteer|gitlab|...</text>
+<line class="arrow" x1="440" y1="375" x2="440" y2="390" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="390" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="410" r="14"/>
+<text class="badgeText" x="50" y="414">3</text>
+<text class="label" x="75" y="414">Install via npx, no manifest, no CVE  [T1195.001]</text>
+<text class="sub" x="75" y="440">npx still installs deprecated packages with only a warning (17.3M downloads since 2025-07-10)</text>
+<text class="sub" x="75" y="456">SCA has no manifest; EDR sees a trusted Node process fetching a public npm package</text>
+<text class="mono" x="75" y="496">generic: npx -y &lt;package&gt; in mcpServers config (.mcp.json, claude_desktop_config.json)</text>
+<line class="arrow" x1="440" y1="520" x2="440" y2="535" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="535" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="555" r="14"/>
+<text class="badgeText" x="50" y="559">4</text>
+<text class="label" x="75" y="559">MCP server persists and runs as a trusted Node process  [T1059]</text>
+<text class="sub" x="75" y="585">Server definition stays in the MCP client config and runs with the developer's privileges</text>
+<text class="sub" x="75" y="601">Software inventory does not register the app</text>
+<text class="mono" x="75" y="641">hunt: config files + node.exe command lines naming deprecated servers</text>
+<line class="arrow" x1="440" y1="665" x2="440" y2="680" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="680" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="700" r="14"/>
+<text class="badgeText" x="50" y="704">5</text>
+<text class="label" x="75" y="704">Prompt injection reaches the agent  [T1059]</text>
+<text class="sub" x="75" y="730">Attacker-controlled content (for example a page the agent browses) instructs the agent</text>
+<text class="sub" x="75" y="746">Glow reports no exploitation in the wild; no CVE or GHSA id exists</text>
+<text class="mono" x="75" y="786">precondition: agent reads untrusted content with server-puppeteer enabled</text>
+<line class="arrow" x1="440" y1="810" x2="440" y2="825" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="825" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="845" r="14"/>
+<text class="badgeText" x="50" y="849">6</text>
+<text class="label" x="75" y="849">Arbitrary command execution via server-puppeteer  [T1059]</text>
+<text class="sub" x="75" y="875">Agent starts any process instead of the browser; the web-browsing approval covers it</text>
+<text class="sub" x="75" y="891">Archived May 2025, maintainers state no fix will come; payload and versions not published</text>
+<text class="mono" x="75" y="931">detect: shell or download tool as child of node running server-puppeteer</text>
+<rect class="footer" x="20" y="985" width="840" height="85" rx="6"/>
+<text class="footerH" x="35" y="1008">Detection anchors</text>
+<text class="footerT" x="35" y="1027">Sigma 01-03, KQL k1-k3, YARA (2 rules), Suricata sids 9920001-9920003, PEAK H1-H3. All low confidence: no technical IOC published.</text>
+<text class="footerT" x="35" y="1046">Break points: package choice (managed MCP allowlist, deprecation check) and the permission that covers process start.</text>
+</svg>
