@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**134 cases** · **203 actors/clusters** · **405 ATT&CK techniques** · **16 platforms** · **92 sectors** · 2026-04-28 -> 2026-11-04
+**135 cases** · **204 actors/clusters** · **405 ATT&CK techniques** · **16 platforms** · **93 sectors** · 2026-04-28 -> 2026-11-05
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/"><img src="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/kill_chain.svg" alt="2026-11-05 kill chain" width="240"></a><br><sub><b>2026-11-05</b><br>UTA0576</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/"><img src="days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/kill_chain.svg" alt="2026-11-04 kill chain" width="240"></a><br><sub><b>2026-11-04</b><br>MCPhantom (Glow Labs research pattern, no threat actor)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/"><img src="days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/kill_chain.svg" alt="2026-11-03 kill chain" width="240"></a><br><sub><b>2026-11-03</b><br>Unattributed (C3RB3R ransomware family)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/"><img src="days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/kill_chain.svg" alt="2026-11-02 kill chain" width="240"></a><br><sub><b>2026-11-02</b><br>Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/"><img src="days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/kill_chain.svg" alt="2026-11-02 kill chain" width="240"></a><br><sub><b>2026-11-02</b><br>Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/"><img src="days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/kill_chain.svg" alt="2026-11-01 kill chain" width="240"></a><br><sub><b>2026-11-01</b><br>TraderTraitor</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/"><img src="days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/kill_chain.svg" alt="2026-10-31 kill chain" width="240"></a><br><sub><b>2026-10-31</b><br>Unattributed (advisory-only, no actor)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/"><img src="days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/kill_chain.svg" alt="2026-10-30 kill chain" width="240"></a><br><sub><b>2026-10-30</b><br>Unattributed (Chinese-nexus indicators, Dream)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

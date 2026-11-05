@@ -1,5 +1,52 @@
 [
  {
+  "date": "2026-11-05",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity",
+  "title": "Ivanti Connect Secure zero-day chain: UTA0576 chains CVE-2026-104935, CVE-2026-118527 and CVE-2026-111357 for unauthenticated root",
+  "clusters": [
+   "UTA0576"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "network-edge",
+   "linux"
+  ],
+  "sectors": [
+   "cross-sector",
+   "enterprise-vpn"
+  ],
+  "techniques": [
+   "T1190",
+   "T1105",
+   "T1068",
+   "T1070",
+   "T1003",
+   "T1087",
+   "T1110.003",
+   "T1558.003"
+  ],
+  "tech_count": 8,
+  "tldr": "Volexity tracked a cluster it calls UTA0576 breaking into a fully patched Ivanti Connect Secure (ICS) 22.8R2.4 appliance from about 2026-10-03, using an unauthenticated authentication bypass (CVE-2026-104935, fixed 2026-10-13) chained with an authenticated file upload (CVE-2026-118527) and a local privilege escalation to root (CVE-2026-111357). Ivanti updated its advisory on 2026-10-29 with the tw",
+  "thumb": "thumbs/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity.svg",
+  "case_rel": "../days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/",
+  "category": "edge-network",
+  "cat_label": "Edge / Network",
+  "cat_color": "#1d7a8c",
+  "actor": "UTA0576",
+  "cve_count": 3,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-104935",
+    "due": "2026-10-16",
+    "ransom": false
+   }
+  ],
+  "q": "ivanti connect secure zero-day chain: uta0576 chains cve-2026-104935, cve-2026-118527 and cve-2026-111357 for unauthenticated root uta0576 unattributed network-edge linux cross-sector enterprise-vpn t1190 t1105 t1068 t1070 t1003 t1087 t1110.003 t1558.003 edge / network cve-2026-104935"
+ },
+ {
   "date": "2026-11-04",
   "year": "2026",
   "month": "2026-11",

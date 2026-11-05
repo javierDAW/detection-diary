@@ -244,3 +244,6 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20,2026-11-03,CVE-2024-50629,no,,,,,,
 2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20,2026-11-03,CVE-2026-13639,no,,,,,,
 2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20,2026-11-03,CVE-2026-13684,no,,,,,,
+2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity,2026-11-05,CVE-2026-104935,yes,2026-10-13,2026-10-16,Unknown,Ivanti Connect Secure Authentication Bypass by Spoofing Vulnerability,Ivanti,Connect Secure
+2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity,2026-11-05,CVE-2026-111357,no,,,,,,
+2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity,2026-11-05,CVE-2026-118527,no,,,,,,

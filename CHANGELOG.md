@@ -1,3 +1,20 @@
+## 2026.11.05 — Day 135 — Ivanti Connect Secure zero-day chain: UTA0576 and the patched-but-compromised appliance
+
+### Added
+- `days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/` — Volexity tracks UTA0576 chaining CVE-2026-104935 (auth bypass), CVE-2026-118527 (upload race) and CVE-2026-111357 (root) on a fully patched Ivanti Connect Secure 22.8R2.4 unit from about 2026-10-03; Ivanti updated its advisory 2026-10-29, CISA KEV followed 2026-10-30, Rapid7 summarised 2026-11-02. Fixed only in 25.1.1.3 / 22.8R2.6.
+- Sigma (3): `01`-`03` — welcome.cgi plus X-DSCGI-PATH/wu.cgi markers; appliance staging files; traffic with the Volexity IP.
+- KQL (3): firewall/proxy traffic and URI markers; LAPS and BitLocker reads by the VPN account; Syslog artifacts and log gaps.
+- YARA (1 file, 2 rules): on-disk artifact paths; X-DSCGI-PATH request carve.
+- Suricata (1 file, 3 sids): URI plus header, Volexity IP, header plus wu.cgi (sids 9930001-9930003; HTTP rules need decrypted traffic).
+- PEAK hunts (3): exposure and patch level; appliance forensic artifacts and log gaps; identity blast radius (LDAP, LAPS, BitLocker, spray).
+- `iocs.csv` (24 entries) — 3 CVEs, 1 IP, URI/header, 17 appliance paths, 2 notes; no hash or domain published. `kev.md` — 1/3 CVEs on the local KEV cache; the other two carry an analyst note (cache predates the update).
+- `kill_chain.svg` — template C, canonical palette, six stages, critical stages: bypass, root escalation, credential theft.
+
+### Pedagogy
+- A gap between what the access check reads (URL) and what the router uses (header) is the bug class; test parser differentials across every proxy hop.
+- Patching is not eviction, and the vendor integrity checker is evadable: rely on external logs, network and identity evidence.
+- The blast radius of a VPN appliance is the credentials it holds and the directory it can query.
+
 ## 2026.11.04 — Day 134 — MCPhantom: AI coding agents install deprecated MCP servers, including an unpatched server-puppeteer RCE
 
 ### Added
