@@ -1,5 +1,40 @@
 [
  {
+  "date": "2026-11-06",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine",
+  "title": "OpenSSH *sshole: musl crypt() returns '*' for passwords over 256 bytes, letting a long password log in to locked accounts (CVE-2026-123158)",
+  "clusters": [],
+  "country": "Not applicable",
+  "platforms": [
+   "linux",
+   "iot"
+  ],
+  "sectors": [
+   "cross-sector",
+   "cloud",
+   "embedded-network-devices"
+  ],
+  "techniques": [
+   "T1190",
+   "T1078",
+   "T1021.004"
+  ],
+  "tech_count": 3,
+  "tldr": "Wakefield researcher Ozgun Kultekin reported, and OpenSSH fixed on 2026-11-05 in Portable OpenSSH 10.6p2, an authentication bypass (CVE-2026-123158, CVSS 3.1 8.1) that affects sshd built against musl libc without PAM, which is the default `openssh-server` package on Alpine Linux. A password of 257 to 1024 bytes makes musl's SHA-256/512 `crypt()` fail with the literal string `*`; an account whose `",
+  "thumb": "thumbs/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine.svg",
+  "case_rel": "../days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "",
+  "cve_count": 2,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "openssh *sshole: musl crypt() returns '*' for passwords over 256 bytes, letting a long password log in to locked accounts (cve-2026-123158)  not applicable linux iot cross-sector cloud embedded-network-devices t1190 t1078 t1021.004 other "
+ },
+ {
   "date": "2026-11-05",
   "year": "2026",
   "month": "2026-11",

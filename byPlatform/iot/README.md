@@ -4,11 +4,12 @@
 
 # Platforms: iot
 
-9 day(s) covering this platform.
+10 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-06 | OpenSSH *sshole: musl crypt() returns '*' for passwords over 256 bytes, letting a long password log in to locked accounts (CVE-2026-123158) |  | [`2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/`](../../days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/) |
 | 2026-10-23 | Plex2Shell: four Plex Media Server flaws chained into unauthenticated RCE through the codec loader, exploited for XMRig and proxy malware and listed on CISA KEV | Unattributed Plex2Shell exploitation | [`2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/`](../../days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/) |
 | 2026-08-27 | QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model | QTFY | [`2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/`](../../days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/) |
 | 2026-07-26 | XCharge C6 EV Chargers: CCS2 Plug-In Root Shell via Exposed SSH/Telnet, Default Credentials, and Firmware Integrity Bypass (CVE-2026-9037, CVE-2026-9038, CVE-2026-9039) | Unattributed vulnerability research (SaiFlow); affected vendor: XCharge | [`2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/`](../../days/2026/07/2026-07-26_XCharge-C6-EV-Charger-CCS2-Root-Shell-CVE-2026-9037-CVE-2026-9038-CVE-2026-9039/) |

@@ -247,3 +247,5 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity,2026-11-05,CVE-2026-104935,yes,2026-10-13,2026-10-16,Unknown,Ivanti Connect Secure Authentication Bypass by Spoofing Vulnerability,Ivanti,Connect Secure
 2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity,2026-11-05,CVE-2026-111357,no,,,,,,
 2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity,2026-11-05,CVE-2026-118527,no,,,,,,
+2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine,2026-11-06,CVE-2016-6210,no,,,,,,
+2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine,2026-11-06,CVE-2026-123158,no,,,,,,

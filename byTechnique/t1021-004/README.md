@@ -4,11 +4,12 @@
 
 # Techniques: T1021.004
 
-6 day(s) covering this technique.
+7 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-06 | OpenSSH *sshole: musl crypt() returns '*' for passwords over 256 bytes, letting a long password log in to locked accounts (CVE-2026-123158) |  | [`2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/`](../../days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/) |
 | 2026-10-31 | Hitachi Energy CoreTec (CVE-2026-13162): time-zone command injection plus Dirty Frag root on an OT edge device, with the TRO600 RCE advisory | Unattributed (advisory-only, no actor) | [`2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/`](../../days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/) |
 | 2026-10-15 | AhsayCBS backup console zero-days CVE-2026-105133 and CVE-2026-105134: SYSTEM code execution, JSP web shells and a fake Edge miner service | Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports) | [`2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/`](../../days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/) |
 | 2026-08-04 | ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-by-datastore blast radius | ByteToBreach | [`2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/`](../../days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/) |

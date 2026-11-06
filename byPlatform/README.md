@@ -15,8 +15,8 @@ Source of truth: each day's `README.md` frontmatter.
 | [android](./android/) | 5 |
 | [cloud-multi](./cloud-multi/) | 41 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
-| [iot](./iot/) | 9 |
-| [linux](./linux/) | 57 |
+| [iot](./iot/) | 10 |
+| [linux](./linux/) | 58 |
 | [macos](./macos/) | 17 |
 | [microsoft-365](./microsoft-365/) | 1 |
 | [mobile](./mobile/) | 1 |

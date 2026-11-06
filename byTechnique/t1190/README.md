@@ -4,11 +4,12 @@
 
 # Techniques: T1190
 
-50 day(s) covering this technique.
+51 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-06 | OpenSSH *sshole: musl crypt() returns '*' for passwords over 256 bytes, letting a long password log in to locked accounts (CVE-2026-123158) |  | [`2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/`](../../days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/) |
 | 2026-11-05 | Ivanti Connect Secure zero-day chain: UTA0576 chains CVE-2026-104935, CVE-2026-118527 and CVE-2026-111357 for unauthenticated root | UTA0576 | [`2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/`](../../days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/) |
 | 2026-11-03 | Synology DSM ransomware: C3RB3R (a Cerber variant), the .L0CK3D extension and a disputed entry flaw | Unattributed (C3RB3R ransomware family) | [`2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/`](../../days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/) |
 | 2026-11-02 | Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, stolen session tokens and rogue MFA devices | Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo) | [`2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/`](../../days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/) |

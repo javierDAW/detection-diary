@@ -1,3 +1,20 @@
+## 2026.11.06 — Day 136 — OpenSSH *sshole: musl crypt() long password logs in to locked accounts (CVE-2026-123158)
+
+### Added
+- `days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/` — OpenSSH on musl without PAM (Alpine default) accepts a 257-1024 byte password for accounts whose shadow field is `*`; reported by Ozgun Kultekin (Wakefield), fixed in 10.6p2 on 2026-11-05 (Cycode, Threat Landscape, iTnews). No actor, exploitation or IOC published.
+- Sigma (3): `01`-`03` — accepted password for passwordless accounts; doas/su by the alpine user; sshd inside containers.
+- KQL (3): Syslog accepted-password events; MDE sshd in containers and listeners; success after failures.
+- YARA (1 file, 2 rules): provisioning scripts and sshd_config with no-PAM plus password logins.
+- Suricata (1 file, 3 sids): exposure hints only (sids 9940001-9940003); no exploit signature exists.
+- PEAK hunts (3): musl/no-PAM exposure inventory; password logins to `*` accounts; post-login privilege use.
+- `iocs.csv` (10 entries) — 2 CVEs, log strings, paths, fixed versions, 1 note. `kev.md` — 0/2 CVEs on the local KEV cache.
+- `kill_chain.svg` — template C, canonical palette, six stages, critical stages: trigger and accepted login.
+
+### Pedagogy
+- A fail-open error value that equals a legitimate stored value becomes an authentication bypass.
+- A mitigation for one bug (CVE-2016-6210 salt borrowing) can create the next; test against every libc.
+- With no IOC, inventory of musl sshd hosts with password logins is the control.
+
 ## 2026.11.05 — Day 135 — Ivanti Connect Secure zero-day chain: UTA0576 and the patched-but-compromised appliance
 
 ### Added
