@@ -1,0 +1,35 @@
+// Title: Refrigeration controllers - third-party / vendor remote-access accounts signing in outside the agreed maintenance window (Entra ID SigninLogs)
+// Id: c41a8e93-0f2b-47d6-b5e1-6a9d3c2f7b58
+// MITRE: T1078 Valid Accounts; T1133 External Remote Services; T0859 Valid Accounts (ICS)
+// Reference: NPR (2026-11-06) - NoName057(16) and Z-Pentest Alliance claimed European refrigeration attacks alleging hacked credentials (not tied to EFS, experts skeptical); Medical Device Network (2026-11-06) - EFS attack began overnight 2026-11-02
+// Author: Jarmi
+// Date: 2026-11-07
+// Tested on: Microsoft Sentinel SigninLogs syntax only; not run against an affected tenant
+// Confidence: LOW - hunting hint, no public IOC. No source states the initial access vector at EFS; credential abuse is only alleged in hacktivist claims. The query flags vendor accounts used at night, from new countries or without MFA, which is the behaviour a credential-based remote change would need.
+// FP notes: genuine on-call vendor interventions after an alarm; vendors in other time zones (adjust window per contract); service principals for remote monitoring. Requires the vendor VPN / remote-access gateway to authenticate against Entra ID; otherwise run the same logic on DeviceLogonEvents of the jump hosts.
+let Lookback = 30d;
+let VendorAccounts = dynamic(["<add_vendor_remote_access_accounts>"]);
+let VendorApps = dynamic(["<add_vendor_vpn_or_remote_access_app>"]);
+let WindowStartHour = 6;   // agreed maintenance window, UTC
+let WindowEndHour = 20;
+let Baseline = SigninLogs
+| where TimeGenerated between (ago(Lookback) .. ago(1d))
+| where UserPrincipalName in~ (VendorAccounts)
+| where ResultType == "0"
+| summarize KnownCountries = make_set(tostring(LocationDetails.countryOrRegion), 20) by UserPrincipalName;
+SigninLogs
+| where TimeGenerated > ago(Lookback)
+| where UserPrincipalName in~ (VendorAccounts) or AppDisplayName in~ (VendorApps)
+| extend Hour = datetime_part("hour", TimeGenerated),
+         Country = tostring(LocationDetails.countryOrRegion)
+| extend OutsideWindow = Hour < WindowStartHour or Hour >= WindowEndHour,
+         SingleFactor = AuthenticationRequirement == "singleFactorAuthentication"
+| join kind=leftouter Baseline on UserPrincipalName
+| extend NewCountry = isnotempty(Country) and not(set_has_element(KnownCountries, Country))
+| where OutsideWindow or SingleFactor or NewCountry
+| summarize FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated), Attempts = count(),
+            Successes = countif(ResultType == "0"), Failures = countif(ResultType != "0"),
+            OutsideWindowSuccess = countif(OutsideWindow and ResultType == "0"),
+            Countries = make_set(Country, 10), IPs = make_set(IPAddress, 20), Apps = make_set(AppDisplayName, 10)
+            by UserPrincipalName
+| order by OutsideWindowSuccess desc, Failures desc

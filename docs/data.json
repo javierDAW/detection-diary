@@ -1,5 +1,48 @@
 [
  {
+  "date": "2026-11-07",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave",
+  "title": "French blood bank cold storage hit through refrigeration controllers: EFS plasma freezer thresholds raised in a Europe-wide refrigeration attack wave",
+  "clusters": [
+   "Unattributed"
+  ],
+  "country": "Unattributed (pro-Russian hacktivist claims, unverified)",
+  "platforms": [
+   "ot-ics",
+   "iot"
+  ],
+  "sectors": [
+   "healthcare",
+   "cold-chain",
+   "food-retail"
+  ],
+  "techniques": [
+   "T1190",
+   "T1133",
+   "T1078",
+   "T1199",
+   "T1565.001",
+   "T0836",
+   "T0831",
+   "T0886",
+   "T0859"
+  ],
+  "tech_count": 9,
+  "tldr": "The French Blood Establishment (EFS) confirmed on 2026-11-03 a cybersecurity incident at one of its refrigeration-equipment providers: overnight on 2026-11-02 the attackers raised the temperature and defrost thresholds of plasma refrigerators to extremely high levels, and EFS monitoring and alarms caught the deviation so staff could intervene before the blood spoiled. Medical Device Network report",
+  "thumb": "thumbs/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave.svg",
+  "case_rel": "../days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/",
+  "category": "ot-ics",
+  "cat_label": "OT / ICS",
+  "cat_color": "#2f8f4e",
+  "actor": "Unattributed",
+  "cve_count": 6,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "french blood bank cold storage hit through refrigeration controllers: efs plasma freezer thresholds raised in a europe-wide refrigeration attack wave unattributed unattributed (pro-russian hacktivist claims, unverified) ot-ics iot healthcare cold-chain food-retail t1190 t1133 t1078 t1199 t1565.001 t0836 t0831 t0886 t0859 ot / ics "
+ },
+ {
   "date": "2026-11-06",
   "year": "2026",
   "month": "2026-11",

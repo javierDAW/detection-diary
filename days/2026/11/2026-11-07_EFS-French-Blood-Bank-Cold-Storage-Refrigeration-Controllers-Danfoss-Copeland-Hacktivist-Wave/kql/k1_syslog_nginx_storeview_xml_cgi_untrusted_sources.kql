@@ -1,0 +1,33 @@
+// Title: Refrigeration controllers (Danfoss StoreView / Copeland XWEB Pro) - reverse-proxy / nginx access log hunt for xml.cgi, load_nginx_headers and POST bursts from untrusted or night-time sources
+// Id: 5f0c2b6e-2d1f-4b9a-9a3e-7c1d4e8a6b21
+// MITRE: T1190 Exploit Public-Facing Application; T1505 Server Software Component; T0836 Modify Parameter (ICS)
+// Reference: Claroty Team82 (2026-08-09) CVE-2025-41450 / CVE-2025-41452 xml.cgi surface; Medical Device Network and NPR (2026-11-06) EFS cold-storage incident; https://claroty.com/team82/research/freeze-the-controller-defrost-the-food-uncovering-vulnerabilities-in-danfoss-refrigeration-controllers
+// Author: Jarmi
+// Date: 2026-11-07
+// Tested on: Microsoft Sentinel Syslog table syntax only; not run against an affected controller or proxy
+// Confidence: LOW - hunting hint, no public IOC. No source publishes IPs, request bodies or the access vector used against EFS; this query surfaces exposure and the published API surface (xml.cgi, load_nginx_headers), not the EFS attack itself.
+// FP notes: supervisory / energy-management servers polling xml.cgi; authorised vendor maintenance. Request bodies (where load_nginx_headers lives) only appear if the proxy logs them. Assumes nginx combined log format forwarded via syslog; adapt the regex for your proxy.
+let Lookback = 30d;
+let MgmtSources = dynamic(["<add_refrigeration_mgmt_ips>"]);
+let NightStartHour = 20;   // local maintenance policy: no remote config writes 20:00-06:00
+let NightEndHour = 6;
+Syslog
+| where TimeGenerated > ago(Lookback)
+| where ProcessName has "nginx" or SyslogMessage has_any ("xml.cgi", "load_nginx_headers")
+| where SyslogMessage has_any ("xml.cgi", "load_nginx_headers", "getauth")
+| extend SrcIp = extract(@"^(\d{1,3}(?:\.\d{1,3}){3})", 1, SyslogMessage),
+         Method = extract(@"\x22(GET|POST|PUT|HEAD) ", 1, SyslogMessage),
+         Uri = extract(@"\x22(?:GET|POST|PUT|HEAD) (\S+)", 1, SyslogMessage),
+         Status = extract(@"\x22 (\d{3}) ", 1, SyslogMessage)
+| extend Hour = datetime_part("hour", TimeGenerated)
+| extend UntrustedSrc = not(SrcIp in (MgmtSources)),
+         NightTime = Hour >= NightStartHour or Hour < NightEndHour,
+         NginxHeaderAction = SyslogMessage has "load_nginx_headers",
+         GetAuthAction = SyslogMessage has "getauth"
+| summarize FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated), Requests = count(),
+            Posts = countif(Method == "POST"), NightPosts = countif(Method == "POST" and NightTime),
+            NginxHeaderHits = countif(NginxHeaderAction), GetAuthHits = countif(GetAuthAction),
+            Statuses = make_set(Status, 10), Uris = make_set(Uri, 10)
+            by Computer, SrcIp, UntrustedSrc
+| where UntrustedSrc or NginxHeaderHits > 0 or NightPosts > 0
+| order by NginxHeaderHits desc, UntrustedSrc desc, NightPosts desc

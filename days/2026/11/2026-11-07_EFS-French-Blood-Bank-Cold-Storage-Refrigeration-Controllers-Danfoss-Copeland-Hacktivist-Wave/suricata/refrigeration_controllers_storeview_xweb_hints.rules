@@ -1,0 +1,28 @@
+# Refrigeration supervisory controllers (Danfoss AK-SM StoreView / Copeland XWEB Pro) - exposure / hunting hints (Suricata 7.x)
+# Author: Jarmi
+# Date: 2026-11-07
+# Reference: Claroty Team82 (2026-08-09) CVE-2025-41450 / CVE-2025-41452; Censys (2026-10-14) StoreView exposure in France;
+#            Medical Device Network / NPR (2026-11-06) EFS cold-storage incident; https://claroty.com/team82/research/freeze-the-controller-defrost-the-food-uncovering-vulnerabilities-in-danfoss-refrigeration-controllers
+#
+# Context: per Claroty, the Danfoss AK-SM 8xxA web API is xml.cgi (external nginx -> sm_fcgi_app).
+# CVE-2025-41450 is an auth bypass using action="getauth" plus a date-derived "code of the day"
+# (fixed firmware 4.2); CVE-2025-41452 is a post-auth nginx config injection via
+# action="load_nginx_headers" (fixed R4.3.1). Censys fingerprints StoreView by its HTTP title.
+#
+# IMPORTANT: no source publishes IPs, request bodies, ports or the access vector of the EFS attack,
+# and no source shows these CVEs were used there. All three rules are LOW-confidence hints:
+# 9950001/9950002 match the published API actions; 9950003 is an internet-exposure inventory.
+# The two undocumented getauth attributes are not published by name, so they are not matched.
+#
+# Variables (define in suricata.yaml address-groups / port-groups):
+#   $HOME_NET            - standard internal networks
+#   $EXTERNAL_NET        - standard external networks
+#   $HTTP_PORTS          - standard port group (add the controller web ports observed in your inventory)
+#   $REFRIGERATION_CTRL  - custom: IPs / CIDRs of refrigeration supervisory controllers
+#                          (Danfoss AK-SM StoreView, Copeland XWEB Pro) from hunt H1
+
+alert http $EXTERNAL_NET any -> $REFRIGERATION_CTRL $HTTP_PORTS (msg:"JARMI Refrigeration hint - external POST to Danfoss StoreView xml.cgi with getauth action (CVE-2025-41450 surface)"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/xml.cgi"; nocase; http.request_body; content:"getauth"; nocase; classtype:attempted-admin; reference:cve,2025-41450; metadata:created_at 2026_11_07, confidence low, author Jarmi; sid:9950001; rev:1;)
+
+alert http any any -> $REFRIGERATION_CTRL $HTTP_PORTS (msg:"JARMI Refrigeration hint - Danfoss StoreView xml.cgi request body with load_nginx_headers action (CVE-2025-41452 nginx config injection surface)"; flow:established,to_server; http.method; content:"POST"; http.uri; content:"/xml.cgi"; nocase; http.request_body; content:"load_nginx_headers"; nocase; classtype:attempted-admin; reference:cve,2025-41452; metadata:created_at 2026_11_07, confidence low, author Jarmi; sid:9950002; rev:1;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI Refrigeration hint - Danfoss StoreView web interface served to an external client (internet exposure inventory)"; flow:established,to_client; http.stat_code; content:"200"; file.data; content:"Danfoss"; nocase; content:"StoreView"; nocase; distance:0; within:16; threshold:type limit, track by_src, count 1, seconds 86400; classtype:policy-violation; metadata:created_at 2026_11_07, confidence low, author Jarmi; sid:9950003; rev:1;)

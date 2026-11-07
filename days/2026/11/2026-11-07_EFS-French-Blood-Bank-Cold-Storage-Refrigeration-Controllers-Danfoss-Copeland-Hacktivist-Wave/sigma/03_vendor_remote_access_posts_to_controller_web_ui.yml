@@ -1,0 +1,53 @@
+title: Vendor Or Remote-Access Account POST To Refrigeration Controller Web UI (Setpoint / Defrost Change Hint)
+id: 87c3d728-fe94-4809-af0e-274d404ab307
+status: experimental
+description: |
+  Detects HTTP POST requests to refrigeration supervisory controller web interfaces (Danfoss
+  StoreView xml.cgi, Copeland XWEB Pro) that originate from the VPN / vendor remote-access address
+  pool, or that carry an authenticated username from the third-party / vendor account list.
+  Context: in the EFS incident (confirmed 2026-11-03, attack overnight 2026-11-02) attackers raised
+  temperature and defrost thresholds on plasma refrigerators; NoName057(16) and Z-Pentest Alliance
+  claimed refrigeration attacks across Europe on Telegram, alleging hacked credentials (claims not
+  tied to EFS, experts skeptical). In the October 2026 wave French supermarket refrigeration was
+  switched to defrost overnight on 2026-10-11 (Censys). Both patterns are configuration writes
+  made at night through a management interface.
+  Hunting hint, low confidence, no public IOC: no source publishes the request format used. Sigma
+  cannot express "outside the agreed maintenance window" or "more than N POSTs in M minutes";
+  apply the time-of-day filter and the volume threshold (suggested start: any POST between 20:00
+  and 06:00 local, or more than 10 POSTs in 15 minutes per account) in SIEM aggregation and
+  correlate with change tickets and an independent temperature alarm (hunt H2).
+references:
+  - https://www.medicaldevice-network.com/news/cyberattack-on-trio-of-french-blood-storage-sites-highlights-security-blind-spots/
+  - https://www.hppr.org/npr-news/2026-11-06/health-intel-sharing-group-warns-industry-in-wake-of-cyberattack-on-french-blood-bank
+  - https://claroty.com/team82/research/freeze-the-controller-defrost-the-food-uncovering-vulnerabilities-in-danfoss-refrigeration-controllers
+  - https://censys.com/blog/frostbitten-in-france-a-danfoss-storeview-internet-exposure-report/
+author: Jarmi
+date: 2026/11/07
+tags:
+  - attack.initial-access
+  - attack.t1078
+  - attack.t1133
+  - attack.impact
+  - attack.t1565.001
+  - attack.t0836
+  - attack.t0831
+logsource:
+  category: webserver
+detection:
+  selection_method:
+    cs-method: 'POST'
+  selection_target:
+    cs-host|cidr:
+      - '<add_refrigeration_controller_cidr>'
+  selection_vpn_src:
+    c-ip|cidr:
+      - '<add_vpn_vendor_pool_cidr>'
+  selection_vendor_user:
+    cs-username:
+      - '<add_vendor_remote_access_accounts>'
+  condition: selection_method and selection_target and (selection_vpn_src or selection_vendor_user)
+falsepositives:
+  - Scheduled vendor maintenance (setpoint tuning, firmware update, defrost schedule changes) inside an approved change window.
+  - Facilities staff working remotely over VPN on a legitimate alarm call-out.
+
+level: medium

@@ -1,3 +1,21 @@
+## 2026.11.07 — Day 137 — French blood bank cold storage: refrigeration controller thresholds raised (EFS)
+
+### Added
+- `days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/` — EFS (French Blood Establishment) confirmed on 2026-11-03 that an attack on a refrigeration-equipment provider raised temperature and defrost thresholds on plasma refrigerators on 2026-11-02; alarms caught it before spoilage (Medical Device Network, NPR/Health-ISAC 2026-11-06). Unattributed; Danfoss/Copeland controller research (Claroty, Censys) used as exposure context.
+- Sigma (3): `01`-`03` — xml.cgi from untrusted source; controller management reached from non-management network; vendor remote-access POSTs.
+- KQL (3): Syslog nginx xml.cgi hunt; non-jump-host devices to controller subnets; vendor sign-ins outside window.
+- YARA (1 file, 2 rules): scripts and notes referencing the Danfoss xml.cgi API or Copeland XWEB with Shellinabox/Basic auth.
+- Suricata (1 file, 3 sids): 9950001-9950003, exposure and published-API hints only.
+- PEAK hunts (3): controller exposure inventory; setpoint/defrost changes without ticket; vendor access and hacktivist-claim correlation.
+- `iocs.csv` (11 entries) — 6 CVEs, fingerprints, 1 note. `kev.md` — 0/6 CVEs on the local KEV cache (cache predates the case; analyst note added).
+- `kill_chain.svg` — template C, canonical palette, six stages, critical stages: exposure and threshold manipulation.
+
+### Pedagogy
+- Attackers edit the protection (alarm limits, defrost) not just the process; keep an independent sensor and alarm.
+- Hard-wired cutoffs and manual-control drills survive a compromised supervisory layer.
+- Third-party equipment providers belong in your asset and logging scope.
+- Telegram claims are leads, not attribution.
+
 ## 2026.11.06 — Day 136 — OpenSSH *sshole: musl crypt() long password logs in to locked accounts (CVE-2026-123158)
 
 ### Added

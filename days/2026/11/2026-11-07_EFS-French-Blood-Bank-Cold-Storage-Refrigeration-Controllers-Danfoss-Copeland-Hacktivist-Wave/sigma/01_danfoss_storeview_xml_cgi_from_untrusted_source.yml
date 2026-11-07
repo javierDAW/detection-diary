@@ -1,0 +1,49 @@
+title: Danfoss AK-SM StoreView xml.cgi Request From Untrusted Source Or load_nginx_headers Action (Exposure Hint)
+id: eccf2836-b804-44a7-8246-a273d1ccba4a
+status: experimental
+description: |
+  Detects HTTP requests to the Danfoss AK-SM 8xxA ("Danfoss StoreView") xml.cgi endpoint coming
+  from a source outside the refrigeration management network, and any logged request content
+  containing the action "load_nginx_headers". Per Claroty Team82 (2026-08-09), xml.cgi is the
+  API behind CVE-2025-41450 (auth bypass via a date-derived "code of the day", action="getauth"
+  plus two undocumented attributes set to 1, fixed in firmware 4.2) and load_nginx_headers is the
+  post-auth nginx config injection CVE-2025-41452 (headers.conf upload, fixed R4.3.1). The
+  external nginx routes .cgi requests to sm_fcgi_app.
+  Context: the French Blood Establishment (EFS) confirmed on 2026-11-03 an incident at a
+  refrigeration-equipment provider where plasma refrigerator temperature and defrost thresholds
+  were raised (Medical Device Network / NPR, 2026-11-06). NO source states the vendor or model
+  at EFS, the access vector, or that these CVEs were used. This rule detects EXPOSURE and the
+  published API surface, not the EFS attack. Confidence: low, no public IOC.
+  The xml.cgi action sits in the XML request body, which plain access logs do not record; the
+  keyword selection only fires if the reverse proxy / WAF logs request bodies. A volume
+  threshold (many xml.cgi POSTs from one source) belongs to SIEM aggregation, not to this rule.
+references:
+  - https://claroty.com/team82/research/freeze-the-controller-defrost-the-food-uncovering-vulnerabilities-in-danfoss-refrigeration-controllers
+  - https://censys.com/blog/frostbitten-in-france-a-danfoss-storeview-internet-exposure-report/
+  - https://www.medicaldevice-network.com/news/cyberattack-on-trio-of-french-blood-storage-sites-highlights-security-blind-spots/
+  - https://www.hppr.org/npr-news/2026-11-06/health-intel-sharing-group-warns-industry-in-wake-of-cyberattack-on-french-blood-bank
+author: Jarmi
+date: 2026/11/07
+tags:
+  - attack.initial-access
+  - attack.t1190
+  - attack.persistence
+  - attack.t1505
+  - cve.2025-41450
+  - cve.2025-41452
+logsource:
+  category: webserver
+detection:
+  selection_uri:
+    cs-uri-stem|endswith: '/xml.cgi'
+  filter_mgmt:
+    c-ip|cidr:
+      - '<add_refrigeration_mgmt_cidr>'
+  keywords_body:
+    - 'load_nginx_headers'
+  condition: (selection_uri and not filter_mgmt) or keywords_body
+falsepositives:
+  - Legitimate monitoring or supervisory software (store management, energy management) polling xml.cgi from a network not yet listed in the management CIDR placeholder.
+  - Authorised vendor service sessions that upload nginx header configuration during maintenance.
+
+level: low

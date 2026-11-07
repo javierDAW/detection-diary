@@ -1,0 +1,55 @@
+title: Refrigeration Controller Management Interface Reached From A Non-Management Network (Danfoss StoreView / Copeland XWEB Exposure Hint)
+id: 73cc2072-6238-4546-9b17-154a73075a97
+status: experimental
+description: |
+  Detects allowed firewall sessions to refrigeration supervisory controllers (Danfoss AK-SM 8xxA
+  "StoreView", Copeland XWEB300D PRO / XWEB500D PRO) from any source that is not an approved
+  management / jump-host network. Health-ISAC guidance (via NPR, 2026-11-06) after the EFS
+  cold-storage incident is to remove public internet exposure and segment refrigeration from
+  enterprise and guest networks; CERT-FR alert CERTFR-2026-ALE-012 (relayed by Censys) asks to
+  take StoreView panels off the internet. Per Claroty Team82 (2026-08-09) XWEB Pro exposes a web
+  UI (lighttpd + Lua, CVE-2026-25085 auth bypass, CVE-2026-24663 unauthenticated command
+  injection) and SSH / Shellinabox where a predictable daily admin password applies
+  (CVE-2026-21718); StoreView exposes xml.cgi (CVE-2025-41450).
+  Hunting hint, low confidence, no public IOC: no source publishes the ports, IPs or access
+  vector used against EFS. Populate the placeholders with the controller CIDR and the approved
+  management CIDRs; the rule deliberately does not filter on port so web, SSH and Shellinabox
+  are all covered. Any internet source reaching these hosts is a finding by itself.
+references:
+  - https://claroty.com/team82/research/freeze-the-controller-defrost-the-food-uncovering-vulnerabilities-in-danfoss-refrigeration-controllers
+  - https://censys.com/blog/frostbitten-in-france-a-danfoss-storeview-internet-exposure-report/
+  - https://www.hppr.org/npr-news/2026-11-06/health-intel-sharing-group-warns-industry-in-wake-of-cyberattack-on-french-blood-bank
+  - https://www.cert.ssi.gouv.fr/
+author: Jarmi
+date: 2026/11/07
+tags:
+  - attack.initial-access
+  - attack.t1190
+  - attack.t1133
+  - attack.lateral-movement
+  - attack.t1021.004
+  - cve.2025-41450
+  - cve.2026-25085
+  - cve.2026-21718
+  - cve.2026-24663
+logsource:
+  category: firewall
+detection:
+  selection_dst:
+    dst_ip|cidr:
+      - '<add_refrigeration_controller_cidr>'
+  selection_allowed:
+    action:
+      - 'allow'
+      - 'accept'
+      - 'pass'
+  filter_mgmt:
+    src_ip|cidr:
+      - '<add_refrigeration_mgmt_cidr>'
+      - '<add_jump_host_cidr>'
+  condition: selection_dst and selection_allowed and not filter_mgmt
+falsepositives:
+  - Building management or energy monitoring servers that legitimately poll controllers but are missing from the management CIDR list.
+  - Vendor remote-maintenance gateways that terminate inside the refrigeration segment.
+
+level: medium

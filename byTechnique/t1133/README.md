@@ -4,11 +4,12 @@
 
 # Techniques: T1133
 
-14 day(s) covering this technique.
+15 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-07 | French blood bank cold storage hit through refrigeration controllers: EFS plasma freezer thresholds raised in a Europe-wide refrigeration attack wave | Unattributed | [`2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/`](../../days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/) |
 | 2026-10-31 | Hitachi Energy CoreTec (CVE-2026-13162): time-zone command injection plus Dirty Frag root on an OT edge device, with the TRO600 RCE advisory | Unattributed (advisory-only, no actor) | [`2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/`](../../days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/) |
 | 2026-10-30 | PHP2Shell (CVE-2026-109618 and CVE-2026-109619): PHP engine memory corruption to unauthenticated RCE, and a Dream-reported firewall chain with Fragnesia root | Unattributed (Chinese-nexus indicators, Dream) | [`2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/`](../../days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/) |
 | 2026-10-27 | Qilin and INC ride a forged GlobalProtect cookie (CVE-2026-0257) from the VPN into vCenter, ESXi VMDKs and Veeam | Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius) | [`2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/`](../../days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/) |

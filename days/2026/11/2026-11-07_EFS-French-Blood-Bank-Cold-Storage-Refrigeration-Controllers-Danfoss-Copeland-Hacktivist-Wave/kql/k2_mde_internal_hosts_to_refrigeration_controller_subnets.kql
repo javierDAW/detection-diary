@@ -1,0 +1,24 @@
+// Title: Refrigeration controllers - internal endpoints (non jump hosts) connecting to refrigeration-controller subnets (Defender for Endpoint)
+// Id: 9b2e7d40-61c3-4f85-8e0a-3d5f2a7c9e14
+// MITRE: T1021 Remote Services; T1133 External Remote Services; T0886 Remote Services (ICS)
+// Reference: Health-ISAC guidance via NPR (2026-11-06): segment refrigeration from enterprise / guest networks; Claroty Team82 (2026-08-09) Danfoss StoreView and Copeland XWEB Pro web / SSH / Shellinabox surface
+// Author: Jarmi
+// Date: 2026-11-07
+// Tested on: Defender XDR advanced hunting syntax only; not run against a refrigeration segment
+// Confidence: LOW - hunting hint, no public IOC. Measures segmentation drift: any managed endpoint other than an approved jump host or supervisory server that talks to the controller subnet. It does not detect a specific exploit.
+// FP notes: building-management, energy-monitoring and alarm servers; facilities laptops during on-site work. No port filter on purpose (web, SSH and Shellinabox all count); add one after baselining. Controllers themselves do not run the MDE sensor, so only the client side is visible.
+let Lookback = 14d;
+let ControllerSubnets = dynamic(["<add_refrigeration_controller_cidr>"]);
+let ApprovedJumpHosts = dynamic(["<add_known_jump_hosts>"]);
+DeviceNetworkEvents
+| where Timestamp > ago(Lookback)
+| where ActionType in ("ConnectionSuccess", "ConnectionAttempt", "ConnectionRequest")
+| where ipv4_is_in_any_range(RemoteIP, ControllerSubnets)
+| where not(DeviceName in~ (ApprovedJumpHosts))
+| extend Hour = datetime_part("hour", Timestamp)
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Connections = count(),
+            NightConnections = countif(Hour >= 20 or Hour < 6),
+            Controllers = make_set(RemoteIP, 50), Ports = make_set(RemotePort, 20),
+            Processes = make_set(InitiatingProcessFileName, 10), Accounts = make_set(InitiatingProcessAccountName, 10)
+            by DeviceId, DeviceName
+| order by NightConnections desc, Connections desc

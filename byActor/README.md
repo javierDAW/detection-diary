@@ -180,6 +180,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [UNK_pyreq2323](./unk-pyreq2323/) | 1 |
 | [UTA0576](./uta0576/) | 1 |
 | [UTG-Q-1000](./utg-q-1000/) | 1 |
+| [Unattributed](./unattributed/) | 1 |
 | [Unattributed (1337 Services GmbH infrastructure)](./unattributed-1337-services-gmbh-infrastructure/) | 1 |
 | [Unattributed (C3RB3R ransomware family)](./unattributed-c3rb3r-ransomware-family/) | 1 |
 | [Unattributed (Chinese-nexus indicators, Dream)](./unattributed-chinese-nexus-indicators-dream/) | 1 |
