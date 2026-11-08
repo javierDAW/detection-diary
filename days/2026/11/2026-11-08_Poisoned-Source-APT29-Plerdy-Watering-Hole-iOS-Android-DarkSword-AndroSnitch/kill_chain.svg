@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1080" role="img" aria-labelledby="t d">
+<title id="t">Poisoned Source APT29 watering holes kill chain</title>
+<desc id="d">Single-lane chain of six stages: APT29-linked staging infrastructure registered from April 2026; three delivery vectors (compromised legitimate sites, AiTM lookalike sites, and the Plerdy SEO Tracker supply-chain script between 2026-08-27 and 2026-09-03); device fingerprinting that withholds payloads from non-touch and non-phone clients; three n-day exploit chains for iOS 16.7, iOS 18.5 and Android Chrome 139-145; cookie and device data exfiltration to ad.starx-net.com port 8881; and response break points. Critical stages are delivery and exploitation. Detection anchors are the five core domains, port 8881, the temfp.js loader path and the Plerdy main.js to edge-ord loader sequence.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1080"/>
+<rect class="acc-mobile" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Poisoned Source: APT29 watering holes deliver iOS and Android n-day exploits</text>
+<text class="meta" x="20" y="58">Vendor: Sekoia (2026-11-04) · Date: 2026-11-08 · Cluster: APT29 (moderate to high) · Day 138</text>
+<rect class="laneL" x="20" y="85" width="840" height="890" rx="6"/>
+<text class="laneLabelL" x="640" y="104">WATERING HOLE + SUPPLY CHAIN LANE</text>
+<rect class="stage" x="30" y="100" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="120" r="14"/>
+<text class="badgeText" x="50" y="124">1</text>
+<text class="label" x="75" y="124">Staging: lookalike and delivery domains registered Apr-Aug 2026, spread over several hosters  [T1583.001 T1584]</text>
+<text class="sub" x="75" y="148">flux-telemetry.com (2026-04-02), starx-net.com (04-03), america250.holiday (05-19), theowo.club (06-18), clouds-stacks.com</text>
+<text class="sub" x="75" y="164">(08-26): per Sekoia, partly summarised | Hosting spread over AS395092 Shock Hosting, AS219399 servinga, AS9009 and AS57169</text>
+<text class="sub" x="75" y="180">EDIS; Sekoia sees this as consistent with past APT29 practice</text>
+<text class="mono" x="75" y="206">static.flux-telemetry.com  ad.starx-net.com  edge-ord.clouds-stacks.com</text>
+<line class="arrow" x1="440" y1="230" x2="440" y2="245" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="245" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="265" r="14"/>
+<text class="badgeText" x="50" y="269">2</text>
+<text class="label" x="75" y="269">Delivery: 3 vectors - hacked sites, AiTM lookalikes, Plerdy SEO Tracker script  [T1189 T1195.002 T1608.004]</text>
+<text class="sub" x="75" y="293">Injected window.onload loader fetches /module/5b4c8fea5cbcee273e8d830f52-temfp.js; victims: UA gas producer, US chemical</text>
+<text class="sub" x="75" y="309">trade body, CZ party, BG military site | Plerdy a.plerdy.com/public/js/click/main.js had code appended 2026-08-27 to</text>
+<text class="sub" x="75" y="325">2026-09-03 that loads edge-ord.clouds-stacks.com; lookalikes: america250.holiday</text>
+<text class="mono" x="75" y="351">a.plerdy.com/public/js/click/main.js -&gt; edge-ord.clouds-stacks.com/module/...-temfp.js</text>
+<line class="arrow" x1="440" y1="375" x2="440" y2="390" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="390" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="410" r="14"/>
+<text class="badgeText" x="50" y="414">3</text>
+<text class="label" x="75" y="414">Fingerprint and gate: 61 collectors POSTed, empty answer for non-phone or non-touch clients  [T1059.007 T1592]</text>
+<text class="sub" x="75" y="438">UltimateFingerprinter is about 2.3 MB, about 98% dead AngularJS; JSON POST to static.flux-telemetry.com/api/&lt;nonce&gt;/v1; the</text>
+<text class="sub" x="75" y="454">reply text is executed as script | Class A filters iOS 16.7; Class C serves Chrome 139-145 except 143 and stops on SM-S938B;</text>
+<text class="sub" x="75" y="470">Sekoia saw no other gate and no reuse of the fingerprint data</text>
+<text class="mono" x="75" y="496">POST /api/uGmlx2pmMHU1jq7wZU2QWgeC28vbXalf/v1 (published nonce)</text>
+<line class="arrow" x1="440" y1="520" x2="440" y2="535" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="535" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="555" r="14"/>
+<text class="badgeText" x="50" y="559">4</text>
+<text class="label" x="75" y="559">Exploitation: n-day chains A iOS 16.7, B iOS 18.5 DarkSword, C Android Chrome  [T1203 T1068 T1211]</text>
+<text class="sub" x="75" y="583">A: CVE-2025-43529 + CVE-2024-27834 (CISA KEV 2026-11-04, due 2026-11-18); B: 43529, 2026-20700, 2025-14174, 2025-43510,</text>
+<text class="sub" x="75" y="599">2025-43520; stages /v1 /v2 /v3 | C: CVE-2026-3910 renderer RCE + CVE-2025-27038 Adreno sandbox escape, then AndroSnitch</text>
+<text class="sub" x="75" y="615">(libexploit.so); all flaws were patched before the campaign</text>
+<text class="mono" x="75" y="641">ad.starx-net.com/api/&lt;NONCE&gt;/v1 /v2 /v3</text>
+<line class="arrow" x1="440" y1="665" x2="440" y2="680" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="680" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="700" r="14"/>
+<text class="badgeText" x="50" y="704">5</text>
+<text class="label" x="75" y="704">Collection and exfiltration: cookies (A, C), full device data (B), Wi-Fi keys  [T1539 T1005 T1041 T1571]</text>
+<text class="sub" x="75" y="728">A: Safari Cookies.binarycookies as JSON to ad.starx-net.com:8881/telemetry/v12; B: sms.db, Mail, WhatsApp, Telegram,</text>
+<text class="sub" x="75" y="744">Keychain, photos; C: Chrome Cookies, Login Data, WifiConfigStore.xml | Replay guard cookie VDGH_TOKEN_REF in A and B; Class</text>
+<text class="sub" x="75" y="760">C has no replay guard (Sekoia); attribution to APT29 is moderate to high confidence, not proof</text>
+<text class="mono" x="75" y="786">ad.starx-net.com:8881/telemetry/v12</text>
+<line class="arrow" x1="440" y1="810" x2="440" y2="825" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="825" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="845" r="14"/>
+<text class="badgeText" x="50" y="849">6</text>
+<text class="label" x="75" y="849">Response and break points  [no technique]</text>
+<text class="sub" x="75" y="873">Patch iOS and Chrome; block the five domains and port 8881; remove or pin the Plerdy tag with SRI and CSP; reset sessions of</text>
+<text class="sub" x="75" y="889">anyone who visited in the window | Rotate cookies and tokens, Wi-Fi keys and Keychain secrets of exposed phones; Lockdown</text>
+<text class="sub" x="75" y="905">Mode for high-risk users; indicators decay, re-validate before blocking</text>
+<text class="mono" x="75" y="931">SRI + CSP script-src + MDM patch floor</text>
+<rect class="footer" x="20" y="985" width="840" height="85" rx="6"/>
+<text class="footerH" x="35" y="1008">Detection anchors</text>
+<text class="footerT" x="35" y="1027">Sigma 01-03, KQL k1-k3, YARA (2 rules), Suricata sids 9960001-9960003, PEAK H1-H3. Derived from the Sekoia report; no first-hand sample analysis.</text>
+<text class="footerT" x="35" y="1046">Break points: patch floor, SRI and CSP on third-party tags, block 5 domains and port 8881, session reset for exposed users, Lockdown Mode.</text>
+</svg>

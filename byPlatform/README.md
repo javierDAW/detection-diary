@@ -24,6 +24,6 @@ Source of truth: each day's `README.md` frontmatter.
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 11 |
 | [saas](./saas/) | 1 |
-| [supply-chain](./supply-chain/) | 25 |
+| [supply-chain](./supply-chain/) | 26 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
 | [windows](./windows/) | 77 |

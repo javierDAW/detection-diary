@@ -1,5 +1,89 @@
 [
  {
+  "date": "2026-11-08",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch",
+  "title": "Poisoned Source: APT29 turns a hijacked Plerdy analytics script and watering holes into iOS and Android n-day exploit delivery",
+  "clusters": [
+   "APT29"
+  ],
+  "country": "Russia",
+  "platforms": [
+   "supply-chain"
+  ],
+  "sectors": [
+   "government",
+   "defense",
+   "energy",
+   "chemical",
+   "political"
+  ],
+  "techniques": [
+   "T1583.001",
+   "T1584",
+   "T1189",
+   "T1195.002",
+   "T1608.004",
+   "T1592",
+   "T1059.007",
+   "T1203",
+   "T1068",
+   "T1539",
+   "T1005",
+   "T1041",
+   "T1571"
+  ],
+  "tech_count": 13,
+  "tldr": "Sekoia TDR published \"Poisoned Source\" on 2026-11-04: a watering-hole and supply-chain campaign that its analysts assess, with moderate to high confidence, is APT29 (Midnight Blizzard, Cozy Bear). Legitimate sites (a Ukrainian gas producer, a US chemical-industry trade association, a Czech political party, a Bulgarian military-related site), two AiTM lookalike sites, and the third-party Plerdy SEO",
+  "thumb": "thumbs/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch.svg",
+  "case_rel": "../days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/",
+  "category": "mobile",
+  "cat_label": "Mobile",
+  "cat_color": "#c2569a",
+  "actor": "APT29",
+  "cve_count": 8,
+  "kev_count": 7,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-27038",
+    "due": "2025-06-24",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2025-14174",
+    "due": "2026-01-02",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2025-43529",
+    "due": "2026-01-05",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-20700",
+    "due": "2026-03-05",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2026-3910",
+    "due": "2026-03-27",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2025-43510",
+    "due": "2026-04-03",
+    "ransom": false
+   },
+   {
+    "cve": "CVE-2025-43520",
+    "due": "2026-04-03",
+    "ransom": false
+   }
+  ],
+  "q": "poisoned source: apt29 turns a hijacked plerdy analytics script and watering holes into ios and android n-day exploit delivery apt29 russia supply-chain government defense energy chemical political t1583.001 t1584 t1189 t1195.002 t1608.004 t1592 t1059.007 t1203 t1068 t1539 t1005 t1041 t1571 mobile cve-2025-27038 cve-2025-14174 cve-2025-43529 cve-2026-20700 cve-2026-3910 cve-2025-43510 cve-2025-43520"
+ },
+ {
   "date": "2026-11-07",
   "year": "2026",
   "month": "2026-11",

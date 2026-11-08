@@ -1,0 +1,51 @@
+title: Poisoned Source Fingerprinter API POST Or Exploit Stage / Exfiltration Endpoint Request
+id: e70241ef-9370-4acc-9dba-28e39b4ef3f9
+status: experimental
+description: |
+  Detects the request shapes published by Sekoia TDR (2026-11-04) for the "Poisoned Source"
+  campaign (APT29): the UltimateFingerprinter POSTs JSON (Content-Type application/json, 61
+  collectors / 394 fields) to https://static.flux-telemetry.com/api/<nonce>/v1 and executes the
+  returned script (empty 200 response for non-phone screens or navigator.maxTouchPoints 0);
+  the iOS Class B chain fetches stages from https://ad.starx-net.com/api/<NONCE>/v1, /v2, /v3;
+  all classes exfiltrate to https://ad.starx-net.com:8881/telemetry/v12 (Android AndroSnitch via
+  libcurl POST with "Filename" and "X-Device-Id" headers).
+  Most traffic is HTTPS, so this rule needs a TLS-inspecting proxy or a reverse-proxy / WAF in
+  front of the hosts that logs the full URI. A non-empty response body for the /v1 POST
+  (cs-bytes or sc-bytes greater than 0) indicates the device passed the mobile filter; that
+  size threshold is left to SIEM enrichment. Derived from the Sekoia report (2026-11-04) and
+  The Hacker News (2026-11-04); no first-hand sample analysis. Only the observed nonce
+  uGmlx2pmMHU1jq7wZU2QWgeC28vbXalf is published; nonces are per-session.
+references:
+  - https://www.sekoia.com/blog/poisoned-source-apt29-watering-holes-targets-mobile-devices-with-n-day-exploits
+  - https://thehackernews.com/2026/11/apt29-linked-hackers-hijack-web.html
+author: Jarmi
+date: 2026/11/08
+tags:
+  - attack.collection
+  - attack.t1005
+  - attack.credential-access
+  - attack.t1539
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.exfiltration
+  - attack.t1041
+logsource:
+  category: proxy
+detection:
+  selection_fp_api:
+    cs-host: 'static.flux-telemetry.com'
+    cs-method: 'POST'
+    c-uri|re: '/api/[A-Za-z0-9]{16,64}/v1'
+  selection_stage_api:
+    cs-host: 'ad.starx-net.com'
+    c-uri|re: '/api/[A-Za-z0-9]{16,64}/v[123]'
+  selection_exfil:
+    cs-host: 'ad.starx-net.com'
+    c-uri|contains: '/telemetry/v12'
+  selection_nonce:
+    c-uri|contains: 'uGmlx2pmMHU1jq7wZU2QWgeC28vbXalf'
+  condition: selection_fp_api or selection_stage_api or selection_exfil or selection_nonce
+falsepositives:
+  - Researchers or sandboxes replaying the published request shapes.
+
+level: high

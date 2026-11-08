@@ -1,0 +1,34 @@
+// Title: Poisoned Source (APT29) - 90-day retro-hunt for fingerprinter, exploit-staging, lookalike and exfiltration infrastructure (Defender XDR + Sentinel CEF proxy/firewall)
+// Id: c30bbdaf-9aee-4a13-8445-911dec492020
+// MITRE: T1189 Drive-by Compromise; T1071.001 Web Protocols; T1571 Non-Standard Port; T1041 Exfiltration Over C2 Channel
+// Reference: Sekoia TDR (2026-11-04) https://www.sekoia.com/blog/poisoned-source-apt29-watering-holes-targets-mobile-devices-with-n-day-exploits ; The Hacker News (2026-11-04) https://thehackernews.com/2026/11/apt29-linked-hackers-hijack-web.html
+// Author: Jarmi
+// Date: 2026-11-08
+// Tested on: syntax only (Defender XDR advanced hunting / Microsoft Sentinel); not run against campaign traffic
+// Honesty: derived from the Sekoia report (2026-11-04) and THN (2026-11-04); no first-hand sample analysis.
+// Confidence: high for domain matches; medium for the IP list (IP/ASN mapping partly from a summarised part of the source page).
+// FP notes: TI analysts and sandboxes; DNS sinkholes. Indicators decay - re-validate before treating any IP or domain as live. Mobile devices are only visible if their traffic crosses a logged proxy/firewall or they run Defender for Endpoint mobile.
+let Lookback = 90d;
+let CampaignDomains = dynamic(["flux-telemetry.com", "starx-net.com", "clouds-stacks.com", "america250.holiday", "theowo.club"]);
+let CampaignIps = dynamic(["109.104.106.107", "195.58.140.105", "95.133.231.28", "192.121.46.25", "188.190.17.232"]);
+let ExfilPort = 8881;
+let Mde = DeviceNetworkEvents
+    | where Timestamp > ago(Lookback)
+    | extend Host = tolower(extract(@"^(?:[A-Za-z]+:\W+)?([^/:]+)", 1, RemoteUrl))
+    | where Host has_any (CampaignDomains) or RemoteIP in (CampaignIps) or (RemotePort == ExfilPort and Host has "starx-net.com")
+    | project Timestamp, Source = "MDE", DeviceName, SrcIp = LocalIP, RemoteIP, RemotePort, Host, RemoteUrl, InitiatingProcessFileName, ActionType;
+let Cef = CommonSecurityLog
+    | where TimeGenerated > ago(Lookback)
+    | extend Host = tolower(coalesce(DestinationHostName, tostring(parse_url(RequestURL).Host)))
+    | where Host has_any (CampaignDomains) or DestinationIP in (CampaignIps) or (DestinationPort == ExfilPort and Host has "starx-net.com")
+    | project Timestamp = TimeGenerated, Source = strcat("CEF:", DeviceVendor), DeviceName = SourceHostName, SrcIp = SourceIP, RemoteIP = DestinationIP, RemotePort = DestinationPort, Host, RemoteUrl = RequestURL, InitiatingProcessFileName = ApplicationProtocol, ActionType = DeviceAction;
+union Mde, Cef
+| extend Indicator = case(
+    Host has "flux-telemetry.com", "fingerprinter/loader (watering hole)",
+    Host has "clouds-stacks.com", "loader via tampered Plerdy script",
+    Host has "starx-net.com" and RemotePort == ExfilPort, "EXFILTRATION telemetry/v12 port 8881",
+    Host has "starx-net.com", "exploit staging (iOS Class B)",
+    Host has_any ("america250.holiday", "theowo.club"), "lookalike / AiTM site",
+    "campaign IP (medium confidence)")
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Hits = count(), Indicators = make_set(Indicator, 10), Hosts = make_set(Host, 10), Urls = make_set(RemoteUrl, 10) by Source, DeviceName, SrcIp
+| order by LastSeen desc

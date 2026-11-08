@@ -4,7 +4,7 @@
 
 # INDEX
 
-**137 cases** · **205 actors/clusters** · **405 ATT&CK techniques** · **16 platforms** · **97 sectors** · 2026-04-28 -> 2026-11-07
+**138 cases** · **206 actors/clusters** · **406 ATT&CK techniques** · **16 platforms** · **98 sectors** · 2026-04-28 -> 2026-11-08
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/"><img src="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/kill_chain.svg" alt="2026-11-08 kill chain" width="240"></a><br><sub><b>2026-11-08</b><br>APT29</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/"><img src="days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/kill_chain.svg" alt="2026-11-07 kill chain" width="240"></a><br><sub><b>2026-11-07</b><br>Unattributed</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/"><img src="days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/kill_chain.svg" alt="2026-11-06 kill chain" width="240"></a><br><sub><b>2026-11-06</b><br></sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/"><img src="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/kill_chain.svg" alt="2026-11-05 kill chain" width="240"></a><br><sub><b>2026-11-05</b><br>UTA0576</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/"><img src="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/kill_chain.svg" alt="2026-11-05 kill chain" width="240"></a><br><sub><b>2026-11-05</b><br>UTA0576</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/"><img src="days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/kill_chain.svg" alt="2026-11-04 kill chain" width="240"></a><br><sub><b>2026-11-04</b><br>MCPhantom (Glow Labs research pattern, no threat actor)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/"><img src="days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/kill_chain.svg" alt="2026-11-03 kill chain" width="240"></a><br><sub><b>2026-11-03</b><br>Unattributed (C3RB3R ransomware family)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/"><img src="days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/kill_chain.svg" alt="2026-11-02 kill chain" width="240"></a><br><sub><b>2026-11-02</b><br>Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/"><img src="days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/kill_chain.svg" alt="2026-11-02 kill chain" width="240"></a><br><sub><b>2026-11-02</b><br>Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/"><img src="days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/kill_chain.svg" alt="2026-11-01 kill chain" width="240"></a><br><sub><b>2026-11-01</b><br>TraderTraitor</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/"><img src="days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/kill_chain.svg" alt="2026-10-31 kill chain" width="240"></a><br><sub><b>2026-10-31</b><br>Unattributed (advisory-only, no actor)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/"><img src="days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/kill_chain.svg" alt="2026-10-30 kill chain" width="240"></a><br><sub><b>2026-10-30</b><br>Unattributed (Chinese-nexus indicators, Dream)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/"><img src="days/2026/10/2026-10-30_PHP2Shell-CVE-2026-109618-109619-PHP-Engine-Memory-Corruption-RCE-Dream-Firewall-Appweb-Fragnesia-Root/kill_chain.svg" alt="2026-10-30 kill chain" width="240"></a><br><sub><b>2026-10-30</b><br>Unattributed (Chinese-nexus indicators, Dream)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/"><img src="days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/kill_chain.svg" alt="2026-10-29 kill chain" width="240"></a><br><sub><b>2026-10-29</b><br>Unattributed (LiteLLM 1.107.0 release-pipeline compromise)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/"><img src="days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/kill_chain.svg" alt="2026-10-28 kill chain" width="240"></a><br><sub><b>2026-10-28</b><br>Unattributed (1337 Services GmbH infrastructure)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/"><img src="days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/kill_chain.svg" alt="2026-10-27 kill chain" width="240"></a><br><sub><b>2026-10-27</b><br>Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius)</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-11</b> — 7 case(s)</summary>
+<details><summary><b>2026-11</b> — 8 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-11-08 | [Poisoned Source: APT29 turns a hijacked Plerdy analytics script and watering holes into iOS and Android n-day exploit delivery](days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/) | APT29 | supply-chain |
 | 2026-11-07 | [French blood bank cold storage hit through refrigeration controllers: EFS plasma freezer thresholds raised in a Europe-wide refrigeration attack wave](days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/) | Unattributed | ot-ics, iot |
 | 2026-11-06 | [OpenSSH *sshole: musl crypt() returns '*' for passwords over 256 bytes, letting a long password log in to locked accounts (CVE-2026-123158)](days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/) |  | linux, iot |
 | 2026-11-05 | [Ivanti Connect Secure zero-day chain: UTA0576 chains CVE-2026-104935, CVE-2026-118527 and CVE-2026-111357 for unauthenticated root](days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/) | UTA0576 | network-edge, linux |

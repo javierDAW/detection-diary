@@ -1,0 +1,28 @@
+// Title: Poisoned Source (APT29) - Plerdy SEO Tracker main.js request followed by edge-ord.clouds-stacks.com loader on the same device (supply-chain correlation)
+// Id: b44a8d3e-f77d-48e2-a6c9-f27437fd4930
+// MITRE: T1195.002 Compromise Software Supply Chain; T1189 Drive-by Compromise; T1059.007 JavaScript
+// Reference: Sekoia TDR (2026-11-04) https://www.sekoia.com/blog/poisoned-source-apt29-watering-holes-targets-mobile-devices-with-n-day-exploits ; The Hacker News (2026-11-04) https://thehackernews.com/2026/11/apt29-linked-hackers-hijack-web.html
+// Author: Jarmi
+// Date: 2026-11-08
+// Tested on: syntax only (Defender XDR advanced hunting); not run against campaign traffic
+// Honesty: derived from the Sekoia report (2026-11-04) and THN (2026-11-04); no first-hand sample analysis.
+// Confidence: medium. Tampered window per Sekoia: 2026-08-27 to 2026-09-03. Browser connections in DeviceNetworkEvents often carry only the host, not the path, so the Plerdy side is matched on host a.plerdy.com plus path when present.
+// FP notes: a.plerdy.com alone is a legitimate analytics service; only the sequence with edge-ord within the window is meaningful. Adjust MaxGap to your proxy/endpoint clock skew.
+let WindowStart = datetime(2026-08-20);
+let WindowEnd = datetime(2026-09-10);
+let MaxGap = 2m;
+let Plerdy = DeviceNetworkEvents
+    | where Timestamp between (WindowStart .. WindowEnd)
+    | where RemoteUrl has "a.plerdy.com"
+    | extend PlerdyMainJs = RemoteUrl has "/public/js/click/main.js"
+    | project DeviceId, DeviceName, PlerdyTime = Timestamp, PlerdyUrl = RemoteUrl, PlerdyMainJs, Browser = InitiatingProcessFileName;
+let EdgeOrd = DeviceNetworkEvents
+    | where Timestamp between (WindowStart .. WindowEnd)
+    | where RemoteUrl has "edge-ord.clouds-stacks.com" or RemoteUrl has "5b4c8fea5cbcee273e8d830f52-temfp.js"
+    | project DeviceId, LoaderTime = Timestamp, LoaderUrl = RemoteUrl, LoaderIp = RemoteIP;
+Plerdy
+| join kind=inner EdgeOrd on DeviceId
+| where LoaderTime between (PlerdyTime .. (PlerdyTime + MaxGap))
+| extend InTamperWindow = PlerdyTime between (datetime(2026-08-27) .. datetime(2026-09-04))
+| summarize FirstSeq = min(PlerdyTime), LastSeq = max(LoaderTime), Sequences = count(), MainJsSeen = max(toint(PlerdyMainJs)), LoaderUrls = make_set(LoaderUrl, 5), LoaderIps = make_set(LoaderIp, 5), Browsers = make_set(Browser, 5) by DeviceId, DeviceName, InTamperWindow
+| order by InTamperWindow desc, FirstSeq asc

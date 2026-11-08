@@ -1,0 +1,50 @@
+title: Poisoned Source (APT29) Fingerprinter, Exploit Staging, Lookalike Or Exfiltration Domain Contacted
+id: 3e9c49b7-b18e-4e91-b359-6d7c020e0bfd
+status: experimental
+description: |
+  Detects web proxy requests to the infrastructure of the "Poisoned Source" watering-hole and
+  supply-chain campaign attributed by Sekoia TDR (2026-11-04, moderate-to-high confidence) to
+  APT29 / Midnight Blizzard. static.flux-telemetry.com serves the "UltimateFingerprinter" loader
+  (module/5b4c8fea5cbcee273e8d830f52-temfp.js) and its /api/<nonce>/v1 profiling API;
+  edge-ord.clouds-stacks.com served the same loader from the tampered Plerdy SEO Tracker script;
+  ad.starx-net.com stages the iOS Class B DarkSword chain and receives exfiltration for all
+  exploit classes at https://ad.starx-net.com:8881/telemetry/v12; america250.holiday and
+  theowo.club are lookalike / AiTM-proxied sites. Any request to port 8881 on ad.starx-net.com
+  is the exfiltration channel (T1571 non-standard port).
+  Derived from the Sekoia report (2026-11-04) and The Hacker News (2026-11-04); no first-hand
+  sample analysis. Indicators decay: domain hits outside the campaign window (mid-2026 onward)
+  need re-validation before being treated as live. A threshold on repeat contacts per source
+  belongs to SIEM aggregation, not to this rule.
+references:
+  - https://www.sekoia.com/blog/poisoned-source-apt29-watering-holes-targets-mobile-devices-with-n-day-exploits
+  - https://thehackernews.com/2026/11/apt29-linked-hackers-hijack-web.html
+author: Jarmi
+date: 2026/11/08
+tags:
+  - attack.initial-access
+  - attack.t1189
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.t1571
+  - attack.exfiltration
+  - attack.t1041
+logsource:
+  category: proxy
+detection:
+  selection_domains:
+    cs-host|endswith:
+      - 'flux-telemetry.com'
+      - 'starx-net.com'
+      - 'clouds-stacks.com'
+      - 'america250.holiday'
+      - 'theowo.club'
+  selection_loader_path:
+    c-uri|contains: '/module/5b4c8fea5cbcee273e8d830f52-temfp.js'
+  selection_exfil:
+    c-uri|contains: 'ad.starx-net.com:8881'
+  condition: selection_domains or selection_loader_path or selection_exfil
+falsepositives:
+  - Threat-intelligence analysts or sandboxes browsing the infrastructure on purpose.
+  - Security scanners resolving or fetching indicator lists.
+
+level: high

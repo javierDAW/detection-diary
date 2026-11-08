@@ -1,3 +1,20 @@
+## 2026.11.08 — Day 138 — Poisoned Source: APT29 watering holes and Plerdy supply chain deliver iOS and Android n-day exploits
+
+### Added
+- `days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/` — Sekoia TDR (2026-11-04) assesses with moderate to high confidence that APT29 used compromised sites, AiTM lookalikes and the tampered Plerdy SEO Tracker script (2026-08-27 to 2026-09-03) to serve three patched exploit chains (iOS 16.7, iOS 18.5 DarkSword, Android Chrome 139-145) and exfiltrate to `ad.starx-net.com:8881`; CVE-2024-27834 joined CISA KEV on 2026-11-04.
+- Sigma (3): `01`-`03` — core domains and port 8881 in proxy logs; Plerdy script and edge-ord loader requests; fingerprint nonce API and stage URLs.
+- KQL (3): 90-day domain and port retro-hunt; Plerdy-then-loader device correlation; Chrome 139-145 exposure and IIS log strings.
+- YARA (1 file, 2 rules): loader injection and Class A markers in JavaScript; AndroSnitch ELF strings.
+- Suricata (1 file, 3 sids): 9960001-9960003, TLS SNI, DNS query and TLS to port 8881.
+- PEAK hunts (3): outbound retro-hunt; Plerdy tag exposure and page-resource correlation; own-site integrity and mobile fleet exposure.
+- `iocs.csv` (51 entries) — 10 domains, 5 IPs, URLs, strings, paths, 8 hashes, 8 CVEs. `kev.md` — 7/8 CVEs on the cached KEV catalog; CVE-2024-27834 (added 2026-11-04) covered by an analyst note.
+- `kill_chain.svg` — template C, canonical palette, six stages, critical stages: delivery and exploitation.
+
+### Pedagogy
+- Patching closes the door but not the past: stolen session cookies need revocation.
+- Third-party scripts run with the page's privileges; SRI, CSP and tag governance are the controls.
+- Delivery gates hide payloads from desktops and sandboxes; an empty test page proves nothing.
+
 ## 2026.11.07 — Day 137 — French blood bank cold storage: refrigeration controller thresholds raised (EFS)
 
 ### Added

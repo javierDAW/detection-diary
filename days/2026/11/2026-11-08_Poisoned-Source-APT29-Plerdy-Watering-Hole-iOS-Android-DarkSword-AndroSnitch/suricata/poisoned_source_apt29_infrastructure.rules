@@ -1,0 +1,25 @@
+# Poisoned Source (APT29 / Midnight Blizzard) - watering-hole, Plerdy supply-chain and mobile exploit infrastructure (Suricata 7.x)
+# Author: Jarmi
+# Date: 2026-11-08
+# Reference: Sekoia TDR (2026-11-04) https://www.sekoia.com/blog/poisoned-source-apt29-watering-holes-targets-mobile-devices-with-n-day-exploits
+#            The Hacker News (2026-11-04) https://thehackernews.com/2026/11/apt29-linked-hackers-hijack-web.html
+#
+# Honesty: derived from the Sekoia report (2026-11-04) and THN (2026-11-04); no first-hand sample
+# analysis and no pcap. Certificates, JA3/JA4 and user agents are not published, so none are matched.
+# Indicators decay: re-validate before treating a hit on these hosts as live activity.
+#
+# 9960001 - TLS SNI for the five core campaign domains (fingerprinter, staging/exfil, Plerdy loader host, lookalikes)
+# 9960002 - DNS query for the same domains
+# 9960003 - TLS to ad.starx-net.com on dst port 8881 (exfiltration https://ad.starx-net.com:8881/telemetry/v12);
+#           the channel is TLS, so it does not rely on http.uri
+#
+# Variables (define in suricata.yaml):
+#   $HOME_NET      - standard internal networks (include mobile Wi-Fi / VPN pools)
+#   $EXTERNAL_NET  - standard external networks
+# Not compile-tested (no engine available at authoring time).
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"Poisoned Source APT29 - TLS SNI to campaign infrastructure (flux-telemetry / starx-net / clouds-stacks / lookalike)"; flow:established,to_server; tls.sni; pcre:"/(?:^|\.)(?:flux-telemetry\.com|starx-net\.com|clouds-stacks\.com|america250\.holiday|theowo\.club)$/i"; reference:url,www.sekoia.com/blog/poisoned-source-apt29-watering-holes-targets-mobile-devices-with-n-day-exploits; classtype:trojan-activity; sid:9960001; rev:1; metadata:author Jarmi, created_at 2026_11_08, confidence high;)
+
+alert dns $HOME_NET any -> any any (msg:"Poisoned Source APT29 - DNS query for campaign infrastructure (flux-telemetry / starx-net / clouds-stacks / lookalike)"; dns.query; pcre:"/(?:^|\.)(?:flux-telemetry\.com|starx-net\.com|clouds-stacks\.com|america250\.holiday|theowo\.club)$/i"; reference:url,www.sekoia.com/blog/poisoned-source-apt29-watering-holes-targets-mobile-devices-with-n-day-exploits; classtype:trojan-activity; sid:9960002; rev:1; metadata:author Jarmi, created_at 2026_11_08, confidence high;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET 8881 (msg:"Poisoned Source APT29 - TLS to ad.starx-net.com on port 8881 (mobile exploit exfiltration telemetry/v12)"; flow:established,to_server; tls.sni; content:"ad.starx-net.com"; nocase; endswith; reference:url,www.sekoia.com/blog/poisoned-source-apt29-watering-holes-targets-mobile-devices-with-n-day-exploits; classtype:trojan-activity; sid:9960003; rev:1; metadata:author Jarmi, created_at 2026_11_08, confidence high;)

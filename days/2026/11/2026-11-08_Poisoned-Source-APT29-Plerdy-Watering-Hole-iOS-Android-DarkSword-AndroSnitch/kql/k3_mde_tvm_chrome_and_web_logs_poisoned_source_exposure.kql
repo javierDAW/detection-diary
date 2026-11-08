@@ -1,0 +1,23 @@
+// Title: Poisoned Source (APT29) - exposure hints: Chrome 139-145 inventory (Android Class C range) and injected loader strings in own web server logs
+// Id: 728f37f8-1759-4c1d-8067-854a41c65774
+// MITRE: T1189 Drive-by Compromise; T1059.007 JavaScript; T1195.002 Compromise Software Supply Chain
+// Reference: Sekoia TDR (2026-11-04) https://www.sekoia.com/blog/poisoned-source-apt29-watering-holes-targets-mobile-devices-with-n-day-exploits ; The Hacker News (2026-11-05) https://thehackernews.com/2026/11/hackers-exploit-patched-apple-flaw-to.html
+// Author: Jarmi
+// Date: 2026-11-08
+// Tested on: syntax only (Defender XDR advanced hunting for part 1; Microsoft Sentinel W3CIISLog for part 2)
+// Honesty: derived from the Sekoia report (2026-11-04) and THN (2026-11-04); no first-hand sample analysis.
+// Confidence: LOW - hunting hints. Part 1 is exposure, not compromise: Class C targets Android Chrome 139-145 excluding 143 (CVE-2026-3910 + CVE-2025-27038 Qualcomm Adreno); TVM software inventory only covers onboarded Android devices (Defender for Endpoint mobile) and version strings may differ by vendor ("chrome" / "google_chrome"). iOS Class A (16.0-17.4) and Class B (18.5) exposure must come from MDM, not from this table.
+// Part 2 looks for requests to injected loader paths on OUR web servers (if an attacker copied the loader locally or the injected script is referenced in logged URIs); injected inline JS itself is not visible in access logs - use the YARA rule on web roots for that.
+// FP notes: part 1 lists all in-range Chrome installs; filter by Android OS platform where available. Part 2: none expected.
+// ---- Part 1: Chrome versions in the Class C range ----
+DeviceTvmSoftwareInventory
+| where SoftwareName has "chrome"
+| extend Major = toint(extract(@"^(\d+)\.", 1, SoftwareVersion))
+| where Major between (139 .. 145) and Major != 143
+| summarize Devices = dcount(DeviceId), SampleDevices = make_set(DeviceName, 20) by OSPlatform, SoftwareVendor, SoftwareName, Major
+| order by Major asc
+// ---- Part 2 (run separately in Sentinel): own IIS sites referencing the loader or campaign hosts ----
+// W3CIISLog
+// | where TimeGenerated > ago(120d)
+// | where csUriStem has "5b4c8fea5cbcee273e8d830f52-temfp.js" or csReferer has_any ("flux-telemetry.com", "clouds-stacks.com", "starx-net.com") or csUriQuery has "uGmlx2pmMHU1jq7wZU2QWgeC28vbXalf"
+// | summarize FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated), Hits = count(), Clients = make_set(cIP, 20) by sSiteName, csHost, csUriStem

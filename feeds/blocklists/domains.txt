@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-11-07 09:11 UTC
+# generated 2026-11-08 09:26 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -29,10 +29,13 @@
 98c4c82e-2d81-0837-e3d6-docviewer.clear90489058903-document.workers.dev
 Kyblogtz6k3jtxnjjvluee5ec4g3zcnvyvbgsnq5thumphmqidkt7xid.onion
 Mlnmlnnrdhcaddwll4zqvfd2vyqsgtgj473gjoehwna2v4sizdukheyd.onion
+a.plerdy.com
 abc.fetish-friends.com
 abc.haijing88.com
 acceptable-use-policy-calendly.de
 acuitycore.digital
+ad.starx-net.com
+ads-it-assets.com
 adtimizer.co
 adtimizer.com
 advisory-tracker.com
@@ -40,6 +43,7 @@ afghanistanupdates.site
 afghantelecom.site
 aim6umein3kee.com
 alteira.digital
+america250.holiday
 angelxc.digital
 anticonstitutionally.sbs
 api.anthropic.com
@@ -58,6 +62,7 @@ archivetj.com
 arweave.net
 ashx.lhlsjcb.com
 asiadataintelligencelab.digital
+assets-int.com
 assignpasskey.com
 attachedfile.com
 audit.checkmarx.cx
@@ -95,6 +100,7 @@ captcha-eyw.pages.dev
 carrolc.com
 categorystore.net
 ccgv.me
+cdn.adv-static.com
 cdn.bloom.io
 celebratieinvitiee.de
 chat.openai.com
@@ -161,6 +167,7 @@ druid.mtrtb.com
 e5469cec-124a-c84f-abaa-docviewer.clear90489058903-document.workers.dev
 eaggcz2fj7yzqdzx97i96.darijo-bosanac-dl.workers.dev
 edge-compliance-node.org
+edge-ord.clouds-stacks.com
 electmu.digital
 en.cumm.info
 encryption-plug-in-signal.com-ae.net
@@ -444,6 +451,7 @@ sql-updater-service.com
 sslzeromail.run.place
 sss.authorized-logins.net
 star-layer.com
+static.flux-telemetry.com
 storage3d.com
 streamyard.appstore.com.mx
 sudsmama.com
@@ -458,6 +466,7 @@ t.me/DDosiabot
 telecom.webredirect.org
 tenderi.digital
 thaivex.digital
+theowo.club
 theunforgiven.p8.hu
 thirdmetrics.com
 thomphon.com
@@ -519,6 +528,7 @@ winsync.cloud
 wintel.biz
 worldsol.site
 worldswar.online
+wpvortex-mod.com
 www.afghanistanupdates.site
 www.appstoore.solutions
 www.caprispine.health

@@ -1,0 +1,44 @@
+title: Plerdy SEO Tracker Script Or Poisoned Source temfp.js Loader Request (Supply-Chain Correlation Seed)
+id: e97e4713-25d8-4fee-9c84-18e5b2d30541
+status: experimental
+description: |
+  Seed rule for the Plerdy supply-chain vector of the "Poisoned Source" campaign (Sekoia TDR,
+  2026-11-04, attributed to APT29). Between 2026-08-27 and 2026-09-03 the Plerdy SEO Tracker
+  script https://a.plerdy.com/public/js/click/main.js carried appended code (variable _0x3af331)
+  that loaded https://edge-ord.clouds-stacks.com/module/5b4c8fea5cbcee273e8d830f52-temfp.js.
+  Watering-hole pages loaded the same file from static.flux-telemetry.com.
+  This rule emits both halves of the chain: requests to the Plerdy tracker script (informational,
+  Plerdy is a legitimate product) and requests to the temfp.js loader on any of the three
+  campaign hosts. The actual detection is the CORRELATION done in the SIEM: same client IP or
+  device, a request for a.plerdy.com/public/js/click/main.js followed within ~60 seconds by a
+  request to edge-ord.clouds-stacks.com, especially inside the 2026-08-27 to 2026-09-03 window.
+  Sigma cannot express that temporal join; implement it as a correlation / sequence rule.
+  Derived from the Sekoia report (2026-11-04) and The Hacker News (2026-11-04); no first-hand
+  sample analysis. The exact referer and user agent of victim requests are not published.
+references:
+  - https://www.sekoia.com/blog/poisoned-source-apt29-watering-holes-targets-mobile-devices-with-n-day-exploits
+  - https://thehackernews.com/2026/11/apt29-linked-hackers-hijack-web.html
+author: Jarmi
+date: 2026/11/08
+tags:
+  - attack.initial-access
+  - attack.t1195.002
+  - attack.t1189
+  - attack.execution
+  - attack.t1059.007
+logsource:
+  category: proxy
+detection:
+  selection_plerdy:
+    cs-host: 'a.plerdy.com'
+    c-uri|contains: '/public/js/click/main.js'
+  selection_loader:
+    cs-host:
+      - 'edge-ord.clouds-stacks.com'
+      - 'static.flux-telemetry.com'
+    c-uri|contains: '5b4c8fea5cbcee273e8d830f52-temfp.js'
+  condition: selection_plerdy or selection_loader
+falsepositives:
+  - Every visit to a site using Plerdy matches selection_plerdy; on its own it is inventory, not compromise. Alert only on the SIEM correlation with the loader request.
+
+level: medium

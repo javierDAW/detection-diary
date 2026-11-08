@@ -255,3 +255,11 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave,2026-11-07,CVE-2026-21718,no,,,,,,
 2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave,2026-11-07,CVE-2026-24663,no,,,,,,
 2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave,2026-11-07,CVE-2026-25085,no,,,,,,
+2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch,2026-11-08,CVE-2024-27834,no,,,,,,
+2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch,2026-11-08,CVE-2025-14174,yes,2025-12-12,2026-01-02,Unknown,Google Chromium Out of Bounds Memory Access Vulnerability,Google,Chromium
+2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch,2026-11-08,CVE-2025-27038,yes,2025-06-03,2025-06-24,Unknown,Qualcomm Multiple Chipsets Use-After-Free Vulnerability,Qualcomm,Multiple Chipsets
+2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch,2026-11-08,CVE-2025-43510,yes,2026-03-20,2026-04-03,Unknown,Apple Multiple Products Improper Locking Vulnerability,Apple,Multiple Products
+2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch,2026-11-08,CVE-2025-43520,yes,2026-03-20,2026-04-03,Unknown,Apple Multiple Products Classic Buffer Overflow Vulnerability,Apple,Multiple Products
+2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch,2026-11-08,CVE-2025-43529,yes,2025-12-15,2026-01-05,Unknown,Apple Multiple Products Use-After-Free WebKit Vulnerability,Apple,Multiple Products
+2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch,2026-11-08,CVE-2026-20700,yes,2026-02-12,2026-03-05,Unknown,Apple Multiple Buffer Overflow Vulnerability,Apple,Multiple Products
+2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch,2026-11-08,CVE-2026-3910,yes,2026-03-13,2026-03-27,Unknown,Google Chromium V8 Improper Restriction of Operations Within the Bounds of a Memory Buffer Vulnerability,Google,Chromium V8
