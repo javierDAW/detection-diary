@@ -1,0 +1,35 @@
+// Title: BITTER (TA397) - ftp.exe .ico script LNK chain and Visa_Details.msi / Imp_Details.msi lure MSI process chain (Defender XDR)
+// Id: cead8c1f-6075-42d2-8e0a-f3f3709f3812
+// MITRE: T1204.002 Malicious File; T1059.003 Windows Command Shell; T1218.007 Msiexec; T1027 Obfuscated Files or Information; T1036.005 Match Legitimate Name or Location
+// Reference: FortiGuard Labs (Fortinet) 2026-11-02 "BITTER expands its arsenal with PapRAT" https://www.fortinet.com/blog/threat-research (as relayed by Infosecurity Magazine, GBHackers, Hackread, Cyberpress, SOC Prime, OffSeq/OTX)
+// Author: Jarmi
+// Date: 2026-11-09
+// Tested on: syntax only (Defender XDR advanced hunting); not run against campaign telemetry
+// Honesty: derived from secondary reports of the FortiGuard Labs 2026-11-02 research; the primary Fortinet blog was not read; no first-hand sample analysis. Exact LNK command line, install paths, C2 ports, IPs and user agents are not published and are not matched. Indicators decay.
+// Confidence: high for ftp.exe with an .ico argument and for the lure MSI names; medium for ftp.exe child shells (legacy automation).
+// FP notes: legacy ftp -s: batch jobs (script files rarely end in .ico); MSI files coincidentally named Visa_Details / Imp_Details.
+let Lookback = 30d;
+let LureMsi = dynamic(["Visa_Details.msi", "Imp_Details.msi"]);
+let ShellChildren = dynamic(["cmd.exe", "more.com", "curl.exe", "schtasks.exe", "powershell.exe"]);
+let FtpIco = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName =~ "ftp.exe" or ProcessVersionInfoOriginalFileName =~ "ftp.exe"
+    | where ProcessCommandLine has ".ico"
+    | extend Pattern = "ftp.exe with .ico script argument";
+let FtpChild = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where InitiatingProcessFileName =~ "ftp.exe" and FileName in~ (ShellChildren)
+    | extend Pattern = strcat("ftp.exe spawned ", FileName);
+let LureMsiExec = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where ProcessCommandLine has_any (LureMsi)
+    | extend Pattern = strcat("lure MSI on command line via ", FileName);
+let MsiChild = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where InitiatingProcessFileName =~ "msiexec.exe"
+    | where FileName in~ ("bruzsvc.exe", "vnces.exe") or FolderPath has_any (@"\AppData\", @"\Users\Public\", @"\ProgramData\")
+    | extend Pattern = strcat("msiexec child ", FileName, " in user-writable path");
+union FtpIco, FtpChild, LureMsiExec, MsiChild
+| project Timestamp, DeviceName, AccountName, Pattern, FileName, FolderPath, ProcessCommandLine, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessParentFileName
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Patterns = make_set(Pattern, 10), CommandLines = make_set(ProcessCommandLine, 10), Hashes = make_set(SHA256, 10) by DeviceName, AccountName
+| order by LastSeen desc

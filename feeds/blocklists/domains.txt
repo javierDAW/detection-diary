@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-11-08 09:26 UTC
+# generated 2026-11-09 09:23 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -106,6 +106,7 @@ celebratieinvitiee.de
 chat.openai.com
 cheapoca.biz
 check.git-service.com
+chestergreenfarming.com
 cirevia1.digital
 cirrushare.co
 cj06y9v4xab.com
@@ -189,6 +190,7 @@ fasterscommunications.com
 fastlink.ws
 fastsecurey.info
 fearevolve.com
+felixfuturenext.com
 fererro.digital
 festiveparty.us
 filecedarwallet.online
@@ -228,6 +230,8 @@ globalfileshareplatform.com
 globalretailbrands.com.au
 gmslb.net
 goldsky.arweave.net
+gomescareerplans.com
+goodnfortunes.com
 goshshare.online
 grande-luna.top
 greatness-marketing.top
@@ -332,6 +336,7 @@ nameprod.site
 nano.upscale-kolo.com
 nebive.site
 netkorava.digital
+netmansrvdns.com
 newsprojects.online
 nexlisa.info
 nfcrackatm.com
@@ -397,6 +402,7 @@ qumoro.site
 quorivamesh.digital
 r3brqw3d.b0ats.top
 radiantsynaptic.digital
+rappellingaart.com
 redviper.com
 regularsports.org
 relaxmode.org
@@ -405,6 +411,7 @@ reviewerpress.com
 reynoldsjace5.workers.dev
 riberaz.com
 riovera.info
+rivingtonclarks.com
 robejj.com
 robovpn-windows-default-rtdb.firebaseio.com
 robovpn.com
@@ -463,6 +470,7 @@ syscodeapi.digital
 t-w.dev
 t.m-kosche.com
 t.me/DDosiabot
+techtalkhelp.com
 telecom.webredirect.org
 tenderi.digital
 thaivex.digital

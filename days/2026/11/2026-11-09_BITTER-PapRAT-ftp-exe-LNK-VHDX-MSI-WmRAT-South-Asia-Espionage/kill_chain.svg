@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1080" role="img" aria-labelledby="t d">
+<title id="t">BITTER PapRAT kill chain</title>
+<desc id="d">Single-lane chain of six stages: diplomatic lures to South Asian organizations; an LNK that abuses ftp.exe with an .ico file as a script and creates a Microsoft-update scheduled task; curl tasking with err.log and abc.pdf; VHDX or RAR delivery of an MSI with a Type 194 CustomAction; PapRAT C++ and Rust implants plus WmRAT; and response break points. Critical stages are the ftp.exe bang-escape chain, the MSI drop and the RAT beacon. Detection anchors are Sigma 01-03, KQL k1-k3, YARA, Suricata sids 9970001-9970003 and PEAK H1-H3.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1080"/>
+<rect class="acc-espionage" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">BITTER (TA397): PapRAT via ftp.exe .ico scripts and Type 194 MSI droppers</text>
+<text class="meta" x="20" y="58">Vendor: FortiGuard Labs (2026-11-02) · Date: 2026-11-09 · Cluster: BITTER (high per FortiGuard) · Day 139</text>
+<rect class="laneL" x="20" y="85" width="840" height="890" rx="6"/>
+<text class="laneLabelL" x="690" y="104">SOUTH ASIA ESPIONAGE LANE</text>
+<rect class="stage" x="30" y="100" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="120" r="14"/>
+<text class="badgeText" x="50" y="124">1</text>
+<text class="label" x="75" y="124">Lures: diplomatic invitations to South Asian government, energy and engineering staff  [T1566.001 T1204.002]</text>
+<text class="sub" x="75" y="148">Three chains over several months (FortiGuard, 2026-11-02): VHDX &#x27;Letter from the Ambassador - 11th Belt and Road Summit&#x27;,</text>
+<text class="sub" x="75" y="164">RAR &#x27;Official Invitation Majilis 2026 Gala Dinner&#x27;, &#x27;NV-683 Request for Bilateral Meeting during 22nd HACGAM&#x27;</text>
+<text class="sub" x="75" y="180">Targets South Asian organizations; telemetry also in Southeast Asia and South Korea</text>
+<text class="mono" x="75" y="206">Letter from the Ambassador - 11th Belt and Road Summit.vhdx</text>
+<line class="arrow" x1="440" y1="230" x2="440" y2="245" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="245" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="265" r="14"/>
+<text class="badgeText" x="50" y="269">2</text>
+<text class="label" x="75" y="269">Chain 1: LNK launches ftp.exe on an .ico file; ftp bang escape runs it as a script  [T1218 T1059.003 T1053.005]</text>
+<text class="sub" x="75" y="293">Argument example &#x27;!more res.ico&#x27;: ftp runs the rest as a local shell command, so icon.ico / res.ico hold commands, not images</text>
+<text class="sub" x="75" y="309">Script creates a scheduled task posing as a Microsoft (or BIOS) update; shows fake &#x27;Explorer was unable to open this file!&#x27;</text>
+<text class="sub" x="75" y="325">No PapRAT binary in this chain; operators change the commands server-side</text>
+<text class="mono" x="75" y="351">ftp.exe ... res.ico  -&gt;  cmd  -&gt;  schtasks + curl</text>
+<line class="arrow" x1="440" y1="375" x2="440" y2="390" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="390" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="410" r="14"/>
+<text class="badgeText" x="50" y="414">3</text>
+<text class="label" x="75" y="414">Chain 1 tasking: curl pulls a Base64 script; err.log holds commands, abc.pdf recon  [T1105 T1083 T1071.001]</text>
+<text class="sub" x="75" y="438">curl contacts C2 and pulls a Base64-encoded script that fetches more commands from a second URL; output kept in err.log</text>
+<text class="sub" x="75" y="454">Recon: directory listings, tasks and processes, installed AV, drives, Desktop / Documents / Downloads; uploaded then deleted</text>
+<text class="sub" x="75" y="470">OffSeq lists talk.log and ucl.php?svr=%computername%**%username% as URL shapes</text>
+<text class="mono" x="75" y="496">techtalkhelp[.]com/talk.log   err.log   abc.pdf</text>
+<line class="arrow" x1="440" y1="520" x2="440" y2="535" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="535" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="555" r="14"/>
+<text class="badgeText" x="50" y="559">4</text>
+<text class="label" x="75" y="559">Chains 2 and 3: VHDX or RAR plus LNK, then an MSI with a Type 194 action  [T1204.002 T1218.007 T1036.005]</text>
+<text class="sub" x="75" y="583">VHDX shows a LNK; hidden decoy spreadsheet and Visa_Details.msi; LNK runs the MSI in background while the decoy opens</text>
+<text class="sub" x="75" y="599">Chain 3: RAR URL shortcut pulls an LNK over WebDAV from rappellingaart[.]com, then Imp_Details.msi drops PapRAT</text>
+<text class="sub" x="75" y="615">The MSI has no real install function; Xcitium reads Type 194 as asynchronous executable-from-Binary-table</text>
+<text class="mono" x="75" y="641">Visa_Details.msi   Imp_Details.msi   rappellingaart[.]com</text>
+<line class="arrow" x1="440" y1="665" x2="440" y2="680" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="680" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="700" r="14"/>
+<text class="badgeText" x="50" y="704">5</text>
+<text class="label" x="75" y="704">PapRAT (C++ and Rust) and WmRAT: 8 to 11 commands, screenshots, upload, download  [T1573.001 T1113 T1140]</text>
+<text class="sub" x="75" y="728">C++ bruzsvc.exe (Microsoft version resource): plaintext HTTP beacon every 10 s, C2 data XOR 0x50, ClientID user_computer</text>
+<text class="sub" x="75" y="744">Rust build (requpap.pdb, papsolutions): waits 42 s, polls every 5 s over HTTPS, ROT-3 reversed strings; adds MS2 SLP BYE</text>
+<text class="sub" x="75" y="760">PapRAT then fetches vnces.exe (WmRAT); commands: msg FDD DEL RUN GDR SS1 UPP DWW</text>
+<text class="mono" x="75" y="786">www[.]rivingtonclarks[.]com/beautiQuewonders/banaNa.php</text>
+<line class="arrow" x1="440" y1="810" x2="440" y2="825" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="825" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="845" r="14"/>
+<text class="badgeText" x="50" y="849">6</text>
+<text class="label" x="75" y="849">Response and break points  [no technique]</text>
+<text class="sub" x="75" y="873">Block the eight domains at DNS and proxy; alert on ftp.exe with an .ico argument and on msiexec from a mounted VHDX</text>
+<text class="sub" x="75" y="889">Block or warn on VHDX / RAR from mail, disable auto-mount of disk images for standard users, remove Microsoft-update-named tasks</text>
+<text class="sub" x="75" y="905">Indicators decay and the primary Fortinet blog was not read: re-validate every domain before blocking</text>
+<text class="mono" x="75" y="931">ftp.exe + .ico  |  VHDX mount  |  msiexec Type 194</text>
+<rect class="footer" x="20" y="985" width="840" height="85" rx="6"/>
+<text class="footerH" x="35" y="1008">Detection anchors</text>
+<text class="footerT" x="35" y="1027">Sigma 01-03, KQL k1-k3, YARA (2 rules), Suricata sids 9970001-9970003, PEAK H1-H3. Derived from secondary reports of the FortiGuard research.</text>
+<text class="footerT" x="35" y="1046">Break points: DNS and proxy block, ftp.exe with .ico alert, VHDX / RAR mail filtering, task review. Primary Fortinet blog not read; no sample analysis.</text>
+</svg>

@@ -1,5 +1,5 @@
 # detection-diary blocklist — url
-# generated 2026-11-08 09:26 UTC
+# generated 2026-11-09 09:23 UTC
 # defensive/educational — validate before blocking; indicators decay
 http://154.82.81.205/YD20251001143052.zip
 http://154.82.81.205/YN20250923193706.zip
@@ -31,6 +31,9 @@ http://<domain>/codepy
 http://ams1.vultrobjects.com/desktop-va0r68j-ppmppnf12uyt4r5tifjdfhtron5
 http://endpoint-api-v1.com/d/f1b24e/download
 http://gatheredovertime.com/nb4
+http://gomescareerplans.com/docs/?vid=%computername%
+http://goodnfortunes.com/b99/?kq=%computername%
+http://goodnfortunes.com/ucl.php?svr=%computername%**%username%
 http://highclass.atspace.com/styles.gif
 http://imagebucket.biz/nv4
 http://imagefiles-backup.oss-ap-southeast-7.aliyuncs.com/javas/Office/win/Taskgmr.ps1
@@ -45,6 +48,8 @@ http://situluimihai.3x.ro/top.png
 http://theunforgiven.p8.hu/img/top.gif
 http://thomphon.com/update.msi
 http://www.litellm.dev/healthcheck
+http://www.rivingtonclarks.com/banana/
+http://www.rivingtonclarks.com/beautiQuewonders/banaNa.php
 http://www.yonelco.com/icon.png
 https://1a820b09-95ba-44eb-b350-417e8241b725-00-1lgwuuen9b77p.worf.replit.dev/download
 https://213.145.86.112/cdn/chunks/polyfill-7e2b.min.js
@@ -80,6 +85,7 @@ https://docsend.appstore.com.mx/dcc737d157ef4271/stage2.enc
 https://edge-ord.clouds-stacks.com/module/5b4c8fea5cbcee273e8d830f52-temfp.js
 https://endpoint-api-v1.com/login
 https://entered-medications-motherboard-advanced.trycloudflare.com
+https://felixfuturenext.com/Epistemological/
 https://fields-pct-easier-vancouver.trycloudflare.com
 https://financemachinelearning.com/apparatus/wind/twig/statement.html
 https://fixupcount.s3.dualstack.ap-northeast-1.amazonaws.com/wehn/rich.png
@@ -139,6 +145,7 @@ https://streamyard.appstore.com.mx/installer.sh
 https://t.m-kosche.com/api/public/version
 https://t.m-kosche.com/rope.pyz
 https://t.me/FirstVPNService
+https://techtalkhelp.com/talk.log
 https://toria.app/
 https://toria.apple03cloudstore.com/
 https://toria.apple03cloudstore.com/e3c1a6b00bc31e14/stage2.enc

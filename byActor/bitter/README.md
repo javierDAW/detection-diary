@@ -4,9 +4,10 @@
 
 # Actors: BITTER
 
-1 day(s) covering this actor.
+2 day(s) covering this actor.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-09 | BITTER (TA397) PapRAT: ftp.exe .ico scripts, VHDX and RAR lures, and Type 194 MSI droppers against South Asian government and energy targets | BITTER | [`2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/`](../../days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/) |
 | 2026-06-22 | ProSpy/BITTER: Hack-for-Hire Android Spyware Targeting MENA Civil Society Journalists | BITTER · T-APT-17 | [`2026-06-22_prospy-bitter-mena/`](../../days/2026/06/2026-06-22_prospy-bitter-mena/) |

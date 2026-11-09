@@ -1,0 +1,52 @@
+title: BITTER (TA397) Lure MSI Visa_Details.msi / Imp_Details.msi Executed Or PapRAT / WmRAT Masquerade Binary Launched
+id: ecab9efd-f601-452c-a9a5-45ebbd674e3e
+status: experimental
+description: |
+  Detects the MSI stages of the BITTER (TA397) PapRAT campaign reported by FortiGuard Labs (2026-11-02):
+  (a) msiexec.exe executing Visa_Details.msi (hidden file inside the lure VHDX "Letter from the Ambassador -
+  11th Belt and Road Summit.vhdx", run by a LNK with a "&" separator while a decoy spreadsheet opens) or
+  Imp_Details.msi (RAR -> URL shortcut -> LNK over WebDAV from rappellingaart[.]com); the MSI has no real
+  install logic, only a Type 194 CustomAction (async executable from the Binary table) that drops PapRAT;
+  (b) a process named bruzsvc.exe (PapRAT C++ build, fake "Microsoft Corporation" version resource) or
+  vnces.exe (WmRAT, downloaded by PapRAT).
+  Honesty: derived from secondary reports of the FortiGuard Labs (Fortinet) 2026-11-02 research as
+  relayed by Infosecurity Magazine, GBHackers, Hackread, Cyberpress, SOC Prime, OffSeq/OTX; the primary
+  Fortinet blog was not read; no first-hand sample analysis. Install paths of the dropped binaries are
+  not published, so image names are matched anywhere. Filenames are trivially changed; indicators decay.
+references:
+  - https://www.fortinet.com/blog/threat-research
+author: Jarmi
+date: 2026/11/09
+tags:
+  - attack.initial-access
+  - attack.execution
+  - attack.t1204.002
+  - attack.defense-evasion
+  - attack.t1218.007
+  - attack.t1036.005
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_msiexec:
+    Image|endswith: '\msiexec.exe'
+    CommandLine|contains:
+      - 'Visa_Details.msi'
+      - 'Imp_Details.msi'
+  selection_lnk_msi:
+    ParentImage|endswith:
+      - '\cmd.exe'
+      - '\explorer.exe'
+    CommandLine|contains:
+      - 'Visa_Details.msi'
+      - 'Imp_Details.msi'
+  selection_rat_names:
+    Image|endswith:
+      - '\bruzsvc.exe'
+      - '\vnces.exe'
+  condition: selection_msiexec or selection_lnk_msi or selection_rat_names
+falsepositives:
+  - Legitimate MSI packages that happen to be named Visa_Details.msi or Imp_Details.msi (unlikely outside visa / travel workflows).
+  - None expected for bruzsvc.exe / vnces.exe; verify signature (no genuine Microsoft binary uses these names).
+
+level: high

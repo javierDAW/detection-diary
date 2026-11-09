@@ -1,5 +1,51 @@
 [
  {
+  "date": "2026-11-09",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage",
+  "title": "BITTER (TA397) PapRAT: ftp.exe .ico scripts, VHDX and RAR lures, and Type 194 MSI droppers against South Asian government and energy targets",
+  "clusters": [
+   "BITTER"
+  ],
+  "country": "South Asia (suspected)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "government",
+   "energy",
+   "engineering"
+  ],
+  "techniques": [
+   "T1566.001",
+   "T1204.002",
+   "T1218.007",
+   "T1059.003",
+   "T1053.005",
+   "T1105",
+   "T1083",
+   "T1113",
+   "T1140",
+   "T1027",
+   "T1036.005",
+   "T1071.001",
+   "T1573.001"
+  ],
+  "tech_count": 13,
+  "tldr": "FortiGuard Labs (Fortinet) published on 2026-11-02 an analysis of a months-long BITTER (TA397) campaign against South Asian government, energy and engineering organizations, with telemetry also in Southeast Asia and South Korea. Diplomatic-themed lures deliver three chains: an LNK that abuses `ftp.exe` so an `.ico` file runs as a shell script, a VHDX that hides an MSI with one Type 194 CustomActio",
+  "thumb": "thumbs/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage.svg",
+  "case_rel": "../days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "BITTER",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "bitter (ta397) paprat: ftp.exe .ico scripts, vhdx and rar lures, and type 194 msi droppers against south asian government and energy targets bitter south asia (suspected) windows government energy engineering t1566.001 t1204.002 t1218.007 t1059.003 t1053.005 t1105 t1083 t1113 t1140 t1027 t1036.005 t1071.001 t1573.001 espionage / apt "
+ },
+ {
   "date": "2026-11-08",
   "year": "2026",
   "month": "2026-11",

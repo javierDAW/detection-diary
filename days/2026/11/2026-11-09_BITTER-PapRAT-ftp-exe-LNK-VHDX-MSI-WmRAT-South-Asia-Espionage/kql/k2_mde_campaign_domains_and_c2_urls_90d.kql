@@ -1,0 +1,47 @@
+// Title: BITTER (TA397) - 90-day retro-hunt for PapRAT / WmRAT campaign domains and C2 URL fragments (Defender XDR)
+// Id: 1358555b-5bc1-461a-a70e-7accdcc84904
+// MITRE: T1071.001 Web Protocols; T1105 Ingress Tool Transfer; T1573.001 Symmetric Cryptography
+// Reference: FortiGuard Labs (Fortinet) 2026-11-02 "BITTER expands its arsenal with PapRAT" https://www.fortinet.com/blog/threat-research (as relayed by Infosecurity Magazine, GBHackers, Hackread, Cyberpress, SOC Prime, OffSeq/OTX)
+// Author: Jarmi
+// Date: 2026-11-09
+// Tested on: syntax only (Defender XDR advanced hunting); not run against campaign telemetry
+// Honesty: derived from secondary reports of the FortiGuard Labs 2026-11-02 research; the primary Fortinet blog was not read; no first-hand sample analysis. Exact LNK command line, install paths, C2 ports, IPs and user agents are not published and are not matched. Indicators decay.
+// Confidence: high for the seven FortiGuard-relayed domains; low-medium for felixfuturenext.com (OffSeq/OTX only). URL fragments as printed by OffSeq (one defanged by GBHackers).
+// FP notes: TI analysts, sandboxes, sinkholes. Attacker infrastructure may be defunct - re-validate before treating a hit as live. PapRAT C++ beacons over plaintext HTTP every 10 s, so a true positive shows a high, regular hit count.
+let Lookback = 90d;
+let CampaignDomains = dynamic(["netmansrvdns.com", "rappellingaart.com", "techtalkhelp.com", "rivingtonclarks.com", "goodnfortunes.com", "gomescareerplans.com", "chestergreenfarming.com", "felixfuturenext.com"]);
+let UrlFragments = dynamic(["/talk.log", "/beautiQuewonders/banaNa.php", "/banana/", "/ucl.php", "/b99/?kq=", "/docs/?vid=", "/Epistemological/"]);
+let Net = DeviceNetworkEvents
+    | where Timestamp > ago(Lookback)
+    | where RemoteUrl has_any (CampaignDomains)
+    | extend Host = tolower(extract(@"^(?:[A-Za-z]+:\W+)?([^/:]+)", 1, RemoteUrl))
+    | project Timestamp, Source = "DeviceNetworkEvents", DeviceName, RemoteIP, RemotePort, Host, RemoteUrl, InitiatingProcessFileName, InitiatingProcessCommandLine, ActionType;
+let Http = DeviceNetworkEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType == "HttpConnectionInspected"
+    | extend Af = parse_json(AdditionalFields)
+    | extend Host = tolower(tostring(Af.host)), Uri = tostring(Af.uri)
+    | where Host has_any (CampaignDomains)
+    | project Timestamp, Source = "HttpConnectionInspected", DeviceName, RemoteIP, RemotePort, Host, RemoteUrl = strcat(Host, Uri), InitiatingProcessFileName, InitiatingProcessCommandLine, ActionType;
+let Dns = DeviceEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType == "DnsQueryResponse"
+    | extend Q = tolower(tostring(parse_json(AdditionalFields).DnsQueryString))
+    | where Q has_any (CampaignDomains)
+    | project Timestamp, Source = "DnsQueryResponse", DeviceName, RemoteIP = "", RemotePort = int(null), Host = Q, RemoteUrl = Q, InitiatingProcessFileName, InitiatingProcessCommandLine, ActionType;
+let CurlCmd = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName in~ ("curl.exe", "powershell.exe", "cmd.exe")
+    | where ProcessCommandLine has_any (CampaignDomains) or ProcessCommandLine has_any (UrlFragments)
+    | project Timestamp, Source = "ProcessCommandLine", DeviceName, RemoteIP = "", RemotePort = int(null), Host = "", RemoteUrl = ProcessCommandLine, InitiatingProcessFileName = FileName, InitiatingProcessCommandLine, ActionType = "ProcessCreated";
+union Net, Http, Dns, CurlCmd
+| extend Indicator = case(
+    RemoteUrl has "/talk.log", "techtalkhelp /talk.log",
+    RemoteUrl has_any ("/beautiQuewonders/banaNa.php", "/banana/"), "rivingtonclarks PapRAT C2 path",
+    RemoteUrl has_any ("/ucl.php", "/b99/"), "goodnfortunes check-in path",
+    RemoteUrl has "/docs", "gomescareerplans /docs",
+    RemoteUrl has "felixfuturenext", "felixfuturenext (OffSeq/OTX only, lower confidence)",
+    RemoteUrl has "rappellingaart", "rappellingaart WebDAV LNK host",
+    "campaign domain")
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Hits = count(), Indicators = make_set(Indicator, 10), Hosts = make_set(Host, 10), Urls = make_set(RemoteUrl, 10), Procs = make_set(InitiatingProcessFileName, 10) by DeviceName, Source
+| order by Hits desc

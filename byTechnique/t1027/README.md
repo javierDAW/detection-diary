@@ -4,11 +4,12 @@
 
 # Techniques: T1027
 
-43 day(s) covering this technique.
+44 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-09 | BITTER (TA397) PapRAT: ftp.exe .ico scripts, VHDX and RAR lures, and Type 194 MSI droppers against South Asian government and energy targets | BITTER | [`2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/`](../../days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/) |
 | 2026-10-26 | AdFection: Discover-Tech's Controlium ad platform turned targeted advertising into a zero-click delivery pipeline for Candiru mercenary spyware | Candiru (Integrity Labs) · Discover-Tech | [`2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/`](../../days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/) |
 | 2026-10-25 | BlackX: an APT41-linked UEFI bootkit built on the BlackLotus Baton Drop exploit, used against Central Asian diplomatic bodies on fully patched Windows | APT41 | [`2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/`](../../days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/) |
 | 2026-10-19 | ARMORY CASTLE exploits BeyondTrust Remote Support zero-day CVE-2026-102764: SAWFLY web shell, SUID root, vault dumps and the BARECLAW tunnel | ARMORY CASTLE (formerly UNC5221) | [`2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/`](../../days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/) |

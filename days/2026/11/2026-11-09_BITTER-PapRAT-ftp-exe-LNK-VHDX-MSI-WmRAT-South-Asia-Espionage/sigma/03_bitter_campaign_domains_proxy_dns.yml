@@ -1,0 +1,43 @@
+title: BITTER (TA397) PapRAT / WmRAT Campaign Domain Resolved
+id: ab1f3df6-30c8-4bf9-96b4-05da33e5a86b
+status: experimental
+description: |
+  Detects DNS queries for the infrastructure of the BITTER (TA397) PapRAT campaign reported by FortiGuard
+  Labs (2026-11-02): netmansrvdns[.]com, rappellingaart[.]com (WebDAV LNK host), techtalkhelp[.]com
+  (/talk.log), rivingtonclarks[.]com (PapRAT C2, /banana/ and /beautiQuewonders/banaNa.php),
+  goodnfortunes[.]com (/ucl.php, /b99/), gomescareerplans[.]com (/docs), chestergreenfarming[.]com and
+  felixfuturenext[.]com (the last only in OffSeq/OTX, lower confidence). Proxy coverage for the same
+  domains and URL fragments is provided by the KQL k2 query and Suricata sids 9970001-9970003.
+  Honesty: derived from secondary reports of the FortiGuard Labs (Fortinet) 2026-11-02 research as
+  relayed by Infosecurity Magazine, GBHackers, Hackread, Cyberpress, SOC Prime, OffSeq/OTX; the primary
+  Fortinet blog was not read; no first-hand sample analysis. Attacker infrastructure may be defunct or
+  sinkholed; re-validate before treating a hit as live. A threshold on repeat queries (PapRAT C++ beacons
+  every 10 s) belongs to SIEM aggregation, not to this rule.
+references:
+  - https://www.fortinet.com/blog/threat-research
+author: Jarmi
+date: 2026/11/09
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.t1105
+logsource:
+  category: dns_query
+  product: windows
+detection:
+  selection:
+    QueryName|endswith:
+      - 'netmansrvdns.com'
+      - 'rappellingaart.com'
+      - 'techtalkhelp.com'
+      - 'rivingtonclarks.com'
+      - 'goodnfortunes.com'
+      - 'gomescareerplans.com'
+      - 'chestergreenfarming.com'
+      - 'felixfuturenext.com'
+  condition: selection
+falsepositives:
+  - Threat-intelligence analysts, sandboxes or security scanners resolving indicator lists.
+  - Sinkholed domains after takedown.
+
+level: high

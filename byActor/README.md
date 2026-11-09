@@ -27,7 +27,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [ArcaneDoor](./arcanedoor/) | 1 |
 | [Aur0ra (unattributed ransomware family)](./aur0ra-unattributed-ransomware-family/) | 1 |
 | [BAUXITE](./bauxite/) | 1 |
-| [BITTER](./bitter/) | 1 |
+| [BITTER](./bitter/) | 2 |
 | [Black Shadow (Ababil of Minab persona)](./black-shadow-ababil-of-minab-persona/) | 1 |
 | [BlackCat](./blackcat/) | 1 |
 | [BlackFile (self-branded DLS)](./blackfile-self-branded-dls/) | 1 |

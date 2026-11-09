@@ -1,3 +1,20 @@
+## 2026.11.09 — Day 139 — BITTER (TA397) PapRAT: ftp.exe .ico scripts, VHDX and RAR lures, Type 194 MSI droppers
+
+### Added
+- `days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/` — FortiGuard Labs (2026-11-02) reported a months-long BITTER campaign against South Asian government, energy and engineering targets delivering PapRAT (C++ and Rust) and WmRAT through three lure chains. Read via eight secondary reports; the primary Fortinet blog was not read.
+- Sigma (3): `01`-`03` — ftp.exe with an .ico argument or spawning shells; Visa_Details / Imp_Details MSI and RAT image names; campaign domains in DNS.
+- KQL (3): ftp.exe and MSI lure process chain; 90-day domain and C2 URL retro-hunt; update-named scheduled tasks and RAT binaries.
+- YARA (1 file, 2 rules): ftp/.ico script text (low confidence); PapRAT PE strings.
+- Suricata (1 file, 3 sids): 9970001-9970003, TLS SNI, DNS query and plaintext HTTP URI fragments.
+- PEAK hunts (3): ftp.exe .ico chain and task masquerade; VHDX mount, MSI and RAT binaries; outbound domains and 10-second HTTP beacon.
+- `iocs.csv` (37 entries) — 8 domains, 7 URLs, 5 hashes, paths and strings. No CVEs, so no `kev.md`.
+- `kill_chain.svg` — template C, canonical palette, six stages, critical stages: ftp.exe chain, MSI drop and implant.
+
+### Pedagogy
+- ftp.exe runs a script file and a `!` shell escape, so a "script" can carry any extension, including .ico; detect on command line and parent chain.
+- A Type 194 MSI CustomAction hides the whole payload in the installer tables; dump the MSI instead of trusting the visible file list.
+- Disk images and WebDAV shortcuts sidestep mark-of-the-web assumptions; control auto-mount and attachment types.
+
 ## 2026.11.08 — Day 138 — Poisoned Source: APT29 watering holes and Plerdy supply chain deliver iOS and Android n-day exploits
 
 ### Added

@@ -1,0 +1,38 @@
+type,value,context,confidence,source
+domain,netmansrvdns.com,Campaign domain listed by GBHackers and Cyberpress and in OffSeq/OTX; role not stated,medium,https://gbhackers.com/paprat-malware/
+domain,rappellingaart.com,Host that serves the LNK over WebDAV in the RAR chain (chain 3),medium,https://gbhackers.com/paprat-malware/
+domain,techtalkhelp.com,Campaign domain; URL path /talk.log over http and https per OffSeq,medium,https://gbhackers.com/paprat-malware/
+domain,rivingtonclarks.com,PapRAT C2 host; Rust build string decodes to www.rivingtonclarks.com/banana/,medium,https://gbhackers.com/paprat-malware/
+domain,goodnfortunes.com,Campaign domain; /ucl.php and /b99/ paths seen in OffSeq/OTX,medium,https://radar.offseq.com/threat/bitter-expands-its-arsenal-with-paprat-57e8662fff8806ba
+domain,gomescareerplans.com,Campaign domain; /docs path seen in OffSeq/OTX,medium,https://radar.offseq.com/threat/bitter-expands-its-arsenal-with-paprat-57e8662fff8806ba
+domain,chestergreenfarming.com,Campaign domain listed only by GBHackers,low,https://gbhackers.com/paprat-malware/
+domain,felixfuturenext.com,Campaign domain listed only in OffSeq/OTX (path /Epistemological/),low,https://radar.offseq.com/threat/bitter-expands-its-arsenal-with-paprat-57e8662fff8806ba
+url,http://www.rivingtonclarks.com/beautiQuewonders/banaNa.php,PapRAT C++ build C2 URL (plaintext HTTP); earlier Banana Login panel link per GBHackers,medium,https://gbhackers.com/paprat-malware/
+url,http://www.rivingtonclarks.com/banana/,Decoded C2 string in the PapRAT Rust build,medium,https://gbhackers.com/paprat-malware/
+url,https://techtalkhelp.com/talk.log,Remote log path used by the ftp.exe / curl chain (http variant also listed),medium,https://gbhackers.com/paprat-malware/
+url,http://goodnfortunes.com/ucl.php?svr=%computername%**%username%,Check-in URL shape with computer and user name,low,https://radar.offseq.com/threat/bitter-expands-its-arsenal-with-paprat-57e8662fff8806ba
+url,http://goodnfortunes.com/b99/?kq=%computername%,Check-in URL shape with computer name,low,https://radar.offseq.com/threat/bitter-expands-its-arsenal-with-paprat-57e8662fff8806ba
+url,http://gomescareerplans.com/docs/?vid=%computername%,Check-in URL shape with computer name,low,https://radar.offseq.com/threat/bitter-expands-its-arsenal-with-paprat-57e8662fff8806ba
+url,https://felixfuturenext.com/Epistemological/,Campaign URL listed in OffSeq/OTX,low,https://radar.offseq.com/threat/bitter-expands-its-arsenal-with-paprat-57e8662fff8806ba
+sha256,a3081df333ca7f18bd90d10a45125ab5011dcf9d2806feae2935f09cab07da4c,LNK lure labelled SHA256 (LNK) by GBHackers,medium,https://gbhackers.com/paprat-malware/
+sha256,e3992f8c945b0761242377cba32d91b0a390c7cecd79478439843d93e6d2b76b,LNK lure labelled SHA256 (LNK) by GBHackers,medium,https://gbhackers.com/paprat-malware/
+sha256,ccefbdec2718d864d9d33c743aabfcef88a8d7904d1c598bfcf15cf5f3591c88,Campaign file; role not published (OffSeq/OTX),low,https://radar.offseq.com/threat/bitter-expands-its-arsenal-with-paprat-57e8662fff8806ba
+sha256,411c0b9a2f98b927d806a685faf0c1ab1005647b4816157008892347fb88546b,Campaign file; role not published (OffSeq/OTX),low,https://radar.offseq.com/threat/bitter-expands-its-arsenal-with-paprat-57e8662fff8806ba
+sha256,569a21b519aaac8c92f653d708ab6ef34e3f38ea967f47e041d1e2425f6a4b33,Campaign file; role not published (OffSeq/OTX),low,https://radar.offseq.com/threat/bitter-expands-its-arsenal-with-paprat-57e8662fff8806ba
+path,Letter from the Ambassador - 11th Belt and Road Summit.vhdx,VHDX lure holding a LNK and hidden Visa_Details.msi plus a decoy spreadsheet,medium,https://gbhackers.com/paprat-malware/
+path,Official Invitation Majilis 2026 Gala Dinner.rar,RAR lure holding a URL shortcut (chain 3),medium,https://gbhackers.com/paprat-malware/
+path,Visa_Details.msi,MSI with a single Type 194 CustomAction that drops PapRAT (chain 2),medium,https://gbhackers.com/paprat-malware/
+path,Imp_Details.msi,MSI run after the WebDAV LNK; deploys PapRAT (chain 3),medium,https://gbhackers.com/paprat-malware/
+path,bruzsvc.exe,PapRAT C++ build masquerading with a Microsoft Corporation version resource,medium,https://gbhackers.com/paprat-malware/
+path,vnces.exe,WmRAT downloaded by PapRAT,medium,https://gbhackers.com/paprat-malware/
+path,icon.ico,Text file with shell commands run through the ftp.exe bang escape (not an image),medium,https://cyberpress.org/diplomatic-decoys-deliver-paprat/
+path,res.ico,Text file with shell commands run through the ftp.exe bang escape (not an image),medium,https://gbhackers.com/paprat-malware/
+path,err.log,Stores commands downloaded by the curl stage,medium,https://gbhackers.com/paprat-malware/
+path,abc.pdf,Recon output staged for upload then deleted locally,medium,https://gbhackers.com/paprat-malware/
+string,requpap.pdb,PDB name in the PapRAT Rust build,medium,https://gbhackers.com/paprat-malware/
+string,papsolutions,Product name in the PapRAT Rust build,medium,https://gbhackers.com/paprat-malware/
+string,!more res.ico,Example ftp.exe argument printed by GBHackers (ftp bang escape),medium,https://gbhackers.com/paprat-malware/
+string,Explorer was unable to open this file!,Fake error message shown to the victim,medium,https://gbhackers.com/paprat-malware/
+string,MicrosoftUpdatesupdates11678,SOC Prime simulation task name; NOT an observed task name,low,https://socprime.com/active-threats/bitter-expands-its-malware-arsenal-with-paprat/
+note,PapRAT beacon behavior,PapRAT C++ build beacons over plaintext HTTP every 10 s with C2 data XOR-encoded using key 0x50; Rust build waits 42 s then polls every 5 s over HTTPS,medium,https://gbhackers.com/paprat-malware/
+note,Unpublished indicator classes,"No IP addresses, mutexes, registry keys, user agents, C2 ports or CVEs are published in the secondary reports read; primary Fortinet blog not read",medium,https://www.infosecurity-magazine.com/news/paprat-bitter-cyberespionage/

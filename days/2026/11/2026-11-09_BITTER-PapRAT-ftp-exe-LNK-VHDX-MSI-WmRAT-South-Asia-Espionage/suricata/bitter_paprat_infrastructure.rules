@@ -1,0 +1,29 @@
+# BITTER (TA397) PapRAT / WmRAT campaign infrastructure (Suricata 7.x)
+# Author: Jarmi
+# Date: 2026-11-09
+# Reference: FortiGuard Labs (Fortinet) 2026-11-02 "BITTER expands its arsenal with PapRAT"
+#            https://www.fortinet.com/blog/threat-research
+#
+# Honesty: derived from secondary reports of the FortiGuard Labs (Fortinet) 2026-11-02 research as
+# relayed by Infosecurity Magazine, GBHackers, Hackread, Cyberpress, SOC Prime, OffSeq/OTX; the primary
+# Fortinet blog was not read; no first-hand sample analysis and no pcap. IPs, C2 ports, user agents,
+# certificates and JA3/JA4 are not published, so none are matched. felixfuturenext.com appears only in
+# OffSeq/OTX (lower confidence). Attacker infrastructure may be defunct or sinkholed; re-validate
+# before treating a hit as live. Indicators decay.
+#
+# 9970001 - TLS SNI for the campaign domains (PapRAT Rust build polls over HTTPS every 5 s)
+# 9970002 - DNS query for the campaign domains
+# 9970003 - plaintext HTTP request to a campaign host with a published C2 / staging URI fragment
+#           (PapRAT C++ build beacons over plaintext HTTP every 10 s; port not published, so the
+#           rule relies on HTTP protocol detection on any port)
+#
+# Variables (define in suricata.yaml):
+#   $HOME_NET      - standard internal networks
+#   $EXTERNAL_NET  - standard external networks
+# Not compile-tested (no engine available at authoring time).
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"BITTER TA397 PapRAT - TLS SNI to campaign infrastructure"; flow:established,to_server; tls.sni; pcre:"/(?:^|\.)(?:netmansrvdns\.com|rappellingaart\.com|techtalkhelp\.com|rivingtonclarks\.com|goodnfortunes\.com|gomescareerplans\.com|chestergreenfarming\.com|felixfuturenext\.com)$/i"; reference:url,www.fortinet.com/blog/threat-research; classtype:trojan-activity; sid:9970001; rev:1; metadata:author Jarmi, created_at 2026_11_09, confidence medium;)
+
+alert dns $HOME_NET any -> any any (msg:"BITTER TA397 PapRAT - DNS query for campaign infrastructure"; dns.query; pcre:"/(?:^|\.)(?:netmansrvdns\.com|rappellingaart\.com|techtalkhelp\.com|rivingtonclarks\.com|goodnfortunes\.com|gomescareerplans\.com|chestergreenfarming\.com|felixfuturenext\.com)$/i"; reference:url,www.fortinet.com/blog/threat-research; classtype:trojan-activity; sid:9970002; rev:1; metadata:author Jarmi, created_at 2026_11_09, confidence medium;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"BITTER TA397 PapRAT - plaintext HTTP to campaign host with C2 or staging URI (banaNa.php / banana / ucl.php / b99 / talk.log / docs)"; flow:established,to_server; http.host; pcre:"/(?:^|\.)(?:rivingtonclarks\.com|goodnfortunes\.com|techtalkhelp\.com|gomescareerplans\.com|felixfuturenext\.com)$/i"; http.uri; pcre:"/^\/(?:beautiQuewonders\/banaNa\.php|banana\/|ucl\.php|b99\/|talk\.log|docs|Epistemological\/)/i"; reference:url,www.fortinet.com/blog/threat-research; classtype:trojan-activity; sid:9970003; rev:1; metadata:author Jarmi, created_at 2026_11_09, confidence medium;)

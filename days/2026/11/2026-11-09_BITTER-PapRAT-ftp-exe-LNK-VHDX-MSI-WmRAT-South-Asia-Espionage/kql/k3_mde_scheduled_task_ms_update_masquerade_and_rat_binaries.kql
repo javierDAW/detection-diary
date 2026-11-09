@@ -1,0 +1,41 @@
+// Title: BITTER (TA397) - scheduled task masquerading as Microsoft / BIOS update running curl or a script, and PapRAT / WmRAT / staging files in user-writable paths (Defender XDR)
+// Id: e63286cf-1af6-4028-9350-d8c988ee650b
+// MITRE: T1053.005 Scheduled Task; T1036.005 Match Legitimate Name or Location; T1105 Ingress Tool Transfer; T1083 File and Directory Discovery; T1140 Deobfuscate/Decode Files or Information
+// Reference: FortiGuard Labs (Fortinet) 2026-11-02 "BITTER expands its arsenal with PapRAT" https://www.fortinet.com/blog/threat-research (as relayed by Infosecurity Magazine, GBHackers, Hackread, Cyberpress, SOC Prime, OffSeq/OTX)
+// Author: Jarmi
+// Date: 2026-11-09
+// Tested on: syntax only (Defender XDR advanced hunting); not run against campaign telemetry
+// Honesty: derived from secondary reports of the FortiGuard Labs 2026-11-02 research; the primary Fortinet blog was not read; no first-hand sample analysis. Exact LNK command line, install paths, C2 ports, IPs and user agents are not published and are not matched. Indicators decay.
+// Confidence: medium. The real task names are not published ("MicrosoftUpdatesupdates11678" is a SOC Prime simulation name, NOT an observed one), so the task part is a name-pattern heuristic. err.log, abc.pdf and talk.log are generic names; they score only in user-writable paths and together with curl / task context. bruzsvc.exe and vnces.exe are high-confidence names.
+// FP notes: OEM updaters (Dell/HP/Lenovo BIOS tools) register update-like tasks but run signed binaries from Program Files, not curl or cmd scripts from user paths.
+let Lookback = 30d;
+let UserWritable = dynamic([@"\Users\Public\", @"\AppData\", @"\ProgramData\", @"\Temp\", @"\Downloads\"]);
+let Tasks = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName =~ "schtasks.exe" and ProcessCommandLine has "/create"
+    | where ProcessCommandLine has_any ("Microsoft", "Update", "BIOS")
+    | where ProcessCommandLine has_any ("curl", "cmd", "powershell", ".bat", ".cmd", ".vbs", ".ico", "ftp")
+    | project Timestamp, DeviceName, AccountName, Pattern = "schtasks /create update-like name running curl/script", Detail = ProcessCommandLine, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine;
+let TaskReg = DeviceEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType == "ScheduledTaskCreated"
+    | extend Af = parse_json(AdditionalFields)
+    | extend TaskName = tostring(Af.TaskName), TaskContent = tostring(Af.TaskContent)
+    | where TaskName has_any ("Microsoft", "Update", "BIOS") and not(TaskName startswith @"\Microsoft\Windows\")
+    | where TaskContent has_any ("curl", "cmd.exe", "powershell", "ftp.exe", ".ico")
+    | project Timestamp, DeviceName, AccountName = InitiatingProcessAccountName, Pattern = "ScheduledTaskCreated update-like name with curl/script action", Detail = strcat(TaskName, " | ", TaskContent), FolderPath = "", SHA256 = "", InitiatingProcessFileName, InitiatingProcessCommandLine;
+let RatFiles = DeviceFileEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType in ("FileCreated", "FileRenamed", "FileModified")
+    | where FileName in~ ("bruzsvc.exe", "vnces.exe")
+        or (FileName in~ ("err.log", "abc.pdf", "talk.log") and FolderPath has_any (UserWritable)
+            and InitiatingProcessFileName in~ ("cmd.exe", "curl.exe", "ftp.exe", "powershell.exe", "bruzsvc.exe"))
+    | project Timestamp, DeviceName, AccountName = InitiatingProcessAccountName, Pattern = strcat("file ", FileName, " written by ", InitiatingProcessFileName), Detail = FolderPath, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine;
+let RatProc = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName in~ ("bruzsvc.exe", "vnces.exe")
+    | project Timestamp, DeviceName, AccountName, Pattern = strcat("RAT binary executed: ", FileName, " (company: ", ProcessVersionInfoCompanyName, ")"), Detail = ProcessCommandLine, FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine;
+union Tasks, TaskReg, RatFiles, RatProc
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Patterns = make_set(Pattern, 20), Details = make_set(Detail, 20), Hashes = make_set(SHA256, 10) by DeviceName, AccountName
+| extend Score = array_length(Patterns)
+| order by Score desc, LastSeen desc

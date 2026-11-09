@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**138 cases** · **206 actors/clusters** · **406 ATT&CK techniques** · **16 platforms** · **98 sectors** · 2026-04-28 -> 2026-11-08
+**139 cases** · **206 actors/clusters** · **406 ATT&CK techniques** · **16 platforms** · **98 sectors** · 2026-04-28 -> 2026-11-09
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/"><img src="days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/kill_chain.svg" alt="2026-11-09 kill chain" width="240"></a><br><sub><b>2026-11-09</b><br>BITTER</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/"><img src="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/kill_chain.svg" alt="2026-11-08 kill chain" width="240"></a><br><sub><b>2026-11-08</b><br>APT29</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/"><img src="days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/kill_chain.svg" alt="2026-11-07 kill chain" width="240"></a><br><sub><b>2026-11-07</b><br>Unattributed</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/"><img src="days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/kill_chain.svg" alt="2026-11-06 kill chain" width="240"></a><br><sub><b>2026-11-06</b><br></sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/"><img src="days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/kill_chain.svg" alt="2026-11-06 kill chain" width="240"></a><br><sub><b>2026-11-06</b><br></sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/"><img src="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/kill_chain.svg" alt="2026-11-05 kill chain" width="240"></a><br><sub><b>2026-11-05</b><br>UTA0576</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/"><img src="days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/kill_chain.svg" alt="2026-11-04 kill chain" width="240"></a><br><sub><b>2026-11-04</b><br>MCPhantom (Glow Labs research pattern, no threat actor)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/"><img src="days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/kill_chain.svg" alt="2026-11-03 kill chain" width="240"></a><br><sub><b>2026-11-03</b><br>Unattributed (C3RB3R ransomware family)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

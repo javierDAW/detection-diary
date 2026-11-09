@@ -1,0 +1,50 @@
+title: BITTER (TA397) ftp.exe Launched With An .ico Script Argument Or Spawning A Shell (LNK Chain)
+id: e4aaa030-85f7-443f-a1d4-69b1ea2edacd
+status: experimental
+description: |
+  Detects the BITTER (TA397) LNK chain reported by FortiGuard Labs (2026-11-02, "BITTER expands its
+  arsenal with PapRAT"): a malicious LNK launches ftp.exe with an argument pointing at an .ico file
+  (icon.ico / res.ico) that holds shell instructions instead of an image. The ftp "!" prefix runs the
+  rest of a line as a local command (example printed in secondary reports: "!more res.ico"), piping the
+  .ico "script" into cmd, which then creates a scheduled task masquerading as a Microsoft update and uses
+  curl to reach C2. Three selections: ftp.exe with an .ico on the command line (incl. -s: script mode),
+  ftp.exe parented by explorer.exe with an .ico argument (LNK double-click), and ftp.exe spawning
+  cmd.exe / more.com / curl.exe / schtasks.exe.
+  Honesty: derived from secondary reports of the FortiGuard Labs (Fortinet) 2026-11-02 research as
+  relayed by Infosecurity Magazine, GBHackers, Hackread, Cyberpress, SOC Prime, OffSeq/OTX; the primary
+  Fortinet blog was not read; no first-hand sample analysis. The exact LNK command line is not published,
+  so the logic is behavioural. Indicators decay.
+references:
+  - https://www.fortinet.com/blog/threat-research
+  - https://lolbas-project.github.io/lolbas/Binaries/Ftp/
+author: Jarmi
+date: 2026/11/09
+tags:
+  - attack.execution
+  - attack.t1204.002
+  - attack.t1059.003
+  - attack.defense-evasion
+  - attack.t1027
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_ftp_img:
+    - Image|endswith: '\ftp.exe'
+    - OriginalFileName: 'ftp.exe'
+  selection_ico_arg:
+    CommandLine|contains: '.ico'
+  selection_child:
+    ParentImage|endswith: '\ftp.exe'
+    Image|endswith:
+      - '\cmd.exe'
+      - '\more.com'
+      - '\curl.exe'
+      - '\schtasks.exe'
+      - '\powershell.exe'
+  condition: (selection_ftp_img and selection_ico_arg) or selection_child
+falsepositives:
+  - Legacy batch automation that drives ftp.exe with a script file (-s:) is common, but a script with an .ico extension is not; review the parent (explorer.exe from a LNK is the campaign pattern).
+  - Administrators using the ftp "!" shell escape interactively (rare on modern endpoints).
+
+level: high
