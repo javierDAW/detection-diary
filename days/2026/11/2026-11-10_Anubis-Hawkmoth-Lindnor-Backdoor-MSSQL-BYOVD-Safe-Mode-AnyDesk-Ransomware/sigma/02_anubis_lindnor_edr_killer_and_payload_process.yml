@@ -1,0 +1,75 @@
+title: Anubis (Hawkmoth RaaS) Intrusion - Lindnor Backdoor, Symantec-Masquerading EDR Killer Or Anubis Payload Executed
+id: c5f7e323-095e-4997-8301-43ff6a63ed38
+status: experimental
+description: |
+  Detects process creation of the tooling reported by Symantec (Broadcom, 2026-11-05) in the October 2026
+  Anubis (Hawkmoth RaaS) intrusion on a U.S. organization:
+  (a) gbbsym.exe / symgooq.exe, matched with or without arguments (triage: a "-d" argument means
+  callbacks were removed and the EDR on that host is likely blind) (masquerade as Symantec; "-l" lists kernel callbacks through a loaded
+  vulnerable driver, "-d" lists and removes them; observed command lines used "-d");
+  (b) the more distinctive dropped names hwaudioch.exe, gibformin.exe, gibfor.exe, huntreagent.exe,
+  bdr.exe, rustr.exe, xs.scr, plus the Lindnor backdoor names healthcontroller64.exe and svchelper.exe
+  (the latter only outside System32/SysWOW64), safemode.exe and the Anubis payload iservice.exe;
+  (c) any process whose Sysmon Hashes field carries one of the published SHA-256 values.
+  The report does not say which of the dropped tools besides gbbsym.exe / symgooq.exe are EDR killers.
+  Very generic names from the same drop (test.exe, g.exe, backup.exe, s1.exe) are matched by hash only.
+  Honesty: derived from the Symantec report as relayed by GBHackers and Cyber Security News
+  (2026-11-09); no first-hand sample analysis. Install paths, service names and parent processes are not
+  published, so names are matched anywhere; the file names are short and prone to false positives, so
+  combine with hashes or context (SQL Server host, recent driver drop, Safe Mode registry change).
+references:
+  - https://www.security.com/threat-intelligence/lindnor-new-backdoor-anubis-ransomware
+author: Jarmi
+date: 2026/11/10
+tags:
+  - attack.defense-evasion
+  - attack.t1562.001
+  - attack.t1036.005
+  - attack.privilege-escalation
+  - attack.t1068
+  - attack.impact
+  - attack.t1486
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_killer_img:
+    Image|endswith:
+      - '\gbbsym.exe'
+      - '\symgooq.exe'
+  selection_named:
+    Image|endswith:
+      - '\hwaudioch.exe'
+      - '\gibformin.exe'
+      - '\gibfor.exe'
+      - '\huntreagent.exe'
+      - '\bdr.exe'
+      - '\rustr.exe'
+      - '\xs.scr'
+      - '\healthcontroller64.exe'
+      - '\safemode.exe'
+      - '\iservice.exe'
+  selection_svchelper:
+    Image|endswith: '\svchelper.exe'
+  filter_svchelper_system:
+    Image|startswith:
+      - 'C:\Windows\System32\'
+      - 'C:\Windows\SysWOW64\'
+  selection_hashes:
+    Hashes|contains:
+      - 'SHA256=FC200686175559F4544A5DE826905F09A68476D889690A3BE40AC32356790CB8'
+      - 'SHA256=5D2DD9CAF2AE4A5083DBEC16E688040456CDBC31EAEECBAB78188E322ED0415B'
+      - 'SHA256=AD9575A9EF2DCC9D2FD2A24376C418549D4B3DB5564C22B20081D33CF7629E43'
+      - 'SHA256=E69B882218FA2A19FD351741874BFCD10A6AE91076E6A8483795E0E357F8D026'
+      - 'SHA256=47A864736764112D7897C76E56D51111CE75B3E46FDBAC6933DF8A5B29507D17'
+      - 'SHA256=AA779D811E00A30DFB56B994BDD63424CBF97617AF737A218B6AFF9F7C3A50F5'
+      - 'SHA256=854C3E76BEB200243CCF6AF260E9A2089C2FC545F8F1B34D34C6FE86F2D056C3'
+      - 'SHA256=588887E709459F1D1A8109B089CB3462C6F796D30B6297A1A0FDB3419A3CCBCE'
+      - 'SHA256=962BE6983F3ED4F1DC4CE117E135CC0A5AB8FC6B5F5AA0284EFF8A9DEF66E338'
+  condition: selection_killer_img or selection_named or (selection_svchelper and not filter_svchelper_system) or selection_hashes
+falsepositives:
+  - Unrelated in-house or third-party binaries that reuse short names such as iservice.exe, safemode.exe, bdr.exe or svchelper.exe; check signer and path before escalating.
+  - Hash matches are high-fidelity; name-only matches are medium at best.
+  - The genuine AnyDesk binary (hash 467d1395...) is deliberately NOT included here because the same build is used legitimately; see kql/k2 for it.
+
+level: high

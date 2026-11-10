@@ -1,0 +1,97 @@
+{
+  "name": "2026-11-10 — 2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security killers and AnyDesk persisted in Safe Mode — clusters: Hawkmoth (Anubis RaaS)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1543.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security k"
+    },
+    {
+      "techniqueID": "T1036.005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security k"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security k"
+    },
+    {
+      "techniqueID": "T1068",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security k"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security k"
+    },
+    {
+      "techniqueID": "T1562.009",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security k"
+    },
+    {
+      "techniqueID": "T1112",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security k"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security k"
+    },
+    {
+      "techniqueID": "T1136.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security k"
+    },
+    {
+      "techniqueID": "T1486",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security k"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

@@ -1,3 +1,21 @@
+## 2026.11.10 — Day 140 — Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security killers, AnyDesk in Safe Mode
+
+### Added
+- `days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/` — Symantec (2026-11-05) described an October 2026 U.S. intrusion where the new Backdoor.Lindnor ran on two MSSQL servers, followed by 13 executables, 5 BYOVD drivers and AnyDesk registered for Safe Mode; the Anubis (Hawkmoth RaaS) payload was blocked before encryption. Initial access is unpublished; relayed by GBHackers and Cyber Security News on 2026-11-09.
+- Sigma (3): `01`-`03` — SafeBoot Network AnyDesk key; published hashes and tool names; BYOVD driver names, ransom notes and `.anubis`.
+- KQL (3): SafeBoot additions with local-account and AnyDesk correlation; 15-hash hunt across process, file and driver events; SQL host services, shells and C2 lookups.
+- YARA (1 file, 2 rules): Anubis note and extension strings (low); SafeBoot AnyDesk registration (medium).
+- Suricata (1 file, 3 sids): 9980001-9980003, DNS and TLS SNI for the two Lindnor C2 hosts.
+- PEAK hunts (3): SafeBoot AnyDesk persistence and new local account; BYOVD drop and callback removal; SQL Server look-alike service folders and 443 rarity.
+- `iocs.csv` (34 entries) — 2 hosts, 24 hashes, registry key, ransom notes, extension and paths. `kev.md` — 0/1 CVEs on CISA KEV (cache predates the case; analyst note).
+- `kill_chain.svg` — template C, canonical palette with ransomware accent, six stages; critical: Lindnor, tool and driver drop, Safe Mode access.
+
+### Pedagogy
+- A server role is a hunting dimension: the only two SQL Servers carried the backdoor.
+- Safe Mode is a designed blind spot: audit SafeBoot Network service keys.
+- BYOVD plus callback removal blinds EDR before encryption; enforce the driver blocklist and HVCI.
+- Blocked before encryption is not no breach: initial access and data theft remain open.
+
 ## 2026.11.09 — Day 139 — BITTER (TA397) PapRAT: ftp.exe .ico scripts, VHDX and RAR lures, Type 194 MSI droppers
 
 ### Added

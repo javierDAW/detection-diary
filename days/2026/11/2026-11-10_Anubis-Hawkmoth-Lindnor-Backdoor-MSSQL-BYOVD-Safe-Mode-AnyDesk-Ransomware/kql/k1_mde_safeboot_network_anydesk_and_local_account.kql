@@ -1,0 +1,44 @@
+// Title: Anubis (Hawkmoth RaaS) - SafeBoot service additions (AnyDesk Safe Mode persistence) correlated with new local accounts and AnyDesk installs (Defender XDR)
+// Id: 6c1d3f0e-2b7a-4e55-9a41-0d8e7f3b5c21
+// MITRE: T1562.009 Safe Mode Boot; T1112 Modify Registry; T1219 Remote Access Software; T1136.001 Local Account; T1098 Account Manipulation (mapping by Jarmi, not published by the vendor)
+// Reference: Symantec (Broadcom) 2026-11-05 Threat Intelligence report on Lindnor and Anubis https://www.security.com/threat-intelligence/lindnor-new-backdoor-anubis-ransomware (relayed by GBHackers and Cyber Security News 2026-11-09)
+// Author: Jarmi
+// Date: 2026-11-10
+// Tested on: not tested
+// Honesty: derived from the Symantec report as relayed; no first-hand sample analysis. The registry command is verbatim from the report (reg.exe add HKLM\SYSTEM\CurrentControlSet\Control\SafeBoot\Network\AnyDesk /ve /t REG_SZ /d Service /f, run by safemode.exe). The new local account name and group are NOT published, so account events are context only.
+// Confidence: high for the AnyDesk SafeBoot key; medium for other non-Microsoft SafeBoot additions (review list); low for the account / AnyDesk correlation on its own.
+// FP notes: MSPs enabling AnyDesk / other remote tools in Safe Mode; backup or AV products that register their own SafeBoot service. Baseline the known-good SafeBoot entries in <add_known_safeboot_services>.
+let Lookback = 30d;
+let CorrWindow = 24h;
+let KnownSafeBoot = dynamic(["<add_known_safeboot_services>"]);
+let SafeBootReg = DeviceRegistryEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType in ("RegistryKeyCreated", "RegistryValueSet")
+    | where RegistryKey has @"\Control\SafeBoot\Network\" or RegistryKey has @"\Control\SafeBoot\Minimal\"
+    | extend ServiceKey = tostring(split(RegistryKey, @"\")[-1])
+    | where ServiceKey !in~ (KnownSafeBoot)
+    | where InitiatingProcessFileName !in~ ("TrustedInstaller.exe", "msiexec.exe", "services.exe")
+    | project Timestamp, DeviceId, DeviceName, Evidence = "SafeBootRegistry", ServiceKey, Detail = strcat(RegistryKey, " = ", RegistryValueData), InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName;
+let SafeBootCmd = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName =~ "reg.exe" or ProcessCommandLine has "reg add"
+    | where ProcessCommandLine has "SafeBoot" and ProcessCommandLine has_any ("Network", "Minimal")
+    | extend ServiceKey = extract(@"SafeBoot\\(?:Network|Minimal)\\([^\s""]+)", 1, ProcessCommandLine)
+    | project Timestamp, DeviceId, DeviceName, Evidence = "SafeBootRegCommand", ServiceKey, Detail = ProcessCommandLine, InitiatingProcessFileName, InitiatingProcessCommandLine, InitiatingProcessAccountName = AccountName;
+let SafeBoot = union SafeBootReg, SafeBootCmd
+    | extend SevNum = iff(ServiceKey has "AnyDesk" or Detail has "AnyDesk" or InitiatingProcessFileName =~ "safemode.exe", 2, 1);
+let Accounts = DeviceEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType in ("UserAccountCreated", "UserAccountAddedToLocalGroup")
+    | project AcctTime = Timestamp, DeviceId, AccountAction = strcat(ActionType, ": ", AccountName, " ", tostring(parse_json(AdditionalFields).GroupName));
+let AnyDeskSeen = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName =~ "anydesk.exe" or SHA256 == "467d1395b61d4b886329571b564fb21db01639acd2799439646c85b9aeaec175"
+    | summarize AnyDeskFirst = min(Timestamp) by DeviceId;
+SafeBoot
+| join kind=leftouter (Accounts) on DeviceId
+| extend AccountAction = iff(isnotempty(AcctTime) and abs(datetime_diff("minute", AcctTime, Timestamp)) <= CorrWindow / 1m, AccountAction, "")
+| join kind=leftouter (AnyDeskSeen) on DeviceId
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Keys = make_set(ServiceKey, 20), Details = make_set(Detail, 10), Procs = make_set(InitiatingProcessFileName, 10), AccountActions = make_set_if(AccountAction, isnotempty(AccountAction), 10), AnyDeskFirst = min(AnyDeskFirst), SevNum = max(SevNum) by DeviceName, Evidence
+| extend Severity = iff(SevNum == 2, "high", "medium")
+| order by SevNum desc, FirstSeen desc

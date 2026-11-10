@@ -1,0 +1,44 @@
+title: Anubis (Hawkmoth RaaS) Intrusion - AnyDesk Registered To Start In Safe Mode With Networking
+id: 2f988d49-1671-4b5c-abf0-277a2d5e1c55
+status: experimental
+description: |
+  Detects a service named AnyDesk being registered under HKLM\SYSTEM\CurrentControlSet\Control\SafeBoot
+  so that the remote-access tool still starts in Safe Mode (with Networking). In the October 2026 Anubis
+  (Hawkmoth RaaS) intrusion on a U.S. organization reported by Symantec (Broadcom) on 2026-11-05, a tool
+  named safemode.exe ran the verbatim command
+  "CSIDL_SYSTEM\reg.exe" add HKLM\SYSTEM\CurrentControlSet\Control\SafeBoot\Network\AnyDesk /ve /t REG_SZ /d Service /f
+  (CSIDL_SYSTEM is the report's placeholder for the System32 folder). Security tools generally do not
+  fully run in Safe Mode, so this keeps the operator's access path alive across a Safe Mode reboot.
+  Two selections: the exact AnyDesk key under SafeBoot\Network as reported (high), and any AnyDesk key
+  under SafeBoot (Network or Minimal, a trivial variant; medium). The reg.exe command line that writes the
+  key, and broader hunting for any non-Microsoft SafeBoot addition, are in kql/k1 (too noisy for a static
+  Sigma rule).
+  Honesty: derived from the Symantec report as relayed by GBHackers and Cyber Security News
+  (2026-11-09); no first-hand sample analysis. The registry path and value come verbatim from the report;
+  the name of the new local account and its group are not published.
+references:
+  - https://www.security.com/threat-intelligence/lindnor-new-backdoor-anubis-ransomware
+author: Jarmi
+date: 2026/11/10
+tags:
+  - attack.defense-evasion
+  - attack.t1562.009
+  - attack.t1112
+  - attack.command-and-control
+  - attack.t1219
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_safeboot_anydesk:
+    TargetObject|contains: '\Control\SafeBoot\Network\AnyDesk'
+  selection_safeboot_minimal_anydesk:
+    TargetObject|contains|all:
+      - '\Control\SafeBoot\'
+      - 'AnyDesk'
+  condition: selection_safeboot_anydesk or selection_safeboot_minimal_anydesk
+falsepositives:
+  - An administrator deliberately enabling AnyDesk support in Safe Mode for remote recovery (verify a change ticket; AnyDesk itself can request this, so confirm the parent process).
+  - Managed-service providers that standardise AnyDesk Safe Mode access on servers.
+
+level: high

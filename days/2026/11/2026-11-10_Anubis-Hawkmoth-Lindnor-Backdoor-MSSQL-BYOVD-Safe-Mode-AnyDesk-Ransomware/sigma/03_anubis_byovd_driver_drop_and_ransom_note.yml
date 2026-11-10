@@ -1,0 +1,53 @@
+title: Anubis (Hawkmoth RaaS) Intrusion - BYOVD Driver Files Dropped Or Anubis Ransom Note / Extension Written
+id: e41cccbc-8e5a-4df9-b2cb-0f350f898188
+status: experimental
+description: |
+  Detects file creation of the five publicly known, signed vulnerable drivers dropped within about an hour
+  of first activity in the October 2026 Anubis (Hawkmoth RaaS) intrusion reported by Symantec (Broadcom,
+  2026-11-05): havoc.sys, monprocessex.sys, xhunter1.sys, bdapiutil64.sys and fly.sys (bring your own
+  vulnerable driver, used by EDR killers such as gbbsym.exe / symgooq.exe to remove kernel callbacks).
+  Also detects the Anubis payload (iservice.exe) side effects: ransom notes "restore files.txt" /
+  "restore files.html" (spacing as printed in the report) and files renamed with the ".anubis" extension.
+  In the reported case the payload was blocked and nothing was encrypted. A threshold on .anubis renames
+  per host (mass-encryption burst) belongs to SIEM aggregation, not to this rule.
+  Honesty: derived from the Symantec report as relayed by GBHackers and Cyber Security News
+  (2026-11-09); no first-hand sample analysis. Drop paths are not published, so driver names are matched
+  anywhere outside the Windows driver store; driver file names are trivially renamed, so pair with the
+  SHA-256 list in kql/k2.
+references:
+  - https://www.security.com/threat-intelligence/lindnor-new-backdoor-anubis-ransomware
+author: Jarmi
+date: 2026/11/10
+tags:
+  - attack.privilege-escalation
+  - attack.t1068
+  - attack.defense-evasion
+  - attack.t1562.001
+  - attack.impact
+  - attack.t1486
+logsource:
+  category: file_event
+  product: windows
+detection:
+  selection_drivers:
+    TargetFilename|endswith:
+      - '\havoc.sys'
+      - '\monprocessex.sys'
+      - '\xhunter1.sys'
+      - '\bdapiutil64.sys'
+      - '\fly.sys'
+  filter_driverstore:
+    TargetFilename|startswith: 'C:\Windows\System32\DriverStore\'
+  selection_notes:
+    TargetFilename|endswith:
+      - '\restore files.txt'
+      - '\restore files.html'
+  selection_ext:
+    TargetFilename|endswith: '.anubis'
+  condition: (selection_drivers and not filter_driverstore) or selection_notes or selection_ext
+falsepositives:
+  - Security researchers or vendors staging vulnerable-driver samples in a lab.
+  - Legitimate software shipping a driver with one of these short names (fly.sys, havoc.sys); verify hash and signer.
+  - Help-desk documents literally named "restore files.txt" (unlikely together with .anubis renames).
+
+level: high

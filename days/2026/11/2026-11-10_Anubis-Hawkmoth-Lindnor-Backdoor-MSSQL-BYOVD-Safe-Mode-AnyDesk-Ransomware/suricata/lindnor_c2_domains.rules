@@ -1,0 +1,28 @@
+# Lindnor backdoor (Anubis / Hawkmoth RaaS intrusion) - published network indicators (Suricata 7.x)
+# Author: Jarmi
+# Date: 2026-11-10
+# Reference: Symantec (Broadcom) 2026-11-05
+#            https://www.security.com/threat-intelligence/lindnor-new-backdoor-anubis-ransomware
+#            (relayed by GBHackers and Cyber Security News 2026-11-09)
+#
+# Honesty: derived from the Symantec report as relayed; no first-hand sample analysis and no pcap.
+# Lindnor has a primary and a fallback C2, both on port 443, but the report does not say which of the
+# two published hosts plays which role. IPs, URIs, certificates, user agents and JA3/JA4 are NOT
+# published, so none are matched. cfgsync-relay.eastus.cloudapp.azure.com is an Azure-hosted
+# subdomain: match the exact host only and never block cloudapp.azure.com in general. Attacker
+# infrastructure may be defunct or reassigned; re-validate before treating a hit as live.
+#
+# 9980001 - DNS query for msrcontrib.com (apex or any subdomain) or the exact Azure host
+# 9980002 - TLS SNI msrcontrib.com (apex or any subdomain)
+# 9980003 - TLS SNI exactly cfgsync-relay.eastus.cloudapp.azure.com
+#
+# Variables (define in suricata.yaml):
+#   $HOME_NET      - standard internal networks
+#   $EXTERNAL_NET  - standard external networks
+# Not compile-tested (no engine available at authoring time).
+
+alert dns $HOME_NET any -> any any (msg:"Lindnor backdoor - DNS query for published C2 host (msrcontrib.com or cfgsync-relay.eastus.cloudapp.azure.com)"; dns.query; pcre:"/(?:(?:^|\.)msrcontrib\.com|^cfgsync-relay\.eastus\.cloudapp\.azure\.com)$/i"; reference:url,www.security.com/threat-intelligence/lindnor-new-backdoor-anubis-ransomware; classtype:trojan-activity; sid:9980001; rev:1; metadata:author Jarmi, created_at 2026_11_10, confidence high;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"Lindnor backdoor - TLS SNI msrcontrib.com (published C2 domain)"; flow:established,to_server; tls.sni; dotprefix; content:".msrcontrib.com"; nocase; endswith; reference:url,www.security.com/threat-intelligence/lindnor-new-backdoor-anubis-ransomware; classtype:trojan-activity; sid:9980002; rev:1; metadata:author Jarmi, created_at 2026_11_10, confidence high;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"Lindnor backdoor - TLS SNI cfgsync-relay.eastus.cloudapp.azure.com (published C2 host, exact match)"; flow:established,to_server; tls.sni; content:"cfgsync-relay.eastus.cloudapp.azure.com"; nocase; startswith; endswith; reference:url,www.security.com/threat-intelligence/lindnor-new-backdoor-anubis-ransomware; classtype:trojan-activity; sid:9980003; rev:1; metadata:author Jarmi, created_at 2026_11_10, confidence high;)

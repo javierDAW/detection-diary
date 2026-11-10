@@ -1,5 +1,46 @@
 [
  {
+  "date": "2026-11-10",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware",
+  "title": "Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security killers and AnyDesk persisted in Safe Mode",
+  "clusters": [
+   "Hawkmoth (Anubis RaaS)"
+  ],
+  "country": "Unknown (not stated)",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "unspecified"
+  ],
+  "techniques": [
+   "T1543.003",
+   "T1036.005",
+   "T1071.001",
+   "T1068",
+   "T1562.001",
+   "T1562.009",
+   "T1112",
+   "T1219",
+   "T1136.001",
+   "T1486"
+  ],
+  "tech_count": 10,
+  "tldr": "Symantec (Broadcom) reported on 2026-11-05 an October 2026 intrusion at a U.S. organization where a previously unseen backdoor, Backdoor.Lindnor, ran as a service on the only two Microsoft SQL Servers among the affected systems, followed about an hour later by at least 13 dropped executables, five publicly known vulnerable drivers (BYOVD), a genuine AnyDesk install and a `safemode.exe` that regist",
+  "thumb": "thumbs/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware.svg",
+  "case_rel": "../days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/",
+  "category": "ransomware",
+  "cat_label": "Ransomware / e-crime",
+  "cat_color": "#b03030",
+  "actor": "Hawkmoth (Anubis RaaS)",
+  "cve_count": 1,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "anubis ransomware intrusion: lindnor backdoor on mssql servers, byovd security killers and anydesk persisted in safe mode hawkmoth (anubis raas) unknown (not stated) windows unspecified t1543.003 t1036.005 t1071.001 t1068 t1562.001 t1562.009 t1112 t1219 t1136.001 t1486 ransomware / e-crime "
+ },
+ {
   "date": "2026-11-09",
   "year": "2026",
   "month": "2026-11",

@@ -1,0 +1,53 @@
+// Title: Anubis (Hawkmoth RaaS) / Lindnor - SQL Server hosts: new services, executables in Chrome-component-like or VMware-like folders, sqlservr.exe child shells and the two published C2 domains (Defender XDR)
+// Id: 3b8f6d2a-1e4c-4a97-8d53-f20c6b7a91e5
+// MITRE: T1543.003 Windows Service; T1036.005 Match Legitimate Name or Location; T1190 Exploit Public-Facing Application (hypothesis only); T1505.001 SQL Stored Procedures (hypothesis only); T1071.001 Web Protocols (mapping by Jarmi, not published by the vendor)
+// Reference: Symantec (Broadcom) 2026-11-05 https://www.security.com/threat-intelligence/lindnor-new-backdoor-anubis-ransomware (relayed by GBHackers and Cyber Security News 2026-11-09)
+// Author: Jarmi
+// Date: 2026-11-10
+// Tested on: not tested
+// Honesty: derived from the Symantec report as relayed; no first-hand sample analysis. Lindnor was found on the only two Microsoft SQL Servers among affected systems, apparently running as a service (healthcontroller64.exe in a folder resembling a Chrome component unpacker directory; svchelper.exe in a VMware folder). Initial access, the MSSQL abuse method (xp_cmdshell or otherwise), exact paths, service names and C2 role per domain are NOT published. The sqlservr.exe child-process and folder blocks are generic behavioural hunting hints (low confidence); only the two domains are published IOCs.
+// Confidence: high for msrcontrib.com and cfgsync-relay.eastus.cloudapp.azure.com (exact host only; do not block cloudapp.azure.com in general); low for the behavioural blocks.
+// FP notes: SQL Agent jobs and maintenance plans legitimately spawn cmd.exe / powershell.exe; VMware Tools and Chrome updaters write executables to similarly named folders (check the signer). Populate <add_known_sql_server_hosts>.
+let Lookback = 30d;
+let SqlHosts = dynamic(["<add_known_sql_server_hosts>"]);
+let C2Domains = dynamic(["msrcontrib.com", "cfgsync-relay.eastus.cloudapp.azure.com"]);
+let SqlFromTelemetry = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName =~ "sqlservr.exe"
+    | distinct DeviceName;
+let Sql = union (print DeviceName = SqlHosts | mv-expand DeviceName to typeof(string)), SqlFromTelemetry
+    | where isnotempty(DeviceName) and DeviceName !startswith "<add_"
+    | distinct DeviceName;
+let NewServices = DeviceEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType == "ServiceInstalled"
+    | where DeviceName in~ (Sql)
+    | extend Af = parse_json(AdditionalFields)
+    | project Timestamp, DeviceName, Block = "ServiceInstalled", Item = strcat(tostring(Af.ServiceName), " -> ", FolderPath, FileName), Proc = InitiatingProcessFileName, Cmd = InitiatingProcessCommandLine;
+let SqlChildren = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where InitiatingProcessFileName =~ "sqlservr.exe"
+    | where FileName in~ ("cmd.exe", "powershell.exe", "pwsh.exe", "sc.exe", "reg.exe", "certutil.exe", "bitsadmin.exe", "rundll32.exe", "net.exe", "net1.exe")
+    | project Timestamp, DeviceName, Block = "sqlservr.exe child (generic hint)", Item = strcat(FileName, " ", ProcessCommandLine), Proc = InitiatingProcessFileName, Cmd = InitiatingProcessCommandLine;
+let RareFolders = DeviceFileEvents
+    | where Timestamp > ago(Lookback)
+    | where DeviceName in~ (Sql)
+    | where ActionType == "FileCreated" and FileName endswith ".exe"
+    | where FolderPath has_any ("VMware", "Chrome", "Google", "Unpacker", "Component")
+    | join kind=leftouter (DeviceFileCertificateInfo | where Timestamp > ago(Lookback) | summarize Signer = any(Signer), IsSigned = any(IsSigned) by SHA1) on SHA1
+    | where not(Signer has_any ("VMware", "Broadcom", "Google")) or isempty(Signer)
+    | project Timestamp, DeviceName, Block = "EXE in Chrome/VMware-like folder, not vendor-signed", Item = strcat(FolderPath, " (signer: ", Signer, ")"), Proc = InitiatingProcessFileName, Cmd = InitiatingProcessCommandLine;
+let C2Net = DeviceNetworkEvents
+    | where Timestamp > ago(Lookback)
+    | where RemoteUrl has_any (C2Domains)
+    | project Timestamp, DeviceName, Block = "C2 domain connection", Item = strcat(RemoteUrl, " ", RemoteIP, ":", tostring(RemotePort)), Proc = InitiatingProcessFileName, Cmd = InitiatingProcessCommandLine;
+let C2Dns = DeviceEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType == "DnsQueryResponse"
+    | extend Q = tolower(tostring(parse_json(AdditionalFields).DnsQueryString))
+    | where Q endswith "msrcontrib.com" or Q == "cfgsync-relay.eastus.cloudapp.azure.com"
+    | project Timestamp, DeviceName, Block = "C2 domain DNS", Item = Q, Proc = InitiatingProcessFileName, Cmd = InitiatingProcessCommandLine;
+union NewServices, SqlChildren, RareFolders, C2Net, C2Dns
+| extend OnSqlHost = DeviceName in~ (Sql)
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Hits = count(), Items = make_set(Item, 20), Procs = make_set(Proc, 10), Cmds = make_set(Cmd, 10) by DeviceName, Block, OnSqlHost
+| order by OnSqlHost desc, FirstSeen desc

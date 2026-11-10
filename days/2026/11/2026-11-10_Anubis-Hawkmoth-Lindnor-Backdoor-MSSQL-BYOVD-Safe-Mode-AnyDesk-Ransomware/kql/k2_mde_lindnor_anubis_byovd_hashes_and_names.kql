@@ -1,0 +1,57 @@
+// Title: Anubis (Hawkmoth RaaS) / Lindnor backdoor - 90-day retro-hunt for published SHA-256, file names, BYOVD driver loads and ransom artefacts (Defender XDR)
+// Id: 9a4e2b71-5f3c-4d8a-b6e0-3c7f1a2d9e84
+// MITRE: T1068 Exploitation for Privilege Escalation (BYOVD); T1562.001 Disable or Modify Tools; T1036.005 Match Legitimate Name or Location; T1543.003 Windows Service; T1486 Data Encrypted for Impact; T1219 Remote Access Software (mapping by Jarmi, not published by the vendor)
+// Reference: Symantec (Broadcom) 2026-11-05 https://www.security.com/threat-intelligence/lindnor-new-backdoor-anubis-ransomware (relayed by GBHackers and Cyber Security News 2026-11-09)
+// Author: Jarmi
+// Date: 2026-11-10
+// Tested on: not tested
+// Honesty: derived from the Symantec report as relayed; no first-hand sample analysis. Hashes are copied from the report. Drop paths, service names and parent processes are not published. The genuine AnyDesk hash is included only as context (legitimate software).
+// Confidence: high for hash matches; medium for distinctive names; low for short generic names (test.exe, g.exe, backup.exe, s1.exe are deliberately excluded from name matching).
+// FP notes: short names collide with in-house tools; fly.sys / havoc.sys could collide with unrelated drivers. Indicators decay; re-packed variants will evade hashes.
+let Lookback = 90d;
+let HashRole = datatable(SHA256:string, Role:string) [
+    "fc200686175559f4544a5de826905f09a68476d889690a3be40ac32356790cb8", "Lindnor (healthcontroller64.exe / svchelper.exe)",
+    "5d2dd9caf2ae4a5083dbec16e688040456cdbc31eaeecbab78188e322ed0415b", "Lindnor (powerhost.exe / eventwatcher.exe)",
+    "ad9575a9ef2dcc9d2fd2a24376c418549d4b3db5564c22b20081d33cf7629e43", "Lindnor (volumeproxy.exe)",
+    "e69b882218fa2a19fd351741874bfcd10a6ae91076e6a8483795e0e357f8d026", "Anubis payload iservice.exe",
+    "47a864736764112d7897c76e56d51111ce75b3e46fdbac6933df8a5b29507d17", "safemode.exe (AnyDesk SafeBoot)",
+    "aa779d811e00a30dfb56b994bdd63424cbf97617af737a218b6aff9f7c3a50f5", "EDR killer gbbsym.exe",
+    "854c3e76beb200243ccf6af260e9a2089c2fc545f8f1b34d34c6fe86f2d056c3", "EDR killer symgooq.exe",
+    "588887e709459f1d1a8109b089cb3462c6f796d30b6297a1a0fdb3419a3ccbce", "huntreagent.exe",
+    "962be6983f3ed4f1dc4ce117e135cc0a5ab8fc6b5f5aa0284eff8a9def66e338", "s1.exe",
+    "5abe477517f51d81061d2e69a9adebdcda80d36667d0afabe103fda4802d33db", "BYOVD havoc.sys",
+    "72d0b5615b996cbb01b1ca139e627079094f734da48a0435ffd8480a25d0a258", "BYOVD monprocessex.sys",
+    "e727d0753d2cd0b2f6eeba4cea53aa10b3ff3ed2afeb78f545fcf6d840f85c3e", "BYOVD xhunter1.sys",
+    "9058388d05d984ca691a23ee70fcdbd3266c5cdc68ebc5aed95c67f1c502bc75", "BYOVD bdapiutil64.sys",
+    "2fdfdd13a0c548bb68c9d5aa8599a9265d4659da3e237fe7a42ac6ac06b9a06a", "BYOVD fly.sys",
+    "467d1395b61d4b886329571b564fb21db01639acd2799439646c85b9aeaec175", "context only: genuine AnyDesk build used in the attack"
+];
+let Hashes = HashRole | project SHA256;
+let Names = dynamic(["gbbsym.exe", "symgooq.exe", "huntreagent.exe", "hwaudioch.exe", "gibformin.exe", "gibfor.exe", "bdr.exe", "rustr.exe", "xs.scr", "healthcontroller64.exe", "powerhost.exe", "eventwatcher.exe", "volumeproxy.exe", "safemode.exe", "iservice.exe", "havoc.sys", "monprocessex.sys", "xhunter1.sys", "bdapiutil64.sys", "fly.sys"]);
+let Proc = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where SHA256 in (Hashes) or FileName in~ (Names) or (FileName =~ "svchelper.exe" and FolderPath !startswith @"C:\Windows\")
+    | project Timestamp, DeviceName, Source = "Process", FileName, FolderPath, SHA256, CommandLine = ProcessCommandLine, Parent = InitiatingProcessFileName;
+let Files = DeviceFileEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType in ("FileCreated", "FileRenamed", "FileModified")
+    | where SHA256 in (Hashes) or FileName in~ (Names) or FileName in~ ("restore files.txt", "restore files.html") or FileName endswith ".anubis"
+    | project Timestamp, DeviceName, Source = "File", FileName, FolderPath, SHA256, CommandLine = InitiatingProcessCommandLine, Parent = InitiatingProcessFileName;
+let Drivers = DeviceEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType == "DriverLoad"
+    | where SHA256 in (Hashes) or FileName in~ ("havoc.sys", "monprocessex.sys", "xhunter1.sys", "bdapiutil64.sys", "fly.sys")
+    | project Timestamp, DeviceName, Source = "DriverLoad", FileName, FolderPath, SHA256, CommandLine = InitiatingProcessCommandLine, Parent = InitiatingProcessFileName;
+let Images = DeviceImageLoadEvents
+    | where Timestamp > ago(Lookback)
+    | where SHA256 in (Hashes)
+    | project Timestamp, DeviceName, Source = "ImageLoad", FileName, FolderPath, SHA256, CommandLine = InitiatingProcessCommandLine, Parent = InitiatingProcessFileName;
+union Proc, Files, Drivers, Images
+| join kind=leftouter (HashRole) on SHA256
+| extend Role = case(isnotempty(Role), Role,
+    FileName endswith ".anubis" or FileName startswith "restore files", "Anubis ransom artefact (name match)",
+    FileName endswith ".sys", "BYOVD driver (name match only)",
+    "tool or backdoor (name match only)")
+| extend KillerRemove = iff(FileName in~ ("gbbsym.exe", "symgooq.exe") and CommandLine has " -d", true, false)
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Hits = count(), Roles = make_set(Role, 20), Files = make_set(strcat(FolderPath, " | ", FileName), 20), Cmds = make_set(CommandLine, 10), Parents = make_set(Parent, 10), CallbackRemoval = max(KillerRemove) by DeviceName, Source
+| order by CallbackRemoval desc, Hits desc

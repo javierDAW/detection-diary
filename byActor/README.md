@@ -66,6 +66,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [GREYVIBE](./greyvibe/) | 1 |
 | [Ghostwriter](./ghostwriter/) | 1 |
 | [Gold Sahara](./gold-sahara/) | 1 |
+| [Hawkmoth (Anubis RaaS)](./hawkmoth-anubis-raas/) | 1 |
 | [Howling Scorpius](./howling-scorpius/) | 1 |
 | [Hydro Kitten](./hydro-kitten/) | 1 |
 | [INC Ransom](./inc-ransom/) | 1 |
