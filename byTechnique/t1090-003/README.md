@@ -4,11 +4,12 @@
 
 # Techniques: T1090.003
 
-10 day(s) covering this technique.
+11 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-11 | Agentic AI tooling harvests GitHub-exposed application secrets and pivots through Entra service principals into Azure Key Vault, Run Command and AI resources | Unattributed (agentic AI offensive framework) | [`2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/`](../../days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/) |
 | 2026-10-28 | Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Services hosts ends in rogue Entra devices, wiped MFA and BEC inbox rules | Unattributed (1337 Services GmbH infrastructure) | [`2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/`](../../days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/) |
 | 2026-08-27 | QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model | QTFY | [`2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/`](../../days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/) |
 | 2026-07-19 | INC Ransom Hits Georgia's City of Acworth: Municipal Double Extortion and the GOLD IONIC Playbook | INC Ransom | [`2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/`](../../days/2026/07/2026-07-19_INCRansom-Acworth-Municipal-DoubleExtortion/) |

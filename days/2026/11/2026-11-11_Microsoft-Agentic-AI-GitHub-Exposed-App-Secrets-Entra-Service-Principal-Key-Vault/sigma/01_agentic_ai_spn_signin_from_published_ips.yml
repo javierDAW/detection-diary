@@ -1,0 +1,47 @@
+title: Agentic AI Secret Abuse - Entra Service Principal Sign-In From Published Campaign IPs
+id: 7348a0fa-adfa-4ce2-aeaa-287271047814
+status: experimental
+description: |
+  Detects Microsoft Entra ID sign-ins (service principal or non-interactive) from the IP addresses that
+  Microsoft Threat Intelligence published on 2026-11-05 for an unnamed actor using an agentic AI offensive
+  framework (ARTEX) to find application credentials leaked on GitHub and sign in to Entra ID tenants as
+  service principals. From as early as 2026-10-28 the sign-ins came mainly from 199.19.77.84 and
+  199.19.77.18 (the latter is a Tor exit node); 65.87.223.26 and 157.22.126.128 "may be linked" (not
+  confirmed) and are kept in a separate, lower-confidence selection.
+  Field names follow SigmaHQ azure signinlogs conventions (IPAddress, ResultType); service principal
+  sign-ins live in a separate Entra log category (ServicePrincipalSignInLogs / AADServicePrincipalSignInLogs)
+  - make sure your backend mapping includes that category, otherwise this rule only sees user sign-ins.
+  Any result (success or failure) is relevant: a failure with AADSTS7000215 / 7000222 still means the
+  source holds a credential for the app (see sigma/03).
+  Honesty: IPs are published by Microsoft but may be rotated or reassigned; 199.19.77.18 is a Tor exit
+  and will also match unrelated Tor users. Microsoft notes that IP blocking will not stop an agent that
+  changes infrastructure; treat this as an alerting anchor, not a control. Not tested.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/11/05/threat-actors-use-agentic-ai-tooling-to-find-and-abuse-exposed-secrets/
+author: Jarmi
+date: 2026/11/11
+tags:
+  - attack.initial-access
+  - attack.persistence
+  - attack.defense-evasion
+  - attack.t1078.004
+  - attack.credential-access
+  - attack.t1552.001
+logsource:
+  product: azure
+  service: signinlogs
+detection:
+  selection_primary_ips:
+    IPAddress:
+      - '199.19.77.84'
+      - '199.19.77.18'
+  selection_possibly_linked_ips:
+    IPAddress:
+      - '65.87.223.26'
+      - '157.22.126.128'
+  condition: selection_primary_ips or selection_possibly_linked_ips
+falsepositives:
+  - Unrelated Tor users signing in through the exit node 199.19.77.18 (user sign-ins; service principal sign-ins over Tor are rare and still suspicious).
+  - Reassignment of these addresses to a different tenant or provider after publication.
+
+level: high

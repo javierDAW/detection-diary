@@ -4,11 +4,12 @@
 
 # Techniques: T1078.004
 
-20 day(s) covering this technique.
+21 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-11 | Agentic AI tooling harvests GitHub-exposed application secrets and pivots through Entra service principals into Azure Key Vault, Run Command and AI resources | Unattributed (agentic AI offensive framework) | [`2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/`](../../days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/) |
 | 2026-11-02 | Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, stolen session tokens and rogue MFA devices | Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo) | [`2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/`](../../days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/) |
 | 2026-10-29 | LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI and container registries through Python startup hooks | Unattributed (LiteLLM 1.107.0 release-pipeline compromise) | [`2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/`](../../days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/) |
 | 2026-10-28 | Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Services hosts ends in rogue Entra devices, wiped MFA and BEC inbox rules | Unattributed (1337 Services GmbH infrastructure) | [`2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/`](../../days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/) |

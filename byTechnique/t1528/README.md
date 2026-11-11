@@ -4,11 +4,12 @@
 
 # Techniques: T1528
 
-15 day(s) covering this technique.
+16 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-11 | Agentic AI tooling harvests GitHub-exposed application secrets and pivots through Entra service principals into Azure Key Vault, Run Command and AI resources | Unattributed (agentic AI offensive framework) | [`2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/`](../../days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/) |
 | 2026-10-29 | LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI and container registries through Python startup hooks | Unattributed (LiteLLM 1.107.0 release-pipeline compromise) | [`2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/`](../../days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/) |
 | 2026-10-28 | Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Services hosts ends in rogue Entra devices, wiped MFA and BEC inbox rules | Unattributed (1337 Services GmbH infrastructure) | [`2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/`](../../days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/) |
 | 2026-10-22 | GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launched by a VS Code folderOpen task, with cron persistence | Unattributed GhostAction operator (Fake Font / PolinRider naming overlap) | [`2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/`](../../days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/) |

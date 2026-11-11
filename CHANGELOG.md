@@ -1,3 +1,21 @@
+## 2026.11.11 — Day 141 — Agentic AI tooling abuses GitHub-exposed app secrets to pivot through Entra service principals into Azure
+
+### Added
+- `days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/` — Microsoft Threat Intelligence (2026-11-05) reported agentic AI offensive tooling searching GitHub for exposed application credentials and AI keys (from August 2026), signing in to Entra ID as service principals from 199.19.77.84 and a Tor exit (from 2026-10-28), harvesting credentials through ARM and pivoting to Key Vault, VM Run Command and Graph. Unattributed; no hashes or domains published.
+- Sigma (3): `01`-`03` — service principal sign-ins from published IPs; credential-returning ARM operations or Run Command from them; AADSTS7000215 / 7000222 secret failures.
+- KQL (3): service-principal sign-in anomalies and secret failure-then-success; ARM list* operations, approximate retry fingerprint and multi-resource tokens; Key Vault and Storage access by unseen IPs.
+- YARA (1 file, 2 rules): hygiene scanners for Entra client secrets and AI or Azure credential names in repo clones.
+- Suricata (1 file, 3 sids): 9990001-9990003, published IPs and a generic shell-in-user-agent heuristic (marginal).
+- PEAK hunts (3): credential-holder detection; ARM harvest, Key Vault exfiltration and Run Command; GitHub exposure inventory and secret-lifetime rotation.
+- `iocs.csv` (11 entries) — 4 IPs, 2 AADSTS codes, behavioural notes. No CVEs, so no `kev.md`.
+- `kill_chain.svg` — template C, canonical palette with identity-cloud accent, six stages; critical: sign-in, ARM harvesting, pivot.
+
+### Pedagogy
+- A service principal secret is a password without MFA: hygiene and workload-identity policy are the controls.
+- A secret that touched a public repo is compromised even after deletion.
+- Agentic attackers self-correct: a 400 then a corrected retry within seconds is a behavioural fingerprint.
+- Export service-principal and non-interactive sign-in logs or this chain is invisible.
+
 ## 2026.11.10 — Day 140 — Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security killers, AnyDesk in Safe Mode
 
 ### Added
