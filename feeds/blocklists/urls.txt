@@ -1,5 +1,5 @@
 # detection-diary blocklist — url
-# generated 2026-11-11 08:32 UTC
+# generated 2026-11-12 08:41 UTC
 # defensive/educational — validate before blocking; indicators decay
 http://154.82.81.205/YD20251001143052.zip
 http://154.82.81.205/YN20250923193706.zip
@@ -64,6 +64,10 @@ https://ad.starx-net.com/api/<NONCE>/v1
 https://ad.starx-net.com:8881/telemetry/v12
 https://afford-effect-construct-tricks.trycloudflare.com
 https://api.3n7wj.com
+https://api.frameworkmetrics.xyz/v1/analytics
+https://api.frameworkmetrics.xyz/v1/assets/
+https://api.frameworkmetrics.xyz/v1/electron
+https://api.frameworkmetrics.xyz/v1/swarm/report
 https://api.github.com/search/commits?q=thebeautifulsnadsoftime
 https://beta.padmin.com/mybenefits/Templates/cd.zip
 https://buy.stripe.com/7sY4gsbMKdZwfx39Sq0oM00

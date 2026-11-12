@@ -1,0 +1,125 @@
+{
+  "name": "2026-11-12 — 2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor — clusters: Unattributed (SleepyDuck-linked infrastructure)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1195.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1078",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1204",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1105",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1005",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1041",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1543.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1543.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1562.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1102.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1071.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    },
+    {
+      "techniqueID": "T1583.001",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply ch"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

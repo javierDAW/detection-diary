@@ -4,11 +4,12 @@
 
 # Techniques: T1105
 
-24 day(s) covering this technique.
+25 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-12 | Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor | Unattributed (SleepyDuck-linked infrastructure) | [`2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/`](../../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) |
 | 2026-11-09 | BITTER (TA397) PapRAT: ftp.exe .ico scripts, VHDX and RAR lures, and Type 194 MSI droppers against South Asian government and energy targets | BITTER | [`2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/`](../../days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/) |
 | 2026-11-05 | Ivanti Connect Secure zero-day chain: UTA0576 chains CVE-2026-104935, CVE-2026-118527 and CVE-2026-111357 for unauthenticated root | UTA0576 | [`2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/`](../../days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/) |
 | 2026-10-31 | Hitachi Energy CoreTec (CVE-2026-13162): time-zone command injection plus Dirty Frag root on an OT edge device, with the TRO600 RCE advisory | Unattributed (advisory-only, no actor) | [`2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/`](../../days/2026/10/2026-10-31_Hitachi-Energy-CoreTec-CVE-2026-13162-TZ-Command-Injection-Dirty-Frag-Root-TRO600-RCE/) |

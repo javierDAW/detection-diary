@@ -4,11 +4,12 @@
 
 # Techniques: T1219
 
-20 day(s) covering this technique.
+21 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-12 | Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor | Unattributed (SleepyDuck-linked infrastructure) | [`2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/`](../../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) |
 | 2026-11-10 | Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security killers and AnyDesk persisted in Safe Mode | Hawkmoth (Anubis RaaS) | [`2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/`](../../days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/) |
 | 2026-10-20 | Silent Ransom Group leaked chats: 3CX callback funnel, IT-impersonation vishing, in-person agents and the Sleepless Threat spin-off | Silent Ransom Group (SRG) · Luna Moth · Chatty Spider · UNC3753 · Sleepless Threat | [`2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/`](../../days/2026/10/2026-10-20_SRG-Sleepless-Threat-Leaked-Chats-Vishing-Physical-Agents-3CX/) |
 | 2026-10-19 | ARMORY CASTLE exploits BeyondTrust Remote Support zero-day CVE-2026-102764: SAWFLY web shell, SUID root, vault dumps and the BARECLAW tunnel | ARMORY CASTLE (formerly UNC5221) | [`2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/`](../../days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/) |

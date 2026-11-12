@@ -1,0 +1,41 @@
+// Title: bee-js 13.3.0 / Swarm Desktop 0.56.2 stage 3 - ~/.solidity drop and systemd / LaunchAgent persistence (Linux, macOS), hidden-GUID app.msi install, .stuffed- staging, ScreenConnect instance 5cbe79c9c25524df, Defender exclusion add/remove and COR_PROFILER UAC bypass (Windows) (Defender XDR)
+// Id: 26f127c5-d42f-41e9-9650-190f16d1f6fe
+// MITRE: T1543.002 Systemd Service; T1543.001 Launch Agent; T1219 Remote Access Software; T1562.001 Disable or Modify Tools; T1548.002 Bypass User Account Control; T1105 Ingress Tool Transfer (mapping by Jarmi)
+// Reference: Socket 2026-11-09; StepSecurity 2026-11-08/09; The Hacker News 2026-11-09
+// Author: Jarmi
+// Date: 2026-11-12
+// Tested on: not tested
+// Honesty: file names, unit / plist names, the .stuffed- prefix, the hidden %LOCALAPPDATA%\.<32-hex-guid>\app.msi path, the ScreenConnect service name and the Defender exclusion add-then-remove are from Socket / StepSecurity. Exact registry value names of the exclusion, msiexec flags and the full ScreenConnect command line were NOT published; the registry and command-line filters below are generic. The UAC bypass (UACME method 39, COR_PROFILER against mmc.exe) is a Socket summary with moderate reliability; the COR_PROFILER branch is a generic detection for that method, not a campaign artefact.
+// Tables: DeviceFileEvents, DeviceProcessEvents, DeviceRegistryEvents.
+// Confidence: high for the solidity-langsupport-runner unit / LaunchAgent and the ScreenConnect instance id; medium for app.msi and .stuffed-; low-medium for the COR_PROFILER branch.
+// FP notes: legitimate ScreenConnect deployments (different instance id - baseline in <add_known_screenconnect_instances>); profilers that legitimately set COR_PROFILER (APM agents).
+let Lookback = 14d;
+let ScInstance = "5cbe79c9c25524df";
+let SolidityNames = dynamic(["linux_amd64", "linux_arm64", "darwin_amd64", "darwin_arm64", ".run.py", ".run.cjs"]);
+// 1) Linux / macOS: Go backdoor drop and persistence
+let Files = DeviceFileEvents
+    | where Timestamp > ago(Lookback)
+    | where (FolderPath has "/.solidity/" and FileName in (SolidityNames))
+        or FileName in ("solidity-langsupport-runner.service", "com.solidity.langsupport.runner.plist")
+        or (FolderPath has @"\AppData\Local\." and FileName =~ "app.msi")
+        or (FolderPath has @"\Temp\" and FileName startswith ".stuffed-")
+    | project Timestamp, DeviceName, Signal = "Stage3File", ActionType, Detail = FolderPath, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine;
+// 2) Windows process activity: msiexec on hidden-GUID app.msi, .stuffed- scripts, ScreenConnect instance, systemctl / launchctl enabling the persistence
+let Procs = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where (FileName =~ "msiexec.exe" and ProcessCommandLine has @"\AppData\Local\." and ProcessCommandLine has "app.msi")
+        or (ProcessCommandLine has ".stuffed-")
+        or (ProcessCommandLine has ScInstance)
+        or (ProcessCommandLine has "solidity-langsupport-runner" or ProcessCommandLine has "com.solidity.langsupport.runner")
+        or (FileName =~ "xattr" and ProcessCommandLine has "com.apple.quarantine" and ProcessCommandLine has ".solidity")
+    | project Timestamp, DeviceName, Signal = "Stage3Process", ActionType, Detail = ProcessCommandLine, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine;
+// 3) Windows registry: ScreenConnect service, Defender path exclusion on AppData\Local\. or Temp, COR_PROFILER set in the user environment
+let Reg = DeviceRegistryEvents
+    | where Timestamp > ago(Lookback)
+    | where (RegistryKey has @"\Services\" and RegistryKey has ScInstance)
+        or (RegistryKey has @"\Windows Defender\Exclusions\" and (RegistryValueName has @"\AppData\Local\." or RegistryValueName has @"\Temp\"))
+        or (RegistryKey has @"\Environment" and RegistryValueName =~ "COR_PROFILER")
+    | project Timestamp, DeviceName, Signal = "Stage3Registry", ActionType, Detail = strcat(RegistryKey, " | ", RegistryValueName, " = ", RegistryValueData), SHA256 = "", InitiatingProcessFileName, InitiatingProcessCommandLine;
+union Files, Procs, Reg
+| where Detail !has_any (dynamic(["<add_known_screenconnect_instances>"]))
+| order by DeviceName asc, Timestamp asc

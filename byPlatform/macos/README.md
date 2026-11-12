@@ -4,11 +4,12 @@
 
 # Platforms: macos
 
-17 day(s) covering this platform.
+18 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-12 | Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor | Unattributed (SleepyDuck-linked infrastructure) | [`2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/`](../../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) |
 | 2026-11-04 | MCPhantom: AI coding agents install deprecated MCP servers from training data, including an unpatched server-puppeteer RCE | MCPhantom (Glow Labs research pattern, no threat actor) | [`2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/`](../../days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/) |
 | 2026-10-29 | LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI and container registries through Python startup hooks | Unattributed (LiteLLM 1.107.0 release-pipeline compromise) | [`2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/`](../../days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/) |
 | 2026-10-22 | GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launched by a VS Code folderOpen task, with cron persistence | Unattributed GhostAction operator (Fake Font / PolinRider naming overlap) | [`2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/`](../../days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/) |

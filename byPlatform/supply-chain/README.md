@@ -4,11 +4,12 @@
 
 # Platforms: supply-chain
 
-26 day(s) covering this platform.
+27 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-12 | Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor | Unattributed (SleepyDuck-linked infrastructure) | [`2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/`](../../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) |
 | 2026-11-08 | Poisoned Source: APT29 turns a hijacked Plerdy analytics script and watering holes into iOS and Android n-day exploit delivery | APT29 | [`2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/`](../../days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/) |
 | 2026-11-04 | MCPhantom: AI coding agents install deprecated MCP servers from training data, including an unpatched server-puppeteer RCE | MCPhantom (Glow Labs research pattern, no threat actor) | [`2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/`](../../days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/) |
 | 2026-11-01 | Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and TraderTraitor attribution | TraderTraitor | [`2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/`](../../days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/) |

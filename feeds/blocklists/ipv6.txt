@@ -1,5 +1,5 @@
 # detection-diary blocklist — ipv6
-# generated 2026-11-11 08:32 UTC
+# generated 2026-11-12 08:41 UTC
 # defensive/educational — validate before blocking; indicators decay
 2400:8d60:2::1:841d:5dd
 2606:4700:3036::6815:4ade

@@ -1,0 +1,50 @@
+// Title: bee-js 13.3.0 exposure inventory - package-manager installs during 2026-11-09 00:09-01:25 UTC, generate-version.cjs executions, known stage hashes, and Swarm Desktop 0.56.2 hosts (Defender XDR)
+// Id: 81a3745f-2220-4fa1-993d-15bfbc5bc604
+// MITRE: T1195.002 Compromise Software Supply Chain; T1059.007 JavaScript; T1204 User Execution (mapping by Jarmi)
+// Reference: Socket 2026-11-09; StepSecurity 2026-11-08/09; GitHub advisory GHSA-hh7j-5m3j-23pf https://github.com/advisories/GHSA-hh7j-5m3j-23pf
+// Author: Jarmi
+// Date: 2026-11-12
+// Tested on: not tested
+// Honesty: @ethersphere/bee-js 13.3.0 was live from 2026-11-09 00:09:50 to 01:24:58 UTC; installs in that window that resolved bee-js 13.3.0 ran "node scripts/generate-version.cjs" as postinstall (npm 11 and earlier, Yarn Classic, Yarn Berry < 4.14.0 run dependency postinstall by default). Swarm Desktop 0.56.2 was offered via auto-update to Windows x64 and Apple Silicon from about 00:43 UTC until about 09:14 UTC. A cached / mirrored tarball can be installed later than the window, so the generate-version.cjs branch is not time-bounded. The executable name and install path of Swarm Desktop are NOT given by the sources; the product-name filter is a heuristic - adapt with <add_swarm_desktop_exe_name>. The loader for Swarm Desktop lives inside app.asar (dist/desktop/src/index.js), so its index.js hash will not appear as a standalone file event.
+// Tables: DeviceProcessEvents, DeviceFileEvents.
+// Confidence: high for generate-version.cjs + network; medium for installs inside the window (most will be benign); high for hash matches.
+// FP notes: in clean bee-js releases generate-version.cjs was a "prepare" script and scripts/ was not in the published "files" list, so consumers should never execute it; maintainers building bee-js from source will (baseline those hosts). Most installs inside the window are benign - check the resolved bee-js version in the lockfile.
+let WindowStart = datetime(2026-11-09T00:09:00Z);
+let WindowEnd = datetime(2026-11-09T01:30:00Z);
+let SwarmWindowEnd = datetime(2026-11-09T09:30:00Z);
+let StageHashes = dynamic([
+    "9b73e7cd4e1425e770392549d8df46c706139ef476f4f7b9ac405165dc8d9696",
+    "b601776817363b96295119f7221338a122d5247a35a77a64b04f286e1bbcc565",
+    "80d2672e2599732d3c0ae2a4cd0d1e3fe4d555a60273ce33feb99db3f34d250f",
+    "fae61f31f00988fdc5cc9e7272b51e08af2e245d81003237875415930fd27358",
+    "37d14bff30762ca701e9c1f8bc6c57c065bb20ae3a2208cb7411a6530610f08e",
+    "7527e86d70e7c9493db4356f1c3775380431b310000f2602c1e993cf435d01da",
+    "ee2f762e9ed3fd89f106e0b80c2e923bf1aed9a280277d3d998a5902c4d9ec0f",
+    "f81315968e679b48f6bdff1c9b928bb223230d07f44d7948412c2250c2a14deb"]);
+let PkgManagers = dynamic(["node", "node.exe", "npm", "npm.cmd", "npx", "pnpm", "pnpm.exe", "yarn", "yarn.cmd", "bun", "bun.exe"]);
+// 1) Package-manager install commands inside the publication window (scope list, not an alert)
+let WindowInstalls = DeviceProcessEvents
+    | where Timestamp between (WindowStart .. WindowEnd)
+    | where FileName in~ (PkgManagers) or InitiatingProcessFileName in~ (PkgManagers)
+    | where ProcessCommandLine has_any (dynamic([" install", " ci", " add ", " i ", "update", "@ethersphere/bee-js"]))
+    | project Timestamp, DeviceName, Signal = "InstallInWindow", Detail = ProcessCommandLine, FolderPath, SHA256, AccountName;
+// 2) The postinstall loader executed (any time; cached tarballs)
+let PostInstall = DeviceProcessEvents
+    | where Timestamp > ago(30d)
+    | where ProcessCommandLine has "generate-version.cjs"
+    | where ProcessCommandLine has "bee-js" or InitiatingProcessCommandLine has "bee-js" or FileName in~ (PkgManagers)
+    | project Timestamp, DeviceName, Signal = "GenerateVersionCjsExecuted", Detail = ProcessCommandLine, FolderPath, SHA256, AccountName;
+// 3) Any file event matching a published stage hash
+let HashHits = DeviceFileEvents
+    | where Timestamp > ago(30d)
+    | where SHA256 in (StageHashes)
+    | project Timestamp, DeviceName, Signal = "KnownStageHash", Detail = FolderPath, FolderPath, SHA256, AccountName = InitiatingProcessAccountName;
+// 4) Swarm Desktop running during or after the 0.56.2 auto-update window (heuristic product / file name match)
+let SwarmDesktop = DeviceProcessEvents
+    | where Timestamp > WindowStart
+    | where ProcessVersionInfoProductName has "Swarm" or FileName has "Swarm" or FileName =~ "<add_swarm_desktop_exe_name>"
+    | summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Versions = make_set(ProcessVersionInfoProductVersion, 10), Paths = make_set(FolderPath, 5), Hashes = make_set(SHA256, 10) by DeviceName, AccountName
+    | extend Signal = iff(Versions has "0.56.2", "SwarmDesktop_0_56_2", iff(FirstSeen < SwarmWindowEnd, "SwarmDesktopRunningDuringWindow", "SwarmDesktopPresent"))
+    | project Timestamp = FirstSeen, DeviceName, Signal, Detail = strcat(tostring(Versions), " ", tostring(Paths)), FolderPath = tostring(Paths[0]), SHA256 = tostring(Hashes[0]), AccountName;
+union WindowInstalls, PostInstall, HashHits, SwarmDesktop
+| order by Signal asc, Timestamp asc

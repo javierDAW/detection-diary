@@ -1,0 +1,54 @@
+title: bee-js / Swarm Desktop Windows Stage 3 - Hidden-GUID app.msi Install, .stuffed- Script Staging Or ScreenConnect Instance 5cbe79c9c25524df
+id: c0a72aa5-a536-4293-a710-854781b9f9f8
+status: experimental
+description: |
+  Detects the Windows stage 3 described by Socket (2026-11-09) for the trojanised @ethersphere/bee-js
+  13.3.0 / Swarm Desktop 0.56.2: invoke.ps1 and app.msi are fetched, PowerShell / VBS helpers are staged
+  in %TEMP% with names starting with ".stuffed-", app.msi is placed in a hidden directory
+  %LOCALAPPDATA%\.<32-hex-guid>\ and installed silently via msiexec, a Defender exclusion is added then
+  removed, and a ConnectWise-signed ScreenConnect 25.4.3 client is installed as the SYSTEM service
+  "ScreenConnect Client (5cbe79c9c25524df)" with relay 185.232.84.169:8041.
+  Socket did not publish full command lines. selection_msi requires msiexec and app.msi under a dot-prefixed
+  directory in AppData\Local (no specific msiexec flags are asserted). selection_screenconnect_instance
+  matches the instance identifier 5cbe79c9c25524df anywhere in the command line (ScreenConnect client
+  processes and service paths normally embed it; hunting hint, medium confidence). selection_stuffed
+  matches script hosts running a %TEMP%\.stuffed-* file.
+  Not tested.
+references:
+  - https://socket.dev/blog/bee-js-compromise
+  - https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+author: Jarmi
+date: 2026/11/12
+tags:
+  - attack.execution
+  - attack.t1059.001
+  - attack.command-and-control
+  - attack.t1219
+  - attack.defense-evasion
+  - attack.t1562.001
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_msi_img:
+    Image|endswith: '\msiexec.exe'
+  selection_msi_cmd:
+    CommandLine|contains|all:
+      - '\AppData\Local\.'
+      - 'app.msi'
+  selection_screenconnect_instance:
+    CommandLine|contains: '5cbe79c9c25524df'
+  selection_stuffed_img:
+    Image|endswith:
+      - '\powershell.exe'
+      - '\pwsh.exe'
+      - '\wscript.exe'
+      - '\cscript.exe'
+  selection_stuffed_cmd:
+    CommandLine|contains: '\Temp\.stuffed-'
+  condition: (selection_msi_img and selection_msi_cmd) or selection_screenconnect_instance or (selection_stuffed_img and selection_stuffed_cmd)
+falsepositives:
+  - Legitimate MSI installers dropped by software into a dot-prefixed folder under AppData\Local named app.msi (rare; verify the signer and parent).
+  - The instance identifier is specific to this attacker relay; legitimate ScreenConnect deployments use different identifiers.
+
+level: high

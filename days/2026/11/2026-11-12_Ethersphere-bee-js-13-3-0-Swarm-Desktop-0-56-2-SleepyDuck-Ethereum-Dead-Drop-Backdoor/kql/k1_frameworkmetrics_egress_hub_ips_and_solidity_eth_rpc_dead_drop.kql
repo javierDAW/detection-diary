@@ -1,0 +1,41 @@
+// Title: bee-js 13.3.0 / Swarm Desktop 0.56.2 - egress to frameworkmetrics.xyz, Go backdoor hub IPs (TCP 4912), ScreenConnect relay (TCP 8041) and Ethereum dead-drop RPC calls from processes under ~/.solidity (Defender XDR)
+// Id: cdb71bb2-f480-440f-9ae5-571286fafad9
+// MITRE: T1195.002 Compromise Software Supply Chain; T1059.007 JavaScript; T1071.001 Web Protocols; T1102 Web Service (dead-drop resolver); T1041 Exfiltration Over C2 Channel; T1219 Remote Access Software (mapping by Jarmi)
+// Reference: Socket 2026-11-09; StepSecurity 2026-11-08/09; The Hacker News 2026-11-09; GitHub advisory GHSA-hh7j-5m3j-23pf https://github.com/advisories/GHSA-hh7j-5m3j-23pf
+// Author: Jarmi
+// Date: 2026-11-12
+// Tested on: not tested
+// Honesty: hub IP history is a Socket summary (193.57.9.155:4912 current as of 2026-11-08 23:30 UTC; the other six are earlier hubs). The hub is read from Ethereum contract 0xf8a900Db50b3331be6B768bA460BB59f3E40C344 and can change at any time without new malware - indicators decay, re-read the contract instead of trusting this list. Public RPC gateways (rpc.ankr.com, cloudflare-eth.com) are used by many legitimate wallets and dApps; the RPC branch only fires when the initiating process lives under a .solidity folder.
+// Tables: DeviceNetworkEvents (Windows, Linux and macOS sensors). RemoteUrl is populated only for some connections (SNI / HTTP host); DNS lookups appear as ActionType "DnsConnectionInspected" on supported sensors.
+// Confidence: high for frameworkmetrics.xyz and the current hub; medium for older hubs and the ScreenConnect relay; medium for the .solidity RPC branch.
+// FP notes: Ethereum developers running local tooling from a folder named .solidity (baseline in <add_known_devices>); security research sandboxes resolving the domain.
+let Lookback = 14d;
+let C2Domain = "frameworkmetrics.xyz";
+let HubIps = dynamic(["193.57.9.155", "193.57.9.17", "178.16.54.222", "107.189.27.223", "107.189.27.46", "91.108.240.156", "107.189.16.215"]);
+let RelayIp = "185.232.84.169";
+let RpcGateways = dynamic(["rpc.ankr.com", "cloudflare-eth.com"]);
+let KnownDevices = dynamic(["<add_known_devices>"]);
+let Net = DeviceNetworkEvents
+    | where Timestamp > ago(Lookback)
+    | where DeviceName !in (KnownDevices);
+// 1) Loader / stage-2 / stage-3 endpoint
+let Loader = Net
+    | where RemoteUrl has C2Domain or tostring(AdditionalFields) has C2Domain
+    | extend Signal = "FrameworkMetricsC2", Severity = "high";
+// 2) Backdoor hub (raw IP, TCP 4912) and ScreenConnect relay (TCP 8041)
+let Hub = Net
+    | where (RemoteIP in (HubIps) and RemotePort == 4912) or (RemoteIP == RelayIp and RemotePort == 8041)
+    | extend Signal = iff(RemoteIP == RelayIp, "ScreenConnectRelay", "GoBackdoorHub"), Severity = "high";
+// 3) Ethereum dead-drop resolver: eth_call to public RPC gateways from a binary or launcher under .solidity
+let DeadDrop = Net
+    | where RemoteUrl has_any (RpcGateways)
+    | where InitiatingProcessFolderPath has "/.solidity" or InitiatingProcessCommandLine has "/.solidity/"
+    | extend Signal = "SolidityEthRpcDeadDrop", Severity = "high";
+// 4) Any process under .solidity connecting to a raw IP on 4912 (hub may have rotated off the list)
+let AnyHub = Net
+    | where RemotePort == 4912 and RemoteIPType == "Public"
+    | where InitiatingProcessFolderPath has "/.solidity" or InitiatingProcessCommandLine has "/.solidity/"
+    | extend Signal = "SolidityProcessToPort4912", Severity = "high";
+union Loader, Hub, DeadDrop, AnyHub
+| project Timestamp, DeviceName, Signal, Severity, ActionType, RemoteIP, RemotePort, RemoteUrl, InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessParentFileName, InitiatingProcessAccountName
+| order by Timestamp asc

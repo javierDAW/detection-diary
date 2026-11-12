@@ -1,0 +1,31 @@
+title: DNS Query For frameworkmetrics.xyz (bee-js 13.3.0 / Swarm Desktop 0.56.2 Loader C2)
+id: 9b68fcce-efaa-4169-a6b6-97af21d1c873
+status: experimental
+description: |
+  Detects DNS resolution of frameworkmetrics.xyz or any subdomain (api.frameworkmetrics.xyz is the loader,
+  stage-2 exfiltration and stage-3 download endpoint used by the trojanised @ethersphere/bee-js 13.3.0
+  npm package and Swarm Desktop 0.56.2, Socket / StepSecurity 2026-11-09). Works on endpoint DNS
+  telemetry (Sysmon EID 22, EDR) and can be mapped to resolver / proxy logs. The query precedes the
+  3000 ms HTTPS request, so it fires even when the connection times out. Check CI runner DNS logs as
+  well as developer workstations. Not tested.
+references:
+  - https://socket.dev/blog/bee-js-compromise
+  - https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+  - https://github.com/advisories/GHSA-hh7j-5m3j-23pf
+author: Jarmi
+date: 2026/11/12
+tags:
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.initial-access
+  - attack.t1195.002
+logsource:
+  category: dns_query
+detection:
+  selection:
+    QueryName|endswith: 'frameworkmetrics.xyz'
+  condition: selection
+falsepositives:
+  - Security research, sandbox or threat-intel enrichment systems resolving the domain.
+
+level: high

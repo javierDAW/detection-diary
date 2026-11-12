@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1080" role="img" aria-labelledby="t d">
+<title id="t">Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2 supply chain kill chain</title>
+<desc id="d">Single-lane chain of six stages: failed CI secret-dump probes and C2 domain registration on 2026-11-06; abuse of the bee-worker release identity to publish bee-js 13.3.0 through trusted publishing; postinstall loader executing remote JavaScript; signed Swarm Desktop 0.56.2 delivered by auto-update; wallet theft and Go or ScreenConnect backdoors; Ethereum dead-drop C2 and break points. Critical stages are the release abuse, the postinstall loader and the backdoor stage. Detection anchors are Sigma 01-04, KQL k1-k3, YARA, Suricata sids 9992001-9992005 and PEAK hunts H1-H3.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1080"/>
+<rect class="acc-supply-chain" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise</text>
+<text class="meta" x="20" y="58">Vendor: Socket / StepSecurity (2026-11-09) | Date: 2026-11-12 | Cluster: unattributed, SleepyDuck-linked (medium) | Day 142</text>
+<rect class="laneL" x="20" y="85" width="840" height="890" rx="6"/>
+<text class="laneLabelL" x="560" y="104">NPM, GITHUB ACTIONS, SWARM DESKTOP, 6-9 NOV 2026</text>
+<rect class="stage" x="30" y="100" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="120" r="14"/>
+<text class="badgeText" x="50" y="124">1</text>
+<text class="label" x="75" y="124">Preparation 2026-11-06: failed CI secret-dump probes and C2 domain registration  [T1583.001 T1195.002]</text>
+<text class="sub" x="75" y="148">Probe branches ran workflows dumping toJSON(secrets) to webhook.site (Socket: no request body seen, moderate confidence)</text>
+<text class="sub" x="75" y="164">Targets shifted from GitHub PATs to Apple and Windows signing material to NPM_TOKEN; the harvest failed</text>
+<text class="sub" x="75" y="180">api.frameworkmetrics.xyz registered 2026-11-06 15:08 UTC (NICENIC); how the later credentials were obtained is unknown</text>
+<text class="mono" x="75" y="206">branches probe/force-dryrun-*  security/lab-secrets-*  test-run   api.frameworkmetrics[.]xyz</text>
+<line class="arrow" x1="440" y1="230" x2="440" y2="245" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="245" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="265" r="14"/>
+<text class="badgeText" x="50" y="269">2</text>
+<text class="label" x="75" y="269">Release path abuse: unsigned commit and release under the bee-worker identity  [T1195.002 T1078]</text>
+<text class="sub" x="75" y="293">2026-11-08 23:59:54 UTC unsigned direct commit to the upcoming branch; release-please PR #1288 was still open</text>
+<text class="sub" x="75" y="309">Release v13.3.0 at 00:06:01 UTC started the npm publish workflow, which needs no approval; published 00:09:50 UTC</text>
+<text class="sub" x="75" y="325">Valid SLSA provenance: it proves where the package was built, not that anyone reviewed the code</text>
+<text class="mono" x="75" y="351">commit de2f74e784b2eafa0d66fbb6d88b42ea11ee34cf   @ethersphere/bee-js@13.3.0</text>
+<line class="arrow" x1="440" y1="375" x2="440" y2="390" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="390" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="410" r="14"/>
+<text class="badgeText" x="50" y="414">3</text>
+<text class="label" x="75" y="414">bee-js 13.3.0 postinstall loader fetches and runs remote JavaScript  [T1195.002 T1059.007]</text>
+<text class="sub" x="75" y="438">package.json: prepare renamed to postinstall (node scripts/generate-version.cjs); loader on top of that file, no import needed</text>
+<text class="sub" x="75" y="454">https.get to /v1/analytics with X-Ethersphere: 1 and User-Agent = platform; response run via new Function with require and process</text>
+<text class="sub" x="75" y="470">Live on npm latest for about 75 minutes (until 01:24:58 UTC); dependents with open ranges: swarm-cli, bee-dashboard</text>
+<text class="mono" x="75" y="496">[FrameworkMetrics] analytics v2.3.1 is up to date   api.frameworkmetrics[.]xyz/v1/analytics</text>
+<line class="arrow" x1="440" y1="520" x2="440" y2="535" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="535" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="555" r="14"/>
+<text class="badgeText" x="50" y="559">4</text>
+<text class="label" x="75" y="559">Swarm Desktop 0.56.2: signing workflow abused, signed release pushed by auto-update  [T1195.002]</text>
+<text class="sub" x="75" y="583">Manual pre-release.yml run (free-form branch, no environment protection) used Apple and Windows signing certs; macOS notarized</text>
+<text class="sub" x="75" y="599">Updater offered 0.56.2 to Windows x64 and Apple Silicon from about 00:43 UTC; Intel Macs and Linux were not auto-updated</text>
+<text class="sub" x="75" y="615">Loader in dist/desktop/src/index.js runs at every launch via /v1/electron; release withdrawn about 09:14 UTC</text>
+<text class="mono" x="75" y="641">Bee Desktop version: 0.56.2 (production)   Developer ID Swarm Association (9J9SPHU9RP)</text>
+<line class="arrow" x1="440" y1="665" x2="440" y2="680" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="680" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="700" r="14"/>
+<text class="badgeText" x="50" y="704">5</text>
+<text class="label" x="75" y="704">Wallet theft and backdoors: Go shell on Linux/macOS, ScreenConnect on Windows  [T1005 T1041 T1543 T1219]</text>
+<text class="sub" x="75" y="728">config.yaml and data-dir/keys/swarm.key POSTed to /v1/swarm/report; keystore password sits in plaintext in config.yaml</text>
+<text class="sub" x="75" y="744">Linux/macOS: ~/.solidity/ binary plus systemd user unit or LaunchAgent; Windows: silent ScreenConnect MSI, Defender exclusion</text>
+<text class="sub" x="75" y="760">Windows service ScreenConnect Client (5cbe79c9c25524df) points to a relay; funds theft not established by the sources</text>
+<text class="mono" x="75" y="786">~/.solidity/   solidity-langsupport-runner.service   com.solidity.langsupport.runner   185.232.84[.]169:8041</text>
+<line class="arrow" x1="440" y1="810" x2="440" y2="825" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="825" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="845" r="14"/>
+<text class="badgeText" x="50" y="849">6</text>
+<text class="label" x="75" y="849">Ethereum dead-drop C2 and break points  [T1102.001 T1071.001]</text>
+<text class="sub" x="75" y="873">Backdoor reads the hub from contract 0xf8a900...C344 via public RPC gateways (ankr, cloudflare-eth); operator can retarget at any time</text>
+<text class="sub" x="75" y="889">Hub 193.57.9[.]155:4912 as of Nov 8; TLS without certificate validation; persistent sh pty shell</text>
+<text class="sub" x="75" y="905">Break points: block lifecycle scripts, age-gate new releases, protect release workflows, rotate wallet and CI secrets, rebuild hosts</text>
+<text class="mono" x="75" y="931">eth_call 0x02d91518   193.57.9[.]155:4912   rpc.ankr.com   cloudflare-eth.com</text>
+<rect class="footer" x="20" y="985" width="840" height="85" rx="6"/>
+<text class="footerH" x="35" y="1008">Detection anchors</text>
+<text class="footerT" x="35" y="1027">Sigma 01-04, KQL k1-k3, YARA (3 rules), Suricata sids 9992001-9992005, PEAK H1-H3. Hub IPs rotate; treat them as historical.</text>
+<text class="footerT" x="35" y="1046">Break points: lifecycle-script policy, release-age gate, workflow approvals, ~/.solidity and ScreenConnect service checks, RPC eth_call hunts.</text>
+</svg>

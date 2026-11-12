@@ -1,3 +1,20 @@
+## 2026.11.12 — Day 142 — Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing compromise with an Ethereum dead-drop backdoor
+
+### Added
+- `days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/` — an unsigned commit and release under the `bee-worker` identity made the project's own trusted-publishing workflow ship a postinstall loader (npm, 2026-11-09, Socket and StepSecurity), followed by a signed Swarm Desktop 0.56.2 via auto-update; wallet theft plus Go/ScreenConnect backdoors with an Ethereum dead-drop C2. Unattributed, SleepyDuck-linked infrastructure (medium).
+- Sigma (4): `01_..loader_connection`, `02_..dropper_files_and_persistence`, `03_..windows_screenconnect_stage3`, `04_dns_query_frameworkmetrics_xyz` — network, file/persistence, Windows stage 3 and DNS.
+- KQL (3): C2/hub egress and RPC dead-drop; persistence and ScreenConnect; npm exposure-window and Swarm Desktop inventory.
+- YARA (1 file, 3 rules): loader JS, Go backdoor strings (medium), persistence unit/plist.
+- Suricata (1 file, 5 sids 9992001-9992005): DNS, SNI, X-Ethersphere header, hub IPs, relay.
+- PEAK hunts (3): postinstall exposure; dead-drop eth_call to hub; wallet exposure and release-workflow abuse.
+- `iocs.csv` (41 entries) — domain, endpoints, hashes, hub history, contract, host artifacts. No CVE (GHSA only), so no `kev.md`.
+- `kill_chain.svg` — template C, canonical palette, supply-chain accent, six stages with IOC anchors.
+
+### Pedagogy
+- Valid provenance and signatures prove build origin, not code review; harden release and signing workflows.
+- Block dependency lifecycle scripts by default; removal does not remove persistence.
+- Dead-drop resolvers on a blockchain make IP blocking decay; hunt the eth_call-then-raw-TLS behaviour.
+
 ## 2026.11.11 — Day 141 — Agentic AI tooling abuses GitHub-exposed app secrets to pivot through Entra service principals into Azure
 
 ### Added

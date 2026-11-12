@@ -1,0 +1,42 @@
+type,value,context,confidence,source
+domain,api.frameworkmetrics.xyz,"C2 for the bee-js and Swarm Desktop loaders, stage payloads and wallet exfiltration; registered 2026-11-06; payload server served decoy or 404 shortly after discovery",high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+url,https://api.frameworkmetrics.xyz/v1/analytics,bee-js loader payload delivery,high,https://socket.dev/blog/bee-js-compromise
+url,https://api.frameworkmetrics.xyz/v1/electron,Swarm Desktop loader payload delivery,high,https://socket.dev/blog/bee-js-compromise
+url,https://api.frameworkmetrics.xyz/v1/assets/,stage 3 payload download,high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+url,https://api.frameworkmetrics.xyz/v1/swarm/report,wallet file exfiltration (JSON fields configYaml and v3),high,https://socket.dev/blog/bee-js-compromise
+string,X-Ethersphere: 1,Request header sent by the loaders; server returns decoy content without it,high,https://socket.dev/blog/bee-js-compromise
+string,[FrameworkMetrics] analytics v2.3.1 is up to date,Log line printed during npm install of bee-js 13.3.0,high,https://socket.dev/blog/bee-js-compromise
+string,193.57.9.155:4912,"Go backdoor hub as of 2026-11-08 23:30 UTC; contract values can change at any time; ip:port, indicators decay",medium,https://socket.dev/blog/bee-js-compromise
+string,193.57.9.17:4912,"Earlier hub from the contract write history (Sept 2026); ip:port, indicators decay",low,https://socket.dev/blog/bee-js-compromise
+string,178.16.54.222:4912,"Earlier hub (Sept 2026); ip:port, indicators decay",low,https://socket.dev/blog/bee-js-compromise
+string,107.189.27.223:4912,"Earlier hub (July 2026); ip:port, indicators decay",low,https://socket.dev/blog/bee-js-compromise
+string,107.189.27.46:4912,"Earlier hub (May 2026); ip:port, indicators decay",low,https://socket.dev/blog/bee-js-compromise
+string,91.108.240.156:4912,"Earlier hub (March 2026); ip:port, indicators decay",low,https://socket.dev/blog/bee-js-compromise
+string,107.189.16.215:4912,"Earlier hub (March 2026); ip:port, indicators decay",low,https://socket.dev/blog/bee-js-compromise
+string,185.232.84.169:8041,"ScreenConnect relay used by the Windows stage 3; ip:port, indicators decay",medium,https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+string,0xf8a900Db50b3331be6B768bA460BB59f3E40C344,"Ethereum mainnet dead-drop contract; param1() selector 0x02d91518 returns hub, param2() selector 0x1f049b68 returns payload URL",high,https://socket.dev/blog/bee-js-compromise
+string,0xFd3fc58bcbd8ccc77b6000201438eDfc636E7cA7,"Operator wallet maintaining the dead-drop contract (Socket summary section, re-check against the article)",medium,https://socket.dev/blog/bee-js-compromise
+string,de2f74e784b2eafa0d66fbb6d88b42ea11ee34cf,Unsigned commit authored as bee-worker that added the malicious release,high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+sha1,a205c8a5fed81e9a787645b2801f00be3db3348d,Malicious bee-js 13.3.0 npm tarball,high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+sha256,9b73e7cd4e1425e770392549d8df46c706139ef476f4f7b9ac405165dc8d9696,linux_amd64 backdoor,high,https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+sha256,b601776817363b96295119f7221338a122d5247a35a77a64b04f286e1bbcc565,linux_arm64 backdoor,high,https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+sha256,80d2672e2599732d3c0ae2a4cd0d1e3fe4d555a60273ce33feb99db3f34d250f,darwin_amd64 backdoor,high,https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+sha256,fae61f31f00988fdc5cc9e7272b51e08af2e245d81003237875415930fd27358,darwin_arm64 backdoor,high,https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+sha256,37d14bff30762ca701e9c1f8bc6c57c065bb20ae3a2208cb7411a6530610f08e,invoke.ps1 Windows loader,high,https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+sha256,7527e86d70e7c9493db4356f1c3775380431b310000f2602c1e993cf435d01da,app.msi ScreenConnect installer,high,https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+sha256,ee2f762e9ed3fd89f106e0b80c2e923bf1aed9a280277d3d998a5902c4d9ec0f,scripts/generate-version.cjs with loader (Socket summary section),medium,https://socket.dev/blog/bee-js-compromise
+sha256,f81315968e679b48f6bdff1c9b928bb223230d07f44d7948412c2250c2a14deb,dist/desktop/src/index.js in Swarm Desktop 0.56.2,high,https://socket.dev/blog/bee-js-compromise
+path,~/.solidity/,Hidden directory holding the Go backdoor and launchers,high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+path,~/.solidity/.run.py,Launcher script,high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+path,~/.solidity/.run.cjs,"Launcher script (macOS, Node present)",high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+path,~/.config/systemd/user/solidity-langsupport-runner.service,"Linux persistence, described as a Solidity language tooling helper",high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+path,~/Library/LaunchAgents/com.solidity.langsupport.runner.plist,macOS persistence with RunAtLoad,high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+path,%TEMP%\.stuffed-*,Windows staging PowerShell and VBScript launchers,high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+path,%LOCALAPPDATA%\.<32-hex-guid>\app.msi,Hidden directory with the ScreenConnect installer,high,https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+string,ScreenConnect Client (5cbe79c9c25524df),Windows SYSTEM service name of the attacker ScreenConnect client,medium,https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+string,Bee Desktop version: 0.56.2 (production),Line written to bee-desktop.log at every launch of the malicious Swarm Desktop,high,https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+string,@ethersphere/bee-js@13.3.0,"Malicious npm release, live 2026-11-09 00:09:50 to 01:24:58 UTC; 13.2.0 is the examined clean version",high,https://socket.dev/blog/bee-js-compromise
+string,Swarm Desktop 0.56.2,"Malicious desktop release, withdrawn about 09:14 UTC on 2026-11-09; clean baseline 0.56.1",high,https://socket.dev/blog/bee-js-compromise
+note,GHSA-hh7j-5m3j-23pf,GitHub advisory for bee-js 13.3.0; no CVE assigned in the sources read,high,https://github.com/advisories/GHSA-hh7j-5m3j-23pf
+note,Sources do not publish a threat actor name; link to the SleepyDuck Open VSX campaign rests on shared contract and relay (Pluto Security via Socket and THN),Attribution caveat,medium,https://thehackernews.com/2026/11/hackers-compromise-etherspheres-bee-js.html
+note,Hub IPs and the C2 domain decay; re-validate before blocking or treating as live,Operational caveat,high,https://socket.dev/blog/bee-js-compromise

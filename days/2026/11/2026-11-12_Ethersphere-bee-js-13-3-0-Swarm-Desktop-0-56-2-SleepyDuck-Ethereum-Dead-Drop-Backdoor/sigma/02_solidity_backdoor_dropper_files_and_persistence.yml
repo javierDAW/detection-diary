@@ -1,0 +1,48 @@
+title: SleepyDuck-Linked Go Backdoor - Files Under ~/.solidity Or solidity-langsupport-runner Persistence (Linux / macOS)
+id: 8521eba5-fcfb-4336-a598-fc5f7f6ef8cc
+status: experimental
+description: |
+  Detects creation of the stage-3 artefacts dropped on Linux and macOS by the payload served to the
+  trojanised @ethersphere/bee-js 13.3.0 and Swarm Desktop 0.56.2 (Socket / StepSecurity, 2026-11-09):
+  a Go backdoor in ~/.solidity/ (linux_amd64, linux_arm64, darwin_amd64, darwin_arm64) with a launcher
+  .run.py or .run.cjs, persisted as the systemd user unit
+  ~/.config/systemd/user/solidity-langsupport-runner.service (Linux) or the LaunchAgent
+  ~/Library/LaunchAgents/com.solidity.langsupport.runner.plist (macOS). The backdoor reads its hub
+  address from an Ethereum contract via public RPC gateways (dead-drop resolver) and opens a persistent
+  sh pty shell to the hub (TCP 4912 historically).
+  Uses the generic file_event category without product so it can be mapped to Linux (auditd / EDR) and
+  macOS (ESF / EDR) backends. Not tested.
+references:
+  - https://socket.dev/blog/bee-js-compromise
+  - https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+author: Jarmi
+date: 2026/11/12
+tags:
+  - attack.persistence
+  - attack.t1543.002
+  - attack.t1543.001
+  - attack.command-and-control
+  - attack.t1105
+  - attack.t1102
+logsource:
+  category: file_event
+detection:
+  selection_solidity_dir:
+    TargetFilename|contains: '/.solidity/'
+  selection_solidity_names:
+    TargetFilename|endswith:
+      - '/linux_amd64'
+      - '/linux_arm64'
+      - '/darwin_amd64'
+      - '/darwin_arm64'
+      - '/.run.py'
+      - '/.run.cjs'
+  selection_systemd_unit:
+    TargetFilename|endswith: '/.config/systemd/user/solidity-langsupport-runner.service'
+  selection_launchagent:
+    TargetFilename|endswith: '/Library/LaunchAgents/com.solidity.langsupport.runner.plist'
+  condition: (selection_solidity_dir and selection_solidity_names) or selection_systemd_unit or selection_launchagent
+falsepositives:
+  - Solidity toolchains (for example solc-select or editor language servers) can use a ~/.solidity directory; the combination with these exact file names, or the solidity-langsupport-runner unit / LaunchAgent, is not a known legitimate layout.
+
+level: high

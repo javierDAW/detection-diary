@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**141 cases** · **208 actors/clusters** · **408 ATT&CK techniques** · **16 platforms** · **99 sectors** · 2026-04-28 -> 2026-11-11
+**142 cases** · **209 actors/clusters** · **408 ATT&CK techniques** · **16 platforms** · **99 sectors** · 2026-04-28 -> 2026-11-12
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/"><img src="days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/kill_chain.svg" alt="2026-11-12 kill chain" width="240"></a><br><sub><b>2026-11-12</b><br>Unattributed (SleepyDuck-linked infrastructure)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/"><img src="days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/kill_chain.svg" alt="2026-11-11 kill chain" width="240"></a><br><sub><b>2026-11-11</b><br>Unattributed (agentic AI offensive framework)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/"><img src="days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/kill_chain.svg" alt="2026-11-10 kill chain" width="240"></a><br><sub><b>2026-11-10</b><br>Hawkmoth (Anubis RaaS)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/"><img src="days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/kill_chain.svg" alt="2026-11-09 kill chain" width="240"></a><br><sub><b>2026-11-09</b><br>BITTER</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/"><img src="days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/kill_chain.svg" alt="2026-11-09 kill chain" width="240"></a><br><sub><b>2026-11-09</b><br>BITTER</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/"><img src="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/kill_chain.svg" alt="2026-11-08 kill chain" width="240"></a><br><sub><b>2026-11-08</b><br>APT29</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/"><img src="days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/kill_chain.svg" alt="2026-11-07 kill chain" width="240"></a><br><sub><b>2026-11-07</b><br>Unattributed</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/"><img src="days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/kill_chain.svg" alt="2026-11-06 kill chain" width="240"></a><br><sub><b>2026-11-06</b><br></sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

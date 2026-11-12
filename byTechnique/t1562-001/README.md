@@ -4,11 +4,12 @@
 
 # Techniques: T1562.001
 
-27 day(s) covering this technique.
+28 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-12 | Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor | Unattributed (SleepyDuck-linked infrastructure) | [`2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/`](../../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) |
 | 2026-11-10 | Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security killers and AnyDesk persisted in Safe Mode | Hawkmoth (Anubis RaaS) | [`2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/`](../../days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/) |
 | 2026-10-27 | Qilin and INC ride a forged GlobalProtect cookie (CVE-2026-0257) from the VPN into vCenter, ESXi VMDKs and Veeam | Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius) | [`2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/`](../../days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/) |
 | 2026-10-25 | BlackX: an APT41-linked UEFI bootkit built on the BlackLotus Baton Drop exploit, used against Central Asian diplomatic bodies on fully patched Windows | APT41 | [`2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/`](../../days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/) |

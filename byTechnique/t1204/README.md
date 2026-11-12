@@ -4,11 +4,12 @@
 
 # Techniques: T1204
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-12 | Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor | Unattributed (SleepyDuck-linked infrastructure) | [`2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/`](../../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) |
 | 2026-11-04 | MCPhantom: AI coding agents install deprecated MCP servers from training data, including an unpatched server-puppeteer RCE | MCPhantom (Glow Labs research pattern, no threat actor) | [`2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/`](../../days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/) |
 | 2026-08-05 | Indirect prompt injection against AI web agents: crypto-payment scam and DeBank typosquat (Zscaler ThreatLabz) | Unattributed IPI operator | [`2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/`](../../days/2026/08/2026-08-05_IPI-AI-Agent-CryptoPayment-DeBank-Typosquat/) |
 | 2026-06-15 | OceanLotus (APT32) turns inward — SPECTRALVIPER via a FireAnt MetaKit supply-chain attack and a multi-year construction-firm intrusion | OceanLotus (APT32) | [`2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/`](../../days/2026/06/2026-06-15_OceanLotus-SPECTRALVIPER-FireAnt-SupplyChain/) |

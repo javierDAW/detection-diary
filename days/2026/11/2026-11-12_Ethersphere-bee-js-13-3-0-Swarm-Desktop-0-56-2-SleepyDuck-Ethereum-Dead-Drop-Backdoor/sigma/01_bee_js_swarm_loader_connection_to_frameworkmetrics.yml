@@ -1,0 +1,40 @@
+title: bee-js 13.3.0 / Swarm Desktop 0.56.2 Loader - Network Connection To api.frameworkmetrics.xyz
+id: 8851d764-8a43-420b-8bc3-d2cd7b2e3d76
+status: experimental
+description: |
+  Detects any process (typically node / node.exe running a package-manager postinstall, or the Swarm
+  Desktop Electron process) connecting to frameworkmetrics.xyz. The malicious npm release
+  @ethersphere/bee-js 13.3.0 (published 2026-11-09 00:09:50 UTC, removed 01:24:58 UTC) renamed the
+  "prepare" script to "postinstall" running "node scripts/generate-version.cjs"; the loader at the top of
+  that file does an HTTPS GET to api.frameworkmetrics.xyz/v1/analytics with User-Agent set to
+  process.platform and header "X-Ethersphere: 1", and runs the response through new Function(...).
+  The trojanised Swarm Desktop 0.56.2 (auto-update from about 00:43 UTC, withdrawn about 09:14 UTC) runs the
+  same loader at every launch against /v1/electron. Stage 2 posts Swarm config.yaml and swarm.key to
+  /v1/swarm/report and fetches stage 3 from /v1/assets/.
+  The domain was registered on 2026-11-06 (NICENIC) and has no legitimate use; any hit is relevant.
+  Field DestinationHostname is only populated when the sensor resolves names (Sysmon EID 3 with
+  hostname resolution, EDR network telemetry); pair with sigma/04 (dns_query). Not tested.
+references:
+  - https://socket.dev/blog/bee-js-compromise
+  - https://www.stepsecurity.io/blog/ethersphere-bee-js-13-3-0-compromise
+  - https://github.com/advisories/GHSA-hh7j-5m3j-23pf
+author: Jarmi
+date: 2026/11/12
+tags:
+  - attack.initial-access
+  - attack.t1195.002
+  - attack.execution
+  - attack.t1059.007
+  - attack.command-and-control
+  - attack.t1071.001
+  - attack.t1105
+logsource:
+  category: network_connection
+detection:
+  selection_domain:
+    DestinationHostname|endswith: 'frameworkmetrics.xyz'
+  condition: selection_domain
+falsepositives:
+  - None expected; the domain was registered two days before the release and is attacker-controlled. Sinkholing or security research traffic is the only plausible benign source.
+
+level: critical

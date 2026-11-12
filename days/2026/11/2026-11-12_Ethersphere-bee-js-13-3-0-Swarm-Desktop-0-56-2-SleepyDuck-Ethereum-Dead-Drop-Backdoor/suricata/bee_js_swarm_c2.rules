@@ -1,0 +1,34 @@
+# Trojanised @ethersphere/bee-js 13.3.0 / Swarm Desktop 0.56.2 - loader C2, Go backdoor hubs and ScreenConnect relay (Suricata 7.x)
+# Author: Jarmi
+# Date: 2026-11-12
+# Reference: Socket 2026-11-09; StepSecurity 2026-11-08/09; The Hacker News 2026-11-09;
+#            GitHub advisory GHSA-hh7j-5m3j-23pf https://github.com/advisories/GHSA-hh7j-5m3j-23pf
+#
+# Honesty: the loader talks HTTPS to api.frameworkmetrics.xyz; rule 9992003 (X-Ethersphere header)
+# only fires where TLS is decrypted (inspection proxy / mirrored decrypted traffic). The hub list is a
+# Socket summary: 193.57.9.155 was current as of 2026-11-08 23:30 UTC, the other six are earlier hubs.
+# The hub is read at runtime from Ethereum contract 0xf8a900Db50b3331be6B768bA460BB59f3E40C344 and can
+# change without new malware - IP indicators decay; re-validate before blocking and re-read the contract.
+# 185.232.84.169:8041 is the ScreenConnect relay for the Windows stage. No JA3/JA4 or certificate
+# details were published.
+#
+# 9992001 - DNS query for frameworkmetrics.xyz or any subdomain
+# 9992002 - TLS SNI api.frameworkmetrics.xyz
+# 9992003 - HTTP request carrying the X-Ethersphere header (requires TLS decryption)
+# 9992004 - TCP to Go backdoor hub IPs on port 4912 (current + historical)
+# 9992005 - TCP to ScreenConnect relay 185.232.84.169 port 8041
+#
+# Variables (define in suricata.yaml):
+#   $HOME_NET      - internal networks, including developer workstations and CI runners
+#   $EXTERNAL_NET  - standard external networks
+# Not compile-tested (no engine available at authoring time).
+
+alert dns $HOME_NET any -> any any (msg:"bee-js 13.3.0 / Swarm Desktop 0.56.2 loader - DNS query for frameworkmetrics.xyz"; dns.query; dotprefix; content:".frameworkmetrics.xyz"; endswith; nocase; reference:url,github.com/advisories/GHSA-hh7j-5m3j-23pf; classtype:trojan-activity; sid:9992001; rev:1; metadata:author Jarmi, created_at 2026_11_12, confidence high;)
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"bee-js 13.3.0 / Swarm Desktop 0.56.2 loader - TLS SNI api.frameworkmetrics.xyz"; flow:established,to_server; tls.sni; content:"api.frameworkmetrics.xyz"; endswith; nocase; reference:url,github.com/advisories/GHSA-hh7j-5m3j-23pf; classtype:trojan-activity; sid:9992002; rev:1; metadata:author Jarmi, created_at 2026_11_12, confidence high;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"bee-js 13.3.0 / Swarm Desktop 0.56.2 loader - HTTP request with X-Ethersphere header (decrypted TLS only)"; flow:established,to_server; http.header_names; content:"X-Ethersphere"; nocase; reference:url,github.com/advisories/GHSA-hh7j-5m3j-23pf; classtype:trojan-activity; sid:9992003; rev:1; metadata:author Jarmi, created_at 2026_11_12, confidence high;)
+
+alert tcp $HOME_NET any -> [193.57.9.155,193.57.9.17,178.16.54.222,107.189.27.223,107.189.27.46,91.108.240.156,107.189.16.215] 4912 (msg:"SleepyDuck-linked Go backdoor - connection to Ethereum dead-drop hub IP on TCP 4912 (current and historical hubs, indicators decay)"; flow:to_server; flags:S; threshold:type limit, track by_src, count 1, seconds 3600; reference:url,github.com/advisories/GHSA-hh7j-5m3j-23pf; classtype:trojan-activity; sid:9992004; rev:1; metadata:author Jarmi, created_at 2026_11_12, confidence medium;)
+
+alert tcp $HOME_NET any -> 185.232.84.169 8041 (msg:"bee-js / Swarm Desktop Windows stage 3 - connection to attacker ScreenConnect relay 185.232.84.169:8041"; flow:to_server; flags:S; threshold:type limit, track by_src, count 1, seconds 3600; reference:url,github.com/advisories/GHSA-hh7j-5m3j-23pf; classtype:trojan-activity; sid:9992005; rev:1; metadata:author Jarmi, created_at 2026_11_12, confidence medium;)

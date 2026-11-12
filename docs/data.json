@@ -1,5 +1,54 @@
 [
  {
+  "date": "2026-11-12",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor",
+  "title": "Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor",
+  "clusters": [
+   "Unattributed (SleepyDuck-linked infrastructure)"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "supply-chain",
+   "windows",
+   "linux",
+   "macos"
+  ],
+  "sectors": [
+   "finance",
+   "technology"
+  ],
+  "techniques": [
+   "T1195.002",
+   "T1078",
+   "T1059.007",
+   "T1204",
+   "T1105",
+   "T1005",
+   "T1041",
+   "T1543.001",
+   "T1543.002",
+   "T1219",
+   "T1562.001",
+   "T1102.001",
+   "T1071.001",
+   "T1583.001"
+  ],
+  "tech_count": 14,
+  "tldr": "On 2026-11-09 at 00:09:50 UTC an attacker using the `bee-worker` release identity pushed an unsigned commit, cut a GitHub release and let the project's own trusted-publishing workflow publish `@ethersphere/bee-js@13.3.0` to npm with valid SLSA provenance. The package moved a script into a `postinstall` hook that downloads and runs remote JavaScript from `api.frameworkmetrics[.]xyz`, steals the Swa",
+  "thumb": "thumbs/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor.svg",
+  "case_rel": "../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Unattributed (SleepyDuck-linked infrastructure)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "ethersphere bee-js 13.3.0 and swarm desktop 0.56.2: trusted-publishing supply chain compromise with an ethereum dead-drop backdoor unattributed (sleepyduck-linked infrastructure) unattributed supply-chain windows linux macos finance technology t1195.002 t1078 t1059.007 t1204 t1105 t1005 t1041 t1543.001 t1543.002 t1219 t1562.001 t1102.001 t1071.001 t1583.001 supply chain "
+ },
+ {
   "date": "2026-11-11",
   "year": "2026",
   "month": "2026-11",
