@@ -1,0 +1,56 @@
+// Title: Post-Quick-Assist staging - portable Bun / Java / Python runtime (or renamed Bun) started from a user-profile KB-prefixed directory, archive extraction from Downloads, local discovery and LDAPS / SMB / Kerberos contact to domain infrastructure (Defender XDR)
+// Id: 8db566a9-8660-4404-91cc-61e5a3a17c3e
+// MITRE: T1204.002 User Execution: Malicious File; T1059.006 Python; T1059.007 JavaScript; T1036.003 Rename System Utilities / T1036.005 Match Legitimate Name or Location; T1105 Ingress Tool Transfer; T1016 / T1057 / T1082 discovery (mapping by Jarmi, not published by the vendor)
+// Reference: Microsoft Security Research 2026-10-30 https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/
+// Author: Jarmi
+// Date: 2026-11-13
+// Tested on: not tested
+// Honesty: Microsoft describes an archive in Downloads extracted to a KB-prefixed, update-themed staging directory under the user's profile and a payload run by a portable Python, Bun or Java runtime (renamed Bun keeps Bun version metadata; java/javaw launching a .java source file), followed by network configuration, process listing and Windows version discovery and LDAPS (636) / SMB (445) traffic to domain infrastructure. The exact staging path, archive name, script names and runtime file names were NOT published (a secondary summary suggested AppData\Roaming\KB<digits> - UNVERIFIED), so the path match is a generic \KB segment under C:\Users\. The three published SHA-256 values of the initial-access scripts are matched in section 1b; they are script hashes, so expect hits in DeviceFileEvents rather than as process images. Ports 88/389 are added by me as generic AD contact. Microsoft's own hunting query was not available.
+// Tables: DeviceProcessEvents, DeviceFileEvents, DeviceNetworkEvents (Defender XDR advanced hunting).
+// Confidence: high for the published hashes; medium for renamed Bun; low-medium for \KB path + runtime + domain ports; low for discovery alone.
+// FP notes: developers with portable runtimes in their profile, Java single-file source launch in training or dev, software updaters writing KB-named folders. Allow-list devices in <add_known_dev_devices>.
+let Lookback = 14d;
+let Window = 30m;
+let KnownDev = dynamic(["<add_known_dev_devices>"]);
+let PublishedSha256 = dynamic([
+    "85b6c424117494d3056e88689dbc94c75e9afdb187a339714043aec0da109f17",
+    "f326201269f1ee2f803ae435317507263bb6e0dbfdeb70bd1bb5446e2e46f001",
+    "06c5c14f043aee3bcc5843b5f50909623d5c9a6239a7c1fba9cddad4111469e7"]);
+let Runtimes = dynamic(["bun.exe", "java.exe", "javaw.exe", "python.exe", "pythonw.exe"]);
+// 1a) Runtime from a KB-prefixed user-profile directory, renamed Bun, or java launching a .java source file
+let StagedRuntime = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where not(DeviceName in~ (KnownDev))
+    | extend LowerFolder = tolower(FolderPath)
+    | extend InUserKb = LowerFolder startswith @"c:\users\" and LowerFolder matches regex @"\\kb[^\\]*\\"
+    | extend RenamedBun = ProcessVersionInfoOriginalFileName =~ "bun.exe" and not(FileName =~ "bun.exe")
+    | extend JavaSource = FileName in~ ("java.exe", "javaw.exe") and LowerFolder startswith @"c:\users\" and ProcessCommandLine matches regex @"(?i)\.java""?\s*$"
+    | where (InUserKb and (FileName in~ (Runtimes) or ProcessVersionInfoOriginalFileName in~ (Runtimes))) or RenamedBun or JavaSource
+    | project RtTime = Timestamp, DeviceId, DeviceName, AccountUpn, FileName, FolderPath, ProcessVersionInfoOriginalFileName, ProcessCommandLine, SHA256, InitiatingProcessFileName, InUserKb, RenamedBun, JavaSource;
+// 1b) Published initial-access script hashes seen on disk or as process
+let HashHits = union
+    (DeviceFileEvents | where Timestamp > ago(Lookback) | where SHA256 in (PublishedSha256) | project Timestamp, DeviceName, AccountUpn = InitiatingProcessAccountUpn, FolderPath, FileName, SHA256, Source = "DeviceFileEvents"),
+    (DeviceProcessEvents | where Timestamp > ago(Lookback) | where SHA256 in (PublishedSha256) or InitiatingProcessSHA256 in (PublishedSha256) | project Timestamp, DeviceName, AccountUpn, FolderPath, FileName, SHA256, Source = "DeviceProcessEvents")
+    | summarize FirstSeen = min(Timestamp), Paths = make_set(FolderPath, 20), Sources = make_set(Source, 2) by DeviceName, AccountUpn, SHA256
+    | extend Signal = "PublishedScriptHash", Severity = "high";
+// 2) Network from the staged runtime to domain services within the window
+let DomainContact = DeviceNetworkEvents
+    | where Timestamp > ago(Lookback)
+    | where RemotePort in (636, 445, 389, 88)
+    | where InitiatingProcessFileName in~ (Runtimes) or InitiatingProcessVersionInfoOriginalFileName in~ (Runtimes) or tolower(InitiatingProcessFolderPath) matches regex @"^c:\\users\\.*\\kb[^\\]*\\"
+    | project NetTime = Timestamp, DeviceId, RemoteIP, RemotePort, NetProc = InitiatingProcessFileName;
+// 3) Discovery commands on the same device in the window (ipconfig-like, tasklist-like, version query)
+let Discovery = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName in~ ("ipconfig.exe", "tasklist.exe", "systeminfo.exe", "whoami.exe", "nltest.exe") or (FileName =~ "cmd.exe" and ProcessCommandLine has " ver")
+    | project DiscTime = Timestamp, DeviceId, DiscCmd = ProcessCommandLine;
+let Correlated = StagedRuntime
+    | join kind=leftouter (DomainContact) on DeviceId
+    | where isnull(NetTime) or NetTime between (RtTime .. RtTime + Window)
+    | join kind=leftouter (Discovery) on DeviceId
+    | where isnull(DiscTime) or DiscTime between (RtTime - 5m .. RtTime + Window)
+    | summarize FirstSeen = min(RtTime), Images = make_set(FolderPath, 10), CommandLines = make_set(ProcessCommandLine, 10), OriginalNames = make_set(ProcessVersionInfoOriginalFileName, 5), DomainPorts = make_set(RemotePort, 6), DomainIps = make_set(RemoteIP, 20), DiscoveryCmds = make_set(DiscCmd, 20), RenamedBun = max(toint(RenamedBun)), JavaSource = max(toint(JavaSource)) by DeviceName, AccountUpn
+    | extend Signal = "StagedPortableRuntime", Severity = case(array_length(DomainPorts) > 0 and (RenamedBun == 1 or JavaSource == 1), "high", array_length(DomainPorts) > 0, "medium", "low");
+union Correlated, HashHits
+| extend SevRank = case(Severity == "high", 0, Severity == "medium", 1, 2)
+| order by SevRank asc, FirstSeen desc

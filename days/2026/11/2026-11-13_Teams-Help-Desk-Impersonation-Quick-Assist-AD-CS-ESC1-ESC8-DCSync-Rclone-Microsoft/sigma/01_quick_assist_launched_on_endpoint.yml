@@ -1,0 +1,40 @@
+title: Quick Assist Launched On Endpoint (Help Desk Impersonation Pivot)
+id: 44a3357a-ac03-4e2f-9e0e-27ea866d7706
+status: experimental
+description: |
+  Detects the start of Microsoft Quick Assist (QuickAssist.exe). Microsoft Security Research (2026-10-30)
+  describes intrusions where an external Microsoft Teams contact from an organization-themed onmicrosoft.com
+  tenant, using a support-style display name, impersonates the IT help desk and guides the user to open
+  Quick Assist and read out the connection code. No Teams vulnerability is exploited.
+  This atomic rule fires on every Quick Assist launch. The useful context must be added in the SIEM, not in
+  Sigma: (1) correlate with an external Teams chat or call to the same user in the preceding 60 minutes
+  (see kql/k1); (2) suppress hosts and users of your real help desk if it legitimately uses Quick Assist;
+  (3) alert on archive extraction or a portable runtime (Bun, Java, Python) starting under the user profile
+  shortly after (see sigma/02). If Quick Assist is not an approved support tool, the bare launch is itself
+  worth an alert, and blocking it with App Control is the stronger control.
+  Honesty: the process name is standard Windows knowledge (inbox Store app QuickAssist.exe, legacy
+  quickassist.exe under System32); Microsoft did not publish command lines. Generic heuristic, not tested.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/
+  - https://thehackernews.com/2026/11/attackers-pose-as-it-support-on.html
+author: Jarmi
+date: 2026/11/13
+tags:
+  - attack.command-and-control
+  - attack.t1219
+  - attack.initial-access
+  - attack.t1566.003
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_image:
+    Image|endswith: '\QuickAssist.exe'
+  selection_original:
+    OriginalFileName: 'QuickAssist.exe'
+  condition: selection_image or selection_original
+falsepositives:
+  - Legitimate help desk or family support sessions where Quick Assist is an approved tool (baseline the users and hosts, correlate with an open ticket).
+  - Users opening Quick Assist out of curiosity without a session being established.
+
+level: medium

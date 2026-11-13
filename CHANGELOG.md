@@ -1,3 +1,20 @@
+## 2026.11.13 — Day 143 — Teams help desk impersonation and Quick Assist into AD CS abuse: ESC1 certificates, DCSync, Rclone SFTP exfiltration and an ESC8 PetitPotam relay
+
+### Added
+- `days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/` — Microsoft Security Research (2026-10-30, THN 2026-11-02) describes two unattributed intrusions: external Teams help desk impersonation, Quick Assist, a portable Python/Bun/Java runtime, then ESC1 certificates for 11 privileged accounts with DCSync and Rclone SFTP exfiltration, and an ESC8 relay giving a DC certificate and PKINIT TGT.
+- Sigma (5): `01_quick_assist_launched_on_endpoint`, `02_portable_runtime_..._kb_staging_or_renamed_bun`, `03_rclone_sftp_copy_or_renamed_rclone_binary`, `04_efsrpc_named_pipe_access_on_domain_controller`, `05_dcsync_replication_rights_by_non_machine_account`.
+- KQL (3): external Teams contact then Quick Assist; staged runtime and domain contact; AD CS issuance, PKINIT and DCSync correlation.
+- YARA (1 file, 2 rules): generic Bun runtime and Rclone string hunting (not sample-derived, not compiled).
+- Suricata (1 file, 4 sids 9993001-9993004): file server SFTP egress, EFSRPC bind to DC, /certsrv/ from unapproved clients.
+- PEAK hunts (3): Teams to Quick Assist to staged runtime; AD CS template and issuance audit; DCSync and SFTP exfiltration from file servers.
+- `iocs.csv` (13 entries) — 3 hashes, tool and endpoint names, alert titles. No CVE, so no `kev.md`.
+- `kill_chain.svg` — template C, canonical palette, identity-cloud accent, six stages with detection anchors.
+
+### Pedagogy
+- A certificate outlives a password reset; revoking it does not cancel issued Kerberos tickets.
+- ESC1 and ESC8 are configuration problems: audit templates and enforce EPA/HTTPS on web enrollment.
+- Accounts excluded from automatic containment are the route attackers keep.
+
 ## 2026.11.12 — Day 142 — Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing compromise with an Ethereum dead-drop backdoor
 
 ### Added

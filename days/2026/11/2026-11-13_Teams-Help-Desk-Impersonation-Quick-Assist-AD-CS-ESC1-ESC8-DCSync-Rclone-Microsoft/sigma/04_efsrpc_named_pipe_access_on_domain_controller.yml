@@ -1,0 +1,39 @@
+title: Remote Access To The EFSRPC Named Pipe On A Domain Controller (PetitPotam-Style Coercion)
+id: e6def6f0-19f0-41f5-bc48-9c7b23a5454d
+status: experimental
+description: |
+  Detects a detailed file share audit event (Security 5145) for the \efsrpc named pipe over IPC$.
+  In the ESC8 intrusion described by Microsoft Security Research (2026-10-30), PetitPotam (MS-EFSR / EFSRPC)
+  was used to coerce a domain controller to authenticate to an attacker machine; the NTLM authentication
+  was relayed to AD CS Web Enrollment and a certificate was issued for the DC machine account.
+  Scope this rule to domain controllers (and other Tier 0 servers) in the SIEM. Requires the audit
+  subcategory "Detailed File Share" (Object Access) enabled on DCs, which is noisy - many organisations
+  enable it on DCs only.
+  Honesty: generic knowledge, not published by Microsoft for this case. PetitPotam can also reach EFSRPC
+  through \lsarpc, \samr, \netlogon or \lsass; those pipes are far too noisy to alert on alone and are not
+  matched here, so this rule has coverage gaps. Low confidence, not tested. Correlate with the DC machine
+  account certificate request in kql/k3.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/
+  - https://learn.microsoft.com/en-us/windows/security/threat-protection/auditing/event-5145
+  - https://support.microsoft.com/help/5005413
+author: Jarmi
+date: 2026/11/13
+tags:
+  - attack.credential-access
+  - attack.t1187
+  - attack.t1557
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 5145
+    ShareName|endswith: 'IPC$'
+    RelativeTargetName|contains: 'efsrpc'
+  condition: selection
+falsepositives:
+  - Legitimate remote EFS operations (encrypting files on a remote share) - rare against domain controllers.
+  - Vulnerability scanners checking for PetitPotam exposure.
+
+level: medium

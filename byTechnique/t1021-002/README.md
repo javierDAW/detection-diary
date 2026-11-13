@@ -4,11 +4,12 @@
 
 # Techniques: T1021.002
 
-8 day(s) covering this technique.
+9 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-13 | Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certificates for privileged accounts, DCSync and Rclone SFTP exfiltration, and an ESC8 PetitPotam relay | Unattributed (help desk impersonation operators) | [`2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/`](../../days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/) |
 | 2026-10-27 | Qilin and INC ride a forged GlobalProtect cookie (CVE-2026-0257) from the VPN into vCenter, ESXi VMDKs and Veeam | Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius) | [`2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/`](../../days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/) |
 | 2026-08-04 | ByteToCrypt: ByteToBreach's brittle-but-effective Linux ransomware and its ESXi-by-datastore blast radius | ByteToBreach | [`2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/`](../../days/2026/08/2026-08-04_ByteToCrypt-ByteToBreach-Linux-Ransomware/) |
 | 2026-08-03 | OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments | OctLurk/SilkLurk operator (unattributed, Chinese-speaking) | [`2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/`](../../days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/) |

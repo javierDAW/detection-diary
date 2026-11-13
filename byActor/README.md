@@ -191,6 +191,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed (SleepyDuck-linked infrastructure)](./unattributed-sleepyduck-linked-infrastructure/) | 1 |
 | [Unattributed (advisory-only, no actor)](./unattributed-advisory-only-no-actor/) | 1 |
 | [Unattributed (agentic AI offensive framework)](./unattributed-agentic-ai-offensive-framework/) | 1 |
+| [Unattributed (help desk impersonation operators)](./unattributed-help-desk-impersonation-operators/) | 1 |
 | [Unattributed (no exploitation reported)](./unattributed-no-exploitation-reported/) | 1 |
 | [Unattributed (opportunistic mass exploitation)](./unattributed-opportunistic-mass-exploitation/) | 1 |
 | [Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)](./unattributed-ahsaycbs-exploitation-huntress-and-bitdefender-reports/) | 1 |

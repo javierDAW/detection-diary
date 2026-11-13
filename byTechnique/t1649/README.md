@@ -4,9 +4,10 @@
 
 # Techniques: T1649
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-13 | Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certificates for privileged accounts, DCSync and Rclone SFTP exfiltration, and an ESC8 PetitPotam relay | Unattributed (help desk impersonation operators) | [`2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/`](../../days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/) |
 | 2026-08-02 | Certighost: AD CS chase abuse turns any domain user into a Domain Controller (CVE-2026-54121) | Certighost (CVE-2026-54121) | [`2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/`](../../days/2026/08/2026-08-02_Certighost-ADCS-DC-Impersonation-CVE-2026-54121/) |

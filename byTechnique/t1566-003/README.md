@@ -4,10 +4,11 @@
 
 # Techniques: T1566.003
 
-2 day(s) covering this technique.
+3 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-13 | Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certificates for privileged accounts, DCSync and Rclone SFTP exfiltration, and an ESC8 PetitPotam relay | Unattributed (help desk impersonation operators) | [`2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/`](../../days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/) |
 | 2026-09-15 | CHOSEN BRICK / HEAVYGRAM: Iranian state actors steer Windows implants through Telegram bots against dissidents and journalists | Iranian state cyber actors (CHOSEN BRICK / HEAVYGRAM, MOIS per FBI) | [`2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/`](../../days/2026/09/2026-09-15_CHOSEN-BRICK-HEAVYGRAM-Iran-Telegram-C2-Dissidents/) |
 | 2026-07-27 | SpearSpecter: APT42 (IRGC-IO) fileless TAMECAT PowerShell backdoor via WhatsApp trust-building and search-ms/WebDAV delivery | APT42 | [`2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/`](../../days/2026/07/2026-07-27_SpearSpecter-APT42-IRGC-TAMECAT-Fileless-PowerShell-WebDAV/) |

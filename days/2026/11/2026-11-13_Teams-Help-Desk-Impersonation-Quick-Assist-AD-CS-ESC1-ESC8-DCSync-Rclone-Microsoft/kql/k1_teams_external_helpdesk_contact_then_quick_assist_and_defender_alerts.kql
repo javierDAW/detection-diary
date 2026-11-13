@@ -1,0 +1,55 @@
+// Title: Help desk impersonation - external Teams chat or call to a user followed by Quick Assist on that user's device within 60 minutes, plus the Defender alerts Microsoft lists for this activity (Defender XDR)
+// Id: 00a39abe-f456-4f8e-908f-d52b8a863ec5
+// MITRE: T1566.003 Phishing: Spearphishing via Service (Teams); T1219 Remote Access Software (Quick Assist); T1204 User Execution (mapping by Jarmi, not published by the vendor)
+// Reference: Microsoft Security Research 2026-10-30 "From help desk impersonation to AD CS abuse: Investigating ESC1 and ESC8 intrusion paths" https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/ ; The Hacker News 2026-11-02 https://thehackernews.com/2026/11/attackers-pose-as-it-support-on.html
+// Author: Jarmi
+// Date: 2026-11-13
+// Tested on: not tested
+// Honesty: Microsoft describes the pattern (external organization-themed onmicrosoft.com tenants, support-style display names, user guided to open Quick Assist) but published NO tenant names, display names, sender addresses or hunting query text; Microsoft's own query is NOT reproduced here. The Teams ActionType values ChatCreated / TeamsImpersonationDetected / SecurityRiskInCallDetected come from a secondary summary and are UNVERIFIED - check what your tenant actually emits in CloudAppEvents (Application == "Microsoft Teams") before relying on them. The RawEventData field ParticipantInfo.HasForeignTenantUsers is the unified audit log shape for Teams chat events as I know it; verify. The six alert titles in section 3 are quoted verbatim from the Microsoft article. Thresholds (60 min window, keyword list) are my own.
+// Tables: CloudAppEvents, DeviceProcessEvents, AlertInfo, AlertEvidence (Defender XDR advanced hunting). Join key: Entra object id (CloudAppEvents.AccountObjectId = DeviceProcessEvents.AccountObjectId).
+// Confidence: medium for external Teams contact + Quick Assist within 60 minutes; low for the display-name keyword heuristic; high for the verbatim alert titles (when they fire).
+// FP notes: legitimate external partners who chat with users and real help desk sessions using Quick Assist; allow-list partner tenants in <add_known_partner_tenant_ids> and help desk users in <add_known_helpdesk_upns>.
+let Lookback = 14d;
+let Window = 60m;
+let KnownPartnerTenants = dynamic(["<add_known_partner_tenant_ids>"]);
+let KnownHelpdesk = dynamic(["<add_known_helpdesk_upns>"]);
+let SupportWords = dynamic(["help desk", "helpdesk", "it support", "service desk", "servicedesk", "support team", "it team", "tech support"]);
+// 1) External Teams chat / call activity touching a user (ActionTypes UNVERIFIED - adjust to your tenant)
+let ExternalTeams = CloudAppEvents
+    | where Timestamp > ago(Lookback)
+    | where Application == "Microsoft Teams"
+    | where ActionType in ("ChatCreated", "MessageSent", "TeamsImpersonationDetected", "SecurityRiskInCallDetected", "CallStarted")
+        or tostring(RawEventData.ParticipantInfo.HasForeignTenantUsers) =~ "true"
+    | extend Raw = tostring(RawEventData)
+    | extend ForeignTenants = tostring(RawEventData.ParticipantInfo.ParticipatingTenantIds)
+    | where not(ForeignTenants has_any (KnownPartnerTenants))
+    | extend OnMicrosoftDomain = Raw has ".onmicrosoft.com", SupportName = Raw has_any (SupportWords)
+    | project TeamsTime = Timestamp, AccountObjectId, AccountDisplayName, ActionType, ForeignTenants, OnMicrosoftDomain, SupportName, IPAddress;
+// 2) Quick Assist launches
+let QuickAssist = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName =~ "QuickAssist.exe" or ProcessVersionInfoOriginalFileName =~ "QuickAssist.exe"
+    | where not(AccountUpn in~ (KnownHelpdesk))
+    | project QaTime = Timestamp, DeviceId, DeviceName, AccountObjectId, AccountUpn, InitiatingProcessFileName;
+let TeamsThenQuickAssist = ExternalTeams
+    | join kind=inner (QuickAssist) on AccountObjectId
+    | where QaTime between (TeamsTime .. TeamsTime + Window)
+    | summarize FirstTeams = min(TeamsTime), FirstQuickAssist = min(QaTime), TeamsActions = make_set(ActionType, 10), ForeignTenants = make_set(ForeignTenants, 10), OnMicrosoft = max(toint(OnMicrosoftDomain)), SupportName = max(toint(SupportName)) by AccountObjectId, AccountUpn, DeviceName, DeviceId
+    | extend Signal = "ExternalTeamsThenQuickAssist", Severity = iff(OnMicrosoft == 1 or SupportName == 1, "high", "medium");
+// 3) Defender alerts named in the Microsoft article (verbatim titles)
+let ArticleAlerts = dynamic([
+    "Microsoft Teams chat initiated by a suspicious external user",
+    "IT Support Teams Voice phishing following mail bombing activity",
+    "Suspicious Teams Chat likely involved in remote management and dangerous commands",
+    "Possible Teams phishing affecting more than two users",
+    "Possible initial access from an emerging threat",
+    "Suspicious JavaScript process"]);
+let Alerts = AlertInfo
+    | where Timestamp > ago(Lookback)
+    | where Title in~ (ArticleAlerts)
+    | join kind=leftouter (AlertEvidence | where Timestamp > ago(Lookback) | project AlertId, DeviceName, AccountUpn, AccountObjectId, EntityType) on AlertId
+    | summarize FirstAlert = min(Timestamp), Titles = make_set(Title, 10), Devices = make_set(DeviceName, 20), Users = make_set(AccountUpn, 20) by AccountObjectId
+    | extend Signal = "MicrosoftArticleAlert", Severity = "high";
+union TeamsThenQuickAssist, Alerts
+| extend SevRank = case(Severity == "high", 0, Severity == "medium", 1, 2)
+| order by SevRank asc, coalesce(FirstQuickAssist, FirstAlert) desc

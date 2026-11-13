@@ -4,9 +4,10 @@
 
 # Techniques: T1036.003
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-13 | Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certificates for privileged accounts, DCSync and Rclone SFTP exfiltration, and an ESC8 PetitPotam relay | Unattributed (help desk impersonation operators) | [`2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/`](../../days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/) |
 | 2026-05-26 | VENOMOUS#HELPER / STAC6405 — Dual-RMM JWrapper-Packaged SimpleHelp + ScreenConnect IAB Operation | VENOMOUS#HELPER (Securonix) · STAC6405 (Sophos) | [`2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/`](../../days/2026/05/2026-05-26_VenomousHelper-STAC6405-Dual-RMM-IAB/) |

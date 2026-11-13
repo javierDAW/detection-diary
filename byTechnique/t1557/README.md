@@ -4,11 +4,12 @@
 
 # Techniques: T1557
 
-7 day(s) covering this technique.
+8 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-13 | Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certificates for privileged accounts, DCSync and Rclone SFTP exfiltration, and an ESC8 PetitPotam relay | Unattributed (help desk impersonation operators) | [`2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/`](../../days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/) |
 | 2026-10-28 | Huntress: a ten-week Microsoft 365 token spray and replay campaign from 1337 Services hosts ends in rogue Entra devices, wiped MFA and BEC inbox rules | Unattributed (1337 Services GmbH infrastructure) | [`2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/`](../../days/2026/10/2026-10-28_Huntress-M365-Token-Spray-and-Replay-1337-Services-Rogue-Entra-Devices-MFA-Wipe-BEC-Inbox-Rules/) |
 | 2026-10-05 | TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB adversary-in-the-middle page that steals Microsoft sessions | TA419 | [`2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/`](../../days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/) |
 | 2026-08-12 | Payroll Pirates: AiTM Microsoft 365 takeover with Graph reconnaissance and coordinated mailbox collection (Storm-2755 overlap) | Payroll Pirates | [`2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/`](../../days/2026/08/2026-08-12_PayrollPirates-Storm2755-AiTM-M365-Graph-Mailbox-Collection/) |

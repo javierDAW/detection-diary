@@ -4,11 +4,12 @@
 
 # Techniques: T1059.007
 
-18 day(s) covering this technique.
+19 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-13 | Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certificates for privileged accounts, DCSync and Rclone SFTP exfiltration, and an ESC8 PetitPotam relay | Unattributed (help desk impersonation operators) | [`2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/`](../../days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/) |
 | 2026-11-12 | Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor | Unattributed (SleepyDuck-linked infrastructure) | [`2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/`](../../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) |
 | 2026-11-08 | Poisoned Source: APT29 turns a hijacked Plerdy analytics script and watering holes into iOS and Android n-day exploit delivery | APT29 | [`2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/`](../../days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/) |
 | 2026-10-22 | GhostAction Stage 2: a stealer hidden in a fake fa-solid-400.woff2 font, launched by a VS Code folderOpen task, with cron persistence | Unattributed GhostAction operator (Fake Font / PolinRider naming overlap) | [`2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/`](../../days/2026/10/2026-10-22_GhostAction-Stage2-Fake-Font-woff2-VSCode-folderOpen-Cron-Stealer/) |

@@ -1,0 +1,46 @@
+title: DCSync - Directory Replication Rights Exercised By A Non-Machine Account
+id: 0020f8cc-c352-4eaa-971d-0115fb5deefa
+status: experimental
+description: |
+  Detects Security 4662 on a domain controller where an account whose name does not end with $ exercises
+  the directory replication extended rights (DS-Replication-Get-Changes 1131f6aa-..., DS-Replication-Get-
+  Changes-All 1131f6ad-..., DS-Replication-Get-Changes-In-Filtered-Set 89e95b76-...). Microsoft Security
+  Research (2026-10-30) reports that within seconds of obtaining a certificate for a privileged account via
+  ESC1 the attacker ran DCSync against a domain controller.
+  Requires "Audit Directory Service Access" and a SACL on the domain naming context. Domain controllers
+  replicate with their machine accounts (filtered); Azure AD Connect / Entra Connect sync accounts
+  (MSOL_*) legitimately hold these rights and must be allow-listed. In the ESC1 path the DCSync runs as
+  the impersonated privileged user, so the account looks legitimate - the source IP (workstation, not a
+  DC) is the key pivot, which needs the 4624 logon correlation in kql/k3.
+  Honesty: GUIDs and event semantics are standard Windows knowledge, not published by Microsoft for this
+  case. A DC machine account abused through ESC8 + PKINIT would end with $ and is NOT caught here (see
+  kql/k3). Medium confidence, not tested.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/
+  - https://learn.microsoft.com/en-us/windows/win32/adschema/r-ds-replication-get-changes-all
+author: Jarmi
+date: 2026/11/13
+tags:
+  - attack.credential-access
+  - attack.t1003.006
+logsource:
+  product: windows
+  service: security
+detection:
+  selection:
+    EventID: 4662
+    AccessMask: '0x100'
+    Properties|contains:
+      - '1131f6aa-9c07-11d1-f79f-00c04fc2dcd2'
+      - '1131f6ad-9c07-11d1-f79f-00c04fc2dcd2'
+      - '89e95b76-444d-4c62-991a-0facbeda640c'
+  filter_machine:
+    SubjectUserName|endswith: '$'
+  filter_sync:
+    SubjectUserName|startswith: 'MSOL_'
+  condition: selection and not filter_machine and not filter_sync
+falsepositives:
+  - Entra Connect / Azure AD Connect sync accounts with non-default names (add them to filter_sync).
+  - Identity governance, backup or password-audit tools that read secrets via replication (baseline and allow-list by account).
+
+level: high

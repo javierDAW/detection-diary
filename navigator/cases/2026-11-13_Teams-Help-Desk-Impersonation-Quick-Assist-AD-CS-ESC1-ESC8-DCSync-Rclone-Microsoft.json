@@ -1,0 +1,104 @@
+{
+  "name": "2026-11-13 — 2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft",
+  "versions": {
+    "attack": "19",
+    "navigator": "5.1.0",
+    "layer": "4.5"
+  },
+  "domain": "enterprise-attack",
+  "description": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certificates for privileged accounts, DCSync and Rclone SFTP exfiltration, and an ESC8 PetitPotam relay — clusters: Unattributed (help desk impersonation operators)",
+  "sorting": 3,
+  "showTacticRowBackground": true,
+  "tacticRowBackground": "#2a4a6a",
+  "selectTechniquesAcrossTactics": true,
+  "hideDisabled": false,
+  "techniques": [
+    {
+      "techniqueID": "T1566.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    },
+    {
+      "techniqueID": "T1219",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    },
+    {
+      "techniqueID": "T1204.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    },
+    {
+      "techniqueID": "T1059.007",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    },
+    {
+      "techniqueID": "T1036.003",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    },
+    {
+      "techniqueID": "T1649",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    },
+    {
+      "techniqueID": "T1187",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    },
+    {
+      "techniqueID": "T1557",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    },
+    {
+      "techniqueID": "T1003.006",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    },
+    {
+      "techniqueID": "T1021.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    },
+    {
+      "techniqueID": "T1048.002",
+      "score": 1,
+      "enabled": true,
+      "color": "#5a7da6",
+      "comment": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certifi"
+    }
+  ],
+  "legendItems": [],
+  "metadata": [],
+  "gradient": {
+    "colors": [
+      "#5a7da6",
+      "#5a7da6"
+    ],
+    "minValue": 0,
+    "maxValue": 1
+  }
+}

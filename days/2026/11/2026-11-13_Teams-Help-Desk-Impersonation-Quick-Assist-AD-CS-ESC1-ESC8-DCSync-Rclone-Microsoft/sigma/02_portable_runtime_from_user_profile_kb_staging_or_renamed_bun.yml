@@ -1,0 +1,61 @@
+title: Portable Bun, Java Or Python Runtime Executed From A User-Profile KB-Prefixed Staging Directory Or Renamed Bun Binary
+id: 8579317a-087e-456b-9fff-c799d2068fb7
+status: experimental
+description: |
+  Detects the post-Quick-Assist staging pattern described by Microsoft Security Research (2026-10-30):
+  an archive dropped in the user's Downloads folder is extracted to a KB-prefixed, update-themed staging
+  directory under the user's profile, and the payload is run with a portable Python, Bun or Java runtime.
+  Microsoft notes that a renamed Bun executable keeps the Bun version metadata (OriginalFileName), and that
+  java.exe / javaw.exe was used to launch a .java source file directly (single-file source launch).
+  Three selections:
+    - selection_runtime_kb: bun / java / javaw / python / pythonw running from a user profile path whose
+      directory name starts with KB (the exact staging path was NOT published; a secondary summary
+      suggested AppData\Roaming\KB<digits>, treated here as unverified, so the match is any \KB segment
+      under C:\Users\);
+    - selection_renamed_bun: OriginalFileName is bun.exe but the Image does not end with bun.exe;
+    - selection_java_source: java.exe / javaw.exe whose command line ends with a .java source file and
+      the image lives under C:\Users\ (portable JRE/JDK).
+  Honesty: built from the Microsoft narrative, no command lines, file names or hashes for the runtimes were
+  published. The \KB path heuristic is low confidence; the renamed-Bun selection is medium. Not tested.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/
+  - https://thehackernews.com/2026/11/attackers-pose-as-it-support-on.html
+author: Jarmi
+date: 2026/11/13
+tags:
+  - attack.execution
+  - attack.t1059.006
+  - attack.t1059.007
+  - attack.t1204.002
+  - attack.defense-evasion
+  - attack.t1036.003
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_runtime_kb:
+    Image|startswith: 'C:\Users\'
+    Image|contains: '\KB'
+    Image|endswith:
+      - '\bun.exe'
+      - '\java.exe'
+      - '\javaw.exe'
+      - '\python.exe'
+      - '\pythonw.exe'
+  selection_renamed_bun:
+    OriginalFileName: 'bun.exe'
+  filter_renamed_bun_real_name:
+    Image|endswith: '\bun.exe'
+  selection_java_source:
+    Image|startswith: 'C:\Users\'
+    Image|endswith:
+      - '\java.exe'
+      - '\javaw.exe'
+    CommandLine|re: '(?i)\.java"?\s*$'
+  condition: selection_runtime_kb or (selection_renamed_bun and not filter_renamed_bun_real_name) or selection_java_source
+falsepositives:
+  - Developers running Bun, a portable JDK or Python from their profile (for example AppData\Local\Programs\Python); the \KB segment reduces but does not remove this.
+  - Java single-file source launch used by developers and training labs.
+  - Tools that legitimately ship a renamed Bun-compiled single-file executable (Bun compile output can keep bun.exe as OriginalFileName); baseline by signer and path.
+
+level: medium

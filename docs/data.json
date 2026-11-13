@@ -1,5 +1,47 @@
 [
  {
+  "date": "2026-11-13",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft",
+  "title": "Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certificates for privileged accounts, DCSync and Rclone SFTP exfiltration, and an ESC8 PetitPotam relay",
+  "clusters": [
+   "Unattributed (help desk impersonation operators)"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "windows"
+  ],
+  "sectors": [
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1566.003",
+   "T1219",
+   "T1204.002",
+   "T1059.007",
+   "T1036.003",
+   "T1649",
+   "T1187",
+   "T1557",
+   "T1003.006",
+   "T1021.002",
+   "T1048.002"
+  ],
+  "tech_count": 11,
+  "tldr": "Microsoft Security Research reported on 2026-10-30 (The Hacker News followed on 2026-11-02) two intrusions that start with Teams messages and calls from external tenants impersonating IT help desk staff. The user is talked into a Quick Assist session, the attacker stages a portable Python, Bun or Java runtime, then abuses Active Directory Certificate Services. In case 1 an ESC1-vulnerable template",
+  "thumb": "thumbs/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft.svg",
+  "case_rel": "../days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "Unattributed (help desk impersonation operators)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "teams help desk impersonation and quick assist lead to ad cs abuse: esc1 certificates for privileged accounts, dcsync and rclone sftp exfiltration, and an esc8 petitpotam relay unattributed (help desk impersonation operators) unattributed windows cross-sector t1566.003 t1219 t1204.002 t1059.007 t1036.003 t1649 t1187 t1557 t1003.006 t1021.002 t1048.002 identity / cloud / saas "
+ },
+ {
   "date": "2026-11-12",
   "year": "2026",
   "month": "2026-11",

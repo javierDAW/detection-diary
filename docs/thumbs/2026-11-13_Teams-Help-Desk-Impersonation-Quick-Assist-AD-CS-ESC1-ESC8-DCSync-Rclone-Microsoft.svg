@@ -1,0 +1,136 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 1080" role="img" aria-labelledby="t d">
+<title id="t">Help desk impersonation on Teams to AD CS ESC1 and ESC8 abuse kill chain</title>
+<desc id="d">Single-lane kill chain from Microsoft Security Research (2026-10-30): Teams help desk impersonation, Quick Assist session, staged portable runtime, ESC1 certificate theft for privileged accounts, DCSync plus Rclone SFTP exfiltration (case 1), and PetitPotam relay to AD CS web enrollment with PKINIT (case 2). Critical stages are certificate issuance, DCSync, exfiltration and DC certificate. Detection anchors are Quick Assist launch, runtime from KB directory, CA 4886/4887, PKINIT 4768, replication 4662 and SFTP egress from file servers.</desc>
+<defs>
+<style><![CDATA[
+.bg { fill: #ffffff; }
+.head { font: 700 18px sans-serif; fill: #0a0a0a; }
+.meta { font: 11px sans-serif; fill: #404040; }
+.laneL { fill: #f3f7fb; stroke: #5a7da6; stroke-width: 1.2; }
+.laneR { fill: #faf3ee; stroke: #b07a3a; stroke-width: 1.2; }
+.laneLabelL { font: 700 12px sans-serif; fill: #2a4a6a; }
+.laneLabelR { font: 700 12px sans-serif; fill: #8a5520; }
+.stage { fill: #ffffff; stroke: #5a7da6; stroke-width: 1.1; }
+.stageK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.op { fill: #ffffff; stroke: #b07a3a; stroke-width: 1.1; }
+.opK { fill: #fdecec; stroke: #b03030; stroke-width: 1.4; }
+.band { fill: #f7f1eb; stroke: #c08555; stroke-width: 1.2; }
+.badge { fill: #5a7da6; }
+.badgeK { fill: #b03030; }
+.badgeR { fill: #b07a3a; }
+.badgeText { font: 700 12px sans-serif; fill: #ffffff; text-anchor: middle; }
+.label { font: 700 13px sans-serif; fill: #0a0a0a; }
+.sub { font: 11px sans-serif; fill: #303030; }
+.mono { font: 10.5px ui-monospace, "SFMono-Regular", Consolas, monospace; fill: #303030; }
+.footer { fill: #f6f6f4; stroke: #888; stroke-width: 1; }
+.footerH { font: 700 12px sans-serif; fill: #1a1a1a; }
+.footerT { font: 10.5px sans-serif; fill: #1a1a1a; }
+.arrow { stroke: #2a4a6a; stroke-width: 1.6; fill: none; }
+.arrowX { stroke: #7a3a7a; stroke-width: 1.6; fill: none; stroke-dasharray: 5 3; }
+.arrowR { stroke: #8a5520; stroke-width: 1.6; fill: none; }
+
+/* per-theme accent - header bar / pill only; lanes and stages stay frozen */
+.acc-ransomware { fill: #b03030; }
+.acc-espionage { fill: #2a4a6a; }
+.acc-supply-chain { fill: #b07a3a; }
+.acc-identity-cloud { fill: #6a4ca6; }
+.acc-ot-ics { fill: #2f8f4e; }
+.acc-edge-network { fill: #1d7a8c; }
+.acc-mobile { fill: #c2569a; }
+.acc-crypto-defi { fill: #d08a1f; }
+.acc-malware-re { fill: #556070; }
+.acc-other { fill: #6a6a6a; }
+.accLabel { font: 700 11px sans-serif; fill: #ffffff; }
+
+@media (prefers-color-scheme: dark) {
+  .bg { fill: #0d1117; }
+  .head, .label, .footerH { fill: #f0f0f0; }
+  .meta, .sub, .footerT { fill: #c8c8c8; }
+  .mono { fill: #c0d0e0; }
+  .laneL { fill: #182230; stroke: #7aa6d0; }
+  .laneR { fill: #2a2418; stroke: #d09a5a; }
+  .laneLabelL { fill: #a8c6e2; }
+  .laneLabelR { fill: #e2bf8a; }
+  .stage { fill: #1c2530; stroke: #7aa6d0; }
+  .stageK { fill: #3a1818; stroke: #e06060; }
+  .op { fill: #2a2418; stroke: #d09a5a; }
+  .opK { fill: #3a1818; stroke: #e06060; }
+  .band { fill: #2a2418; stroke: #d09a5a; }
+  .badge { fill: #7aa6d0; }
+  .badgeK { fill: #e06060; }
+  .badgeR { fill: #d09a5a; }
+  .badgeText { fill: #0d1117; }
+  .footer { fill: #1a1d22; stroke: #555; }
+  .arrow { stroke: #a8c6e2; }
+  .arrowX { stroke: #c898d0; }
+  .arrowR { stroke: #e2bf8a; }
+}
+]]></style>
+<marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto">
+  <path d="M0,0 L10,5 L0,10 z" fill="currentColor"/>
+</marker>
+</defs>
+<rect class="bg" x="0" y="0" width="880" height="1080"/>
+<rect class="acc-identity-cloud" x="0" y="0" width="880" height="8"/>
+<text class="head" x="20" y="36">Teams help desk impersonation into AD CS abuse: ESC1 and ESC8 intrusion paths</text>
+<text class="meta" x="20" y="58">Vendor: Microsoft Security Research (2026-10-30) | Date: 2026-11-13 | Cluster: unattributed | Day 143</text>
+<rect class="laneL" x="20" y="85" width="840" height="890" rx="6"/>
+<text class="laneLabelL" x="520" y="104">WORKSTATION, ACTIVE DIRECTORY AND AD CS, OCT 2026</text>
+<rect class="stage" x="30" y="100" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="120" r="14"/>
+<text class="badgeText" x="50" y="124">1</text>
+<text class="label" x="75" y="124">Teams impersonation of IT help desk from external onmicrosoft.com tenants  [T1566.003]</text>
+<text class="sub" x="75" y="148">Messages and calls from organization-themed tenants with support-style display names; no Teams flaw is exploited</text>
+<text class="sub" x="75" y="164">Pretext: urgent fix, often combined with mail bombing; Teams shows External and Scam suspected banners</text>
+<text class="sub" x="75" y="180">Microsoft does not attribute the activity to a named actor and gives no victim sector or country</text>
+<text class="mono" x="75" y="206">Teams chat / call from external tenant -&gt; user is asked to open Quick Assist</text>
+<line class="arrow" x1="440" y1="230" x2="440" y2="245" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="245" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="265" r="14"/>
+<text class="badgeText" x="50" y="269">2</text>
+<text class="label" x="75" y="269">Quick Assist session approved by the user: hands-on-keyboard on the workstation  [T1219]</text>
+<text class="sub" x="75" y="293">User reads the Quick Assist connection code to the caller; the attacker then drives the desktop</text>
+<text class="sub" x="75" y="309">Rogue use of a legitimate remote tool: no malware needed for initial access</text>
+<text class="sub" x="75" y="325">Break point: out-of-band verification, approved remote tools only, external Teams tenant restrictions</text>
+<text class="mono" x="75" y="351">QuickAssist.exe launch shortly after external Teams contact</text>
+<line class="arrow" x1="440" y1="375" x2="440" y2="390" marker-end="url(#ah)"/>
+<rect class="stage" x="30" y="390" width="820" height="130" rx="6"/>
+<circle class="badge" cx="50" cy="410" r="14"/>
+<text class="badgeText" x="50" y="414">3</text>
+<text class="label" x="75" y="414">Archive in Downloads unpacked to a KB-prefixed staging directory, run with a portable runtime  [T1204.002 T1059.007]</text>
+<text class="sub" x="75" y="438">Portable Python, Bun or Java (a renamed Bun exe keeps its version metadata; java launches a .java source file)</text>
+<text class="sub" x="75" y="454">Discovery: Windows version, network config, process list; LDAPS and SMB connections to domain infrastructure</text>
+<text class="sub" x="75" y="470">Exact archive, folder and file names are not published; the KB prefix is the only path hint</text>
+<text class="mono" x="75" y="496">bun.exe / java.exe / javaw.exe / python from %USERPROFILE%\KB*  -&gt; 636, 445</text>
+<line class="arrow" x1="440" y1="520" x2="440" y2="535" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="535" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="555" r="14"/>
+<text class="badgeText" x="50" y="559">4</text>
+<text class="label" x="75" y="559">Case 1, ESC1: enumerate AD CS, request certificates as privileged accounts  [T1649]</text>
+<text class="sub" x="75" y="583">Template lets the requester supply the subject; wave 1: 3 users, 1 workstation, certs for 3 privileged accounts</text>
+<text class="sub" x="75" y="599">About 90 min later wave 2: 16 users, second workstation, certs for 8 more privileged accounts</text>
+<text class="sub" x="75" y="615">Defender automatic disruption cut the identities, but one privileged account was excluded and stayed usable</text>
+<text class="mono" x="75" y="641">CA 4886/4887 request with attacker-chosen subject -&gt; 4768 PreAuthType 16 (PKINIT)</text>
+<line class="arrow" x1="440" y1="665" x2="440" y2="680" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="680" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="700" r="14"/>
+<text class="badgeText" x="50" y="704">5</text>
+<text class="label" x="75" y="704">Case 1: DCSync within seconds, then Rclone to an external SFTP server  [T1003.006 T1048.002]</text>
+<text class="sub" x="75" y="728">Certificate logon to a domain controller then DCSync; containment during the operation limited replication</text>
+<text class="sub" x="75" y="744">Through the excluded account: file server share copied by a renamed Rclone (SearchApp.exe), 20 transfers, 3 years of files</text>
+<text class="sub" x="75" y="760">More than 1,000 later SMB and logon attempts were blocked; the SFTP host and data volume are not published</text>
+<text class="mono" x="75" y="786">4662 replication GUIDs from non-DC  |  SearchApp.exe sftp -&gt; internet</text>
+<line class="arrow" x1="440" y1="810" x2="440" y2="825" marker-end="url(#ah)"/>
+<rect class="stageK" x="30" y="825" width="820" height="130" rx="6"/>
+<circle class="badgeK" cx="50" cy="845" r="14"/>
+<text class="badgeText" x="50" y="849">6</text>
+<text class="label" x="75" y="849">Case 2, ESC8: PetitPotam coercion, NTLM relay to /certsrv, DC certificate, PKINIT TGT  [T1187 T1557 T1649]</text>
+<text class="sub" x="75" y="873">EFSRPC forces a DC to authenticate to an attacker host; the NTLM auth is relayed to AD CS Web Enrollment</text>
+<text class="sub" x="75" y="889">Certificate issued from the Domain Controller template for the DC machine account, then PKINIT gives a TGT</text>
+<text class="sub" x="75" y="905">Defender raised ESC8 alerts; the workstation was isolated and nothing further was observed</text>
+<text class="mono" x="75" y="931">5145 efsrpc pipe  |  HTTP /certsrv/ from non-enrollment host  |  DC cert issued</text>
+<rect class="footer" x="20" y="985" width="840" height="85" rx="6"/>
+<text class="footerH" x="35" y="1008">Detection anchors</text>
+<text class="footerT" x="35" y="1027">Sigma 01-05, KQL k1-k3, YARA (2 generic rules), Suricata sids 9993001-9993004, PEAK H1-H3. Only 3 script hashes are published.</text>
+<text class="footerT" x="35" y="1046">Break points: external Teams tenants, Quick Assist, template audit, EPA on web enrollment, CA audit, replication rights, SFTP egress.</text>
+</svg>

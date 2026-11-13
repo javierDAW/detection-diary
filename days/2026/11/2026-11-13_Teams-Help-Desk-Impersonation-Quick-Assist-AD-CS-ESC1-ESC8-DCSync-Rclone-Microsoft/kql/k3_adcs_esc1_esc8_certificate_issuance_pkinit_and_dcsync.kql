@@ -1,0 +1,69 @@
+// Title: AD CS ESC1 / ESC8 abuse - CA issuance with supplied subject or SAN (4887), DC machine account enrolling through /certsrv (IIS), certificate (PKINIT) TGTs from non-DC sources (4768 PreAuthType 16) and DCSync replication rights from non-DC IPs (4662 + 4624) (Sentinel)
+// Id: f7433a73-cce7-44a1-8f44-c208cf242165
+// MITRE: T1649 Steal or Forge Authentication Certificates; T1187 Forced Authentication; T1557 Adversary-in-the-Middle (NTLM relay); T1550 Use Alternate Authentication Material; T1003.006 OS Credential Dumping: DCSync (mapping by Jarmi, not published by the vendor)
+// Reference: Microsoft Security Research 2026-10-30 https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/
+// Author: Jarmi
+// Date: 2026-11-13
+// Tested on: not tested
+// Honesty: Microsoft reports (ESC1) certificates issued for 3 then 8 more highly privileged accounts from requests by ordinary users on two workstations, DCSync within seconds of a certificate, and (ESC8) PetitPotam coercion of a DC relayed to AD CS Web Enrollment (/certsrv) with a certificate from the "Domain Controller" template for the DC machine account, then PKINIT for a DC TGT. Event IDs 4886/4887/4768/4662/4624, the PreAuthType 16 value, the replication GUIDs and the IIS log shape are standard Windows knowledge, NOT published by Microsoft for this case. 4887 does not always expose a SAN supplied inside the CSR extension (ESC1); the Attributes field only shows SAN when passed as a request attribute, so the requester-vs-subject comparison is a heuristic. Requires: CA audit filter enabled (certutil -setreg CA\AuditFilter 127) plus the Certification Services audit subcategory; Kerberos Authentication Service auditing on DCs; Directory Service Access auditing with a SACL on the domain NC; IIS W3C logs from the CA web enrollment server in W3CIISLog. Microsoft's own hunting query was not available and is NOT reproduced.
+// Tables: SecurityEvent (4887, 4768, 4662, 4624), W3CIISLog (Sentinel). Defender for Identity customers also get native alerts for these behaviours; titles not verified, so none are matched here.
+// Confidence: high for DC$ authenticating to /certsrv and for DCSync from a non-DC IP; medium for PKINIT TGT of a DC account from a non-DC IP; low-medium for the 4887 requester/subject mismatch.
+// FP notes: enrollment agents and MDM/NDES service accounts legitimately request on behalf of others (<add_known_enrollment_agents>); Entra Connect sync accounts hold replication rights (<add_known_sync_accounts>); smart card logon produces PreAuthType 16 for users (expected) - only machine accounts and privileged users from non-DC IPs are flagged.
+let Lookback = 7d;
+let DcIps = dynamic(["<add_known_dc_ips>"]);
+let EnrollmentAgents = dynamic(["<add_known_enrollment_agents>"]);
+let SyncAccounts = dynamic(["<add_known_sync_accounts>"]);
+let PrivilegedAccounts = dynamic(["<add_known_privileged_samaccountnames>"]);
+let ParseEd = (T:(EventData:string)) { T | extend Ed = parse_xml(EventData).EventData.Data | mv-apply d = Ed on (summarize Bag = make_bag(bag_pack(tostring(d['@Name']), tostring(d['#text'])))) };
+// 1) CA issuance (4887) where the certificate subject does not belong to the requester, or a SAN was supplied as a request attribute
+let Issued = SecurityEvent
+    | where TimeGenerated > ago(Lookback)
+    | where EventID == 4887
+    | invoke ParseEd()
+    | extend Requester = tostring(Bag.Requester), Subject = tostring(Bag.Subject), Attributes = tostring(Bag.Attributes), RequestId = tostring(Bag.RequestId)
+    | extend Template = extract(@"(?i)CertificateTemplate:([^\r\n]+)", 1, Attributes)
+    | extend RequesterSam = tolower(tostring(split(Requester, "\\")[-1]))
+    | extend SubjectCn = tolower(extract(@"(?i)CN=([^,]+)", 1, Subject))
+    | where not(Requester in~ (EnrollmentAgents))
+    | extend SanAttr = Attributes has "SAN:"
+    | extend Mismatch = isnotempty(SubjectCn) and isnotempty(RequesterSam) and indexof(SubjectCn, trim_end(@"\$", RequesterSam)) < 0
+    | where SanAttr or Mismatch
+    | project TimeGenerated, Computer, RequestId, Requester, Subject, Template, Attributes, SanAttr, Mismatch
+    | extend Signal = "CaIssuedSubjectNotRequester", Severity = iff(SanAttr, "high", "medium");
+// 2) ESC8 - a machine account (DC$) authenticating to AD CS Web Enrollment
+let WebEnrollMachine = W3CIISLog
+    | where TimeGenerated > ago(Lookback)
+    | where csUriStem startswith "/certsrv/"
+    | where csUserName endswith "$"
+    | summarize FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated), Uris = make_set(csUriStem, 10), Methods = make_set(csMethod, 5), Statuses = make_set(scStatus, 5), Hits = count() by Computer, csUserName, cIP
+    | extend Signal = "MachineAccountWebEnrollment", Severity = "high";
+// 3) PKINIT (certificate) TGT for a machine account or privileged user from a non-DC IP
+let Pkinit = SecurityEvent
+    | where TimeGenerated > ago(Lookback)
+    | where EventID == 4768
+    | invoke ParseEd()
+    | extend PreAuthType = tostring(Bag.PreAuthType), Target = tostring(Bag.TargetUserName), SrcIp = trim_start(@"::ffff:", tostring(Bag.IpAddress)), CertIssuer = tostring(Bag.CertIssuerName), CertSerial = tostring(Bag.CertSerialNumber)
+    | where PreAuthType == "16"
+    | where Target endswith "$" or Target in~ (PrivilegedAccounts)
+    | where not(SrcIp in (DcIps))
+    | project TimeGenerated, Computer, Target, SrcIp, CertIssuer, CertSerial
+    | extend Signal = "PkinitTgtFromNonDc", Severity = iff(Target endswith "$", "high", "medium");
+// 4) DCSync - replication rights exercised by an account whose logon comes from a non-DC IP
+let Repl = SecurityEvent
+    | where TimeGenerated > ago(Lookback)
+    | where EventID == 4662
+    | where Properties has_any ("1131f6aa-9c07-11d1-f79f-00c04fc2dcd2", "1131f6ad-9c07-11d1-f79f-00c04fc2dcd2", "89e95b76-444d-4c62-991a-0facbeda640c")
+    | where not(SubjectUserName in~ (SyncAccounts))
+    | project ReplTime = TimeGenerated, Computer, SubjectUserName, SubjectLogonId;
+let Logons = SecurityEvent
+    | where TimeGenerated > ago(Lookback)
+    | where EventID == 4624
+    | project Computer, TargetLogonId, LogonIp = IpAddress, LogonType, AuthenticationPackageName;
+let DcSync = Repl
+    | join kind=inner (Logons) on Computer, $left.SubjectLogonId == $right.TargetLogonId
+    | where isnotempty(LogonIp) and LogonIp !in ("-", "127.0.0.1", "::1") and not(LogonIp in (DcIps))
+    | summarize FirstSeen = min(ReplTime), LastSeen = max(ReplTime), Events = count() by Computer, SubjectUserName, LogonIp, AuthenticationPackageName
+    | extend Signal = "DcSyncFromNonDcIp", Severity = "high";
+union Issued, WebEnrollMachine, Pkinit, DcSync
+| extend SevRank = case(Severity == "high", 0, Severity == "medium", 1, 2)
+| order by SevRank asc

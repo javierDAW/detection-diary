@@ -1,0 +1,53 @@
+title: Rclone Copy To SFTP Remote Or Renamed Rclone Binary (Exfiltration From File Server)
+id: d1e65745-b87a-4ee1-b1ce-9b1b5252fc5d
+status: experimental
+description: |
+  Detects Rclone used for bulk exfiltration. Microsoft Security Research (2026-10-30) reports a renamed
+  Rclone binary (SearchApp.exe) on a file server copying a share recursively to an external SFTP server,
+  with 20 concurrent transfers, a maximum file age of about 3 years, and exclusions for executables,
+  databases, virtual disks, media, temporary and log files.
+  Selections:
+    - selection_renamed: OriginalFileName is rclone.exe but the Image is not rclone.exe (covers the
+      SearchApp.exe masquerade; the published name alone is not matched because SearchApp.exe is a
+      legitimate Windows Search process);
+    - selection_cli_*: generic Rclone command-line shape (copy/sync/move plus transfer tuning plus
+      max-age or exclude filters) combined with an sftp reference, regardless of the binary name.
+  Honesty: the exact Rclone command line, remote name and SFTP host were NOT published; the flags below
+  are standard Rclone options matching the behaviour Microsoft describes (generic knowledge). Medium
+  confidence for the renamed-binary selection, medium-low for the command-line selection. Not tested.
+references:
+  - https://www.microsoft.com/en-us/security/blog/2026/10/30/help-desk-impersonation-ad-cs-abuse-investigating-esc1-esc8-intrusion-paths/
+  - https://rclone.org/flags/
+author: Jarmi
+date: 2026/11/13
+tags:
+  - attack.exfiltration
+  - attack.t1048.002
+  - attack.defense-evasion
+  - attack.t1036.003
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_renamed:
+    OriginalFileName: 'rclone.exe'
+  filter_real_name:
+    Image|endswith: '\rclone.exe'
+  selection_cli_verb:
+    CommandLine|contains:
+      - ' copy '
+      - ' sync '
+      - ' move '
+  selection_cli_tuning:
+    CommandLine|contains:
+      - '--transfers'
+      - '--max-age'
+      - '--exclude'
+      - '--multi-thread-streams'
+  selection_cli_sftp:
+    CommandLine|contains: 'sftp'
+  condition: (selection_renamed and not filter_real_name) or (selection_cli_verb and selection_cli_tuning and selection_cli_sftp)
+falsepositives:
+  - Approved backup or migration jobs using Rclone to an SFTP target (baseline the service account, host and remote; such jobs normally keep the rclone.exe name).
+
+level: high
