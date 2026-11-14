@@ -193,6 +193,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed (agentic AI offensive framework)](./unattributed-agentic-ai-offensive-framework/) | 1 |
 | [Unattributed (help desk impersonation operators)](./unattributed-help-desk-impersonation-operators/) | 1 |
 | [Unattributed (no exploitation reported)](./unattributed-no-exploitation-reported/) | 1 |
+| [Unattributed (opportunistic exploitation)](./unattributed-opportunistic-exploitation/) | 1 |
 | [Unattributed (opportunistic mass exploitation)](./unattributed-opportunistic-mass-exploitation/) | 1 |
 | [Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports)](./unattributed-ahsaycbs-exploitation-huntress-and-bitdefender-reports/) | 1 |
 | [Unattributed GhostAction operator (Fake Font / PolinRider naming overlap)](./unattributed-ghostaction-operator-fake-font-polinrider-naming-overlap/) | 1 |

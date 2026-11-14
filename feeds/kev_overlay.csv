@@ -264,3 +264,5 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch,2026-11-08,CVE-2026-20700,yes,2026-02-12,2026-03-05,Unknown,Apple Multiple Buffer Overflow Vulnerability,Apple,Multiple Products
 2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch,2026-11-08,CVE-2026-3910,yes,2026-03-13,2026-03-27,Unknown,Google Chromium V8 Improper Restriction of Operations Within the Bounds of a Memory Buffer Vulnerability,Google,Chromium V8
 2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware,2026-11-10,CVE-2026-108142,no,,,,,,
+2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus,2026-11-14,CVE-2026-119618,no,,,,,,
+2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus,2026-11-14,CVE-2026-119977,no,,,,,,

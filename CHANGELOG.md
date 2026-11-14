@@ -1,3 +1,21 @@
+## 2026.11.14 — Day 144 — WordPress core updater race (CVE-2026-119977): predictable wp-content/upgrade staging exposes the installer
+
+### Added
+- `days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/` — Picus Security (Umut Bayram) disclosed a race in the WordPress core updater, fixed 2026-10-28 in 7.1.4; the staging folder name is predictable in 5.9.0-7.1.3 and updating to the fix still runs the old updater. Reported exploited and on CISA KEV (Picus, The Hacker News); no actor or indicators published. Secondary: Apache mod_http2 CVE-2026-119618 (fixed in 2.4.71).
+- Sigma (3): `01_web_request_php_under_wp_content_upgrade`; `02_php_or_wp_config_created_under_wp_content_upgrade`; `03_web_server_user_spawning_shell_or_downloader`.
+- KQL (2): staging-path web requests per source IP; PHP and wp-config.php writes under the staging path.
+- YARA (1 file, 2 rules): generic installer and small PHP shell heuristics (not compiled, low confidence).
+- Suricata (1 file, 3 sids 9994001-9994003): generic URI heuristics for the staging path (not tested).
+- PEAK hunts (3): web-log requests; unrecognised admins, plugins and wp-config.php integrity; update-process exposure inventory.
+- `iocs.csv` (8 entries) — CVE, staging paths and notes; no attacker infrastructure published. `kev.md` — 0/2 CVEs confirmed on KEV in the 2026-10-16 cache; analyst note records the unverified KEV listing.
+- `kill_chain.svg` — template C, canonical palette, update-window timeline with detection anchors.
+
+### Pedagogy
+- A race is an exposure window: shrink it and remove reachability (deny the path), do not only fix the logic.
+- The first patch can run old code: ask which updater performs the update.
+- Predictable temp names under a web-served directory are a recurring bug class.
+- When sources disagree (GHSA Low, Picus 8.1, KEV), record both and act on exploitation evidence.
+
 ## 2026.11.13 — Day 143 — Teams help desk impersonation and Quick Assist into AD CS abuse: ESC1 certificates, DCSync, Rclone SFTP exfiltration and an ESC8 PetitPotam relay
 
 ### Added

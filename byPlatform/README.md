@@ -16,7 +16,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [cloud-multi](./cloud-multi/) | 42 |
 | [cryptocurrency](./cryptocurrency/) | 1 |
 | [iot](./iot/) | 11 |
-| [linux](./linux/) | 59 |
+| [linux](./linux/) | 60 |
 | [macos](./macos/) | 18 |
 | [microsoft-365](./microsoft-365/) | 1 |
 | [mobile](./mobile/) | 1 |
@@ -24,6 +24,6 @@ Source of truth: each day's `README.md` frontmatter.
 | [nutanix-ahv](./nutanix-ahv/) | 1 |
 | [ot-ics](./ot-ics/) | 11 |
 | [saas](./saas/) | 1 |
-| [supply-chain](./supply-chain/) | 27 |
+| [supply-chain](./supply-chain/) | 28 |
 | [vmware-esxi](./vmware-esxi/) | 2 |
 | [windows](./windows/) | 81 |

@@ -4,7 +4,7 @@
 
 # INDEX
 
-**143 cases** · **210 actors/clusters** · **410 ATT&CK techniques** · **16 platforms** · **99 sectors** · 2026-04-28 -> 2026-11-13
+**144 cases** · **211 actors/clusters** · **410 ATT&CK techniques** · **16 platforms** · **99 sectors** · 2026-04-28 -> 2026-11-14
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/"><img src="days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/kill_chain.svg" alt="2026-11-14 kill chain" width="240"></a><br><sub><b>2026-11-14</b><br>Unattributed (opportunistic exploitation)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/"><img src="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/kill_chain.svg" alt="2026-11-13 kill chain" width="240"></a><br><sub><b>2026-11-13</b><br>Unattributed (help desk impersonation operators)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/"><img src="days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/kill_chain.svg" alt="2026-11-12 kill chain" width="240"></a><br><sub><b>2026-11-12</b><br>Unattributed (SleepyDuck-linked infrastructure)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/"><img src="days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/kill_chain.svg" alt="2026-11-11 kill chain" width="240"></a><br><sub><b>2026-11-11</b><br>Unattributed (agentic AI offensive framework)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/"><img src="days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/kill_chain.svg" alt="2026-11-11 kill chain" width="240"></a><br><sub><b>2026-11-11</b><br>Unattributed (agentic AI offensive framework)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/"><img src="days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/kill_chain.svg" alt="2026-11-10 kill chain" width="240"></a><br><sub><b>2026-11-10</b><br>Hawkmoth (Anubis RaaS)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/"><img src="days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/kill_chain.svg" alt="2026-11-09 kill chain" width="240"></a><br><sub><b>2026-11-09</b><br>BITTER</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/"><img src="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/kill_chain.svg" alt="2026-11-08 kill chain" width="240"></a><br><sub><b>2026-11-08</b><br>APT29</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/"><img src="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/kill_chain.svg" alt="2026-11-08 kill chain" width="240"></a><br><sub><b>2026-11-08</b><br>APT29</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/"><img src="days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/kill_chain.svg" alt="2026-11-07 kill chain" width="240"></a><br><sub><b>2026-11-07</b><br>Unattributed</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/"><img src="days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/kill_chain.svg" alt="2026-11-06 kill chain" width="240"></a><br><sub><b>2026-11-06</b><br></sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/"><img src="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/kill_chain.svg" alt="2026-11-05 kill chain" width="240"></a><br><sub><b>2026-11-05</b><br>UTA0576</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/"><img src="days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/kill_chain.svg" alt="2026-11-05 kill chain" width="240"></a><br><sub><b>2026-11-05</b><br>UTA0576</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/"><img src="days/2026/11/2026-11-04_MCPhantom-Deprecated-MCP-Servers-Agent-Installed-server-puppeteer-RCE-Training-Data-Glow-Labs/kill_chain.svg" alt="2026-11-04 kill chain" width="240"></a><br><sub><b>2026-11-04</b><br>MCPhantom (Glow Labs research pattern, no threat actor)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/"><img src="days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/kill_chain.svg" alt="2026-11-03 kill chain" width="240"></a><br><sub><b>2026-11-03</b><br>Unattributed (C3RB3R ransomware family)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/"><img src="days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/kill_chain.svg" alt="2026-11-02 kill chain" width="240"></a><br><sub><b>2026-11-02</b><br>Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo)</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-11</b> — 13 case(s)</summary>
+<details><summary><b>2026-11</b> — 14 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-11-14 | [WordPress core updater race (CVE-2026-119977): predictable wp-content/upgrade staging folder exposes the installer, exploited and on CISA KEV](days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/) | Unattributed (opportunistic exploitation) | linux, supply-chain |
 | 2026-11-13 | [Teams help desk impersonation and Quick Assist lead to AD CS abuse: ESC1 certificates for privileged accounts, DCSync and Rclone SFTP exfiltration, and an ESC8 PetitPotam relay](days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/) | Unattributed (help desk impersonation operators) | windows |
 | 2026-11-12 | [Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor](days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) | Unattributed (SleepyDuck-linked infrastructure) | supply-chain, windows, linux, macos |
 | 2026-11-11 | [Agentic AI tooling harvests GitHub-exposed application secrets and pivots through Entra service principals into Azure Key Vault, Run Command and AI resources](days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/) | Unattributed (agentic AI offensive framework) | cloud-multi |
