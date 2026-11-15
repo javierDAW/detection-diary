@@ -1,0 +1,43 @@
+title: Network Device Resource Exhaustion Or Crash Precursor Syslog Message (MALLOCFAIL / CPUHOG / WATCHDOG)
+id: ebe96f3c-35ad-4896-8078-1f2074266150
+status: experimental
+description: |
+  Detects Cisco IOS messages that typically precede or accompany a router crash or forced reload:
+  memory allocation failure (%SYS-2-MALLOCFAIL), a process holding the CPU too long
+  (%SYS-3-CPUHOG) and the watchdog terminating a process (%SYS-2-WATCHDOG). Interface flaps
+  (%LINK-3-UPDOWN) are included as a secondary selection because a resource-starved router often
+  drops links. Purpose: early warning that a legacy device cannot absorb new load (new feature,
+  patch, traffic or routing-table growth) before it fails.
+  Context: in the FAA ground stop of 2026-11-13 the Transportation Secretary said routers and
+  switches became overloaded with data and produced inconsistent information; the Homeland
+  Security Secretary said new patches / equipment appeared to overwhelm the routers of an older
+  system (CBS News, SecurityWeek). Device-level telemetry is unpublished and the root cause is NOT
+  officially confirmed.
+  Generic Cisco IOS hunting hint, confidence LOW, NOT derived from FAA incident logs. A rate
+  threshold (for example many LINK-3-UPDOWN per device per 10 minutes) belongs to SIEM
+  aggregation, not to this rule.
+references:
+  - https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/
+  - https://www.securityweek.com/no-signs-of-hacking-in-faa-ground-stop-as-fbi-reportedly-probes-software-update/
+  - https://www.npr.org/2026/11/14/nx-s1-6040952/faa-ground-stop-airplane-travel
+author: Jarmi
+date: 2026/11/15
+tags:
+  - attack.impact
+logsource:
+  product: cisco
+  service: syslog
+detection:
+  keywords_exhaustion:
+    - '%SYS-2-MALLOCFAIL'
+    - '%SYS-3-CPUHOG'
+    - '%SYS-2-WATCHDOG'
+  keywords_link:
+    - '%LINK-3-UPDOWN'
+  condition: keywords_exhaustion or keywords_link
+falsepositives:
+  - CPUHOG during large configuration loads, routing reconvergence or show-tech collection.
+  - LINK-3-UPDOWN from planned cabling work, carrier maintenance or remote-site power events.
+  - The attack.impact tag describes the availability-impact class only; no adversary is confirmed in the referenced case.
+
+level: medium

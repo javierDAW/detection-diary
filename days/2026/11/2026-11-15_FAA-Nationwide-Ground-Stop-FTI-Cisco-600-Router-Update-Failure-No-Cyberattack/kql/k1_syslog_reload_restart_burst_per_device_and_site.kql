@@ -1,0 +1,30 @@
+// Title: Network device reload / restart / crash-precursor bursts per device and per site (fleet-wide outage triage)
+// Id: 6d1f4a8e-3b72-4c19-9e05-2a8c7f41b6d3
+// MITRE: impact class only (availability); no adversary technique confirmed in the referenced case
+// Reference: FAA nationwide ground stop 2026-11-13 (CBS News https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/ ; SecurityWeek https://www.securityweek.com/no-signs-of-hacking-in-faa-ground-stop-as-fbi-reportedly-probes-software-update/)
+// Author: Jarmi
+// Date: 2026-11-15
+// Tested on: Microsoft Sentinel Syslog table, syntax only; not run against FAA or Cisco 600 series data
+// Confidence: LOW - generic Cisco IOS mnemonics, NOT derived from FAA incident logs (unpublished). Purpose: tell within minutes whether reloads are isolated (one device) or fleet-wide (many sites at once), which is the first fork between a local fault and a pushed change or coordinated action.
+// FP notes: planned maintenance windows; site power events; collector restarts. Site is derived from a hostname prefix by default - replace SiteRegex with your naming convention or a watchlist join.
+let Lookback = 2d;
+let Window = 15m;
+let SiteRegex = @"^([A-Za-z]{3,4})";   // assumption: first 3-4 letters of hostname = site code
+let ReloadMnemonics = dynamic(["%SYS-5-RELOAD", "%SYS-5-RESTART", "%SYS-6-LOGGINGHOST_STARTSTOP"]);
+let PrecursorMnemonics = dynamic(["%SYS-2-MALLOCFAIL", "%SYS-3-CPUHOG", "%SYS-2-WATCHDOG", "%LINK-3-UPDOWN"]);
+let NetDevEvents = Syslog
+    | where TimeGenerated > ago(Lookback)
+    | where SyslogMessage has_any (ReloadMnemonics) or SyslogMessage has_any (PrecursorMnemonics)
+    | extend Mnemonic = extract(@"(%[A-Z0-9_]+-\d-[A-Z0-9_]+)", 1, SyslogMessage)
+    | extend Device = coalesce(HostName, Computer)
+    | extend Site = toupper(extract(SiteRegex, 1, Device))
+    | extend IsReload = Mnemonic in (ReloadMnemonics), IsPrecursor = Mnemonic in (PrecursorMnemonics);
+NetDevEvents
+| summarize DevicesReloading = dcountif(Device, IsReload), DevicesWithPrecursors = dcountif(Device, IsPrecursor),
+            TotalReloads = countif(IsReload), TotalPrecursors = countif(IsPrecursor),
+            Sites = dcount(Site), SiteList = make_set(Site, 50), Devices = make_set(Device, 50),
+            Mnemonics = make_set(Mnemonic, 20), FirstSeen = min(TimeGenerated), LastSeen = max(TimeGenerated)
+            by Bin = bin(TimeGenerated, Window)
+| where DevicesReloading >= 2 or DevicesWithPrecursors >= 3 or TotalReloads >= 2
+| extend Scope = iff(Sites >= 3, "FLEET-WIDE: suspect pushed change, shared dependency or coordinated action", "LOCAL: suspect single-device or single-site fault")
+| order by Bin desc

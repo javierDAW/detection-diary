@@ -1,0 +1,7 @@
+type,value,context,confidence,source
+note,No network or host IOCs published,"Officials report no indication of a cyberattack; the FAA router logs are unpublished",high,https://www.securityweek.com/no-signs-of-hacking-in-faa-ground-stop-as-fbi-reportedly-probes-software-update/
+note,Root cause not officially confirmed,"CBS says sources give conflicting information about the cause",high,https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/
+note,Reported device class: Cisco 600 series routers made 2001-2006,"Senior government sources via CBS; preliminary and unconfirmed",low,https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/
+note,Reported network: FAA Telecommunications Infrastructure (FTI) operated by L3Harris,"CBS reporting; L3Harris had not responded",medium,https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/
+string,%SYS-5-RELOAD,"Generic Cisco IOS reload mnemonic used as a hunting hint; not derived from the incident",low,https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/
+string,%SYS-5-CONFIG_I,"Generic Cisco IOS config-change mnemonic used as a hunting hint; not derived from the incident",low,https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/

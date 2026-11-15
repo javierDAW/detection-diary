@@ -1,0 +1,24 @@
+# FAA nationwide ground stop (2026-11-13) - network-device syslog reload / crash / config-change hints (Suricata 7.x)
+# Author: Jarmi
+# Date: 2026-11-15
+# Reference: CBS News https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/ ;
+#            SecurityWeek https://www.securityweek.com/no-signs-of-hacking-in-faa-ground-stop-as-fbi-reportedly-probes-software-update/
+#
+# Context: no IOC, CVE, malware, attacker TTP, router firmware, configuration, log or packet detail
+# was published for the FAA case. Officials reported no indication of a nefarious act; sources point
+# to an update / new equipment overwhelming legacy routers (Cisco 600 series named by senior sources
+# via CBS, not officially confirmed). These rules watch cleartext syslog from network devices for
+# GENERIC Cisco IOS mnemonics - confidence LOW, NOT derived from FAA traffic - so a NOC/SOC sees
+# reloads, crash precursors and config changes on the wire even if the SIEM pipeline is degraded.
+# Encrypted syslog (TLS on 6514) is not visible to these rules.
+#
+# Variables (define in suricata.yaml address-groups):
+#   $NETDEV_SYSLOG_SRC   - custom: management IPs / CIDRs of routers and switches that send syslog
+#   $SYSLOG_COLLECTOR    - custom: IPs of the syslog collectors / SIEM forwarders
+# Ports: 514 (UDP and TCP) hard-coded; adjust if your devices use a non-standard syslog port.
+
+alert udp $NETDEV_SYSLOG_SRC any -> $SYSLOG_COLLECTOR 514 (msg:"JARMI NetDev hint - network device syslog reports reload or restart (SYS-5-RELOAD / SYS-5-RESTART) over UDP 514"; content:"%SYS-5-"; pcre:"/%SYS-5-(RELOAD|RESTART)/"; threshold:type limit, track by_src, count 1, seconds 300; classtype:misc-activity; metadata:created_at 2026_11_15, confidence low, author Jarmi; sid:9026650001; rev:1;)
+
+alert udp $NETDEV_SYSLOG_SRC any -> $SYSLOG_COLLECTOR 514 (msg:"JARMI NetDev hint - repeated crash-precursor syslog (SYS-2-MALLOCFAIL / SYS-3-CPUHOG / SYS-2-WATCHDOG) from one device over UDP 514"; content:"%SYS-"; pcre:"/%SYS-(2-MALLOCFAIL|3-CPUHOG|2-WATCHDOG)/"; detection_filter:track by_src, count 3, seconds 600; classtype:misc-activity; metadata:created_at 2026_11_15, confidence low, author Jarmi; sid:9026650002; rev:1;)
+
+alert tcp $NETDEV_SYSLOG_SRC any -> $SYSLOG_COLLECTOR 514 (msg:"JARMI NetDev hint - burst of configuration-change syslog (SYS-5-CONFIG_I Configured from) from one device over TCP 514"; flow:established,to_server; content:"%SYS-5-CONFIG_I"; content:"Configured from"; distance:0; detection_filter:track by_src, count 5, seconds 600; classtype:misc-activity; metadata:created_at 2026_11_15, confidence low, author Jarmi; sid:9026650003; rev:1;)

@@ -1,0 +1,43 @@
+title: Network Device Reload Or Restart Syslog Message (Change-Induced Outage Triage Hint)
+id: ac25a6a0-0e93-4a03-a1d4-132e9797f1f5
+status: experimental
+description: |
+  Detects Cisco IOS syslog messages that announce a device reload or restart (%SYS-5-RELOAD,
+  %SYS-5-RESTART) and the logging-host stop/start message that usually brackets a reboot
+  (%SYS-6-LOGGINGHOST_STARTSTOP). Every hit should be matched against an approved change ticket;
+  an unplanned reload on a backbone router is an availability incident regardless of cause.
+  Context: on 2026-11-13 the FAA issued a nationwide ground stop after a communication issue
+  affecting all Air Route Traffic Control Centers (CBS News, SecurityWeek). Officials described
+  routers overloaded after new patches / equipment were introduced into an old system and said
+  there was no indication of a nefarious act; senior sources cited by CBS named Cisco 600 series
+  routers (2001-2006) and other sources an update to the private ATC communications network
+  that caused a reboot, crash and outage. CBS notes sources conflict; root cause NOT officially
+  confirmed. The FAA router logs are unpublished.
+  These mnemonics are GENERIC Cisco IOS hunting hints, confidence LOW, NOT derived from the FAA
+  incident; no claim is made that any specific router family emits them. Correlating many reloads
+  across sites in a short window (fleet-wide event) belongs to SIEM aggregation
+  (see kql/k1_syslog_reload_restart_burst_per_device_and_site.kql), not to this rule.
+references:
+  - https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/
+  - https://www.securityweek.com/faa-ground-stop-issued-due-to-extraordinary-circumstances/
+  - https://www.securityweek.com/no-signs-of-hacking-in-faa-ground-stop-as-fbi-reportedly-probes-software-update/
+author: Jarmi
+date: 2026/11/15
+tags:
+  - attack.impact
+logsource:
+  product: cisco
+  service: syslog
+detection:
+  keywords_reload:
+    - '%SYS-5-RELOAD'
+    - '%SYS-5-RESTART'
+  keywords_logging:
+    - '%SYS-6-LOGGINGHOST_STARTSTOP'
+  condition: keywords_reload or keywords_logging
+falsepositives:
+  - Planned reloads inside an approved maintenance window (firmware upgrade, config rollback, hardware swap).
+  - Power events at a site; logging-host start/stop also fires when the collector itself is reconfigured.
+  - The attack.impact tag describes the availability-impact class only; no adversary is confirmed in the referenced case.
+
+level: medium

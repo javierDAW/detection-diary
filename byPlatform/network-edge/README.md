@@ -4,11 +4,12 @@
 
 # Platforms: network-edge
 
-42 day(s) covering this platform.
+43 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-15 | FAA nationwide ground stop: a change-induced failure on legacy ATC network routers, and how to tell it from a cyberattack | Unattributed (no adversary identified) | [`2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/`](../../days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/) |
 | 2026-11-05 | Ivanti Connect Secure zero-day chain: UTA0576 chains CVE-2026-104935, CVE-2026-118527 and CVE-2026-111357 for unauthenticated root | UTA0576 | [`2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/`](../../days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/) |
 | 2026-11-03 | Synology DSM ransomware: C3RB3R (a Cerber variant), the .L0CK3D extension and a disputed entry flaw | Unattributed (C3RB3R ransomware family) | [`2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/`](../../days/2026/11/2026-11-03_Synology-DSM-C3RB3R-L0CK3D-Ransomware-NAS-Cerber-Variant-CVE-2024-10441-SA-24-20/) |
 | 2026-11-02 | Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, stolen session tokens and rogue MFA devices | Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo) | [`2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/`](../../days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/) |

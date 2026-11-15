@@ -1,0 +1,39 @@
+// Title: Network device configuration change followed by reload or crash on the same host within 60 minutes (change-induced fault vs tampering)
+// Id: 0b7e5c21-94af-4d36-8a1e-5f3c9d2e7a40
+// MITRE: impact class only (availability); no adversary technique confirmed in the referenced case
+// Reference: FAA nationwide ground stop 2026-11-13 - officials and unnamed sources point to a software update / new equipment / contractor upgrade, no indication of a cyberattack, root cause not officially confirmed (CBS News https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/ ; SecurityWeek https://www.securityweek.com/no-signs-of-hacking-in-faa-ground-stop-as-fbi-reportedly-probes-software-update/ ; CNBC https://www.cnbc.com/2026/11/14/faa-ground-stop-flights-resume-delays.html)
+// Author: Jarmi
+// Date: 2026-11-15
+// Tested on: Microsoft Sentinel Syslog table, syntax only
+// Confidence: LOW - generic Cisco IOS mnemonics, NOT derived from FAA incident logs (unpublished)
+// FP notes: planned upgrades always produce CONFIG_I then RELOAD; suppress by joining your approved change list (ApprovedChangers / ChangeWindowDevices placeholders). The interesting rows are changes by unknown users / lines, or outside any change window.
+let Lookback = 7d;
+let MaxGap = 60m;
+let ApprovedChangers = dynamic(["<add_known_network_admin_accounts>"]);
+let ChangeWindowDevices = dynamic(["<add_known_device_list_in_approved_change>"]);
+let Changes = Syslog
+    | where TimeGenerated > ago(Lookback)
+    | where SyslogMessage has "%SYS-5-CONFIG_I" or SyslogMessage has "Configured from"
+    | extend Device = coalesce(HostName, Computer)
+    | extend ChangeUser = extract(@"Configured from \S+ by (\S+)", 1, SyslogMessage),
+             ChangeSource = extract(@"\(([0-9a-fA-F\.:]+)\)", 1, SyslogMessage)
+    | project ChangeTime = TimeGenerated, Device, ChangeUser, ChangeSource, ChangeMsg = SyslogMessage;
+let Failures = Syslog
+    | where TimeGenerated > ago(Lookback)
+    | where SyslogMessage has_any ("%SYS-5-RELOAD", "%SYS-5-RESTART", "%SYS-2-MALLOCFAIL", "%SYS-2-WATCHDOG", "%SYS-3-CPUHOG")
+    | extend Device = coalesce(HostName, Computer)
+    | extend FailMnemonic = extract(@"(%[A-Z0-9_]+-\d-[A-Z0-9_]+)", 1, SyslogMessage)
+    | project FailTime = TimeGenerated, Device, FailMnemonic, FailMsg = SyslogMessage;
+Changes
+| join kind=inner Failures on Device
+| where FailTime between (ChangeTime .. (ChangeTime + MaxGap))
+| extend MinutesToFailure = datetime_diff("minute", FailTime, ChangeTime)
+| extend KnownChanger = ChangeUser in (ApprovedChangers), InChangeWindow = Device in (ChangeWindowDevices)
+| summarize FirstChange = min(ChangeTime), FirstFailure = min(FailTime), MinMinutesToFailure = min(MinutesToFailure),
+            ChangeUsers = make_set(ChangeUser, 10), ChangeSources = make_set(ChangeSource, 10),
+            FailMnemonics = make_set(FailMnemonic, 10), KnownChanger = max(toint(KnownChanger)), InChangeWindow = max(toint(InChangeWindow))
+            by Device
+| extend Triage = case(InChangeWindow == 1 and KnownChanger == 1, "CHANGE-INDUCED: approved change then failure - roll back, review change",
+                       KnownChanger == 1, "CHANGE-INDUCED?: known admin but device not in approved change - verify ticket",
+                       "INVESTIGATE: unknown changer or source before failure - treat as possible tampering")
+| order by FirstChange asc

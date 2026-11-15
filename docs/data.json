@@ -1,5 +1,38 @@
 [
  {
+  "date": "2026-11-15",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack",
+  "title": "FAA nationwide ground stop: a change-induced failure on legacy ATC network routers, and how to tell it from a cyberattack",
+  "clusters": [
+   "Unattributed (no adversary identified)"
+  ],
+  "country": "United States (no attribution; officials report no indication of a cyberattack)",
+  "platforms": [
+   "network-edge",
+   "ot-ics"
+  ],
+  "sectors": [
+   "aviation",
+   "government",
+   "transportation"
+  ],
+  "techniques": [],
+  "tech_count": 0,
+  "tldr": "On Friday 2026-11-13 the FAA ordered a nationwide ground stop after a communication problem hit all Air Route Traffic Control Centers; the stop lasted more than four hours (CBS says about five) and cascaded into 9,159 cancellations that day per FlightAware via CBS. Officials say it was not a cyberattack: the Transportation Secretary blamed routers overloaded by data on an old system, and the Homel",
+  "thumb": "thumbs/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack.svg",
+  "case_rel": "../days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Unattributed (no adversary identified)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "faa nationwide ground stop: a change-induced failure on legacy atc network routers, and how to tell it from a cyberattack unattributed (no adversary identified) united states (no attribution; officials report no indication of a cyberattack) network-edge ot-ics aviation government transportation  other "
+ },
+ {
   "date": "2026-11-14",
   "year": "2026",
   "month": "2026-11",

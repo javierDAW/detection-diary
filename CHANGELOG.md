@@ -1,3 +1,19 @@
+## 2026.11.15 — Day 145 — FAA nationwide ground stop: change-induced failure on legacy ATC network routers, and triage versus cyberattack
+
+### Added
+- `days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/` — the FAA stopped all departures on 2026-11-13 after a communication failure at every ARTCC; officials report no sign of a cyberattack and blame routers overloaded after patches or an upgrade on the L3Harris-operated FTI network (CBS, SecurityWeek, CNBC). Root cause unconfirmed; the Cisco 600 series claim rests on unnamed sources. No actor, CVE or IOC exists, so the case teaches change-vs-fault-vs-tampering triage.
+- Sigma (3): `01_network_device_unexpected_reload_or_restart`; `02_network_device_configuration_change`; `03_network_device_resource_exhaustion_crash_precursors`.
+- KQL (3): reload bursts per device and site; config change followed by reload within 60 minutes; telemetry silence.
+- YARA (1 file, 4 rules): triage of collected IOS crashinfo and show-tech text (not malware, low confidence, not compiled).
+- Suricata (1 file, 3 sids 9026650001-9026650003): syslog-content hints on UDP/TCP 514 (not tested).
+- PEAK hunts (3): legacy router inventory and maintenance gating; change vs fault vs adversary triage; telemetry gap and voice/data degradation.
+- `iocs.csv` (6 entries) — notes and generic hint strings only; no indicators published. No CVEs, so no `kev.md`.
+- `kill_chain.svg` — template C, canonical palette, reported fault chain with detection anchors.
+
+### Pedagogy
+- An availability incident gets intrusion-grade evidence discipline; do not declare "hack" or "glitch" before logs do.
+- Correlate change with reload (k2) first: it is the cheapest separator between a failed update and tampering.
+
 ## 2026.11.14 — Day 144 — WordPress core updater race (CVE-2026-119977): predictable wp-content/upgrade staging exposes the installer
 
 ### Added

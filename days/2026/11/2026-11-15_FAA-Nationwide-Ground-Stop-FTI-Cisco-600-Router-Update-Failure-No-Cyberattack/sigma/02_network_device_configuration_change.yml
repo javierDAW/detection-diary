@@ -1,0 +1,36 @@
+title: Network Device Configuration Change Syslog Message (Correlate With Reload And Change Ticket)
+id: 39a4efae-bd1b-4dca-aa94-d2a6c4bea134
+status: experimental
+description: |
+  Detects Cisco IOS configuration-change messages (%SYS-5-CONFIG_I "Configured from ..."), which
+  record the configuring user / line / source when available. On its own this is an audit event;
+  its value is in correlation: a configuration change followed by a reload or crash on the same
+  device within about 60 minutes is the change-induced-fault pattern, and a change made by an
+  unexpected account, line or source with no change ticket is the tampering pattern. That
+  correlation and any threshold belong to SIEM aggregation
+  (see kql/k2_syslog_config_change_followed_by_reload_60m.kql), not to this rule.
+  Context: in the FAA nationwide ground stop of 2026-11-13, officials and unnamed sources (CBS
+  News, SecurityWeek, CNBC) pointed to a software update / new equipment / contractor upgrade to
+  the FAA Telecommunications Infrastructure, with no indication of a cyberattack; the FBI is
+  reportedly probing a software update (Bloomberg via SecurityWeek). Root cause NOT officially
+  confirmed; no FAA configuration or log data is published.
+  Generic Cisco IOS hunting hint, confidence LOW, NOT derived from FAA incident logs.
+references:
+  - https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/
+  - https://www.securityweek.com/no-signs-of-hacking-in-faa-ground-stop-as-fbi-reportedly-probes-software-update/
+  - https://www.cnbc.com/2026/11/14/faa-ground-stop-flights-resume-delays.html
+author: Jarmi
+date: 2026/11/15
+logsource:
+  product: cisco
+  service: syslog
+detection:
+  keywords_config:
+    - '%SYS-5-CONFIG_I'
+    - 'Configured from'
+  condition: keywords_config
+falsepositives:
+  - Every legitimate change made by network engineers or automation (Ansible, NSO, config-management pollers that write memory).
+  - High volume expected; use as a correlation input rather than a standalone alert.
+
+level: informational

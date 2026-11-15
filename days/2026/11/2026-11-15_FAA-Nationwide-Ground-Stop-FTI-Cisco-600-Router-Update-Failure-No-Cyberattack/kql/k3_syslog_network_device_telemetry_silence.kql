@@ -1,0 +1,25 @@
+// Title: Network devices that were logging and have gone silent for N minutes (telemetry-gap / path-loss triage)
+// Id: 9a3c61d7-2e48-4f0b-b5a9-71d0e6c8f243
+// MITRE: impact class only (availability); also consistent with logging suppression, which must be ruled out
+// Reference: FAA nationwide ground stop 2026-11-13 - overwhelmed routers reportedly fed out-of-sync packets into ATC systems causing static on voice lines and screens flashing or going black (senior sources via CBS News, not officially confirmed) https://www.cbsnews.com/news/faa-issues-nationwide-ground-stop/ ; https://www.npr.org/2026/11/14/nx-s1-6040952/faa-ground-stop-airplane-travel
+// Author: Jarmi
+// Date: 2026-11-15
+// Tested on: Microsoft Sentinel Syslog table, syntax only
+// Confidence: LOW - generic hunting logic, NOT derived from FAA incident telemetry (unpublished)
+// FP notes: devices that log rarely (quiet edge routers) - tune SilenceThreshold per device class or restrict to <add_known_device_list>; collector or forwarder outages silence many devices at once (check the forwarder first).
+let Baseline = 1d;
+let SilenceThreshold = 20m;
+let MinBaselineEvents = 20;
+let CriticalDevices = dynamic(["<add_known_device_list>"]);
+Syslog
+| where TimeGenerated > ago(Baseline)
+| extend Device = coalesce(HostName, Computer)
+| summarize arg_max(TimeGenerated, SyslogMessage), Events = count() by Device
+| extend LastSeen = TimeGenerated
+| where Events >= MinBaselineEvents
+| extend SilentFor = now() - LastSeen
+| where SilentFor > SilenceThreshold
+| extend Critical = Device in (CriticalDevices),
+         LastWasReload = SyslogMessage has_any ("%SYS-5-RELOAD", "%SYS-6-LOGGINGHOST_STARTSTOP", "%SYS-2-WATCHDOG", "%SYS-2-MALLOCFAIL")
+| project Device, Critical, LastSeen, SilentFor, Events, LastWasReload, LastLine = SyslogMessage
+| order by Critical desc, SilentFor desc
