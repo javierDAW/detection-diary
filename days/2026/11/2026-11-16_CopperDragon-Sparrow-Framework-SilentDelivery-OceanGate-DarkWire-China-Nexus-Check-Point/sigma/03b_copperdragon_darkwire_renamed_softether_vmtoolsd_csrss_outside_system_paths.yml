@@ -1,0 +1,54 @@
+title: CopperDragon DarkWire - Renamed SoftEther VPN Running As vmtoolsd.exe Or csrss.exe Outside Expected Paths
+id: 24007c0c-e529-438b-83b4-ac3fe0a2dc20
+status: experimental
+description: |
+  Companion to rule 03 (separate atomic rule because the logsource differs). Check Point Research
+  (2026-11-10) reports that the CopperDragon DarkWire cluster deploys SoftEther VPN renamed as
+  vmtoolsd.exe or csrss.exe for tunnelling. The genuine csrss.exe only runs from System32 and the
+  genuine vmtoolsd.exe only from the VMware Tools install folder. Selections: process image named
+  vmtoolsd.exe / csrss.exe outside those folders; or either name whose PE metadata (OriginalFileName /
+  Product / Company) points at SoftEther (vpnbridge.exe, vpnclient.exe, vpnserver.exe).
+  Honesty: derived from the Check Point Research 2026-11-10 report (part of it read only through a model
+  summary) and The Hacker News 2026-11-10; the install paths of the renamed binaries are not published,
+  so the rule is path-anomaly based. The PE metadata selection assumes the operator did not strip the
+  version resource. Indicators decay.
+references:
+  - https://research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/
+  - https://thehackernews.com/2026/11/three-china-nexus-espionage-campaigns.html
+author: Jarmi
+date: 2026/11/16
+tags:
+  - attack.defense-evasion
+  - attack.t1036.005
+  - attack.command-and-control
+  - attack.t1572
+  - attack.t1090
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_name:
+    Image|endswith:
+      - '\vmtoolsd.exe'
+      - '\csrss.exe'
+  filter_csrss_legit:
+    Image|endswith: '\csrss.exe'
+    Image|startswith:
+      - 'C:\Windows\System32\'
+      - '\SystemRoot\System32\'
+  filter_vmtoolsd_legit:
+    Image|endswith: '\vmtoolsd.exe'
+    Image|startswith:
+      - 'C:\Program Files\VMware\VMware Tools\'
+      - 'C:\Program Files (x86)\VMware\VMware Tools\'
+  selection_softether_meta:
+    - OriginalFileName|startswith: 'vpn'
+      Product|contains: 'SoftEther'
+    - Company|contains: 'SoftEther'
+    - Description|contains: 'SoftEther'
+  condition: (selection_name and not filter_csrss_legit and not filter_vmtoolsd_legit) or (selection_name and selection_softether_meta)
+falsepositives:
+  - VMware Tools installed to a non-default folder (custom golden images); confirm the VMware signature.
+  - Security tooling that copies csrss.exe for analysis into a sandbox or quarantine folder.
+
+level: high

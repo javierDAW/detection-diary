@@ -4,11 +4,12 @@
 
 # Techniques: T1110
 
-4 day(s) covering this technique.
+5 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-16 | CopperDragon's Sparrow framework: three China-nexus clusters (SilentDelivery, OceanGate, DarkWire) share one toolset against telecom, government and research targets | CopperDragon | [`2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/`](../../days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/) |
 | 2026-07-10 | Cavern Manticore: Iran-MOIS Modular .NET C2 Framework (SysAid Side-Load, Native AOT / Mixed-Mode Anti-RE) | Cavern Manticore | [`2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/`](../../days/2026/07/2026-07-10_Cavern-Manticore-Iran-MOIS-Modular-DotNet-C2/) |
 | 2026-05-24 | Operation Saffron — First VPN Anonymization-as-a-Service Takedown by Europol, France, Netherlands and FBI | First VPN Service (1vpns.com) | [`2026-05-24_OperationSaffron-FirstVPN-Takedown/`](../../days/2026/05/2026-05-24_OperationSaffron-FirstVPN-Takedown/) |
 | 2026-05-05 | Akira ransomware × SonicWall SSL VPN — CVE-2024-40766 smash-and-grab with sub-4h dwell (Arctic Wolf 2025-2026 resurgence + CISA AA24-109A) | Akira · Storm-1567 · Howling Scorpius · Punk Spider · Gold Sahara | [`2026-05-05_Akira-SonicWall-CVE-2024-40766/`](../../days/2026/05/2026-05-05_Akira-SonicWall-CVE-2024-40766/) |

@@ -1,0 +1,59 @@
+title: CopperDragon SilentDelivery - ftp.exe Launched From A LNK With A Batch-In-.dll Script Or Strategi_AS Lure Names
+id: 545f2f24-db60-4297-a81f-c38cb08e872f
+status: experimental
+description: |
+  Detects the CopperDragon SilentDelivery phishing variant reported by Check Point Research (2026-11-10,
+  "Not All That Glitters Is Gold: Tracking CopperDragon's Sparrow Framework Around the Globe") against
+  Indonesian targets: a RAR (Strategi_AS_Referensi_April2026.rar) holds Strategi_AS_Referensi_April2026.docx.lnk,
+  which abuses ftp.exe to run _rels/info.dll - a batch script with a .dll extension - that expands
+  _rels/.rels.log (a CAB carrying the SquadC loader) and opens _rels/557.pdf (empty decoy).
+  Three selections: ftp.exe whose command line references the _rels folder, info.dll or the Strategi_AS
+  lure; ftp.exe parented by explorer.exe with a .dll script argument (LNK double-click); ftp.exe
+  spawning cmd.exe / expand.exe / extrac32.exe / rundll32.exe.
+  Honesty: derived from the Check Point Research 2026-11-10 report (roughly 40 percent of it read only
+  through a model summary) and The Hacker News 2026-11-10; the exact LNK command line is not published,
+  so the argument logic is behavioural. Indicators decay; lure names are trivially changed.
+references:
+  - https://research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/
+  - https://thehackernews.com/2026/11/three-china-nexus-espionage-campaigns.html
+  - https://lolbas-project.github.io/lolbas/Binaries/Ftp/
+author: Jarmi
+date: 2026/11/16
+tags:
+  - attack.execution
+  - attack.t1204.002
+  - attack.t1059.003
+  - attack.defense-evasion
+  - attack.t1202
+  - attack.t1036.008
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_ftp_img:
+    - Image|endswith: '\ftp.exe'
+    - OriginalFileName: 'ftp.exe'
+  selection_lure_args:
+    CommandLine|contains:
+      - '_rels\'
+      - '_rels/'
+      - 'info.dll'
+      - '.rels.log'
+      - 'Strategi_AS_'
+  selection_lnk_parent:
+    ParentImage|endswith: '\explorer.exe'
+    CommandLine|contains: '.dll'
+  selection_child:
+    ParentImage|endswith: '\ftp.exe'
+    Image|endswith:
+      - '\cmd.exe'
+      - '\expand.exe'
+      - '\extrac32.exe'
+      - '\rundll32.exe'
+      - '\powershell.exe'
+  condition: (selection_ftp_img and (selection_lure_args or selection_lnk_parent)) or selection_child
+falsepositives:
+  - Legacy batch automation that drives ftp.exe with a -s script file; script files with a .dll extension or inside an _rels folder are not expected.
+  - Administrators using the ftp "!" shell escape interactively (rare on modern endpoints).
+
+level: high

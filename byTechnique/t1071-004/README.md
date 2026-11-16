@@ -4,11 +4,12 @@
 
 # Techniques: T1071.004
 
-3 day(s) covering this technique.
+4 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-16 | CopperDragon's Sparrow framework: three China-nexus clusters (SilentDelivery, OceanGate, DarkWire) share one toolset against telecom, government and research targets | CopperDragon | [`2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/`](../../days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/) |
 | 2026-08-27 | QTFY: the FBI and DoJ seize the QScan and QTRouter platforms behind a Chinese state-enabling relay model | QTFY | [`2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/`](../../days/2026/08/2026-08-27_QTFY-QScan-QTRouter-ORB-Takedown/) |
 | 2026-06-12 | LinkPro — eBPF rootkit with magic-packet activation in a compromised AWS EKS environment | LinkPro (unattributed; vShell/vnt toolchain, UNC5174 overlap) | [`2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/`](../../days/2026/06/2026-06-12_LinkPro-eBPF-Rootkit-MagicPacket-EKS/) |
 | 2026-06-08 | OP-512 — China-linked IIS web shell framework with per-deployment cryptographic uniqueness | OP-512 | [`2026-06-08_OP-512-China-IIS-WebShell-Framework/`](../../days/2026/06/2026-06-08_OP-512-China-IIS-WebShell-Framework/) |

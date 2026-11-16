@@ -1,5 +1,57 @@
 [
  {
+  "date": "2026-11-16",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point",
+  "title": "CopperDragon's Sparrow framework: three China-nexus clusters (SilentDelivery, OceanGate, DarkWire) share one toolset against telecom, government and research targets",
+  "clusters": [
+   "CopperDragon"
+  ],
+  "country": "China (nexus)",
+  "platforms": [
+   "windows",
+   "linux"
+  ],
+  "sectors": [
+   "government",
+   "telecom",
+   "military",
+   "research",
+   "shipping"
+  ],
+  "techniques": [
+   "T1189",
+   "T1204.002",
+   "T1059.003",
+   "T1218",
+   "T1190",
+   "T1110",
+   "T1021.001",
+   "T1136.001",
+   "T1056.001",
+   "T1003.001",
+   "T1574.002",
+   "T1071.004",
+   "T1090",
+   "T1014",
+   "T1547.001",
+   "T1572"
+  ],
+  "tech_count": 16,
+  "tldr": "On 2026-11-10 Check Point Research published a report on CopperDragon, a possible \"digital quartermaster\" whose Sparrow framework (SparrowDoor, SparrowShell, SquadC and the Copper* tools) is used by several China-nexus actors against telecom, government, military and research organizations in Latin America, Asia and Europe. Three clusters are described: SilentDelivery (watering holes with a fake C",
+  "thumb": "thumbs/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point.svg",
+  "case_rel": "../days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/",
+  "category": "espionage",
+  "cat_label": "Espionage / APT",
+  "cat_color": "#2a4a6a",
+  "actor": "CopperDragon",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "copperdragon's sparrow framework: three china-nexus clusters (silentdelivery, oceangate, darkwire) share one toolset against telecom, government and research targets copperdragon china (nexus) windows linux government telecom military research shipping t1189 t1204.002 t1059.003 t1218 t1190 t1110 t1021.001 t1136.001 t1056.001 t1003.001 t1574.002 t1071.004 t1090 t1014 t1547.001 t1572 espionage / apt "
+ },
+ {
   "date": "2026-11-15",
   "year": "2026",
   "month": "2026-11",

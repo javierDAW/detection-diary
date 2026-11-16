@@ -4,11 +4,12 @@
 
 # Techniques: T1189
 
-7 day(s) covering this technique.
+8 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-16 | CopperDragon's Sparrow framework: three China-nexus clusters (SilentDelivery, OceanGate, DarkWire) share one toolset against telecom, government and research targets | CopperDragon | [`2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/`](../../days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/) |
 | 2026-11-08 | Poisoned Source: APT29 turns a hijacked Plerdy analytics script and watering holes into iOS and Android n-day exploit delivery | APT29 | [`2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/`](../../days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/) |
 | 2026-10-26 | AdFection: Discover-Tech's Controlium ad platform turned targeted advertising into a zero-click delivery pipeline for Candiru mercenary spyware | Candiru (Integrity Labs) · Discover-Tech | [`2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/`](../../days/2026/10/2026-10-26_AdFection-Discover-Tech-Controlium-Candiru-Zero-Click-Ad-Delivered-Spyware-Al-Jazeera/) |
 | 2026-08-10 | CaptiveCrunch: Midnight Blizzard (Storm-2945) turns hotel captive portals into an AitM malware and credential-theft channel | Storm-2945 | [`2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/`](../../days/2026/08/2026-08-10_CaptiveCrunch-MidnightBlizzard-CaptivePortal-AitM/) |

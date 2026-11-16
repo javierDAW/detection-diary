@@ -1,0 +1,45 @@
+title: CopperDragon DarkWire - LSASS Dump Via comsvcs.dll MiniDump Or Dump Written As 1.png
+id: 6150200c-5fe3-495f-b55e-aad42444de7f
+status: experimental
+description: |
+  Detects the LSASS credential dumping reported for the CopperDragon DarkWire cluster by Check Point
+  Research (2026-11-10): LSASS memory dumped via comsvcs.dll (MiniDump export, typically through
+  rundll32) and via a custom dep.dll, then encrypted with a custom "SUB-XOR-ADD" routine and renamed
+  1.png. Selections: rundll32 / any process invoking comsvcs.dll with the MiniDump export (also by
+  ordinal #24); or any command line that names comsvcs together with a 1.png output.
+  Honesty: derived from the Check Point Research 2026-11-10 report (part of it read only through a model
+  summary) and The Hacker News 2026-11-10. The exact command lines are not published; how dep.dll is
+  invoked is not published, so it is mentioned here but not matched. If the rename to 1.png happens
+  in-process, only file_event telemetry (a .png written near an LSASS access) will catch it - see KQL k3.
+  Indicators decay.
+references:
+  - https://research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/
+  - https://thehackernews.com/2026/11/three-china-nexus-espionage-campaigns.html
+  - https://lolbas-project.github.io/lolbas/Libraries/comsvcs/
+author: Jarmi
+date: 2026/11/16
+tags:
+  - attack.credential-access
+  - attack.t1003.001
+  - attack.defense-evasion
+  - attack.t1218.011
+  - attack.t1036.008
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_comsvcs:
+    CommandLine|contains: 'comsvcs'
+  selection_minidump:
+    CommandLine|contains:
+      - 'MiniDump'
+      - '#24'
+      - '#+24'
+      - '#-4294967272'
+  selection_png_out:
+    CommandLine|contains: '1.png'
+  condition: selection_comsvcs and (selection_minidump or selection_png_out)
+falsepositives:
+  - Authorised red-team or incident-response memory acquisition using comsvcs.dll (confirm with the engagement owner).
+
+level: critical

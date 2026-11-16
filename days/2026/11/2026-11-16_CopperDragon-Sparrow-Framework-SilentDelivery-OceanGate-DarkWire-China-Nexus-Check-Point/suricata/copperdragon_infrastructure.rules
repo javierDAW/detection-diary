@@ -1,0 +1,41 @@
+# CopperDragon Sparrow framework (SilentDelivery / OceanGate / DarkWire) infrastructure (Suricata 7.x)
+# Author: Jarmi
+# Date: 2026-11-16
+# Reference: Check Point Research 2026-11-10 "Not All That Glitters Is Gold: Tracking CopperDragon's
+#            Sparrow Framework Around the Globe"
+#            https://research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/
+#            The Hacker News 2026-11-10 https://thehackernews.com/2026/11/three-china-nexus-espionage-campaigns.html
+#
+# Honesty: roughly 40 percent of the Check Point report was read only through a model summary, so the
+# domains, IPs and the certificate fingerprint carry medium confidence. The report does not map every IP
+# to one cluster. The JS C2 paths (/image-check?t=, /report-url, /register-ip) are published without a
+# fixed host (the injected JS talks to attacker servers that rotate), so sid 9995004 is generic and low
+# confidence. No pcap, JA3/JA4 or user agent was published, so none is matched. CopperDNS (DNS MX C2,
+# TCP 6532, AS20473) is not covered here beyond the shared amelicen.com domain. Attacker infrastructure
+# may be defunct, re-assigned or sinkholed; re-validate before treating a hit as live. Indicators decay.
+#
+# 9995001 - TLS SNI for the SilentDelivery domains (microsfot.vip, microscoft.vip, aistei.com, astorialaza.com)
+# 9995002 - DNS query for the SilentDelivery domains
+# 9995003 - DNS query for amelicen.com (shared SparrowDoor C2 / CopperDNS domain, DarkWire)
+# 9995004 - HTTP request with a SilentDelivery JS C2 path: GET /image-check?t=, POST /report-url, /register-ip (any host, low confidence)
+# 9995005 - TLS server certificate SHA-1 760be920fad07881b8ce9d94e074a35b4f806717 (McAfee / VeriSign 2010 CA issuer,
+#           not-after 2024-04-27; shared by SilentDelivery and OceanGate C2). Only visible for TLS 1.2 and below
+#           (TLS 1.3 encrypts the certificate).
+# 9995006 - outbound connection to the seven published campaign IPs
+#
+# Variables (define in suricata.yaml):
+#   $HOME_NET      - standard internal networks
+#   $EXTERNAL_NET  - standard external networks
+# Not compile-tested (no engine available at authoring time).
+
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"CopperDragon SilentDelivery - TLS SNI to campaign domain"; flow:established,to_server; tls.sni; pcre:"/(?:^|\.)(?:microsfot\.vip|microscoft\.vip|aistei\.com|astorialaza\.com)$/i"; reference:url,research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/; classtype:trojan-activity; sid:9995001; rev:1; metadata:author Jarmi, created_at 2026_11_16, confidence medium;)
+
+alert dns $HOME_NET any -> any any (msg:"CopperDragon SilentDelivery - DNS query for campaign domain"; dns.query; pcre:"/(?:^|\.)(?:microsfot\.vip|microscoft\.vip|aistei\.com|astorialaza\.com)$/i"; reference:url,research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/; classtype:trojan-activity; sid:9995002; rev:1; metadata:author Jarmi, created_at 2026_11_16, confidence medium;)
+
+alert dns $HOME_NET any -> any any (msg:"CopperDragon DarkWire - DNS query for amelicen.com (SparrowDoor C2 / CopperDNS)"; dns.query; pcre:"/(?:^|\.)amelicen\.com$/i"; reference:url,research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/; classtype:trojan-activity; sid:9995003; rev:1; metadata:author Jarmi, created_at 2026_11_16, confidence medium;)
+
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"CopperDragon SilentDelivery - injected JS C2 path (/image-check?t= GET, /report-url POST, /register-ip) - generic, low confidence"; flow:established,to_server; http.method; pcre:"/^(?:GET|POST)$/"; http.uri; pcre:"/^\/(?:image-check\?t=|report-url(?:$|[\/?])|register-ip(?:$|[\/?]))/i"; reference:url,research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/; classtype:trojan-activity; sid:9995004; rev:1; metadata:author Jarmi, created_at 2026_11_16, confidence low;)
+
+alert tls $EXTERNAL_NET any -> $HOME_NET any (msg:"CopperDragon SilentDelivery / OceanGate - shared C2 TLS certificate SHA-1 760be920"; flow:established,to_client; tls.cert_fingerprint; content:"76:0b:e9:20:fa:d0:78:81:b8:ce:9d:94:e0:74:a3:5b:4f:80:67:17"; reference:url,research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/; classtype:trojan-activity; sid:9995005; rev:1; metadata:author Jarmi, created_at 2026_11_16, confidence medium;)
+
+alert ip $HOME_NET any -> [135.136.135.54,103.141.235.123,109.205.195.131,158.255.213.189,165.154.227.16,45.197.12.11,91.210.164.5] any (msg:"CopperDragon - outbound connection to published campaign IP"; reference:url,research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/; classtype:trojan-activity; sid:9995006; rev:1; metadata:author Jarmi, created_at 2026_11_16, confidence medium;)

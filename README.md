@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**145 cases** · **212 actors/clusters** · **410 ATT&CK techniques** · **16 platforms** · **99 sectors** · 2026-04-28 -> 2026-11-15
+**146 cases** · **213 actors/clusters** · **410 ATT&CK techniques** · **16 platforms** · **100 sectors** · 2026-04-28 -> 2026-11-16
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/"><img src="days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/kill_chain.svg" alt="2026-11-16 kill chain" width="240"></a><br><sub><b>2026-11-16</b><br>CopperDragon</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/"><img src="days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/kill_chain.svg" alt="2026-11-15 kill chain" width="240"></a><br><sub><b>2026-11-15</b><br>Unattributed (no adversary identified)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/"><img src="days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/kill_chain.svg" alt="2026-11-14 kill chain" width="240"></a><br><sub><b>2026-11-14</b><br>Unattributed (opportunistic exploitation)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/"><img src="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/kill_chain.svg" alt="2026-11-13 kill chain" width="240"></a><br><sub><b>2026-11-13</b><br>Unattributed (help desk impersonation operators)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/"><img src="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/kill_chain.svg" alt="2026-11-13 kill chain" width="240"></a><br><sub><b>2026-11-13</b><br>Unattributed (help desk impersonation operators)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/"><img src="days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/kill_chain.svg" alt="2026-11-12 kill chain" width="240"></a><br><sub><b>2026-11-12</b><br>Unattributed (SleepyDuck-linked infrastructure)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/"><img src="days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/kill_chain.svg" alt="2026-11-11 kill chain" width="240"></a><br><sub><b>2026-11-11</b><br>Unattributed (agentic AI offensive framework)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/"><img src="days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/kill_chain.svg" alt="2026-11-10 kill chain" width="240"></a><br><sub><b>2026-11-10</b><br>Hawkmoth (Anubis RaaS)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

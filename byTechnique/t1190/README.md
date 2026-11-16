@@ -4,11 +4,12 @@
 
 # Techniques: T1190
 
-53 day(s) covering this technique.
+54 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-16 | CopperDragon's Sparrow framework: three China-nexus clusters (SilentDelivery, OceanGate, DarkWire) share one toolset against telecom, government and research targets | CopperDragon | [`2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/`](../../days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/) |
 | 2026-11-14 | WordPress core updater race (CVE-2026-119977): predictable wp-content/upgrade staging folder exposes the installer, exploited and on CISA KEV | Unattributed (opportunistic exploitation) | [`2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/`](../../days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/) |
 | 2026-11-07 | French blood bank cold storage hit through refrigeration controllers: EFS plasma freezer thresholds raised in a Europe-wide refrigeration attack wave | Unattributed | [`2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/`](../../days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/) |
 | 2026-11-06 | OpenSSH *sshole: musl crypt() returns '*' for passwords over 256 bytes, letting a long password log in to locked accounts (CVE-2026-123158) |  | [`2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/`](../../days/2026/11/2026-11-06_OpenSSH-sshole-CVE-2026-123158-musl-crypt-Long-Password-Locked-Account-Bypass-Alpine/) |

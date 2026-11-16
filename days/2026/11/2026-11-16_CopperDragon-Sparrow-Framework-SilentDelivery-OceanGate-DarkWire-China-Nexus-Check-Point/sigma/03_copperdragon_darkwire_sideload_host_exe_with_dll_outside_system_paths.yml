@@ -1,0 +1,68 @@
+title: CopperDragon DarkWire - CopperLoader DLL Side-Loading Pairs Loaded From Staging Paths
+id: 264f6dca-bd59-4556-8e98-80c134bfa4dc
+status: experimental
+description: |
+  Detects the CopperLoader DLL side-loading pairs used by the CopperDragon DarkWire cluster (telecom and
+  government, Latin America, mid-2025 onward) reported by Check Point Research (2026-11-10). A legitimate
+  signed host EXE loads an attacker DLL of the expected name that then reflectively loads an RC4-encrypted
+  .dat next stage (CopperDoor / SparroWocky). Published pairs (DLL / host EXE): ncpmif32.dll / ncptrcw.exe,
+  winfsp.dll / fsptool.exe, libvlccore.dll / vlc.exe, DukeQt.dll / gethwid.exe,
+  zCrashReport64.dll / zCrashReport64.exe. Published staging folders: C:\Program Files\7-Zip\Lang,
+  C:\Windows\debug, C:\Windows\System32, C:\ProgramData\vmware\logs, C:\ProgramData\Oracle\Java,
+  C:\ProgramData\USOShared, C:\ProgramData\Waves.
+  Two selections: (a) a host EXE / DLL pair loaded from any of the published staging folders; (b) a
+  host EXE / DLL pair where the host image runs from a ProgramData, Windows\debug, 7-Zip\Lang, Temp or
+  Public folder (where VLC, WinFsp, NCP or Zoom crash reporters are not installed).
+  Honesty: derived from the Check Point Research 2026-11-10 report (part of it read only through a model
+  summary) and The Hacker News 2026-11-10. Which pair was staged in which folder is not mapped one to one
+  in what was read, so the rule matches any pair in any published folder. System32 staging cannot be
+  separated from legitimate installs by path alone; it is covered only via the explicit DLL names.
+  The companion rule 03b covers renamed SoftEther VPN (process_creation). Indicators decay.
+references:
+  - https://research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/
+  - https://thehackernews.com/2026/11/three-china-nexus-espionage-campaigns.html
+author: Jarmi
+date: 2026/11/16
+tags:
+  - attack.defense-evasion
+  - attack.persistence
+  - attack.privilege-escalation
+  - attack.t1574.001
+  - attack.t1620
+logsource:
+  category: image_load
+  product: windows
+detection:
+  selection_pair:
+    - Image|endswith: '\ncptrcw.exe'
+      ImageLoaded|endswith: '\ncpmif32.dll'
+    - Image|endswith: '\fsptool.exe'
+      ImageLoaded|endswith: '\winfsp.dll'
+    - Image|endswith: '\vlc.exe'
+      ImageLoaded|endswith: '\libvlccore.dll'
+    - Image|endswith: '\gethwid.exe'
+      ImageLoaded|endswith: '\DukeQt.dll'
+    - Image|endswith: '\zCrashReport64.exe'
+      ImageLoaded|endswith: '\zCrashReport64.dll'
+  selection_staging_dll:
+    ImageLoaded|contains:
+      - '\Program Files\7-Zip\Lang\'
+      - '\Windows\debug\'
+      - '\Windows\System32\'
+      - '\ProgramData\vmware\logs\'
+      - '\ProgramData\Oracle\Java\'
+      - '\ProgramData\USOShared\'
+      - '\ProgramData\Waves\'
+  selection_unusual_host_path:
+    Image|contains:
+      - '\ProgramData\'
+      - '\Windows\debug\'
+      - '\7-Zip\Lang\'
+      - '\AppData\Local\Temp\'
+      - '\Users\Public\'
+  condition: selection_pair and (selection_staging_dll or selection_unusual_host_path)
+falsepositives:
+  - Portable VLC or WinFsp builds unpacked under ProgramData or a user Temp folder by legitimate software deployment.
+  - Zoom crash reporter components in non-default per-user install locations; validate the signer of the loaded DLL (the side-loaded DLL is unsigned or signed by an unrelated publisher).
+
+level: high

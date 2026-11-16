@@ -1,0 +1,52 @@
+// Title: CopperDragon SilentDelivery - ftp.exe LNK chain (Strategi_AS RAR, batch-in-.dll), CertFixer.msi fake certificate fix, SquadC side-loading and WindowsUpdateAssist persistence (Defender XDR)
+// Id: ab8e95c5-c049-4fdb-a607-8748b709c791
+// MITRE: T1189 Drive-by Compromise; T1204.002 Malicious File; T1218.007 Msiexec; T1202 Indirect Command Execution; T1059.003 Windows Command Shell; T1574.001 DLL Search Order Hijacking (side-loading); T1547.001 Registry Run Keys
+// Reference: Check Point Research 2026-11-10 "Not All That Glitters Is Gold: Tracking CopperDragon's Sparrow Framework Around the Globe" https://research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/ ; The Hacker News 2026-11-10 https://thehackernews.com/2026/11/three-china-nexus-espionage-campaigns.html
+// Author: Jarmi
+// Date: 2026-11-16
+// Tested on: syntax only (Defender XDR advanced hunting); not run against campaign telemetry
+// Honesty: roughly 40 percent of the Check Point report was read only through a model summary, so the CertFixer.msi hashes carry medium confidence. The exact LNK command line, the SquadC install folder and the host EXE that side-loads MSVCR110.dll / dtfbase.dll / WTSAPI32.dll are not published; those branches are behavioural. Indicators decay.
+// Confidence: high for ftp.exe with _rels / info.dll / Strategi_AS arguments and for the WindowsUpdateAssist value; medium for the CertFixer.msi hashes; low for the side-loading branch (the three DLL names are common legitimate names).
+// FP notes: legacy ftp -s: batch jobs; any genuine MSI named CertFixer; MSVCR110.dll / WTSAPI32.dll legitimately shipped next to many applications (the branch only keeps loads from user-writable folders by processes that are not signed by Microsoft).
+let Lookback = 30d;
+let CertFixerSha256 = dynamic([
+    "715c206629f59ff5b0134a33362162ce7a40a9b25aa17f0543dc9648d51a67cf",
+    "b379d07ba81d4190490d9893b2d6d830ff594e042dce26053ef07794d0403787",
+    "e5f7bbfc187264336dea5dfebfb5a7dd1e7fcdcc9692db55fbe6eb4d28f027bc",
+    "e9f2f42ea3611096879f4152a7d78bb3a78a4dbead1c3b7e366dce485207551f",
+    "f44159bec1d4d3f340652cd3c6e250dcf2bdb266e5400d3e267f0466d290dda0",
+    "f51dc5e1848daee4e607d46faa25033e1151060cd3482ad4439754440d6c4c01"]);
+let LureTokens = dynamic(["_rels\\", "_rels/", "info.dll", ".rels.log", "Strategi_AS_"]);
+let FtpChildren = dynamic(["cmd.exe", "expand.exe", "extrac32.exe", "rundll32.exe", "powershell.exe"]);
+let SquadCDlls = dynamic(["msvcr110.dll", "dtfbase.dll", "wtsapi32.dll"]);
+let FtpLure = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName =~ "ftp.exe" or ProcessVersionInfoOriginalFileName =~ "ftp.exe"
+    | where ProcessCommandLine has_any (LureTokens) or (InitiatingProcessFileName =~ "explorer.exe" and ProcessCommandLine has ".dll")
+    | extend Pattern = "ftp.exe with SilentDelivery lure / batch-in-.dll argument";
+let FtpChild = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where InitiatingProcessFileName =~ "ftp.exe" and FileName in~ (FtpChildren)
+    | extend Pattern = strcat("ftp.exe spawned ", FileName);
+let CertFixerExec = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where ProcessCommandLine has "CertFixer" or SHA256 in (CertFixerSha256)
+    | extend Pattern = strcat("CertFixer.msi fake certificate fix via ", FileName);
+let CertFixerFile = DeviceFileEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName has "CertFixer" or SHA256 in (CertFixerSha256)
+    | extend Pattern = strcat("CertFixer file ", ActionType), ProcessCommandLine = InitiatingProcessCommandLine;
+let SideLoad = DeviceImageLoadEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName in~ (SquadCDlls)
+    | where FolderPath has_any (@"\AppData\", @"\ProgramData\", @"\Users\Public\", @"\Temp\")
+    | where InitiatingProcessFolderPath has_any (@"\AppData\", @"\ProgramData\", @"\Users\Public\", @"\Temp\")
+    | extend Pattern = strcat("possible SquadC side-load of ", FileName, " by ", InitiatingProcessFileName), ProcessCommandLine = InitiatingProcessCommandLine;
+let RunValue = DeviceRegistryEvents
+    | where Timestamp > ago(Lookback)
+    | where RegistryValueName =~ "WindowsUpdateAssist"
+    | extend Pattern = strcat("SquadC persistence value WindowsUpdateAssist = ", RegistryValueData), ProcessCommandLine = InitiatingProcessCommandLine, FolderPath = RegistryKey;
+union FtpLure, FtpChild, CertFixerExec, CertFixerFile, SideLoad, RunValue
+| project Timestamp, DeviceName, AccountName, Pattern, FileName, FolderPath, ProcessCommandLine, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Patterns = make_set(Pattern, 20), CommandLines = make_set(ProcessCommandLine, 10), Hashes = make_set(SHA256, 10) by DeviceName
+| order by LastSeen desc

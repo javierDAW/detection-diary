@@ -4,11 +4,12 @@
 
 # Techniques: T1090
 
-11 day(s) covering this technique.
+12 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-16 | CopperDragon's Sparrow framework: three China-nexus clusters (SilentDelivery, OceanGate, DarkWire) share one toolset against telecom, government and research targets | CopperDragon | [`2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/`](../../days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/) |
 | 2026-10-23 | Plex2Shell: four Plex Media Server flaws chained into unauthenticated RCE through the codec loader, exploited for XMRig and proxy malware and listed on CISA KEV | Unattributed Plex2Shell exploitation | [`2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/`](../../days/2026/10/2026-10-23_Plex2Shell-Plex-Media-Server-CVE-2026-96652-96656-Codec-Loader-RCE-XMRig-Proxyware/) |
 | 2026-10-19 | ARMORY CASTLE exploits BeyondTrust Remote Support zero-day CVE-2026-102764: SAWFLY web shell, SUID root, vault dumps and the BARECLAW tunnel | ARMORY CASTLE (formerly UNC5221) | [`2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/`](../../days/2026/10/2026-10-19_ARMORY-CASTLE-BeyondTrust-Remote-Support-CVE-2026-102764-SAWFLY-BARECLAW/) |
 | 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |

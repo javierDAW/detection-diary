@@ -46,6 +46,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Chatty Spider](./chatty-spider/) | 2 |
 | [Cloud-Insider-Recruitment-unattributed](./cloud-insider-recruitment-unattributed/) | 1 |
 | [CloudZ](./cloudz/) | 1 |
+| [CopperDragon](./copperdragon/) | 1 |
 | [Cordial Spider (CrowdStrike)](./cordial-spider-crowdstrike/) | 1 |
 | [CrashStealer (unattributed developer/operator)](./crashstealer-unattributed-developer-operator/) | 1 |
 | [CyberAv3ngers](./cyberav3ngers/) | 1 |

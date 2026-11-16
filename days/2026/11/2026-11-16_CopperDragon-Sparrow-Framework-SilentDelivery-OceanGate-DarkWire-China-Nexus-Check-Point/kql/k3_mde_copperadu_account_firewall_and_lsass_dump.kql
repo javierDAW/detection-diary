@@ -1,0 +1,55 @@
+// Title: CopperDragon OceanGate / DarkWire - CopperAdu admin$ account, LocalAccountTokenFilterPolicy, RasiUwpApp / ss1 firewall rules, LSASS dump (comsvcs, 1.png) and known tool hashes (Defender XDR)
+// Id: abf7731a-b748-414e-a3a2-64cb4adc8528
+// MITRE: T1136.001 Local Account; T1564.002 Hidden Users; T1112 Modify Registry; T1562.004 Disable or Modify System Firewall; T1003.001 LSASS Memory; T1547.005 Security Support Provider; T1056.001 Keylogging; T1110.001 Password Guessing (RDP)
+// Reference: Check Point Research 2026-11-10 "Not All That Glitters Is Gold: Tracking CopperDragon's Sparrow Framework Around the Globe" https://research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/ ; The Hacker News 2026-11-10 https://thehackernews.com/2026/11/three-china-nexus-espionage-campaigns.html
+// Author: Jarmi
+// Date: 2026-11-16
+// Tested on: syntax only (Defender XDR advanced hunting); not run against campaign telemetry
+// Honesty: roughly 40 percent of the Check Point report was read only through a model summary, so the tool hashes carry medium confidence. CopperAdu may use the Windows API directly instead of net.exe / netsh.exe / reg.exe, so both process and registry / account-creation branches are included. CopperLsa (g.exe) SSP DLL name and log path, the CopperLsass slave.dll path and the dep.dll invocation are not published; those are matched by name only. Indicators decay.
+// Confidence: high for admin$ creation with Admin@123456 and the RasiUwpApp rule name; medium for hashes; low for the generic .png-after-LSASS-access correlation.
+// FP notes: RMM onboarding that sets LocalAccountTokenFilterPolicy=1; authorised IR memory capture with comsvcs.dll; legitimate firewall rules coincidentally named ss1 (the ss1 branch is a loose substring match, low confidence).
+let Lookback = 30d;
+let ToolHashes = dynamic([
+    "40880b6fce6f83df4e902cd29d7abb303ffa3f37c429c382f2aaeea34f7be074",
+    "9fa421adb5c5dac3b2fc1165b0dddd596e82cfd3b08347a91d63f9e88d8718d0",
+    "1cd0c608418cca80149ef3077e54969f24cd7ef3f22707cb280fa4b378ffa76b",
+    "d1da8e2389f48d1d1c0e127f3417e3d3e0dbf54691e22d6d0c863d28b9e7a812"]);
+let ToolNames = dynamic(["adu.exe", "filst2.exe", "hha.dll", "STI.DLL", "slave.dll", "dep.dll"]);
+let AdminDollar = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName in~ ("net.exe", "net1.exe")
+    | where (ProcessCommandLine has "admin$" and ProcessCommandLine has "/add") or ProcessCommandLine has_any ("Admin@123456", "/passwordchg:no")
+    | extend Pattern = "CopperAdu-style admin$ local account creation";
+let FwRule = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where ProcessCommandLine has "RasiUwpApp" or (ProcessCommandLine has_any ("firewall", "NetFirewallRule") and ProcessCommandLine has "ss1")
+    | extend Pattern = "firewall rule RasiUwpApp (CopperAdu, TCP 445) or ss1 (CopperProxy)";
+let TokenPolicy = DeviceRegistryEvents
+    | where Timestamp > ago(Lookback)
+    | where RegistryValueName =~ "LocalAccountTokenFilterPolicy" and RegistryValueData == "1"
+    | extend Pattern = "LocalAccountTokenFilterPolicy set to 1", FileName = InitiatingProcessFileName, FolderPath = RegistryKey, ProcessCommandLine = InitiatingProcessCommandLine, SHA256 = InitiatingProcessSHA256;
+let AccountCreated = DeviceEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType == "UserAccountCreated" and AccountName endswith "$"
+    | extend Pattern = strcat("local account with trailing $ created: ", AccountName), FileName = InitiatingProcessFileName, ProcessCommandLine = InitiatingProcessCommandLine, SHA256 = InitiatingProcessSHA256;
+let ComsvcsDump = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where ProcessCommandLine has "comsvcs" and (ProcessCommandLine has_any ("MiniDump", "#24", "#+24") or ProcessCommandLine has "1.png")
+    | extend Pattern = "LSASS dump via comsvcs.dll";
+let PngNearLsass = DeviceFileEvents
+    | where Timestamp > ago(Lookback)
+    | where FileName =~ "1.png" and ActionType in ("FileCreated", "FileRenamed")
+    | where InitiatingProcessFileName in~ ("rundll32.exe", "cmd.exe", "powershell.exe") or InitiatingProcessFolderPath has_any (@"\Windows\debug\", @"\ProgramData\", @"\7-Zip\Lang\")
+    | extend Pattern = "1.png written by a script host or from a staging folder (possible encrypted LSASS dump)", ProcessCommandLine = InitiatingProcessCommandLine;
+let ToolSeen = DeviceFileEvents
+    | where Timestamp > ago(Lookback)
+    | where SHA256 in (ToolHashes) or FileName in~ (ToolNames)
+    | extend Pattern = strcat("CopperDragon tool name or hash on disk: ", FileName), ProcessCommandLine = InitiatingProcessCommandLine;
+let ToolRun = DeviceProcessEvents
+    | where Timestamp > ago(Lookback)
+    | where SHA256 in (ToolHashes) or FileName in~ ("adu.exe", "filst2.exe")
+    | extend Pattern = strcat("CopperDragon tool executed: ", FileName);
+union AdminDollar, FwRule, TokenPolicy, AccountCreated, ComsvcsDump, PngNearLsass, ToolSeen, ToolRun
+| project Timestamp, DeviceName, AccountName, Pattern, FileName, FolderPath, ProcessCommandLine, SHA256, InitiatingProcessFileName, InitiatingProcessCommandLine
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Patterns = make_set(Pattern, 20), CommandLines = make_set(ProcessCommandLine, 10), Hashes = make_set(SHA256, 10) by DeviceName
+| order by LastSeen desc

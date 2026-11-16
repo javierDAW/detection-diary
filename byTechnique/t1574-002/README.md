@@ -4,11 +4,12 @@
 
 # Techniques: T1574.002
 
-10 day(s) covering this technique.
+11 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-16 | CopperDragon's Sparrow framework: three China-nexus clusters (SilentDelivery, OceanGate, DarkWire) share one toolset against telecom, government and research targets | CopperDragon | [`2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/`](../../days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/) |
 | 2026-10-25 | BlackX: an APT41-linked UEFI bootkit built on the BlackLotus Baton Drop exploit, used against Central Asian diplomatic bodies on fully patched Windows | APT41 | [`2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/`](../../days/2026/10/2026-10-25_BlackX-UEFI-Bootkit-APT41-BlackLotus-Descendant-Baton-Drop-CVE-2022-21894-Central-Asia-Diplomats/) |
 | 2026-08-14 | Operation Dream Job: Lazarus AFD.sys zero-day (CVE-2026-68820) to SYSTEM, FudModule 3.1, and the Troy backdoor | Lazarus Group | [`2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/`](../../days/2026/08/2026-08-14_DreamJob-Lazarus-AFDsys-ZeroDay-FudModule-Troy/) |
 | 2026-08-03 | OctLurk & SilkLurk: In-Memory, Victim-Keyed Backdoors Hitting Central Asian Governments | OctLurk/SilkLurk operator (unattributed, Chinese-speaking) | [`2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/`](../../days/2026/08/2026-08-03_OctLurk-SilkLurk-CentralAsia-InMemory-Backdoors/) |

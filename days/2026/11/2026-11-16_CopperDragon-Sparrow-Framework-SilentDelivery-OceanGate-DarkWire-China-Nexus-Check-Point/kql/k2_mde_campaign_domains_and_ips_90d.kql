@@ -1,0 +1,42 @@
+// Title: CopperDragon (SilentDelivery / OceanGate / DarkWire) - network contact with published domains and IPs, last 90 days (Defender XDR)
+// Id: 0e49143e-163d-4f1b-822d-8af3321bf16c
+// MITRE: T1071.001 Web Protocols; T1071.004 DNS; T1573.002 Asymmetric Cryptography; T1583.001 Domains (typosquats); T1189 Drive-by Compromise
+// Reference: Check Point Research 2026-11-10 "Not All That Glitters Is Gold: Tracking CopperDragon's Sparrow Framework Around the Globe" https://research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/ ; The Hacker News 2026-11-10 https://thehackernews.com/2026/11/three-china-nexus-espionage-campaigns.html
+// Author: Jarmi
+// Date: 2026-11-16
+// Tested on: syntax only (Defender XDR advanced hunting); not run against campaign telemetry
+// Honesty: roughly 40 percent of the Check Point report was read only through a model summary, so the domains and IPs carry medium confidence. The report does not map every IP to a cluster; all are treated as CopperDragon infrastructure. CopperDNS uses DNS MX queries and TCP 6532 on hosts in AS20473 (Vultr), but no CopperDNS IP list was read; the port branch is a generic low-confidence hint. Infrastructure may be defunct, re-assigned or sinkholed; re-validate before treating a hit as live. Indicators decay.
+// Confidence: medium for domain / IP matches; low for the TCP 6532 branch and for the generic JS C2 URI branch (/image-check?t=, /report-url, /register-ip).
+// FP notes: typosquats (microsfot / microscoft) can be hit by user mistyping; shared or re-assigned VPS IPs; any internal app that uses port 6532.
+let Lookback = 90d;
+let CampaignDomains = dynamic(["microsfot.vip", "microscoft.vip", "aistei.com", "astorialaza.com", "amelicen.com"]);
+let CampaignIPs = dynamic(["135.136.135.54", "103.141.235.123", "109.205.195.131", "158.255.213.189", "165.154.227.16", "45.197.12.11", "91.210.164.5"]);
+let JsC2Paths = dynamic(["/image-check?t=", "/report-url", "/register-ip"]);
+let NetDomain = DeviceNetworkEvents
+    | where Timestamp > ago(Lookback)
+    | where isnotempty(RemoteUrl)
+    | extend Host = tolower(extract(@"^(?:[a-zA-Z]+:/{2})?([^/:]+)", 1, RemoteUrl))
+    | where Host in (CampaignDomains) or Host has_any (CampaignDomains)
+    | extend Pattern = strcat("connection to campaign domain ", Host);
+let NetIP = DeviceNetworkEvents
+    | where Timestamp > ago(Lookback)
+    | where RemoteIP in (CampaignIPs)
+    | extend Pattern = strcat("connection to campaign IP ", RemoteIP, ":", tostring(RemotePort));
+let NetJsPath = DeviceNetworkEvents
+    | where Timestamp > ago(Lookback)
+    | where RemoteUrl has_any (JsC2Paths)
+    | extend Pattern = strcat("SilentDelivery-like JS C2 path in URL ", RemoteUrl);
+let NetPort6532 = DeviceNetworkEvents
+    | where Timestamp > ago(Lookback)
+    | where RemotePort == 6532 and RemoteIPType == "Public" and ActionType == "ConnectionSuccess"
+    | extend Pattern = strcat("outbound TCP 6532 (CopperDNS-like, low confidence) to ", RemoteIP);
+let DnsQuery = DeviceEvents
+    | where Timestamp > ago(Lookback)
+    | where ActionType == "DnsQueryResponse"
+    | extend Query = tolower(tostring(parse_json(AdditionalFields).DnsQueryString))
+    | where Query has_any (CampaignDomains)
+    | extend Pattern = strcat("DNS query for campaign domain ", Query), RemoteUrl = Query;
+union NetDomain, NetIP, NetJsPath, NetPort6532, DnsQuery
+| project Timestamp, DeviceName, Pattern, RemoteUrl, RemoteIP, RemotePort, InitiatingProcessFileName, InitiatingProcessFolderPath, InitiatingProcessCommandLine, InitiatingProcessSHA256
+| summarize FirstSeen = min(Timestamp), LastSeen = max(Timestamp), Hits = count(), Patterns = make_set(Pattern, 20), Processes = make_set(InitiatingProcessFileName, 10) by DeviceName
+| order by LastSeen desc

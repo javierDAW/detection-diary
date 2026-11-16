@@ -1,3 +1,20 @@
+## 2026.11.16 — Day 146 — CopperDragon Sparrow framework: SilentDelivery, OceanGate and DarkWire clusters
+
+### Added
+- `days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/` — Check Point Research (2026-11-10) links three China-nexus clusters through the Sparrow toolset and a possible "digital quartermaster", CopperDragon: watering holes with a fake Chrome certificate warning, Linux-first intrusions with SparrowShell, and DLL-sideloaded DarkWire implants against Latin American telecoms. Confidence medium; about 40 percent of the primary page was read via a summary.
+- Sigma (6): `01` ftp.exe LNK chain; `02` admin$ account and RasiUwpApp rule; `03` sideloading pairs outside install paths; `03b` renamed SoftEther; `04` comsvcs LSASS dump; `05` WindowsUpdateAssist value.
+- KQL (3): SilentDelivery process chain; campaign domains and IPs over 90 days; CopperAdu and LSASS dump behaviours.
+- YARA (1 file, 3 rules): heuristic string rules, low confidence, not compiled.
+- Suricata (1 file, 6 sids 9995001-9995006): SNI, DNS, JS C2 paths, shared certificate, IPs; not compiled.
+- PEAK hunts (3): fake certificate fix and ftp.exe LNK; Linux SparrowShell and RDP to admin$; sideloading, CopperDNS and LSASS dump.
+- `iocs.csv` (62 entries) — domains, IPs, certificate hash, tool hashes, C2 paths and behavioural strings. No CVEs, so no `kev.md`.
+- `kill_chain.svg` — template C, canonical palette, espionage accent, six stages with detection anchors.
+
+### Pedagogy
+- A shared toolset is a supply relationship, not an attribution: detect tradecraft first.
+- Sideloading detection keys on the pair of legitimate EXE plus DLL from the wrong folder.
+- State when part of a source was read through a summary and downgrade dependent confidence.
+
 ## 2026.11.15 — Day 145 — FAA nationwide ground stop: change-induced failure on legacy ATC network routers, and triage versus cyberattack
 
 ### Added

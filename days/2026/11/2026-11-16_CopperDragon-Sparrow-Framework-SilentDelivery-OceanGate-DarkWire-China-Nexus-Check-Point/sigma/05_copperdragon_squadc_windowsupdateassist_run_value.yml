@@ -1,0 +1,35 @@
+title: CopperDragon SilentDelivery - SquadC Persistence Value WindowsUpdateAssist
+id: 2838deff-a3e1-4f1c-bc89-27b23549abcf
+status: experimental
+description: |
+  Detects the SquadC loader persistence reported by Check Point Research (2026-11-10) for the
+  CopperDragon SilentDelivery cluster (watering hole with a fake Chrome SSL error that pushes a
+  CertFixer.msi "Certificate Fix" utility, plus an Indonesian RAR / LNK phishing variant). SquadC
+  persists through a registry value named WindowsUpdateAssist; the common reading is a Run / RunOnce
+  autostart key, but the exact key path is not confirmed in what was read, so the rule matches the value
+  name under any key (triage hits under CurrentVersion\Run or RunOnce first). Published side-loaded DLL names
+  for SquadC (MSVCR110.dll, dtfbase.dll, WTSAPI32.dll) are listed in the KQL / hunts, not here.
+  Honesty: derived from the Check Point Research 2026-11-10 report (part of it read only through a model
+  summary) and The Hacker News 2026-11-10. Value name only; the value data (path of the host EXE) is not
+  published. Indicators decay.
+references:
+  - https://research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/
+  - https://thehackernews.com/2026/11/three-china-nexus-espionage-campaigns.html
+author: Jarmi
+date: 2026/11/16
+tags:
+  - attack.persistence
+  - attack.t1547.001
+  - attack.defense-evasion
+  - attack.t1036.004
+logsource:
+  category: registry_set
+  product: windows
+detection:
+  selection_value:
+    TargetObject|endswith: '\WindowsUpdateAssist'
+  condition: selection_value
+falsepositives:
+  - No known legitimate Windows component writes a value named WindowsUpdateAssist (Microsoft's own product is "Windows Update Assistant", usually as a scheduled task); verify the data path and signer.
+
+level: high

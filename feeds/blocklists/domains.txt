@@ -1,5 +1,5 @@
 # detection-diary blocklist — domain
-# generated 2026-11-15 09:21 UTC
+# generated 2026-11-16 08:30 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
@@ -42,7 +42,9 @@ advisory-tracker.com
 afghanistanupdates.site
 afghantelecom.site
 aim6umein3kee.com
+aistei.com
 alteira.digital
+amelicen.com
 america250.holiday
 angelxc.digital
 anticonstitutionally.sbs
@@ -65,6 +67,7 @@ ashx.lhlsjcb.com
 asiadataintelligencelab.digital
 assets-int.com
 assignpasskey.com
+astorialaza.com
 attachedfile.com
 audit.checkmarx.cx
 auronix.digital
@@ -308,6 +311,8 @@ members.nefeshhope.com
 metakit.fireant.vn
 metricforge.digital
 micbucket.ams1.vultrobjects.com
+microscoft.vip
+microsfot.vip
 minaro.club
 mindflowbase.info
 ml.cloud

@@ -1,0 +1,67 @@
+title: CopperDragon CopperAdu - Hidden admin$ Local Account, LocalAccountTokenFilterPolicy And RasiUwpApp / ss1 Firewall Rules
+id: caf6a64f-8d12-4e50-9f61-0affc350dbff
+status: experimental
+description: |
+  Detects the host-preparation steps of CopperAdu (adu.exe) from the CopperDragon OceanGate cluster
+  reported by Check Point Research (2026-11-10): it creates a local administrator with
+  net user admin$ "Admin@123456" /add /expires:never /passwordchg:no (the trailing $ hides the account
+  from casual net user listings), sets LocalAccountTokenFilterPolicy=1 to allow remote admin with local
+  accounts, starts LanmanServer / LanmanWorkstation and opens TCP 445 with a firewall rule named
+  RasiUwpApp. The DarkWire CopperProxy SOCKS5 tool adds a firewall rule named ss1.
+  Selections: net/net1 user admin$ /add; any process command line with the two firewall rule names in a
+  netsh or New-NetFirewallRule context; reg / PowerShell writing LocalAccountTokenFilterPolicy.
+  Honesty: derived from the Check Point Research 2026-11-10 report (part of it read only through a model
+  summary) and The Hacker News 2026-11-10. CopperAdu may call the Windows API directly instead of spawning
+  net.exe / netsh.exe / reg.exe; in that case only the resulting events (4720, registry_set, firewall
+  change 2004/4946) fire, which this process_creation rule does not see. Indicators decay.
+references:
+  - https://research.checkpoint.com/2026/not-all-that-glitters-is-gold-tracking-copperdragons-sparrow-framework-around-the-globe/
+  - https://thehackernews.com/2026/11/three-china-nexus-espionage-campaigns.html
+author: Jarmi
+date: 2026/11/16
+tags:
+  - attack.persistence
+  - attack.t1136.001
+  - attack.defense-evasion
+  - attack.t1564.002
+  - attack.t1562.004
+  - attack.t1112
+  - attack.lateral-movement
+  - attack.t1021.002
+logsource:
+  category: process_creation
+  product: windows
+detection:
+  selection_net_img:
+    Image|endswith:
+      - '\net.exe'
+      - '\net1.exe'
+  selection_net_admin_dollar:
+    CommandLine|contains|all:
+      - 'user'
+      - 'admin$'
+      - '/add'
+  selection_net_admin_flags:
+    CommandLine|contains:
+      - 'Admin@123456'
+      - '/passwordchg:no'
+  selection_fw_name:
+    CommandLine|contains:
+      - 'RasiUwpApp'
+      - 'name=ss1'
+      - 'name="ss1"'
+      - "-DisplayName ss1"
+      - "-DisplayName 'ss1'"
+      - '-DisplayName "ss1"'
+  selection_fw_tool:
+    CommandLine|contains:
+      - 'firewall'
+      - 'NetFirewallRule'
+  selection_token_policy:
+    CommandLine|contains: 'LocalAccountTokenFilterPolicy'
+  condition: (selection_net_img and (selection_net_admin_dollar or selection_net_admin_flags)) or (selection_fw_name and selection_fw_tool) or selection_token_policy
+falsepositives:
+  - Remote-management tooling (some RMM / deployment kits) sets LocalAccountTokenFilterPolicy=1 during onboarding; verify the parent and change ticket.
+  - Local accounts legitimately named with a trailing dollar sign are unusual but not impossible in legacy images.
+
+level: high
