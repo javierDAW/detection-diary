@@ -1,5 +1,58 @@
 [
  {
+  "date": "2026-11-17",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress",
+  "title": "SCKit: mass rogue ScreenConnect client installs and a session-cookie relay against MSP panels",
+  "clusters": [
+   "Unattributed (SCKit operator)"
+  ],
+  "country": "Unknown (not stated)",
+  "platforms": [
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "it-services",
+   "msp"
+  ],
+  "techniques": [
+   "T1199",
+   "T1078",
+   "T1072",
+   "T1219",
+   "T1105",
+   "T1059.001",
+   "T1027",
+   "T1053.005",
+   "T1562.001",
+   "T1543.003",
+   "T1547.001",
+   "T1539",
+   "T1090",
+   "T1112"
+  ],
+  "tech_count": 14,
+  "tldr": "On 2026-11-11 Huntress saw an operator push commands through ScreenConnect Run Command (SYSTEM) on cloud-hosted panels and install a second, attacker-controlled ScreenConnect client on at least 288 hosts in 48 organizations within 90 minutes; a second wave on 2026-11-13 hit 205 hosts in 41 organizations. The payload, named SCKit, is a 16-file PowerShell/batch kit that also plants a \"relay trap\" me",
+  "thumb": "thumbs/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress.svg",
+  "case_rel": "../days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/",
+  "category": "other",
+  "cat_label": "Other",
+  "cat_color": "#6a6a6a",
+  "actor": "Unattributed (SCKit operator)",
+  "cve_count": 1,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2026-84869",
+    "due": "2026-09-14",
+    "ransom": false
+   }
+  ],
+  "q": "sckit: mass rogue screenconnect client installs and a session-cookie relay against msp panels unattributed (sckit operator) unknown (not stated) windows cloud-multi it-services msp t1199 t1078 t1072 t1219 t1105 t1059.001 t1027 t1053.005 t1562.001 t1543.003 t1547.001 t1539 t1090 t1112 other cve-2026-84869"
+ },
+ {
   "date": "2026-11-16",
   "year": "2026",
   "month": "2026-11",

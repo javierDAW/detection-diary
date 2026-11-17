@@ -1,3 +1,20 @@
+## 2026.11.17 — Day 147 — SCKit: rogue ScreenConnect clients and a session-cookie relay against MSP panels
+
+### Added
+- `days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/` — Huntress (2026-11-11, updated 11-13) and The Hacker News (11-12): mass ScreenConnect Run Command installs a second attacker client on 288 hosts (wave 1) and 205 hosts (wave 2) and plants a RelayTrap cookie-relay kit; access path (RMM+ blank key) unconfirmed, unattributed.
+- Sigma (3): `01` rogue installer and SCKit dropper process chain; `02` RelayTrap and Temp file artifacts; `03` RelayTrapLiteAlert Run value and ScreenConnect service demotion.
+- KQL (3): second client plus legitimate service stop; RelayTrap, task, portproxy and exclusions; Run Command burst and published infrastructure.
+- YARA (1 file, 3 rules): script-string heuristics, medium and low confidence, not compiled.
+- Suricata (1 file, 4 sids 9995101-9995104): DNS, SNI, cleartext installer URL, relay IP; not compiled.
+- PEAK hunts (3): rogue second client; RelayTrap persistence; panel mass Run Command and RMM+.
+- `iocs.csv` (30 entries) — verbatim network and host artifacts plus low-confidence summary-derived items; hashes omitted on purpose. `kev.md` — 1/1 CVEs on CISA KEV (cached catalog).
+- `kill_chain.svg` — template C, canonical palette, six stages, detection anchors in the footer.
+
+### Pedagogy
+- A remote-management control plane is a SYSTEM execution channel: audit its Run Command log like endpoint telemetry.
+- Extensions can bypass platform identity controls; inventory them like service accounts.
+- Isolation is not eradication; hunt behavior (task, service, portproxy), not per-host hashes.
+
 ## 2026.11.16 — Day 146 — CopperDragon Sparrow framework: SilentDelivery, OceanGate and DarkWire clusters
 
 ### Added

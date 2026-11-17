@@ -4,11 +4,12 @@
 
 # Techniques: T1199
 
-8 day(s) covering this technique.
+9 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-17 | SCKit: mass rogue ScreenConnect client installs and a session-cookie relay against MSP panels | Unattributed (SCKit operator) | [`2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/`](../../days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/) |
 | 2026-11-07 | French blood bank cold storage hit through refrigeration controllers: EFS plasma freezer thresholds raised in a Europe-wide refrigeration attack wave | Unattributed | [`2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/`](../../days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/) |
 | 2026-11-01 | Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and TraderTraitor attribution | TraderTraitor | [`2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/`](../../days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/) |
 | 2026-10-24 | Argo CD October 2026 critical batch: Kustomize option injection (CVE-2026-113708), Helm config-home plugin (CVE-2026-113709) and PostDelete hook bypass (CVE-2026-77459) | Unattributed (no exploitation reported) | [`2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/`](../../days/2026/10/2026-10-24_ArgoCD-Repo-Server-CVE-2026-113708-113709-77459-Kustomize-Option-Injection-Helm-Plugin-PostDelete-Hook-Bypass/) |

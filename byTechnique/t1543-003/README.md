@@ -4,11 +4,12 @@
 
 # Techniques: T1543.003
 
-14 day(s) covering this technique.
+15 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-17 | SCKit: mass rogue ScreenConnect client installs and a session-cookie relay against MSP panels | Unattributed (SCKit operator) | [`2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/`](../../days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/) |
 | 2026-11-10 | Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security killers and AnyDesk persisted in Safe Mode | Hawkmoth (Anubis RaaS) | [`2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/`](../../days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/) |
 | 2026-10-15 | AhsayCBS backup console zero-days CVE-2026-105133 and CVE-2026-105134: SYSTEM code execution, JSP web shells and a fake Edge miner service | Unattributed AhsayCBS exploitation (Huntress and Bitdefender reports) | [`2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/`](../../days/2026/10/2026-10-15_AhsayCBS-CVE-2026-105133-105134-Backup-Console-RCE-JSP-Webshells-XMRig/) |
 | 2026-09-02 | Sality: CrowdStrike and law enforcement poison the peer lists of a 23-year-old P2P botnet | SALTY SPIDER | [`2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/`](../../days/2026/09/2026-09-02_Sality-P2P-Botnet-Sinkhole-EggJagger-Takedown/) |

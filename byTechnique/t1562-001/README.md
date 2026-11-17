@@ -4,11 +4,12 @@
 
 # Techniques: T1562.001
 
-28 day(s) covering this technique.
+29 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-17 | SCKit: mass rogue ScreenConnect client installs and a session-cookie relay against MSP panels | Unattributed (SCKit operator) | [`2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/`](../../days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/) |
 | 2026-11-12 | Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor | Unattributed (SleepyDuck-linked infrastructure) | [`2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/`](../../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) |
 | 2026-11-10 | Anubis ransomware intrusion: Lindnor backdoor on MSSQL servers, BYOVD security killers and AnyDesk persisted in Safe Mode | Hawkmoth (Anubis RaaS) | [`2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/`](../../days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/) |
 | 2026-10-27 | Qilin and INC ride a forged GlobalProtect cookie (CVE-2026-0257) from the VPN into vCenter, ESXi VMDKs and Veeam | Qilin (Spikey Scorpius) · INC Ransom (Tarnished Scorpius) | [`2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/`](../../days/2026/10/2026-10-27_Qilin-INC-PAN-OS-GlobalProtect-CVE-2026-0257-Forged-Cookie-VPN-to-vCenter-ESXi-VMDK-Veeam/) |

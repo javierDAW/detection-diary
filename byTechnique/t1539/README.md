@@ -4,11 +4,12 @@
 
 # Techniques: T1539
 
-17 day(s) covering this technique.
+18 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-17 | SCKit: mass rogue ScreenConnect client installs and a session-cookie relay against MSP panels | Unattributed (SCKit operator) | [`2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/`](../../days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/) |
 | 2026-11-08 | Poisoned Source: APT29 turns a hijacked Plerdy analytics script and watering holes into iOS and Android n-day exploit delivery | APT29 | [`2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/`](../../days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/) |
 | 2026-11-02 | Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, stolen session tokens and rogue MFA devices | Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo) | [`2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/`](../../days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/) |
 | 2026-10-05 | TA419 impersonates AI policy experts: a reply-first lure and a Frameless BitB adversary-in-the-middle page that steals Microsoft sessions | TA419 | [`2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/`](../../days/2026/10/2026-10-05_TA419-AI-Policy-Experts-Frameless-BitB-AitM-Microsoft-Phishing/) |

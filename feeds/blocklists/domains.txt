@@ -1,9 +1,10 @@
 # detection-diary blocklist — domain
-# generated 2026-11-16 08:30 UTC
+# generated 2026-11-17 08:36 UTC
 # defensive/educational — validate before blocking; indicators decay
 *.0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
 *.d.d.e.0.6.3.0.0.0.7.4.0.1.0.0.2.ip6.arpa
 0.d.7.2.7.0.1.b.e.0.a.2.ip6.arpa
+007.from-ak.com
 1.9.5.0.9.1.0.0.7.4.0.1.0.0.2.ip6.arpa
 112838d8-9a75-2e90-d63b-docviewer.clear90489058903-document.workers.dev
 15hourolddomain-bypass-ed-google-workspaceprotection-fuckgoogle.com
@@ -106,6 +107,7 @@ categorystore.net
 ccgv.me
 cdn.adv-static.com
 cdn.bloom.io
+cdn007-digitaldownloads.com
 celebratieinvitiee.de
 cfgsync-relay.eastus.cloudapp.azure.com
 chat.openai.com
@@ -345,6 +347,7 @@ nano.upscale-kolo.com
 nebive.site
 netkorava.digital
 netmansrvdns.com
+newnewnew.gotdns.org
 newsprojects.online
 nexlisa.info
 nfcrackatm.com
@@ -354,6 +357,7 @@ noas.mtrtb.com
 noas.powerium.net
 nordexastudio.info
 noxani.info
+ns.mo7sen.dev
 nwitassistnow.com
 obmlink.com
 oeannon.com
@@ -432,6 +436,7 @@ s3.tebi.io
 saidozdemir.com
 sapience-flare.digital
 savanhe.digital
+sc.payproofkit.com
 securelink.qtproxy.xyz
 sendgrid.us-west-prod.com
 sendgrid.uslogin-prodsg.com
@@ -459,6 +464,7 @@ sobeamora.digital
 socifiapp.com
 sokolovsky-law.com
 solventa.club
+soxnewwork.homedns.org
 spicynagets.shop
 splintered.co.uk
 spx.pamconj.com

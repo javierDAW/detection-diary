@@ -4,11 +4,12 @@
 
 # Platforms: cloud-multi
 
-42 day(s) covering this platform.
+43 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-17 | SCKit: mass rogue ScreenConnect client installs and a session-cookie relay against MSP panels | Unattributed (SCKit operator) | [`2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/`](../../days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/) |
 | 2026-11-11 | Agentic AI tooling harvests GitHub-exposed application secrets and pivots through Entra service principals into Azure Key Vault, Run Command and AI resources | Unattributed (agentic AI offensive framework) | [`2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/`](../../days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/) |
 | 2026-11-02 | Warp Panda and the VMware ESX insufficient-logging zero-day (CVE-2026-41709): hidden admin operations, stolen session tokens and rogue MFA devices | Warp Panda (Armory Castle, ex-UNC5221, Clay Typhoon, VerdantBamboo) | [`2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/`](../../days/2026/11/2026-11-02_Warp-Panda-VMware-ESX-CVE-2026-41709-Insufficient-Logging-Zero-Day-Legal-Sector-BRICKSTORM-Rogue-MFA/) |
 | 2026-11-01 | Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and TraderTraitor attribution | TraderTraitor | [`2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/`](../../days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/) |

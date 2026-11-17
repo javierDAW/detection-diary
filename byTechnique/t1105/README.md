@@ -4,11 +4,12 @@
 
 # Techniques: T1105
 
-25 day(s) covering this technique.
+26 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-17 | SCKit: mass rogue ScreenConnect client installs and a session-cookie relay against MSP panels | Unattributed (SCKit operator) | [`2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/`](../../days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/) |
 | 2026-11-12 | Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor | Unattributed (SleepyDuck-linked infrastructure) | [`2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/`](../../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) |
 | 2026-11-09 | BITTER (TA397) PapRAT: ftp.exe .ico scripts, VHDX and RAR lures, and Type 194 MSI droppers against South Asian government and energy targets | BITTER | [`2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/`](../../days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/) |
 | 2026-11-05 | Ivanti Connect Secure zero-day chain: UTA0576 chains CVE-2026-104935, CVE-2026-118527 and CVE-2026-111357 for unauthenticated root | UTA0576 | [`2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/`](../../days/2026/11/2026-11-05_Ivanti-Connect-Secure-UTA0576-CVE-2026-104935-111357-118527-Zero-Day-Chain-Volexity/) |

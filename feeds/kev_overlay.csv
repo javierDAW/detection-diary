@@ -266,3 +266,4 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware,2026-11-10,CVE-2026-108142,no,,,,,,
 2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus,2026-11-14,CVE-2026-119618,no,,,,,,
 2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus,2026-11-14,CVE-2026-119977,no,,,,,,
+2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress,2026-11-17,CVE-2026-84869,yes,2026-09-11,2026-09-14,Unknown,ConnectWise ScreenConnect Improper Privilege Management and Missing Authorization Vulnerability,ConnectWise,ScreenConnect
