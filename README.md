@@ -13,20 +13,20 @@
 ## Gallery
 
 <!-- AUTOGEN:GALLERY:START -->
-**147 cases** · **214 actors/clusters** · **410 ATT&CK techniques** · **16 platforms** · **101 sectors** · 2026-04-28 -> 2026-11-17
+**148 cases** · **215 actors/clusters** · **413 ATT&CK techniques** · **16 platforms** · **101 sectors** · 2026-04-28 -> 2026-11-18
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)** · full list in **[INDEX.md](INDEX.md)** · facets: [actor](byActor/) · [technique](byTechnique/) · [platform](byPlatform/)
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot/"><img src="days/2026/11/2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot/kill_chain.svg" alt="2026-11-18 kill chain" width="240"></a><br><sub><b>2026-11-18</b><br>Unattributed (ARTEX operators)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/"><img src="days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/kill_chain.svg" alt="2026-11-17 kill chain" width="240"></a><br><sub><b>2026-11-17</b><br>Unattributed (SCKit operator)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/"><img src="days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/kill_chain.svg" alt="2026-11-16 kill chain" width="240"></a><br><sub><b>2026-11-16</b><br>CopperDragon</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/"><img src="days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/kill_chain.svg" alt="2026-11-15 kill chain" width="240"></a><br><sub><b>2026-11-15</b><br>Unattributed (no adversary identified)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/"><img src="days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/kill_chain.svg" alt="2026-11-15 kill chain" width="240"></a><br><sub><b>2026-11-15</b><br>Unattributed (no adversary identified)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/"><img src="days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/kill_chain.svg" alt="2026-11-14 kill chain" width="240"></a><br><sub><b>2026-11-14</b><br>Unattributed (opportunistic exploitation)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/"><img src="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/kill_chain.svg" alt="2026-11-13 kill chain" width="240"></a><br><sub><b>2026-11-13</b><br>Unattributed (help desk impersonation operators)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/"><img src="days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/kill_chain.svg" alt="2026-11-12 kill chain" width="240"></a><br><sub><b>2026-11-12</b><br>Unattributed (SleepyDuck-linked infrastructure)</sub></td>
 </tr>
 </table>
 <!-- AUTOGEN:GALLERY:END -->

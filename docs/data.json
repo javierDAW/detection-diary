@@ -1,5 +1,61 @@
 [
  {
+  "date": "2026-11-18",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot",
+  "title": "ARTEX AI pentest agents: LLM API-key pooling against LiteLLM, Dify, Langflow and RAGFlow, then cloud credential expansion",
+  "clusters": [
+   "Unattributed (ARTEX operators)"
+  ],
+  "country": "China-nexus (moderate confidence, Amazon)",
+  "platforms": [
+   "linux",
+   "windows",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "finance",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1595.002",
+   "T1593.003",
+   "T1596.003",
+   "T1190",
+   "T1078.001",
+   "T1552.001",
+   "T1552.005",
+   "T1555.006",
+   "T1496.004",
+   "T1078.004",
+   "T1580",
+   "T1619",
+   "T1505.003",
+   "T1530",
+   "T1485"
+  ],
+  "tech_count": 15,
+  "tldr": "Amazon Threat Intelligence (CJ Moses, 2026-11-13) reports that operators ran the open-source agentic pentest framework ARTEX against hundreds of internet-exposed AI applications between 2026-10-03 and 2026-11-05, stealing the upstream LLM provider API keys those apps hold. Validated keys are graded, pooled, and fed into the framework's own model gateway, so the victims' inference budget pays for f",
+  "thumb": "thumbs/2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot.svg",
+  "case_rel": "../days/2026/11/2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot/",
+  "category": "identity-cloud",
+  "cat_label": "Identity / Cloud / SaaS",
+  "cat_color": "#6a4ca6",
+  "actor": "Unattributed (ARTEX operators)",
+  "cve_count": 2,
+  "kev_count": 1,
+  "kev_cves": [
+   {
+    "cve": "CVE-2025-3248",
+    "due": "2025-05-26",
+    "ransom": true
+   }
+  ],
+  "q": "artex ai pentest agents: llm api-key pooling against litellm, dify, langflow and ragflow, then cloud credential expansion unattributed (artex operators) china-nexus (moderate confidence, amazon) linux windows cloud-multi technology finance cross-sector t1595.002 t1593.003 t1596.003 t1190 t1078.001 t1552.001 t1552.005 t1555.006 t1496.004 t1078.004 t1580 t1619 t1505.003 t1530 t1485 identity / cloud / saas cve-2025-3248"
+ },
+ {
   "date": "2026-11-17",
   "year": "2026",
   "month": "2026-11",

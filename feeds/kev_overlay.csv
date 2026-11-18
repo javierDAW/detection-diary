@@ -267,3 +267,5 @@ case,date,cve,in_kev,kev_date_added,kev_due_date,known_ransomware_use,vulnerabil
 2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus,2026-11-14,CVE-2026-119618,no,,,,,,
 2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus,2026-11-14,CVE-2026-119977,no,,,,,,
 2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress,2026-11-17,CVE-2026-84869,yes,2026-09-11,2026-09-14,Unknown,ConnectWise ScreenConnect Improper Privilege Management and Missing Authorization Vulnerability,ConnectWise,ScreenConnect
+2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot,2026-11-18,CVE-2025-3248,yes,2025-05-05,2025-05-26,Known,Langflow Missing Authentication Vulnerability,Langflow,Langflow
+2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot,2026-11-18,CVE-2026-28797,no,,,,,,

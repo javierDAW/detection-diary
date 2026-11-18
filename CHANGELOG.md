@@ -1,3 +1,20 @@
+## 2026.11.18 — Day 148 — ARTEX AI pentest agents: LLM API-key pooling and cloud credential expansion
+
+### Added
+- `days/2026/11/2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot/` — Amazon Threat Intelligence (2026-11-13) on operators running the ARTEX agentic pentest framework against exposed AI gateways and app builders (LiteLLM, Dify, Langflow, RAGFlow) to steal and pool upstream LLM API keys, then reuse the validation logic on cloud credentials; AntiFox fork chain from BleepingComputer. Unattributed, Chinese-nexus at moderate confidence; no first-hand outcomes.
+- Sigma (3): `01` isCliRequest header or Langflow validate/code POST; `02` AI-app process spawning shell reading metadata or environment; `03` connection to the 11 published IPs.
+- KQL (3): published-IP retrohunt; AWS identity validation then secrets enumeration; IIS webshell and staged configs.
+- YARA (1 file, 2 rules): Worker name prefixes; cfut_ or norma with an artex marker; not compiled.
+- Suricata (1 file, 4 sids 9995201-9995204): isCliRequest, published IPs, Ollama exposure, Langflow validate/code; not compiled.
+- PEAK hunts (3): exposed gateways and patch state; stolen API-key abuse; cloud credential validation.
+- `iocs.csv` (22 entries) — 11 decaying Amazon IPs, Worker names, token prefix, two CVEs. `kev.md` — 1/2 CVEs on CISA KEV (cached catalog).
+- `kill_chain.svg` — template C, canonical palette, identity-cloud accent, six stages.
+
+### Pedagogy
+- An AI application is a credential vault with a web UI: threat-model the keys it stores.
+- The usage meter is a detection sensor for self-funding attacks.
+- Decoy-sourced IPs decay in days; authentication, rotation and metering last.
+
 ## 2026.11.17 — Day 147 — SCKit: rogue ScreenConnect clients and a session-cookie relay against MSP panels
 
 ### Added
