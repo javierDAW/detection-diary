@@ -1,0 +1,38 @@
+title: agent-framework 1.26.1 / 1.26.2 Python Startup Hook Files Written to site-packages
+id: c0e43781-f5ea-4ea6-a4d5-423efd90a116
+status: experimental
+description: |
+  Detects creation of agent_framework_meta.pth (malicious agent-framework 1.26.1), af_runtime_diag.pth or af_runtime_diag.py (malicious 1.26.2) in a Python site-packages directory.
+  Both PyPI releases (2026-11-17, 20:35 to 21:08 UTC, quarantined by PyPI) add a .pth startup hook that runs a credential collector at every interpreter launch, even if
+  agent_framework is never imported. File names are campaign-specific; a hit on a developer workstation, CI runner or container build host means a pip install of a poisoned release succeeded.
+  Matches both Windows and POSIX separators. The agent_framework_meta/ module directory itself is not matched because it may exist in clean installs; only the added .pth is.
+references:
+  - https://github.com/microsoft/agent-framework/issues/10411
+  - https://pypi.org/project/agent-framework/
+author: Jarmi
+date: 2026/11/19
+tags:
+  - attack.persistence
+  - attack.t1546.018
+  - attack.initial-access
+  - attack.t1195.001
+  - attack.execution
+  - attack.t1059.006
+logsource:
+  category: file_event
+detection:
+  selection_win:
+    TargetFilename|endswith:
+      - '\site-packages\agent_framework_meta.pth'
+      - '\site-packages\af_runtime_diag.pth'
+      - '\site-packages\af_runtime_diag.py'
+  selection_posix:
+    TargetFilename|endswith:
+      - '/site-packages/agent_framework_meta.pth'
+      - '/site-packages/af_runtime_diag.pth'
+      - '/site-packages/af_runtime_diag.py'
+  condition: selection_win or selection_posix
+falsepositives:
+  - None expected; these file names are not part of any clean agent-framework release (verify SHA-256 against iocs.csv for the 1.26.2 files)
+
+level: high

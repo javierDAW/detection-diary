@@ -1,0 +1,39 @@
+title: Python Process Contacting Azure Instance Metadata Service (Managed Identity Token Probe)
+id: 03870b8c-d868-4f6d-a6a2-f8ea147db6be
+status: experimental
+description: |
+  Detects a Python interpreter connecting to the Azure Instance Metadata Service at 169.254.169.254 (port 80). The malicious agent-framework 1.26.1 / 1.26.2 collector requests
+  Azure managed-identity tokens for 12 resources via IMDS and identity endpoints. The exact request shape was not published, so this is a generic low-confidence hunting rule:
+  legitimate Azure SDK code (azure-identity ManagedIdentityCredential, DefaultAzureCredential) makes the same connection on Azure VMs, AKS nodes and hosted agents.
+  Deploy only on hosts where Python has no reason to use managed identity, or baseline per host and alert on new hosts or bursts. Aggregate in the SIEM (many connections
+  within seconds from one process is closer to the 12-resource sweep) rather than in this rule. App Service / Functions use a local IDENTITY_ENDPOINT instead of IMDS and are not covered.
+references:
+  - https://github.com/microsoft/agent-framework/issues/10411
+  - https://pypi.org/project/agent-framework/
+  - https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/how-to-use-vm-token
+author: Jarmi
+date: 2026/11/19
+tags:
+  - attack.credential-access
+  - attack.t1552.005
+  - attack.t1528
+logsource:
+  category: network_connection
+detection:
+  selection_img:
+    Image|endswith:
+      - '\python.exe'
+      - '\pythonw.exe'
+      - '/python'
+      - '/python3'
+  selection_img_re:
+    Image|re: '[\\/]python3\.[0-9]+(\.exe)?$'
+  selection_dst:
+    DestinationIp: '169.254.169.254'
+    DestinationPort: 80
+  condition: (selection_img or selection_img_re) and selection_dst
+falsepositives:
+  - Legitimate Azure SDK use of managed identity on Azure VMs, VM scale sets, AKS nodes and self-hosted CI agents
+  - Cloud-init, monitoring agents or AWS/GCP SDKs written in Python that query the metadata address on other clouds
+
+level: low

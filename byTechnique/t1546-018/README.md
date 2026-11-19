@@ -4,9 +4,10 @@
 
 # Techniques: T1546.018
 
-1 day(s) covering this technique.
+2 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-19 | Microsoft agent-framework 1.26.1 and 1.26.2: poisoned PyPI releases drop a .pth startup hook that steals cloud and CI credentials | Unattributed (agent-framework PyPI compromise) | [`2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/`](../../days/2026/11/2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/) |
 | 2026-10-29 | LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI and container registries through Python startup hooks | Unattributed (LiteLLM 1.107.0 release-pipeline compromise) | [`2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/`](../../days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/) |

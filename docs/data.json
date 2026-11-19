@@ -1,5 +1,51 @@
 [
  {
+  "date": "2026-11-19",
+  "year": "2026",
+  "month": "2026-11",
+  "slug": "2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer",
+  "title": "Microsoft agent-framework 1.26.1 and 1.26.2: poisoned PyPI releases drop a .pth startup hook that steals cloud and CI credentials",
+  "clusters": [
+   "Unattributed (agent-framework PyPI compromise)"
+  ],
+  "country": "Unattributed",
+  "platforms": [
+   "supply-chain",
+   "linux",
+   "windows",
+   "macos",
+   "cloud-multi"
+  ],
+  "sectors": [
+   "technology",
+   "cross-sector"
+  ],
+  "techniques": [
+   "T1195.001",
+   "T1078",
+   "T1546.018",
+   "T1059.006",
+   "T1027",
+   "T1552.001",
+   "T1552.005",
+   "T1552.004",
+   "T1528",
+   "T1041"
+  ],
+  "tech_count": 10,
+  "tldr": "On 2026-11-17 between 20:35 and 21:08 UTC two releases of the PyPI package `agent-framework` (Microsoft Agent Framework, about 190,000 downloads a month), versions 1.26.1 and 1.26.2, were uploaded about 33 minutes apart and removed by roughly 21:20 UTC. Each adds a `.pth` startup hook, so a credential collector runs at every Python launch even if the package is never imported, and it posts environ",
+  "thumb": "thumbs/2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer.svg",
+  "case_rel": "../days/2026/11/2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/",
+  "category": "supply-chain",
+  "cat_label": "Supply chain",
+  "cat_color": "#b07a3a",
+  "actor": "Unattributed (agent-framework PyPI compromise)",
+  "cve_count": 0,
+  "kev_count": 0,
+  "kev_cves": [],
+  "q": "microsoft agent-framework 1.26.1 and 1.26.2: poisoned pypi releases drop a .pth startup hook that steals cloud and ci credentials unattributed (agent-framework pypi compromise) unattributed supply-chain linux windows macos cloud-multi technology cross-sector t1195.001 t1078 t1546.018 t1059.006 t1027 t1552.001 t1552.005 t1552.004 t1528 t1041 supply chain "
+ },
+ {
   "date": "2026-11-18",
   "year": "2026",
   "month": "2026-11",

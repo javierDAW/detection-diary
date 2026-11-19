@@ -4,11 +4,12 @@
 
 # Techniques: T1552.001
 
-29 day(s) covering this technique.
+30 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-19 | Microsoft agent-framework 1.26.1 and 1.26.2: poisoned PyPI releases drop a .pth startup hook that steals cloud and CI credentials | Unattributed (agent-framework PyPI compromise) | [`2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/`](../../days/2026/11/2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/) |
 | 2026-11-18 | ARTEX AI pentest agents: LLM API-key pooling against LiteLLM, Dify, Langflow and RAGFlow, then cloud credential expansion | Unattributed (ARTEX operators) | [`2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot/`](../../days/2026/11/2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot/) |
 | 2026-11-11 | Agentic AI tooling harvests GitHub-exposed application secrets and pivots through Entra service principals into Azure Key Vault, Run Command and AI resources | Unattributed (agentic AI offensive framework) | [`2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/`](../../days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/) |
 | 2026-11-01 | Binance 6.3B hot-wallet drain: compromised DevOps laptop, EIP-7702 sweeper and TraderTraitor attribution | TraderTraitor | [`2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/`](../../days/2026/11/2026-11-01_Binance-6-3B-Hot-Wallet-Drain-DevOps-Laptop-EIP-7702-Sweeper-TraderTraitor-DPRK/) |

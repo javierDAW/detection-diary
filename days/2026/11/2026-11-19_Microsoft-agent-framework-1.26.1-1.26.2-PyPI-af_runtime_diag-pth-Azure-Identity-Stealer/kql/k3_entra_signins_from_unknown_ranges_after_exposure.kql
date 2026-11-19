@@ -1,0 +1,26 @@
+// Title: Entra ID service principal / managed identity and user sign-ins from unknown ranges after the agent-framework exposure window
+// Id: 1f6c9a3b-7d2e-4b80-95c4-e0a8d6f2b317
+// MITRE: T1078.004 (Valid Accounts: Cloud Accounts), T1528 (Steal Application Access Token), T1550.001 (Application Access Token)
+// Reference: https://github.com/microsoft/agent-framework/issues/10411
+// Author: Jarmi
+// Date: 2026-11-19
+// Tested on: Microsoft Sentinel (SigninLogs, AADServicePrincipalSignInLogs, AADManagedIdentitySignInLogs, AuditLogs); not tested against live data
+// FP notes: Replace <add_known_ranges> with corporate egress, CI runner and Azure region ranges. Stolen managed-identity access tokens are replayed directly against resource APIs and may not create a sign-in row; also review resource logs (Key Vault, Storage, ARM AzureActivity) for the identities that ran the package.
+let windowStart = datetime(2026-11-17 20:30:00);
+let knownRanges = dynamic(["<add_known_ranges>"]);
+let spSignins = union isfuzzy=true AADServicePrincipalSignInLogs, AADManagedIdentitySignInLogs
+    | where TimeGenerated >= windowStart
+    | where not(ipv4_is_in_any_range(IPAddress, knownRanges))
+    | project TimeGenerated, Kind = "service_principal", Identity = ServicePrincipalName, IPAddress, ResourceDisplayName, ResultType;
+let userSignins = SigninLogs
+    | where TimeGenerated >= windowStart
+    | where AppDisplayName has_any ("Azure CLI", "Azure DevOps", "Microsoft Azure PowerShell")
+    | where not(ipv4_is_in_any_range(IPAddress, knownRanges))
+    | project TimeGenerated, Kind = "user", Identity = UserPrincipalName, IPAddress, ResourceDisplayName, ResultType;
+let credChanges = AuditLogs
+    | where TimeGenerated >= windowStart
+    | where OperationName has_any ("Add service principal credentials", "Update application - Certificates and secrets management", "Add owner to application")
+    | extend Identity = tostring(TargetResources[0].displayName), IPAddress = tostring(InitiatedBy.user.ipAddress)
+    | project TimeGenerated, Kind = "credential_change", Identity, IPAddress, ResourceDisplayName = OperationName, ResultType = Result;
+union spSignins, userSignins, credChanges
+| order by TimeGenerated asc

@@ -1,0 +1,42 @@
+title: Package Manager Install Pinned to Malicious agent-framework 1.26.1 or 1.26.2
+id: 930404a4-81a4-4ead-8775-16fde544211c
+status: experimental
+description: |
+  Detects pip, uv or poetry command lines that explicitly request agent-framework 1.26.1 or 1.26.2, the two malicious PyPI releases published 2026-11-17 between 20:35 and 21:08 UTC.
+  Unpinned installs (pip install agent-framework) during the exposure window would also have resolved to a malicious version but cannot be distinguished by command line alone;
+  correlate those with the file_event rule (01) or with the install timestamp. Requirement files and lockfiles are not visible to this rule; sweep them separately (see hunt H1).
+references:
+  - https://github.com/microsoft/agent-framework/issues/10411
+  - https://pypi.org/project/agent-framework/
+author: Jarmi
+date: 2026/11/19
+tags:
+  - attack.initial-access
+  - attack.t1195.001
+logsource:
+  category: process_creation
+detection:
+  selection_tool:
+    CommandLine|contains:
+      - 'pip'
+      - 'uv '
+      - 'uv.exe'
+      - 'poetry'
+  selection_version:
+    CommandLine|contains:
+      - 'agent-framework==1.26.1'
+      - 'agent-framework==1.26.2'
+      - 'agent_framework==1.26.1'
+      - 'agent_framework==1.26.2'
+      - 'agent-framework@1.26.1'
+      - 'agent-framework@1.26.2'
+      - 'agent-framework-1.26.1'
+      - 'agent-framework-1.26.2'
+      - 'agent_framework-1.26.1'
+      - 'agent_framework-1.26.2'
+  condition: selection_tool and selection_version
+falsepositives:
+  - Security teams reproducing the compromise in an isolated lab
+  - Scripted downgrades or pins that intentionally exclude the versions (for example agent-framework!=1.26.1); review the full command line
+
+level: high

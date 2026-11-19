@@ -4,7 +4,7 @@
 
 # INDEX
 
-**148 cases** · **215 actors/clusters** · **413 ATT&CK techniques** · **16 platforms** · **101 sectors** · 2026-04-28 -> 2026-11-18
+**149 cases** · **216 actors/clusters** · **413 ATT&CK techniques** · **16 platforms** · **101 sectors** · 2026-04-28 -> 2026-11-19
 
 > Visual gallery (filterable, light/dark): **[open the Pages site](./docs/index.html)**. Browse facets: [by actor](byActor/) · [by technique](byTechnique/) · [by platform](byPlatform/).
 
@@ -17,24 +17,24 @@
 
 <table>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/"><img src="days/2026/11/2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/kill_chain.svg" alt="2026-11-19 kill chain" width="240"></a><br><sub><b>2026-11-19</b><br>Unattributed (agent-framework PyPI compromise)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot/"><img src="days/2026/11/2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot/kill_chain.svg" alt="2026-11-18 kill chain" width="240"></a><br><sub><b>2026-11-18</b><br>Unattributed (ARTEX operators)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/"><img src="days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/kill_chain.svg" alt="2026-11-17 kill chain" width="240"></a><br><sub><b>2026-11-17</b><br>Unattributed (SCKit operator)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/"><img src="days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/kill_chain.svg" alt="2026-11-16 kill chain" width="240"></a><br><sub><b>2026-11-16</b><br>CopperDragon</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/"><img src="days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/kill_chain.svg" alt="2026-11-16 kill chain" width="240"></a><br><sub><b>2026-11-16</b><br>CopperDragon</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/"><img src="days/2026/11/2026-11-15_FAA-Nationwide-Ground-Stop-FTI-Cisco-600-Router-Update-Failure-No-Cyberattack/kill_chain.svg" alt="2026-11-15 kill chain" width="240"></a><br><sub><b>2026-11-15</b><br>Unattributed (no adversary identified)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/"><img src="days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/kill_chain.svg" alt="2026-11-14 kill chain" width="240"></a><br><sub><b>2026-11-14</b><br>Unattributed (opportunistic exploitation)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/"><img src="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/kill_chain.svg" alt="2026-11-13 kill chain" width="240"></a><br><sub><b>2026-11-13</b><br>Unattributed (help desk impersonation operators)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/"><img src="days/2026/11/2026-11-13_Teams-Help-Desk-Impersonation-Quick-Assist-AD-CS-ESC1-ESC8-DCSync-Rclone-Microsoft/kill_chain.svg" alt="2026-11-13 kill chain" width="240"></a><br><sub><b>2026-11-13</b><br>Unattributed (help desk impersonation operators)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/"><img src="days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/kill_chain.svg" alt="2026-11-12 kill chain" width="240"></a><br><sub><b>2026-11-12</b><br>Unattributed (SleepyDuck-linked infrastructure)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/"><img src="days/2026/11/2026-11-11_Microsoft-Agentic-AI-GitHub-Exposed-App-Secrets-Entra-Service-Principal-Key-Vault/kill_chain.svg" alt="2026-11-11 kill chain" width="240"></a><br><sub><b>2026-11-11</b><br>Unattributed (agentic AI offensive framework)</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/"><img src="days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/kill_chain.svg" alt="2026-11-10 kill chain" width="240"></a><br><sub><b>2026-11-10</b><br>Hawkmoth (Anubis RaaS)</sub></td>
 </tr>
 <tr>
+<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/"><img src="days/2026/11/2026-11-10_Anubis-Hawkmoth-Lindnor-Backdoor-MSSQL-BYOVD-Safe-Mode-AnyDesk-Ransomware/kill_chain.svg" alt="2026-11-10 kill chain" width="240"></a><br><sub><b>2026-11-10</b><br>Hawkmoth (Anubis RaaS)</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/"><img src="days/2026/11/2026-11-09_BITTER-PapRAT-ftp-exe-LNK-VHDX-MSI-WmRAT-South-Asia-Espionage/kill_chain.svg" alt="2026-11-09 kill chain" width="240"></a><br><sub><b>2026-11-09</b><br>BITTER</sub></td>
 <td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/"><img src="days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/kill_chain.svg" alt="2026-11-08 kill chain" width="240"></a><br><sub><b>2026-11-08</b><br>APT29</sub></td>
-<td align="center" valign="top" width="33%"><a href="days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/"><img src="days/2026/11/2026-11-07_EFS-French-Blood-Bank-Cold-Storage-Refrigeration-Controllers-Danfoss-Copeland-Hacktivist-Wave/kill_chain.svg" alt="2026-11-07 kill chain" width="240"></a><br><sub><b>2026-11-07</b><br>Unattributed</sub></td>
 </tr>
 </table>
 
@@ -42,10 +42,11 @@
 
 ## All cases by month
 
-<details><summary><b>2026-11</b> — 18 case(s)</summary>
+<details><summary><b>2026-11</b> — 19 case(s)</summary>
 
 | Date | Case | Clusters | Platforms |
 |---|---|---|---|
+| 2026-11-19 | [Microsoft agent-framework 1.26.1 and 1.26.2: poisoned PyPI releases drop a .pth startup hook that steals cloud and CI credentials](days/2026/11/2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/) | Unattributed (agent-framework PyPI compromise) | supply-chain, linux, windows, macos, cloud-multi |
 | 2026-11-18 | [ARTEX AI pentest agents: LLM API-key pooling against LiteLLM, Dify, Langflow and RAGFlow, then cloud credential expansion](days/2026/11/2026-11-18_ARTEX-AI-Pentest-Agents-LiteLLM-Dify-Langflow-RAGFlow-API-Key-Pooling-Amazon-MadPot/) | Unattributed (ARTEX operators) | linux, windows, cloud-multi |
 | 2026-11-17 | [SCKit: mass rogue ScreenConnect client installs and a session-cookie relay against MSP panels](days/2026/11/2026-11-17_SCKit-Worm-Rogue-ScreenConnect-RMM-Plus-CVE-2026-84869-RelayTrap-Huntress/) | Unattributed (SCKit operator) | windows, cloud-multi |
 | 2026-11-16 | [CopperDragon's Sparrow framework: three China-nexus clusters (SilentDelivery, OceanGate, DarkWire) share one toolset against telecom, government and research targets](days/2026/11/2026-11-16_CopperDragon-Sparrow-Framework-SilentDelivery-OceanGate-DarkWire-China-Nexus-Check-Point/) | CopperDragon | windows, linux |

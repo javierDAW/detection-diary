@@ -1,3 +1,21 @@
+## 2026.11.19 — Day 149 — Microsoft agent-framework 1.26.1 and 1.26.2: poisoned PyPI releases with a .pth startup-hook credential stealer
+
+### Added
+- `days/2026/11/2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/` — Orca, SecurityWeek and Socket (via GBHackers), all 2026-11-18, on two wheel-only releases of `agent-framework` published 2026-11-17 20:35-21:08 UTC; a `.pth` hook steals env vars, Azure managed-identity and DevOps tokens, Actions OIDC tokens and credential files to webhook.site. Unattributed; publishing path unknown.
+- Sigma (5): `01` hook files in site-packages; `02` pinned installs of the two versions; `03` Python to webhook.site; `04` proxy User-Agents; `05` Python to Azure IMDS (low).
+- KQL (3): hook files and published hashes; installs plus webhook.site or IMDS egress; identity sign-ins after the window.
+- YARA (1 file, 2 rules): `.pth` hook and collector strings; inferred from write-ups, confidence low, not compiled.
+- Suricata (1 file, 4 sids 9149001-9149004): SNI, two User-Agents, DNS; hunting leads, not compiled.
+- PEAK hunts (3): startup-hook files; CI runner credential exposure; stolen credential use after the window.
+- `iocs.csv` (22 entries) — three 1.26.2 hashes, hook paths, webhook.site endpoint, User-Agents. No CVE, so no `kev.md`.
+- `kill_chain.svg` — template A, canonical palette, supply-chain accent, seven stages.
+
+### Pedagogy
+- A `.pth` line starting with `import` runs at every Python start; new `.pth` files in site-packages are high-signal.
+- Diff the wheel, not the repo: 1.26.2 restored `__init__.py` byte for byte.
+- Registry removal does not revoke stolen secrets; rotation and log review are recovery.
+- Loose version ranges and no release cooldown turn a 45-minute incident into a fleet one.
+
 ## 2026.11.18 — Day 148 — ARTEX AI pentest agents: LLM API-key pooling and cloud credential expansion
 
 ### Added

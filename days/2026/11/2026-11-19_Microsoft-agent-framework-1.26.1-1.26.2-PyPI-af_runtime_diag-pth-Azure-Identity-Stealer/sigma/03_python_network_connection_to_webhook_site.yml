@@ -1,0 +1,38 @@
+title: Python Process Connection to webhook.site (agent-framework Stealer Exfiltration Channel)
+id: 9428bc78-b832-426c-ac6f-4be14889d04d
+status: experimental
+description: |
+  Detects a Python interpreter opening an outbound connection to webhook.site or a subdomain. The malicious agent-framework 1.26.1 / 1.26.2 collector posts a JSON, zlib, Base64
+  encoded bundle of environment secrets, Azure managed-identity tokens and credential files over HTTPS to a webhook.site URL. webhook.site is a legitimate request-inspection service
+  used by developers and integration tests, so this rule needs an allow-list of hosts and pipelines that use it on purpose. Prioritise hits from CI runners (GitHub Actions,
+  Azure DevOps agents) and servers, where interactive webhook testing is unusual. The Unix variant forks and detaches, so the parent may be PID 1 or the original python process.
+references:
+  - https://github.com/microsoft/agent-framework/issues/10411
+  - https://pypi.org/project/agent-framework/
+author: Jarmi
+date: 2026/11/19
+tags:
+  - attack.exfiltration
+  - attack.t1567
+  - attack.t1041
+  - attack.credential-access
+  - attack.t1552.001
+logsource:
+  category: network_connection
+detection:
+  selection_img:
+    Image|endswith:
+      - '\python.exe'
+      - '\pythonw.exe'
+      - '/python'
+      - '/python3'
+  selection_img_re:
+    Image|re: '[\\/]python3\.[0-9]+(\.exe)?$'
+  selection_dst:
+    DestinationHostname|endswith: 'webhook.site'
+  condition: (selection_img or selection_img_re) and selection_dst
+falsepositives:
+  - Developers or test suites that call webhook.site on purpose (allow-list known projects and hosts)
+  - Python-based webhook tooling on CI runners used for integration testing
+
+level: medium

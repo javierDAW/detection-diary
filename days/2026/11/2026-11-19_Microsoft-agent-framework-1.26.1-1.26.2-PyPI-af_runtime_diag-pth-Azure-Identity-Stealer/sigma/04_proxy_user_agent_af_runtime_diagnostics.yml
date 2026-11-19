@@ -1,0 +1,30 @@
+title: Web Proxy Request With agent-framework Stealer User-Agent (af-runtime-diagnostics)
+id: 356fba8e-85f5-4c4c-b1fe-8331723ed245
+status: experimental
+description: |
+  Detects outbound web requests carrying the User-Agent strings reported for the malicious agent-framework 1.26.1 / 1.26.2 collector, af-runtime-diagnostics/1 and
+  runtime-diagnostics/1. Requires a forward proxy or TLS-inspecting gateway that logs the User-Agent header (Sigma field c-useragent); without TLS inspection the header is not
+  visible because exfiltration goes over HTTPS. The string runtime-diagnostics/1 is generic and could be used by unrelated software, so review the destination (webhook.site per
+  public reporting). Strings come from vendor write-ups, not from an analysed sample.
+references:
+  - https://github.com/microsoft/agent-framework/issues/10411
+  - https://pypi.org/project/agent-framework/
+author: Jarmi
+date: 2026/11/19
+tags:
+  - attack.exfiltration
+  - attack.t1567
+  - attack.command-and-control
+  - attack.t1071.001
+logsource:
+  category: proxy
+detection:
+  selection:
+    c-useragent|contains:
+      - 'af-runtime-diagnostics/1'
+      - 'runtime-diagnostics/1'
+  condition: selection
+falsepositives:
+  - Unrelated diagnostics agents that happen to use a runtime-diagnostics/1 User-Agent (check destination and source host)
+
+level: high

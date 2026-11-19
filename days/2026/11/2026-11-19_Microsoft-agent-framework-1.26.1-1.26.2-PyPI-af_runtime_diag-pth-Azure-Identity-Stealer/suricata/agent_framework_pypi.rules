@@ -1,0 +1,13 @@
+# Title: agent-framework 1.26.1 / 1.26.2 PyPI compromise - webhook.site exfiltration channel and collector User-Agents
+# Author: Jarmi
+# Date: 2026-11-19
+# Reference: https://github.com/microsoft/agent-framework/issues/10411
+# Variables: $HOME_NET internal space; $EXTERNAL_NET everything else.
+# Scope: sid 9149001 TLS SNI webhook.site; sid 9149002 HTTP User-Agent af-runtime-diagnostics/1; sid 9149003 HTTP User-Agent runtime-diagnostics/1 to webhook.site;
+# sid 9149004 DNS query for webhook.site.
+# Caveats: webhook.site is a legitimate request-inspection service (high FP); sids 9149001 and 9149004 are hunting leads, best scoped to CI runner and server subnets.
+# Exfiltration is HTTPS, so the User-Agent rules (9149002, 9149003) only fire behind a TLS-inspecting proxy. UA strings come from vendor write-ups, not from an analysed sample.
+alert tls $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI agent-framework PyPI compromise - TLS SNI webhook.site (possible secret exfiltration, hunting lead)"; flow:established,to_server; tls.sni; content:"webhook.site"; endswith; nocase; classtype:policy-violation; sid:9149001; rev:1; metadata:created_at 2026_11_19, confidence low;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI agent-framework PyPI compromise - collector User-Agent af-runtime-diagnostics/1"; flow:established,to_server; http.user_agent; content:"af-runtime-diagnostics/1"; nocase; classtype:trojan-activity; sid:9149002; rev:1; metadata:created_at 2026_11_19, confidence medium;)
+alert http $HOME_NET any -> $EXTERNAL_NET any (msg:"JARMI agent-framework PyPI compromise - User-Agent runtime-diagnostics/1 to webhook.site"; flow:established,to_server; http.host; content:"webhook.site"; endswith; nocase; http.user_agent; content:"runtime-diagnostics/1"; nocase; classtype:trojan-activity; sid:9149003; rev:1; metadata:created_at 2026_11_19, confidence medium;)
+alert dns $HOME_NET any -> any any (msg:"JARMI agent-framework PyPI compromise - DNS query for webhook.site (hunting lead)"; dns.query; content:"webhook.site"; endswith; nocase; classtype:policy-violation; sid:9149004; rev:1; metadata:created_at 2026_11_19, confidence low;)

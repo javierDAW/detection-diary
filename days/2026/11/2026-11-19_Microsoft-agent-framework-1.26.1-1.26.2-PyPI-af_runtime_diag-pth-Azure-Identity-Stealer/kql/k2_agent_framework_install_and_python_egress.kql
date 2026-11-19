@@ -1,0 +1,24 @@
+// Title: agent-framework 1.26.1 / 1.26.2 install command lines and Python egress to webhook.site or Azure IMDS
+// Id: 8e2d7c41-0b9a-4f53-a6e1-2c7f90d3b5a4
+// MITRE: T1195.001 (Compromise Software Dependencies), T1552.005 (Cloud Instance Metadata API), T1567 (Exfiltration Over Web Service)
+// Reference: https://github.com/microsoft/agent-framework/issues/10411
+// Author: Jarmi
+// Date: 2026-11-19
+// Tested on: Microsoft Defender XDR advanced hunting (DeviceProcessEvents, DeviceNetworkEvents); not tested against live data
+// FP notes: webhook.site is a legitimate developer service; IMDS (169.254.169.254) is used by the Azure SDK on Azure hosts. Treat the network half as a lead and join it with an install hit or a startup-hook file on the same device.
+let windowStart = datetime(2026-11-17 20:30:00);
+let installs = DeviceProcessEvents
+    | where Timestamp >= windowStart
+    | where ProcessCommandLine has_any ("pip", "uv", "poetry")
+    | where ProcessCommandLine has_any ("agent-framework==1.26.1", "agent-framework==1.26.2", "agent_framework==1.26.1", "agent_framework==1.26.2", "agent_framework-1.26.1", "agent_framework-1.26.2")
+        or (ProcessCommandLine has "agent-framework" and Timestamp between (datetime(2026-11-17 20:30:00) .. datetime(2026-11-17 21:30:00)))
+    | project Timestamp, DeviceName, Signal = "install", Detail = ProcessCommandLine, AccountName;
+let egress = DeviceNetworkEvents
+    | where Timestamp >= windowStart
+    | where InitiatingProcessFileName startswith "python"
+    | where RemoteUrl has "webhook.site" or (RemoteIP == "169.254.169.254" and RemotePort == 80)
+    | project Timestamp, DeviceName, Signal = iff(RemoteUrl has "webhook.site", "webhook_site", "imds"), Detail = strcat(RemoteUrl, " ", RemoteIP, " ", InitiatingProcessCommandLine), AccountName = InitiatingProcessAccountName;
+union installs, egress
+| summarize Signals = make_set(Signal), First = min(Timestamp), Last = max(Timestamp), Details = make_set(Detail, 20) by DeviceName
+| extend Score = array_length(Signals)
+| order by Score desc, First asc

@@ -4,11 +4,12 @@
 
 # Platforms: supply-chain
 
-28 day(s) covering this platform.
+29 day(s) covering this platform.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-19 | Microsoft agent-framework 1.26.1 and 1.26.2: poisoned PyPI releases drop a .pth startup hook that steals cloud and CI credentials | Unattributed (agent-framework PyPI compromise) | [`2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/`](../../days/2026/11/2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/) |
 | 2026-11-14 | WordPress core updater race (CVE-2026-119977): predictable wp-content/upgrade staging folder exposes the installer, exploited and on CISA KEV | Unattributed (opportunistic exploitation) | [`2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/`](../../days/2026/11/2026-11-14_WordPress-Core-Updater-Race-CVE-2026-119977-wp-content-upgrade-RCE-KEV-Picus/) |
 | 2026-11-12 | Ethersphere bee-js 13.3.0 and Swarm Desktop 0.56.2: trusted-publishing supply chain compromise with an Ethereum dead-drop backdoor | Unattributed (SleepyDuck-linked infrastructure) | [`2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/`](../../days/2026/11/2026-11-12_Ethersphere-bee-js-13-3-0-Swarm-Desktop-0-56-2-SleepyDuck-Ethereum-Dead-Drop-Backdoor/) |
 | 2026-11-08 | Poisoned Source: APT29 turns a hijacked Plerdy analytics script and watering holes into iOS and Android n-day exploit delivery | APT29 | [`2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/`](../../days/2026/11/2026-11-08_Poisoned-Source-APT29-Plerdy-Watering-Hole-iOS-Android-DarkSword-AndroSnitch/) |

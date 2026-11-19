@@ -193,6 +193,7 @@ Source of truth: each day's `README.md` frontmatter.
 | [Unattributed (SCKit operator)](./unattributed-sckit-operator/) | 1 |
 | [Unattributed (SleepyDuck-linked infrastructure)](./unattributed-sleepyduck-linked-infrastructure/) | 1 |
 | [Unattributed (advisory-only, no actor)](./unattributed-advisory-only-no-actor/) | 1 |
+| [Unattributed (agent-framework PyPI compromise)](./unattributed-agent-framework-pypi-compromise/) | 1 |
 | [Unattributed (agentic AI offensive framework)](./unattributed-agentic-ai-offensive-framework/) | 1 |
 | [Unattributed (help desk impersonation operators)](./unattributed-help-desk-impersonation-operators/) | 1 |
 | [Unattributed (no adversary identified)](./unattributed-no-adversary-identified/) | 1 |

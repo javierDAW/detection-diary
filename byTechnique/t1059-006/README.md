@@ -4,11 +4,12 @@
 
 # Techniques: T1059.006
 
-13 day(s) covering this technique.
+14 day(s) covering this technique.
 
 
 | Date | Title | Clusters | Path |
 |---|---|---|---|
+| 2026-11-19 | Microsoft agent-framework 1.26.1 and 1.26.2: poisoned PyPI releases drop a .pth startup hook that steals cloud and CI credentials | Unattributed (agent-framework PyPI compromise) | [`2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/`](../../days/2026/11/2026-11-19_Microsoft-agent-framework-1.26.1-1.26.2-PyPI-af_runtime_diag-pth-Azure-Identity-Stealer/) |
 | 2026-10-29 | LiteLLM 1.107.0: a hijacked release pipeline ships a credential stealer to PyPI and container registries through Python startup hooks | Unattributed (LiteLLM 1.107.0 release-pipeline compromise) | [`2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/`](../../days/2026/10/2026-10-29_LiteLLM-1.107.0-PyPI-Docker-Release-Pipeline-Hijack-cook-pth-sitecustomize-privcollect-Stealer/) |
 | 2026-10-01 | NetScaler zero-days CVE-2026-88772 and CVE-2026-88771: a DTLS overflow, log poisoning and web shells that a patch does not remove | Unattributed NetScaler zero-day operators (suspected state-sponsored per Mandiant) | [`2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/`](../../days/2026/10/2026-10-01_NetScaler-CVE-2026-88771-88772-DTLS-Zero-Days-WHIPSHOT-SLAPSHOT/) |
 | 2026-07-30 | Joyfill npm Compromise: an On-Import RAT With Blockchain Dead-Drop C2 and a Python Credential Stealer | Joyfill npm compromise (StepSecurity-tracked, unattributed) | [`2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/`](../../days/2026/07/2026-07-30_Joyfill-npm-Blockchain-C2-RAT-OnImport-CredStealer/) |
